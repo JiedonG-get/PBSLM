@@ -181,9 +181,12 @@ class PBSLMv2(nn.Module):
             ia = allb.unsqueeze(0).expand(score_a.shape[0], -1)
             ic = ia.clone()
         else:
+            # Preserve legacy v2 role semantics per sample: A first, C excludes A.
             ia = torch.topk(score_a, kA, dim=-1).indices
-            # C selects independently from all blocks (no A-exclusion) for state isolation.
-            ic = torch.topk(score_c, kC, dim=-1).indices
+            taken = torch.zeros_like(score_a, dtype=torch.bool)
+            taken.scatter_(1, ia, True)
+            masked_c = score_c.masked_fill(taken, float("-inf"))
+            ic = torch.topk(masked_c, kC, dim=-1).indices
         return ia, ic
 
     @staticmethod

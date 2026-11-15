@@ -58,6 +58,14 @@ class ModelV2MaskIntegrationTests(unittest.TestCase):
         self.assertEqual(set(union), set(sum(o["chosen_a"], [])) | set(sum(o["chosen_c"], [])))
         self.assertEqual(union, sorted(union))
 
+    def test_a_c_routes_disjoint_per_sample(self):
+        o = self.out
+        for b in range(2):
+            a = set(o["chosen_a"][b])
+            c = set(o["chosen_c"][b])
+            self.assertTrue(a.isdisjoint(c))
+            self.assertLessEqual(len(a) + len(c), self.model.k)
+
     def test_per_sample_masks_can_differ(self):
         o = self.out
         self.assertFalse(torch.equal(o["mask_a"][:, 0], o["mask_a"][:, 1])
