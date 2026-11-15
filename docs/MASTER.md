@@ -25,10 +25,11 @@ PBSLM（Parallel Block State Language Model）要验证的核心假设：
 
 ### 2.2 A / C 双路径
 
-- A 路径：角色路由 → A 专属块 → 可读取 E 块记忆 `M`；
-- C 路径：角色路由 → C 专属块 → **不读取 M**；
-- 两条路径共享底层块池、输入 embedding、E 块与 InfoFlow；
-- 它们不是两个完全独立的系统，而是「共享底座 + 不同路由/记忆访问」的双路径。
+- A 路径：角色路由 → 所选块 → 可读取 E 块记忆 `M`；
+- C 路径：角色路由 → 所选块 → **不读取 M**；
+- legacy `encode` 共享batch路由，A先选、C排除A；可选 `use_sample_masks=True` 使用逐样本独立A/C路由，允许物理块重叠，comm/Flow状态按两侧mask分别计算。
+- 两条路径共享底层块池、输入 embedding、comm与InfoFlow参数；E/M读取只进入A。
+- 共享权重与只读Y/delta不等于参数独立；状态隔离证据限于测试配置。
 
 代码：`models/model_v2.py::PBSLMv2.encode`。
 
@@ -73,8 +74,8 @@ PBSLM（Parallel Block State Language Model）要验证的核心假设：
 
 ### 2.7 Online / 半在线
 
-设计目标：A 侧在线更新 + 写记忆；C / 主块 / Flow 冻结，避免灾难性遗忘。
-当前尚未实现正式 online 训练，见 `ONLINE.md`。
+设计目标：A 侧在线更新 + 写记忆；C / 主块 / Flow 冻结。冻结C不等于A没有灾难性遗忘，必须分别验证。
+已有小型合成prequential适应、记忆干预和同步Runtime接线实验；尚未完成自然语言持续学习、并发实时系统或长期保持验收。见根README的最新证据入口与 `RESEARCH_EXECUTION.md`。
 
 ## 3. 前向数据流（完整 v2）
 
@@ -91,7 +92,7 @@ token ids
   ├─ BlockBank（k 个块）
   │     ├─ A/C 角色打分 → 选活跃块（20% 预算）
   │     ├─ bank.block_forward → delta_i
-  │     ├─ bank.comm → 块间通信（v2 中 comm 未启用）
+  │     ├─ bank.comm → 块间通信（v2已调用；masked分支按A/C分别计算）
   │     └─ InfoFlow(delta) → settled + agree
   │
   ├─ a_enc = LN(E_in + side_cons_A + 0.1·ea_proj(mem_read))
@@ -113,7 +114,7 @@ token ids
 | InfoFlow | 有 | 无 |
 | 连续输出 + InfoNCE | 有（完整版用 CE/InfoNCE 调试） | 有 |
 | PerturbField | 有（可关） | 无 |
-| Online | 未实现 | 未实现 |
+| Online | 小型合成适应/记忆与同步协议原型；完整系统未验证 | 无Online机制 |
 
 Phase 1 只验证 baseline；完整 v2 的消融与模块收益属于 Phase 2。
 

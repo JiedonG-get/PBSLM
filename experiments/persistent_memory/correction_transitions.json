@@ -1,0 +1,41 @@
+{
+  "input": "experiments/persistent_memory/three_seed.json",
+  "definition": "immediate truth-relative transition, not delayed correction or verified uptake of wrong feedback",
+  "arms": {
+    "zero": {
+      "n": 18,
+      "already_correct_before": 1,
+      "wrong_to_correct": 0,
+      "wrong_before": 17,
+      "correct_after": 1
+    },
+    "append": {
+      "n": 18,
+      "already_correct_before": 0,
+      "wrong_to_correct": 7,
+      "wrong_before": 18,
+      "correct_after": 7
+    },
+    "decay_append": {
+      "n": 18,
+      "already_correct_before": 1,
+      "wrong_to_correct": 6,
+      "wrong_before": 17,
+      "correct_after": 7
+    },
+    "rebuild8": {
+      "n": 18,
+      "already_correct_before": 0,
+      "wrong_to_correct": 18,
+      "wrong_before": 18,
+      "correct_after": 18
+    },
+    "rebuild16": {
+      "n": 18,
+      "already_correct_before": 0,
+      "wrong_to_correct": 17,
+      "wrong_before": 18,
+      "correct_after": 17
+    }
+  }
+}
