@@ -29,9 +29,8 @@ def forward(m, ids, act=0.2):
 
 def c_topk(m, out, k=5):
     """C 输出的最近邻 top-k（完整 batch × m；只用于评估，不产生训练信号）。"""
-    E = F.normalize(m.code.float(), dim=-1)
-    z = F.normalize(out["z_c"].reshape(-1, out["z_c"].shape[-1]).float(), dim=-1)
-    return (z @ E.t()).topk(k, dim=-1).indices   # (B*m, k)
+    z = out["z_c"].reshape(-1, out["z_c"].shape[-1])
+    return m.decode_nearest(z).topk(k, dim=-1).indices   # actual configured decoder
 
 
 ALLOWED_PREFIX = ("dec_a.", "refine_proj.", "ln_a.", "ctx_a.", "out_a.")

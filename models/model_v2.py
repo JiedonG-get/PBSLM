@@ -221,6 +221,12 @@ class PBSLMv2(nn.Module):
         b_idx = torch.arange(B, device=agree.device)[:, None]
         return agree[rows, b_idx].mean(1)                  # (B,T)
 
+    @staticmethod
+    def _require_finite(value, boundary):
+        if not torch.isfinite(value).all():
+            raise FloatingPointError(f"non-finite value at PBSLMv2.{boundary}")
+        return value
+
     def encode_masked(self, ids, act=None):
         x = self.token_emb(ids)
         B, T, D = x.shape
@@ -248,22 +254,31 @@ class PBSLMv2(nn.Module):
         if self.use_flow:
             low_a, agree_a, _ = self.flow(delta_a, mask_a)
             low_c, agree_c, _ = self.flow(delta_c, mask_c)
-            settled_a = delta_a + self.flow.proj_out(low_a)
-            settled_c = delta_c + self.flow.proj_out(low_c)
             m4a = mask_a[:, :, None, None]
             m4c = mask_c[:, :, None, None]
-            settled_a = torch.where(m4a, settled_a, torch.zeros_like(settled_a))
-            settled_c = torch.where(m4c, settled_c, torch.zeros_like(settled_c))
+            projected_a = self.flow.proj_out(low_a)
+            projected_c = self.flow.proj_out(low_c)
+            self._require_finite(projected_a[mask_a], "projected_a")
+            self._require_finite(projected_c[mask_c], "projected_c")
+            projected_a = torch.where(m4a, projected_a, torch.zeros_like(projected_a))
+            projected_c = torch.where(m4c, projected_c, torch.zeros_like(projected_c))
+            settled_a = torch.where(m4a, delta_a + projected_a, torch.zeros_like(delta_a))
+            settled_c = torch.where(m4c, delta_c + projected_c, torch.zeros_like(delta_c))
         else:
             settled_a = torch.where(mask_a[:, :, None, None], delta_a, torch.zeros_like(delta_a))
             settled_c = torch.where(mask_c[:, :, None, None], delta_c, torch.zeros_like(delta_c))
-            agree_a = torch.ones(G, B, T, device=x.device, dtype=x.dtype)
-            agree_c = torch.ones(G, B, T, device=x.device, dtype=x.dtype)
+            agree_a = mask_a[:, :, None].expand(G, B, T).to(x.dtype)
+            agree_c = mask_c[:, :, None].expand(G, B, T).to(x.dtype)
+        self._require_finite(settled_a[mask_a], "settled_a")
+        self._require_finite(settled_c[mask_c], "settled_c")
 
         side_a = self._side_cons_masked(settled_a, sa, ia, rows_a)
         side_c = self._side_cons_masked(settled_c, sc, ic, rows_c)
         I_a = self._side_I_masked(agree_a, rows_a)
         I_c = self._side_I_masked(agree_c, rows_c)
+        for boundary, value in (("side_a", side_a), ("side_c", side_c),
+                                ("I_a", I_a), ("I_c", I_c)):
+            self._require_finite(value, boundary)
 
         E_feats, mem_read = self.e_forward(x)
         if self.use_mem:
@@ -271,6 +286,8 @@ class PBSLMv2(nn.Module):
         else:
             a_enc = self.ln_a(x + side_a)
         c_enc = self.ln_c(x + side_c)
+        self._require_finite(a_enc, "a_enc")
+        self._require_finite(c_enc, "c_enc")
         return {
             "a_enc": a_enc, "c_enc": c_enc, "e_feats": E_feats,
             "I_a": I_a, "I_c": I_c,
@@ -342,6 +359,10 @@ class PBSLMv2(nn.Module):
                 dim=-1)
         else:
             z_pert = z_a
+        if self.use_sample_masks:
+            self._require_finite(z_a, "z_a")
+            self._require_finite(z_c, "z_c")
+            self._require_finite(z_pert, "z_pert")
         out = {"z_a": z_a, "z_c": z_c, "field_mu": mu, "field_log_sigma": log_sigma,
                "z_pert": z_pert,
                "h_a": h_a, "e_feats": E_feats, "I_a": I_a, "I_c": I_c,

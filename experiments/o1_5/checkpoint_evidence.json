@@ -1,0 +1,172 @@
+{
+  "torch": "2.11.0+cu128",
+  "checkpoints": [
+    {
+      "path": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_direct_ce.pt",
+      "storage": "local ignored artifact, not uploaded",
+      "sha256": "c82c1b8536cd8d75bba0ebf16fc0508db7ec504497915b1938243b4158950e49",
+      "bytes": 67107471,
+      "mtime_utc_not_verified_creation_time": "2026-11-14T16:39:36.440846+00:00",
+      "args": {
+        "ids": "E:/PycharmProject/data/bpe_full_u32.bin",
+        "ids_dtype": "uint32",
+        "steps": 5000,
+        "batch": 64,
+        "n_in": 16,
+        "n_out": 1,
+        "k": 8,
+        "depth": 2,
+        "d": 256,
+        "heads": 8,
+        "lr": 0.002,
+        "act": 0.2,
+        "log_every": 500,
+        "metrics_jsonl": "metrics_direct_ce.jsonl",
+        "eval_every": 1000,
+        "eval_windows": 64,
+        "save": "ckpt_direct_ce.pt",
+        "save_every": 0,
+        "resume": "",
+        "no_fp16": false,
+        "bf16": true,
+        "opt": "adam8bit",
+        "loss": "ce",
+        "tau": 0.1,
+        "neg": 128,
+        "field_scale": 0.0,
+        "no_mem": true,
+        "bal_alpha": 0.5,
+        "frozen_code": false,
+        "simple_dec": true,
+        "dense": true,
+        "direct_only": true,
+        "no_flow": true,
+        "var_w": 0.1,
+        "momentum": 0.9,
+        "seed": 0
+      },
+      "construction": {
+        "vocab": 16384,
+        "k": 8,
+        "depth": 2,
+        "d": 256,
+        "heads": 8,
+        "m_max": 32,
+        "act_x": 0.2,
+        "e_n": 10,
+        "e_depth": 1,
+        "field_scale": 0.0,
+        "use_mem": false,
+        "trainable_target": true,
+        "simple_dec": true,
+        "dense": true,
+        "direct_only": true,
+        "use_flow": false
+      },
+      "inferred_defaults": [
+        "e_depth=1",
+        "missing args use constructor-era defaults; not provenance proof"
+      ],
+      "raw_missing": [
+        "out_c.bias",
+        "out_c.weight"
+      ],
+      "raw_unexpected": [],
+      "shape_mismatches": {},
+      "load_attempts": {
+        "raw": {
+          "success": false,
+          "error": "Error(s) in loading state_dict for PBSLMv2:\n\tMissing key(s) in state_dict: \"out_c.weight\", \"out_c.bias\". "
+        },
+        "out_c_migration": {
+          "success": true,
+          "missing": [],
+          "unexpected": []
+        }
+      },
+      "forward_executed": false,
+      "limitation": "loading is not functional equivalence; dense/direct_only/no_flow checkpoint does not validate sparse Flow"
+    },
+    {
+      "path": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_nomem_100.pt",
+      "storage": "local ignored artifact, not uploaded",
+      "sha256": "51fb42b44cf6353038546dad5fe68f37f2b9fed5081800ddcaee4eae50b16e36",
+      "bytes": 66842811,
+      "mtime_utc_not_verified_creation_time": "2026-11-14T15:06:32.102415+00:00",
+      "args": {
+        "ids": "E:/PycharmProject/data/bpe_smoke_u32.bin",
+        "ids_dtype": "uint32",
+        "steps": 100,
+        "batch": 8,
+        "n_in": 16,
+        "n_out": 8,
+        "k": 8,
+        "depth": 2,
+        "d": 256,
+        "heads": 8,
+        "lr": 0.0005,
+        "act": 0.2,
+        "log_every": 1000,
+        "metrics_jsonl": "",
+        "eval_every": 100,
+        "eval_windows": 4,
+        "save": "ckpt_nomem_100.pt",
+        "save_every": 0,
+        "no_fp16": false,
+        "bf16": true,
+        "opt": "adam8bit",
+        "loss": "infonce",
+        "tau": 0.1,
+        "neg": 128,
+        "field_scale": 0.0,
+        "no_mem": true,
+        "momentum": 0.9,
+        "seed": 0
+      },
+      "construction": {
+        "vocab": 16384,
+        "k": 8,
+        "depth": 2,
+        "d": 256,
+        "heads": 8,
+        "m_max": 32,
+        "act_x": 0.2,
+        "e_n": 10,
+        "e_depth": 1,
+        "field_scale": 0.0,
+        "use_mem": false,
+        "trainable_target": true,
+        "simple_dec": false,
+        "dense": false,
+        "direct_only": false,
+        "use_flow": true
+      },
+      "inferred_defaults": [
+        "e_depth=1",
+        "missing args use constructor-era defaults; not provenance proof"
+      ],
+      "raw_missing": [
+        "ctx_a.bias",
+        "ctx_a.weight",
+        "ctx_c.bias",
+        "ctx_c.weight",
+        "out_c.bias",
+        "out_c.weight"
+      ],
+      "raw_unexpected": [],
+      "shape_mismatches": {},
+      "load_attempts": {
+        "raw": {
+          "success": false,
+          "error": "Error(s) in loading state_dict for PBSLMv2:\n\tMissing key(s) in state_dict: \"out_c.weight\", \"out_c.bias\", \"ctx_a.weight\", \"ctx_a.bias\", \"ctx_c.weight\", \"ctx_c.bias\". "
+        },
+        "out_c_migration": {
+          "success": false,
+          "error": "Error(s) in loading state_dict for PBSLMv2:\n\tMissing key(s) in state_dict: \"ctx_a.weight\", \"ctx_a.bias\", \"ctx_c.weight\", \"ctx_c.bias\". "
+        }
+      },
+      "forward_executed": false,
+      "limitation": "loading is not functional equivalence; dense/direct_only/no_flow checkpoint does not validate sparse Flow"
+    }
+  ]
+}

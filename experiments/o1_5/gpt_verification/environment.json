@@ -1,0 +1,21 @@
+{
+  "command": [
+    "C:\\Python313\\python.exe",
+    "-m",
+    "unittest",
+    "tests.test_flow_mask_min",
+    "tests.test_model_v2_mask_integration",
+    "tests.test_online_o1",
+    "tests.test_masked_e2e_evidence",
+    "tests.test_masked_boundaries",
+    "-v"
+  ],
+  "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+  "torch": "2.11.0+cu128",
+  "platform": "Windows-11-10.0.22631-SP0",
+  "test_device": "cpu",
+  "returncode": 0,
+  "training_run": false,
+  "diagnostic_autograd": true,
+  "optimizer_step": false
+}
