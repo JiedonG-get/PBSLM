@@ -1,7 +1,8 @@
 # ONLINE_ARCHITECTURE_O1_5_DESIGN — A/C 路由与跨块信息流解耦设计
 
 状态：**O1.5 架构分析文档（补充 active 三集合、严格 mask、Flow 语义、参数隔离边界、
-BlockBank beta 索引、batch union 语义、逐块独立性与 M1/M2 严格等价）。
+BlockBank beta 索引、batch union 语义、逐块独立性、M1/M2 严格等价、
+P0-5 可区分 beta 测试与 P0-6 统一 mask 布局）。
 只做设计，不修改模型代码，不运行训练/loss/backward/optimizer.step/smoke。**
 基线：O1 提交 `ad99bc1`；O1 只证明了**输出头已拆分**、六组 A 参数白名单和基础 C 稳定性，
 **不代表 A/C 计算路径已经完全隔离，更不代表 Online Learning 已实现。**
@@ -199,25 +200,28 @@ M1/M2 一致性比较必须逐样本、逐块覆盖：
 
 #### 2.5.1 `BlockBank.comm`
 
-对每侧 `side ∈ {A,C}`，定义：
+对每侧 `side ∈ {A,C}`，**唯一标准布局**为 `(G,B)`：
 
 ```text
-mask_side[b, s] = 1   iff block s 属于样本 b 的 active_side
+mask_side[g, b] = 1   iff global block g 属于样本 b 的 active_side
+# 形状 (G,B)，G = len(active_union_global)
+# 向 (G,B,T,D) / (G,B,T,f) 广播时使用 mask_side[:, :, None, None]
 ```
 
 `others` 的定义必须改为：
 
 ```text
-tot_side[b]      = Σ_s mask_side[b,s] · Y_side[s,b]
-others_side[s,b] = tot_side[b] - mask_side[b,s] · Y_side[s,b]
+tot_side[b]        = Σ_g mask_side[g,b] · Y_side[g,b]
+others_side[g,b]   = tot_side[b] - mask_side[g,b] · Y_side[g,b]
 ```
 
 通信更新项和输出也必须受 mask 控制：
 
 ```text
-r_side[s,b]         = comm2(gelu(comm1(others_side[s,b])))
-update_side[s,b]    = mask_side[b,s] · beta_s · r_side[s,b]
-out_side[s,b]       = mask_side[b,s] · (Y_side[s,b] + update_side[s,b])
+r_side[g,b]         = comm2(gelu(comm1(others_side[g,b])))
+update_side[g,b]    = mask_side[g,b] · beta_g · r_side[g,b]
+out_side[g,b]       = mask_side[g,b] · (Y_side[g,b] + update_side[g,b])
+# 广播：mask_side[:, :, None, None] 到 (G,B,T,D)
 ```
 
 约束：
@@ -232,6 +236,23 @@ out_side[s,b]       = mask_side[b,s] · (Y_side[s,b] + update_side[s,b])
 
 当前 `BlockBank.comm()`（`models/model.py:121`）没有 mask 参数，O1.5 需要新增可选 mask 接口；
 旧调用不带 mask 时必须保持原语义。
+
+#### P0-6 mask 广播约定
+
+`mask_a`/`mask_c` 统一为 `(G,B)` bool：
+
+| 计算 | 广播方式 |
+|---|---|
+| `Y` `(G,B,T,D)` | `mask_side[:, :, None, None]` |
+| `h` `(G,B,T,f)` | `mask_side[:, :, None, None]` |
+| `tot/mean` | `(mask_side[:, :, None, None] * h).sum(0) / count` |
+| `agree` | 只用有效块的 `h`，分母 `count_b = mask_side.sum(0)` |
+| Flow attention key | 对样本 b 使用 `mask_side[:, b]`，形状 `(G,)`，广播到 key 维 |
+| Flow query | 只对 `mask_side[:, b]` 为真的块产生输出 |
+| 每层输出 | 重新乘 `mask_side[:, :, None, None]` |
+
+所有 A/C comm、FlowStep、mean、agree、settled 计算必须使用同一 `(G,B)` 布局；
+不允许一侧用 `(G,B)`、另一侧用 `(B,G)`。
 
 #### 2.5.2 `InfoFlow` 与 `FlowStep`
 
@@ -320,15 +341,38 @@ beta = torch.sigmoid(self.comm_beta[:Y.shape[0]])
 - `g`、`beta`、`mask` 都按 `idx` / 当前角色有效块对齐；
 - 旧路径若需要复现历史行为，必须显式使用 legacy 开关，不能假装新旧等价。
 
-非连续索引测试：
+#### 2.7.1.1 P0-5：beta 测试必须验证实际 `comm()` 行为
 
-```text
-idx = [2, 5, 7]
-beta_actual   = sigmoid(comm_beta[idx])
-beta_expected = sigmoid(comm_beta[[2,5,7]])
-assert tensor_equal(beta_actual, beta_expected)
-assert not tensor_equal(beta_actual, sigmoid(comm_beta[:3]))
-```
+默认初始化 `comm_beta = full(-2.0)` 所有值相同，不能区分正确索引和错误索引；
+只比较 `sigmoid(comm_beta[idx])` 与手工索引表达式也没有验证 `comm()` 本身。
+
+测试必须：
+
+1. **主动设置互不相同的 beta**：
+   ```text
+   comm_beta = tensor([-2.0, -1.5, -1.0, 0.0, 0.5, 1.0, 1.5, 2.0, ...])
+   ```
+2. **设置 `comm2` 为非零权重/偏置**，保证 comm 更新确实受 beta 影响；
+3. 使用 `idx=[2,5,7]` 调用**实际 `comm()`**；
+4. 用同一 `Y`、`g`、`comm1/comm2` 按**物理索引**手工计算参考输出：
+   ```text
+   tot = Y.sum(0)
+   others = tot.unsqueeze(0) - Y
+   r = comm2(gelu(comm1(others)))
+   expected = Y + sigmoid(comm_beta[[2,5,7]]) * r
+   ```
+5. 断言 `actual == expected`；
+6. 用连续切片构造错误参考：
+   ```text
+   wrong = Y + sigmoid(comm_beta[:3]) * r
+   ```
+   断言 `not torch.allclose(actual, wrong)`（前提是 beta 值互异且 comm2 非零）；
+   测试使用 `g=ones(3)`、确定性非零 `Y`，并记录两者最大差值。
+
+测试不能只验证手工写出的索引表达式，必须验证实际函数行为。
+
+> 注意：`comm2` 默认 `zero_()`，如果不同时设置非零权重，beta 无论取什么都无法影响输出，
+> 该测试会失去区分能力。
 
 #### 2.7.2 `active_union` 的 batch 语义
 
@@ -338,8 +382,8 @@ assert not tensor_equal(beta_actual, sigmoid(comm_beta[:3]))
 |---|---|---|
 | `active_union_per_sample[b]` | 每个样本的块集合 | M1 逐样本计算 |
 | `active_union_global` | 批次内所有样本支持集的并集，1D sorted list | M2 一次性 block_forward 调度 |
-| `mask_a` | `(G,B)` 或 `(B,G)`，G=`len(active_union_global)` | A 侧有效块掩码 |
-| `mask_c` | `(G,B)` 或 `(B,G)` | C 侧有效块掩码 |
+| `mask_a` | **唯一标准布局 `(G,B)`**，G=`len(active_union_global)` | A 侧有效块掩码 |
+| `mask_c` | **唯一标准布局 `(G,B)`** | C 侧有效块掩码 |
 
 规则：
 
@@ -635,10 +679,15 @@ outputs C(sample_i in batch=1) ≈ outputs C(sample_i in batch=N)
 
 记录每层 `max_abs_err`/`max_rel_err`；任一层超容差即失败，不能只看最终 `z_c`。
 
-非连续索引测试：
+非连续索引测试（P0-5）：
 
-- `idx=[2,5,7]` 时 beta 必须取 `comm_beta[[2,5,7]]`，不能取 `comm_beta[:3]`；
-- 对 `comm` 的 `others`/`update`/`out` 分别检查物理 block 对齐。
+- 主动设置互不相同的 `comm_beta`；
+- 设置非零 `comm2` 权重/偏置；
+- `idx=[2,5,7]` 调用实际 `comm()`；
+- 与按物理索引手工计算的 `expected` 比较；
+- 与连续切片错误路径 `wrong` 比较，确认二者不同；
+- 对 `comm` 的 `others`/`update`/`out` 分别检查物理 block 对齐；
+- 不能只比较手工索引表达式。
 
 BlockBank 逐块独立性测试：
 
@@ -678,6 +727,8 @@ O1.5 回归测试必须同时验证 legacy 行为未被无意改变。
 10. `BlockBank.comm` 当前 `comm_beta[:S]` 与物理 block ID 不对应；修正会改变现有行为，必须保留 legacy 基线并做非连续索引测试。
 11. 若把 `active_union_per_sample` 直接传给 `block_forward` 的一维 idx，会产生错误调度；必须使用 global union + mask。
 12. M1/M2 若只比较最终 `z_c`，会漏掉 comm/Flow 中间层泄漏；P0-4 测试必须逐层失败。
+13. 默认 `comm_beta` 全相同、`comm2` 初始为零，beta 测试如果不改这两处就失去区分能力（P0-5）。
+14. mask 布局不统一会引入转置错误；P0-6 要求唯一 `(G,B)` 布局并固定广播规则。
 
 ---
 
