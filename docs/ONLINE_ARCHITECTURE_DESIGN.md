@@ -1,6 +1,7 @@
 # ONLINE_ARCHITECTURE_DESIGN — PBSLM Online Architecture Design v1
 
-状态：**设计文档，基于只读代码审查。没有修改代码，没有运行前向/smoke/训练。**
+状态：**设计文档（O0.1 修订），基于只读代码审查。没有修改代码，没有运行前向/smoke/训练。**
+修订记录：`docs/ONLINE_ARCHITECTURE_DESIGN_O0_1_REVISION.md`
 适用范围：PBSLM v2（`models/model_v2.py`）与 v15/legacy 在线雏形（`models/model.py`、`experiments/legacy/code/run_online.py`）。
 
 ---
@@ -85,10 +86,44 @@ out_c: C 专属，初始化时复制旧 out_a 的权重/偏置，之后冻结
 | `out_a` / `out_c` | A 可更新，C 冻结 | 拆分后 C 稳定 |
 | `field` | 冻结 | C 不经过 field（field 只作用 z_a） |
 | `mem` 缓冲区 | 只写，不训练 | C 不读 M |
-| `bank.comm1/comm2/comm_beta` | **不得加入在线优化器** | v2 body 不调用 bank.comm，属于未使用参数 |
+| `bank.comm1/comm2/comm_beta` | **不得加入在线优化器** | **v2 encode 实际调用 `bank.comm()`（`model_v2.py:140`），属于共享计算路径；冻结但不等于未使用** |
 | `a_pred` | 仅辅助 loss，不在 forward | 默认排除在线更新集合 |
 
-结论：**必须先把共享 `out_a` 拆开，否则 C 稳定性无法成立。**
+结论：**必须先把共享 `out_a` 拆开，但仅拆输出层仍不足以证明 C 稳定。**
+
+### 3.4 A/C 路由与跨块通信耦合（O0.1 修正）
+
+`models/model_v2.py::encode()` 的实际顺序：
+
+1. `role_a` 选出 A 的块 `ia`；
+2. `_select()` 在**排除 A 已选块**的剩余块中选 C 的块 `ic`；
+3. `active = sorted(set(ia + ic))`；
+4. 所有 active 块一起经过 `bank.comm(delta, ...)`（`:140`）；
+5. `flow(delta)` 对全部 active 块做块间注意力；
+6. A/C 再分别聚合自己的 `side_cons`。
+
+因此：
+
+- `role_a` 是 A 侧参数，但改变它会改变 A 的选块；
+- A 选块变化会改变 C 的候选集合（因为 C 从剩余块中选）；
+- active 集合变化会改变 C 的 `bank.comm` 输入中的 `others` 与 `flow` 的跨块交互；
+- 即使 `bank`/`flow` 权重完全冻结，**C 的 `c_enc`、`I_c` 仍可能随 A 更新而变化**。
+
+**参数冻结不等于计算路径隔离。**
+
+O1 必须在两种方案中二选一：
+
+| 方案 | 内容 | 风险 |
+|---|---|---|
+| A：独立路由/独立跨块交互范围 | C 选块不再依赖 A；A/C 的 comm/flow 输入范围分离 | 结构改动大，需要重新设计 active 集合语义 |
+| **B：O1 冻结 `role_a`** | 只更新 decoder/query/refine/`ln_a`/`ctx_a`/拆分后的 `out_a` | A 的路由暂不学习；但可以先把 A/C 输出/解码隔离验证清楚 |
+
+**O1 采用方案 B**：`role_a` 进入 forward，但 `requires_grad=False`，不进入在线 optimizer。
+这样同一输入下 A 选块、C 选块、active 集合、`bank.comm` 与 `flow` 都不因 A 参数更新而变化。
+A 路由的在线学习留给 O2/O1.5 的独立路由方案。
+
+> 注意：`role_a` 冻结不等于 C 稳定已经被证明；O1 测试仍必须显式更新 `role_a` 并记录
+> “C 会变化”这一预期失败，以证明测试没有跳过耦合点。
 
 ---
 
@@ -98,7 +133,7 @@ out_c: C 专属，初始化时复制旧 out_a 的权重/偏置，之后冻结
 
 | 参数组 | 来源 | 使用 | Online 建议 |
 |---|---|---|---|
-| `role_a.weight` | `role_a` | F | **允许更新**（A 路由） |
+| `role_a.weight` | `role_a` | F | **O1 方案 B：冻结**（避免改变 C 选块/跨块输入）；A 路由更新留到独立路由方案 |
 | `dec_a.*` | `dec_a` | F | **允许更新**（A 解码器） |
 | `q_emb`, `q_pos` | A 查询 | F | **允许更新** |
 | `refine_proj.*` | A refine | F | **允许更新** |
@@ -109,7 +144,7 @@ out_c: C 专属，初始化时复制旧 out_a 的权重/偏置，之后冻结
 | `role_c`, `dec_c`, `q_emb_c/q_pos_c`, `refine_proj_c`, `ln_c`, `ctx_c`, `out_c` | C 专属 | F | **冻结** |
 | `tok.weight` | 共享输入 | F | **冻结** |
 | `bank.*`（qkv/out/ff/ln/amp/phase） | 共享 BlockBank | F | **冻结** |
-| `bank.comm1/comm2/comm_beta` | BlockBank comm | **U（v2 encode 不调用 bank.comm）** | **不得列入更新集合** |
+| `bank.comm1/comm2/comm_beta` | BlockBank comm | **F（v2 encode 调用 `bank.comm`）** | **共享计算路径，冻结；不得列入 A-only 更新集合** |
 | `flow.*` | InfoFlow | F | **冻结** |
 | `ebank.*`（含 ebank.comm） | E 块 | F | **冻结**（在线只写 M，不改 E 参数） |
 | `e_mix`, `ea_proj` | E 混合/A 记忆读出 | F | **冻结**（E 策略后续单独评审） |
@@ -120,8 +155,11 @@ out_c: C 专属，初始化时复制旧 out_a 的权重/偏置，之后冻结
 
 注意：
 - `a_pred` 不在 forward，不能当作有效在线更新参数；
-- `bank.comm*` 在 v2 是未使用参数，不能因为 `requires_grad=True` 就列入白名单；
-- 参数白名单必须由 **forward 调用图 + requires_grad + optimizer 实际 param_groups** 三方校验，不能只看配置。
+- `bank.comm*` 在 v2 **不是**未使用参数：`encode()` 会调用 `bank.comm(delta, ...)`（`:140`）；
+  它们属于 A/C 共享计算路径，必须冻结，但不能标为 unused；
+- 参数白名单必须由 **forward 调用图 + requires_grad + optimizer 实际 param_groups** 三方校验，不能只看配置；
+- `direct_only=True` 时 `z_a/z_c` 直接来自 `ctx_a/ctx_c`，**不经过** `out_a/out_c`；
+  O1 的 C 稳定性测试必须明确使用 `direct_only=False`，并另测 direct_only 路径。
 
 ---
 
@@ -141,23 +179,41 @@ out_c: C 专属，初始化时复制旧 out_a 的权重/偏置，之后冻结
 ```text
 1. 构造/加载 v2.1 或 v2 模型，freeze 按白名单；
 2. 固定 eval 输入 batch（多个上下文、多个 step）；
-3. 记录 C 输出 z_c、top1/top5、I_c 的全量 hash；
+3. 记录 C 的选块集合、z_c、top-k、I_c 的全量 hash；
 4. 记录所有 shared/C 参数的 state hash；
-5. 对 A 参数做一次模拟 optimizer.step()（随机或小目标）；
+5. 对 A 参数按组分别做模拟 optimizer.step()（不是只做一次笼统 step）；
 6. 重新前向同一输入；
-7. 断言 C 输出全等/在容差内、shared/C hash 全等、optimizer param_groups 不含 C/shared。
+7. 断言 C 选块/z_c/top-k/I_c 全等/容差内，shared/C hash 全等，
+   optimizer param_groups 不含 C/shared。
 ```
 
-容差：优先要求 bitwise equal；GPU 非确定性算子下允许 `torch.allclose(atol=1e-6, rtol=1e-5)`，但必须记录为何需要容差。
+容差：优先 bitwise equal；GPU 非确定性算子下允许 `torch.allclose(atol=1e-6, rtol=1e-5)`，但必须记录原因。
 
-### 5.3 测试矩阵
+### 5.3 必测的 A 参数组
 
-- dtype：fp32 / bf16（分别）；
-- batch>1；n_in 固定 16；
-- 有/无 field（field 关闭时 C 不经过 field，仍要测）；
-- M 全零 / M 已写入两种状态；
+| 实际被更新的组 | C 是否应保持不变 | 说明 |
+|---|---|---|
+| `dec_a` | 是 | 只影响 A decoder |
+| `q_emb/q_pos` | 是 | 只影响 A query |
+| `refine_proj` | 是 | 只影响 A refine |
+| `ln_a` | 是 | 只影响 A 编码归一化 |
+| `ctx_a` | 是 | 只影响 A 直接读出 |
+| `out_a`（拆分后） | 是 | 只影响 A 输出投影 |
+| **`role_a`** | **否（预期会变化）** | 改变 A 选块 → 改变 C 候选集合、active/bank.comm/flow；O1 方案 B 必须把它冻结 |
+
+`role_a` 的测试不是“要求通过”，而是**要求暴露耦合**：如果更新 `role_a` 后 C 完全不变，
+反而说明测试没有覆盖真实路由，需检查测试配置。
+
+### 5.4 配置覆盖
+
+- `direct_only=False`：必须覆盖真正经过 `out_a/out_c` 的路径；
+- `direct_only=True`：另测 `z_a/z_c` 只走 `ctx_a/ctx_c` 的路径，不能把它当作输出层测试；
+- dtype：fp32 / bf16；
+- batch>1；n_in=16；
+- field 开关分别测；
+- M 全零 / M 已写入；
 - 更新前后 + 打断/恢复一次；
-- 不同 seed 下非确定性检查（记录容差）。
+- 多 seed 非确定性检查。
 
 ---
 
@@ -167,7 +223,7 @@ out_c: C 专属，初始化时复制旧 out_a 的权重/偏置，之后冻结
 
 | 来源 | 在线时是否可用 | 是否允许写 M |
 |---|---|---|
-| 观察输入 `x_t` | 当时可用 | 只可作为 key，不能作为未来 value |
+| 观察输入 `x_t` | 在 t 时刻已观察到 | 可以作为 value；但只能使用 t 时刻已观察到的信息，不能使用未来 token |
 | 模型预测 `pred_t` | 当时可用 | 可作为候选 value，需 commit/gate |
 | 已提交输出 `commit_t` | commit 后可用 | **主写入来源** |
 | 用户反馈 `feedback_t` | 反馈到达后可用 | **优先写入**，可修正/补偿 |
@@ -185,16 +241,19 @@ out_c: C 专属，初始化时复制旧 out_a 的权重/偏置，之后冻结
 observe(x_t)
   → advance()
   → propose()          # candidate output, no memory write
-  → commit(n)          # 已提交输出；生成 candidate write
+  → commit(n)          # 只把输出提交给外部；不改变 M
   → propose_write(id, key, value, provenance, confidence)
-  → confirm_write(id)  # 或 reject_write(id)
-  → memory_version += 1
+  → confirm_write(id)  # 才真正改变 M 和 memory_version
+  → 或 reject_write(id)
 ```
 
 错误/打断：
-- `interrupt()`：未 commit 的候选写入全部 reject；已 commit 的写入保持；
-- 用户纠正：旧的候选写入可 reject；必要时按反馈写补偿 value；
-- 外部验证失败：rollback 到写入前版本，或写入反向补偿。
+- `commit(n)` 只表示输出已提交，**不等于记忆内容正确**；
+- `interrupt()`：reject 所有 **未 confirm** 的候选写入；已 confirm 的写入保持；
+- 已 confirm 但后来被证明错误：必须走显式纠错 / rollback / 补偿写入，不能假装 interrupt 能撤销；
+- 用户纠正：未 confirm 候选可 reject；已 confirm 的写入可写补偿 value 或 rollback；
+- 外部验证失败：rollback 到指定 memory_version，或写反向补偿；
+- 因果规则按“信息在写入时刻是否已经可用”定义，而不是简单限制某类来源只能当 key。
 
 ### 6.3 版本与回滚
 
@@ -233,7 +292,7 @@ IDLE
 | `observe(tokens, meta)` | 新输入、时间戳 | `events` | 追加 input buffer；可能触发 INTERRUPTED |
 | `advance()` | — | A/C/I/activity/shock | 计算当前状态；不产生输出、不写 M |
 | `propose()` | — | candidate output + policy inputs | READY→PROPOSED |
-| `commit(n)` | n ≤ commit_cap | committed tokens/events | PROPOSED→COMMITTING→READY；确认候选 M 写入 |
+| `commit(n)` | n ≤ commit_cap | committed tokens/events | PROPOSED→COMMITTING→READY；只提交输出，不改变 M；之后才可 propose_write |
 | `interrupt()` | reason | 中断事件 | 清空未 commit 输出/候选写入；进入 INTERRUPTED |
 | `resume()` | restore point | 恢复事件 | INTERRUPTED→RESUMED→READY |
 | `snapshot()` | — | runtime state | 序列化 context/state/pending queues/version |
@@ -276,8 +335,11 @@ actions: SILENT | EXECUTE_A | WAIT | COMMIT(n)
 ```
 
 - `SILENT`：不输出，但可保留状态/记忆候选；
-- `EXECUTE_A`：仅当 A 的 agreement 不低于 C，且 confidence 超过校准阈值；
-- 外部校准：用 held 集估计 confidence→正确率曲线；报告 precision/coverage/silence rate；
+- **`agreement_A >= agreement_C` 不能未经校准直接作为 EXECUTE_A 的硬条件**；
+  agreement 只是策略输入特征之一；
+- confidence 必须用 held 集做校准（temperature/isotonic/Platt），并报告
+  precision、coverage、silence rate、错误 commit 率；
+- 需要比较至少三种策略：A-only、C-only、agreement+confidence 策略；
 - 不使用 `I_A > I_C` 直接宣布“A 正确”；
 - commit cap 控制打断粒度。
 
@@ -310,7 +372,8 @@ A 更新的最小约束：
 | 阶段 | 内容 | 依赖 | 验收 |
 |---|---|---|---|
 | O0 | 本设计 + 代码核对 | 无 | 本文档 |
-| O1 | 拆分 `out_a/out_c`；冻结白名单；C 不变量测试 | O0 | C hash/输出不变、优化器不含 C/shared |
+| O1 | **方案 B**：拆分 `out_a/out_c`；冻结 `role_a` + 共享参数；逐组 C 不变量测试 | O0.1 | 允许组更新后 C 不变；`role_a` 测试应暴露 C 变化；优化器不含 C/shared |
+| O1.5 | A/C 独立路由/跨块交互方案（Plan A）设计 | O1 | 路由隔离设计评审 |
 | O2 | Runtime state 骨架（observe/advance/propose/commit/interrupt/resume/snapshot） | O1 | 状态机单测、断点恢复 |
 | O3 | M 候选写入队列 + provenance + version/rollback | O2 | 未来 token 泄漏测试、rollback 测试 |
 | O4 | 输出仲裁/静默 + commit cap | O2 | precision/coverage/silence、打断测试 |
@@ -334,7 +397,8 @@ A 更新的最小约束：
 9. 动态 activity：v2 固定 act；
 10. 实时 A 在线更新：v2 无；legacy 只有 chunk 级离线模拟；
 11. 历史 interrupt/commit 实验：legacy 报告有记录，但当前仓库没有对应 runtime 代码，无法复核；
-12. `a_pred`、`field`、`bank.comm*` 等参数的实际 forward 使用边界需在 O1 用测试固化。
+12. `a_pred`、`field` 等参数的实际 forward 使用边界需在 O1 用测试固化；
+    `bank.comm*` 已确认由 v2 encode 调用，属于共享计算路径（不是 unused）。
 
 ## 12. 本次边界
 
