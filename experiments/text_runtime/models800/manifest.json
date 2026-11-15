@@ -1,0 +1,867 @@
+{
+  "training_config": {
+    "episodes": 800,
+    "eval_episodes": 8,
+    "key_align_weight": 0.2
+  },
+  "provenance": {
+    "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+    "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+    "source_sha256_at_capture": {
+      "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+      "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+      "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "training_seconds": 61.15025230000174,
+      "curve": [
+        {
+          "step": 100,
+          "loss": 0.20198267698287964,
+          "key_alignment_loss": 0.08909028023481369,
+          "accuracy": 1.0
+        },
+        {
+          "step": 200,
+          "loss": 0.008754072710871696,
+          "key_alignment_loss": 0.008250926621258259,
+          "accuracy": 1.0
+        },
+        {
+          "step": 300,
+          "loss": 0.007015374023467302,
+          "key_alignment_loss": 0.0019693602807819843,
+          "accuracy": 1.0
+        },
+        {
+          "step": 400,
+          "loss": 0.004795816261321306,
+          "key_alignment_loss": 0.0011618570424616337,
+          "accuracy": 1.0
+        },
+        {
+          "step": 500,
+          "loss": 0.005878165829926729,
+          "key_alignment_loss": 0.0014518873067572713,
+          "accuracy": 1.0
+        },
+        {
+          "step": 600,
+          "loss": 0.004821405746042728,
+          "key_alignment_loss": 0.0011638113064691424,
+          "accuracy": 1.0
+        },
+        {
+          "step": 700,
+          "loss": 0.004758077207952738,
+          "key_alignment_loss": 0.0015519305597990751,
+          "accuracy": 1.0
+        },
+        {
+          "step": 800,
+          "loss": 0.004978739190846682,
+          "key_alignment_loss": 0.0007954968023113906,
+          "accuracy": 1.0
+        }
+      ],
+      "artifact": {
+        "path": "E:\\PycharmProject\\experiments\\online_v12\\experiments\\text_runtime\\models800\\seed0.pt",
+        "bytes": 2046227,
+        "sha256": "a791e89107788807004c76c44b24b842580e93ee044e06c15a23f3f431965f51",
+        "base_strict_load_ok": true,
+        "loaded_vocab": 46
+      },
+      "evaluation": {
+        "familiar/same_surface/normal": {
+          "correct": 32,
+          "c_correct": 3,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.09375,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/seen_paraphrase/normal": {
+          "correct": 32,
+          "c_correct": 2,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0625,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/held_paraphrase/normal": {
+          "correct": 32,
+          "c_correct": 1,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.03125,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/same_surface/zero": {
+          "correct": 6,
+          "c_correct": 3,
+          "n": 32,
+          "written_matches": 6,
+          "unique_predictions_sum": 14,
+          "episodes": 8,
+          "accuracy": 0.1875,
+          "c_accuracy": 0.09375,
+          "written_match_rate": 0.1875,
+          "mean_unique_predictions_per_episode": 1.75
+        },
+        "familiar/seen_paraphrase/zero": {
+          "correct": 5,
+          "c_correct": 2,
+          "n": 32,
+          "written_matches": 5,
+          "unique_predictions_sum": 8,
+          "episodes": 8,
+          "accuracy": 0.15625,
+          "c_accuracy": 0.0625,
+          "written_match_rate": 0.15625,
+          "mean_unique_predictions_per_episode": 1.0
+        },
+        "familiar/held_paraphrase/zero": {
+          "correct": 4,
+          "c_correct": 1,
+          "n": 32,
+          "written_matches": 4,
+          "unique_predictions_sum": 15,
+          "episodes": 8,
+          "accuracy": 0.125,
+          "c_accuracy": 0.03125,
+          "written_match_rate": 0.125,
+          "mean_unique_predictions_per_episode": 1.875
+        },
+        "familiar/same_surface/wrong": {
+          "correct": 0,
+          "c_correct": 3,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.09375,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/seen_paraphrase/wrong": {
+          "correct": 0,
+          "c_correct": 2,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0625,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/held_paraphrase/wrong": {
+          "correct": 0,
+          "c_correct": 1,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.03125,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/same_surface/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/seen_paraphrase/normal": {
+          "correct": 32,
+          "c_correct": 1,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.03125,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/held_paraphrase/normal": {
+          "correct": 16,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 16,
+          "unique_predictions_sum": 16,
+          "episodes": 8,
+          "accuracy": 0.5,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.5,
+          "mean_unique_predictions_per_episode": 2.0
+        },
+        "novel_entities/same_surface/zero": {
+          "correct": 3,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 3,
+          "unique_predictions_sum": 23,
+          "episodes": 8,
+          "accuracy": 0.09375,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.09375,
+          "mean_unique_predictions_per_episode": 2.875
+        },
+        "novel_entities/seen_paraphrase/zero": {
+          "correct": 4,
+          "c_correct": 1,
+          "n": 32,
+          "written_matches": 4,
+          "unique_predictions_sum": 12,
+          "episodes": 8,
+          "accuracy": 0.125,
+          "c_accuracy": 0.03125,
+          "written_match_rate": 0.125,
+          "mean_unique_predictions_per_episode": 1.5
+        },
+        "novel_entities/held_paraphrase/zero": {
+          "correct": 3,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 3,
+          "unique_predictions_sum": 19,
+          "episodes": 8,
+          "accuracy": 0.09375,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.09375,
+          "mean_unique_predictions_per_episode": 2.375
+        },
+        "novel_entities/same_surface/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/seen_paraphrase/wrong": {
+          "correct": 0,
+          "c_correct": 1,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.03125,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/held_paraphrase/wrong": {
+          "correct": 5,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 15,
+          "unique_predictions_sum": 15,
+          "episodes": 8,
+          "accuracy": 0.15625,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.46875,
+          "mean_unique_predictions_per_episode": 1.875
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "training_seconds": 61.78719640000054,
+      "curve": [
+        {
+          "step": 100,
+          "loss": 0.2734803557395935,
+          "key_alignment_loss": 0.018241683021187782,
+          "accuracy": 1.0
+        },
+        {
+          "step": 200,
+          "loss": 0.014387824572622776,
+          "key_alignment_loss": 0.0003901624004356563,
+          "accuracy": 1.0
+        },
+        {
+          "step": 300,
+          "loss": 0.0061011663638055325,
+          "key_alignment_loss": 0.0021978053264319897,
+          "accuracy": 1.0
+        },
+        {
+          "step": 400,
+          "loss": 0.00787412840873003,
+          "key_alignment_loss": 0.0028884010389447212,
+          "accuracy": 1.0
+        },
+        {
+          "step": 500,
+          "loss": 0.005350819323211908,
+          "key_alignment_loss": 0.0007877710741013288,
+          "accuracy": 1.0
+        },
+        {
+          "step": 600,
+          "loss": 0.004675970412790775,
+          "key_alignment_loss": 0.0007326038321480155,
+          "accuracy": 1.0
+        },
+        {
+          "step": 700,
+          "loss": 0.004807895049452782,
+          "key_alignment_loss": 0.000254249811405316,
+          "accuracy": 1.0
+        },
+        {
+          "step": 800,
+          "loss": 0.005066872574388981,
+          "key_alignment_loss": 0.0012424354208633304,
+          "accuracy": 1.0
+        }
+      ],
+      "artifact": {
+        "path": "E:\\PycharmProject\\experiments\\online_v12\\experiments\\text_runtime\\models800\\seed1.pt",
+        "bytes": 2046227,
+        "sha256": "acd0106abadb1c2f588990c9cf901f001db140f1f291807812b8b7c697743bd5",
+        "base_strict_load_ok": true,
+        "loaded_vocab": 46
+      },
+      "evaluation": {
+        "familiar/same_surface/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/seen_paraphrase/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/held_paraphrase/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/same_surface/zero": {
+          "correct": 8,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 8,
+          "unique_predictions_sum": 20,
+          "episodes": 8,
+          "accuracy": 0.25,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.25,
+          "mean_unique_predictions_per_episode": 2.5
+        },
+        "familiar/seen_paraphrase/zero": {
+          "correct": 1,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 1,
+          "unique_predictions_sum": 18,
+          "episodes": 8,
+          "accuracy": 0.03125,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.03125,
+          "mean_unique_predictions_per_episode": 2.25
+        },
+        "familiar/held_paraphrase/zero": {
+          "correct": 5,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 5,
+          "unique_predictions_sum": 17,
+          "episodes": 8,
+          "accuracy": 0.15625,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.15625,
+          "mean_unique_predictions_per_episode": 2.125
+        },
+        "familiar/same_surface/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/seen_paraphrase/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/held_paraphrase/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/same_surface/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/seen_paraphrase/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/held_paraphrase/normal": {
+          "correct": 23,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 23,
+          "unique_predictions_sum": 24,
+          "episodes": 8,
+          "accuracy": 0.71875,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.71875,
+          "mean_unique_predictions_per_episode": 3.0
+        },
+        "novel_entities/same_surface/zero": {
+          "correct": 5,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 5,
+          "unique_predictions_sum": 22,
+          "episodes": 8,
+          "accuracy": 0.15625,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.15625,
+          "mean_unique_predictions_per_episode": 2.75
+        },
+        "novel_entities/seen_paraphrase/zero": {
+          "correct": 6,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 6,
+          "unique_predictions_sum": 18,
+          "episodes": 8,
+          "accuracy": 0.1875,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.1875,
+          "mean_unique_predictions_per_episode": 2.25
+        },
+        "novel_entities/held_paraphrase/zero": {
+          "correct": 6,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 6,
+          "unique_predictions_sum": 19,
+          "episodes": 8,
+          "accuracy": 0.1875,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.1875,
+          "mean_unique_predictions_per_episode": 2.375
+        },
+        "novel_entities/same_surface/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/seen_paraphrase/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/held_paraphrase/wrong": {
+          "correct": 4,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 21,
+          "unique_predictions_sum": 21,
+          "episodes": 8,
+          "accuracy": 0.125,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.65625,
+          "mean_unique_predictions_per_episode": 2.625
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "training_seconds": 61.31494609999936,
+      "curve": [
+        {
+          "step": 100,
+          "loss": 0.17253057658672333,
+          "key_alignment_loss": 0.048825230449438095,
+          "accuracy": 1.0
+        },
+        {
+          "step": 200,
+          "loss": 0.005888784769922495,
+          "key_alignment_loss": 0.0005658830050379038,
+          "accuracy": 1.0
+        },
+        {
+          "step": 300,
+          "loss": 0.006411598064005375,
+          "key_alignment_loss": 0.0012515275739133358,
+          "accuracy": 1.0
+        },
+        {
+          "step": 400,
+          "loss": 0.006156510673463345,
+          "key_alignment_loss": 0.0004658927791751921,
+          "accuracy": 1.0
+        },
+        {
+          "step": 500,
+          "loss": 0.005892116576433182,
+          "key_alignment_loss": 0.0011827461421489716,
+          "accuracy": 1.0
+        },
+        {
+          "step": 600,
+          "loss": 0.004894961602985859,
+          "key_alignment_loss": 0.0011869145091623068,
+          "accuracy": 1.0
+        },
+        {
+          "step": 700,
+          "loss": 0.00503364996984601,
+          "key_alignment_loss": 0.0009762336267158389,
+          "accuracy": 1.0
+        },
+        {
+          "step": 800,
+          "loss": 0.004161107819527388,
+          "key_alignment_loss": 0.0007626538863405585,
+          "accuracy": 1.0
+        }
+      ],
+      "artifact": {
+        "path": "E:\\PycharmProject\\experiments\\online_v12\\experiments\\text_runtime\\models800\\seed2.pt",
+        "bytes": 2046227,
+        "sha256": "dae3d2ee790ecbeb96a7ab0723074ecd454c7e3c6845b4a68dbc6c6d03667d9a",
+        "base_strict_load_ok": true,
+        "loaded_vocab": 46
+      },
+      "evaluation": {
+        "familiar/same_surface/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/seen_paraphrase/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/held_paraphrase/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/same_surface/zero": {
+          "correct": 4,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 4,
+          "unique_predictions_sum": 17,
+          "episodes": 8,
+          "accuracy": 0.125,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.125,
+          "mean_unique_predictions_per_episode": 2.125
+        },
+        "familiar/seen_paraphrase/zero": {
+          "correct": 3,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 3,
+          "unique_predictions_sum": 16,
+          "episodes": 8,
+          "accuracy": 0.09375,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.09375,
+          "mean_unique_predictions_per_episode": 2.0
+        },
+        "familiar/held_paraphrase/zero": {
+          "correct": 2,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 2,
+          "unique_predictions_sum": 20,
+          "episodes": 8,
+          "accuracy": 0.0625,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.0625,
+          "mean_unique_predictions_per_episode": 2.5
+        },
+        "familiar/same_surface/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/seen_paraphrase/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "familiar/held_paraphrase/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/same_surface/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/seen_paraphrase/normal": {
+          "correct": 32,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/held_paraphrase/normal": {
+          "correct": 22,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 22,
+          "unique_predictions_sum": 22,
+          "episodes": 8,
+          "accuracy": 0.6875,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.6875,
+          "mean_unique_predictions_per_episode": 2.75
+        },
+        "novel_entities/same_surface/zero": {
+          "correct": 6,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 6,
+          "unique_predictions_sum": 19,
+          "episodes": 8,
+          "accuracy": 0.1875,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.1875,
+          "mean_unique_predictions_per_episode": 2.375
+        },
+        "novel_entities/seen_paraphrase/zero": {
+          "correct": 7,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 7,
+          "unique_predictions_sum": 22,
+          "episodes": 8,
+          "accuracy": 0.21875,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.21875,
+          "mean_unique_predictions_per_episode": 2.75
+        },
+        "novel_entities/held_paraphrase/zero": {
+          "correct": 3,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 3,
+          "unique_predictions_sum": 15,
+          "episodes": 8,
+          "accuracy": 0.09375,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.09375,
+          "mean_unique_predictions_per_episode": 1.875
+        },
+        "novel_entities/same_surface/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/seen_paraphrase/wrong": {
+          "correct": 0,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 32,
+          "unique_predictions_sum": 32,
+          "episodes": 8,
+          "accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_match_rate": 1.0,
+          "mean_unique_predictions_per_episode": 4.0
+        },
+        "novel_entities/held_paraphrase/wrong": {
+          "correct": 4,
+          "c_correct": 0,
+          "n": 32,
+          "written_matches": 23,
+          "unique_predictions_sum": 23,
+          "episodes": 8,
+          "accuracy": 0.125,
+          "c_accuracy": 0.0,
+          "written_match_rate": 0.71875,
+          "mean_unique_predictions_per_episode": 2.875
+        }
+      }
+    }
+  ]
+}

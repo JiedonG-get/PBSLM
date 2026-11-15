@@ -136,12 +136,18 @@ def evaluate(model, task, episodes, seed):
     return {'metrics':result,'traces':traces,'weights_unchanged':True,'c_memory_invariant':True}
 
 
-def run(seed,args):
+def model_config(task):
+    return dict(vocab=task.vocab,k=8,depth=1,d=48,heads=4,m_max=2,act_x=.5,
+                e_n=2,e_depth=1,emo_dim=8,refine=1,field_scale=0.,
+                trainable_target=False,use_mem=True,use_flow=True,
+                simple_dec=False,dense=False,direct_only=False,use_sample_masks=True)
+
+
+def run(seed,args,return_model=False):
     torch.manual_seed(seed)
     device='cuda' if torch.cuda.is_available() else 'cpu'
     task=TextFacts(device)
-    model=PBSLMv2(vocab=task.vocab,k=8,depth=1,d=48,heads=4,m_max=2,act_x=.5,
-                   e_n=2,refine=1,field_scale=0,trainable_target=False,use_sample_masks=True).to(device).eval()
+    model=PBSLMv2(**model_config(task)).to(device).eval()
     opt=torch.optim.AdamW([p for p in model.parameters() if p.requires_grad],lr=.002)
     gen=torch.Generator().manual_seed(seed+7100)
     curve=[]; start=time.perf_counter()
@@ -172,12 +178,13 @@ def run(seed,args):
                           'accuracy':float((logits.argmax(-1)==y).float().mean())})
     training_seconds=time.perf_counter()-start
     evaluation=evaluate(model,task,args.eval_episodes,seed+8100)
-    return {'seed':seed,'vocab':task.vocab,'compact_to_bpe_ids':task.original_ids,
+    result = {'seed':seed,'vocab':task.vocab,'compact_to_bpe_ids':task.original_ids,
             'tokenizer_sha256':task.tokenizer_hash,'padded_input_length':task.length,
             'token_inventory_evidence':task.token_inventory_evidence,
             'original_bpe_by_text':task.original_bpe_by_text,
             'curve':curve,'training_seconds':training_seconds,'total_seconds':time.perf_counter()-start,
             'evaluation':evaluation}
+    return (model,task,result) if return_model else result
 
 
 def main():
