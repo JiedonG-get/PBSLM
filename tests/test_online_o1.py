@@ -7,14 +7,15 @@ import hashlib
 import unittest
 
 import torch
+import torch.nn.functional as F
 
 from models.model_v2 import PBSLMv2
 
 
-def make_model(direct_only=False):
-    torch.manual_seed(0)
+def make_model(direct_only=False, field_scale=0.0, seed=0):
+    torch.manual_seed(seed)
     m = PBSLMv2(vocab=64, k=8, depth=1, d=32, heads=4, m_max=8,
-                act_x=0.2, e_n=2, e_depth=1, emo_dim=8, field_scale=0.0,
+                act_x=0.2, e_n=2, e_depth=1, emo_dim=8, field_scale=field_scale,
                 use_mem=True, trainable_target=True, simple_dec=False,
                 dense=False, use_flow=True, direct_only=direct_only)
     m.eval()
@@ -24,6 +25,13 @@ def make_model(direct_only=False):
 def forward(m, ids, act=0.2):
     with torch.no_grad():
         return m(ids, 2, act=act, sample_noise=False)
+
+
+def c_topk(m, out, k=5):
+    """C 输出的最近邻 top-k（只用于评估，不产生训练信号）。"""
+    E = F.normalize(m.code.float(), dim=-1)
+    z = F.normalize(out["z_c"][0].float(), dim=-1)   # (m,d)
+    return (z @ E.t()).topk(k, dim=-1).indices
 
 
 ALLOWED_PREFIX = ("dec_a.", "refine_proj.", "ln_a.", "ctx_a.", "out_a.")
@@ -46,7 +54,7 @@ def protect_hash(m):
 
 class O1Tests(unittest.TestCase):
     def setUp(self):
-        self.ids = torch.arange(16).reshape(2, 8) % 64
+        self.ids = torch.arange(32).reshape(2, 16) % 64
         self.model = make_model()
         self.base = forward(self.model, self.ids)
 
@@ -67,6 +75,8 @@ class O1Tests(unittest.TestCase):
         self.assertEqual(len(o["active"]), 3)       # act=0.2 -> cap 3
         self.assertEqual(o["z_c"].shape, (2, 2, 32))
         self.assertFalse(torch.isnan(o["z_c"]).any())
+        self.assertFalse(self.model.direct_only)     # 默认覆盖完整 out_a/out_c 路径
+        self.assertEqual(c_topk(self.model, o).shape, (2, 5))
 
     def test_param_groups_whitelist(self):
         m = make_model()
@@ -95,7 +105,8 @@ class O1Tests(unittest.TestCase):
         base_state = copy.deepcopy(m.state_dict())
         base_protected = protect_hash(m)
         base_ck = (list(base["chosen"][1]), list(base["active"]),
-                   base["z_c"].clone(), base["I_c"].clone())
+                   base["z_c"].clone(), base["I_c"].clone(),
+                   c_topk(m, base).clone())
         g = torch.Generator().manual_seed(123)
         for gname, params in m.online_param_groups().items():
             with torch.no_grad():
@@ -108,6 +119,8 @@ class O1Tests(unittest.TestCase):
                             f"z_c changed: {gname}")
             self.assertTrue(torch.allclose(out["I_c"], base_ck[3], atol=1e-6, rtol=1e-5),
                             f"I_c changed: {gname}")
+            self.assertTrue(torch.equal(c_topk(m, out), base_ck[4]),
+                            f"C top-k changed: {gname}")
             self.assertEqual(protect_hash(m), base_protected, f"protected hash changed: {gname}")
             m.load_state_dict(base_state)
 
@@ -117,7 +130,8 @@ class O1Tests(unittest.TestCase):
         base = forward(m, self.ids)
         base_state = copy.deepcopy(m.state_dict())
         base_ck = (list(base["chosen"][1]), list(base["active"]),
-                   base["z_c"].clone(), base["I_c"].clone())
+                   base["z_c"].clone(), base["I_c"].clone(),
+                   c_topk(m, base).clone())
         g = torch.Generator().manual_seed(321)
         a_changed = False
         c_changed = False
@@ -133,12 +147,40 @@ class O1Tests(unittest.TestCase):
                     or list(out["active"]) != base_ck[1]
                     or not torch.allclose(out["z_c"], base_ck[2], atol=1e-6, rtol=1e-5)
                     or not torch.allclose(out["I_c"], base_ck[3], atol=1e-6, rtol=1e-5)
+                    or not torch.equal(c_topk(m, out), base_ck[4])
                 )
                 break
         self.assertTrue(a_changed, "role_a perturbation did not change A selection; test setup invalid")
         # 不断言 C 必然变化；打印诊断，供人工分析
-        print(f"\n[role_a] A_selection_changed={a_changed} C_changes={c_changed}")
+        print(f"\n[role_a] role_a_setup_ok={a_changed} A_selection_changed={a_changed} "
+              f"C_changes={c_changed}")
         print(f"  base A={base['chosen'][0]} C={base['chosen'][1]} active={base['active']}")
+
+    def test_m_written_does_not_alter_c(self):
+        m = make_model()
+        m.freeze_for_online()
+        base = forward(m, self.ids)
+        base_topk = c_topk(m, base).clone()
+        values = m.code[self.ids]          # 任意确定性 value；只用于测试 C 不读 M
+        m.write_memory(base["e_feats"], values, gate=1.0, lr=0.05)
+        out = forward(m, self.ids)
+        self.assertEqual(list(out["chosen"][1]), list(base["chosen"][1]))
+        self.assertTrue(torch.allclose(out["z_c"], base["z_c"], atol=1e-6, rtol=1e-5))
+        self.assertTrue(torch.equal(c_topk(m, out), base_topk))
+
+    def test_field_on_c_stability(self):
+        m = make_model(field_scale=0.1)
+        m.freeze_for_online()
+        base = forward(m, self.ids)
+        base_state = copy.deepcopy(m.state_dict())
+        base_topk = c_topk(m, base).clone()
+        with torch.no_grad():
+            m.ctx_a.weight.add_(torch.randn_like(m.ctx_a.weight) * 0.01)
+        out = forward(m, self.ids)
+        self.assertEqual(list(out["chosen"][1]), list(base["chosen"][1]))
+        self.assertTrue(torch.allclose(out["z_c"], base["z_c"], atol=1e-6, rtol=1e-5))
+        self.assertTrue(torch.equal(c_topk(m, out), base_topk))
+        m.load_state_dict(base_state)
 
     def test_load_state_dict_compat(self):
         m = make_model()
@@ -155,12 +197,14 @@ class O1Tests(unittest.TestCase):
         base = forward(m, self.ids)
         base_z = base["z_c"].clone()
         base_ck = list(base["chosen"][1])
+        base_topk = c_topk(m, base).clone()
         base_state = copy.deepcopy(m.state_dict())
         with torch.no_grad():
             m.ctx_a.weight.add_(torch.randn_like(m.ctx_a.weight) * 0.01)
         out = forward(m, self.ids)
         self.assertEqual(list(out["chosen"][1]), base_ck)
         self.assertTrue(torch.allclose(out["z_c"], base_z, atol=1e-6, rtol=1e-5))
+        self.assertTrue(torch.equal(c_topk(m, out), base_topk))
         m.load_state_dict(base_state)
 
 
