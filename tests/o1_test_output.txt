@@ -9,7 +9,7 @@ test_param_groups_whitelist (tests.test_online_o1.O1Tests.test_param_groups_whit
 test_role_a_coupling_diagnostic (tests.test_online_o1.O1Tests.test_role_a_coupling_diagnostic) ... ok
 
 ----------------------------------------------------------------------
-Ran 9 tests in 1.016s
+Ran 9 tests in 1.242s
 
 OK
 

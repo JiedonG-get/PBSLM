@@ -33,13 +33,13 @@ Full output: `tests/o1_test_output.txt`.
 | `direct_only=True` ctx_a/ctx_c 路径 | 已覆盖 |
 | `dense=False`, `use_flow=True` | 已覆盖 |
 | 六组 A 参数逐组扰动 | 已覆盖 |
-| C 的 `chosen`/`active`/`z_c`/`I_c`/top-k | 已覆盖 |
+| C 的 `chosen`/`active`/`z_c`/`I_c`/top-k（完整 batch×m） | 已覆盖 |
 | 受保护参数 hash | 已覆盖 |
 | optimizer param_groups（只构造，不 step） | 已覆盖 |
 | M 全零 | 已覆盖 |
-| M 已写入 | 已覆盖 |
+| M 已写入 | 已覆盖；包含 chosen/active/z_c/I_c/完整 batch top-k |
 | field 关闭 | 已覆盖 |
-| field 开启（field_scale=0.1） | 已覆盖 |
+| field 开启（field_scale=0.1） | 已覆盖；六组 A 参数逐组扰动 |
 | 旧 checkpoint 缺少 out_c 的兼容加载 | 已覆盖（合成 state） |
 | `role_a` 耦合诊断 | 已覆盖；A 选块变化已确认，C 变化已观察 |
 | 前向基线 / 无 NaN | 已覆盖 |
