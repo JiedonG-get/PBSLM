@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 """对比：信息一致性候选 / 冲击评分候选 / 在线稳定性范围 / 更长预训练 + depth3。"""
 import glob
 import json
@@ -8,7 +14,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from model import PBSLM
+from models.model import PBSLM
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 OUT = os.path.dirname(os.path.abspath(__file__))

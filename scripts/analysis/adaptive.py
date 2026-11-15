@@ -1,3 +1,9 @@
+import sys
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 """自适应多 token 输出：自信时一次落地多个 token。
 
 机制（两档）：
@@ -21,7 +27,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from model import PBSLM
+from models.model import PBSLM
 from run_online import load_chat
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"

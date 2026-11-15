@@ -25,9 +25,9 @@
 | NaN / Inf / OOM | 无 | 无 |
 | metrics 行数 | **15,000** | **15,000** |
 | EVAL 次数 | 15 | 15 |
-| 日志 | `phase1_a1.log` | `phase1_a2.log` |
-| metrics | `metrics_formal_a1.jsonl` | `metrics_formal_a2.jsonl` |
-| checkpoint | `ckpt_formal_a1.pt` | `ckpt_formal_a2.pt` |
+| 日志 | `experiments/phase1/logs/phase1_a1.log` | `experiments/phase1/logs/phase1_a2.log` |
+| metrics | `experiments/phase1/metrics/metrics_formal_a1.jsonl` | `experiments/phase1/metrics/metrics_formal_a2.jsonl` |
+| checkpoint | `experiments/phase1/checkpoints/ckpt_formal_a1.pt` | `experiments/phase1/checkpoints/ckpt_formal_a2.pt` |
 
 metrics 文件在启动前确认不存在，运行后正好 15,000 行；两组输出路径独立，未覆盖 smoke/preflight。
 

@@ -12,7 +12,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from model import BlockBank
+try:
+    from .model import BlockBank
+except ImportError:
+    from model import BlockBank
 
 
 class SinglePathContinuousLM(nn.Module):

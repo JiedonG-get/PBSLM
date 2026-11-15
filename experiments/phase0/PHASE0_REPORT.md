@@ -8,7 +8,7 @@
 | 文件 | 状态 | 作用 |
 |---|---|---|
 | `model_v21.py` | 新增 | Baseline A 单路径连续向量模型：可训练码本 / 固定随机码本；无 A/C、无 flow、无 E/M、无 field、无 shock/activity |
-| `train_v21.py` | 新增 | v2.1 配置驱动训练脚本：InfoNCE、checkpoint/resume、评估指标、随机数状态 |
+| `training/train_v21.py` | 新增 | v2.1 配置驱动训练脚本：InfoNCE、checkpoint/resume、评估指标、随机数状态 |
 | `configs/baseline_a1.json` | 新增 | Baseline A1：可训练码本 |
 | `configs/baseline_a2.json` | 新增 | Baseline A2：固定随机单位码本（seed=1234） |
 | `configs/smoke_a1.json` / `smoke_a2.json` | 新增 | Phase 0.5 专用：30 步、eval_every=10、save_every=10 |
@@ -24,7 +24,7 @@
 
 | 修复 | 位置 | 原因 |
 |---|---|---|
-| resume 跳过 field 初始化 | `train_v21.py` main：`if start_step == 0 and hasattr(model, "field")` | 原 `train_v2.py` 在 resume 后仍把 field 最后一层重置，覆盖已训练参数 |
+| resume 跳过 field 初始化 | `training/train_v21.py` main：`if start_step == 0 and hasattr(model, "field")` | 原 `train_v2.py` 在 resume 后仍把 field 最后一层重置，覆盖已训练参数 |
 | checkpoint 保存 model + optimizer + step + config + torch/numpy RNG + data/neg generator 状态 + codebook hash/mode | `save_checkpoint()` / resume 分支 | 原版只保存 model state，resume 不恢复优化器/步数/随机状态，无法复现 |
 | 固定码本 hash 校验 | `codebook_hash()`、resume 校验 | A2 的固定码本必须训练期间不变；如果 resume 时 hash 不一致直接拒绝 |
 | 默认优化器去 bitsandbytes 依赖 | `build_optimizer()`（AdamW/Adam/SGD） | 原 `train_v2.py` 默认 `adam8bit`，没有 bitsandbytes 就无法启动 |

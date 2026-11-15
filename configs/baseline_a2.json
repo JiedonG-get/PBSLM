@@ -3,7 +3,7 @@
   "seed": 1234,
   "device": "cuda",
   "data": {
-    "ids": "E:/PycharmProject/data/bpe_full_u32.bin",
+    "ids": "data/bpe_full_u32.bin",
     "dtype": "uint32",
     "hold": 0.15,
     "n_in": 16,
@@ -49,10 +49,10 @@
   "logging": {
     "log_every": 100,
     "eval_every": 1000,
-    "metrics_jsonl": "E:/PycharmProject/experiments/online_v12/metrics_baseline_a2.jsonl"
+    "metrics_jsonl": "experiments/phase1/metrics/metrics_baseline_a2.jsonl"
   },
   "checkpoint": {
-    "save": "E:/PycharmProject/experiments/online_v12/ckpt_baseline_a2.pt",
+    "save": "experiments/phase1/checkpoints/ckpt_baseline_a2.pt",
     "save_every": 1000
   }
 }

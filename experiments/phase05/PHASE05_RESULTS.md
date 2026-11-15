@@ -18,10 +18,10 @@ C:/Python313/python.exe train_v21.py --config configs/smoke_a2.json
 ```
 
 三次均 `exit 0`；日志：
-- `phase05_a1.log`
-- `phase05_a1_resume.log`
-- `phase05_a2.log`
-- 指标：`metrics_smoke_a1.jsonl`（30+20 行）、`metrics_smoke_a2.jsonl`（30 行）
+- `experiments/phase05/logs/phase05_a1.log`
+- `experiments/phase05/logs/phase05_a1_resume.log`
+- `experiments/phase05/logs/phase05_a2.log`
+- 指标：`experiments/phase05/metrics/metrics_smoke_a1.jsonl`（30+20 行）、`experiments/phase05/metrics/metrics_smoke_a2.jsonl`（30 行）
 
 ## 2. Checkpoint 验证结果
 
@@ -39,7 +39,7 @@ C:/Python313/python.exe train_v21.py --config configs/smoke_a2.json
 | A1 码本参与训练 | **是**（trainable list 包含 code_table） | — |
 
 resume 证据：
-- `phase05_a1_resume.log`：`resumed step=30 from ckpt_smoke_a1.pt`；
+- `experiments/phase05/logs/phase05_a1_resume.log`：`resumed step=30 from ckpt_smoke_a1.pt`；
 - 续训第 1 步为 `STEP {"step": 30, "loss": 3.9899, ...}`；原 30 步最后为 step29 loss 4.079，优化器 Adam step 恢复为 50；
 - checkpoint 里保存的 config `training.steps=30`（CLI `--steps 50` 只覆盖本次运行，允许字段）。
 

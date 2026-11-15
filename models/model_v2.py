@@ -10,7 +10,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from model import BlockBank, CrossLayer, InfoFlow
+try:
+    from .model import BlockBank, CrossLayer, InfoFlow
+except ImportError:  # 允许从 models/ 目录直接导入
+    from model import BlockBank, CrossLayer, InfoFlow
 
 EMO_CALM = [0.55, 0.15, 0.05, 0.55, 0.0, 0.0, 0.0, 0.0]
 

@@ -14,13 +14,19 @@ import hashlib
 import json
 import os
 import random
+import sys
 import time
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 import numpy as np
 import torch
 import torch.nn.functional as F
 
-from model_v21 import SinglePathContinuousLM
+from models.model_v21 import SinglePathContinuousLM
 
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 
