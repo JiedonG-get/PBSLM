@@ -107,6 +107,7 @@ class BlockBank(nn.Module):
         return torch.einsum("shtm,jm->shtj", Si, Cj) - torch.einsum("shtm,jm->shtj", Ci, Sj)
 
     def block_forward(self, x, idx):
+        _check_finite(x, "block_forward.x")
         idx = idx.to(x.device)
         S = idx.numel()
         B, T, D = x.shape
@@ -135,7 +136,7 @@ class BlockBank(nn.Module):
             y = y + f.view(S, B, T, D)
         return y
 
-    def comm(self, Y, g, idx=None, mask=None):
+    def comm(self, Y, g, idx=None, mask=None, trace=None):
         # Legacy path: exactly preserve previous behavior.
         if idx is None and mask is None:
             w = g[:, None, None, None]
@@ -150,14 +151,22 @@ class BlockBank(nn.Module):
             raise ValueError("comm new path requires both idx and mask")
         if Y.dim() != 4:
             raise ValueError("comm Y must be (G,B,T,D)")
-        idx = torch.as_tensor(idx, device=Y.device, dtype=torch.long)
+        raw_idx = torch.as_tensor(idx, device=Y.device)
+        if raw_idx.dtype not in (torch.int8, torch.int16, torch.int32, torch.int64):
+            raise ValueError("comm idx must be an integer tensor")
+        idx = raw_idx.to(dtype=torch.long)
         mask = torch.as_tensor(mask, device=Y.device, dtype=torch.bool)
         G, B = Y.shape[0], Y.shape[1]
-        if idx.numel() != G or mask.shape != (G, B):
+        if idx.shape != (G,) or mask.shape != (G, B):
             raise ValueError(f"comm shape mismatch: Y={tuple(Y.shape)}, idx={tuple(idx.shape)}, mask={tuple(mask.shape)}")
-        if g.numel() != G:
-            raise ValueError("comm g must have length G")
-        w = g.to(dtype=Y.dtype, device=Y.device)[:, None, None, None]
+        if (idx < 0).any() or (idx >= self.nb).any():
+            raise ValueError(f"comm idx out of range [0,{self.nb}): {idx.tolist()}")
+        if torch.unique(idx).numel() != G:
+            raise ValueError("comm idx must not contain duplicate physical blocks")
+        g_t = torch.as_tensor(g, device=Y.device)
+        if g_t.shape != (G,):
+            raise ValueError(f"comm g must have shape ({G},), got {tuple(g_t.shape)}")
+        w = g_t.to(dtype=Y.dtype, device=Y.device)[:, None, None, None]
         mask4 = mask[:, :, None, None]
         valid_Y = torch.where(mask4, Y, torch.zeros_like(Y))
         _check_valid_finite(valid_Y, mask, "comm.valid_Y")
@@ -171,6 +180,10 @@ class BlockBank(nn.Module):
         update = torch.where(mask4, beta * w * r, torch.zeros_like(Y))
         out = torch.where(mask4, valid_Y + update, torch.zeros_like(Y))
         _check_valid_finite(out, mask, "comm.out")
+        if trace is not None:
+            trace.update({"valid_Y": valid_Y, "weighted_Y": weighted_Y, "tot": tot,
+                          "others": others, "r": r, "beta": beta,
+                          "update": update, "out": out})
         return out
 
 
@@ -319,6 +332,7 @@ class InfoFlow(nn.Module):
         h = self.proj_in(delta_in)
         h = torch.where(mask4, h, torch.zeros_like(h))
         _check_valid_finite(h, mask, "InfoFlow.proj_in")
+        h_proj = h
         flow_trace = []
         for layer in self.layers:
             step_trace = {} if trace is not None else None
@@ -341,8 +355,9 @@ class InfoFlow(nn.Module):
         cons = self.proj_out(mean)
         _check_finite(cons, "InfoFlow.cons")
         if trace is not None:
-            trace.update({"h": h, "mean": mean, "scale": scale, "agree": agree,
-                          "cons": cons, "flow_steps": flow_trace, "count_b": count_b})
+            trace.update({"proj_in": h_proj, "h": h, "mean": mean, "scale": scale,
+                          "agree": agree, "cons": cons, "flow_steps": flow_trace,
+                          "count_b": count_b})
         return h, agree, cons
 
 

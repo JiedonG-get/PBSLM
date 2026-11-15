@@ -51,6 +51,10 @@ class CommTests(unittest.TestCase):
     def setUp(self):
         torch.manual_seed(0)
         self.bank = BlockBank(nb=6, depth=1, d=8, heads=2)
+        with torch.no_grad():
+            self.bank.comm_beta.copy_(torch.tensor([-3., -2., -1., 0., 1., 2.]))
+            self.bank.comm2.weight.copy_(torch.arange(32, dtype=torch.float32).reshape(8, 4) * 0.01)
+            self.bank.comm2.bias.copy_(torch.arange(8, dtype=torch.float32) * 0.01)
         self.Y = torch.randn(3, 2, 4, 8)
         self.g = torch.tensor([0.2, 0.7, 1.1])
         self.idx = torch.tensor([1, 3, 5])
@@ -80,6 +84,10 @@ class CommTests(unittest.TestCase):
         beta = torch.sigmoid(self.bank.comm_beta[idx])[:, None, None, None]
         expected = torch.where(m4, valid + beta * w * r, torch.zeros_like(Y))
         torch.testing.assert_close(out, expected)
+        # With distinct comm_beta, the wrong contiguous slice must produce a different result.
+        beta_wrong = torch.sigmoid(self.bank.comm_beta[:3])[:, None, None, None]
+        wrong = torch.where(m4, valid + beta_wrong * w * r, torch.zeros_like(Y))
+        self.assertFalse(torch.allclose(out, wrong))
         self.assertTrue(torch.equal(out[~mask], torch.zeros_like(out[~mask])))
 
     def test_bad_parameter_combination(self):
@@ -103,14 +111,40 @@ class CommTests(unittest.TestCase):
             self.bank.comm(Y2, self.g, idx=self.idx, mask=self.mask)
 
     def test_m1_per_sample_equivalence(self):
-        out = self.bank.comm(self.Y, self.g, idx=self.idx, mask=self.mask)
+        full_trace = {}
+        out = self.bank.comm(self.Y, self.g, idx=self.idx, mask=self.mask, trace=full_trace)
         for b in range(self.Y.shape[1]):
-            ob = self.bank.comm(self.Y[:, b:b+1], self.g, idx=self.idx, mask=self.mask[:, b:b+1])
+            pt = {}
+            ob = self.bank.comm(self.Y[:, b:b+1], self.g, idx=self.idx,
+                                mask=self.mask[:, b:b+1], trace=pt)
             torch.testing.assert_close(out[:, b], ob[:, 0])
+            for k in ("valid_Y", "weighted_Y", "others", "r", "update", "out"):
+                torch.testing.assert_close(full_trace[k][:, b], pt[k][:, 0])
+            torch.testing.assert_close(full_trace["tot"][b], pt["tot"][0])
+            torch.testing.assert_close(full_trace["beta"], pt["beta"])
 
     def test_batch_one(self):
         out = self.bank.comm(self.Y[:, :1], self.g, idx=self.idx, mask=self.mask[:, :1])
         self.assertEqual(tuple(out.shape), (3, 1, 4, 8))
+
+    def test_block_forward_input_nan_raises(self):
+        x = torch.randn(2, 4, 8)
+        x[0, 0, 0] = float("nan")
+        with self.assertRaises(FloatingPointError):
+            self.bank.block_forward(x, torch.tensor([0, 2]))
+
+    def test_physical_id_validation(self):
+        Y, g, mask = self.Y, self.g, self.mask
+        with self.assertRaises(ValueError):
+            self.bank.comm(Y, g, idx=self.idx.reshape(1, 3), mask=mask)
+        with self.assertRaises(ValueError):
+            self.bank.comm(Y, g, idx=torch.tensor([1, 3, 9]), mask=mask)
+        with self.assertRaises(ValueError):
+            self.bank.comm(Y, g, idx=torch.tensor([1, 3, -1]), mask=mask)
+        with self.assertRaises(ValueError):
+            self.bank.comm(Y, g, idx=torch.tensor([1, 3, 3]), mask=mask)
+        with self.assertRaises(ValueError):
+            self.bank.comm(Y, g.reshape(1, 3), idx=self.idx, mask=mask)
 
     def test_invalid_nan_backward_finite(self):
         Y = self.Y.clone()
@@ -145,10 +179,17 @@ class FlowStepTests(unittest.TestCase):
         self.assertEqual(tuple(tr["key_mask"].shape), (self.B, 1, 1, self.G))
 
     def test_m1_per_sample_equivalence(self):
-        out = self.layer(self.h, self.mask)
+        ft = {}
+        out = self.layer(self.h, self.mask, trace=ft)
         for b in range(self.B):
-            m1 = self.layer(self.h[:, b:b+1], self.mask[:, b:b+1])
+            pt = {}
+            m1 = self.layer(self.h[:, b:b+1], self.mask[:, b:b+1], trace=pt)
             torch.testing.assert_close(out[:, b], m1[:, 0])
+            for k in ("h_in", "q", "k", "v", "msg", "out"):
+                torch.testing.assert_close(ft[k][:, b], pt[k][:, 0])
+            for k in ("Q", "K", "V", "logits", "att", "key_mask"):
+                torch.testing.assert_close(ft[k][b], pt[k][0])
+            torch.testing.assert_close(ft["count_b"][b], pt["count_b"][0])
 
     def test_batch_one(self):
         out = self.layer(self.h[:, :1], self.mask[:, :1])
@@ -250,12 +291,24 @@ class InfoFlowTests(unittest.TestCase):
             self.flow(d2, self.mask)
 
     def test_m1_per_sample_equivalence(self):
-        h, agree, cons = self.flow(self.delta, self.mask)
+        ft = {}
+        h, agree, cons = self.flow(self.delta, self.mask, trace=ft)
         for b in range(self.B):
-            h1, a1, c1 = self.flow(self.delta[:, b:b+1], self.mask[:, b:b+1])
+            pt = {}
+            h1, a1, c1 = self.flow(self.delta[:, b:b+1], self.mask[:, b:b+1], trace=pt)
             torch.testing.assert_close(h[:, b], h1[:, 0])
             torch.testing.assert_close(agree[:, b], a1[:, 0])
             torch.testing.assert_close(cons[b], c1[0])
+            for k in ("proj_in", "h", "agree"):
+                torch.testing.assert_close(ft[k][:, b], pt[k][:, 0])
+            for k in ("mean", "scale", "cons"):
+                torch.testing.assert_close(ft[k][b], pt[k][0])
+            torch.testing.assert_close(ft["count_b"][b], pt["count_b"][0])
+            for fs, ps in zip(ft["flow_steps"], pt["flow_steps"]):
+                for k in ("h_in", "q", "k", "v", "msg", "out"):
+                    torch.testing.assert_close(fs[k][:, b], ps[k][:, 0])
+                for k in ("Q", "K", "V", "logits", "att", "key_mask"):
+                    torch.testing.assert_close(fs[k][b], ps[k][0])
 
     def test_backward_finite(self):
         d = self.delta.clone().requires_grad_(True)

@@ -1,10 +1,12 @@
 test_bad_parameter_combination (tests.test_flow_mask_min.CommTests.test_bad_parameter_combination) ... ok
 test_batch_one (tests.test_flow_mask_min.CommTests.test_batch_one) ... ok
+test_block_forward_input_nan_raises (tests.test_flow_mask_min.CommTests.test_block_forward_input_nan_raises) ... ok
 test_invalid_nan_backward_finite (tests.test_flow_mask_min.CommTests.test_invalid_nan_backward_finite) ... ok
 test_invalid_nan_isolated_and_valid_nan_raises (tests.test_flow_mask_min.CommTests.test_invalid_nan_isolated_and_valid_nan_raises) ... ok
 test_legacy_equivalence_with_contiguous_all_valid (tests.test_flow_mask_min.CommTests.test_legacy_equivalence_with_contiguous_all_valid) ... ok
 test_m1_per_sample_equivalence (tests.test_flow_mask_min.CommTests.test_m1_per_sample_equivalence) ... ok
 test_physical_id_and_mask (tests.test_flow_mask_min.CommTests.test_physical_id_and_mask) ... ok
+test_physical_id_validation (tests.test_flow_mask_min.CommTests.test_physical_id_validation) ... ok
 test_backward_finite (tests.test_flow_mask_min.FlowStepTests.test_backward_finite) ... ok
 test_batch_one (tests.test_flow_mask_min.FlowStepTests.test_batch_one) ... ok
 test_empty_mask_raises (tests.test_flow_mask_min.FlowStepTests.test_empty_mask_raises) ... ok
@@ -34,7 +36,7 @@ test_param_groups_whitelist (tests.test_online_o1.O1Tests.test_param_groups_whit
 test_role_a_coupling_diagnostic (tests.test_online_o1.O1Tests.test_role_a_coupling_diagnostic) ... ok
 
 ----------------------------------------------------------------------
-Ran 34 tests in 1.346s
+Ran 36 tests in 1.373s
 
 OK
 
