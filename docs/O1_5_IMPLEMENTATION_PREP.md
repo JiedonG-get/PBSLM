@@ -125,18 +125,105 @@ def forward(self, delta):
 | 10 | v2/v15 调用都不传 idx/mask；legacy 行为必须保持 | `model_v2.py:146,148`; `model.py:381-382` |
 | 11 | 没有有效块 NaN/Inf 的显式边界检查 | `model.py` Flow/comm |
 | 12 | 没有 P0-11/P0-12 测试 | `tests/` |
+| 13 | `block_forward` 输入 NaN 无法由 block mask 隔离；同一 x 会污染所有块 | `model.py:92-119` |
+| 14 | mask 形状/时间维/idx 对齐契约未冻结 | 计划接口 |
+| 15 | `comm` 新路径只提供 idx 或只提供 mask 的非法组合未定义 | 计划接口 |
+| 16 | M1 等价测试尚未逐层列出全部比较对象 | 计划测试 |
+
+---
+
+## 3.1 待冻结的接口契约（先于代码实施）
+
+### 3.1.1 NaN-safe 保护边界
+
+block mask 只能清理**已经是 block-level 张量**的无效块状态，不能修复
+`block_forward` 输入本身的 NaN：
+
+- `block_forward` 的输入 `x` 对同一样本的所有块是共享的；
+- 如果 `x` 含 NaN，LayerNorm/Q/K/V/Attention/FFN/残差会先产生 NaN Y，
+  之后再 `where(mask, Y, 0)` 已经无法恢复；
+- 因此把无效块 NaN 注入 `block_forward` 的输入，不在 block mask 的保护范围内。
+
+冻结规则：
+
+1. 进入 `block_forward` 前，必须检查参与有效计算的输入 x/token 是否有限；
+   该检查是 token/input-level，不是 block-level mask；
+2. block-level NaN 测试应在 `block_forward` **之后**向 `Y`/`delta` 的无效行注入 NaN，
+   再验证 comm/Flow 的 `where` 能隔离；
+3. 若输入 x 已经含 NaN，走受控错误路径，不得声称 block mask 已处理；
+4. P0-11 的保护范围要写成：
+   “无效 block 的 Y/delta 及其下游 comm/Flow 被隔离”，
+   而不是“任意输入 NaN 被 mask 隔离”。
+
+### 3.1.2 mask 形状契约
+
+O1.5 冻结为：
+
+```text
+mask_side: (G,B) bool
+idx:       (G,) int64 physical block ID
+```
+
+- mask 在 O1.5 中**不随时间 T 变化**；暂不支持 `(G,B,T)`；
+- `mask_a`、`mask_c` 都使用 `(G,B)`；
+- `idx[g]` 与 `mask_side[g, :]` 严格一一对应；
+- `len(idx) == mask_side.shape[0] == Y.shape[0] == G`，必须断言；
+- `active_union_global` 的顺序就是 `idx` 的顺序；A/C 共用同一 G；
+- Flow key mask 由 `(G,B)` 转成 `(B,1,1,G)`；
+- 若未来需要 per-time mask，必须新版本接口，不能悄悄改变形状。
+
+### 3.1.3 `BlockBank.comm` 新旧路径契约
+
+只允许两种组合：
+
+| idx | mask | 行为 |
+|---|---|---|
+| `None` | `None` | legacy 路径，完全保持旧行为 |
+| 非空 | 非空 | 新路径：`beta[idx]` + NaN-safe mask |
+
+- `idx=None, mask!=None`：必须抛 `ValueError`，不得静默使用旧 beta 切片；
+- `idx!=None, mask=None`：必须抛 `ValueError`，不得只修 beta 却漏掉清理；
+- 新路径断言 `len(idx)==Y.shape[0]==mask.shape[0]`；
+- 旧路径必须逐位回归，不能为了“统一实现”顺手重写。
+
+### 3.1.4 M1 严格等价比对清单
+
+不能只比较最终输出。逐样本、逐块、逐层比较：
+
+1. `BlockBank.comm` 输出；
+2. `proj_in` 输出；
+3. 每层 Q/K/V；
+4. Attention logits；
+5. Attention weights；
+6. 每层 msg；
+7. 每层 FlowStep 输出；
+8. masked `mean`、`scale`、`agree`；
+9. `proj_out` 输出；
+10. 最终输出。
+
+必须覆盖 batch 内不同有效块集合、非连续物理块 ID，并记录每层最大误差。
 
 ---
 
 ## 4. 最小修改计划（后续实施，不在本轮执行）
 
+### 4.0 实施顺序
+
+1. 先冻结 3.1 的 mask/NaN 接口契约；
+2. 实现 `BlockBank.comm` 新路径与 legacy 回归；
+3. 实现 `FlowStep` P0-12 维度链；
+4. 实现 `InfoFlow` 的 proj/清理/统计；
+5. 新增诊断测试（forward/backward/M1 逐层等价），不启动训练。
+
 ### 4.1 `models/model.py`
 
 1. **`BlockBank.comm`** 增加可选 `idx=None, mask=None`：
-   - `idx is None and mask is None`：完全走旧路径，保持 legacy 行为（包括旧 beta 切片）；
-   - 传入 `idx`：`beta = sigmoid(comm_beta[idx])`；
-   - 传入 `mask`：`valid_Y=where(mask,Y,0)`、`others=where(mask, tot.unsqueeze(0)-valid_Y,0)`、
+   - 仅 `(idx=None, mask=None)` 走旧路径，保持 legacy 行为（包括旧 beta 切片）；
+   - 仅 `(idx!=None, mask!=None)` 走新路径：`beta=sigmoid(comm_beta[idx])`，
+     `valid_Y=where(mask,Y,0)`、`others=where(mask,tot.unsqueeze(0)-valid_Y,0)`、
      `update=where(mask,beta*r,0)`、`out=where(mask,valid_Y+update,0)`；
+   - 只提供一个参数：抛 `ValueError`；
+   - 断言 `len(idx)==mask.shape[0]==Y.shape[0]`；
    - 不修改参数、不新增参数。
 2. **`FlowStep.forward(h, mask=None)`**：
    - `mask=None`：完全保持旧 einsum 路径；
@@ -189,11 +276,12 @@ def forward(self, delta):
 6. 无效 key 不参与 Attention；
 7. 无效 query 输出严格为零；
 8. 全无效 key 逐样本受控报错；
-9. 无效块输入注入 NaN；
-10. 有效块输入注入 NaN，在指定边界抛出受控错误；
-11. forward 输出 `isfinite`；
-12. diagnostic backward：有效块梯度、模型参数梯度有限；
-13. 批量实现与逐样本 M1 参考逐层 `allclose`。
+9. **block_forward 之后**向无效块 `Y/delta` 注入 NaN，验证 comm/Flow 隔离；
+10. 输入 x/token 注入 NaN，在 `block_forward` 前受控报错（不能声称由 block mask 处理）；
+11. 有效块 `Y/delta` 注入 NaN，在指定边界抛出受控错误；
+12. forward 输出 `isfinite`；
+13. diagnostic backward：有效块梯度、模型参数梯度有限；
+14. 批量实现与逐样本 M1 参考逐层 `allclose`，比较 3.1.4 的全部 10 个对象。
 
 每条测试必须记录：
 
