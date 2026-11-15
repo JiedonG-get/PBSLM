@@ -25,15 +25,18 @@ test_legacy_equivalence (tests.test_flow_mask_min.InfoFlowTests.test_legacy_equi
 test_m1_per_sample_equivalence (tests.test_flow_mask_min.InfoFlowTests.test_m1_per_sample_equivalence) ... ok
 test_masked_stats_and_outputs (tests.test_flow_mask_min.InfoFlowTests.test_masked_stats_and_outputs) ... ok
 test_per_sample_empty_mask_raises (tests.test_flow_mask_min.InfoFlowTests.test_per_sample_empty_mask_raises) ... ok
-test_a_c_routes_disjoint_per_sample (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_a_c_routes_disjoint_per_sample) ... ok
 test_cross_sample_isolation (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_cross_sample_isolation) ... ok
 test_dense_uses_all_blocks_compat (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_dense_uses_all_blocks_compat) ... ok
+test_independent_quota_allows_sum_exceed_k (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_independent_quota_allows_sum_exceed_k) ... ok
+test_independent_routing_per_sample_scores (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_independent_routing_per_sample_scores) ... ok
+test_independent_topk_identical_partial_disjoint (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_independent_topk_identical_partial_disjoint) ... ok
 test_index_mask_mapping (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_index_mask_mapping) ... ok
 test_invalid_block_nan_injected_at_comm_does_not_pollute (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_invalid_block_nan_injected_at_comm_does_not_pollute) ... ok
 test_invalid_sparse_quota_raises (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_invalid_sparse_quota_raises) ... ok
 test_legacy_and_masked_use_same_output_head_contract (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_legacy_and_masked_use_same_output_head_contract) ... ok
 test_legacy_path_remains_default_and_masked_fields_absent (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_legacy_path_remains_default_and_masked_fields_absent) ... ok
 test_masked_forward_fields_and_finiteness (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_masked_forward_fields_and_finiteness) ... ok
+test_overlap_masks_union_and_side_masks (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_overlap_masks_union_and_side_masks) ... ok
 test_parameter_and_state_dict_contract (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_parameter_and_state_dict_contract) ... ok
 test_per_sample_masks_can_differ (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_per_sample_masks_can_differ) ... ok
 test_shared_input_nan_raises_before_block_forward (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_shared_input_nan_raises_before_block_forward) ... ok
@@ -48,7 +51,7 @@ test_param_groups_whitelist (tests.test_online_o1.O1Tests.test_param_groups_whit
 test_role_a_coupling_diagnostic (tests.test_online_o1.O1Tests.test_role_a_coupling_diagnostic) ... ok
 
 ----------------------------------------------------------------------
-Ran 48 tests in 1.673s
+Ran 51 tests in 1.812s
 
 OK
 

@@ -72,16 +72,88 @@ class ModelV2MaskIntegrationTests(unittest.TestCase):
     def test_invalid_sparse_quota_raises(self):
         m = make_model(use_sample_masks=True)
         score = torch.zeros(2, m.k)
-        with self.assertRaises(ValueError):
-            m._select_masked(score, score, m.k, 1)
+        for kA, kC in ((m.k + 1, 1), (1, m.k + 1), (0, 1), (1, 0)):
+            with self.assertRaises(ValueError):
+                m._select_masked(score, score, kA, kC)
 
-    def test_a_c_routes_disjoint_per_sample(self):
-        o = self.out
-        for b in range(2):
-            a = set(o["chosen_a"][b])
-            c = set(o["chosen_c"][b])
-            self.assertTrue(a.isdisjoint(c))
-            self.assertLessEqual(len(a) + len(c), self.model.k)
+    def test_independent_quota_allows_sum_exceed_k(self):
+        m = make_model(use_sample_masks=True)
+        score = torch.arange(m.k, dtype=torch.float32).unsqueeze(0).repeat(2, 1)
+        ia, ic = m._select_masked(score, score, m.k, 1)
+        self.assertEqual(tuple(ia.shape), (2, m.k))
+        self.assertEqual(tuple(ic.shape), (2, 1))
+
+    def test_independent_topk_identical_partial_disjoint(self):
+        m = make_model(use_sample_masks=True)
+        B, k = 1, m.k
+        # identical selections
+        s = torch.tensor([[8, 7, 6, 5, 4, 3, 2, 1]], dtype=torch.float32)
+        ia, ic = m._select_masked(s, s, 3, 3)
+        self.assertEqual(set(ia[0].tolist()), set(ic[0].tolist()))
+        # partial overlap: A {0,1,2}, C {1,2,3}
+        sa = s
+        sc = torch.tensor([[1, 8, 7, 6, 5, 4, 3, 2]], dtype=torch.float32)
+        ia, ic = m._select_masked(sa, sc, 3, 3)
+        self.assertEqual(set(ia[0].tolist()), {0, 1, 2})
+        self.assertEqual(set(ic[0].tolist()), {1, 2, 3})
+        # disjoint: A {0,1,2}, C {3,4,5}
+        sc2 = torch.tensor([[0, 0, 0, 8, 7, 6, 5, 4]], dtype=torch.float32)
+        ia, ic = m._select_masked(sa, sc2, 3, 3)
+        self.assertTrue(set(ia[0].tolist()).isdisjoint(set(ic[0].tolist())))
+
+    def test_independent_routing_per_sample_scores(self):
+        m = make_model(use_sample_masks=True)
+        sa = torch.tensor([[8, 7, 6, 5, 4, 3, 2, 1],
+                           [0, 1, 2, 3, 4, 5, 6, 7]], dtype=torch.float32)
+        sc = torch.tensor([[8, 7, 6, 5, 4, 3, 2, 1],
+                           [7, 6, 5, 4, 3, 2, 1, 0]], dtype=torch.float32)
+        ia, ic = m._select_masked(sa, sc, 1, 2)
+        self.assertEqual(ia[0].tolist(), [0])
+        self.assertEqual(ia[1].tolist(), [7])
+        self.assertEqual(ic[0].tolist(), [0, 1])
+        self.assertEqual(ic[1].tolist(), [0, 1])
+
+    def test_overlap_masks_union_and_side_masks(self):
+        model = make_model(use_sample_masks=True)
+        sa = torch.tensor([[9, 8, 7, 6, 5, 4, 3, 2],
+                           [9, 8, 7, 6, 5, 4, 3, 2]], dtype=torch.float32)
+        sc = torch.tensor([[8, 9, 7, 6, 5, 4, 3, 2],
+                           [0, 0, 9, 8, 7, 6, 5, 4]], dtype=torch.float32)
+        old_forward_a, old_forward_c = model.role_a.forward, model.role_c.forward
+        model.role_a.forward = lambda h: sa
+        model.role_c.forward = lambda h: sc
+        comm_masks, flow_masks = [], []
+        old_comm = model.bank.comm
+        old_flow_forward = model.flow.forward
+
+        def comm_wrap(Y, g, idx=None, mask=None, trace=None):
+            comm_masks.append(None if mask is None else mask.clone())
+            return old_comm(Y, g, idx=idx, mask=mask, trace=trace)
+
+        def flow_wrap(delta, mask=None, trace=None):
+            flow_masks.append(None if mask is None else mask.clone())
+            return old_flow_forward(delta, mask=mask, trace=trace)
+
+        model.bank.comm = comm_wrap
+        model.flow.forward = flow_wrap
+        try:
+            out = forward(model, self.ids)
+        finally:
+            model.role_a.forward, model.role_c.forward = old_forward_a, old_forward_c
+            model.bank.comm = old_comm
+            model.flow.forward = old_flow_forward
+        self.assertEqual(len(comm_masks), 2)
+        self.assertEqual(len(flow_masks), 2)
+        self.assertTrue(torch.equal(comm_masks[0], out["mask_a"]))
+        self.assertTrue(torch.equal(comm_masks[1], out["mask_c"]))
+        self.assertTrue(torch.equal(flow_masks[0], out["mask_a"]))
+        self.assertTrue(torch.equal(flow_masks[1], out["mask_c"]))
+        overlap = set(out["chosen_a"][0]) & set(out["chosen_c"][0])
+        self.assertTrue(overlap)
+        for blk in overlap:
+            row = out["active_union_global"].index(blk)
+            self.assertTrue(bool(out["mask_a"][row, 0]))
+            self.assertTrue(bool(out["mask_c"][row, 0]))
 
     def test_per_sample_masks_can_differ(self):
         o = self.out

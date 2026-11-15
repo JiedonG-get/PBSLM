@@ -97,7 +97,7 @@ class PBSLMv2(nn.Module):
         self.field = PerturbField(d, emo_dim)
         self.register_buffer("emo_calm", torch.tensor(EMO_CALM))
 
-    # ---- 与 v15 相同的编码（A/C 角色互斥、E 常驻、M 只进 A）
+    # ---- legacy encode：与 v15 相同的 A/C 角色互斥；masked encode 使用独立路由
     def quotas(self, act=None):
         act = self.act_x if act is None else act
         cap = max(3, int(round(self.act_x * self.k)))
@@ -183,17 +183,15 @@ class PBSLMv2(nn.Module):
             ia = allb.unsqueeze(0).expand(score_a.shape[0], -1)
             ic = ia.clone()
         else:
-            # Sparse path: per-sample A-first, C excludes A (strict mutual exclusion).
-            if kA < 1 or kC < 1 or kA + kC > self.k:
+            # Sparse O1.5 path: A and C select independently per sample.
+            # They may overlap; C does not see or exclude A's choices.
+            if kA < 1 or kA > self.k or kC < 1 or kC > self.k:
                 raise ValueError(
-                    f"invalid sparse quotas: kA={kA}, kC={kC}, k={self.k}; "
-                    "require kA+kC <= k and kA,kC >= 1"
+                    f"invalid independent quotas: kA={kA}, kC={kC}, k={self.k}; "
+                    "require 1 <= kA,kC <= k"
                 )
             ia = torch.topk(score_a, kA, dim=-1).indices
-            taken = torch.zeros_like(score_a, dtype=torch.bool)
-            taken.scatter_(1, ia, True)
-            masked_c = score_c.masked_fill(taken, float("-inf"))
-            ic = torch.topk(masked_c, kC, dim=-1).indices
+            ic = torch.topk(score_c, kC, dim=-1).indices
         return ia, ic
 
     @staticmethod
