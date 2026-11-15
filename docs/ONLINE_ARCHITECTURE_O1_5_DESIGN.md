@@ -208,21 +208,28 @@ mask_side[g, b] = 1   iff global block g 属于样本 b 的 active_side
 # 向 (G,B,T,D) / (G,B,T,f) 广播时使用 mask_side[:, :, None, None]
 ```
 
-`others` 的定义必须改为：
+`others`、通信更新项和输出必须按以下 NaN-safe 顺序实现：
 
 ```text
-tot_side[b]        = Σ_g mask_side[g,b] · Y_side[g,b]
-others_side[g,b]   = tot_side[b] - mask_side[g,b] · Y_side[g,b]
+# Y_side: (G,B,T,D), mask_side: (G,B)
+valid_Y = torch.where(mask_side[:, :, None, None], Y_side, 0)
+tot     = valid_Y.sum(0)                                      # (B,T,D)
+others  = tot.unsqueeze(0) - valid_Y                           # (G,B,T,D)
+others  = torch.where(mask_side[:, :, None, None], others, 0)  # 再次清理
+
+# comm1 之前必须已经清理；不能只在 comm2 或最终输出后清理
+r = self.comm2(F.gelu(self.comm1(others)))                     # (G,B,T,D)
+update = torch.where(mask_side[:, :, None, None], beta * r, 0)
+out    = torch.where(mask_side[:, :, None, None], valid_Y + update, 0)
 ```
 
-通信更新项和输出也必须受 mask 控制：
+注意：
 
-```text
-r_side[g,b]         = comm2(gelu(comm1(others_side[g,b])))
-update_side[g,b]    = mask_side[g,b] · beta_g · r_side[g,b]
-out_side[g,b]       = mask_side[g,b] · (Y_side[g,b] + update_side[g,b])
-# 广播：mask_side[:, :, None, None] 到 (G,B,T,D)
-```
+- `valid_Y` 必须在 `comm1` 之前构造；无效块 NaN 不能先进入 `comm1` 及其参数梯度；
+- `others` 计算后再次 where；
+- `update` 和 `out` 都必须 where，不能只乘 mask；
+- 最终 `out` 的无效位置必须严格为零；
+- 所有中间量形状 `(G,B,T,D)`，`mask_side[:, :, None, None]` 广播。
 
 约束：
 
@@ -251,12 +258,22 @@ out_side[g,b]       = mask_side[g,b] · (Y_side[g,b] + update_side[g,b])
 | `mean` | `tot / count_b.clamp_min(1)[:, None, None]`，形状 `(B,T,f/D)` |
 | `scale` | 有效块 norm 的 masked 均值，形状 `(B,T)` |
 | `agree` | **逐块** `(G,B,T)`；无效块置零；`count_b` 只用于 `mean/scale`，不是 agree 的除数 |
-| Flow attention key | 对样本 b 使用 `mask_side[:, b]`，形状 `(G,)`，作用在 logits 的 key 维 |
+| Flow attention key | 批量写法 `mask_side.transpose(0,1)[:, None, None, :]`，形状 `(B,1,1,G)`，作用在 logits 最后一维；`(G,)` 只用于解释单样本语义 |
 | Flow query | 只对 `mask_side[:, b]` 为真的块产生输出 |
 | 每层输出 | `torch.where(mask_side[:, :, None, None], value, 0)`，不能只乘 mask |
 
 所有 A/C comm、FlowStep、mean、agree、settled 计算必须使用同一 `(G,B)` 布局；
 不允许一侧用 `(G,B)`、另一侧用 `(B,G)`。
+
+Flow attention 的唯一批量约定：
+
+```text
+key_mask = mask_side.transpose(0, 1)[:, None, None, :]   # (B,1,1,G)
+logits = logits.masked_fill(~key_mask, float("-inf"))    # (B,T,G,G)
+```
+
+`mask_side[:, b]` 的 `(G,)` 形状只用于解释单个样本的数学语义，
+**不作为批量 logits 的直接 mask 写法**。
 
 #### P0-8 count 的数学定义与广播
 
@@ -332,6 +349,29 @@ I_side[b]  = torch.where(mask_side[:, b], agree[:, b], 0).sum(0) / count_b[b]
 - 显式 `isfinite` 检查必须覆盖有效块输入、`proj_in` 后、每个 FlowStep 后、
   comm 投影后、`mean/scale/agree/I_side` 前，以及最终输出；
   不能等到最后输出才检查。
+
+#### 有效块 NaN/Inf 的受控错误边界
+
+不能只依赖 NaN 自然传播到最终输出；必须在以下边界对**有效块**做显式
+`torch.isfinite` 检查，发现 NaN/Inf 立即抛出受控错误（建议 `FloatingPointError`，
+带位置标签），不得继续执行后续可能污染其他有效块的运算：
+
+| 边界 | 检查对象 |
+|---|---|
+| Flow 输入 | 有效块的 `delta` |
+| `proj_in` 后 | 有效块 `h`（投影后） |
+| 每个 FlowStep | 输入有效块、输出有效块；Q/K/V 投影后 |
+| comm | 有效块 `Y`、`others`、`update`、`out` |
+| Flow 统计 | 有效块 `mean`、`scale`、`agree` |
+| side 聚合 | 有效块 `I_side`、`side_cons_side` |
+| 最终输出 | `z_c` 等有效输出 |
+
+规则：
+
+- 检查只针对有效块；无效块的 NaN 由 `torch.where` 清理；
+- 有效块出现 NaN/Inf 时，受控错误必须在该边界抛出，不能继续计算；
+- 空有效集合仍走 P0-9 的受控错误路径（`ValueError`/显式跳过），不得 NaN；
+- 测试必须验证错误在正确边界发生，而不是只在最终输出才发现。
 
 #### 2.5.2 `InfoFlow` 与 `FlowStep`
 
@@ -483,7 +523,11 @@ h = where(mask_side[:, :, None, None], h, 0)
 for layer in layers:
     h = layer(h, mask_side)      # 内部同样逐层清理
 mean/scale/agree = masked_stats(h, mask_side)
-settled = delta_in + proj_out(where(mask_side, h, 0))
+
+h_valid    = where(mask_side[:, :, None, None], h, 0)
+projected  = proj_out(h_valid)
+projected  = where(mask_side[:, :, None, None], projected, 0)  # 清 bias
+settled    = where(mask_side[:, :, None, None], delta_in + projected, 0)
 ```
 
 因此 O1.5 必须区分：
@@ -903,8 +947,10 @@ P0-11 不能只验证 forward 输出有限；O1.5-B 的 NaN-safety 测试必须�
 1. 无效块输入含 NaN：有效块输出全部 `isfinite`；
 2. 无效块输入含 NaN：有效块输出对输入的梯度有限；
 3. 无效块输入含 NaN：模型参数梯度有限；
-4. 有效块输入含 NaN：必须由明确的 `isfinite` 检查抛出受控错误，
-   不能被无效块 mask 掩盖；
+4. 有效块输入含 NaN/Inf：必须在边界检查处抛出受控 `FloatingPointError`
+   （或自定义 `NaNSafetyError`），不能被无效块 mask 掩盖；
+   测试需验证错误发生在 Flow 输入、proj_in 后、FlowStep、comm、统计或最终输出中
+   第一个出现有效块 NaN 的边界；
 5. 全无效 mask：进入 P0-9 的受控错误路径；
 6. 正常输入：forward 与 diagnostic backward 均无 NaN/Inf。
 
@@ -916,6 +962,7 @@ P0-11 不能只验证 forward 输出有限；O1.5-B 的 NaN-safety 测试必须�
   comm `others/update/out`、`mean/scale/agree/I_side`；
 - 重点检查 `proj_in` 参数梯度：无效块 NaN 不得通过 `NaN×0` 污染它；
 - 有效块 NaN 必须显式失败，不能只靠“最终 loss 非有限”间接发现；
+- 检查失败后不得继续执行后续运算；测试可注入 NaN 并断言抛出位置；
 - 记录每项 `max_abs_grad`、`isfinite` 布尔结果。
 
 ---
@@ -959,6 +1006,8 @@ O1.5 回归测试必须同时验证 legacy 行为未被无意改变。
 20. 仅检查 forward 输出有限不足以证明 NaN-safe；P0-11 要求有效块梯度/参数梯度有限，有效块 NaN 显式报错。
 21. 只在 FlowStep 内清理不够：`proj_in`/`comm`/`proj_out` 等投影可能在清理前接收 NaN，并污染参数梯度；必须在第一个可训练运算前清理。
 22. attention key mask 若没有按 `(B,1,1,G)` 批量广播，会错误屏蔽/泄漏 key；必须固定广播形状并在测试中验证。
+23. `proj_out` 带 bias；只在输入处清理不能保证输出无效位置为零，必须投影后再 where。
+24. 有效块 NaN 若只靠自然传播到最终输出，会晚于其他有效块被污染；必须在每个边界显式检查并受控报错。
 
 ---
 
