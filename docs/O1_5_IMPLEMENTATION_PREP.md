@@ -186,6 +186,25 @@ idx:       (G,) int64 physical block ID
 - 新路径断言 `len(idx)==Y.shape[0]==mask.shape[0]`；
 - 旧路径必须逐位回归，不能为了“统一实现”顺手重写。
 
+新路径必须保留原始 `g` 门控关系，不能因为当前部分调用 `g=ones` 就删除 `w`：
+
+```text
+w        = g[:, None, None, None]              # (G,1,1,1)
+mask4    = mask_side[:, :, None, None]         # (G,B,1,1)
+valid_Y  = where(mask4, Y, 0)                  # 先清理
+weighted_Y = w * valid_Y
+tot      = weighted_Y.sum(0)                   # (B,T,D)
+others   = where(mask4, tot.unsqueeze(0) - weighted_Y, 0)
+r        = comm2(gelu(comm1(others)))
+update   = where(mask4, beta * w * r, 0)       # beta 与 w 都不能丢
+out      = where(mask4, valid_Y + update, 0)
+```
+
+- `tot` 必须用 `w * valid_Y`；
+- `others` 必须减 `weighted_Y`；
+- `update` 必须保留 `beta * w * r`；
+- 不得因为 `g` 当前全为 1 就删除 `w`。
+
 ### 3.1.4 M1 严格等价比对清单
 
 不能只比较最终输出。逐样本、逐块、逐层比较：
@@ -202,6 +221,39 @@ idx:       (G,) int64 physical block ID
 10. 最终输出。
 
 必须覆盖 batch 内不同有效块集合、非连续物理块 ID，并记录每层最大误差。
+
+### 3.1.5 InfoFlow masked 统计公式
+
+冻结以下逐样本公式（`g` 为物理 block 索引，`G=len(idx)`）：
+
+```text
+count_b = mask_side.sum(0)                         # (B,)
+# 正常路径先断言 count_b >= 1；任一样本为 0 必须受控报错
+
+valid_h = where(mask4, h, 0)                       # (G,B,T,f) 先清理
+tot     = valid_h.sum(0)                           # (B,T,f)
+mean_b  = tot / count_b[:, None, None]             # (B,T,f)
+
+valid_norm = where(mask_side[:, :, None], valid_h.norm(dim=-1), 0)
+scale_b    = valid_norm.sum(0) / count_b[:, None] + 1e-6  # (B,T)
+
+agree_raw  = 1 - ((valid_h - mean_b.unsqueeze(0)).norm(dim=-1)
+                  / scale_b.unsqueeze(0)).clamp(0, 2)
+agree      = where(mask_side[:, :, None], agree_raw, 0)   # (G,B,T)
+```
+
+约束：
+
+- `valid_h` 必须在任何减法/`norm`/统计之前构造，避免无效 NaN 先进入运算；
+- `count_b` 必须逐样本计算，不能只对整个 batch 判断一次；
+- `count_b == 0` 的正常路径必须受控报错，不得继续除零；
+- `agree` 是逐块 `(G,B,T)`；无效块严格为 0；
+- `I_side` 的聚合若需要，必须单独使用：
+  ```text
+  I_side[b] = where(mask_side[:, b], agree[:, b], 0).sum(0) / count_b[b]
+  ```
+- `scale_b` 的定义必须与 M1 参考实现完全一致（当前 Flow 的 `h.norm(dim=-1).mean(0)+1e-6` 语义）；
+- FlowStep 的全无效 key 检查必须逐样本执行，不能只对整个 batch 做一次判断。
 
 ---
 
@@ -220,8 +272,10 @@ idx:       (G,) int64 physical block ID
 1. **`BlockBank.comm`** 增加可选 `idx=None, mask=None`：
    - 仅 `(idx=None, mask=None)` 走旧路径，保持 legacy 行为（包括旧 beta 切片）；
    - 仅 `(idx!=None, mask!=None)` 走新路径：`beta=sigmoid(comm_beta[idx])`，
-     `valid_Y=where(mask,Y,0)`、`others=where(mask,tot.unsqueeze(0)-valid_Y,0)`、
-     `update=where(mask,beta*r,0)`、`out=where(mask,valid_Y+update,0)`；
+     并按 3.1.3 的公式保留 `w` 门控：
+     `valid_Y=where(mask4,Y,0)`、`weighted_Y=w*valid_Y`、`tot=weighted_Y.sum(0)`、
+     `others=where(mask4,tot.unsqueeze(0)-weighted_Y,0)`、
+     `update=where(mask4,beta*w*r,0)`、`out=where(mask4,valid_Y+update,0)`；
    - 只提供一个参数：抛 `ValueError`；
    - 断言 `len(idx)==mask.shape[0]==Y.shape[0]`；
    - 不修改参数、不新增参数。
@@ -234,7 +288,7 @@ idx:       (G,) int64 physical block ID
 3. **`InfoFlow.forward(delta, mask=None)`**：
    - `mask=None`：旧路径；
    - `mask` 非空：`delta_in=where`、`proj_in`、where、FlowStep(mask)、
-     masked count/mean/scale/agree、`proj_out` 前后清理、`settled` 输出；
+     按 3.1.5 计算 masked count/mean/scale/agree、`proj_out` 前后清理、`settled` 输出；
    - 保留 `return h, agree, cons` 的旧返回形状/语义。
 4. 不修改 `BlockBank.block_forward` 签名；M2 在调用侧使用 global union。
 
@@ -275,7 +329,7 @@ idx:       (G,) int64 physical block ID
 5. 非连续物理块索引；
 6. 无效 key 不参与 Attention；
 7. 无效 query 输出严格为零；
-8. 全无效 key 逐样本受控报错；
+8. 全无效 key / count_b==0 逐样本受控报错，不得只做 batch 级判断；
 9. **block_forward 之后**向无效块 `Y/delta` 注入 NaN，验证 comm/Flow 隔离；
 10. 输入 x/token 注入 NaN，在 `block_forward` 前受控报错（不能声称由 block mask 处理）；
 11. 有效块 `Y/delta` 注入 NaN，在指定边界抛出受控错误；
