@@ -1,0 +1,22 @@
+train=442500043 held=78088244 device=cuda
+arch=single params(trainable)=16.90M codebook=fixed
+STEP {"step": 0, "loss": 5.2392, "ppos": 0.0065, "grad_norm": 6.5738, "lr": 0.001, "sec": 0.3, "dt": 0.3207}
+STEP {"step": 100, "loss": 4.4733, "ppos": 0.0533, "grad_norm": 0.5391, "lr": 0.001, "sec": 3.9, "dt": 0.0361}
+STEP {"step": 200, "loss": 4.538, "ppos": 0.051, "grad_norm": 0.5706, "lr": 0.001, "sec": 7.6, "dt": 0.0364}
+STEP {"step": 300, "loss": 4.4932, "ppos": 0.0519, "grad_norm": 0.5221, "lr": 0.001, "sec": 11.1, "dt": 0.0353}
+STEP {"step": 400, "loss": 4.8268, "ppos": 0.0179, "grad_norm": 0.4845, "lr": 0.001, "sec": 14.7, "dt": 0.0358}
+EVAL {"held_top1": 0.082, "held_top5": 0.1387, "cos": 0.0751, "hard_neg_win": 0.5498, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.4805, "other_ctx_acc": 0.0703, "ctrl_keep_last_acc": 0.0801, "ctrl_keep_last_change": 0.2832, "freq_bucket": {"high": 0.6086956521739131, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}
+STEP {"step": 500, "loss": 4.0783, "ppos": 0.0912, "grad_norm": 1.9871, "lr": 0.001, "sec": 19.1, "dt": 0.0344}
+STEP {"step": 600, "loss": 4.4413, "ppos": 0.0776, "grad_norm": 0.7755, "lr": 0.001, "sec": 22.7, "dt": 0.0352}
+STEP {"step": 700, "loss": 4.6488, "ppos": 0.0483, "grad_norm": 0.4631, "lr": 0.001, "sec": 26.2, "dt": 0.0348}
+STEP {"step": 800, "loss": 4.335, "ppos": 0.0717, "grad_norm": 0.6765, "lr": 0.001, "sec": 29.7, "dt": 0.0347}
+STEP {"step": 900, "loss": 4.0092, "ppos": 0.1099, "grad_norm": 0.6612, "lr": 0.001, "sec": 33.3, "dt": 0.0348}
+EVAL {"held_top1": 0.0898, "held_top5": 0.1445, "cos": 0.0852, "hard_neg_win": 0.559, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.2383, "other_ctx_acc": 0.0859, "ctrl_keep_last_acc": 0.0801, "ctrl_keep_last_change": 0.0684, "freq_bucket": {"high": 0.6086956521739131, "mid": 0.0625, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}
+STEP {"step": 1000, "loss": 3.9417, "ppos": 0.1213, "grad_norm": 0.8168, "lr": 0.001, "sec": 37.7, "dt": 0.0354}
+STEP {"step": 1100, "loss": 4.5181, "ppos": 0.0571, "grad_norm": 0.6347, "lr": 0.001, "sec": 41.2, "dt": 0.0346}
+STEP {"step": 1200, "loss": 4.2126, "ppos": 0.068, "grad_norm": 0.5813, "lr": 0.001, "sec": 44.8, "dt": 0.0358}
+STEP {"step": 1300, "loss": 3.905, "ppos": 0.1256, "grad_norm": 0.8056, "lr": 0.001, "sec": 48.3, "dt": 0.0345}
+STEP {"step": 1400, "loss": 4.5989, "ppos": 0.0445, "grad_norm": 0.5946, "lr": 0.001, "sec": 51.8, "dt": 0.0345}
+EVAL {"held_top1": 0.082, "held_top5": 0.1465, "cos": 0.0864, "hard_neg_win": 0.5688, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.5547, "other_ctx_acc": 0.0781, "ctrl_keep_last_acc": 0.082, "ctrl_keep_last_change": 0.291, "freq_bucket": {"high": 0.5507246376811594, "mid": 0.0625, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}
+saved final experiments/phase1_2/pilot1500/frozen.pt
+PEAK_MEM allocated_gib=0.633 reserved_gib=0.709

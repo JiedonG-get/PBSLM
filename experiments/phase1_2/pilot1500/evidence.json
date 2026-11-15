@@ -1,0 +1,41 @@
+{
+  "initial_values_equal": true,
+  "state_sha256": "aabd26588df480b7f9c590e9d3e44c747f3f826594f9c09bed1da0b210ae783e",
+  "torch": "2.11.0+cu128",
+  "steps": 1500,
+  "pilot_not_formal": true,
+  "models": {
+    "trainable": {
+      "total_parameters": 21160328,
+      "trainable_parameters": 21094400
+    },
+    "frozen": {
+      "total_parameters": 21160328,
+      "trainable_parameters": 16900096
+    }
+  },
+  "runs": {
+    "trainable": {
+      "command": [
+        "C:\\Python313\\python.exe",
+        "-m",
+        "training.train_v21",
+        "--config",
+        "E:\\PycharmProject\\experiments\\online_v12\\experiments\\phase1_2\\pilot1500\\trainable_config.json"
+      ],
+      "returncode": 0,
+      "seconds": 67.88771370000177
+    },
+    "frozen": {
+      "command": [
+        "C:\\Python313\\python.exe",
+        "-m",
+        "training.train_v21",
+        "--config",
+        "E:\\PycharmProject\\experiments\\online_v12\\experiments\\phase1_2\\pilot1500\\frozen_config.json"
+      ],
+      "returncode": 0,
+      "seconds": 61.53603850000218
+    }
+  }
+}

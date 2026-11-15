@@ -1,0 +1,146 @@
+{
+  "checkpoint": "E:\\PycharmProject\\experiments\\online_v12\\experiments\\phase1_2\\pilot1500\\frozen.pt",
+  "step": 1500,
+  "codebook": "fixed",
+  "device": "cuda",
+  "eval_windows": 10000,
+  "n_targets": 80000,
+  "data": {
+    "ids": "data/bpe_full_u32.bin",
+    "n_in": 16,
+    "ar_m": 8,
+    "hold": 0.15
+  },
+  "context_generalization": {
+    "top1": 0.07437500357627869,
+    "top5": 0.13518750667572021,
+    "freq_bucket": {
+      "high": {
+        "n": 9651,
+        "top1": 0.557455185991089,
+        "top5": 0.9370013470106725
+      },
+      "mid": {
+        "n": 10774,
+        "top1": 0.052905142008539074,
+        "top5": 0.1640987562650826
+      },
+      "low": {
+        "n": 32154,
+        "top1": 0.0,
+        "top5": 3.110032966349443e-05
+      },
+      "rare": {
+        "n": 27421,
+        "top1": 0.0,
+        "top5": 0.00010940520039385872
+      }
+    }
+  },
+  "context_sensitivity": {
+    "definition": "fixed target, changed context; matched natural context",
+    "matched_natural_context": {
+      "top1": 0.03596249967813492,
+      "top5": 0.08640000224113464,
+      "pred_change_rate_vs_orig": 0.5618000030517578,
+      "cos_shift_vs_orig": 0.2508241832256317,
+      "top1_delta_vs_orig": -0.03841250389814377,
+      "top5_delta_vs_orig": -0.04878750443458557,
+      "utility_top1": 0.03841250389814377,
+      "utility_top5": 0.04878750443458557
+    }
+  },
+  "context_utility": {
+    "definition": "fixed target, natural/controlled context ablations; utility_top1 = original − variant (positive = original context helps)",
+    "last_token_only_masked": {
+      "top1": 0.0508125014603138,
+      "top5": 0.11911249905824661,
+      "pred_change_rate_vs_orig": 0.3428874909877777,
+      "cos_shift_vs_orig": 0.09938515722751617,
+      "top1_delta_vs_orig": -0.02356250211596489,
+      "top5_delta_vs_orig": -0.016075007617473602,
+      "utility_top1": 0.02356250211596489,
+      "utility_top5": 0.016075007617473602
+    },
+    "last_token_repeated": {
+      "top1": 0.03293750062584877,
+      "top5": 0.11649999767541885,
+      "pred_change_rate_vs_orig": 0.6071500182151794,
+      "cos_shift_vs_orig": 0.14535172283649445,
+      "top1_delta_vs_orig": -0.041437502950429916,
+      "top5_delta_vs_orig": -0.01868750900030136,
+      "utility_top1": 0.041437502950429916,
+      "utility_top5": 0.01868750900030136
+    },
+    "drop_prefix": {
+      "top1": 0.07417500019073486,
+      "top5": 0.13654999434947968,
+      "pred_change_rate_vs_orig": 0.21905000507831573,
+      "cos_shift_vs_orig": 0.031772516667842865,
+      "top1_delta_vs_orig": -0.00020000338554382324,
+      "top5_delta_vs_orig": 0.0013624876737594604,
+      "utility_top1": 0.00020000338554382324,
+      "utility_top5": -0.0013624876737594604
+    },
+    "drop_last1": {
+      "top1": 0.04566249996423721,
+      "top5": 0.10620000213384628,
+      "pred_change_rate_vs_orig": 0.3289499878883362,
+      "cos_shift_vs_orig": 0.12530100345611572,
+      "top1_delta_vs_orig": -0.028712503612041473,
+      "top5_delta_vs_orig": -0.028987504541873932,
+      "utility_top1": 0.028712503612041473,
+      "utility_top5": 0.028987504541873932
+    },
+    "drop_last2": {
+      "top1": 0.0452749989926815,
+      "top5": 0.10496249794960022,
+      "pred_change_rate_vs_orig": 0.3377875089645386,
+      "cos_shift_vs_orig": 0.12868572771549225,
+      "top1_delta_vs_orig": -0.029100004583597183,
+      "top5_delta_vs_orig": -0.030225008726119995,
+      "utility_top1": 0.029100004583597183,
+      "utility_top5": 0.030225008726119995
+    },
+    "drop_last4": {
+      "top1": 0.04387500137090683,
+      "top5": 0.102012500166893,
+      "pred_change_rate_vs_orig": 0.35877498984336853,
+      "cos_shift_vs_orig": 0.13411648571491241,
+      "top1_delta_vs_orig": -0.030500002205371857,
+      "top5_delta_vs_orig": -0.03317500650882721,
+      "utility_top1": 0.030500002205371857,
+      "utility_top5": 0.03317500650882721
+    },
+    "prefix_shuffle": {
+      "top1": 0.07462500035762787,
+      "top5": 0.13597500324249268,
+      "pred_change_rate_vs_orig": 0.07238750159740448,
+      "cos_shift_vs_orig": 0.0031413466203957796,
+      "top1_delta_vs_orig": 0.00024999678134918213,
+      "top5_delta_vs_orig": 0.0007874965667724609,
+      "utility_top1": -0.00024999678134918213,
+      "utility_top5": -0.0007874965667724609
+    }
+  },
+  "definitions": {
+    "freq_thresholds": [
+      0.01,
+      0.001,
+      0.0001
+    ],
+    "unk_id": 0,
+    "last_token_only_masked": "last token kept; first n_in-1 positions -> unk",
+    "last_token_repeated": "repeat last context token across all n_in positions (old control)",
+    "drop_prefix": "first 8 context tokens -> unk",
+    "drop_last1": "last 1 context token -> unk",
+    "drop_last2": "last 2 context tokens -> unk",
+    "drop_last4": "last 4 context tokens -> unk",
+    "prefix_shuffle": "shuffle first n_in-1 tokens; last token unchanged",
+    "matched_natural_context": "natural held context from another window; original target kept"
+  },
+  "cost": {
+    "seconds": 106.7,
+    "forward_variants": 9
+  }
+}

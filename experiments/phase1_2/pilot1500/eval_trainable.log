@@ -1,0 +1,12 @@
+targets=80000 windows=10000 device=cuda
+original top1=0.0536 top5=0.1295 sec=12.7
+variants=8 (plus original)
+matched_natural_context: top1=0.0310 change=0.6015 cos_shift=0.0656 sec=25.2
+last_token_only_masked: top1=0.0479 change=0.3187 cos_shift=0.0160 sec=36.6
+last_token_repeated: top1=0.0414 change=0.3737 cos_shift=0.0568 sec=47.9
+drop_prefix: top1=0.0532 change=0.2233 cos_shift=0.0065 sec=59.2
+drop_last1: top1=0.0312 change=0.3886 cos_shift=0.0368 sec=70.6
+drop_last2: top1=0.0305 change=0.3940 cos_shift=0.0388 sec=81.9
+drop_last4: top1=0.0296 change=0.4061 cos_shift=0.0423 sec=93.3
+prefix_shuffle: top1=0.0536 change=0.0787 cos_shift=0.0007 sec=104.8
+saved experiments\phase1_2\pilot1500\eval_trainable.json total_sec=104.9

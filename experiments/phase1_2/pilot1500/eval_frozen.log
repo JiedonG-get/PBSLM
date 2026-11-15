@@ -1,0 +1,12 @@
+targets=80000 windows=10000 device=cuda
+original top1=0.0744 top5=0.1352 sec=11.7
+variants=8 (plus original)
+matched_natural_context: top1=0.0360 change=0.5618 cos_shift=0.2508 sec=23.6
+last_token_only_masked: top1=0.0508 change=0.3429 cos_shift=0.0994 sec=35.1
+last_token_repeated: top1=0.0329 change=0.6072 cos_shift=0.1454 sec=46.6
+drop_prefix: top1=0.0742 change=0.2191 cos_shift=0.0318 sec=58.5
+drop_last1: top1=0.0457 change=0.3289 cos_shift=0.1253 sec=70.4
+drop_last2: top1=0.0453 change=0.3378 cos_shift=0.1287 sec=82.2
+drop_last4: top1=0.0439 change=0.3588 cos_shift=0.1341 sec=94.5
+prefix_shuffle: top1=0.0746 change=0.0724 cos_shift=0.0031 sec=106.7
+saved experiments\phase1_2\pilot1500\eval_frozen.json total_sec=106.7

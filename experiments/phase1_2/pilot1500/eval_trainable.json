@@ -1,0 +1,146 @@
+{
+  "checkpoint": "E:\\PycharmProject\\experiments\\online_v12\\experiments\\phase1_2\\pilot1500\\trainable.pt",
+  "step": 1500,
+  "codebook": "trainable",
+  "device": "cuda",
+  "eval_windows": 10000,
+  "n_targets": 80000,
+  "data": {
+    "ids": "data/bpe_full_u32.bin",
+    "n_in": 16,
+    "ar_m": 8,
+    "hold": 0.15
+  },
+  "context_generalization": {
+    "top1": 0.05362499877810478,
+    "top5": 0.12946249544620514,
+    "freq_bucket": {
+      "high": {
+        "n": 9651,
+        "top1": 0.44451352191482746,
+        "top5": 0.9225986944358098
+      },
+      "mid": {
+        "n": 10774,
+        "top1": 0.0,
+        "top5": 0.1348617041024689
+      },
+      "low": {
+        "n": 32154,
+        "top1": 0.0,
+        "top5": 0.0
+      },
+      "rare": {
+        "n": 27421,
+        "top1": 0.0,
+        "top5": 0.0
+      }
+    }
+  },
+  "context_sensitivity": {
+    "definition": "fixed target, changed context; matched natural context",
+    "matched_natural_context": {
+      "top1": 0.03098749928176403,
+      "top5": 0.09963750094175339,
+      "pred_change_rate_vs_orig": 0.6015250086784363,
+      "cos_shift_vs_orig": 0.06562837213277817,
+      "top1_delta_vs_orig": -0.02263749949634075,
+      "top5_delta_vs_orig": -0.02982499450445175,
+      "utility_top1": 0.02263749949634075,
+      "utility_top5": 0.02982499450445175
+    }
+  },
+  "context_utility": {
+    "definition": "fixed target, natural/controlled context ablations; utility_top1 = original − variant (positive = original context helps)",
+    "last_token_only_masked": {
+      "top1": 0.04791250079870224,
+      "top5": 0.125450000166893,
+      "pred_change_rate_vs_orig": 0.3186750113964081,
+      "cos_shift_vs_orig": 0.015971865504980087,
+      "top1_delta_vs_orig": -0.005712497979402542,
+      "top5_delta_vs_orig": -0.004012495279312134,
+      "utility_top1": 0.005712497979402542,
+      "utility_top5": 0.004012495279312134
+    },
+    "last_token_repeated": {
+      "top1": 0.04143749922513962,
+      "top5": 0.10745000094175339,
+      "pred_change_rate_vs_orig": 0.3736625015735626,
+      "cos_shift_vs_orig": 0.056769952178001404,
+      "top1_delta_vs_orig": -0.012187499552965164,
+      "top5_delta_vs_orig": -0.02201249450445175,
+      "utility_top1": 0.012187499552965164,
+      "utility_top5": 0.02201249450445175
+    },
+    "drop_prefix": {
+      "top1": 0.053199999034404755,
+      "top5": 0.1306374967098236,
+      "pred_change_rate_vs_orig": 0.22333750128746033,
+      "cos_shift_vs_orig": 0.006489824037998915,
+      "top1_delta_vs_orig": -0.00042499974370002747,
+      "top5_delta_vs_orig": 0.0011750012636184692,
+      "utility_top1": 0.00042499974370002747,
+      "utility_top5": -0.0011750012636184692
+    },
+    "drop_last1": {
+      "top1": 0.031212499365210533,
+      "top5": 0.10516250133514404,
+      "pred_change_rate_vs_orig": 0.38856250047683716,
+      "cos_shift_vs_orig": 0.036752521991729736,
+      "top1_delta_vs_orig": -0.02241249941289425,
+      "top5_delta_vs_orig": -0.024299994111061096,
+      "utility_top1": 0.02241249941289425,
+      "utility_top5": 0.024299994111061096
+    },
+    "drop_last2": {
+      "top1": 0.03046249970793724,
+      "top5": 0.1044749990105629,
+      "pred_change_rate_vs_orig": 0.3940249979496002,
+      "cos_shift_vs_orig": 0.03876994922757149,
+      "top1_delta_vs_orig": -0.02316249907016754,
+      "top5_delta_vs_orig": -0.024987496435642242,
+      "utility_top1": 0.02316249907016754,
+      "utility_top5": 0.024987496435642242
+    },
+    "drop_last4": {
+      "top1": 0.029600000008940697,
+      "top5": 0.10347499698400497,
+      "pred_change_rate_vs_orig": 0.40607500076293945,
+      "cos_shift_vs_orig": 0.042340099811553955,
+      "top1_delta_vs_orig": -0.024024998769164085,
+      "top5_delta_vs_orig": -0.025987498462200165,
+      "utility_top1": 0.024024998769164085,
+      "utility_top5": 0.025987498462200165
+    },
+    "prefix_shuffle": {
+      "top1": 0.05361250042915344,
+      "top5": 0.1299625039100647,
+      "pred_change_rate_vs_orig": 0.07867500185966492,
+      "cos_shift_vs_orig": 0.0007378504960797727,
+      "top1_delta_vs_orig": -1.2498348951339722e-05,
+      "top5_delta_vs_orig": 0.0005000084638595581,
+      "utility_top1": 1.2498348951339722e-05,
+      "utility_top5": -0.0005000084638595581
+    }
+  },
+  "definitions": {
+    "freq_thresholds": [
+      0.01,
+      0.001,
+      0.0001
+    ],
+    "unk_id": 0,
+    "last_token_only_masked": "last token kept; first n_in-1 positions -> unk",
+    "last_token_repeated": "repeat last context token across all n_in positions (old control)",
+    "drop_prefix": "first 8 context tokens -> unk",
+    "drop_last1": "last 1 context token -> unk",
+    "drop_last2": "last 2 context tokens -> unk",
+    "drop_last4": "last 4 context tokens -> unk",
+    "prefix_shuffle": "shuffle first n_in-1 tokens; last token unchanged",
+    "matched_natural_context": "natural held context from another window; original target kept"
+  },
+  "cost": {
+    "seconds": 104.9,
+    "forward_variants": 9
+  }
+}

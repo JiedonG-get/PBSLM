@@ -91,7 +91,9 @@ def run(seed, args):
     # Same event order and initialization across arms. Label arrives only after prediction.
     gen = torch.Generator().manual_seed(seed + 901)
     stream = torch.randint(0, 8, (args.events,), generator=gen).tolist()
-    for arm in ('none', 'a_only', 'a_replay', 'memory_only', 'a_and_memory', 'shuffled_memory'):
+    update_arms = {'a_only', 'a_replay', 'a_current3', 'a_and_memory'}
+    for arm in args.arms:
+        arm_start = time.perf_counter()
         model.load_state_dict(state)
         params = model.freeze_for_online()
         optimizer = torch.optim.AdamW(params, lr=.001, weight_decay=0)
@@ -99,14 +101,17 @@ def run(seed, args):
         frozen_hash = digest(model, protected_exclusions)
         with torch.no_grad():
             c_before = predict(model, x)['z_c'].clone()
-        correct = []
+        correct, trace = [], []
         for index, key in enumerate(stream):
             event_x, revealed_y = data(torch.tensor([key], device=device), new=True)
             with torch.no_grad():
                 before = predict(model, event_x)
-                correct.append(int(decode(model, before['z_a']).item() == revealed_y.item()))
+                prediction = int(decode(model, before['z_a']).item())
+                correct.append(int(prediction == revealed_y.item()))
+            trace.append({'event': index, 'key': key, 'prediction_before_feedback': prediction,
+                          'revealed_target': int(revealed_y.item()), 'correct': correct[-1]})
             # Feedback is now revealed. Online update can see this label, never before.
-            if arm in ('a_only', 'a_replay', 'a_and_memory'):
+            if arm in update_arms:
                 update_x, update_y = event_x, revealed_y
                 if arm == 'a_replay':
                     # Previously observed base examples, not future stream labels.
@@ -114,6 +119,10 @@ def run(seed, args):
                     replay_x, replay_y = data(replay_keys)
                     update_x = torch.cat((event_x, replay_x))
                     update_y = torch.cat((revealed_y, replay_y))
+                if arm == 'a_current3':
+                    # Same batch cardinality and update count as replay, but no old examples.
+                    update_x = event_x.repeat(3, 1)
+                    update_y = revealed_y.repeat(3)
                 out = predict(model, update_x)
                 objective = loss(model, out['z_a'], update_y)
                 optimizer.zero_grad(set_to_none=True)
@@ -134,8 +143,10 @@ def run(seed, args):
             raise AssertionError(f'C changed in {arm}')
         if frozen_hash != digest(model, protected_exclusions):
             raise AssertionError(f'Protected parameters changed in {arm}')
-        arms[arm] = {'optimizer_steps': args.events if arm in ('a_only', 'a_replay', 'a_and_memory') else 0,
-                     'examples_per_update': 3 if arm == 'a_replay' else (1 if arm in ('a_only', 'a_and_memory') else 0),
+        arms[arm] = {'seconds': time.perf_counter() - arm_start,
+                     'events': trace,
+                     'optimizer_steps': args.events if arm in update_arms else 0,
+                     'examples_per_update': 3 if arm in ('a_replay', 'a_current3') else (1 if arm in update_arms else 0),
                      'prequential_accuracy': sum(correct) / len(correct),
                      'first_quarter_accuracy': sum(correct[:max(1,len(correct)//4)]) / max(1,len(correct)//4),
                      'last_quarter_accuracy': sum(correct[-max(1,len(correct)//4):]) / max(1,len(correct)//4),
@@ -150,6 +161,8 @@ def main():
     p.add_argument('--seeds', nargs='+', type=int, default=[0])
     p.add_argument('--base-steps', type=int, default=300)
     p.add_argument('--events', type=int, default=128)
+    p.add_argument('--arms', nargs='+', default=['none', 'a_only', 'a_replay', 'memory_only', 'a_and_memory', 'shuffled_memory'],
+                   choices=['none', 'a_only', 'a_current3', 'a_replay', 'memory_only', 'a_and_memory', 'shuffled_memory'])
     p.add_argument('--device', default='cuda' if torch.cuda.is_available() else 'cpu')
     p.add_argument('--output', default='experiments/continual_associations/pilot.json')
     args = p.parse_args()
@@ -158,7 +171,10 @@ def main():
     for seed in args.seeds:
         result = run(seed, args)
         report['runs'].append(result)
-        print(json.dumps(result, ensure_ascii=False), flush=True)
+        summary = {k: v for k, v in result.items() if k != 'arms'}
+        summary['arms'] = {arm: {k: v for k, v in values.items() if k != 'events'}
+                           for arm, values in result['arms'].items()}
+        print(json.dumps(summary, ensure_ascii=False), flush=True)
     path = ROOT / args.output
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')

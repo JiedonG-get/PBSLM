@@ -1,0 +1,7 @@
+{
+  "format": "v2.1-eval",
+  "data": {"ids": "data/bpe_full_u32.bin", "hold": 0.15, "n_in": 16, "ar_m": 8},
+  "eval": {"windows": 10000, "batch": 512, "seed": 1234, "unk_id": 0,
+           "freq_thresholds": [0.01, 0.001, 0.0001]},
+  "output_dir": "experiments/phase1_2/pilot1500"
+}

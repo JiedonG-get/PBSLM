@@ -1,0 +1,20 @@
+{
+  "hash_algorithm": "sha256",
+  "artifacts": [
+    {
+      "path": "data/bpe_full_u32.bin",
+      "bytes": 2082353148,
+      "sha256": "da6ee130dc1843e1240536ab29b6be05ea92a4984b525fbf3e59461572679b49"
+    },
+    {
+      "path": "experiments/phase1_2/pilot1500/trainable.pt",
+      "bytes": 253439573,
+      "sha256": "3a503189d08e301b5fe13c66f8edf3353b124f9cf39e9caf343417071c41e0eb"
+    },
+    {
+      "path": "experiments/phase1_2/pilot1500/frozen.pt",
+      "bytes": 219879937,
+      "sha256": "52ef48fe1058c202d7ff0f49af4f733f3e48aeac9ff6c4481ca96a5e70b66a74"
+    }
+  ]
+}
