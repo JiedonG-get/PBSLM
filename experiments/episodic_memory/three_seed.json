@@ -1,0 +1,617 @@
+{
+  "task": "fresh_mapping_associative_recall",
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "episodes": 500,
+    "eval_episodes": 64,
+    "support": 4,
+    "device": "cuda",
+    "output": "experiments/episodic_memory/three_seed.json"
+  },
+  "torch": "2.11.0+cu128",
+  "notes": [
+    "offline read-path learning; evaluation only writes memory",
+    "no query label used for eval parameter update",
+    "not language or runtime benchmark"
+  ],
+  "runs": [
+    {
+      "seed": 0,
+      "before": {
+        "episodes": 16,
+        "support_per_episode": 4,
+        "parameter_hash_unchanged": true,
+        "c_bitwise_stable": true,
+        "arms": {
+          "normal": {
+            "a": 0,
+            "c": 4,
+            "matches_written_value": 0,
+            "targets": 64,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.0625,
+            "written_value_match_rate": 0.0,
+            "mean_memory_norm": 0.20126408338546753
+          },
+          "zero": {
+            "a": 0,
+            "c": 4,
+            "matches_written_value": 0,
+            "targets": 64,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.0625,
+            "written_value_match_rate": 0.0,
+            "mean_memory_norm": 0.0
+          },
+          "wrong_values": {
+            "a": 0,
+            "c": 4,
+            "matches_written_value": 0,
+            "targets": 64,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.0625,
+            "written_value_match_rate": 0.0,
+            "mean_memory_norm": 0.20037623029202223
+          }
+        }
+      },
+      "after": {
+        "episodes": 64,
+        "support_per_episode": 4,
+        "parameter_hash_unchanged": true,
+        "c_bitwise_stable": true,
+        "arms": {
+          "normal": {
+            "a": 256,
+            "c": 7,
+            "matches_written_value": 256,
+            "targets": 256,
+            "a_accuracy": 1.0,
+            "c_accuracy": 0.02734375,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.20041819417383522
+          },
+          "zero": {
+            "a": 27,
+            "c": 7,
+            "matches_written_value": 27,
+            "targets": 256,
+            "a_accuracy": 0.10546875,
+            "c_accuracy": 0.02734375,
+            "written_value_match_rate": 0.10546875,
+            "mean_memory_norm": 0.0
+          },
+          "wrong_values": {
+            "a": 0,
+            "c": 7,
+            "matches_written_value": 256,
+            "targets": 256,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.02734375,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.19990486081223935
+          }
+        }
+      },
+      "capacity": {
+        "2": {
+          "episodes": 64,
+          "support_per_episode": 2,
+          "parameter_hash_unchanged": true,
+          "c_bitwise_stable": true,
+          "arms": {
+            "normal": {
+              "a": 128,
+              "c": 0,
+              "matches_written_value": 128,
+              "targets": 128,
+              "a_accuracy": 1.0,
+              "c_accuracy": 0.0,
+              "written_value_match_rate": 1.0,
+              "mean_memory_norm": 0.14188080496387556
+            },
+            "zero": {
+              "a": 16,
+              "c": 0,
+              "matches_written_value": 16,
+              "targets": 128,
+              "a_accuracy": 0.125,
+              "c_accuracy": 0.0,
+              "written_value_match_rate": 0.125,
+              "mean_memory_norm": 0.0
+            },
+            "wrong_values": {
+              "a": 0,
+              "c": 0,
+              "matches_written_value": 128,
+              "targets": 128,
+              "a_accuracy": 0.0,
+              "c_accuracy": 0.0,
+              "written_value_match_rate": 1.0,
+              "mean_memory_norm": 0.14188080473104492
+            }
+          }
+        },
+        "8": {
+          "episodes": 64,
+          "support_per_episode": 8,
+          "parameter_hash_unchanged": true,
+          "c_bitwise_stable": true,
+          "arms": {
+            "normal": {
+              "a": 512,
+              "c": 7,
+              "matches_written_value": 512,
+              "targets": 512,
+              "a_accuracy": 1.0,
+              "c_accuracy": 0.013671875,
+              "written_value_match_rate": 1.0,
+              "mean_memory_norm": 0.28425344394054264
+            },
+            "zero": {
+              "a": 50,
+              "c": 7,
+              "matches_written_value": 50,
+              "targets": 512,
+              "a_accuracy": 0.09765625,
+              "c_accuracy": 0.013671875,
+              "written_value_match_rate": 0.09765625,
+              "mean_memory_norm": 0.0
+            },
+            "wrong_values": {
+              "a": 0,
+              "c": 7,
+              "matches_written_value": 512,
+              "targets": 512,
+              "a_accuracy": 0.0,
+              "c_accuracy": 0.013671875,
+              "written_value_match_rate": 1.0,
+              "mean_memory_norm": 0.280453895800747
+            }
+          }
+        }
+      },
+      "curve": [
+        {
+          "step": 1,
+          "loss": 5.673904895782471,
+          "grad_norm": 20.604820251464844,
+          "training_episode_accuracy": 0.0
+        },
+        {
+          "step": 100,
+          "loss": 0.18403053283691406,
+          "grad_norm": 2.589153289794922,
+          "training_episode_accuracy": 1.0
+        },
+        {
+          "step": 200,
+          "loss": 0.12386016547679901,
+          "grad_norm": 1.0104148387908936,
+          "training_episode_accuracy": 1.0
+        },
+        {
+          "step": 300,
+          "loss": 0.018873659893870354,
+          "grad_norm": 0.11307122558355331,
+          "training_episode_accuracy": 1.0
+        },
+        {
+          "step": 400,
+          "loss": 0.011022595688700676,
+          "grad_norm": 0.034188635647296906,
+          "training_episode_accuracy": 1.0
+        },
+        {
+          "step": 500,
+          "loss": 0.018767602741718292,
+          "grad_norm": 0.09813252836465836,
+          "training_episode_accuracy": 1.0
+        }
+      ],
+      "train_seconds": 25.351980399998865,
+      "total_seconds": 42.84321060000002,
+      "final_parameter_hash": "7e3b63392a18b8b881a8693fcfb90e9db37235ebfbb825d0a0fee52ed9de2c82"
+    },
+    {
+      "seed": 1,
+      "before": {
+        "episodes": 16,
+        "support_per_episode": 4,
+        "parameter_hash_unchanged": true,
+        "c_bitwise_stable": true,
+        "arms": {
+          "normal": {
+            "a": 0,
+            "c": 1,
+            "matches_written_value": 0,
+            "targets": 64,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.015625,
+            "written_value_match_rate": 0.0,
+            "mean_memory_norm": 0.20032180100679398
+          },
+          "zero": {
+            "a": 0,
+            "c": 1,
+            "matches_written_value": 0,
+            "targets": 64,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.015625,
+            "written_value_match_rate": 0.0,
+            "mean_memory_norm": 0.0
+          },
+          "wrong_values": {
+            "a": 0,
+            "c": 1,
+            "matches_written_value": 0,
+            "targets": 64,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.015625,
+            "written_value_match_rate": 0.0,
+            "mean_memory_norm": 0.20173055259510875
+          }
+        }
+      },
+      "after": {
+        "episodes": 64,
+        "support_per_episode": 4,
+        "parameter_hash_unchanged": true,
+        "c_bitwise_stable": true,
+        "arms": {
+          "normal": {
+            "a": 256,
+            "c": 4,
+            "matches_written_value": 256,
+            "targets": 256,
+            "a_accuracy": 1.0,
+            "c_accuracy": 0.015625,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.20061279262881726
+          },
+          "zero": {
+            "a": 22,
+            "c": 4,
+            "matches_written_value": 22,
+            "targets": 256,
+            "a_accuracy": 0.0859375,
+            "c_accuracy": 0.015625,
+            "written_value_match_rate": 0.0859375,
+            "mean_memory_norm": 0.0
+          },
+          "wrong_values": {
+            "a": 1,
+            "c": 4,
+            "matches_written_value": 255,
+            "targets": 256,
+            "a_accuracy": 0.00390625,
+            "c_accuracy": 0.015625,
+            "written_value_match_rate": 0.99609375,
+            "mean_memory_norm": 0.19906216231174767
+          }
+        }
+      },
+      "capacity": {
+        "2": {
+          "episodes": 64,
+          "support_per_episode": 2,
+          "parameter_hash_unchanged": true,
+          "c_bitwise_stable": true,
+          "arms": {
+            "normal": {
+              "a": 128,
+              "c": 3,
+              "matches_written_value": 128,
+              "targets": 128,
+              "a_accuracy": 1.0,
+              "c_accuracy": 0.0234375,
+              "written_value_match_rate": 1.0,
+              "mean_memory_norm": 0.14132951374631375
+            },
+            "zero": {
+              "a": 21,
+              "c": 3,
+              "matches_written_value": 21,
+              "targets": 128,
+              "a_accuracy": 0.1640625,
+              "c_accuracy": 0.0234375,
+              "written_value_match_rate": 0.1640625,
+              "mean_memory_norm": 0.0
+            },
+            "wrong_values": {
+              "a": 0,
+              "c": 3,
+              "matches_written_value": 128,
+              "targets": 128,
+              "a_accuracy": 0.0,
+              "c_accuracy": 0.0234375,
+              "written_value_match_rate": 1.0,
+              "mean_memory_norm": 0.14132951316423714
+            }
+          }
+        },
+        "8": {
+          "episodes": 64,
+          "support_per_episode": 8,
+          "parameter_hash_unchanged": true,
+          "c_bitwise_stable": true,
+          "arms": {
+            "normal": {
+              "a": 510,
+              "c": 14,
+              "matches_written_value": 510,
+              "targets": 512,
+              "a_accuracy": 0.99609375,
+              "c_accuracy": 0.02734375,
+              "written_value_match_rate": 0.99609375,
+              "mean_memory_norm": 0.2820036936318502
+            },
+            "zero": {
+              "a": 76,
+              "c": 14,
+              "matches_written_value": 76,
+              "targets": 512,
+              "a_accuracy": 0.1484375,
+              "c_accuracy": 0.02734375,
+              "written_value_match_rate": 0.1484375,
+              "mean_memory_norm": 0.0
+            },
+            "wrong_values": {
+              "a": 1,
+              "c": 14,
+              "matches_written_value": 507,
+              "targets": 512,
+              "a_accuracy": 0.001953125,
+              "c_accuracy": 0.02734375,
+              "written_value_match_rate": 0.990234375,
+              "mean_memory_norm": 0.2822842374444008
+            }
+          }
+        }
+      },
+      "curve": [
+        {
+          "step": 1,
+          "loss": 5.7247209548950195,
+          "grad_norm": 18.18438720703125,
+          "training_episode_accuracy": 0.0
+        },
+        {
+          "step": 100,
+          "loss": 0.4931298494338989,
+          "grad_norm": 5.448350429534912,
+          "training_episode_accuracy": 0.75
+        },
+        {
+          "step": 200,
+          "loss": 0.027345890179276466,
+          "grad_norm": 0.16846111416816711,
+          "training_episode_accuracy": 1.0
+        },
+        {
+          "step": 300,
+          "loss": 0.0408974252641201,
+          "grad_norm": 0.38447099924087524,
+          "training_episode_accuracy": 1.0
+        },
+        {
+          "step": 400,
+          "loss": 0.13922443985939026,
+          "grad_norm": 1.2462177276611328,
+          "training_episode_accuracy": 1.0
+        },
+        {
+          "step": 500,
+          "loss": 0.01648906245827675,
+          "grad_norm": 0.12384414672851562,
+          "training_episode_accuracy": 1.0
+        }
+      ],
+      "train_seconds": 25.895745100002387,
+      "total_seconds": 43.710139400001935,
+      "final_parameter_hash": "37b76d32ff7020a28be7450c1c9b79277f38c2ff2f9f341707157e2f8b1687fa"
+    },
+    {
+      "seed": 2,
+      "before": {
+        "episodes": 16,
+        "support_per_episode": 4,
+        "parameter_hash_unchanged": true,
+        "c_bitwise_stable": true,
+        "arms": {
+          "normal": {
+            "a": 1,
+            "c": 0,
+            "matches_written_value": 1,
+            "targets": 64,
+            "a_accuracy": 0.015625,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 0.015625,
+            "mean_memory_norm": 0.20050819544121623
+          },
+          "zero": {
+            "a": 4,
+            "c": 0,
+            "matches_written_value": 4,
+            "targets": 64,
+            "a_accuracy": 0.0625,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 0.0625,
+            "mean_memory_norm": 0.0
+          },
+          "wrong_values": {
+            "a": 3,
+            "c": 0,
+            "matches_written_value": 3,
+            "targets": 64,
+            "a_accuracy": 0.046875,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 0.046875,
+            "mean_memory_norm": 0.20171300088986754
+          }
+        }
+      },
+      "after": {
+        "episodes": 64,
+        "support_per_episode": 4,
+        "parameter_hash_unchanged": true,
+        "c_bitwise_stable": true,
+        "arms": {
+          "normal": {
+            "a": 256,
+            "c": 0,
+            "matches_written_value": 256,
+            "targets": 256,
+            "a_accuracy": 1.0,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.1994959763251245
+          },
+          "zero": {
+            "a": 31,
+            "c": 0,
+            "matches_written_value": 31,
+            "targets": 256,
+            "a_accuracy": 0.12109375,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 0.12109375,
+            "mean_memory_norm": 0.0
+          },
+          "wrong_values": {
+            "a": 0,
+            "c": 0,
+            "matches_written_value": 256,
+            "targets": 256,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.19972877332475036
+          }
+        }
+      },
+      "capacity": {
+        "2": {
+          "episodes": 64,
+          "support_per_episode": 2,
+          "parameter_hash_unchanged": true,
+          "c_bitwise_stable": true,
+          "arms": {
+            "normal": {
+              "a": 128,
+              "c": 0,
+              "matches_written_value": 128,
+              "targets": 128,
+              "a_accuracy": 1.0,
+              "c_accuracy": 0.0,
+              "written_value_match_rate": 1.0,
+              "mean_memory_norm": 0.14164432720281184
+            },
+            "zero": {
+              "a": 16,
+              "c": 0,
+              "matches_written_value": 16,
+              "targets": 128,
+              "a_accuracy": 0.125,
+              "c_accuracy": 0.0,
+              "written_value_match_rate": 0.125,
+              "mean_memory_norm": 0.0
+            },
+            "wrong_values": {
+              "a": 0,
+              "c": 0,
+              "matches_written_value": 128,
+              "targets": 128,
+              "a_accuracy": 0.0,
+              "c_accuracy": 0.0,
+              "written_value_match_rate": 1.0,
+              "mean_memory_norm": 0.14164432825054973
+            }
+          }
+        },
+        "8": {
+          "episodes": 64,
+          "support_per_episode": 8,
+          "parameter_hash_unchanged": true,
+          "c_bitwise_stable": true,
+          "arms": {
+            "normal": {
+              "a": 512,
+              "c": 0,
+              "matches_written_value": 512,
+              "targets": 512,
+              "a_accuracy": 1.0,
+              "c_accuracy": 0.0,
+              "written_value_match_rate": 1.0,
+              "mean_memory_norm": 0.28155556903220713
+            },
+            "zero": {
+              "a": 75,
+              "c": 0,
+              "matches_written_value": 75,
+              "targets": 512,
+              "a_accuracy": 0.146484375,
+              "c_accuracy": 0.0,
+              "written_value_match_rate": 0.146484375,
+              "mean_memory_norm": 0.0
+            },
+            "wrong_values": {
+              "a": 0,
+              "c": 0,
+              "matches_written_value": 512,
+              "targets": 512,
+              "a_accuracy": 0.0,
+              "c_accuracy": 0.0,
+              "written_value_match_rate": 1.0,
+              "mean_memory_norm": 0.2811825212556869
+            }
+          }
+        }
+      },
+      "curve": [
+        {
+          "step": 1,
+          "loss": 5.225342750549316,
+          "grad_norm": 23.476781845092773,
+          "training_episode_accuracy": 0.0
+        },
+        {
+          "step": 100,
+          "loss": 0.393252968788147,
+          "grad_norm": 1.9938740730285645,
+          "training_episode_accuracy": 0.75
+        },
+        {
+          "step": 200,
+          "loss": 0.02789899706840515,
+          "grad_norm": 0.16791783273220062,
+          "training_episode_accuracy": 1.0
+        },
+        {
+          "step": 300,
+          "loss": 0.015397634357213974,
+          "grad_norm": 0.10428214073181152,
+          "training_episode_accuracy": 1.0
+        },
+        {
+          "step": 400,
+          "loss": 0.009289609268307686,
+          "grad_norm": 0.03773593530058861,
+          "training_episode_accuracy": 1.0
+        },
+        {
+          "step": 500,
+          "loss": 0.01167521346360445,
+          "grad_norm": 0.06250264495611191,
+          "training_episode_accuracy": 1.0
+        }
+      ],
+      "train_seconds": 26.41557969999849,
+      "total_seconds": 44.39162049999868,
+      "final_parameter_hash": "669e8216cd89e8d635bb62de18105b343d528961be562a7dd3ebd28c7b5e8d78"
+    }
+  ]
+}

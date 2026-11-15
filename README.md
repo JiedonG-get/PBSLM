@@ -2,9 +2,9 @@
 
 **一个面向「并行块 + 双路径判断 + 持续记忆 + 信息流动」的实验性语言模型原型。**
 
-> 当前状态：Phase 1 Baseline A1/A2 已完成。仓库里的 v2.1 是**单路径连续向量 baseline**，
-> 完整 A/C、E/M、InfoFlow、PerturbField 的设计在 `docs/` 中，尚未在 Phase 1 中启用。
-> 我们**不声称**当前模型已经成功；Phase 1 的结论只是「有了一个能训练、能评估、能复现的 baseline」。
+> 当前状态：Phase 1 Baseline A1/A2 已完成；后续已补充 masked A/C 工程验证与小型合成持续适应、记忆干预实验。
+> v2.1 仍是单路径语言模型 baseline；v2 的可选 masked 路径已有局部证据，**不代表完整 Online Learning 系统或通用语言能力已验证**。
+> 最新证据入口：[研究执行边界](docs/RESEARCH_EXECUTION.md)、[O1.5验证](experiments/o1_5/GPT_VERIFICATION_REPORT.md)、[持续适应](experiments/continual_associations/RESULTS.md)、[随机映射记忆](experiments/episodic_memory/RESULTS.md)。
 
 ---
 
@@ -29,8 +29,7 @@
    不直接维护词表 softmax，而是预测 token 对应的连续向量，再用最近邻码本解码；
    输出随机性由可学习扰动场 `μ/σ` 控制，输入是活跃度、震撼值、情绪旋钮。
 
-此外还有一条长期目标：**Online / 半在线学习**——A 侧在线更新，C / 主块 / Flow 保持冻结，
-让模型在交互中持续写记忆而不破坏已学表示（见 `docs/ONLINE.md`）。
+此外，项目的长期核心目标是 **Online / 半在线学习**：将稳定知识参照 C、可适应路径 A 与经历记忆 M 分离，使模型持续接收信息、适应反馈，同时保留旧能力，并最终支持提交、打断和续连。更好的上下文预测是基础验证，不是这一目标的全部。当前合成实验已观察到 A 能适应但会遗忘、回放改善保持，以及训练后的 M 能读出新关联；尚未完成自然语言持续学习或实时运行系统（见上述最新证据与 `docs/ONLINE.md` 的历史设计）。
 
 ---
 
