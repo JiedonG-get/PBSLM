@@ -1,6 +1,7 @@
 # ONLINE_ARCHITECTURE_O1_5_DESIGN — A/C 路由与跨块信息流解耦设计
 
-状态：**O1.5 架构分析文档（补充 active 三集合、严格 mask、Flow 语义、参数隔离边界）。
+状态：**O1.5 架构分析文档（补充 active 三集合、严格 mask、Flow 语义、参数隔离边界、
+BlockBank beta 索引、batch union 语义、逐块独立性与 M1/M2 严格等价）。
 只做设计，不修改模型代码，不运行训练/loss/backward/optimizer.step/smoke。**
 基线：O1 提交 `ad99bc1`；O1 只证明了**输出头已拆分**、六组 A 参数白名单和基础 C 稳定性，
 **不代表 A/C 计算路径已经完全隔离，更不代表 Online Learning 已实现。**
@@ -299,6 +300,119 @@ O1.5 的 `settled_a`/`settled_c` 必须对应 `settled_side`（per-block 残差�
 不能改成 `consensus_side`；`consensus_side` 只能作为额外输出/后续用途。
 无 mask、全集块时应与 legacy 路径数值一致（回归测试）。
 
+### 2.7 BlockBank beta 索引与 batch 语义（P0-1/P0-2/P0-3）
+
+#### 2.7.1 `BlockBank.comm` 的 beta 必须按物理 block ID 索引
+
+当前 `models/model.py::BlockBank.comm` 使用：
+
+```python
+beta = torch.sigmoid(self.comm_beta[:Y.shape[0]])
+```
+
+如果 `Y` 的行对应 active block 索引 `[2,5,7]`，这会错误使用 `comm_beta[0:3]`。
+
+修正方案：
+
+- `comm(Y, g, idx=None, mask=None)` 增加 `idx`（物理 block ID）；
+- `idx` 为空时默认 `torch.arange(Y.shape[0])`，只保留旧连续索引语义；
+- beta 改为 `torch.sigmoid(self.comm_beta[idx])`；
+- `g`、`beta`、`mask` 都按 `idx` / 当前角色有效块对齐；
+- 旧路径若需要复现历史行为，必须显式使用 legacy 开关，不能假装新旧等价。
+
+非连续索引测试：
+
+```text
+idx = [2, 5, 7]
+beta_actual   = sigmoid(comm_beta[idx])
+beta_expected = sigmoid(comm_beta[[2,5,7]])
+assert tensor_equal(beta_actual, beta_expected)
+assert not tensor_equal(beta_actual, sigmoid(comm_beta[:3]))
+```
+
+#### 2.7.2 `active_union` 的 batch 语义
+
+现有 `BlockBank.block_forward` 接收一维 `idx`，不能直接接收逐样本集合。O1.5 明确：
+
+| 名称 | 形状/类型 | 用途 |
+|---|---|---|
+| `active_union_per_sample[b]` | 每个样本的块集合 | M1 逐样本计算 |
+| `active_union_global` | 批次内所有样本支持集的并集，1D sorted list | M2 一次性 block_forward 调度 |
+| `mask_a` | `(G,B)` 或 `(B,G)`，G=`len(active_union_global)` | A 侧有效块掩码 |
+| `mask_c` | `(G,B)` 或 `(B,G)` | C 侧有效块掩码 |
+
+规则：
+
+1. `active_union_per_sample` 只用于 M1 的逐样本调用；
+2. `active_union_global = sorted(∪_b active_union_per_sample[b])` 才可传给现有 `block_forward` 的一维 `idx`；
+3. M2 对 global union 只调用一次 `block_forward`，再用 `mask_a/mask_c` 选择；
+4. 不能把 `active_union_per_sample` 直接当作 `block_forward` 的 idx；
+5. 每个样本的 `mask_side` 只标记该样本在该侧的合法物理块；
+6. A-only 块即使出现在 global union，也不能进入 C 的 mask/mean/agree。
+
+#### 2.7.3 BlockBank 逐块独立性测试（P0-3）
+
+BlockBank 参数是共享的，但 `block_forward` 的**单个块计算**必须与 union 无关。
+必须测试：
+
+1. `block_forward(x, [j])` 与 `block_forward(x, union)` 中第 j 行一致；
+2. 向 union 增加其他物理块，不改变已有块的输出；
+3. 扰动 A-only 物理块的参数，C-only 物理块的 block_forward 输出不变；
+4. A/C 重叠物理块：扰动该块参数时，两侧该块的输出都变化（参数共享的正常结果），
+   但不能出现中间状态/缓存污染；
+5. BlockBank 不保存跨调用可变状态；同一 block 在两次调用中输出一致。
+
+必须区分：
+
+- **参数共享**：同一物理块被 A/C 同时使用时共享权重，这是预期行为；
+- **计算结果共享**：不能把 A 侧某次调用的中间结果缓存后给 C 侧使用；
+  block_forward 必须是纯函数。
+
+### 2.8 M1/M2 严格等价条件（P0-4）
+
+M1 是参考实现，M2 是批量实现；不能只比较最终 `z_c`。
+
+#### 2.8.1 M1（逐样本参考）
+
+```text
+for b in range(B):
+    u_b = active_union_per_sample[b]
+    Y_b = bank.block_forward(x[b:b+1], u_b)   # (S_b,1,T,D)
+    delta_b = Y_b - x[b:b+1]
+    # side-specific comm/flow for A/C with mask
+    ...
+```
+
+#### 2.8.2 M2（global union + mask）
+
+```text
+G = active_union_global
+Y_g = bank.block_forward(x, G)                # (G,B,T,D)
+for b:
+    gather rows G -> u_b; apply mask_a/mask_c
+    # side comm/flow
+```
+
+#### 2.8.3 必须逐样本、逐块比较的中间量
+
+| 层级 | 比较内容 |
+|---|---|
+| BlockBank | 每块 `block_forward` 输出（M1 的块行 vs M2 global union 对应行） |
+| comm | `others`、`update`、`out`（有效块逐块；无效块必须为零） |
+| FlowStep | 每层 FlowStep 的 `h` 输出（有效块逐层/逐块） |
+| Flow | `settled_c`、`agree_c` |
+| side | `I_c`、`side_cons_c` |
+| 最终 | `z_c` |
+
+要求：
+
+- 逐样本、逐块、逐层比较；
+- 不能只比较 `z_c`；
+- 记录每层的 `max_abs_err`、`max_rel_err`；
+- fp32 建议 `atol=1e-6, rtol=1e-5`；如果确定性 CPU 能 bitwise 相等，优先要求 `torch.equal`；
+- 任一中间层超出容差，M2 失败，不能“最终输出接近就通过”；
+- 测试需要可选的 trace/中间返回（或测试 hook），生产路径可以关闭 trace，但不能关闭 mask。
+
 ---
 
 ## 3. 逐样本路由的影响
@@ -397,7 +511,8 @@ O1.5 只解决**计算状态隔离**，不解决参数独立：
 | `models/model_v2.py` | `encode` | 去 `hmean.mean(0)`；per-sample 路由；分离 A/C comm/flow/side_cons/side_I |
 | `models/model_v2.py` | `forward` | 输出 `chosen_a`、`chosen_c`、`active_a`、`active_c`、`active_union`；旧 `active` 仅兼容别名 |
 | `models/model_v2.py` | `online_param_groups` | O1.5-C 增加 `role_a`；之前保持六组 |
-| `models/model.py` | `BlockBank.comm` | 可选 per-sample mask/权重；`others` 只含当前样本/当前角色有效块 |
+| `models/model.py` | `BlockBank.comm` | 增加物理 `idx`/可选 mask；beta 用 `comm_beta[idx]`；`others`/update/out 只含有效块 |
+| `models/model.py` | `BlockBank.comm` trace | 测试可选输出 `others/update/out`；生产可关闭 trace |
 | `models/model.py` | `InfoFlow.forward` | 可选 mask；每层 FlowStep 维持 mask；mean/scale/agree 只统计有效块 |
 | `models/model.py` | `FlowStep.forward` | 保存/传递 query/key/value/输出 mask，无效块不重新进入 |
 | `models/model.py` | `BlockBank.block_forward` | 可选 union/掩码；保持块参数不变 |
@@ -423,7 +538,7 @@ O1.5 只解决**计算状态隔离**，不解决参数独立：
 |---|---|---|---|---|
 | O1.5-0 | 本设计评审 | O1 | 文档通过 | — |
 | O1.5-A | 逐样本路由 + C 独立选块 | O1.5-0 | 单样本/batch 路由一致；样本顺序无关；`chosen_c`/`active_c` 不因 A 路由变化；共享 comm/flow 下 `z_c` 仍可能变化，只记录剩余耦合 | 同一样本路由随 batch 变化；`chosen_c`/`active_c` 随 A 路由变化 |
-| O1.5-B | A/C 分别 comm/flow + 严格 mask | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；单 sample/batch>1；每层 mask 无泄漏 | C 任一中间/最终指标变化；mask 泄漏；性能超预算 |
+| O1.5-B | A/C 分别 comm/flow + 严格 mask；P0-1 beta 修正、P0-2 union 语义、P0-3 逐块独立性、P0-4 严格等价 | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；M1/M2 逐层等价；非连续 beta/union/逐块测试通过 | C 任一中间/最终指标变化；mask 泄漏；P0 测试失败；性能超预算 |
 | O1.5-C | `role_a` 加入白名单（第七组） | O1.5-B | 七组白名单；A 路由更新后 `active_c`/C 仍稳定；`active_a` 数可解释 | C 变化；路由塌缩；吞吐异常 |
 | O1.5-D | 兼容/回滚/性能收口 | O1.5-B | 旧 checkpoint 加载；legacy 路径回归；性能记录 | 旧 ckpt 失败；无法回滚 |
 
@@ -505,6 +620,33 @@ outputs C(sample_i in batch=1) ≈ outputs C(sample_i in batch=N)
 - `agree`/`mean`/`scale` 的有效块分母正确；
 - `settled_side` 必须是 per-block 残差，不得被 `consensus_side` 替代。
 
+### 8.8 M1/M2 严格等价测试（P0-4）
+
+逐样本、逐块、逐层比较：
+
+- block output；
+- comm `others`/`update`/`out`；
+- 每层 FlowStep 的 `h`；
+- `settled_c`；
+- `agree_c`；
+- `I_c`；
+- `side_cons_c`；
+- `z_c`。
+
+记录每层 `max_abs_err`/`max_rel_err`；任一层超容差即失败，不能只看最终 `z_c`。
+
+非连续索引测试：
+
+- `idx=[2,5,7]` 时 beta 必须取 `comm_beta[[2,5,7]]`，不能取 `comm_beta[:3]`；
+- 对 `comm` 的 `others`/`update`/`out` 分别检查物理 block 对齐。
+
+BlockBank 逐块独立性测试：
+
+- 单块输出与 union 中对应行一致；
+- 增加其他物理块不改变已有块输出；
+- 扰动 A-only 块参数不影响 C-only 块输出；
+- A/C 重叠块按参数共享预期变化，但不能有跨调用中间状态污染。
+
 ---
 
 ## 9. 参数量、计算开销、兼容性与回滚
@@ -533,6 +675,9 @@ O1.5 回归测试必须同时验证 legacy 行为未被无意改变。
 7. O1.5 仍不包含 Runtime、M 因果写入、打断/续连；不能宣称 Online Learning；
 8. O1.5 只隔离计算状态，不隔离参数；共享参数更新会使 C 稳定性结论失效；
 9. 如果 `active_union` 被误用作 C 稳定性指标，会掩盖 C 路由变化；测试必须使用 `active_c`。
+10. `BlockBank.comm` 当前 `comm_beta[:S]` 与物理 block ID 不对应；修正会改变现有行为，必须保留 legacy 基线并做非连续索引测试。
+11. 若把 `active_union_per_sample` 直接传给 `block_forward` 的一维 idx，会产生错误调度；必须使用 global union + mask。
+12. M1/M2 若只比较最终 `z_c`，会漏掉 comm/Flow 中间层泄漏；P0-4 测试必须逐层失败。
 
 ---
 
@@ -544,6 +689,8 @@ O1.5 回归测试必须同时验证 legacy 行为未被无意改变。
 - 不把 O1 的 C 稳定性结论扩大为 A/C 完全隔离；
 - 不把 O1.5 的“计算状态隔离”写成“参数独立/完全独立”；
 - O1.5 仍未验证共享参数更新、随机 field、bf16、多 seed；
+- 保留 O1 与 Phase 1 的历史结果/基线，不覆盖原始结果；
+- O1.5 只解决计算路径隔离，不借机改变其他模型机制；
 - 不进入 O2 或 Online Learning。
 
 ### 11.1 允许与禁止的验收结论
