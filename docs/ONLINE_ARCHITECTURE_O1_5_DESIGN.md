@@ -182,6 +182,16 @@ z_c = out_c(dec_c(...)) + ctx_c
 
 **建议 O1.5 先用 M1 做正确性基准，再用 M2 做批量化**；两者结果必须在单样本/小 batch 上一致。
 
+M1/M2 一致性比较必须逐样本、逐块覆盖：
+
+- `settled_a` / `settled_c`；
+- `agree_a` / `agree_c`；
+- `I_c`；
+- `side_cons_c`；
+- 最终 `z_c`。
+
+不能只比较最终 `z_c`；中间 `settled`/`agree`/`side_cons` 任一不一致都必须失败。
+
 ### 2.5 comm/Flow 的严格 mask 定义
 
 不能只在最后的 `side_cons` 聚合时加 mask；`bank.comm` 与 `InfoFlow` 的中间计算也必须严格隔离。
@@ -201,13 +211,23 @@ tot_side[b]      = Σ_s mask_side[b,s] · Y_side[s,b]
 others_side[s,b] = tot_side[b] - mask_side[b,s] · Y_side[s,b]
 ```
 
+通信更新项和输出也必须受 mask 控制：
+
+```text
+r_side[s,b]         = comm2(gelu(comm1(others_side[s,b])))
+update_side[s,b]    = mask_side[b,s] · beta_s · r_side[s,b]
+out_side[s,b]       = mask_side[b,s] · (Y_side[s,b] + update_side[s,b])
+```
+
 约束：
 
 1. `others` 只包含**当前样本、当前角色**选中的块；
 2. 无效块 `mask=0` 不参与 `tot`/`others`；
-3. 同一物理块被 A/C 同时选中时，A 侧和 C 侧分别用自己的 `mask_side`、自己的 `Y_side` 调用 comm；
+3. 无效块不能接收 comm 更新，`update_side` 和 `out_side` 都必须乘 `mask_side`；
+4. 每次/每层输出后再次应用 mask，避免无效块状态残留或重新进入后续计算；
+5. 同一物理块被 A/C 同时选中时，A 侧和 C 侧分别用自己的 `mask_side`、自己的 `Y_side` 调用 comm；
    共享的是冻结的 `comm1/comm2` 参数，不是中间 `others` 状态；
-4. 两侧的输出不得写回同一个可变缓存。
+6. 两侧的输出不得写回同一个可变缓存，也不能用一侧的 `out_side` 覆盖另一侧的输入。
 
 当前 `BlockBank.comm()`（`models/model.py:121`）没有 mask 参数，O1.5 需要新增可选 mask 接口；
 旧调用不带 mask 时必须保持原语义。
@@ -230,11 +250,17 @@ others_side[s,b] = tot_side[b] - mask_side[b,s] · Y_side[s,b]
 
 #### 2.5.3 mask 的测试要求
 
-- 构造 A-only 有效块，把 C 的 mask 置零，C 的 comm/flow 输出不得变化；
-- 构造 A/C 重叠块，A 侧扰动该块，C 侧输出不得变化；
+必须固定 `chosen_c`/`active_c`，再改变 A 侧输入。
+
+- 固定 `active_c`，改变 A 侧 mask / A-only 块 / `active_union` 中仅供 A 使用的块：
+  C 的 comm/flow 中间输出和最终输出不得变化；
+- 构造 A/C 重叠块，固定 `active_c`，扰动 A 侧该块：C 侧输出不得变化；
+- 对 C 自身的无效块：只验证它们不参与 C 计算
+  （`others`/`mean`/`scale`/`agree`/输出中没有它们的贡献），
+  **不要**通过关闭 `active_c` 内有效 mask 位来要求 C 整体输出不变；
 - 每一层 FlowStep 后检查无效块状态是否被清零；
 - `agree`/`mean`/`scale` 的有效块分母必须正确；
-- `active_union` 可以变化，但 `active_c` 与 C 输出必须不变。
+- `active_union` 可以变化，但 `active_c` 与 C 中间/最终输出必须不变。
 
 ### 2.6 Flow 输出语义
 
@@ -396,12 +422,26 @@ O1.5 只解决**计算状态隔离**，不解决参数独立：
 | 阶段 | 内容 | 先决条件 | 验收 | 失败条件 |
 |---|---|---|---|---|
 | O1.5-0 | 本设计评审 | O1 | 文档通过 | — |
-| O1.5-A | 逐样本路由 + C 独立选块 | O1.5-0 | 单样本/batch 路由一致；样本顺序无关；`active_union` 可变但 `chosen_c`/`active_c` 不因 A 路由变化（共享 comm 下允许失败，用来暴露剩余耦合） | 同一样本路由随 batch 变化；或测试无法覆盖 |
-| O1.5-B | A/C 分别 comm/flow + 严格 mask | O1.5-A | 六组扰动 C 稳定；A 路由变化时 `active_c`/C 稳定；单 sample/batch>1；每层 mask 无泄漏 | C 任一指标变化；mask 泄漏；性能超预算 |
+| O1.5-A | 逐样本路由 + C 独立选块 | O1.5-0 | 单样本/batch 路由一致；样本顺序无关；`chosen_c`/`active_c` 不因 A 路由变化；共享 comm/flow 下 `z_c` 仍可能变化，只记录剩余耦合 | 同一样本路由随 batch 变化；`chosen_c`/`active_c` 随 A 路由变化 |
+| O1.5-B | A/C 分别 comm/flow + 严格 mask | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；单 sample/batch>1；每层 mask 无泄漏 | C 任一中间/最终指标变化；mask 泄漏；性能超预算 |
 | O1.5-C | `role_a` 加入白名单（第七组） | O1.5-B | 七组白名单；A 路由更新后 `active_c`/C 仍稳定；`active_a` 数可解释 | C 变化；路由塌缩；吞吐异常 |
 | O1.5-D | 兼容/回滚/性能收口 | O1.5-B | 旧 checkpoint 加载；legacy 路径回归；性能记录 | 旧 ckpt 失败；无法回滚 |
 
 **O1.5 不启动训练。** 所有测试只做 forward/参数赋值/param_groups 检查。
+
+### 7.1 O1.5-A 与 O1.5-B 的验收边界
+
+| 项目 | O1.5-A | O1.5-B |
+|---|---|---|
+| `chosen_c` / `active_c` 不随 A 路由变化 | **必须通过** | 必须通过 |
+| 逐样本路由 / batch 独立性 | **必须通过** | 必须通过 |
+| `settled_c` / `agree_c` 稳定 | 允许仍受共享 comm/Flow 影响，只记录，不判定通过 | **必须通过** |
+| `I_c` / `side_cons_c` 稳定 | 允许仍受共享 comm/Flow 影响，只记录 | **必须通过** |
+| 最终 `z_c` 稳定 | 允许变化，作为剩余耦合证据 | **必须通过** |
+| 严格 mask / 中间状态测试 | 不做通过要求 | **必须通过** |
+
+- O1.5-A 只证明**路由集合**解耦，不能宣称 C 输出稳定；
+- O1.5-B 完成后才允许宣称“在共享参数冻结下，C 的中间状态和最终输出稳定”。
 
 ---
 
@@ -415,6 +455,8 @@ outputs C(sample_i in batch=1) ≈ outputs C(sample_i in batch=N)
 ```
 
 - 路由集合必须相同；
+- M1/M2 必须逐样本、逐块比较 `settled_a/c`、`agree_a/c`、`I_c`、`side_cons_c`、`z_c`，
+  不能只比较最终输出；
 - 输出容差：fp32 `atol=1e-6, rtol=1e-5`，记录浮点求和差异；
 - 任一不同即失败。
 
@@ -453,10 +495,13 @@ outputs C(sample_i in batch=1) ≈ outputs C(sample_i in batch=N)
 
 ### 8.7 严格 mask / 中间状态测试
 
-- 关闭 C 的某些 mask 位，C 的 comm/flow 输出不得变化；
-- A-only 块被扰动时，C 的 comm/flow/side_cons 输出不变；
-- A/C 重叠块：A 侧扰动后，C 侧结果不变；
+- 固定 `chosen_c`/`active_c`，改变 A 侧 mask、A-only 块或 `active_union` 中仅供 A 使用的块：
+  C 的 comm/Flow 中间输出与最终输出不得变化；
+- 固定 `active_c`，构造 A/C 重叠块并扰动 A 侧该块：C 侧结果不变；
+- 对 C 自身无效块：验证其不参与 C 的 `others`/`mean`/`scale`/`agree`/输出；
+  不能通过关闭 `active_c` 内有效 mask 位来要求 C 整体输出不变；
 - 每层 FlowStep 后，无效块输出必须为零/被排除，不能在下一层复活；
+- comm 的 `update_side`/`out_side` 必须乘 `mask_side`，无效块不能接收更新；
 - `agree`/`mean`/`scale` 的有效块分母正确；
 - `settled_side` 必须是 per-block 残差，不得被 `consensus_side` 替代。
 
