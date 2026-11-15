@@ -39,7 +39,7 @@
 Phase 1 只跑了最小 baseline：
 
 - 单路径、自回归 teacher forcing；
-- 连续向量输出 + InfoNCE（batch 内负例 + 采样负例，不做全词表 softmax）；
+- 连续向量输出 + **sampled-negative InfoNCE**（Phase 1 实际：1 个正样本 + 采样负例；不是 batch 内负例，也不做全词表 softmax）；
 - **A1：独立可训练码本；A2：固定随机单位码本**
 - 数据：520M tokens（自训 BPE 16k，zhwiki）；15,000 步 × batch 8。
 
@@ -55,13 +55,19 @@ Phase 1 只跑了最小 baseline：
 
 **诚实的结论：**
 
-- 15k 步后上下文敏感性开始出现（`ctx_change_rate` 从 ~0.29 升到 ~0.6）；
+- 15k 步后**预测变化率**上升（`ctx_change_rate` 从 ~0.29 升到 ~0.6）；
+  但该指标同时改变了目标与上下文，且受控替换是 OOD 随机 token，**不能单独证明上下文敏感性或上下文利用能力**（Phase 1.1 修正）；
 - 但模型仍强烈依赖最高频 token / 最后一个局部 token：低频与稀有 token top1 仍为 0，
   `hard_neg_win` 接近随机；
-- 单次实验下 A2 略好于 A1，但**不能据此宣布架构优劣**；
+- 单次实验下 A2 在部分指标上略好于 A1，但 A1/A2 同时存在**码本初始化不同 + 可训练参数量不同（差 4.19M）**的混杂，不能据此宣布架构优劣；
 - 下一步不是放大模型，而是按 `docs/EXPERIMENT_PLAN.md` 做受控消融与更严格的评估。
 
 完整数据见 [`experiments/phase1/PHASE1_RESULTS.md`](experiments/phase1/PHASE1_RESULTS.md)。
+
+Phase 1.1 用固定 10k windows（80k targets）重新评估，并区分 Context Sensitivity / Utility / Generalization：
+[`experiments/phase1_1/PHASE1_1_RESULTS.md`](experiments/phase1_1/PHASE1_1_RESULTS.md)。
+关键发现：full context 比 last-token-only 好（+3.2 / +5.2 pp），但删前缀/打乱前缀几乎不影响，
+说明当前上下文利用主要是**局部后缀**，长前缀利用尚未证明。
 
 ---
 
@@ -91,10 +97,12 @@ PBSLM/
 ├── scripts/
 │   ├── data/                     # BPE、tokenize、语料下载/解析
 │   └── analysis/                 # 历史分析与评估脚本
+├── evaluation/                   # Phase 1.1 评估脚本
 ├── experiments/
 │   ├── phase0/                   # Phase 0 代码整理与计划
 │   ├── phase05/                  # smoke / preflight
 │   ├── phase1/                   # 正式 A1/A2
+│   ├── phase1_1/                 # 固定 held-out 评估 / 上下文敏感性/效用
 │   └── legacy/                   # v12–v15 历史结果、日志、metrics、旧代码
 └── tokenizer/                    # 自训 BPE 16k tokenizer 与统计
 ```
@@ -158,6 +166,7 @@ python -m training.train_v21 --config configs/smoke_a2.json
 - [docs/ONLINE.md](docs/ONLINE.md)：Online 设计理念与冻结/更新策略
 - [docs/EXPERIMENT_PLAN.md](docs/EXPERIMENT_PLAN.md)：Phase 0/0.5/1 结果与 Phase 2 消融计划
 - [docs/DECISIONS.md](docs/DECISIONS.md)：为什么做这些技术选择，以及踩过的坑
+- [docs/EVAL_PROTOCOL.md](docs/EVAL_PROTOCOL.md)：Phase 1.1 评估指标定义
 - [CHANGELOG.md](CHANGELOG.md)：按时间线的变更记录
 
 ---

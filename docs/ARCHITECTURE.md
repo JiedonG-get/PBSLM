@@ -117,7 +117,8 @@ decode = argmax_v cos(z, E_v)
 
 ### 5.2 训练目标
 
-- 主目标：InfoNCE（batch 内负例 + 采样负例），显式排除与正样本相同 token；
+- Phase 1 实际主目标：sampled-negative InfoNCE（1 正 + 采样负例，排除与正样本相同 token）；
+  batch 内负例是**后续待评估**的设计，不在 Phase 1 实现中；
 - 诊断时也用 CE（只用于检查数据和容量，不是最终路线）；
 - 另加 embedding 多样性/方差正则，防止码本塌缩。
 

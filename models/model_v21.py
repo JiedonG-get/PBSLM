@@ -20,7 +20,7 @@ except ImportError:
 
 class SinglePathContinuousLM(nn.Module):
     def __init__(self, vocab=16384, d=256, heads=8, k=8, depth=2,
-                 codebook="trainable", codebook_seed=1234):
+                 codebook="trainable", codebook_seed=1234, codebook_init="normal"):
         super().__init__()
         assert codebook in ("trainable", "fixed")
         self.vocab, self.d, self.k, self.codebook = vocab, d, k, codebook
@@ -38,11 +38,12 @@ class SinglePathContinuousLM(nn.Module):
         self.code_table = nn.Embedding(vocab, d)
         nn.init.normal_(self.code_table.weight, std=0.02)
 
-        if codebook == "fixed":
+        if codebook == "fixed" or codebook_init == "fixed_seed":
             g = torch.Generator().manual_seed(int(codebook_seed))
             with torch.no_grad():
                 self.code_table.weight.copy_(
                     F.normalize(torch.randn(vocab, d, generator=g), dim=-1))
+        if codebook == "fixed":
             self.code_table.weight.requires_grad_(False)
 
     def target_embed(self, ids):

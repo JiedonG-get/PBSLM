@@ -2,12 +2,12 @@
 
 特点：
 - 配置驱动（JSON），Baseline A1/A2 只差 codebook 字段；
-- 单路径连续向量 + InfoNCE（batch + 采样负例，不做全词表 softmax）；
+- 单路径连续向量 + InfoNCE（Phase 1 实际为 sampled-negative：1 个正样本 + neg_n 个采样负例；不做全词表 softmax，也不含 batch 内负例）；
 - checkpoint 保存 model/optimizer/step/config/随机数状态 + 固定码本 hash；
 - resume 跳过 field 初始化（v2.1 单路径无 field，逻辑保留给后续 dual 模型）；
 - 评估：top1/top5、频率分组、平均余弦、上下文交换敏感性、困难负样本胜率。
 
-Phase 0 阶段只做代码整理；Phase 0.5 的 smoke 命令见 PLAN_v2_1.md。
+Phase 0 阶段只做代码整理；Phase 0.5 的 smoke 命令见 experiments/phase0/PLAN_v2_1.md。
 """
 import argparse
 import hashlib
@@ -54,6 +54,7 @@ def build_model(cfg):
     return SinglePathContinuousLM(
         vocab=m["vocab"], d=m["d"], heads=m["heads"], k=m["k"], depth=m["depth"],
         codebook=m["codebook"], codebook_seed=m.get("codebook_seed", 1234),
+        codebook_init=m.get("codebook_init", "normal"),
     )
 
 

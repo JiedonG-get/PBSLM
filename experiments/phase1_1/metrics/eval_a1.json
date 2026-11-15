@@ -1,0 +1,103 @@
+{
+  "checkpoint": "ckpt_formal_a1.pt",
+  "step": 15000,
+  "codebook": "trainable",
+  "device": "cuda",
+  "eval_windows": 10000,
+  "n_targets": 80000,
+  "data": {
+    "ids": "data/bpe_full_u32.bin",
+    "n_in": 16,
+    "ar_m": 8,
+    "hold": 0.15
+  },
+  "context_generalization": {
+    "top1": 0.0711750015616417,
+    "top5": 0.15058749914169312,
+    "freq_bucket": {
+      "high": {
+        "n": 9651,
+        "top1": 0.5130038337996062,
+        "top5": 0.934100093254585
+      },
+      "mid": {
+        "n": 10774,
+        "top1": 0.06302209021718953,
+        "top5": 0.2471691108223501
+      },
+      "low": {
+        "n": 32154,
+        "top1": 0.0014617154941842384,
+        "top5": 0.010169807799962679
+      },
+      "rare": {
+        "n": 27421,
+        "top1": 0.0006199628022318661,
+        "top5": 0.001531672805514022
+      }
+    }
+  },
+  "context_sensitivity": {
+    "definition": "fixed target, changed context; matched natural context",
+    "matched_natural_context": {
+      "top1": 0.03323749825358391,
+      "top5": 0.07991249859333038,
+      "pred_change_rate_vs_orig": 0.5835375189781189,
+      "cos_shift_vs_orig": 0.39104989171028137,
+      "top1_delta_vs_orig": -0.037937503308057785,
+      "top5_delta_vs_orig": -0.07067500054836273
+    }
+  },
+  "context_utility": {
+    "definition": "fixed target, natural/controlled context ablations; positive delta = original context helps",
+    "last_token_only": {
+      "top1": 0.038750000298023224,
+      "top5": 0.09803750365972519,
+      "pred_change_rate_vs_orig": 0.5108875036239624,
+      "cos_shift_vs_orig": 0.2430216521024704,
+      "top1_delta_vs_orig": -0.03242500126361847,
+      "top5_delta_vs_orig": -0.052549995481967926
+    },
+    "drop_prefix": {
+      "top1": 0.06898750364780426,
+      "top5": 0.14828750491142273,
+      "pred_change_rate_vs_orig": 0.24361249804496765,
+      "cos_shift_vs_orig": 0.0397113598883152,
+      "top1_delta_vs_orig": -0.002187497913837433,
+      "top5_delta_vs_orig": -0.0022999942302703857
+    },
+    "drop_suffix": {
+      "top1": 0.04468749836087227,
+      "top5": 0.10061249881982803,
+      "pred_change_rate_vs_orig": 0.3666124939918518,
+      "cos_shift_vs_orig": 0.218763530254364,
+      "top1_delta_vs_orig": -0.026487503200769424,
+      "top5_delta_vs_orig": -0.04997500032186508
+    },
+    "prefix_shuffle": {
+      "top1": 0.07131250202655792,
+      "top5": 0.15091249346733093,
+      "pred_change_rate_vs_orig": 0.0868000015616417,
+      "cos_shift_vs_orig": 0.004296888131648302,
+      "top1_delta_vs_orig": 0.00013750046491622925,
+      "top5_delta_vs_orig": 0.0003249943256378174
+    }
+  },
+  "definitions": {
+    "freq_thresholds": [
+      0.01,
+      0.001,
+      0.0001
+    ],
+    "unk_id": 0,
+    "last_token_only": "repeat last context token across all n_in positions",
+    "drop_prefix": "first 8 context tokens -> unk",
+    "drop_suffix": "last 4 context tokens -> unk",
+    "prefix_shuffle": "shuffle first n_in-1 tokens; last token unchanged",
+    "matched_natural_context": "natural held context from another window; original target kept"
+  },
+  "cost": {
+    "seconds": 71.4,
+    "forward_variants": 6
+  }
+}

@@ -13,7 +13,8 @@
 
 - PBSLM 输出「A 的流动结果或静默」，而不是下一个 token 的概率分布；
 - 采用连续向量 + 码本最近邻解码；
-- 训练目标从 cosine regression → InfoNCE（batch 内 + 采样负例），避免全词表 softmax；
+- 训练目标从 cosine regression → sampled-negative InfoNCE（Phase 1 实际：1 正 + 采样负例），避免全词表 softmax；
+  batch 内负例尚未实现，不能按「已实现」记录。
 - 教训：纯 cosine + 随机码本在 batch 平均下有「常数输出」稳定点，模型会背词频。
 
 ## 2026-11：课程学习放弃，保留 GradNorm

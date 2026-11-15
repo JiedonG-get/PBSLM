@@ -10,9 +10,11 @@
 | `configs/` | baseline/formal/preflight/smoke JSON 配置（相对仓库根路径） |
 | `scripts/data/` | BPE、tokenize、语料下载/解析 |
 | `scripts/analysis/` | 历史分析/评估脚本 |
+| `evaluation/` | Phase 1.1 固定 held-out 评估脚本 |
 | `experiments/phase0/` | 训练闭环整理报告、v2.1 计划 |
 | `experiments/phase05/` | smoke / preflight 日志、metrics、报告 |
 | `experiments/phase1/` | 正式 A1/A2 日志、metrics、结果、对照 CSV |
+| `experiments/phase1_1/` | 固定 10k windows 评估、上下文敏感性/效用、codebook 对照设计 |
 | `experiments/legacy/` | v12–v15 历史结果、日志、metrics、旧训练代码 |
 | `tokenizer/` | 自训 BPE 16k tokenizer 与统计 |
 

@@ -2,6 +2,15 @@
 
 ## 2026-11-15
 
+### Phase 1.1 — 评估口径修复
+- InfoNCE 文档改为 Phase 1 实际使用的 **sampled-negative**（不改历史实现）；
+- 固定 10k windows / 80k targets 大规模 held-out 评估；
+- 区分 Context Sensitivity / Utility / Generalization；
+- 固定 target 的自然上下文替换 + last-token-only/drop prefix/drop suffix/prefix shuffle；
+- 结果：A1 top1 0.0712、A2 0.0845；full context 比 last-token-only 更好，但前缀删除/打乱几乎无影响；
+- 同初始化 codebook 对照仅设计，未训练；
+- 未修改 Phase 1 原始 logs/metrics，未进入 Phase 2。
+
 ### Repository
 - 建立 GitHub 仓库 `PBSLM`（public）。
 - 重组目录：`models/`、`training/`、`docs/`、`experiments/phase0|phase05|phase1|legacy/`、`scripts/`。

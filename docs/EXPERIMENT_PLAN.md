@@ -46,6 +46,15 @@
 - 受控替换保留最后 token 几乎不降准确率 → 仍偏局部 bigram；
 - 单 seed 下 A2 略好，不能宣布架构优劣。
 
+## 4.5 Phase 1.1：评估口径修复（已完成）
+
+- 固定 10k windows held-out（80k targets）；
+- 区分 Context Sensitivity / Utility / Generalization；
+- 固定 target 的自然上下文替换；
+- last-token-only / drop prefix / drop suffix / prefix shuffle；
+- 结果：`experiments/phase1_1/PHASE1_1_RESULTS.md`；
+- 同初始化 codebook 对照仅完成设计，未训练。
+
 ## 5. Phase 2：模块消融（待批准）
 
 | 组 | 增加内容 | 模块消融 | 预算对照 |
