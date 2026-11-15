@@ -113,15 +113,23 @@ class CommTests(unittest.TestCase):
     def test_m1_per_sample_equivalence(self):
         full_trace = {}
         out = self.bank.comm(self.Y, self.g, idx=self.idx, mask=self.mask, trace=full_trace)
+        errs = {}
+        def check(name, a, b):
+            torch.testing.assert_close(a, b)
+            if a.dtype == torch.bool or b.dtype == torch.bool:
+                errs[name] = max(errs.get(name, 0.0), 0.0 if torch.equal(a, b) else 1.0)
+            else:
+                errs[name] = max(errs.get(name, 0.0), (a - b).abs().max().item())
         for b in range(self.Y.shape[1]):
             pt = {}
             ob = self.bank.comm(self.Y[:, b:b+1], self.g, idx=self.idx,
                                 mask=self.mask[:, b:b+1], trace=pt)
-            torch.testing.assert_close(out[:, b], ob[:, 0])
+            check("out", out[:, b], ob[:, 0])
             for k in ("valid_Y", "weighted_Y", "others", "r", "update", "out"):
-                torch.testing.assert_close(full_trace[k][:, b], pt[k][:, 0])
-            torch.testing.assert_close(full_trace["tot"][b], pt["tot"][0])
-            torch.testing.assert_close(full_trace["beta"], pt["beta"])
+                check(k, full_trace[k][:, b], pt[k][:, 0])
+            check("tot", full_trace["tot"][b], pt["tot"][0])
+            check("beta", full_trace["beta"], pt["beta"])
+        print(f"\n[comm M1] max_err={max(errs.values()):.3e}")
 
     def test_batch_one(self):
         out = self.bank.comm(self.Y[:, :1], self.g, idx=self.idx, mask=self.mask[:, :1])
@@ -181,15 +189,23 @@ class FlowStepTests(unittest.TestCase):
     def test_m1_per_sample_equivalence(self):
         ft = {}
         out = self.layer(self.h, self.mask, trace=ft)
+        errs = {}
+        def check(name, a, b):
+            torch.testing.assert_close(a, b)
+            if a.dtype == torch.bool or b.dtype == torch.bool:
+                errs[name] = max(errs.get(name, 0.0), 0.0 if torch.equal(a, b) else 1.0)
+            else:
+                errs[name] = max(errs.get(name, 0.0), (a - b).abs().max().item())
         for b in range(self.B):
             pt = {}
             m1 = self.layer(self.h[:, b:b+1], self.mask[:, b:b+1], trace=pt)
-            torch.testing.assert_close(out[:, b], m1[:, 0])
+            check("out", out[:, b], m1[:, 0])
             for k in ("h_in", "q", "k", "v", "msg", "out"):
-                torch.testing.assert_close(ft[k][:, b], pt[k][:, 0])
+                check(k, ft[k][:, b], pt[k][:, 0])
             for k in ("Q", "K", "V", "logits", "att", "key_mask"):
-                torch.testing.assert_close(ft[k][b], pt[k][0])
-            torch.testing.assert_close(ft["count_b"][b], pt["count_b"][0])
+                check(k, ft[k][b], pt[k][0])
+            check("count_b", ft["count_b"][b], pt["count_b"][0])
+        print(f"\n[FlowStep M1] max_err={max(errs.values()):.3e}")
 
     def test_batch_one(self):
         out = self.layer(self.h[:, :1], self.mask[:, :1])
@@ -293,22 +309,30 @@ class InfoFlowTests(unittest.TestCase):
     def test_m1_per_sample_equivalence(self):
         ft = {}
         h, agree, cons = self.flow(self.delta, self.mask, trace=ft)
+        errs = {}
+        def check(name, a, b):
+            torch.testing.assert_close(a, b)
+            if a.dtype == torch.bool or b.dtype == torch.bool:
+                errs[name] = max(errs.get(name, 0.0), 0.0 if torch.equal(a, b) else 1.0)
+            else:
+                errs[name] = max(errs.get(name, 0.0), (a - b).abs().max().item())
         for b in range(self.B):
             pt = {}
             h1, a1, c1 = self.flow(self.delta[:, b:b+1], self.mask[:, b:b+1], trace=pt)
-            torch.testing.assert_close(h[:, b], h1[:, 0])
-            torch.testing.assert_close(agree[:, b], a1[:, 0])
-            torch.testing.assert_close(cons[b], c1[0])
+            check("h_out", h[:, b], h1[:, 0])
+            check("agree_out", agree[:, b], a1[:, 0])
+            check("cons_out", cons[b], c1[0])
             for k in ("proj_in", "h", "agree"):
-                torch.testing.assert_close(ft[k][:, b], pt[k][:, 0])
+                check(k, ft[k][:, b], pt[k][:, 0])
             for k in ("mean", "scale", "cons"):
-                torch.testing.assert_close(ft[k][b], pt[k][0])
-            torch.testing.assert_close(ft["count_b"][b], pt["count_b"][0])
-            for fs, ps in zip(ft["flow_steps"], pt["flow_steps"]):
+                check(k, ft[k][b], pt[k][0])
+            check("count_b", ft["count_b"][b], pt["count_b"][0])
+            for li, (fs, ps) in enumerate(zip(ft["flow_steps"], pt["flow_steps"])):
                 for k in ("h_in", "q", "k", "v", "msg", "out"):
-                    torch.testing.assert_close(fs[k][:, b], ps[k][:, 0])
+                    check(f"step{li}.{k}", fs[k][:, b], ps[k][:, 0])
                 for k in ("Q", "K", "V", "logits", "att", "key_mask"):
-                    torch.testing.assert_close(fs[k][b], ps[k][0])
+                    check(f"step{li}.{k}", fs[k][b], ps[k][0])
+        print(f"\n[InfoFlow M1] max_err={max(errs.values()):.3e}")
 
     def test_backward_finite(self):
         d = self.delta.clone().requires_grad_(True)
