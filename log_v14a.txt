@@ -1,0 +1,24 @@
+[22:24:52] train=361051 held=63716 vocab=2251
+[22:24:53] depth=1 blocks=8 total=19.14M bank=6.39M online=2.31M
+[22:24:53] depth=2 blocks=8 total=25.46M bank=12.71M online=2.31M
+[22:24:53] depth=3 blocks=8 total=31.78M bank=19.03M online=2.31M
+[22:24:53] model: k=6 h=2 depth=1 E=10x1 total=19.14M online=2.31M E=8.10M mem=0.66M
+[22:24:53] shape check: [{"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}]
+E:\PycharmProject\experiments\online_v12\run_online.py:194: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  shock_log.append(round(float(S.mean()), 4))
+[22:24:54]   pretrain s0 loss=151.480 shock=6.891 active=3 train_probe arb=43.8855
+[22:25:00]   pretrain s100 loss=37.192 shock=5.323 active=3 train_probe arb=16.5716
+[22:25:06]   pretrain s200 loss=34.048 shock=5.271 active=3 train_probe arb=13.1764
+[22:25:12]   pretrain s300 loss=21.219 shock=4.579 active=3 train_probe arb=9.9782
+[22:25:18]   pretrain s400 loss=18.211 shock=4.314 active=3 train_probe arb=8.8746
+[22:25:24]   pretrain s500 loss=19.805 shock=4.607 active=3 train_probe arb=7.8251
+[22:25:30]   pretrain s600 loss=16.531 shock=4.050 active=3 train_probe arb=7.6780
+[22:25:36]   pretrain s700 loss=15.934 shock=4.102 active=3 train_probe arb=7.6440
+[22:25:42] pretrain done in 47.7s
+[22:25:42] after pretrain held(n=96,m=32) = {'a': 6.0641, 'c': 6.1771, 'arb': 6.0653}
+[22:25:42]   n=96 m=32: held arb=6.0653 a=6.0641 c=6.1771
+[22:26:06]   online 500/800 stream_arb=6.3240 held_arb=6.2473 act=0.177 active=3.0 shock=4.374 mem=1.98
+[22:26:20] online done 800 chunks in 38.3s
+[22:26:20] after online held = {'a': 6.1742, 'c': 6.382, 'arb': 6.1616}
+[22:26:20] saved E:\PycharmProject\experiments\online_v12\results_v12_d1_n96m32_tv_ratio_a_side_v14a.json

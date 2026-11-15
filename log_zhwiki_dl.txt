@@ -1,0 +1,7 @@
+  21 MB, kept=11928, chars=6231805
+  42 MB, kept=23094, chars=12477236
+  63 MB, kept=34697, chars=18684683
+  84 MB, kept=46172, chars=24960991
+  105 MB, kept=56506, chars=31306317
+  126 MB, kept=69961, chars=37510476
+{"url": "https://www.modelscope.cn/api/v1/datasets/caoaolong/zhwiki/repo?Revision=master&FilePath=zhwiki_dataset.jsonl", "downloaded_mb": 125.8, "lines": 156729, "kept_articles": 69961, "chars": 37510476, "seconds": 105.4, "out": "E:\\PycharmProject\\data\\zhwiki_subset.txt"}

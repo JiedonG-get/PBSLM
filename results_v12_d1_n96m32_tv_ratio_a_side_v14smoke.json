@@ -1,0 +1,225 @@
+{
+  "version": "v12b",
+  "config": {
+    "k": 6,
+    "h": 2,
+    "depth": 1,
+    "n_in": 96,
+    "n_out": 32,
+    "m_max": 128,
+    "arb": "consistency",
+    "refine": 2,
+    "no_self_causal": false,
+    "online_lr": 0.0003,
+    "online_decay": false,
+    "cons": "tv",
+    "impact": "ratio",
+    "online_scope": "a_side",
+    "replay": 0,
+    "eval_windows": 1,
+    "init_ckpt": "",
+    "skip_pretrain": false,
+    "steps": 5,
+    "chunks": 5,
+    "seed": 0,
+    "batch": 2,
+    "act_x": 0.2,
+    "flow_dim": 64,
+    "flow_steps": 2,
+    "e_n": 10,
+    "e_depth": 1,
+    "e_lr_mult": 5.0,
+    "mem_decay": 0.98,
+    "mem_lr": 0.05,
+    "mem_write_shock": 1.0,
+    "shock_beta": 0.5,
+    "sweep": "64x16",
+    "tf_beta": 0.0,
+    "commit_beta": 0.0,
+    "data_file": "",
+    "data_format": "transcripts",
+    "tag": "_v14smoke"
+  },
+  "checkpoint": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_v12b_d1_n96m32_tv_ratio_v14smoke.pt",
+  "param_table": [
+    {
+      "depth": 1,
+      "blocks": 8,
+      "block_depth": 1,
+      "total_params": 19143255,
+      "bank_params": 6385672,
+      "dec_a_params": 2106880,
+      "dec_c_params": 1053440,
+      "online_params": 2307073
+    },
+    {
+      "depth": 2,
+      "blocks": 8,
+      "block_depth": 2,
+      "total_params": 25462999,
+      "bank_params": 12705416,
+      "dec_a_params": 2106880,
+      "dec_c_params": 1053440,
+      "online_params": 2307073
+    },
+    {
+      "depth": 3,
+      "blocks": 8,
+      "block_depth": 3,
+      "total_params": 31782743,
+      "bank_params": 19025160,
+      "dec_a_params": 2106880,
+      "dec_c_params": 1053440,
+      "online_params": 2307073
+    }
+  ],
+  "model_params": {
+    "total": 19143255,
+    "online": 2307073,
+    "e": 8097294,
+    "mem": 655360,
+    "bank": 6385672,
+    "dec_a": 2106880,
+    "dec_c": 1053440
+  },
+  "shape_check": [
+    {
+      "n_in": 64,
+      "n_out": 16,
+      "logits_shape": [
+        2,
+        16,
+        2251
+      ],
+      "n_tokens_in": 64,
+      "n_tokens_out": 16,
+      "ok": true
+    }
+  ],
+  "pretrain": {
+    "loss_curve": [
+      143.9221,
+      139.1503,
+      140.3882,
+      133.9661,
+      131.6378
+    ],
+    "shock_curve": [
+      6.9078,
+      6.9078,
+      6.9078,
+      6.9078,
+      6.9078
+    ],
+    "active_curve": [
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "seconds": 0.4
+  },
+  "held_before": {
+    "main": {
+      "a": 55.4909,
+      "c": 50.3024,
+      "arb": 35.3137
+    },
+    "sweep": [
+      {
+        "n_in": 64,
+        "n_out": 16,
+        "a": 58.8004,
+        "c": 46.4289,
+        "arb": 35.9243,
+        "windows": 1
+      }
+    ]
+  },
+  "online": {
+    "records": {
+      "ce_a": [
+        35.7151,
+        53.2997,
+        59.4767,
+        44.2843,
+        30.3
+      ],
+      "ce_c": [
+        53.5375,
+        48.8966,
+        54.3781,
+        44.4615,
+        45.7377
+      ],
+      "ce_arb": [
+        31.9797,
+        31.3784,
+        41.6972,
+        28.4314,
+        25.2886
+      ],
+      "rep": [
+        1.1484,
+        1.1267,
+        1.1614,
+        1.1951,
+        1.1995
+      ],
+      "g": [
+        0.4922,
+        0.5133,
+        0.453,
+        0.5305,
+        0.5194
+      ],
+      "shock": [
+        6.682,
+        6.9078,
+        6.9078,
+        6.8299,
+        6.0243
+      ],
+      "act": [
+        0.1994,
+        0.1995,
+        0.1995,
+        0.1994,
+        0.1988
+      ],
+      "active": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "mem_norm": [
+        0.219,
+        0.244,
+        0.26,
+        0.268,
+        0.257
+      ]
+    },
+    "held_curve": [],
+    "seconds": 0.2
+  },
+  "held_after": {
+    "a": 58.971,
+    "c": 51.1308,
+    "arb": 38.9358
+  },
+  "sweep_after": [
+    {
+      "n_in": 64,
+      "n_out": 16,
+      "a": 57.2444,
+      "c": 47.4841,
+      "arb": 35.0417,
+      "windows": 1
+    }
+  ],
+  "gate": null
+}

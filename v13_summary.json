@@ -1,0 +1,284 @@
+[
+  {
+    "file": "results_v12_d6_n96m32_tv_ratio_a_side_v13long.json",
+    "tag": "shock",
+    "k": 30,
+    "depth": 6,
+    "act_x": 0.2,
+    "shock_beta": 0.5,
+    "batch": 4,
+    "steps": 3500,
+    "chunks": 1500,
+    "params": {
+      "total": 146614304,
+      "online": 2393090,
+      "bank": 142260190,
+      "flow": 66624,
+      "dec_a": 2106880,
+      "dec_c": 1053440
+    },
+    "pretrain_seconds": 622.6,
+    "loss_first": 149.9257,
+    "loss_last": 17.961,
+    "shock_mean": 4.489940542857143,
+    "active_mean": 4.501142857142857,
+    "active_max": 6,
+    "held_before": {
+      "a": 5.3151,
+      "c": 5.3956,
+      "arb": 5.3463
+    },
+    "held_after": {
+      "a": 5.4335,
+      "c": 5.4426,
+      "arb": 5.4194
+    },
+    "d_arb": 0.0731,
+    "stream_first500": 5.169847400000001,
+    "stream_last500": 4.7838937999999995,
+    "act_mean": 0.17059373333333333,
+    "act_max": 0.1981,
+    "online_active_mean": 5.212,
+    "online_active_max": 6,
+    "online_shock_mean": 4.0551868,
+    "g_mean": 0.5483931333333333,
+    "g_std": 0.11350387910925727,
+    "held_curve": [
+      [
+        500,
+        5.439
+      ],
+      [
+        1000,
+        5.4251
+      ],
+      [
+        1500,
+        5.4194
+      ]
+    ],
+    "sweep_after": [
+      {
+        "n_in": 96,
+        "n_out": 32,
+        "a": 5.4335,
+        "c": 5.4426,
+        "arb": 5.4194,
+        "windows": 8
+      },
+      {
+        "n_in": 128,
+        "n_out": 32,
+        "a": 5.4803,
+        "c": 5.4118,
+        "arb": 5.4198,
+        "windows": 8
+      },
+      {
+        "n_in": 192,
+        "n_out": 32,
+        "a": 5.2513,
+        "c": 5.2645,
+        "arb": 5.2277,
+        "windows": 8
+      },
+      {
+        "n_in": 256,
+        "n_out": 64,
+        "a": 5.2932,
+        "c": 5.266,
+        "arb": 5.2523,
+        "windows": 8
+      }
+    ],
+    "ckpt": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_v12b_d6_n96m32_tv_ratio_v13long.pt"
+  },
+  {
+    "file": "results_v12_d6_n96m32_tv_ratio_a_side_v13main.json",
+    "tag": "shock",
+    "k": 30,
+    "depth": 6,
+    "act_x": 0.2,
+    "shock_beta": 0.5,
+    "batch": 4,
+    "steps": 1500,
+    "chunks": 1500,
+    "params": {
+      "total": 146614304,
+      "online": 2393090,
+      "bank": 142260190,
+      "flow": 66624,
+      "dec_a": 2106880,
+      "dec_c": 1053440
+    },
+    "pretrain_seconds": 578.8,
+    "loss_first": 151.4128,
+    "loss_last": 16.5985,
+    "shock_mean": 4.719217733333333,
+    "active_mean": 4.495333333333333,
+    "active_max": 6,
+    "held_before": {
+      "a": 5.8586,
+      "c": 5.877,
+      "arb": 5.8312
+    },
+    "held_after": {
+      "a": 5.9636,
+      "c": 5.9678,
+      "arb": 5.8686
+    },
+    "d_arb": 0.0374,
+    "stream_first500": 5.712244800000001,
+    "stream_last500": 5.221845999999999,
+    "act_mean": 0.16790633333333332,
+    "act_max": 0.1966,
+    "online_active_mean": 5.116,
+    "online_active_max": 6,
+    "online_shock_mean": 4.1312748,
+    "g_mean": 0.6871075999999999,
+    "g_std": 0.1285778311979687,
+    "held_curve": [
+      [
+        500,
+        6.001
+      ],
+      [
+        1000,
+        5.9379
+      ],
+      [
+        1500,
+        5.8686
+      ]
+    ],
+    "sweep_after": [
+      {
+        "n_in": 64,
+        "n_out": 16,
+        "a": 5.4052,
+        "c": 5.6318,
+        "arb": 5.3431,
+        "windows": 8
+      },
+      {
+        "n_in": 96,
+        "n_out": 32,
+        "a": 5.9636,
+        "c": 5.9678,
+        "arb": 5.8686,
+        "windows": 8
+      },
+      {
+        "n_in": 128,
+        "n_out": 32,
+        "a": 5.8376,
+        "c": 5.9309,
+        "arb": 5.7681,
+        "windows": 8
+      },
+      {
+        "n_in": 96,
+        "n_out": 64,
+        "a": 5.9551,
+        "c": 6.0643,
+        "arb": 5.9098,
+        "windows": 8
+      }
+    ],
+    "ckpt": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_v12b_d6_n96m32_tv_ratio_v13main.pt"
+  },
+  {
+    "file": "results_v12_d6_n96m32_tv_ratio_a_side_v13noshock.json",
+    "tag": "noshock",
+    "k": 30,
+    "depth": 6,
+    "act_x": 0.2,
+    "shock_beta": 0.0,
+    "batch": 4,
+    "steps": 1500,
+    "chunks": 1500,
+    "params": {
+      "total": 146614304,
+      "online": 2393090,
+      "bank": 142260190,
+      "flow": 66624,
+      "dec_a": 2106880,
+      "dec_c": 1053440
+    },
+    "pretrain_seconds": 578.7,
+    "loss_first": 91.4582,
+    "loss_last": 12.7635,
+    "shock_mean": 4.7579938,
+    "active_mean": 4.495333333333333,
+    "active_max": 6,
+    "held_before": {
+      "a": 5.8036,
+      "c": 5.9436,
+      "arb": 5.7578
+    },
+    "held_after": {
+      "a": 5.9413,
+      "c": 6.0558,
+      "arb": 5.8283
+    },
+    "d_arb": 0.0705,
+    "stream_first500": 5.8032114,
+    "stream_last500": 5.266138999999999,
+    "act_mean": 0.1655756,
+    "act_max": 0.1965,
+    "online_active_mean": 5.044,
+    "online_active_max": 6,
+    "online_shock_mean": 4.1406339333333335,
+    "g_mean": 0.6452316666666668,
+    "g_std": 0.09666338233213696,
+    "held_curve": [
+      [
+        500,
+        5.9573
+      ],
+      [
+        1000,
+        5.8622
+      ],
+      [
+        1500,
+        5.8283
+      ]
+    ],
+    "sweep_after": [
+      {
+        "n_in": 64,
+        "n_out": 16,
+        "a": 5.2897,
+        "c": 5.6701,
+        "arb": 5.2367,
+        "windows": 8
+      },
+      {
+        "n_in": 96,
+        "n_out": 32,
+        "a": 5.9413,
+        "c": 6.0558,
+        "arb": 5.8283,
+        "windows": 8
+      },
+      {
+        "n_in": 128,
+        "n_out": 32,
+        "a": 5.8984,
+        "c": 5.9221,
+        "arb": 5.7427,
+        "windows": 8
+      },
+      {
+        "n_in": 96,
+        "n_out": 64,
+        "a": 6.089,
+        "c": 6.2501,
+        "arb": 6.0055,
+        "windows": 8
+      }
+    ],
+    "ckpt": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_v12b_d6_n96m32_tv_ratio_v13noshock.pt"
+  }
+]

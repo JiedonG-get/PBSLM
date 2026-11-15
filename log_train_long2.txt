@@ -1,0 +1,1 @@
+[long] phase 0: steps=4000 lr=0.0002 init=ckpt_v12b_d6_n96m32_tv_ratio_long_p0.pt

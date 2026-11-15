@@ -1,0 +1,29 @@
+{
+  "ckpt": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_v12b_d6_n96m32_tv_ratio_v13long.pt",
+  "eval": {
+    "arb": 5.2618,
+    "a": 5.29,
+    "c": 5.3036,
+    "Ia": 0.7344,
+    "Ic": 0.7299,
+    "g": 0.5201,
+    "active": 6.0,
+    "Ia_std": 0.0815,
+    "Ic_std": 0.0738,
+    "g_std": 0.079
+  },
+  "latency": {
+    "cap=0.2,act=0.2": {
+      "active_blocks": 6,
+      "fwd_ms": 16.56
+    },
+    "cap=0.2,act=0.1": {
+      "active_blocks": 3,
+      "fwd_ms": 17.85
+    },
+    "cap=1.0,act=1.0": {
+      "active_blocks": 30,
+      "fwd_ms": 23.87
+    }
+  }
+}

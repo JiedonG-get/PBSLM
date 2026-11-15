@@ -1,0 +1,20 @@
+E:\PycharmProject\experiments\online_v12\train_v2.py:23: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  train = torch.from_numpy(np.asarray(arr[:cut]))
+train=1555866 held=274565 ids_dtype=uint32
+params=967.0M fp16=True
+W1114 13:37:15.543000 26348 torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+E:\PycharmProject\experiments\online_v12\train_v2.py:136: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  print(f"s{step} loss={float(loss):.4f} shock={float(S.mean()):.3f} "
+s0 loss=1.6129 shock=1.967 active=[2, 3, 12, 20, 24, 26] mem=0.05 1.2s
+s50 loss=1.5419 shock=1.904 active=[0, 4, 6, 10, 16, 24] mem=0.32 17.6s
+s100 loss=1.4812 shock=1.847 active=[1, 3, 11, 23, 24, 26] mem=0.48 34.1s
+s150 loss=1.3224 shock=1.647 active=[3, 6, 7, 16, 20, 27] mem=0.45 50.4s
+s200 loss=1.5778 shock=1.967 active=[11, 12, 14, 20, 26, 27] mem=0.44 66.7s
+s250 loss=1.4707 shock=1.835 active=[0, 6, 7, 10, 20, 27] mem=0.45 83.1s
+s300 loss=1.3412 shock=1.673 active=[6, 9, 16, 18, 27, 29] mem=0.32 99.2s
+s350 loss=1.4241 shock=1.777 active=[3, 4, 12, 15, 17, 24] mem=0.35 115.4s
+s400 loss=1.6186 shock=2.021 active=[3, 11, 13, 20, 27, 29] mem=0.43 131.6s
+s450 loss=1.4536 shock=1.815 active=[0, 6, 9, 14, 17, 18] mem=0.47 147.8s
+held decode acc=0.0312 total=163.8s
+saved ckpt_v2_smoke5.pt

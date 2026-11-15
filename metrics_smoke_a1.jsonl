@@ -1,0 +1,50 @@
+{"step": 0, "loss": 4.9404, "ppos": 0.0086, "grad_norm": 10.9065, "lr": 0.001, "sec": 0.4}
+{"step": 1, "loss": 4.911, "ppos": 0.0113, "grad_norm": 7.4512, "lr": 0.001, "sec": 0.5}
+{"step": 2, "loss": 4.7312, "ppos": 0.0223, "grad_norm": 6.5547, "lr": 0.001, "sec": 0.5}
+{"step": 3, "loss": 4.929, "ppos": 0.0238, "grad_norm": 6.2387, "lr": 0.001, "sec": 0.5}
+{"step": 4, "loss": 4.6712, "ppos": 0.0255, "grad_norm": 6.1909, "lr": 0.001, "sec": 0.5}
+{"step": 5, "loss": 4.3107, "ppos": 0.0715, "grad_norm": 6.0061, "lr": 0.001, "sec": 0.6}
+{"step": 6, "loss": 4.3837, "ppos": 0.0562, "grad_norm": 5.6676, "lr": 0.001, "sec": 0.6}
+{"step": 7, "loss": 4.7618, "ppos": 0.04, "grad_norm": 6.2069, "lr": 0.001, "sec": 0.6}
+{"step": 8, "loss": 4.8805, "ppos": 0.0273, "grad_norm": 6.1063, "lr": 0.001, "sec": 0.7}
+{"step": 9, "loss": 4.9652, "ppos": 0.0212, "grad_norm": 5.7684, "lr": 0.001, "sec": 0.7, "eval": {"held_top1": 0.0566, "held_top5": 0.1035, "cos": 0.0044, "hard_neg_win": 0.5385, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0664, "ctrl_keep_last_acc": 0.0566, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.42028985507246375, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}
+{"step": 10, "loss": 4.495, "ppos": 0.0533, "grad_norm": 6.8134, "lr": 0.001, "sec": 1.8}
+{"step": 11, "loss": 4.4725, "ppos": 0.0394, "grad_norm": 6.5974, "lr": 0.001, "sec": 1.8}
+{"step": 12, "loss": 4.8779, "ppos": 0.0304, "grad_norm": 5.8469, "lr": 0.001, "sec": 1.9}
+{"step": 13, "loss": 4.3687, "ppos": 0.1086, "grad_norm": 5.7603, "lr": 0.001, "sec": 1.9}
+{"step": 14, "loss": 4.4389, "ppos": 0.0714, "grad_norm": 5.8361, "lr": 0.001, "sec": 1.9}
+{"step": 15, "loss": 4.8293, "ppos": 0.0651, "grad_norm": 5.4464, "lr": 0.001, "sec": 2.0}
+{"step": 16, "loss": 4.3307, "ppos": 0.1271, "grad_norm": 5.3094, "lr": 0.001, "sec": 2.0}
+{"step": 17, "loss": 4.2518, "ppos": 0.0965, "grad_norm": 5.1133, "lr": 0.001, "sec": 2.0}
+{"step": 18, "loss": 4.6421, "ppos": 0.0928, "grad_norm": 5.6876, "lr": 0.001, "sec": 2.0}
+{"step": 19, "loss": 4.4089, "ppos": 0.0494, "grad_norm": 5.5631, "lr": 0.001, "sec": 2.1, "eval": {"held_top1": 0.0312, "held_top5": 0.1309, "cos": -0.0479, "hard_neg_win": 0.5277, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0195, "ctrl_keep_last_acc": 0.0312, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.2318840579710145, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}
+{"step": 20, "loss": 4.2926, "ppos": 0.1031, "grad_norm": 4.9967, "lr": 0.001, "sec": 3.2}
+{"step": 21, "loss": 4.0562, "ppos": 0.1327, "grad_norm": 5.0403, "lr": 0.001, "sec": 3.2}
+{"step": 22, "loss": 4.1577, "ppos": 0.1279, "grad_norm": 5.0948, "lr": 0.001, "sec": 3.3}
+{"step": 23, "loss": 4.1213, "ppos": 0.1194, "grad_norm": 5.7291, "lr": 0.001, "sec": 3.3}
+{"step": 24, "loss": 4.1264, "ppos": 0.1092, "grad_norm": 5.4123, "lr": 0.001, "sec": 3.3}
+{"step": 25, "loss": 4.9157, "ppos": 0.0497, "grad_norm": 5.3324, "lr": 0.001, "sec": 3.4}
+{"step": 26, "loss": 4.7696, "ppos": 0.063, "grad_norm": 5.1683, "lr": 0.001, "sec": 3.4}
+{"step": 27, "loss": 4.5599, "ppos": 0.0603, "grad_norm": 5.1935, "lr": 0.001, "sec": 3.4}
+{"step": 28, "loss": 4.0967, "ppos": 0.1061, "grad_norm": 5.2166, "lr": 0.001, "sec": 3.4}
+{"step": 29, "loss": 4.079, "ppos": 0.1375, "grad_norm": 4.9739, "lr": 0.001, "sec": 3.5, "eval": {"held_top1": 0.0312, "held_top5": 0.1172, "cos": -0.0812, "hard_neg_win": 0.5199, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0195, "ctrl_keep_last_acc": 0.0312, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.2318840579710145, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}
+{"step": 30, "loss": 3.9899, "ppos": 0.1335, "grad_norm": 5.0581, "lr": 0.001, "sec": 0.7}
+{"step": 31, "loss": 4.2711, "ppos": 0.0937, "grad_norm": 5.3673, "lr": 0.001, "sec": 0.7}
+{"step": 32, "loss": 5.0566, "ppos": 0.0674, "grad_norm": 5.1463, "lr": 0.001, "sec": 0.7}
+{"step": 33, "loss": 4.1734, "ppos": 0.1513, "grad_norm": 5.115, "lr": 0.001, "sec": 0.7}
+{"step": 34, "loss": 4.0083, "ppos": 0.1395, "grad_norm": 4.6843, "lr": 0.001, "sec": 0.8}
+{"step": 35, "loss": 4.3323, "ppos": 0.0931, "grad_norm": 5.0876, "lr": 0.001, "sec": 0.8}
+{"step": 36, "loss": 4.8551, "ppos": 0.0377, "grad_norm": 5.1814, "lr": 0.001, "sec": 0.8}
+{"step": 37, "loss": 4.797, "ppos": 0.0439, "grad_norm": 5.172, "lr": 0.001, "sec": 0.9}
+{"step": 38, "loss": 3.6832, "ppos": 0.1616, "grad_norm": 4.6732, "lr": 0.001, "sec": 0.9}
+{"step": 39, "loss": 3.7779, "ppos": 0.1259, "grad_norm": 5.2149, "lr": 0.001, "sec": 0.9, "eval": {"held_top1": 0.0566, "held_top5": 0.1074, "cos": -0.0836, "hard_neg_win": 0.4874, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0664, "ctrl_keep_last_acc": 0.0566, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.42028985507246375, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}
+{"step": 40, "loss": 4.2532, "ppos": 0.0775, "grad_norm": 5.1254, "lr": 0.001, "sec": 2.1}
+{"step": 41, "loss": 4.4187, "ppos": 0.054, "grad_norm": 5.0298, "lr": 0.001, "sec": 2.1}
+{"step": 42, "loss": 4.4495, "ppos": 0.0772, "grad_norm": 4.9722, "lr": 0.001, "sec": 2.2}
+{"step": 43, "loss": 4.721, "ppos": 0.1149, "grad_norm": 5.1224, "lr": 0.001, "sec": 2.2}
+{"step": 44, "loss": 4.1072, "ppos": 0.1383, "grad_norm": 4.7532, "lr": 0.001, "sec": 2.2}
+{"step": 45, "loss": 4.0333, "ppos": 0.1264, "grad_norm": 4.6926, "lr": 0.001, "sec": 2.2}
+{"step": 46, "loss": 4.0381, "ppos": 0.1515, "grad_norm": 4.7018, "lr": 0.001, "sec": 2.3}
+{"step": 47, "loss": 3.087, "ppos": 0.2586, "grad_norm": 4.6549, "lr": 0.001, "sec": 2.3}
+{"step": 48, "loss": 3.7474, "ppos": 0.182, "grad_norm": 4.5484, "lr": 0.001, "sec": 2.3}
+{"step": 49, "loss": 4.7045, "ppos": 0.1095, "grad_norm": 5.0135, "lr": 0.001, "sec": 2.3, "eval": {"held_top1": 0.0566, "held_top5": 0.0996, "cos": -0.1061, "hard_neg_win": 0.47, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0664, "ctrl_keep_last_acc": 0.0566, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.42028985507246375, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}

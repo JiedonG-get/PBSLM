@@ -1,0 +1,19 @@
+[00:21:58] data_file=E:\PycharmProject\data\zhwiki_subset.txt format=text chars=37650398
+[00:22:03] train=32002838 held=5647560 vocab=12973
+[00:22:05] loaded ckpt ckpt_v12b_d6_n96m32_tv_ratio_v15_best.pt (strict)
+[00:22:05] model: k=30 h=0 depth=6 E=10x1 total=157.84M online=2.31M E=8.03M mem=0.66M
+[00:22:05] shape check: [{"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 12973], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}]
+[00:22:05] after pretrain held(n=96,m=32) = {'a': 6.3831, 'c': 6.948, 'arb': 6.3763}
+[00:22:05]   n=96 m=32: held arb=6.3763 a=6.3831 c=6.9480
+E:\PycharmProject\experiments\online_v12\run_online.py:432: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  g_write = 1.0 if float(S.mean()) >= mem_write_shock else 0.0
+[00:22:57]   [consolidate] chunk 500: {'event': 'keep', 'kind': 'group5', 'policy': 'important_first', 'e': [7, 0, 8, 5, 9], 'importance': 0.04559, 'individual': {0: 0.00193, 1: 0.00475, 2: 0.00167, 3: 0.00272, 4: 0.00049, 5: 0.00545, 6: 0.00121, 7: 0.00327, 8: 0.00437, 9: 0.01111}, 'groups': {3: 0.01255, 5: 0.04559}, 'arb_before': 7.0727, 'arb_after': 7.0732, 'noM_before': 7.1183, 'noM_after': 7.118, 'c_guard': True}
+[00:22:57]   online 500/1500 stream_arb=5.7024 held_arb=6.4905 act=0.191 active=5.9 shock=4.761 mem=1.37
+[00:23:48]   [consolidate] chunk 1000: {'event': 'keep', 'kind': 'group5', 'policy': 'important_first', 'e': [7, 0, 8, 1, 5], 'importance': 0.01681, 'individual': {0: 0.00379, 1: -0.0063, 2: 0.00117, 3: 0.00098, 4: -0.00276, 5: 0.00334, 6: -0.00132, 7: -0.00685, 8: 0.00243, 9: 0.00847}, 'groups': {3: 0.0018, 5: 0.01681}, 'arb_before': 7.0658, 'arb_after': 7.0617, 'noM_before': 7.0826, 'noM_after': 7.0784, 'c_guard': True}
+[00:23:48]   online 1000/1500 stream_arb=6.3744 held_arb=6.6003 act=0.195 active=6.0 shock=5.299 mem=1.11
+[00:24:37]   [consolidate] chunk 1500: {'event': 'keep', 'kind': 'group5', 'policy': 'important_first', 'e': [9, 5, 7, 1, 0], 'importance': 0.03434, 'individual': {0: 0.00518, 1: -0.00041, 2: 0.00323, 3: 0.00153, 4: -0.00151, 5: 0.00357, 6: 0.00035, 7: -0.00292, 8: 0.00362, 9: 0.00777}, 'groups': {3: 0.01153, 5: 0.03434}, 'arb_before': 6.9415, 'arb_after': 6.9389, 'noM_before': 6.9759, 'noM_after': 6.9724, 'c_guard': True}
+[00:24:37]   online 1500/1500 stream_arb=6.5764 held_arb=6.3830 act=0.196 active=6.0 shock=5.441 mem=1.06
+[00:24:37] online done 1500 chunks in 150.7s
+[00:24:37] after online held = {'a': 6.3898, 'c': 6.948, 'arb': 6.383}
+[00:24:45] saved E:\PycharmProject\experiments\online_v12\results_v12_d6_n96m32_tv_ratio_a_side_v15_stream_cons.json

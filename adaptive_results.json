@@ -1,0 +1,138 @@
+[
+  {
+    "method": "single",
+    "tau": 0.0,
+    "tokens_per_call": 1.0,
+    "acc": 0.0625,
+    "ce": 3.4169,
+    "calls": 64
+  },
+  {
+    "method": "block",
+    "tau": 0.0,
+    "tokens_per_call": 32.0,
+    "acc": 0.0384,
+    "ce": 3.4122,
+    "calls": 48
+  },
+  {
+    "method": "block",
+    "tau": 0.02,
+    "tokens_per_call": 32.0,
+    "acc": 0.0384,
+    "ce": 3.4122,
+    "calls": 48
+  },
+  {
+    "method": "block",
+    "tau": 0.03,
+    "tokens_per_call": 18.14,
+    "acc": 0.0475,
+    "ce": 3.451,
+    "calls": 56
+  },
+  {
+    "method": "block",
+    "tau": 0.04,
+    "tokens_per_call": 2.54,
+    "acc": 0.0417,
+    "ce": 3.4269,
+    "calls": 63
+  },
+  {
+    "method": "block",
+    "tau": 0.05,
+    "tokens_per_call": 1.0,
+    "acc": 0.0625,
+    "ce": 3.4169,
+    "calls": 64
+  },
+  {
+    "method": "block",
+    "tau": 0.07,
+    "tokens_per_call": 1.0,
+    "acc": 0.0625,
+    "ce": 3.4169,
+    "calls": 64
+  },
+  {
+    "method": "block",
+    "tau": 0.1,
+    "tokens_per_call": 1.0,
+    "acc": 0.0625,
+    "ce": 3.4169,
+    "calls": 64
+  },
+  {
+    "method": "block",
+    "tau": 0.2,
+    "tokens_per_call": 1.0,
+    "acc": 0.0625,
+    "ce": 3.4169,
+    "calls": 64
+  },
+  {
+    "method": "verify",
+    "tau": 0.0,
+    "tokens_per_call": 27.74,
+    "acc": 0.0395,
+    "ce": 3.4203,
+    "calls": 53
+  },
+  {
+    "method": "verify",
+    "tau": 0.02,
+    "tokens_per_call": 27.74,
+    "acc": 0.0395,
+    "ce": 3.4203,
+    "calls": 53
+  },
+  {
+    "method": "verify",
+    "tau": 0.03,
+    "tokens_per_call": 17.11,
+    "acc": 0.0467,
+    "ce": 3.4519,
+    "calls": 57
+  },
+  {
+    "method": "verify",
+    "tau": 0.04,
+    "tokens_per_call": 2.54,
+    "acc": 0.0417,
+    "ce": 3.4269,
+    "calls": 63
+  },
+  {
+    "method": "verify",
+    "tau": 0.05,
+    "tokens_per_call": 1.0,
+    "acc": 0.0625,
+    "ce": 3.4169,
+    "calls": 64
+  },
+  {
+    "method": "verify",
+    "tau": 0.07,
+    "tokens_per_call": 1.0,
+    "acc": 0.0625,
+    "ce": 3.4169,
+    "calls": 64
+  },
+  {
+    "method": "verify",
+    "tau": 0.1,
+    "tokens_per_call": 1.0,
+    "acc": 0.0625,
+    "ce": 3.4169,
+    "calls": 64
+  },
+  {
+    "method": "verify",
+    "tau": 0.2,
+    "tokens_per_call": 1.0,
+    "acc": 0.0625,
+    "ce": 3.4169,
+    "calls": 64
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "ckpt": "ckpt_v12b_d6_n96m32_tv_ratio_v15_lm_full.pt",
+  "ce_with_mem": 6.50457,
+  "ce_no_mem": 6.4824,
+  "mem_gain": -0.02217,
+  "read_target_cos": 0.026,
+  "per_e": [
+    {
+      "e": 0,
+      "m_norm": 1.5272,
+      "ce_no_this": 6.50756,
+      "contrib": 0.00299
+    },
+    {
+      "e": 1,
+      "m_norm": 1.7129,
+      "ce_no_this": 6.50634,
+      "contrib": 0.00176
+    },
+    {
+      "e": 8,
+      "m_norm": 0.8754,
+      "ce_no_this": 6.50462,
+      "contrib": 5e-05
+    },
+    {
+      "e": 2,
+      "m_norm": 0.61,
+      "ce_no_this": 6.50458,
+      "contrib": 1e-05
+    },
+    {
+      "e": 6,
+      "m_norm": 0.6932,
+      "ce_no_this": 6.50402,
+      "contrib": -0.00055
+    },
+    {
+      "e": 4,
+      "m_norm": 1.1465,
+      "ce_no_this": 6.50133,
+      "contrib": -0.00324
+    },
+    {
+      "e": 3,
+      "m_norm": 1.6412,
+      "ce_no_this": 6.50032,
+      "contrib": -0.00425
+    },
+    {
+      "e": 9,
+      "m_norm": 3.1336,
+      "ce_no_this": 6.49884,
+      "contrib": -0.00573
+    },
+    {
+      "e": 7,
+      "m_norm": 3.2197,
+      "ce_no_this": 6.4988,
+      "contrib": -0.00577
+    },
+    {
+      "e": 5,
+      "m_norm": 3.1839,
+      "ce_no_this": 6.49494,
+      "contrib": -0.00963
+    }
+  ]
+}

@@ -1,0 +1,416 @@
+{
+  "consistency": [
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_cos_ratio_w1cos.pt",
+      "cons": "cos",
+      "impact": "ratio",
+      "arb": 6.302,
+      "a": 6.4141,
+      "c": 6.6715,
+      "g_mean": 0.8256,
+      "windows": 16
+    },
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_kl_ratio_w1kl.pt",
+      "cons": "kl",
+      "impact": "ratio",
+      "arb": 6.255,
+      "a": 6.3292,
+      "c": 6.4766,
+      "g_mean": 0.8,
+      "windows": 16
+    },
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_topk_ratio_w1topk.pt",
+      "cons": "topk",
+      "impact": "ratio",
+      "arb": 6.297,
+      "a": 6.3406,
+      "c": 6.6404,
+      "g_mean": 0.8225,
+      "windows": 16
+    },
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_tv_ratio_w1tv.pt",
+      "cons": "tv",
+      "impact": "ratio",
+      "arb": 6.3884,
+      "a": 6.4585,
+      "c": 7.2902,
+      "g_mean": 0.8381,
+      "windows": 16
+    }
+  ],
+  "impact": [
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_tv_ac_diff_w2acdiff.pt",
+      "cons": "tv",
+      "impact": "ac_diff",
+      "arb": 6.3651,
+      "a": 6.4324,
+      "c": 6.6443,
+      "g_mean": 0.7566,
+      "windows": 16
+    },
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_tv_entropy_w2entropy.pt",
+      "cons": "tv",
+      "impact": "entropy",
+      "arb": 6.2894,
+      "a": 6.3077,
+      "c": 6.4951,
+      "g_mean": 0.5248,
+      "windows": 16
+    },
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_tv_ratio_w2ratio.pt",
+      "cons": "tv",
+      "impact": "ratio",
+      "arb": 6.0103,
+      "a": 6.1831,
+      "c": 6.3421,
+      "g_mean": 0.8578,
+      "windows": 16
+    }
+  ],
+  "stability": [
+    {
+      "file": "results_v12_d1_n96m32_tv_ratio_a_side_w3aside.json",
+      "scope": "a_side",
+      "replay": 0,
+      "lr": 0.0001,
+      "held_before": {
+        "a": 5.4432,
+        "c": 5.4592,
+        "arb": 5.3978
+      },
+      "held_after": {
+        "a": 5.4331,
+        "c": 5.4511,
+        "arb": 5.3931
+      },
+      "stream_first500": 5.1296664,
+      "stream_last500": 4.9004028,
+      "g_mean": 0.58313875,
+      "g_std": 0.07129812145798443,
+      "held_curve": [
+        [
+          500,
+          5.438
+        ],
+        [
+          1000,
+          5.3952
+        ],
+        [
+          1500,
+          5.4051
+        ],
+        [
+          2000,
+          5.3931
+        ]
+      ]
+    },
+    {
+      "file": "results_v12_d1_n96m32_tv_ratio_a_side_w3replay.json",
+      "scope": "a_side",
+      "replay": 64,
+      "lr": 0.0001,
+      "held_before": {
+        "a": 5.4432,
+        "c": 5.4592,
+        "arb": 5.3978
+      },
+      "held_after": {
+        "a": 5.4348,
+        "c": 5.4524,
+        "arb": 5.3943
+      },
+      "stream_first500": 5.130928,
+      "stream_last500": 4.9002006,
+      "g_mean": 0.587856,
+      "g_std": 0.07000899237955079,
+      "held_curve": [
+        [
+          500,
+          5.4394
+        ],
+        [
+          1000,
+          5.3963
+        ],
+        [
+          1500,
+          5.4082
+        ],
+        [
+          2000,
+          5.3943
+        ]
+      ]
+    },
+    {
+      "file": "results_v12_d1_n96m32_tv_ratio_gate_only_w3gate.json",
+      "scope": "gate_only",
+      "replay": 0,
+      "lr": 0.0001,
+      "held_before": {
+        "a": 5.4432,
+        "c": 5.4592,
+        "arb": 5.3978
+      },
+      "held_after": {
+        "a": 5.4494,
+        "c": 5.4511,
+        "arb": 5.3945
+      },
+      "stream_first500": 5.151984000000001,
+      "stream_last500": 4.940539199999999,
+      "g_mean": 0.54889215,
+      "g_std": 0.053752129012509815,
+      "held_curve": [
+        [
+          500,
+          5.4047
+        ],
+        [
+          1000,
+          5.3967
+        ],
+        [
+          1500,
+          5.3959
+        ],
+        [
+          2000,
+          5.3945
+        ]
+      ]
+    }
+  ],
+  "depth": [
+    {
+      "file": "results_v12_d1_n96m32_tv_ratio_a_side_w4d1.json",
+      "depth": 1,
+      "steps": 4000,
+      "params": 10654730,
+      "held_before": {
+        "a": 5.0336,
+        "c": 5.0418,
+        "arb": 4.9863
+      },
+      "held_after": {
+        "a": 5.1434,
+        "c": 5.0441,
+        "arb": 5.0472
+      },
+      "sweep": [
+        {
+          "n_in": 32,
+          "n_out": 8,
+          "a": 5.4756,
+          "c": 5.367,
+          "arb": 5.392,
+          "windows": 16
+        },
+        {
+          "n_in": 64,
+          "n_out": 16,
+          "a": 4.832,
+          "c": 4.6242,
+          "arb": 4.6698,
+          "windows": 16
+        },
+        {
+          "n_in": 96,
+          "n_out": 32,
+          "a": 5.1434,
+          "c": 5.0441,
+          "arb": 5.0472,
+          "windows": 16
+        },
+        {
+          "n_in": 128,
+          "n_out": 32,
+          "a": 5.0581,
+          "c": 4.9713,
+          "arb": 4.9891,
+          "windows": 16
+        },
+        {
+          "n_in": 192,
+          "n_out": 32,
+          "a": 5.1043,
+          "c": 5.0292,
+          "arb": 5.0488,
+          "windows": 16
+        },
+        {
+          "n_in": 256,
+          "n_out": 64,
+          "a": 5.5066,
+          "c": 5.3008,
+          "arb": 5.4105,
+          "windows": 16
+        },
+        {
+          "n_in": 96,
+          "n_out": 8,
+          "a": 4.7034,
+          "c": 4.4696,
+          "arb": 4.4986,
+          "windows": 16
+        },
+        {
+          "n_in": 96,
+          "n_out": 64,
+          "a": 5.142,
+          "c": 5.066,
+          "arb": 5.0906,
+          "windows": 16
+        },
+        {
+          "n_in": 96,
+          "n_out": 128,
+          "a": 5.2133,
+          "c": 5.1802,
+          "arb": 5.1838,
+          "windows": 16
+        }
+      ]
+    },
+    {
+      "file": "results_v12_d3_n96m32_tv_ratio_a_side_w4d3.json",
+      "depth": 3,
+      "steps": 3000,
+      "params": 23294218,
+      "held_before": {
+        "a": 5.1178,
+        "c": 5.1416,
+        "arb": 5.1154
+      },
+      "held_after": {
+        "a": 5.2228,
+        "c": 5.1223,
+        "arb": 5.1762
+      },
+      "sweep": [
+        {
+          "n_in": 32,
+          "n_out": 8,
+          "a": 5.1585,
+          "c": 5.1194,
+          "arb": 5.1299,
+          "windows": 16
+        },
+        {
+          "n_in": 64,
+          "n_out": 16,
+          "a": 4.8421,
+          "c": 4.7498,
+          "arb": 4.7947,
+          "windows": 16
+        },
+        {
+          "n_in": 96,
+          "n_out": 32,
+          "a": 5.2228,
+          "c": 5.1223,
+          "arb": 5.1762,
+          "windows": 16
+        },
+        {
+          "n_in": 128,
+          "n_out": 32,
+          "a": 5.095,
+          "c": 4.9988,
+          "arb": 5.0567,
+          "windows": 16
+        },
+        {
+          "n_in": 192,
+          "n_out": 32,
+          "a": 5.0295,
+          "c": 4.935,
+          "arb": 4.9933,
+          "windows": 16
+        },
+        {
+          "n_in": 256,
+          "n_out": 64,
+          "a": 5.3768,
+          "c": 5.2943,
+          "arb": 5.3456,
+          "windows": 16
+        },
+        {
+          "n_in": 96,
+          "n_out": 8,
+          "a": 4.6716,
+          "c": 4.5402,
+          "arb": 4.6195,
+          "windows": 16
+        },
+        {
+          "n_in": 96,
+          "n_out": 64,
+          "a": 5.2264,
+          "c": 5.1224,
+          "arb": 5.1864,
+          "windows": 16
+        },
+        {
+          "n_in": 96,
+          "n_out": 128,
+          "a": 5.3025,
+          "c": 5.2547,
+          "arb": 5.2737,
+          "windows": 16
+        }
+      ]
+    }
+  ],
+  "refine": [
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_tv_ratio_w5nosc.pt",
+      "refine": 2,
+      "self_causal": false,
+      "arb": 6.2325,
+      "a": 6.3029,
+      "c": 6.4884,
+      "g_mean": 0.8129,
+      "windows": 16
+    },
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_tv_ratio_w5r1.pt",
+      "refine": 1,
+      "self_causal": true,
+      "arb": 6.1523,
+      "a": 6.2541,
+      "c": 6.9121,
+      "g_mean": 0.8295,
+      "windows": 16
+    },
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_tv_ratio_w5r2.pt",
+      "refine": 2,
+      "self_causal": true,
+      "arb": 6.0479,
+      "a": 6.1829,
+      "c": 6.232,
+      "g_mean": 0.8063,
+      "windows": 16
+    },
+    {
+      "ckpt": "ckpt_v12b_d1_n96m32_tv_ratio_w5r3.pt",
+      "refine": 3,
+      "self_causal": true,
+      "arb": 6.1329,
+      "a": 6.1721,
+      "c": 6.4408,
+      "g_mean": 0.7724,
+      "windows": 16
+    }
+  ]
+}

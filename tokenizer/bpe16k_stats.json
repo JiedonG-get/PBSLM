@@ -1,0 +1,8 @@
+{
+  "text": "E:/PycharmProject/data/zhwiki_full.txt",
+  "sample_lines": 142936,
+  "sample_mb": 21.0,
+  "vocab_size": 16384,
+  "out": "E:\\PycharmProject\\data\\bpe16k\\tokenizer.json",
+  "seconds": 12.0
+}

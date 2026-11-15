@@ -1,0 +1,29 @@
+# Large artifacts / checkpoints (not uploaded)
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.npy
+*.npz
+ckpt_*
+checkpoints/
+data/
+
+# Local backup/duplicates
+backup_v2_orig/
+
+# Temp files
+configs/tmp_bad_resume.json
+tmp/
+*.tmp
+
+# Python caches / env
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db

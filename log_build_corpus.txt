@@ -1,0 +1,22 @@
+  vocab pass 2M lines, 17071 chars, 4s
+  vocab pass 4M lines, 20290 chars, 9s
+  vocab pass 6M lines, 22343 chars, 14s
+  vocab pass 8M lines, 23447 chars, 18s
+  vocab pass 10M lines, 24674 chars, 22s
+  vocab pass 12M lines, 25761 chars, 26s
+vocab=25972 saved E:\PycharmProject\data\zhwiki_full_vocab.json (28s)
+  encoded 50M chars, 33s
+  encoded 100M chars, 39s
+  encoded 150M chars, 47s
+  encoded 200M chars, 53s
+  encoded 250M chars, 61s
+  encoded 300M chars, 66s
+  encoded 350M chars, 74s
+  encoded 400M chars, 80s
+  encoded 450M chars, 86s
+  encoded 500M chars, 92s
+  encoded 550M chars, 99s
+  encoded 600M chars, 106s
+  encoded 650M chars, 112s
+  encoded 700M chars, 119s
+{"text": "E:\\PycharmProject\\data\\zhwiki_full.txt", "vocab": 25972, "chars": 740958239, "bin": "E:\\PycharmProject\\data\\zhwiki_full_u16.bin", "bytes": 1481916478, "seconds": 123.1}

@@ -1,0 +1,154 @@
+{
+  "version": "v12b",
+  "config": {
+    "k": 6,
+    "h": 2,
+    "depth": 1,
+    "n_in": 96,
+    "n_out": 32,
+    "m_max": 128,
+    "arb": "consistency",
+    "refine": 2,
+    "no_self_causal": false,
+    "online_lr": 0.0003,
+    "online_decay": false,
+    "cons": "tv",
+    "impact": "ratio",
+    "online_scope": "a_side",
+    "replay": 0,
+    "eval_windows": 1,
+    "init_ckpt": "",
+    "skip_pretrain": false,
+    "steps": 5,
+    "chunks": 0,
+    "seed": 0,
+    "batch": 2,
+    "act_x": 0.2,
+    "flow_dim": 64,
+    "flow_steps": 2,
+    "shock_beta": 0.5,
+    "sweep": "64x16",
+    "tf_beta": 0.0,
+    "data_file": "E:/PycharmProject/data/zhwiki_subset.txt",
+    "data_format": "text",
+    "tag": "_zhwiki_smoke"
+  },
+  "checkpoint": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_v12b_d1_n96m32_tv_ratio_zhwiki_smoke.pt",
+  "param_table": [
+    {
+      "depth": 1,
+      "blocks": 8,
+      "block_depth": 1,
+      "total_params": 13466186,
+      "bank_params": 6385672,
+      "dec_a_params": 2106880,
+      "dec_c_params": 1053440,
+      "online_params": 2374658
+    },
+    {
+      "depth": 2,
+      "blocks": 8,
+      "block_depth": 2,
+      "total_params": 19785930,
+      "bank_params": 12705416,
+      "dec_a_params": 2106880,
+      "dec_c_params": 1053440,
+      "online_params": 2374658
+    },
+    {
+      "depth": 3,
+      "blocks": 8,
+      "block_depth": 3,
+      "total_params": 26105674,
+      "bank_params": 19025160,
+      "dec_a_params": 2106880,
+      "dec_c_params": 1053440,
+      "online_params": 2374658
+    }
+  ],
+  "model_params": {
+    "total": 13466186,
+    "online": 2374658,
+    "bank": 6385672,
+    "flow": 66624,
+    "dec_a": 2106880,
+    "dec_c": 1053440
+  },
+  "shape_check": [
+    {
+      "n_in": 64,
+      "n_out": 16,
+      "logits_shape": [
+        2,
+        16,
+        12973
+      ],
+      "n_tokens_in": 64,
+      "n_tokens_out": 16,
+      "ok": true
+    }
+  ],
+  "pretrain": {
+    "loss_curve": [
+      164.2787,
+      175.7936,
+      151.7528,
+      158.6936,
+      166.1228
+    ],
+    "shock_curve": [
+      6.9078,
+      6.9078,
+      6.9078,
+      6.9078,
+      6.9078
+    ],
+    "active_curve": [
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "seconds": 0.4
+  },
+  "held_before": {
+    "main": {
+      "a": 62.9975,
+      "c": 60.6114,
+      "arb": 45.5614
+    },
+    "sweep": [
+      {
+        "n_in": 64,
+        "n_out": 16,
+        "a": 57.6623,
+        "c": 65.337,
+        "arb": 44.6109,
+        "windows": 1
+      }
+    ]
+  },
+  "online": {
+    "records": {},
+    "held_curve": [],
+    "seconds": 0.0,
+    "skipped": true
+  },
+  "held_after": {
+    "a": 62.9975,
+    "c": 60.6114,
+    "arb": 45.5614
+  },
+  "sweep_after": [
+    {
+      "n_in": 64,
+      "n_out": 16,
+      "a": 57.6623,
+      "c": 65.337,
+      "arb": 44.6109,
+      "windows": 1
+    }
+  ],
+  "gate": null
+}

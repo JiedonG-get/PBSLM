@@ -1,0 +1,4 @@
+  21 MB, kept=11928, chars=6231805
+  42 MB, kept=23094, chars=12477236
+  63 MB, kept=34697, chars=18684683
+  84 MB, kept=46172, chars=24960991

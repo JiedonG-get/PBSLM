@@ -1,0 +1,120 @@
+{
+  "version": "v12b",
+  "config": {
+    "k": 30,
+    "h": 0,
+    "depth": 6,
+    "n_in": 96,
+    "n_out": 32,
+    "m_max": 128,
+    "arb": "consistency",
+    "refine": 2,
+    "no_self_causal": false,
+    "online_lr": 0.0003,
+    "online_decay": false,
+    "cons": "tv",
+    "impact": "ratio",
+    "online_scope": "a_side",
+    "replay": 0,
+    "eval_windows": 8,
+    "init_ckpt": "ckpt_v12b_d6_n96m32_tv_ratio_v14zhwiki_lr1_cont.pt",
+    "skip_pretrain": true,
+    "steps": 1500,
+    "chunks": 0,
+    "seed": 0,
+    "batch": 8,
+    "act_x": 0.2,
+    "flow_dim": 64,
+    "flow_steps": 2,
+    "e_n": 10,
+    "e_depth": 1,
+    "e_lr_mult": 1.0,
+    "mem_decay": 0.98,
+    "mem_lr": 0.05,
+    "mem_write_shock": 1.0,
+    "consolidate_every": 0,
+    "consolidate_steps": 2,
+    "consolidate_lr": 0.0001,
+    "consolidate_probe": 4,
+    "consolidate_min_norm": 0.1,
+    "consolidate_held_delta": 0.02,
+    "consolidate_act_frac": 0.7,
+    "consolidate_force": false,
+    "shock_beta": 0.5,
+    "sweep": "96x32",
+    "tf_beta": 0.0,
+    "commit_beta": 0.0,
+    "data_file": "E:/PycharmProject/data/zhwiki_subset.txt",
+    "data_format": "text",
+    "tag": "_v15_best"
+  },
+  "checkpoint": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_v12b_d6_n96m32_tv_ratio_v15_best.pt",
+  "param_table": [],
+  "model_params": {
+    "total": 157840429,
+    "online": 2311681,
+    "e": 8031502,
+    "mem": 655360,
+    "bank": 142260190,
+    "dec_a": 2106880,
+    "dec_c": 1053440
+  },
+  "shape_check": [
+    {
+      "n_in": 96,
+      "n_out": 32,
+      "logits_shape": [
+        2,
+        32,
+        12973
+      ],
+      "n_tokens_in": 96,
+      "n_tokens_out": 32,
+      "ok": true
+    }
+  ],
+  "pretrain": {
+    "loss_curve": [],
+    "seconds": 0.0,
+    "skipped": true
+  },
+  "held_before": {
+    "main": {
+      "a": 6.3831,
+      "c": 6.948,
+      "arb": 6.3763
+    },
+    "sweep": [
+      {
+        "n_in": 96,
+        "n_out": 32,
+        "a": 6.3831,
+        "c": 6.948,
+        "arb": 6.3763,
+        "windows": 8
+      }
+    ]
+  },
+  "online": {
+    "records": {},
+    "held_curve": [],
+    "seconds": 0.0,
+    "skipped": true
+  },
+  "held_after": {
+    "a": 6.3831,
+    "c": 6.948,
+    "arb": 6.3763
+  },
+  "sweep_after": [
+    {
+      "n_in": 96,
+      "n_out": 32,
+      "a": 6.3831,
+      "c": 6.948,
+      "arb": 6.3763,
+      "windows": 8
+    }
+  ],
+  "gate": null
+}

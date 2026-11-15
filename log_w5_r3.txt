@@ -1,0 +1,23 @@
+[17:56:30] train=361051 held=63716 vocab=2251
+[17:56:30] depth=1 blocks=8 total=10.65M bank=6.39M online=2.37M
+[17:56:30] depth=2 blocks=8 total=16.97M bank=12.71M online=2.37M
+[17:56:30] depth=3 blocks=8 total=23.29M bank=19.03M online=2.37M
+[17:56:30] model: k=6 h=2 depth=1 total=10.65M online=2.37M
+[17:56:31] shape check: [{"n_in": 32, "n_out": 8, "logits_shape": [2, 8, 2251], "n_tokens_in": 32, "n_tokens_out": 8, "ok": true}, {"n_in": 64, "n_out": 16, "logits_shape": [2, 16, 2251], "n_tokens_in": 64, "n_tokens_out": 16, "ok": true}, {"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}, {"n_in": 128, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 128, "n_tokens_out": 32, "ok": true}, {"n_in": 192, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 192, "n_tokens_out": 32, "ok": true}, {"n_in": 256, "n_out": 64, "logits_shape": [2, 64, 2251], "n_tokens_in": 256, "n_tokens_out": 64, "ok": true}, {"n_in": 96, "n_out": 8, "logits_shape": [2, 8, 2251], "n_tokens_in": 96, "n_tokens_out": 8, "ok": true}, {"n_in": 96, "n_out": 64, "logits_shape": [2, 64, 2251], "n_tokens_in": 96, "n_tokens_out": 64, "ok": true}, {"n_in": 96, "n_out": 128, "logits_shape": [2, 128, 2251], "n_tokens_in": 96, "n_tokens_out": 128, "ok": true}]
+[17:56:32]   pretrain s0 loss=129.499 train_probe arb=52.2598 a=60.2474 c=54.4770
+[17:57:12]   pretrain s250 loss=15.502 train_probe arb=9.9275 a=10.6277 c=10.9258
+[17:57:52]   pretrain s500 loss=13.830 train_probe arb=6.7841 a=6.9498 c=7.0984
+[17:58:32]   pretrain s750 loss=14.144 train_probe arb=6.1224 a=6.1823 c=6.3688
+[17:59:07] pretrain done in 155.4s
+[17:59:08] after pretrain held(n=96,m=32) = {'a': 6.1721, 'c': 6.4408, 'arb': 6.1329}
+[17:59:08]   n=32 m=8: held arb=5.5555 a=5.5097 c=6.1353
+[17:59:08]   n=64 m=16: held arb=5.3269 a=5.3546 c=5.6294
+[17:59:09]   n=96 m=32: held arb=6.1329 a=6.1721 c=6.4408
+[17:59:09]   n=128 m=32: held arb=5.9438 a=5.9939 c=6.1647
+[17:59:10]   n=192 m=32: held arb=5.8660 a=5.8986 c=6.1692
+[17:59:10]   n=256 m=64: held arb=5.8973 a=5.9485 c=6.1196
+[17:59:10]   n=96 m=8: held arb=5.0212 a=5.0423 c=5.3355
+[17:59:11]   n=96 m=64: held arb=5.8648 a=5.9039 c=6.1360
+[17:59:11]   n=96 m=128: held arb=5.8029 a=5.8313 c=6.0795
+[17:59:14] after online held = {'a': 6.1721, 'c': 6.4408, 'arb': 6.1329}
+[17:59:14] saved E:\PycharmProject\experiments\online_v12\results_v12_d1_n96m32_tv_ratio_a_side_w5r3.json

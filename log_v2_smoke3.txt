@@ -1,0 +1,15 @@
+E:\PycharmProject\experiments\online_v12\train_v2.py:23: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  train = torch.from_numpy(np.asarray(arr[:cut]))
+train=1555866 held=274565 ids_dtype=uint32
+params=967.0M fp16=True
+E:\PycharmProject\experiments\online_v12\train_v2.py:132: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  print(f"s{step} loss={float(loss):.4f} shock={float(S.mean()):.3f} "
+s0 loss=1.9536 shock=0.042 active=[7, 11, 15, 20, 22, 25] mem=0.05 1.1s
+s50 loss=1.9317 shock=0.048 active=[1, 3, 5, 10, 20, 26] mem=0.28 15.7s
+s100 loss=1.8840 shock=0.050 active=[7, 11, 15, 16, 20, 21] mem=0.33 30.1s
+s150 loss=1.8437 shock=0.056 active=[4, 15, 19, 20, 22, 25] mem=0.34 44.4s
+s200 loss=1.9538 shock=0.071 active=[1, 7, 10, 14, 15, 19] mem=0.32 58.7s
+s250 loss=1.8345 shock=0.061 active=[0, 12, 19, 20, 22, 29] mem=0.34 73.1s
+held decode acc=0.0312 total=87.2s
+saved ckpt_v2_smoke3.pt

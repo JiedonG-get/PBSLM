@@ -1,0 +1,12 @@
+  474/2462 MB  18s  26.39 MB/s
+  616/2462 MB  23s  26.27 MB/s
+  979/2462 MB  39s  25.02 MB/s
+  1137/2462 MB  46s  24.57 MB/s
+  1484/2462 MB  63s  23.65 MB/s
+  1632/2462 MB  70s  23.34 MB/s
+  1880/2462 MB  81s  23.14 MB/s
+  2218/2462 MB  96s  23.15 MB/s
+  2357/2462 MB  103s  22.96 MB/s
+  2443/2462 MB  113s  21.55 MB/s
+downloaded 2462.5 MB in 119.8s
+saved E:/PycharmProject/data/zhwiki_dataset.jsonl 2462455277

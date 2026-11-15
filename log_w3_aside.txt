@@ -1,0 +1,24 @@
+[17:37:52] train=361051 held=63716 vocab=2251
+[17:37:53] depth=1 blocks=8 total=10.65M bank=6.39M online=2.37M
+[17:37:53] depth=2 blocks=8 total=16.97M bank=12.71M online=2.37M
+[17:37:53] depth=3 blocks=8 total=23.29M bank=19.03M online=2.37M
+[17:37:53] loaded ckpt ckpt_v12b_d1_n96m32_lr3e4.pt
+[17:37:53] model: k=6 h=2 depth=1 total=10.65M online=2.37M
+[17:37:54] shape check: [{"n_in": 32, "n_out": 8, "logits_shape": [2, 8, 2251], "n_tokens_in": 32, "n_tokens_out": 8, "ok": true}, {"n_in": 64, "n_out": 16, "logits_shape": [2, 16, 2251], "n_tokens_in": 64, "n_tokens_out": 16, "ok": true}, {"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}, {"n_in": 128, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 128, "n_tokens_out": 32, "ok": true}, {"n_in": 192, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 192, "n_tokens_out": 32, "ok": true}, {"n_in": 256, "n_out": 64, "logits_shape": [2, 64, 2251], "n_tokens_in": 256, "n_tokens_out": 64, "ok": true}, {"n_in": 96, "n_out": 8, "logits_shape": [2, 8, 2251], "n_tokens_in": 96, "n_tokens_out": 8, "ok": true}, {"n_in": 96, "n_out": 64, "logits_shape": [2, 64, 2251], "n_tokens_in": 96, "n_tokens_out": 64, "ok": true}, {"n_in": 96, "n_out": 128, "logits_shape": [2, 128, 2251], "n_tokens_in": 96, "n_tokens_out": 128, "ok": true}]
+[17:37:54] after pretrain held(n=96,m=32) = {'a': 5.4432, 'c': 5.4592, 'arb': 5.3978}
+[17:37:55]   n=32 m=8: held arb=5.3586 a=5.4568 c=5.3795
+[17:37:55]   n=64 m=16: held arb=4.9396 a=4.9974 c=4.9935
+[17:37:56]   n=96 m=32: held arb=5.3978 a=5.4432 c=5.4592
+[17:37:57]   n=128 m=32: held arb=5.3605 a=5.4279 c=5.4031
+[17:37:58]   n=192 m=32: held arb=5.1805 a=5.2758 c=5.2034
+[17:37:59]   n=256 m=64: held arb=5.4441 a=5.5216 c=5.4857
+[17:38:00]   n=96 m=8: held arb=4.9782 a=5.0839 c=4.9899
+[17:38:01]   n=96 m=64: held arb=5.2219 a=5.2709 c=5.2914
+[17:38:02]   n=96 m=128: held arb=5.3635 a=5.4335 c=5.4357
+[17:39:27]   online 500/2000 stream_arb=5.1297 held_arb=5.4380 held_a=5.5961
+[17:40:32]   online 1000/2000 stream_arb=5.2699 held_arb=5.3952 held_a=5.4514
+[17:41:00]   online 1500/2000 stream_arb=4.6986 held_arb=5.4051 held_a=5.4869
+[17:41:29]   online 2000/2000 stream_arb=4.9004 held_arb=5.3931 held_a=5.4331
+[17:41:29] online done 2000 chunks in 205.3s
+[17:41:32] after online held = {'a': 5.4331, 'c': 5.4511, 'arb': 5.3931}
+[17:41:32] saved E:\PycharmProject\experiments\online_v12\results_v12_d1_n96m32_tv_ratio_a_side_w3aside.json

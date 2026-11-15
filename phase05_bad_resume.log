@@ -1,0 +1,12 @@
+train=442500043 held=78088244 device=cuda
+arch=single params(trainable)=67.48M codebook=trainable
+Traceback (most recent call last):
+  File "E:\PycharmProject\experiments\online_v12\train_v21.py", line 377, in <module>
+    main()
+    ~~~~^^
+  File "E:\PycharmProject\experiments\online_v12\train_v21.py", line 307, in main
+    validate_resume_config(ck["config"], cfg)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "E:\PycharmProject\experiments\online_v12\train_v21.py", line 269, in validate_resume_config
+    raise ValueError(f"resume ≈‰÷√≤ªºÊ»›£¨æ‹æ¯ª÷∏¥£∫{detail}")
+ValueError: resume ≈‰÷√≤ªºÊ»›£¨æ‹æ¯ª÷∏¥£∫model.d: ckpt=256 config=512

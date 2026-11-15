@@ -1,0 +1,40 @@
+train=442500043 held=78088244 device=cuda
+arch=single params(trainable)=16.90M codebook=fixed
+STEP {"step": 0, "loss": 5.2392, "ppos": 0.0065, "grad_norm": 6.5738, "lr": 0.001, "sec": 0.6, "dt": 0.6032}
+STEP {"step": 1, "loss": 4.7001, "ppos": 0.016, "grad_norm": 3.254, "lr": 0.001, "sec": 0.6, "dt": 0.0414}
+STEP {"step": 2, "loss": 4.6014, "ppos": 0.0241, "grad_norm": 2.5286, "lr": 0.001, "sec": 0.7, "dt": 0.0388}
+STEP {"step": 3, "loss": 4.6874, "ppos": 0.0274, "grad_norm": 2.0161, "lr": 0.001, "sec": 0.7, "dt": 0.0365}
+STEP {"step": 4, "loss": 4.92, "ppos": 0.0093, "grad_norm": 1.9681, "lr": 0.001, "sec": 0.8, "dt": 0.0361}
+STEP {"step": 5, "loss": 4.7229, "ppos": 0.0145, "grad_norm": 2.1229, "lr": 0.001, "sec": 0.8, "dt": 0.0362}
+STEP {"step": 6, "loss": 4.7286, "ppos": 0.0214, "grad_norm": 1.6457, "lr": 0.001, "sec": 0.8, "dt": 0.0364}
+STEP {"step": 7, "loss": 4.7651, "ppos": 0.0178, "grad_norm": 1.5593, "lr": 0.001, "sec": 0.9, "dt": 0.0377}
+STEP {"step": 8, "loss": 4.44, "ppos": 0.0347, "grad_norm": 1.4049, "lr": 0.001, "sec": 0.9, "dt": 0.036}
+STEP {"step": 9, "loss": 4.7016, "ppos": 0.0203, "grad_norm": 1.4116, "lr": 0.001, "sec": 0.9, "dt": 0.0356}
+EVAL {"held_top1": 0.0293, "held_top5": 0.1152, "cos": 0.0493, "hard_neg_win": 0.5508, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0391, "other_ctx_acc": 0.0215, "ctrl_keep_last_acc": 0.0254, "ctrl_keep_last_change": 0.041, "freq_bucket": {"high": 0.21739130434782608, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}
+saved E:/PycharmProject/experiments/online_v12/ckpt_preflight_a2.pt @step10
+STEP {"step": 10, "loss": 4.4694, "ppos": 0.0361, "grad_norm": 1.3693, "lr": 0.001, "sec": 2.2, "dt": 0.037}
+STEP {"step": 11, "loss": 4.3211, "ppos": 0.0389, "grad_norm": 1.4162, "lr": 0.001, "sec": 2.2, "dt": 0.0353}
+STEP {"step": 12, "loss": 4.4151, "ppos": 0.0333, "grad_norm": 1.1715, "lr": 0.001, "sec": 2.2, "dt": 0.0357}
+STEP {"step": 13, "loss": 4.7842, "ppos": 0.0219, "grad_norm": 1.1728, "lr": 0.001, "sec": 2.3, "dt": 0.036}
+STEP {"step": 14, "loss": 4.3969, "ppos": 0.0435, "grad_norm": 1.2956, "lr": 0.001, "sec": 2.3, "dt": 0.0359}
+STEP {"step": 15, "loss": 4.5928, "ppos": 0.0367, "grad_norm": 1.1444, "lr": 0.001, "sec": 2.4, "dt": 0.0356}
+STEP {"step": 16, "loss": 4.5362, "ppos": 0.0497, "grad_norm": 1.0105, "lr": 0.001, "sec": 2.4, "dt": 0.0369}
+STEP {"step": 17, "loss": 4.517, "ppos": 0.0546, "grad_norm": 0.9314, "lr": 0.001, "sec": 2.4, "dt": 0.0356}
+STEP {"step": 18, "loss": 4.852, "ppos": 0.0198, "grad_norm": 0.9875, "lr": 0.001, "sec": 2.5, "dt": 0.0363}
+STEP {"step": 19, "loss": 4.3557, "ppos": 0.075, "grad_norm": 1.0012, "lr": 0.001, "sec": 2.5, "dt": 0.0359}
+EVAL {"held_top1": 0.0566, "held_top5": 0.1152, "cos": 0.065, "hard_neg_win": 0.545, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0664, "ctrl_keep_last_acc": 0.0566, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.42028985507246375, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}
+saved E:/PycharmProject/experiments/online_v12/ckpt_preflight_a2.pt @step20
+STEP {"step": 20, "loss": 4.7115, "ppos": 0.0325, "grad_norm": 0.9991, "lr": 0.001, "sec": 3.6, "dt": 0.0367}
+STEP {"step": 21, "loss": 4.468, "ppos": 0.0512, "grad_norm": 0.9284, "lr": 0.001, "sec": 3.6, "dt": 0.0367}
+STEP {"step": 22, "loss": 4.7199, "ppos": 0.0435, "grad_norm": 0.9311, "lr": 0.001, "sec": 3.6, "dt": 0.0369}
+STEP {"step": 23, "loss": 3.9803, "ppos": 0.0763, "grad_norm": 0.9931, "lr": 0.001, "sec": 3.7, "dt": 0.036}
+STEP {"step": 24, "loss": 4.2906, "ppos": 0.0851, "grad_norm": 0.9314, "lr": 0.001, "sec": 3.7, "dt": 0.0367}
+STEP {"step": 25, "loss": 4.5087, "ppos": 0.0504, "grad_norm": 0.8949, "lr": 0.001, "sec": 3.8, "dt": 0.0362}
+STEP {"step": 26, "loss": 4.6084, "ppos": 0.0408, "grad_norm": 0.8712, "lr": 0.001, "sec": 3.8, "dt": 0.0373}
+STEP {"step": 27, "loss": 4.3222, "ppos": 0.0532, "grad_norm": 0.8769, "lr": 0.001, "sec": 3.8, "dt": 0.0361}
+STEP {"step": 28, "loss": 4.5366, "ppos": 0.0458, "grad_norm": 0.8721, "lr": 0.001, "sec": 3.9, "dt": 0.0363}
+STEP {"step": 29, "loss": 4.6814, "ppos": 0.0547, "grad_norm": 0.7899, "lr": 0.001, "sec": 3.9, "dt": 0.0363}
+EVAL {"held_top1": 0.0566, "held_top5": 0.1172, "cos": 0.0664, "hard_neg_win": 0.5497, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0664, "ctrl_keep_last_acc": 0.0566, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.42028985507246375, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}
+saved E:/PycharmProject/experiments/online_v12/ckpt_preflight_a2.pt @step30
+saved final E:/PycharmProject/experiments/online_v12/ckpt_preflight_a2.pt
+PEAK_MEM allocated_gib=0.633 reserved_gib=0.709

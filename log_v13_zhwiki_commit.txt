@@ -1,0 +1,35 @@
+[21:36:17] data_file=E:\PycharmProject\data\zhwiki_subset.txt format=text chars=37650398
+[21:36:23] train=32002838 held=5647560 vocab=12973
+[21:36:24] model: k=30 h=0 depth=6 total=149.36M online=2.39M
+[21:36:24] shape check: [{"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 12973], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}]
+E:\PycharmProject\experiments\online_v12\run_online.py:178: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  shock_log.append(round(float(S.mean()), 4))
+[21:36:25]   pretrain s0 loss=571.083 shock=6.908 active=6 train_probe arb=43.7016
+[21:36:45]   pretrain s100 loss=nan shock=nan active=5 train_probe arb=nan
+[21:37:07]   pretrain s200 loss=nan shock=nan active=3 train_probe arb=nan
+[21:37:26]   pretrain s300 loss=nan shock=nan active=4 train_probe arb=nan
+[21:37:45]   pretrain s400 loss=nan shock=nan active=5 train_probe arb=nan
+[21:38:04]   pretrain s500 loss=nan shock=nan active=6 train_probe arb=nan
+[21:38:23]   pretrain s600 loss=nan shock=nan active=5 train_probe arb=nan
+[21:38:42]   pretrain s700 loss=nan shock=nan active=5 train_probe arb=nan
+[21:39:02]   pretrain s800 loss=nan shock=nan active=4 train_probe arb=nan
+[21:39:21]   pretrain s900 loss=nan shock=nan active=4 train_probe arb=nan
+[21:39:40]   pretrain s1000 loss=nan shock=nan active=5 train_probe arb=nan
+[21:39:59]   pretrain s1100 loss=nan shock=nan active=3 train_probe arb=nan
+[21:40:18]   pretrain s1200 loss=nan shock=nan active=6 train_probe arb=nan
+[21:40:37]   pretrain s1300 loss=nan shock=nan active=4 train_probe arb=nan
+[21:40:56]   pretrain s1400 loss=nan shock=nan active=4 train_probe arb=nan
+[21:41:14]   pretrain s1500 loss=nan shock=nan active=4 train_probe arb=nan
+[21:41:33]   pretrain s1600 loss=nan shock=nan active=4 train_probe arb=nan
+[21:41:51]   pretrain s1700 loss=nan shock=nan active=5 train_probe arb=nan
+[21:42:10]   pretrain s1800 loss=nan shock=nan active=3 train_probe arb=nan
+[21:42:29]   pretrain s1900 loss=nan shock=nan active=3 train_probe arb=nan
+[21:42:47]   pretrain s2000 loss=nan shock=nan active=3 train_probe arb=nan
+[21:43:06]   pretrain s2100 loss=nan shock=nan active=6 train_probe arb=nan
+[21:43:25]   pretrain s2200 loss=nan shock=nan active=5 train_probe arb=nan
+[21:43:43]   pretrain s2300 loss=nan shock=nan active=6 train_probe arb=nan
+[21:44:02]   pretrain s2400 loss=nan shock=nan active=6 train_probe arb=nan
+[21:44:21]   pretrain s2500 loss=nan shock=nan active=3 train_probe arb=nan
+[21:44:39]   pretrain s2600 loss=nan shock=nan active=4 train_probe arb=nan
+[21:44:58]   pretrain s2700 loss=nan shock=nan active=4 train_probe arb=nan

@@ -1,0 +1,173 @@
+E:\PycharmProject\experiments\online_v12\run_online.py:44: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  train = torch.from_numpy(np.asarray(arr[:cut]))
+[04:44:16] ids_bin=E:/PycharmProject/data/zhwiki_qwen_u32.bin dtype=uint32 bytes=2250.0MB vocab=n/a train=478130341 held=84375943
+[04:44:18] qwen io: vocab=151936 hidden=2048 (embed/head frozen, shared)
+[04:44:18] loaded ckpt ckpt_qwen_lm1.step2000.pt (strict)
+[04:44:18] model: k=30 h=0 depth=6 E=10x1 total=155.57M online=2.31M E=8.03M mem=0.66M
+[04:44:18] shape check: [{"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 151936], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}]
+E:\PycharmProject\experiments\online_v12\run_online.py:275: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  shock_log.append(round(float(S.mean()), 4))
+[04:44:20]   pretrain s0 loss=26.358 shock=6.095 active=3 train_probe arb=8.6458
+[04:45:21]   pretrain s100 loss=23.165 shock=5.922 active=3 train_probe arb=8.1867
+[04:46:23]   gradnorm w={'a': 0.467, 'arb': 1.041, 'c': 0.497, 'rep': 0.096} G={'rep': 0.2, 'a': 2.0, 'c': 1.0, 'arb': 0.7}
+[04:46:24]   pretrain s200 loss=23.267 shock=6.159 active=4 train_probe arb=8.1421
+[04:47:35]   pretrain s300 loss=22.970 shock=5.912 active=3 train_probe arb=8.1276
+[04:48:46]   gradnorm w={'a': 0.43, 'arb': 1.074, 'c': 0.499, 'rep': 0.097} G={'rep': 0.1, 'a': 2.3, 'c': 0.9, 'arb': 0.8}
+[04:48:47]   pretrain s400 loss=21.670 shock=5.841 active=3 train_probe arb=8.1062
+[04:49:58]   pretrain s500 loss=22.238 shock=5.915 active=6 train_probe arb=8.1299
+[04:51:09]   gradnorm w={'a': 0.411, 'arb': 1.1, 'c': 0.491, 'rep': 0.098} G={'rep': 0.1, 'a': 1.5, 'c': 1.0, 'arb': 0.8}
+[04:51:09]   pretrain s600 loss=22.698 shock=6.155 active=3 train_probe arb=8.1543
+[04:52:20]   pretrain s700 loss=21.200 shock=5.901 active=6 train_probe arb=8.1555
+[04:53:27]   gradnorm w={'a': 0.389, 'arb': 1.125, 'c': 0.481, 'rep': 0.105} G={'rep': 0.1, 'a': 3.1, 'c': 2.0, 'arb': 1.4}
+[04:53:28]   pretrain s800 loss=22.420 shock=5.992 active=3 train_probe arb=8.1714
+[04:54:39]   pretrain s900 loss=21.259 shock=5.828 active=4 train_probe arb=8.1430
+[04:55:51]   gradnorm w={'a': 0.368, 'arb': 1.152, 'c': 0.475, 'rep': 0.105} G={'rep': 0.2, 'a': 1.9, 'c': 1.1, 'arb': 0.9}
+[04:55:59]   saved E:/PycharmProject/experiments/online_v12/ckpt_qwen_lm2.step1000.pt
+[04:56:00]   pretrain s1000 loss=21.652 shock=5.994 active=4 train_probe arb=8.1178
+[04:57:13]   pretrain s1100 loss=19.996 shock=5.781 active=4 train_probe arb=8.3327
+[04:58:26]   gradnorm w={'a': 0.335, 'arb': 1.18, 'c': 0.471, 'rep': 0.113} G={'rep': 0.1, 'a': 3.3, 'c': 1.2, 'arb': 1.0}
+[04:58:26]   pretrain s1200 loss=20.084 shock=5.904 active=4 train_probe arb=8.2042
+[04:59:34]   pretrain s1300 loss=20.510 shock=5.921 active=4 train_probe arb=8.1382
+[05:00:41]   gradnorm w={'a': 0.315, 'arb': 1.198, 'c': 0.46, 'rep': 0.126} G={'rep': 0.1, 'a': 2.6, 'c': 1.6, 'arb': 1.2}
+[05:00:42]   pretrain s1400 loss=19.628 shock=5.996 active=3 train_probe arb=8.0515
+[05:01:53]   pretrain s1500 loss=20.825 shock=6.092 active=3 train_probe arb=8.0072
+[05:03:06]   gradnorm w={'a': 0.292, 'arb': 1.218, 'c': 0.449, 'rep': 0.141} G={'rep': 0.1, 'a': 2.8, 'c': 1.5, 'arb': 1.1}
+[05:03:07]   pretrain s1600 loss=20.336 shock=6.001 active=5 train_probe arb=7.9931
+[05:04:18]   pretrain s1700 loss=18.718 shock=5.796 active=4 train_probe arb=8.0645
+[05:05:34]   gradnorm w={'a': 0.268, 'arb': 1.245, 'c': 0.433, 'rep': 0.154} G={'rep': 0.1, 'a': 3.3, 'c': 1.9, 'arb': 1.2}
+[05:05:35]   pretrain s1800 loss=18.964 shock=6.081 active=5 train_probe arb=8.0828
+[05:06:48]   pretrain s1900 loss=20.312 shock=6.176 active=6 train_probe arb=8.0194
+[05:07:58]   gradnorm w={'a': 0.235, 'arb': 1.257, 'c': 0.427, 'rep': 0.181} G={'rep': 0.2, 'a': 9.4, 'c': 2.7, 'arb': 2.3}
+[05:08:06]   saved E:/PycharmProject/experiments/online_v12/ckpt_qwen_lm2.step2000.pt
+[05:08:07]   pretrain s2000 loss=19.313 shock=6.120 active=5 train_probe arb=8.1219
+[05:09:19]   pretrain s2100 loss=18.784 shock=6.076 active=6 train_probe arb=8.0724
+[05:10:31]   gradnorm w={'a': 0.225, 'arb': 1.261, 'c': 0.407, 'rep': 0.207} G={'rep': 0.1, 'a': 2.5, 'c': 2.3, 'arb': 1.6}
+[05:10:32]   pretrain s2200 loss=17.782 shock=5.867 active=3 train_probe arb=8.0108
+[05:11:44]   pretrain s2300 loss=17.469 shock=5.901 active=5 train_probe arb=7.8589
+[05:12:56]   gradnorm w={'a': 0.218, 'arb': 1.255, 'c': 0.372, 'rep': 0.255} G={'rep': 0.1, 'a': 2.9, 'c': 4.7, 'arb': 2.2}
+[05:12:56]   pretrain s2400 loss=17.223 shock=6.032 active=4 train_probe arb=7.9093
+[05:14:10]   pretrain s2500 loss=17.794 shock=6.005 active=5 train_probe arb=7.7574
+[05:15:20]   gradnorm w={'a': 0.203, 'arb': 1.254, 'c': 0.355, 'rep': 0.288} G={'rep': 0.1, 'a': 2.4, 'c': 1.7, 'arb': 1.2}
+[05:15:21]   pretrain s2600 loss=16.301 shock=5.690 active=5 train_probe arb=7.8785
+[05:16:33]   pretrain s2700 loss=18.664 shock=6.224 active=6 train_probe arb=8.0219
+[05:17:46]   gradnorm w={'a': 0.2, 'arb': 1.275, 'c': 0.318, 'rep': 0.311} G={'rep': 0.1, 'a': 2.3, 'c': 2.7, 'arb': 0.8}
+[05:17:47]   pretrain s2800 loss=16.279 shock=5.786 active=4 train_probe arb=7.8945
+[05:18:59]   pretrain s2900 loss=16.520 shock=5.808 active=4 train_probe arb=7.8837
+[05:20:14]   gradnorm w={'a': 0.2, 'arb': 1.273, 'c': 0.292, 'rep': 0.339} G={'rep': 0.0, 'a': 2.1, 'c': 1.4, 'arb': 0.7}
+[05:20:23]   saved E:/PycharmProject/experiments/online_v12/ckpt_qwen_lm2.step3000.pt
+[05:20:23]   pretrain s3000 loss=15.720 shock=5.809 active=6 train_probe arb=7.8581
+[05:21:33]   pretrain s3100 loss=16.262 shock=5.958 active=4 train_probe arb=7.8527
+[05:22:45]   gradnorm w={'a': 0.2, 'arb': 1.235, 'c': 0.276, 'rep': 0.393} G={'rep': 0.0, 'a': 3.7, 'c': 1.4, 'arb': 1.3}
+[05:22:46]   pretrain s3200 loss=14.292 shock=5.365 active=3 train_probe arb=8.1388
+[05:23:59]   pretrain s3300 loss=17.023 shock=5.976 active=5 train_probe arb=7.9535
+[05:25:12]   gradnorm w={'a': 0.2, 'arb': 1.205, 'c': 0.253, 'rep': 0.445} G={'rep': 0.0, 'a': 3.0, 'c': 1.7, 'arb': 1.0}
+[05:25:13]   pretrain s3400 loss=12.899 shock=5.145 active=5 train_probe arb=7.7321
+[05:26:25]   pretrain s3500 loss=15.307 shock=5.907 active=5 train_probe arb=7.8527
+[05:27:36]   gradnorm w={'a': 0.2, 'arb': 1.184, 'c': 0.224, 'rep': 0.492} G={'rep': 0.1, 'a': 3.1, 'c': 9.1, 'arb': 3.6}
+[05:27:37]   pretrain s3600 loss=16.112 shock=6.283 active=3 train_probe arb=7.7961
+[05:28:48]   pretrain s3700 loss=16.069 shock=6.105 active=6 train_probe arb=7.7891
+[05:29:59]   gradnorm w={'a': 0.2, 'arb': 1.192, 'c': 0.211, 'rep': 0.498} G={'rep': 0.0, 'a': 1.9, 'c': 1.0, 'arb': 0.6}
+[05:29:59]   pretrain s3800 loss=13.857 shock=5.673 active=3 train_probe arb=7.7175
+[05:31:12]   pretrain s3900 loss=15.230 shock=5.884 active=5 train_probe arb=7.7691
+[05:32:21]   gradnorm w={'a': 0.202, 'arb': 1.186, 'c': 0.205, 'rep': 0.5} G={'rep': 0.0, 'a': 2.3, 'c': 1.1, 'arb': 0.9}
+[05:32:30]   saved E:/PycharmProject/experiments/online_v12/ckpt_qwen_lm2.step4000.pt
+[05:32:30]   pretrain s4000 loss=13.932 shock=5.424 active=5 train_probe arb=7.6085
+[05:33:43]   pretrain s4100 loss=14.316 shock=5.680 active=5 train_probe arb=7.7296
+[05:34:55]   gradnorm w={'a': 0.202, 'arb': 1.192, 'c': 0.202, 'rep': 0.5} G={'rep': 0.0, 'a': 2.1, 'c': 2.7, 'arb': 1.2}
+[05:34:55]   pretrain s4200 loss=14.630 shock=5.722 active=6 train_probe arb=7.6972
+[05:36:05]   pretrain s4300 loss=14.027 shock=5.553 active=3 train_probe arb=7.7384
+[05:37:11]   gradnorm w={'a': 0.2, 'arb': 1.214, 'c': 0.2, 'rep': 0.492} G={'rep': 0.0, 'a': 3.8, 'c': 2.6, 'arb': 1.3}
+[05:37:12]   pretrain s4400 loss=16.698 shock=6.088 active=5 train_probe arb=7.7712
+[05:38:20]   pretrain s4500 loss=14.836 shock=5.963 active=4 train_probe arb=7.6530
+[05:39:34]   gradnorm w={'a': 0.2, 'arb': 1.214, 'c': 0.2, 'rep': 0.492} G={'rep': 0.0, 'a': 2.9, 'c': 1.6, 'arb': 1.0}
+[05:39:34]   pretrain s4600 loss=15.505 shock=5.846 active=4 train_probe arb=7.7713
+[05:40:47]   pretrain s4700 loss=14.653 shock=5.860 active=5 train_probe arb=7.6687
+[05:42:02]   gradnorm w={'a': 0.2, 'arb': 1.214, 'c': 0.2, 'rep': 0.492} G={'rep': 0.0, 'a': 2.2, 'c': 1.4, 'arb': 0.8}
+[05:42:02]   pretrain s4800 loss=15.165 shock=6.070 active=5 train_probe arb=7.6985
+[05:43:15]   pretrain s4900 loss=14.462 shock=5.684 active=4 train_probe arb=7.6674
+[05:44:28]   gradnorm w={'a': 0.2, 'arb': 1.211, 'c': 0.2, 'rep': 0.494} G={'rep': 0.0, 'a': 1.6, 'c': 1.2, 'arb': 0.6}
+[05:44:36]   saved E:/PycharmProject/experiments/online_v12/ckpt_qwen_lm2.step5000.pt
+[05:44:36]   pretrain s5000 loss=15.092 shock=5.897 active=4 train_probe arb=7.6761
+[05:45:49]   pretrain s5100 loss=14.611 shock=5.790 active=4 train_probe arb=7.6269
+[05:46:58]   gradnorm w={'a': 0.2, 'arb': 1.214, 'c': 0.2, 'rep': 0.492} G={'rep': 0.0, 'a': 2.6, 'c': 1.3, 'arb': 0.7}
+[05:46:58]   pretrain s5200 loss=14.678 shock=5.755 active=4 train_probe arb=7.6701
+[05:48:10]   pretrain s5300 loss=14.600 shock=5.687 active=3 train_probe arb=7.5915
+[05:49:25]   gradnorm w={'a': 0.2, 'arb': 1.212, 'c': 0.2, 'rep': 0.493} G={'rep': 0.0, 'a': 2.7, 'c': 1.5, 'arb': 0.9}
+[05:49:25]   pretrain s5400 loss=14.615 shock=5.808 active=4 train_probe arb=7.6866
+[05:50:38]   pretrain s5500 loss=14.471 shock=5.691 active=3 train_probe arb=7.6147
+[05:51:55]   gradnorm w={'a': 0.2, 'arb': 1.223, 'c': 0.2, 'rep': 0.487} G={'rep': 0.0, 'a': 2.6, 'c': 3.0, 'arb': 1.0}
+[05:51:56]   pretrain s5600 loss=16.161 shock=6.015 active=6 train_probe arb=7.6326
+[05:53:15]   pretrain s5700 loss=15.824 shock=5.943 active=5 train_probe arb=7.6584
+[05:54:29]   gradnorm w={'a': 0.2, 'arb': 1.219, 'c': 0.2, 'rep': 0.488} G={'rep': 0.1, 'a': 2.2, 'c': 1.7, 'arb': 0.8}
+[05:54:30]   pretrain s5800 loss=14.912 shock=5.802 active=5 train_probe arb=7.6496
+[05:55:45]   pretrain s5900 loss=14.560 shock=5.683 active=5 train_probe arb=7.6048
+[05:57:00]   gradnorm w={'a': 0.2, 'arb': 1.22, 'c': 0.2, 'rep': 0.489} G={'rep': 0.0, 'a': 3.2, 'c': 2.7, 'arb': 1.2}
+[05:57:08]   saved E:/PycharmProject/experiments/online_v12/ckpt_qwen_lm2.step6000.pt
+[05:57:09]   pretrain s6000 loss=15.593 shock=5.934 active=3 train_probe arb=7.5704
+[05:58:21]   pretrain s6100 loss=15.109 shock=5.778 active=6 train_probe arb=7.6510
+[05:59:36]   gradnorm w={'a': 0.2, 'arb': 1.218, 'c': 0.2, 'rep': 0.49} G={'rep': 0.0, 'a': 3.2, 'c': 2.9, 'arb': 1.3}
+[05:59:36]   pretrain s6200 loss=15.470 shock=5.878 active=4 train_probe arb=7.6098
+[06:00:49]   pretrain s6300 loss=14.513 shock=5.615 active=3 train_probe arb=7.6650
+[06:01:59]   gradnorm w={'a': 0.2, 'arb': 1.211, 'c': 0.2, 'rep': 0.494} G={'rep': 0.0, 'a': 5.9, 'c': 4.5, 'arb': 2.3}
+[06:02:00]   pretrain s6400 loss=14.636 shock=5.897 active=4 train_probe arb=7.6075
+[06:03:13]   pretrain s6500 loss=14.866 shock=5.749 active=6 train_probe arb=7.6288
+[06:04:25]   gradnorm w={'a': 0.2, 'arb': 1.211, 'c': 0.2, 'rep': 0.494} G={'rep': 0.0, 'a': 2.6, 'c': 2.3, 'arb': 1.1}
+[06:04:26]   pretrain s6600 loss=14.960 shock=5.935 active=4 train_probe arb=7.5530
+[06:05:40]   pretrain s6700 loss=15.233 shock=5.905 active=5 train_probe arb=7.5574
+[06:06:50]   gradnorm w={'a': 0.2, 'arb': 1.216, 'c': 0.2, 'rep': 0.491} G={'rep': 0.0, 'a': 4.2, 'c': 1.9, 'arb': 1.2}
+[06:06:50]   pretrain s6800 loss=15.561 shock=5.968 active=6 train_probe arb=7.5822
+[06:08:04]   pretrain s6900 loss=14.139 shock=5.457 active=6 train_probe arb=7.5475
+[06:09:18]   gradnorm w={'a': 0.2, 'arb': 1.204, 'c': 0.2, 'rep': 0.498} G={'rep': 0.0, 'a': 5.0, 'c': 2.6, 'arb': 1.8}
+[06:09:25]   saved E:/PycharmProject/experiments/online_v12/ckpt_qwen_lm2.step7000.pt
+[06:09:26]   pretrain s7000 loss=13.961 shock=5.668 active=4 train_probe arb=7.5568
+[06:10:38]   pretrain s7100 loss=14.939 shock=5.850 active=3 train_probe arb=7.5545
+[06:11:48]   gradnorm w={'a': 0.2, 'arb': 1.205, 'c': 0.2, 'rep': 0.497} G={'rep': 0.0, 'a': 2.2, 'c': 1.4, 'arb': 0.7}
+[06:11:49]   pretrain s7200 loss=13.819 shock=5.474 active=4 train_probe arb=7.5997
+[06:12:57]   pretrain s7300 loss=14.273 shock=5.679 active=3 train_probe arb=7.5744
+[06:14:10]   gradnorm w={'a': 0.2, 'arb': 1.203, 'c': 0.2, 'rep': 0.499} G={'rep': 0.0, 'a': 2.4, 'c': 4.3, 'arb': 1.5}
+[06:14:10]   pretrain s7400 loss=14.307 shock=5.849 active=5 train_probe arb=7.5882
+[06:15:22]   pretrain s7500 loss=14.845 shock=5.907 active=4 train_probe arb=7.5832
+[06:16:39]   gradnorm w={'a': 0.2, 'arb': 1.203, 'c': 0.2, 'rep': 0.498} G={'rep': 0.0, 'a': 4.8, 'c': 2.5, 'arb': 1.6}
+[06:16:39]   pretrain s7600 loss=14.326 shock=5.623 active=3 train_probe arb=7.6121
+[06:17:52]   pretrain s7700 loss=16.475 shock=6.124 active=4 train_probe arb=7.6319
+[06:19:03]   gradnorm w={'a': 0.2, 'arb': 1.205, 'c': 0.2, 'rep': 0.497} G={'rep': 0.0, 'a': 5.1, 'c': 2.3, 'arb': 1.8}
+[06:19:04]   pretrain s7800 loss=15.644 shock=6.133 active=3 train_probe arb=7.5982
+[06:20:18]   pretrain s7900 loss=14.587 shock=5.916 active=5 train_probe arb=7.5799
+[06:21:33]   gradnorm w={'a': 0.2, 'arb': 1.202, 'c': 0.2, 'rep': 0.499} G={'rep': 0.0, 'a': 1.7, 'c': 2.6, 'arb': 1.1}
+[06:21:41]   saved E:/PycharmProject/experiments/online_v12/ckpt_qwen_lm2.step8000.pt
+[06:21:42]   pretrain s8000 loss=14.900 shock=5.820 active=4 train_probe arb=7.6022
+[06:22:54]   pretrain s8100 loss=15.447 shock=5.909 active=3 train_probe arb=7.5262
+[06:24:10]   gradnorm w={'a': 0.201, 'arb': 1.196, 'c': 0.201, 'rep': 0.5} G={'rep': 0.1, 'a': 7.2, 'c': 9.5, 'arb': 5.5}
+[06:24:10]   pretrain s8200 loss=16.149 shock=6.127 active=3 train_probe arb=7.5602
+[06:25:26]   pretrain s8300 loss=14.567 shock=5.751 active=5 train_probe arb=7.5380
+[06:26:36]   gradnorm w={'a': 0.201, 'arb': 1.197, 'c': 0.201, 'rep': 0.5} G={'rep': 0.0, 'a': 2.3, 'c': 2.8, 'arb': 1.2}
+[06:26:36]   pretrain s8400 loss=14.227 shock=5.565 active=3 train_probe arb=7.5705
+[06:27:50]   pretrain s8500 loss=15.279 shock=5.864 active=5 train_probe arb=7.5507
+[06:29:04]   gradnorm w={'a': 0.2, 'arb': 1.198, 'c': 0.211, 'rep': 0.494} G={'rep': 0.0, 'a': 14.3, 'c': 2.0, 'arb': 3.6}
+[06:29:05]   pretrain s8600 loss=15.384 shock=5.919 active=4 train_probe arb=7.5647
+[06:30:16]   pretrain s8700 loss=13.978 shock=5.514 active=6 train_probe arb=7.5982
+[06:31:30]   gradnorm w={'a': 0.2, 'arb': 1.203, 'c': 0.2, 'rep': 0.498} G={'rep': 0.0, 'a': 6.2, 'c': 4.6, 'arb': 2.5}
+[06:31:31]   pretrain s8800 loss=15.130 shock=5.932 active=3 train_probe arb=7.5352
+[06:32:41]   pretrain s8900 loss=13.742 shock=5.575 active=3 train_probe arb=7.5179
+[06:33:52]   gradnorm w={'a': 0.2, 'arb': 1.208, 'c': 0.2, 'rep': 0.496} G={'rep': 0.0, 'a': 4.8, 'c': 2.8, 'arb': 1.6}
+[06:34:00]   saved E:/PycharmProject/experiments/online_v12/ckpt_qwen_lm2.step9000.pt
+[06:34:01]   pretrain s9000 loss=14.774 shock=5.741 active=4 train_probe arb=7.4989
+[06:35:14]   pretrain s9100 loss=15.557 shock=5.972 active=3 train_probe arb=7.5148
+[06:36:24]   gradnorm w={'a': 0.2, 'arb': 1.217, 'c': 0.2, 'rep': 0.491} G={'rep': 0.0, 'a': 6.9, 'c': 4.6, 'arb': 2.4}
+[06:36:24]   pretrain s9200 loss=16.435 shock=6.132 active=4 train_probe arb=7.4879
+[06:37:35]   pretrain s9300 loss=14.732 shock=5.787 active=5 train_probe arb=7.5183
+[06:38:48]   gradnorm w={'a': 0.2, 'arb': 1.221, 'c': 0.2, 'rep': 0.489} G={'rep': 0.0, 'a': 4.0, 'c': 3.2, 'arb': 1.3}
+[06:38:49]   pretrain s9400 loss=15.052 shock=5.782 active=4 train_probe arb=7.5155
+[06:40:02]   pretrain s9500 loss=14.925 shock=5.930 active=5 train_probe arb=7.5439
+[06:41:14]   gradnorm w={'a': 0.2, 'arb': 1.21, 'c': 0.2, 'rep': 0.494} G={'rep': 0.0, 'a': 4.0, 'c': 2.4, 'arb': 1.3}
+[06:41:15]   pretrain s9600 loss=13.670 shock=5.547 active=4 train_probe arb=7.5256
+[06:42:28]   pretrain s9700 loss=14.238 shock=5.789 active=6 train_probe arb=7.5231
+[06:43:40]   gradnorm w={'a': 0.2, 'arb': 1.206, 'c': 0.2, 'rep': 0.497} G={'rep': 0.0, 'a': 4.2, 'c': 2.7, 'arb': 1.5}
+[06:43:41]   pretrain s9800 loss=14.219 shock=5.806 active=3 train_probe arb=7.5264
+[06:44:53]   pretrain s9900 loss=14.257 shock=5.758 active=6 train_probe arb=7.5199
+[06:46:03] pretrain done in 7303.5s
+[06:46:05] after pretrain held(n=96,m=32) = {'a': 7.5332, 'c': 7.5635, 'arb': 7.5286}
+[06:46:07]   n=96 m=32: held arb=7.5286 a=7.5332 c=7.5635
+[06:46:11] after online held = {'a': 7.5332, 'c': 7.5635, 'arb': 7.5286}
+[06:46:19] saved E:\PycharmProject\experiments\online_v12\results_v12_d6_n96m32_tv_ratio_a_side_qwen_lm2.json

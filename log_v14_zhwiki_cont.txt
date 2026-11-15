@@ -1,0 +1,53 @@
+[23:03:25] data_file=E:\PycharmProject\data\zhwiki_subset.txt format=text chars=37650398
+[23:03:30] train=32002838 held=5647560 vocab=12973
+[23:03:31] loaded ckpt ckpt_v12b_d6_n96m32_tv_ratio_v14zhwiki.pt
+[23:03:31] model: k=30 h=0 depth=6 E=10x1 total=157.77M online=2.32M E=8.10M mem=0.66M
+[23:03:32] shape check: [{"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 12973], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}]
+E:\PycharmProject\experiments\online_v12\run_online.py:194: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  shock_log.append(round(float(S.mean()), 4))
+[23:03:33]   pretrain s0 loss=21.915 shock=5.509 active=6 train_probe arb=6.8413
+[23:03:58]   pretrain s100 loss=22.604 shock=5.799 active=5 train_probe arb=6.8296
+[23:04:22]   pretrain s200 loss=24.244 shock=5.860 active=3 train_probe arb=6.8664
+[23:04:41]   pretrain s300 loss=23.985 shock=5.926 active=4 train_probe arb=6.8666
+[23:05:01]   pretrain s400 loss=23.149 shock=5.830 active=5 train_probe arb=6.9069
+[23:05:20]   pretrain s500 loss=23.590 shock=5.885 active=6 train_probe arb=6.7659
+[23:05:40]   pretrain s600 loss=22.722 shock=5.735 active=5 train_probe arb=6.8126
+[23:05:59]   pretrain s700 loss=23.303 shock=5.842 active=5 train_probe arb=6.8454
+[23:06:19]   pretrain s800 loss=24.002 shock=6.087 active=4 train_probe arb=6.9056
+[23:06:38]   pretrain s900 loss=23.267 shock=6.029 active=4 train_probe arb=6.9647
+[23:06:58]   pretrain s1000 loss=22.645 shock=5.760 active=5 train_probe arb=6.8745
+[23:07:18]   pretrain s1100 loss=20.145 shock=5.518 active=3 train_probe arb=6.8680
+[23:07:37]   pretrain s1200 loss=24.038 shock=6.116 active=6 train_probe arb=6.8625
+[23:07:57]   pretrain s1300 loss=21.561 shock=5.679 active=4 train_probe arb=6.7657
+[23:08:17]   pretrain s1400 loss=20.515 shock=5.586 active=4 train_probe arb=6.8877
+[23:08:36]   pretrain s1500 loss=23.357 shock=6.055 active=4 train_probe arb=6.7507
+[23:08:56]   pretrain s1600 loss=22.059 shock=5.746 active=4 train_probe arb=6.7886
+[23:09:16]   pretrain s1700 loss=22.512 shock=5.865 active=5 train_probe arb=6.7740
+[23:09:35]   pretrain s1800 loss=20.926 shock=5.571 active=3 train_probe arb=6.8041
+[23:09:55]   pretrain s1900 loss=22.403 shock=5.916 active=3 train_probe arb=6.8311
+[23:10:14]   pretrain s2000 loss=23.409 shock=5.962 active=3 train_probe arb=6.6850
+[23:10:34]   pretrain s2100 loss=20.997 shock=5.495 active=6 train_probe arb=6.7820
+[23:10:53]   pretrain s2200 loss=21.553 shock=5.915 active=5 train_probe arb=6.6680
+[23:11:13]   pretrain s2300 loss=21.021 shock=5.630 active=6 train_probe arb=6.6859
+[23:11:33]   pretrain s2400 loss=21.155 shock=5.810 active=6 train_probe arb=6.7178
+[23:11:52]   pretrain s2500 loss=23.204 shock=6.101 active=3 train_probe arb=6.7080
+[23:12:12]   pretrain s2600 loss=21.651 shock=5.753 active=4 train_probe arb=6.6810
+[23:12:32]   pretrain s2700 loss=21.071 shock=5.721 active=4 train_probe arb=6.6575
+[23:12:51]   pretrain s2800 loss=21.465 shock=5.859 active=3 train_probe arb=6.6241
+[23:13:11]   pretrain s2900 loss=20.333 shock=5.546 active=4 train_probe arb=6.6573
+[23:13:30]   pretrain s3000 loss=20.143 shock=5.605 active=5 train_probe arb=6.5977
+[23:13:50]   pretrain s3100 loss=20.330 shock=5.659 active=5 train_probe arb=6.6431
+[23:14:10]   pretrain s3200 loss=20.597 shock=5.422 active=4 train_probe arb=6.6100
+[23:14:29]   pretrain s3300 loss=20.288 shock=5.541 active=3 train_probe arb=6.6067
+[23:14:49]   pretrain s3400 loss=21.681 shock=5.964 active=3 train_probe arb=6.6304
+[23:15:08]   pretrain s3500 loss=20.902 shock=5.741 active=5 train_probe arb=6.6186
+[23:15:28]   pretrain s3600 loss=20.065 shock=5.629 active=4 train_probe arb=6.6070
+[23:15:48]   pretrain s3700 loss=21.297 shock=5.849 active=5 train_probe arb=6.6090
+[23:16:07]   pretrain s3800 loss=21.822 shock=5.938 active=3 train_probe arb=6.5973
+[23:16:27]   pretrain s3900 loss=21.291 shock=5.840 active=3 train_probe arb=6.5992
+[23:16:46] pretrain done in 793.3s
+[23:16:46] after pretrain held(n=96,m=32) = {'a': 6.5787, 'c': 6.7601, 'arb': 6.579}
+[23:16:46]   n=96 m=32: held arb=6.5790 a=6.5787 c=6.7601
+[23:16:47] after online held = {'a': 6.5787, 'c': 6.7601, 'arb': 6.579}
+[23:16:54] saved E:\PycharmProject\experiments\online_v12\results_v12_d6_n96m32_tv_ratio_a_side_v14zhwiki_cont.json

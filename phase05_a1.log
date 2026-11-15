@@ -1,0 +1,41 @@
+train=442500043 held=78088244 device=cuda
+arch=single params(trainable)=21.09M codebook=trainable
+E:\PycharmProject\experiments\online_v12\train_v21.py:80: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  xs.append(torch.stack([torch.from_numpy(data[s + j:s + j + n_in]) for s in starts]))
+STEP {"step": 0, "loss": 4.9404, "ppos": 0.0086, "grad_norm": 10.9065, "lr": 0.001, "sec": 0.4}
+STEP {"step": 1, "loss": 4.911, "ppos": 0.0113, "grad_norm": 7.4512, "lr": 0.001, "sec": 0.5}
+STEP {"step": 2, "loss": 4.7312, "ppos": 0.0223, "grad_norm": 6.5547, "lr": 0.001, "sec": 0.5}
+STEP {"step": 3, "loss": 4.929, "ppos": 0.0238, "grad_norm": 6.2387, "lr": 0.001, "sec": 0.5}
+STEP {"step": 4, "loss": 4.6712, "ppos": 0.0255, "grad_norm": 6.1909, "lr": 0.001, "sec": 0.5}
+STEP {"step": 5, "loss": 4.3107, "ppos": 0.0715, "grad_norm": 6.0061, "lr": 0.001, "sec": 0.6}
+STEP {"step": 6, "loss": 4.3837, "ppos": 0.0562, "grad_norm": 5.6676, "lr": 0.001, "sec": 0.6}
+STEP {"step": 7, "loss": 4.7618, "ppos": 0.04, "grad_norm": 6.2069, "lr": 0.001, "sec": 0.6}
+STEP {"step": 8, "loss": 4.8805, "ppos": 0.0273, "grad_norm": 6.1063, "lr": 0.001, "sec": 0.7}
+STEP {"step": 9, "loss": 4.9652, "ppos": 0.0212, "grad_norm": 5.7684, "lr": 0.001, "sec": 0.7}
+EVAL {"held_top1": 0.0566, "held_top5": 0.1035, "cos": 0.0044, "hard_neg_win": 0.5385, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0664, "ctrl_keep_last_acc": 0.0566, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.42028985507246375, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}
+saved E:/PycharmProject/experiments/online_v12/ckpt_smoke_a1.pt @step10
+STEP {"step": 10, "loss": 4.495, "ppos": 0.0533, "grad_norm": 6.8134, "lr": 0.001, "sec": 1.8}
+STEP {"step": 11, "loss": 4.4725, "ppos": 0.0394, "grad_norm": 6.5974, "lr": 0.001, "sec": 1.8}
+STEP {"step": 12, "loss": 4.8779, "ppos": 0.0304, "grad_norm": 5.8469, "lr": 0.001, "sec": 1.9}
+STEP {"step": 13, "loss": 4.3687, "ppos": 0.1086, "grad_norm": 5.7603, "lr": 0.001, "sec": 1.9}
+STEP {"step": 14, "loss": 4.4389, "ppos": 0.0714, "grad_norm": 5.8361, "lr": 0.001, "sec": 1.9}
+STEP {"step": 15, "loss": 4.8293, "ppos": 0.0651, "grad_norm": 5.4464, "lr": 0.001, "sec": 2.0}
+STEP {"step": 16, "loss": 4.3307, "ppos": 0.1271, "grad_norm": 5.3094, "lr": 0.001, "sec": 2.0}
+STEP {"step": 17, "loss": 4.2518, "ppos": 0.0965, "grad_norm": 5.1133, "lr": 0.001, "sec": 2.0}
+STEP {"step": 18, "loss": 4.6421, "ppos": 0.0928, "grad_norm": 5.6876, "lr": 0.001, "sec": 2.0}
+STEP {"step": 19, "loss": 4.4089, "ppos": 0.0494, "grad_norm": 5.5631, "lr": 0.001, "sec": 2.1}
+EVAL {"held_top1": 0.0312, "held_top5": 0.1309, "cos": -0.0479, "hard_neg_win": 0.5277, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0195, "ctrl_keep_last_acc": 0.0312, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.2318840579710145, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}
+saved E:/PycharmProject/experiments/online_v12/ckpt_smoke_a1.pt @step20
+STEP {"step": 20, "loss": 4.2926, "ppos": 0.1031, "grad_norm": 4.9967, "lr": 0.001, "sec": 3.2}
+STEP {"step": 21, "loss": 4.0562, "ppos": 0.1327, "grad_norm": 5.0403, "lr": 0.001, "sec": 3.2}
+STEP {"step": 22, "loss": 4.1577, "ppos": 0.1279, "grad_norm": 5.0948, "lr": 0.001, "sec": 3.3}
+STEP {"step": 23, "loss": 4.1213, "ppos": 0.1194, "grad_norm": 5.7291, "lr": 0.001, "sec": 3.3}
+STEP {"step": 24, "loss": 4.1264, "ppos": 0.1092, "grad_norm": 5.4123, "lr": 0.001, "sec": 3.3}
+STEP {"step": 25, "loss": 4.9157, "ppos": 0.0497, "grad_norm": 5.3324, "lr": 0.001, "sec": 3.4}
+STEP {"step": 26, "loss": 4.7696, "ppos": 0.063, "grad_norm": 5.1683, "lr": 0.001, "sec": 3.4}
+STEP {"step": 27, "loss": 4.5599, "ppos": 0.0603, "grad_norm": 5.1935, "lr": 0.001, "sec": 3.4}
+STEP {"step": 28, "loss": 4.0967, "ppos": 0.1061, "grad_norm": 5.2166, "lr": 0.001, "sec": 3.4}
+STEP {"step": 29, "loss": 4.079, "ppos": 0.1375, "grad_norm": 4.9739, "lr": 0.001, "sec": 3.5}
+EVAL {"held_top1": 0.0312, "held_top5": 0.1172, "cos": -0.0812, "hard_neg_win": 0.5199, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0195, "ctrl_keep_last_acc": 0.0312, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.2318840579710145, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}
+saved E:/PycharmProject/experiments/online_v12/ckpt_smoke_a1.pt @step30
+saved final E:/PycharmProject/experiments/online_v12/ckpt_smoke_a1.pt

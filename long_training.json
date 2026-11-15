@@ -1,0 +1,18 @@
+[
+  {
+    "phase": 0,
+    "steps": 4000,
+    "lr": 0.0002,
+    "held": 6.4927,
+    "seconds": 919.6,
+    "ckpt": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_v12b_d6_n96m32_tv_ratio_long_p0.pt"
+  },
+  {
+    "phase": 1,
+    "steps": 8000,
+    "lr": 0.0001,
+    "held": 6.4159,
+    "seconds": 1771.1,
+    "ckpt": "E:\\PycharmProject\\experiments\\online_v12\\ckpt_v12b_d6_n96m32_tv_ratio_long_p1.pt"
+  }
+]

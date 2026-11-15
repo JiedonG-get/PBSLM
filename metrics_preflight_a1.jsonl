@@ -1,0 +1,30 @@
+{"step": 0, "loss": 4.9467, "ppos": 0.0085, "grad_norm": 7.7908, "lr": 0.001, "sec": 0.6, "dt": 0.5991}
+{"step": 1, "loss": 4.8751, "ppos": 0.0141, "grad_norm": 5.2352, "lr": 0.001, "sec": 0.6, "dt": 0.0427}
+{"step": 2, "loss": 4.5447, "ppos": 0.0323, "grad_norm": 4.9057, "lr": 0.001, "sec": 0.7, "dt": 0.0414}
+{"step": 3, "loss": 4.6234, "ppos": 0.0404, "grad_norm": 4.464, "lr": 0.001, "sec": 0.7, "dt": 0.0413}
+{"step": 4, "loss": 4.9301, "ppos": 0.0142, "grad_norm": 4.5095, "lr": 0.001, "sec": 0.8, "dt": 0.0414}
+{"step": 5, "loss": 4.6237, "ppos": 0.0282, "grad_norm": 5.5068, "lr": 0.001, "sec": 0.8, "dt": 0.0405}
+{"step": 6, "loss": 4.5687, "ppos": 0.0459, "grad_norm": 4.4279, "lr": 0.001, "sec": 0.8, "dt": 0.0384}
+{"step": 7, "loss": 4.6328, "ppos": 0.0482, "grad_norm": 4.191, "lr": 0.001, "sec": 0.9, "dt": 0.0379}
+{"step": 8, "loss": 4.2581, "ppos": 0.0847, "grad_norm": 3.9195, "lr": 0.001, "sec": 0.9, "dt": 0.0397}
+{"step": 9, "loss": 4.4826, "ppos": 0.0622, "grad_norm": 4.0856, "lr": 0.001, "sec": 1.0, "dt": 0.0379, "eval": {"held_top1": 0.0273, "held_top5": 0.1348, "cos": -0.0141, "hard_neg_win": 0.5251, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0039, "other_ctx_acc": 0.0215, "ctrl_keep_last_acc": 0.0273, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.2028985507246377, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}
+{"step": 10, "loss": 4.1569, "ppos": 0.1106, "grad_norm": 3.8448, "lr": 0.001, "sec": 2.2, "dt": 0.0386}
+{"step": 11, "loss": 4.0209, "ppos": 0.1298, "grad_norm": 3.9763, "lr": 0.001, "sec": 2.2, "dt": 0.0382}
+{"step": 12, "loss": 4.3595, "ppos": 0.0877, "grad_norm": 3.9046, "lr": 0.001, "sec": 2.3, "dt": 0.0376}
+{"step": 13, "loss": 4.5508, "ppos": 0.0652, "grad_norm": 3.8382, "lr": 0.001, "sec": 2.3, "dt": 0.0382}
+{"step": 14, "loss": 3.9697, "ppos": 0.1502, "grad_norm": 3.6609, "lr": 0.001, "sec": 2.3, "dt": 0.0382}
+{"step": 15, "loss": 4.0399, "ppos": 0.1359, "grad_norm": 3.7441, "lr": 0.001, "sec": 2.4, "dt": 0.0378}
+{"step": 16, "loss": 4.5684, "ppos": 0.1322, "grad_norm": 3.7752, "lr": 0.001, "sec": 2.4, "dt": 0.0389}
+{"step": 17, "loss": 4.2924, "ppos": 0.1581, "grad_norm": 3.7196, "lr": 0.001, "sec": 2.4, "dt": 0.0386}
+{"step": 18, "loss": 4.9499, "ppos": 0.0607, "grad_norm": 3.8395, "lr": 0.001, "sec": 2.5, "dt": 0.0385}
+{"step": 19, "loss": 3.7552, "ppos": 0.1708, "grad_norm": 3.5536, "lr": 0.001, "sec": 2.5, "dt": 0.0384, "eval": {"held_top1": 0.0566, "held_top5": 0.1387, "cos": -0.0716, "hard_neg_win": 0.4989, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0664, "ctrl_keep_last_acc": 0.0566, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.42028985507246375, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}
+{"step": 20, "loss": 4.4745, "ppos": 0.0767, "grad_norm": 3.9734, "lr": 0.001, "sec": 3.7, "dt": 0.0381}
+{"step": 21, "loss": 4.5858, "ppos": 0.1036, "grad_norm": 3.7619, "lr": 0.001, "sec": 3.7, "dt": 0.038}
+{"step": 22, "loss": 4.0784, "ppos": 0.1138, "grad_norm": 3.6399, "lr": 0.001, "sec": 3.7, "dt": 0.0378}
+{"step": 23, "loss": 3.6018, "ppos": 0.1569, "grad_norm": 3.7351, "lr": 0.001, "sec": 3.8, "dt": 0.0382}
+{"step": 24, "loss": 4.2954, "ppos": 0.1155, "grad_norm": 3.6002, "lr": 0.001, "sec": 3.8, "dt": 0.0385}
+{"step": 25, "loss": 4.2745, "ppos": 0.0784, "grad_norm": 3.8532, "lr": 0.001, "sec": 3.8, "dt": 0.038}
+{"step": 26, "loss": 4.257, "ppos": 0.069, "grad_norm": 3.7376, "lr": 0.001, "sec": 3.9, "dt": 0.038}
+{"step": 27, "loss": 4.0901, "ppos": 0.0858, "grad_norm": 3.749, "lr": 0.001, "sec": 3.9, "dt": 0.0386}
+{"step": 28, "loss": 4.2085, "ppos": 0.0779, "grad_norm": 3.8023, "lr": 0.001, "sec": 4.0, "dt": 0.0394}
+{"step": 29, "loss": 4.2666, "ppos": 0.0811, "grad_norm": 3.6471, "lr": 0.001, "sec": 4.0, "dt": 0.0399, "eval": {"held_top1": 0.0566, "held_top5": 0.1074, "cos": -0.0798, "hard_neg_win": 0.473, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0664, "ctrl_keep_last_acc": 0.0566, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.42028985507246375, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}

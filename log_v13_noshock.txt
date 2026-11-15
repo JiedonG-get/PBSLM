@@ -1,0 +1,33 @@
+[19:25:45] train=361051 held=63716 vocab=2251
+[19:25:46] model: k=30 h=0 depth=6 total=146.61M online=2.39M
+[19:25:47] shape check: [{"n_in": 64, "n_out": 16, "logits_shape": [2, 16, 2251], "n_tokens_in": 64, "n_tokens_out": 16, "ok": true}, {"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}, {"n_in": 128, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 128, "n_tokens_out": 32, "ok": true}, {"n_in": 96, "n_out": 64, "logits_shape": [2, 64, 2251], "n_tokens_in": 96, "n_tokens_out": 64, "ok": true}]
+E:\PycharmProject\experiments\online_v12\run_online.py:148: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  shock_log.append(round(float(S.mean()), 4))
+[19:25:48]   pretrain s0 loss=91.458 shock=6.908 active=6 train_probe arb=37.7538
+[19:26:27]   pretrain s100 loss=39.835 shock=6.361 active=5 train_probe arb=20.7169
+[19:27:06]   pretrain s200 loss=26.638 shock=5.204 active=3 train_probe arb=15.8493
+[19:27:45]   pretrain s300 loss=25.537 shock=5.276 active=4 train_probe arb=13.0879
+[19:28:24]   pretrain s400 loss=11.764 shock=4.326 active=5 train_probe arb=11.5416
+[19:29:03]   pretrain s500 loss=11.778 shock=3.689 active=6 train_probe arb=9.0794
+[19:29:41]   pretrain s600 loss=12.683 shock=4.564 active=5 train_probe arb=8.2802
+[19:30:20]   pretrain s700 loss=12.139 shock=4.298 active=5 train_probe arb=7.7790
+[19:30:58]   pretrain s800 loss=14.688 shock=4.488 active=4 train_probe arb=7.7330
+[19:31:36]   pretrain s900 loss=11.060 shock=3.943 active=4 train_probe arb=7.2564
+[19:32:15]   pretrain s1000 loss=10.450 shock=3.946 active=5 train_probe arb=7.3371
+[19:32:53]   pretrain s1100 loss=13.344 shock=4.723 active=3 train_probe arb=7.0876
+[19:33:31]   pretrain s1200 loss=12.261 shock=4.525 active=6 train_probe arb=6.9260
+[19:34:10]   pretrain s1300 loss=8.809 shock=3.326 active=4 train_probe arb=6.9054
+[19:34:48]   pretrain s1400 loss=12.002 shock=4.384 active=4 train_probe arb=6.9417
+[19:35:26] pretrain done in 578.7s
+[19:35:26] after pretrain held(n=96,m=32) = {'a': 5.8036, 'c': 5.9436, 'arb': 5.7578}
+[19:35:27]   n=64 m=16: held arb=5.2436 a=5.2621 c=5.4241
+[19:35:27]   n=96 m=32: held arb=5.7578 a=5.8036 c=5.9436
+[19:35:27]   n=128 m=32: held arb=5.6385 a=5.7045 c=5.8090
+[19:35:27]   n=96 m=64: held arb=5.8782 a=5.8946 c=6.1635
+[19:35:53]   online 500/1500 stream_arb=5.8032 held_arb=5.9573 act=0.169 active=5.2 shock=4.223
+[19:36:19]   online 1000/1500 stream_arb=5.9838 held_arb=5.8622 act=0.171 active=5.2 shock=4.312
+[19:36:44]   online 1500/1500 stream_arb=5.2661 held_arb=5.8283 act=0.157 active=4.8 shock=3.887
+[19:36:44] online done 1500 chunks in 76.5s
+[19:36:44] after online held = {'a': 5.9413, 'c': 6.0558, 'arb': 5.8283}
+[19:36:53] saved E:\PycharmProject\experiments\online_v12\results_v12_d6_n96m32_tv_ratio_a_side_v13noshock.json

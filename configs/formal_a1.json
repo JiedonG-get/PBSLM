@@ -1,0 +1,58 @@
+{
+  "format": "v2.1",
+  "seed": 1234,
+  "device": "cuda",
+  "data": {
+    "ids": "E:/PycharmProject/data/bpe_full_u32.bin",
+    "dtype": "uint32",
+    "hold": 0.15,
+    "n_in": 16,
+    "ar_m": 8
+  },
+  "model": {
+    "arch": "single",
+    "vocab": 16384,
+    "d": 256,
+    "heads": 8,
+    "k": 8,
+    "depth": 2,
+    "codebook": "trainable",
+    "codebook_seed": 1234
+  },
+  "loss": {
+    "type": "infonce",
+    "tau": 0.1,
+    "neg_n": 128,
+    "exclude_positive": true
+  },
+  "optim": {
+    "type": "adamw",
+    "lr": 0.001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0
+  },
+  "training": {
+    "steps": 15000,
+    "batch": 8
+  },
+  "eval": {
+    "windows": 64,
+    "hard_neg_pool": 512,
+    "hard_neg_k": 16,
+    "hard_neg_seed": 4321
+  },
+  "logging": {
+    "log_every": 100,
+    "eval_every": 1000,
+    "metrics_jsonl": "E:/PycharmProject/experiments/online_v12/metrics_formal_a1.jsonl"
+  },
+  "checkpoint": {
+    "save": "E:/PycharmProject/experiments/online_v12/ckpt_formal_a1.pt",
+    "save_every": 1000
+  }
+}

@@ -1,0 +1,31 @@
+[17:09:29] train=361051 held=63716 vocab=2251
+[17:09:29] depth=1 blocks=8 total=9.77M bank=6.39M online=1.75M
+[17:09:29] depth=2 blocks=8 total=16.08M bank=12.71M online=1.75M
+[17:09:29] depth=3 blocks=8 total=22.40M bank=19.03M online=1.75M
+[17:09:29] model: k=6 h=2 depth=1 total=9.77M online=1.75M
+[17:09:30] shape check: [{"n_in": 64, "n_out": 16, "logits_shape": [2, 16, 2251], "n_tokens_in": 64, "n_tokens_out": 16, "ok": true}, {"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}, {"n_in": 128, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 128, "n_tokens_out": 32, "ok": true}, {"n_in": 96, "n_out": 8, "logits_shape": [2, 8, 2251], "n_tokens_in": 96, "n_tokens_out": 8, "ok": true}, {"n_in": 96, "n_out": 64, "logits_shape": [2, 64, 2251], "n_tokens_in": 96, "n_tokens_out": 64, "ok": true}]
+E:\PycharmProject\experiments\online_v12\model.py:249: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  "aux": {"chosen": chosen, "gate": float(g)}}
+[17:09:31]   pretrain s0 loss=109.426 train_probe arb=35.8522 a=55.4592 c=52.1326
+[17:09:47]   pretrain s250 loss=19.467 train_probe arb=11.4282 a=11.8621 c=13.2232
+[17:10:04]   pretrain s500 loss=15.769 train_probe arb=7.8717 a=7.9618 c=8.5584
+[17:10:21]   pretrain s750 loss=16.339 train_probe arb=6.7172 a=6.8106 c=7.0835
+[17:10:37]   pretrain s1000 loss=14.301 train_probe arb=6.0211 a=6.1027 c=6.1994
+[17:10:54]   pretrain s1250 loss=12.775 train_probe arb=5.7818 a=5.8536 c=5.8658
+[17:11:11] pretrain done in 100.2s
+[17:11:11] after pretrain held(n=96,m=32) = {'a': 5.5677, 'c': 5.7021, 'arb': 5.5642}
+[17:11:11]   n=64 m=16: held arb=5.1194 a=5.1248 c=5.2664
+[17:11:11]   n=96 m=32: held arb=5.7197 a=5.7500 c=5.8347
+[17:11:11]   n=128 m=32: held arb=5.6608 a=5.6759 c=5.7885
+[17:11:11]   n=96 m=8: held arb=6.0614 a=6.1590 c=6.0989
+[17:11:12]   n=96 m=64: held arb=5.6952 a=5.8388 c=5.6929
+[17:11:32]   online 500/3000 stream_arb=5.6758 held_arb=5.7743 held_a=6.3809
+[17:11:53]   online 1000/3000 stream_arb=5.7633 held_arb=5.8693 held_a=6.5018
+[17:12:09]   online 1500/3000 stream_arb=5.0964 held_arb=5.7872 held_a=6.2415
+[17:12:25]   online 2000/3000 stream_arb=5.1858 held_arb=5.7861 held_a=6.3114
+[17:12:41]   online 2500/3000 stream_arb=5.2593 held_arb=5.8199 held_a=6.5153
+[17:12:57]   online 3000/3000 stream_arb=5.3223 held_arb=5.6683 held_a=5.8655
+[17:12:57] online done 3000 chunks in 105.6s
+[17:12:58] after online held = {'a': 5.8655, 'c': 5.6929, 'arb': 5.6683}
+[17:12:58] saved E:\PycharmProject\experiments\online_v12\results_v12_d1_n96m32.json

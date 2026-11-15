@@ -1,0 +1,30 @@
+{"step": 0, "loss": 5.1852, "ppos": 0.0069, "grad_norm": 9.0732, "lr": 0.001, "sec": 0.6}
+{"step": 1, "loss": 4.8311, "ppos": 0.011, "grad_norm": 5.1528, "lr": 0.001, "sec": 0.6}
+{"step": 2, "loss": 4.4508, "ppos": 0.0258, "grad_norm": 3.3908, "lr": 0.001, "sec": 0.7}
+{"step": 3, "loss": 4.9388, "ppos": 0.0151, "grad_norm": 3.039, "lr": 0.001, "sec": 0.7}
+{"step": 4, "loss": 4.6893, "ppos": 0.0169, "grad_norm": 2.5876, "lr": 0.001, "sec": 0.7}
+{"step": 5, "loss": 4.4295, "ppos": 0.0386, "grad_norm": 2.6025, "lr": 0.001, "sec": 0.7}
+{"step": 6, "loss": 4.6117, "ppos": 0.0308, "grad_norm": 2.2586, "lr": 0.001, "sec": 0.8}
+{"step": 7, "loss": 4.8027, "ppos": 0.0212, "grad_norm": 2.2536, "lr": 0.001, "sec": 0.8}
+{"step": 8, "loss": 4.9486, "ppos": 0.0099, "grad_norm": 2.2246, "lr": 0.001, "sec": 0.8}
+{"step": 9, "loss": 4.8277, "ppos": 0.0107, "grad_norm": 1.9626, "lr": 0.001, "sec": 0.8, "eval": {"held_top1": 0.0566, "held_top5": 0.0859, "cos": 0.0455, "hard_neg_win": 0.5389, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0664, "ctrl_keep_last_acc": 0.0566, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.42028985507246375, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}
+{"step": 10, "loss": 4.7894, "ppos": 0.0134, "grad_norm": 2.4179, "lr": 0.001, "sec": 2.0}
+{"step": 11, "loss": 4.6315, "ppos": 0.0153, "grad_norm": 1.9148, "lr": 0.001, "sec": 2.0}
+{"step": 12, "loss": 4.8992, "ppos": 0.0121, "grad_norm": 1.8364, "lr": 0.001, "sec": 2.1}
+{"step": 13, "loss": 4.5848, "ppos": 0.0328, "grad_norm": 1.8598, "lr": 0.001, "sec": 2.1}
+{"step": 14, "loss": 4.7137, "ppos": 0.0234, "grad_norm": 1.7033, "lr": 0.001, "sec": 2.1}
+{"step": 15, "loss": 4.7502, "ppos": 0.0152, "grad_norm": 1.6865, "lr": 0.001, "sec": 2.1}
+{"step": 16, "loss": 4.3255, "ppos": 0.0421, "grad_norm": 1.5166, "lr": 0.001, "sec": 2.2}
+{"step": 17, "loss": 4.5392, "ppos": 0.0292, "grad_norm": 1.4866, "lr": 0.001, "sec": 2.2}
+{"step": 18, "loss": 4.5256, "ppos": 0.03, "grad_norm": 1.4952, "lr": 0.001, "sec": 2.2}
+{"step": 19, "loss": 4.9094, "ppos": 0.0114, "grad_norm": 1.5345, "lr": 0.001, "sec": 2.2, "eval": {"held_top1": 0.0332, "held_top5": 0.1152, "cos": 0.0502, "hard_neg_win": 0.5476, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.3164, "other_ctx_acc": 0.0215, "ctrl_keep_last_acc": 0.0332, "ctrl_keep_last_change": 0.3184, "freq_bucket": {"high": 0.2463768115942029, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}
+{"step": 20, "loss": 4.6631, "ppos": 0.0237, "grad_norm": 1.5127, "lr": 0.001, "sec": 3.3}
+{"step": 21, "loss": 4.2549, "ppos": 0.052, "grad_norm": 1.3018, "lr": 0.001, "sec": 3.3}
+{"step": 22, "loss": 4.2427, "ppos": 0.0397, "grad_norm": 1.2876, "lr": 0.001, "sec": 3.3}
+{"step": 23, "loss": 4.3508, "ppos": 0.043, "grad_norm": 1.5541, "lr": 0.001, "sec": 3.4}
+{"step": 24, "loss": 4.2555, "ppos": 0.0474, "grad_norm": 1.342, "lr": 0.001, "sec": 3.4}
+{"step": 25, "loss": 4.5901, "ppos": 0.022, "grad_norm": 1.276, "lr": 0.001, "sec": 3.4}
+{"step": 26, "loss": 4.777, "ppos": 0.0192, "grad_norm": 1.2687, "lr": 0.001, "sec": 3.4}
+{"step": 27, "loss": 4.748, "ppos": 0.0257, "grad_norm": 1.1627, "lr": 0.001, "sec": 3.5}
+{"step": 28, "loss": 4.4296, "ppos": 0.0469, "grad_norm": 1.2422, "lr": 0.001, "sec": 3.5}
+{"step": 29, "loss": 4.2757, "ppos": 0.0612, "grad_norm": 1.1634, "lr": 0.001, "sec": 3.5, "eval": {"held_top1": 0.0566, "held_top5": 0.1152, "cos": 0.0606, "hard_neg_win": 0.5414, "hard_neg_source": "fixed pool=top-512 frequent train tokens; K=16 per target; seed=hard_neg_seed+token_id; target excluded", "ctx_change_rate": 0.0, "other_ctx_acc": 0.0664, "ctrl_keep_last_acc": 0.0566, "ctrl_keep_last_change": 0.0, "freq_bucket": {"high": 0.42028985507246375, "mid": 0.0, "low": 0.0, "rare": 0.0}, "freq_bucket_n": {"high": 69, "mid": 64, "low": 200, "rare": 179}}}

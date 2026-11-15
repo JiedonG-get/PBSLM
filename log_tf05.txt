@@ -1,0 +1,25 @@
+[20:05:10] train=361051 held=63716 vocab=2251
+[20:05:11] depth=1 blocks=8 total=10.72M bank=6.39M online=2.37M
+[20:05:11] depth=2 blocks=8 total=17.04M bank=12.71M online=2.37M
+[20:05:11] depth=3 blocks=8 total=23.36M bank=19.03M online=2.37M
+[20:05:11] model: k=6 h=2 depth=1 total=10.72M online=2.37M
+[20:05:11] shape check: [{"n_in": 64, "n_out": 16, "logits_shape": [2, 16, 2251], "n_tokens_in": 64, "n_tokens_out": 16, "ok": true}, {"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}]
+Traceback (most recent call last):
+  File "E:\PycharmProject\experiments\online_v12\run_online.py", line 341, in <module>
+    main()
+    ~~~~^^
+  File "E:\PycharmProject\experiments\online_v12\run_online.py", line 297, in main
+    pt = pretrain(model, train_ids, vocab, args.n_in, args.n_out, args.steps,
+                  seed=args.seed, batch=args.batch, act_x=args.act_x,
+                  shock_beta=args.shock_beta, tf_beta=args.tf_beta)
+  File "E:\PycharmProject\experiments\online_v12\run_online.py", line 135, in pretrain
+    out = model(x, n_out, {"act": act}, tf=y if tf_beta > 0 else None)
+  File "C:\Users\用户\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\用户\AppData\Roaming\Python\Python313\site-packages\torch\nn\modules\module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "E:\PycharmProject\experiments\online_v12\model.py", line 353, in forward
+    q = torch.cat([self.q_emb[:1], self.tok(tf[:, :-1])], dim=0) + self.q_pos[:m_tf]
+        ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Tensors must have same number of dimensions: got 2 and 3

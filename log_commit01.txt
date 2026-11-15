@@ -1,0 +1,29 @@
+[21:29:52] train=361051 held=63716 vocab=2251
+[21:29:53] depth=1 blocks=8 total=10.72M bank=6.39M online=2.37M
+[21:29:53] depth=2 blocks=8 total=17.04M bank=12.71M online=2.37M
+[21:29:53] depth=3 blocks=8 total=23.36M bank=19.03M online=2.37M
+[21:29:53] model: k=6 h=2 depth=1 total=10.72M online=2.37M
+[21:29:53] shape check: [{"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}]
+E:\PycharmProject\experiments\online_v12\run_online.py:178: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  shock_log.append(round(float(S.mean()), 4))
+[21:29:54]   pretrain s0 loss=264.009 shock=6.908 active=3 train_probe arb=37.0960
+[21:30:03]   pretrain s100 loss=90.758 shock=6.172 active=3 train_probe arb=15.6448
+[21:30:12]   pretrain s200 loss=80.822 shock=6.053 active=3 train_probe arb=12.7355
+[21:30:20]   pretrain s300 loss=58.508 shock=5.445 active=3 train_probe arb=10.2869
+[21:30:29]   pretrain s400 loss=43.704 shock=5.307 active=3 train_probe arb=9.4540
+[21:30:38]   pretrain s500 loss=43.756 shock=4.953 active=3 train_probe arb=8.2092
+[21:30:45]   pretrain s600 loss=28.529 shock=3.965 active=3 train_probe arb=7.5692
+[21:30:53]   pretrain s700 loss=32.099 shock=3.962 active=3 train_probe arb=7.2274
+[21:31:00]   pretrain s800 loss=37.868 shock=4.862 active=3 train_probe arb=6.8205
+[21:31:07]   pretrain s900 loss=36.540 shock=4.676 active=3 train_probe arb=6.6779
+[21:31:15]   pretrain s1000 loss=32.824 shock=4.354 active=3 train_probe arb=6.4620
+[21:31:22]   pretrain s1100 loss=34.915 shock=4.510 active=3 train_probe arb=6.4523
+[21:31:29]   pretrain s1200 loss=25.817 shock=3.554 active=3 train_probe arb=6.3190
+[21:31:36]   pretrain s1300 loss=28.740 shock=3.855 active=3 train_probe arb=6.3266
+[21:31:44]   pretrain s1400 loss=34.110 shock=4.623 active=3 train_probe arb=6.2813
+[21:31:51] pretrain done in 117.0s
+[21:31:51] after pretrain held(n=96,m=32) = {'a': 5.3239, 'c': 5.4491, 'arb': 5.2081}
+[21:31:51]   n=96 m=32: held arb=5.2081 a=5.3239 c=5.4491
+[21:31:52] after online held = {'a': 5.3239, 'c': 5.4491, 'arb': 5.2081}
+[21:31:52] saved E:\PycharmProject\experiments\online_v12\results_v12_d1_n96m32_tv_ratio_a_side_commit01.json

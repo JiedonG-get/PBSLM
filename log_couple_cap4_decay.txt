@@ -1,0 +1,11 @@
+[23:25:20] data_file=E:\PycharmProject\data\zhwiki_subset.txt format=text chars=37650398
+single tau=0.00: tokens/call= 1.00 first_div= 0.00  top1@0=0.000 prefix2=0.000  distinct1/2=0.04/0.04
+block  tau=0.05: tokens/call= 1.00 first_div= 0.00  top1@0=0.000 prefix2=0.000  distinct1/2=0.04/0.04
+block  tau=0.10: tokens/call= 1.00 first_div= 0.00  top1@0=0.000 prefix2=0.000  distinct1/2=0.04/0.04
+verify tau=0.00: tokens/call= 4.00 first_div= 0.00  top1@0=0.000 prefix2=0.000  distinct1/2=0.04/0.04
+verify tau=0.02: tokens/call= 4.00 first_div= 0.00  top1@0=0.000 prefix2=0.000  distinct1/2=0.04/0.04
+verify tau=0.05: tokens/call= 1.00 first_div= 0.00  top1@0=0.000 prefix2=0.000  distinct1/2=0.04/0.04
+verify tau=0.10: tokens/call= 1.00 first_div= 0.00  top1@0=0.000 prefix2=0.000  distinct1/2=0.04/0.04
+[interrupt] single tau=0.00: max_commit=1 recovery_acc@8=0.042 recovery_prefix=0.33
+[interrupt] verify tau=0.02: max_commit=4 recovery_acc@8=0.042 recovery_prefix=0.33
+saved closed_loop_results.json (with interrupt)

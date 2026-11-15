@@ -1,0 +1,9 @@
+{
+  "ckpt": "ckpt_v12b_d6_n96m32_tv_ratio_zhwiki.pt",
+  "d": 256,
+  "label_rate_train": 0.9652343392372131,
+  "label_rate_held": 0.9792187213897705,
+  "held_acc": 0.9792187213897705,
+  "pred_on_pos": 1.0,
+  "pred_on_neg": 1.0
+}

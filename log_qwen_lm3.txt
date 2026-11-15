@@ -1,0 +1,36 @@
+E:\PycharmProject\experiments\online_v12\run_online.py:44: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  train = torch.from_numpy(np.asarray(arr[:cut]))
+[06:46:57] ids_bin=E:/PycharmProject/data/zhwiki_qwen_u32.bin dtype=uint32 bytes=2250.0MB vocab=n/a train=478130341 held=84375943
+[06:46:59] qwen io: vocab=151936 hidden=2048 (embed/head frozen, shared)
+[06:47:00] loaded ckpt ckpt_v12b_d6_n96m32_tv_ratio_qwen_lm2.pt (strict)
+[06:47:00] model: k=30 h=0 depth=6 E=10x1 total=155.57M online=2.31M E=8.03M mem=0.66M
+[06:47:00] shape check: [{"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 151936], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}]
+E:\PycharmProject\experiments\online_v12\run_online.py:276: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  shock_log.append(round(float(S.mean()), 4))
+[06:47:01]   pretrain s0 loss=24.040 shock=5.943 active=3 train_probe arb=7.6863
+[06:48:21]   pretrain s100 loss=21.470 shock=5.731 active=3 train_probe arb=7.5386
+[06:49:41]   gradnorm w={'a': 0.467, 'arb': 1.043, 'c': 0.49} G={'c': 1.7, 'arb': 1.0, 'a': 3.1}
+[06:49:41]   pretrain s200 loss=21.869 shock=6.035 active=4 train_probe arb=7.5934
+[06:51:02]   pretrain s300 loss=21.471 shock=5.770 active=3 train_probe arb=7.5116
+[06:52:18]   gradnorm w={'a': 0.443, 'arb': 1.081, 'c': 0.476} G={'c': 3.0, 'arb': 1.7, 'a': 4.1}
+[06:52:18]   pretrain s400 loss=20.729 shock=5.730 active=3 train_probe arb=7.5269
+[06:53:36]   pretrain s500 loss=21.058 shock=5.749 active=6 train_probe arb=7.5460
+[06:54:58]   gradnorm w={'a': 0.41, 'arb': 1.111, 'c': 0.478} G={'c': 2.0, 'arb': 1.7, 'a': 5.0}
+[06:54:58]   pretrain s600 loss=21.919 shock=6.027 active=3 train_probe arb=7.5115
+[06:56:15]   pretrain s700 loss=19.912 shock=5.684 active=6 train_probe arb=7.5123
+[06:57:28]   gradnorm w={'a': 0.38, 'arb': 1.159, 'c': 0.461} G={'c': 3.2, 'arb': 1.6, 'a': 5.2}
+[06:57:29]   pretrain s800 loss=21.002 shock=5.880 active=3 train_probe arb=7.5155
+[06:58:47]   pretrain s900 loss=20.066 shock=5.738 active=4 train_probe arb=7.5282
+[07:00:05]   gradnorm w={'a': 0.355, 'arb': 1.197, 'c': 0.448} G={'c': 3.1, 'arb': 1.8, 'a': 5.0}
+[07:00:13]   saved E:/PycharmProject/experiments/online_v12/ckpt_qwen_lm3.step1000.pt
+[07:00:13]   pretrain s1000 loss=20.652 shock=5.906 active=4 train_probe arb=7.5571
+[07:01:31]   pretrain s1100 loss=18.763 shock=5.614 active=4 train_probe arb=7.6159
+[07:02:48]   gradnorm w={'a': 0.33, 'arb': 1.235, 'c': 0.436} G={'c': 1.3, 'arb': 0.8, 'a': 2.4}
+[07:02:48]   pretrain s1200 loss=19.540 shock=5.818 active=4 train_probe arb=7.4998
+[07:04:02]   pretrain s1300 loss=19.467 shock=5.787 active=4 train_probe arb=7.4994
+[07:05:13]   gradnorm w={'a': 0.303, 'arb': 1.271, 'c': 0.426} G={'c': 2.0, 'arb': 1.3, 'a': 4.0}
+[07:05:13]   pretrain s1400 loss=18.415 shock=5.719 active=3 train_probe arb=7.5026
+[07:06:31]   pretrain s1500 loss=20.443 shock=6.062 active=3 train_probe arb=7.5596
+[07:07:53]   gradnorm w={'a': 0.3, 'arb': 1.299, 'c': 0.41} G={'c': 2.4, 'arb': 1.5, 'a': 4.1}
+[07:07:54]   pretrain s1600 loss=20.178 shock=5.948 active=5 train_probe arb=7.6002

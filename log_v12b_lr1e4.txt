@@ -1,0 +1,36 @@
+[17:16:32] train=361051 held=63716 vocab=2251
+[17:16:33] depth=1 blocks=8 total=10.65M bank=6.39M online=2.37M
+[17:16:33] depth=2 blocks=8 total=16.97M bank=12.71M online=2.37M
+[17:16:33] depth=3 blocks=8 total=23.29M bank=19.03M online=2.37M
+[17:16:33] model: k=6 h=2 depth=1 total=10.65M online=2.37M
+[17:16:34] shape check: [{"n_in": 32, "n_out": 8, "logits_shape": [2, 8, 2251], "n_tokens_in": 32, "n_tokens_out": 8, "ok": true}, {"n_in": 64, "n_out": 16, "logits_shape": [2, 16, 2251], "n_tokens_in": 64, "n_tokens_out": 16, "ok": true}, {"n_in": 96, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 96, "n_tokens_out": 32, "ok": true}, {"n_in": 128, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 128, "n_tokens_out": 32, "ok": true}, {"n_in": 192, "n_out": 32, "logits_shape": [2, 32, 2251], "n_tokens_in": 192, "n_tokens_out": 32, "ok": true}, {"n_in": 256, "n_out": 64, "logits_shape": [2, 64, 2251], "n_tokens_in": 256, "n_tokens_out": 64, "ok": true}, {"n_in": 96, "n_out": 8, "logits_shape": [2, 8, 2251], "n_tokens_in": 96, "n_tokens_out": 8, "ok": true}, {"n_in": 96, "n_out": 64, "logits_shape": [2, 64, 2251], "n_tokens_in": 96, "n_tokens_out": 64, "ok": true}, {"n_in": 96, "n_out": 128, "logits_shape": [2, 128, 2251], "n_tokens_in": 96, "n_tokens_out": 128, "ok": true}]
+[17:16:35]   pretrain s0 loss=123.139 train_probe arb=48.7367 a=54.3033 c=53.9313
+[17:17:05]   pretrain s250 loss=21.139 train_probe arb=12.0022 a=13.3777 c=13.5188
+[17:17:34]   pretrain s500 loss=15.707 train_probe arb=7.4344 a=7.6206 c=7.8527
+[17:18:03]   pretrain s750 loss=15.306 train_probe arb=6.2948 a=6.3631 c=6.3423
+[17:18:33]   pretrain s1000 loss=12.624 train_probe arb=5.7082 a=5.7067 c=5.7467
+[17:19:01]   pretrain s1250 loss=12.058 train_probe arb=5.6111 a=5.6220 c=5.6444
+[17:19:30]   pretrain s1500 loss=15.070 train_probe arb=5.3065 a=5.3298 c=5.3120
+[17:19:59]   pretrain s1750 loss=11.705 train_probe arb=5.3607 a=5.3532 c=5.3853
+[17:20:28] pretrain done in 233.2s
+[17:20:28] after pretrain held(n=96,m=32) = {'a': 5.5197, 'c': 5.5379, 'arb': 5.5021}
+[17:20:29]   n=32 m=8: held arb=4.8755 a=5.0403 c=4.8603
+[17:20:29]   n=64 m=16: held arb=4.5015 a=4.6136 c=4.4909
+[17:20:29]   n=96 m=32: held arb=5.2093 a=5.2528 c=5.2312
+[17:20:29]   n=128 m=32: held arb=4.9988 a=5.0631 c=4.9899
+[17:20:30]   n=192 m=32: held arb=4.9158 a=4.9215 c=4.9434
+[17:20:30]   n=256 m=64: held arb=5.2244 a=5.2038 c=5.2950
+[17:20:30]   n=96 m=8: held arb=5.5058 a=5.5271 c=5.5218
+[17:20:30]   n=96 m=64: held arb=5.4627 a=5.4821 c=5.4994
+[17:20:30]   n=96 m=128: held arb=5.4185 a=5.4437 c=5.4422
+[17:21:06]   online 500/4000 stream_arb=5.2227 held_arb=5.7560 held_a=5.8496
+[17:21:42]   online 1000/4000 stream_arb=5.4309 held_arb=5.7507 held_a=5.7617
+[17:22:11]   online 1500/4000 stream_arb=4.9075 held_arb=5.8051 held_a=5.8165
+[17:22:39]   online 2000/4000 stream_arb=4.9912 held_arb=5.8656 held_a=5.8778
+[17:23:08]   online 2500/4000 stream_arb=5.0465 held_arb=5.7161 held_a=5.7294
+[17:23:36]   online 3000/4000 stream_arb=5.0397 held_arb=5.5717 held_a=5.5777
+[17:24:04]   online 3500/4000 stream_arb=5.3858 held_arb=5.5698 held_a=5.5765
+[17:24:32]   online 4000/4000 stream_arb=5.3495 held_arb=5.5361 held_a=5.5420
+[17:24:32] online done 4000 chunks in 241.5s
+[17:24:34] after online held = {'a': 5.542, 'c': 5.5471, 'arb': 5.5361}
+[17:24:34] saved E:\PycharmProject\experiments\online_v12\results_v12_d1_n96m32_lr1e4.json

@@ -1,0 +1,12 @@
+  100000 articles, 52.8M chars, 2s
+  200000 articles, 128.0M chars, 6s
+  300000 articles, 210.2M chars, 11s
+  400000 articles, 271.9M chars, 15s
+  500000 articles, 326.3M chars, 19s
+  600000 articles, 393.5M chars, 22s
+  700000 articles, 473.2M chars, 27s
+  800000 articles, 538.8M chars, 32s
+  900000 articles, 595.9M chars, 36s
+  1000000 articles, 636.4M chars, 39s
+  1100000 articles, 689.9M chars, 41s
+{"jsonl": "E:/PycharmProject/data/zhwiki_dataset.jsonl", "lines": 2873835, "kept": 1183184, "chars": 738591871, "seconds": 46.0}
