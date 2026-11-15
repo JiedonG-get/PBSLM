@@ -31,8 +31,9 @@ class BoundedCausalModelSession(CausalModelSession):
         return candidate
 
     @torch.no_grad()
-    def confirm_memory(self, candidate_id, *, lr=.05):
+    def confirm_memory(self, candidate_id, *, lr=None):
         self._guard()
+        lr = self.controller.lr if lr is None else lr
         if lr != self.controller.lr:
             raise ValueError('bounded rebuild uses fixed configured lr')
         if candidate_id in self.applied:
@@ -44,14 +45,20 @@ class BoundedCausalModelSession(CausalModelSession):
         if payload.get('slot') != candidate['value'].get('slot'):
             raise ValueError('semantic slot evidence mismatch')
         old_protocol = self.protocol.snapshot()
-        old_controller = self.controller.snapshot()
+        old_memories = [value.detach().clone() for value in self.model.mem]
+        # Rollback must not replay model.write_memory: it may be the failing component.
+        old_controller_state = {key: copy.deepcopy(value) for key, value in self.controller.__dict__.items()
+                                if key != 'model'}
         try:
             transaction = self.controller.put_confirmed(candidate_id, payload['slot'],
                                                         payload['features'], payload['label_ids'])
             confirmation = self.protocol.confirm_write(candidate_id, confirmation_provenance='feedback',
                                                        available_at=candidate['available_at'])
         except Exception:
-            self.controller = BoundedFeedbackMemory.restore(self.model, old_controller)
+            for destination, original in zip(self.model.mem, old_memories):
+                destination.copy_(original)
+            self.controller.__dict__.clear()
+            self.controller.__dict__.update({'model': self.model, **old_controller_state})
             self.protocol = RuntimeSession.restore(old_protocol)
             self.memory_hash = state_hash(self.model, memory=True)
             raise
@@ -81,6 +88,18 @@ class BoundedCausalModelSession(CausalModelSession):
                 raise ValueError('base and ledger memory snapshots differ')
             if base.applied != [r['event_id'] for r in controller.receipts]:
                 raise ValueError('confirmation and bounded ledger histories differ')
+            for cid in base.applied:
+                event = controller._events[cid]
+                for key, expected in event['receipt'].items():
+                    if base.receipts[cid].get(key) != expected:
+                        raise ValueError('base and ledger receipts differ')
+                payload = base.pending.get(cid)
+                confirmation = base.protocol.candidates[cid]['value']
+                if (payload is None or event['request']['operation'] != 'put'
+                        or event['request']['slot'] != confirmation.get('slot')
+                        or event['request']['payload']['label_ids'] != confirmation['label_ids']
+                        or event['request']['payload']['features'] != payload['features'].detach().cpu().tolist()):
+                    raise ValueError('confirmation and numerical write payload differ')
             for cid, payload in base.pending.items():
                 if payload.get('slot') != base.protocol.candidates[cid]['value'].get('slot'):
                     raise ValueError('pending semantic slot mismatch')

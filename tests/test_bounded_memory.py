@@ -45,6 +45,21 @@ class BoundedMemoryTests(unittest.TestCase):
         with torch.no_grad():
             self.assertTrue(torch.equal(c_before, self.m(x, 1, sample_noise=False)['z_c']))
 
+    def test_slot_or_order_only_corruption_rejected(self):
+        self.c.put_confirmed('1', 'a', self.f, [24])
+        self.c.put_confirmed('2', 'b', features(self.m,5), [25])
+        snap=self.c.snapshot()
+        before=state_hash(self.m,memory=True)
+        for mutation in ('slot','order'):
+            bad=copy.deepcopy(snap)
+            if mutation=='slot':
+                bad['ledger'][0][0]='renamed-slot'
+            else:
+                bad['ledger'].reverse()
+            with self.assertRaisesRegex(ValueError,'ledger.*history'):
+                BoundedFeedbackMemory.restore(self.m,bad)
+            self.assertEqual(before,state_hash(self.m,memory=True))
+
     def test_lru_update_recency_and_fifo_order(self):
         for policy, expected in [('lru', ('a', 'c')), ('fifo', ('b', 'c'))]:
             with self.subTest(policy=policy):

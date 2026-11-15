@@ -174,13 +174,42 @@ class BoundedFeedbackMemory:
                 raise ValueError('invalid audit history')
             if len(value['events']) != len(value['audit']):
                 raise ValueError('event/receipt count mismatch')
+            shadow = OrderedDict()
+            seen_events = set()
+            previous_hash = obj.memory_hash
             for version, receipt in enumerate(value['audit'], 1):
                 saved = value['events'].get(receipt['event_id'])
+                if receipt['event_id'] in seen_events:
+                    raise ValueError('duplicate audit event')
+                seen_events.add(receipt['event_id'])
                 if receipt['version'] != version or saved is None or saved['receipt'] != receipt:
                     raise ValueError('event/receipt mismatch')
-                request_hash = hashlib.sha256(json.dumps(saved['request'], sort_keys=True).encode()).hexdigest()
+                request = saved['request']
+                request_hash = hashlib.sha256(json.dumps(request, sort_keys=True).encode()).hexdigest()
                 if request_hash != receipt['payload_sha256']:
                     raise ValueError('event payload hash mismatch')
+                slot = request['slot']
+                obj._text(slot, 'event slot')
+                evicted = None
+                if request['operation'] == 'put':
+                    payload = obj._payload(request['payload']['features'], request['payload']['label_ids'])
+                    if obj.policy == 'lru':
+                        shadow.pop(slot, None)
+                    shadow[slot] = payload
+                    if len(shadow) > obj.capacity:
+                        evicted, _ = shadow.popitem(last=False)
+                elif request['operation'] == 'remove':
+                    shadow.pop(slot, None)
+                else:
+                    raise ValueError('unknown ledger operation')
+                if (receipt['operation'] != request['operation'] or receipt['slot'] != slot
+                        or receipt['evicted'] != evicted or receipt['retained_slots'] != list(shadow)
+                        or receipt['write_calls'] != len(shadow) or receipt['lr'] != obj.lr
+                        or receipt['memory_before'] != previous_hash):
+                    raise ValueError('ledger receipt semantics mismatch')
+                previous_hash = receipt['memory_after']
+            if list(shadow.items()) != list(obj._ledger.items()):
+                raise ValueError('retained ledger disagrees with event history')
             obj._rebuild(obj._ledger)
             if any(not torch.allclose(a, b, atol=1e-6, rtol=1e-5) for a, b in zip(model.mem, memories)):
                 raise ValueError('ledger does not reconstruct snapshot numerical memory')

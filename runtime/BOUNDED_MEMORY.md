@@ -36,6 +36,13 @@ python -m unittest tests.test_bounded_memory tests.test_bounded_session -v
 
 这些测试只验证协议与数值作用，不证明模型一定读对保留内容。持续干扰实验已证明M在更大负载下仍会出错，见 `experiments/persistent_memory/RESULTS.md`。
 
+## 独立审计后的加固
+
+- 失败回滚直接恢复旧M张量与控制器逻辑状态，不重入可能已损坏的write_memory；覆盖写成功而确认失败、rollback writer也故障的组合。
+- restore先纯逻辑重放记录验证slot、顺序、payload和回执，防止数值M相同但slot标签/顺序被破坏的快照被接受。
+- 有界会话核对base/ledger回执与确认payload一致；非默认lr使用配置默认值，冲突显式报错。
+- 独立ledger restore允许allclose重建，但当前会话要求与base快照数值hash精确一致；因此**会话restore只承诺可重建为bitwise一致的本地执行环境，不承诺跨设备/不同数值内核迁移**。允许容差的跨设备恢复需要后续独立规范。
+
 ## 未完成
 
 - 多进程/线程锁、GPU取消、崩溃一致性、外部存储持久化；

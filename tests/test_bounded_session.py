@@ -53,6 +53,33 @@ class BoundedSessionTests(unittest.TestCase):
         self.assertEqual(before,self.session.snapshot())
         self.session.confirm_memory(candidate)
 
+    def test_rollback_never_calls_broken_write_path(self):
+        self.session.confirm_memory(self.feedback(4,24,'slot4'))
+        candidate=self.feedback(5,25,'slot5')
+        before=self.session.snapshot()
+        with patch.object(self.model,'write_memory',side_effect=RuntimeError('persistent write fault')):
+            with self.assertRaisesRegex(RuntimeError,'persistent write fault'):
+                self.session.confirm_memory(candidate)
+        self.assertEqual(before,self.session.snapshot())
+        original=self.model.write_memory
+        calls=[]
+
+        def fail_if_replayed(*args,**kwargs):
+            calls.append(1)
+            if len(calls)>2:
+                raise RuntimeError('rollback re-entered writer')
+            return original(*args,**kwargs)
+
+        # Two retained entries are written, then protocol confirmation fails.
+        # Rollback must directly restore; writer must not be called a third time.
+        with patch.object(self.model,'write_memory',side_effect=fail_if_replayed), \
+             patch.object(self.session.protocol,'confirm_write',side_effect=RuntimeError('confirmation fault')):
+            with self.assertRaisesRegex(RuntimeError,'confirmation fault'):
+                self.session.confirm_memory(candidate)
+        self.assertEqual(len(calls),2)
+        self.assertEqual(before,self.session.snapshot())
+        self.session.confirm_memory(candidate)
+
     def test_snapshot_correction_continuation(self):
         c1=self.feedback(4,24,'slot')
         self.session.confirm_memory(c1)
@@ -74,6 +101,22 @@ class BoundedSessionTests(unittest.TestCase):
         bad=copy.deepcopy(snap)
         bad['base']['memory'][0][0][0] += 1
         with self.assertRaises(ValueError):
+            BoundedCausalModelSession.restore(self.model,bad)
+        self.assertEqual(before,state_hash(self.model,memory=True))
+
+    def test_nondefault_lr_and_receipt_binding(self):
+        self.session=BoundedCausalModelSession(self.model,capacity=2,lr=.03)
+        candidate=self.feedback(4,24,'slot')
+        receipt=self.session.confirm_memory(candidate)
+        self.assertEqual(receipt['lr'],.03)
+        self.assertTrue(self.session.confirm_memory(candidate)['replayed'])
+        with self.assertRaises(ValueError):
+            self.session.confirm_memory(candidate,lr=.05)
+        snap=self.session.snapshot()
+        before=state_hash(self.model,memory=True)
+        bad=copy.deepcopy(snap)
+        bad['base']['receipts'][candidate]['lr']=.02
+        with self.assertRaisesRegex(ValueError,'receipts differ'):
             BoundedCausalModelSession.restore(self.model,bad)
         self.assertEqual(before,state_hash(self.model,memory=True))
 

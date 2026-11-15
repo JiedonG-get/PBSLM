@@ -1,0 +1,42 @@
+{
+  "baseline": {
+    "command": [
+      "C:\\Python313\\python.exe",
+      "-m",
+      "evaluation.text_facts",
+      "--seeds",
+      "0",
+      "1",
+      "2",
+      "--episodes",
+      "800",
+      "--eval-episodes",
+      "32",
+      "--key-align-weight",
+      "0.0",
+      "--output",
+      "experiments/text_facts/paired800/baseline.json"
+    ],
+    "returncode": 0
+  },
+  "key_aligned": {
+    "command": [
+      "C:\\Python313\\python.exe",
+      "-m",
+      "evaluation.text_facts",
+      "--seeds",
+      "0",
+      "1",
+      "2",
+      "--episodes",
+      "800",
+      "--eval-episodes",
+      "32",
+      "--key-align-weight",
+      "0.2",
+      "--output",
+      "experiments/text_facts/paired800/key_aligned.json"
+    ],
+    "returncode": 0
+  }
+}
