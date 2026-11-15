@@ -2,7 +2,7 @@
 
 状态：**O1.5 架构分析文档（补充 active 三集合、严格 mask、Flow 语义、参数隔离边界、
 BlockBank beta 索引、batch union 语义、逐块独立性、M1/M2 严格等价、
-P0-5 可区分 beta 测试、P0-6 统一 mask 布局、P0-7 非零更新、P0-8 count 定义、P0-9 Flow attention mask、P0-10 agree 逐块语义）。
+P0-5 可区分 beta 测试、P0-6 统一 mask 布局、P0-7 非零更新、P0-8 count 定义、P0-9 Flow attention mask、P0-10 agree 逐块语义、P0-11 NaN-safe mask）。
 只做设计，不修改模型代码，不运行训练/loss/backward/optimizer.step/smoke。**
 基线：O1 提交 `ad99bc1`；O1 只证明了**输出头已拆分**、六组 A 参数白名单和基础 C 稳定性，
 **不代表 A/C 计算路径已经完全隔离，更不代表 Online Learning 已实现。**
@@ -228,7 +228,8 @@ out_side[g,b]       = mask_side[g,b] · (Y_side[g,b] + update_side[g,b])
 
 1. `others` 只包含**当前样本、当前角色**选中的块；
 2. 无效块 `mask=0` 不参与 `tot`/`others`；
-3. 无效块不能接收 comm 更新，`update_side` 和 `out_side` 都必须乘 `mask_side`；
+3. 无效块不能接收 comm 更新；`update_side` 和 `out_side` 必须用
+   `torch.where(mask_side[:, :, None, None], ..., 0)` 清零，不能只乘 `mask_side`；
 4. 每次/每层输出后再次应用 mask，避免无效块状态残留或重新进入后续计算；
 5. 同一物理块被 A/C 同时选中时，A 侧和 C 侧分别用自己的 `mask_side`、自己的 `Y_side` 调用 comm；
    共享的是冻结的 `comm1/comm2` 参数，不是中间 `others` 状态；
@@ -246,13 +247,13 @@ out_side[g,b]       = mask_side[g,b] · (Y_side[g,b] + update_side[g,b])
 | `Y` `(G,B,T,D)` | `mask_side[:, :, None, None]` |
 | `h` `(G,B,T,f)` | `mask_side[:, :, None, None]` |
 | `count_b` | `mask_side.sum(0)`，形状 `(B,)` |
-| `tot` | `(mask_side[:, :, None, None] * h).sum(0)`，形状 `(B,T,f/D)` |
+| `tot` | `torch.where(mask_side[:, :, None, None], h, 0).sum(0)`，形状 `(B,T,f/D)` |
 | `mean` | `tot / count_b.clamp_min(1)[:, None, None]`，形状 `(B,T,f/D)` |
 | `scale` | 有效块 norm 的 masked 均值，形状 `(B,T)` |
 | `agree` | **逐块** `(G,B,T)`；无效块置零；`count_b` 只用于 `mean/scale`，不是 agree 的除数 |
 | Flow attention key | 对样本 b 使用 `mask_side[:, b]`，形状 `(G,)`，作用在 logits 的 key 维 |
 | Flow query | 只对 `mask_side[:, b]` 为真的块产生输出 |
-| 每层输出 | 重新乘 `mask_side[:, :, None, None]` |
+| 每层输出 | `torch.where(mask_side[:, :, None, None], value, 0)`，不能只乘 mask |
 
 所有 A/C comm、FlowStep、mean、agree、settled 计算必须使用同一 `(G,B)` 布局；
 不允许一侧用 `(G,B)`、另一侧用 `(B,G)`。
@@ -262,12 +263,14 @@ out_side[g,b]       = mask_side[g,b] · (Y_side[g,b] + update_side[g,b])
 ```text
 count_b = mask_side.sum(0)                 # (B,)，每个样本当前角色的有效块数
 count_b = count_b.clamp_min(1)             # 防除零；正常路径必须 >=1
-tot     = (mask_side[:, :, None, None] * h).sum(0)   # (B,T,f)
-mean    = tot / count_b[:, None, None]     # (B,T,f)
-scale_b = (mask_side[:, :, None] * h.norm(dim=-1)).sum(0) / count_b[:, None] + 1e-6
+valid_h    = torch.where(mask_side[:, :, None, None], h, 0)       # 无效块先置零
+tot        = valid_h.sum(0)                                      # (B,T,f)
+mean       = tot / count_b[:, None, None]                         # (B,T,f)
+valid_norm = torch.where(mask_side[:, :, None], h.norm(dim=-1), 0)
+scale_b    = valid_norm.sum(0) / count_b[:, None] + 1e-6           # (B,T)
 # 逐块 agree：使用 masked mean/scale，不是对 agree 再除以 count_b
-agree[g,b] = 1 - ((h[g,b] - mean[b]).norm(dim=-1) / scale_b[b]).clamp(0, 2)
-agree      = agree * mask_side[:, :, None]   # 无效块 agree = 0
+agree_raw  = 1 - ((h - mean.unsqueeze(0)).norm(dim=-1) / scale_b.unsqueeze(0)).clamp(0, 2)
+agree      = torch.where(mask_side[:, :, None], agree_raw, 0)      # 无效块 agree = 0
 ```
 
 - `count_b` 是每个样本在当前角色下的有效块数；
@@ -277,7 +280,7 @@ agree      = agree * mask_side[:, :, None]   # 无效块 agree = 0
 - 无效块的 `agree` 必须清零，不能参与后续聚合；
 - 若后续 `I_side` 需要聚合 `agree`，必须单独定义：
   ```text
-  I_side[b] = (mask_side[:, b] * agree[:, b]).sum(0) / count_b[b]
+  I_side[b] = torch.where(mask_side[:, b], agree[:, b], 0).sum(0) / count_b[b]
   ```
   这是 `I` 的聚合，不是逐块 `agree` 公式的一部分；
 - `count_b == 0` 不能只用 clamp 掩盖语义错误：
@@ -286,16 +289,50 @@ agree      = agree * mask_side[:, :, None]   # 无效块 agree = 0
   - 若测试或异常路径出现 `count_b == 0`，应抛出受控错误（不得产生 NaN）；
   - `clamp_min(1)` 只是数值保护，不是“空集合合法”的声明。
 
+#### P0-11 NaN-safe mask：不能只依赖 `mask * value`
+
+`0 * NaN = NaN`，因此不能只用乘法 `mask * h` / `agree * mask` 屏蔽无效块。
+所有需要参与聚合的张量必须先通过 `torch.where(mask, value, 0)` 或等价 `masked_fill` 置零：
+
+```text
+valid_h    = torch.where(mask_side[:, :, None, None], h, 0)
+tot        = valid_h.sum(0)
+valid_norm = torch.where(mask_side[:, :, None], h.norm(dim=-1), 0)
+scale_b    = valid_norm.sum(0) / count_b[:, None] + 1e-6
+agree      = torch.where(mask_side[:, :, None], agree, 0)
+I_side[b]  = torch.where(mask_side[:, b], agree[:, b], 0).sum(0) / count_b[b]
+```
+
+约束：
+
+1. `tot`、`scale_b` 聚合前必须 where 置零；
+2. 逐块 `agree` 计算后必须 where 清零无效位置；
+3. `I_side` 聚合前必须 where 置零；
+4. comm/FlowStep 每层输出也必须 where 清除无效块，不能只乘 mask；
+5. 无效块中间状态若含 NaN，不得污染有效块聚合；
+6. **有效块自身出现 NaN 时不得被 where 掩盖**：where 条件只对无效块取零，
+   有效块 NaN 会正常传播到 `mean/scale/agree/I_side`，应触发正常错误路径；
+7. `count_b >= 1` 的正常路径不变量和空集合受控错误路径保持不变。
+
+测试要求：
+
+- 人为把无效块中间状态设为 NaN；
+- 断言有效块的 `mean`、`scale`、`agree`、`I_side` 和最终输出不受污染；
+- 人为把有效块中间状态设为 NaN；
+- 断言不会被无效块掩码“洗掉”，而是按正常错误路径暴露；
+- 记录 `torch.isfinite`、`torch.isnan` 检查结果。
+
 #### 2.5.2 `InfoFlow` 与 `FlowStep`
 
 对每侧有效块 `mask_side`：
 
 1. **attention key/value**：无效块的 key/value 必须屏蔽；可在 attention logits 上对无效 key 加 `-inf`；
-2. **attention query**：无效 query 不产生输出；计算后按 mask 清零，不能把无效块的状态留在 `h` 中；
+2. **attention query**：无效 query 不产生输出；计算后使用 `torch.where` 清零，
+   不能只乘 mask，也不能把无效块的状态留在 `h` 中；
 3. **每一层 FlowStep**：mask 必须随层传递，每层输出后重新应用；不能让无效块在下一层重新进入通信；
 4. **`mean` / `scale`**：只对当前样本、当前角色的有效块计算，分母是有效块数；
    **`agree` 是逐块结果 `(G,B,T)`**，按 `mean/scale` 公式逐块计算，
-   无效块置零；不能把 `count_b` 当作 `agree` 自身的除数；
+   无效块用 `torch.where` 置零；不能把 `count_b` 当作 `agree` 自身的除数；
 5. **`proj_out(mean)`**：只对有效块均值投影，得到每侧 consensus；
 6. **同一物理块**：A/C 两侧分别调用 Flow，分别计算 mask/attention/mean/agree；
    即使输入 `delta` 相同，也不能共享中间 attention/mean 状态。
@@ -315,7 +352,8 @@ agree      = agree * mask_side[:, :, None]   # 无效块 agree = 0
    ```
    无效 key 不得参与 softmax；
 2. **query mask**：无效 query 可以计算，但输出必须清零；
-   或只对有效 query 计算；无论哪种，`msg`/`h` 的无效行必须乘 query mask；
+   或只对有效 query 计算；无论哪种，`msg`/`h` 的无效行必须用
+   `torch.where(mask, ..., 0)` 清零，不能只乘 query mask；
 3. **每层 FlowStep**：每层输出后重新应用 `mask_side[:, :, None, None]`；
    下一层 attention 继续使用同一 key/query mask，无效块不能重新进入；
 4. **全无效 key**：
@@ -642,7 +680,7 @@ O1.5 只解决**计算状态隔离**，不解决参数独立：
 |---|---|---|---|---|
 | O1.5-0 | 本设计评审 | O1 | 文档通过 | — |
 | O1.5-A | 逐样本路由 + C 独立选块 | O1.5-0 | 单样本/batch 路由一致；样本顺序无关；`chosen_c`/`active_c` 不因 A 路由变化；共享 comm/flow 下 `z_c` 仍可能变化，只记录剩余耦合 | 同一样本路由随 batch 变化；`chosen_c`/`active_c` 随 A 路由变化 |
-| O1.5-B | A/C 分别 comm/flow + 严格 mask；P0-1 beta 修正、P0-2 union 语义、P0-3 逐块独立性、P0-4 严格等价、P0-5/P0-7 beta 可区分测试、P0-6/P0-8/P0-9 mask/count/全无效安全、P0-10 agree 逐块语义 | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；M1/M2 逐层等价；非连续 beta/union/逐块/空集合测试通过 | C 任一中间/最终指标变化；mask 泄漏；P0 测试失败；NaN/除零；性能超预算 |
+| O1.5-B | A/C 分别 comm/flow + 严格 mask；P0-1 beta 修正、P0-2 union 语义、P0-3 逐块独立性、P0-4 严格等价、P0-5/P0-7 beta 可区分测试、P0-6/P0-8/P0-9 mask/count/全无效安全、P0-10 agree 逐块语义、P0-11 NaN-safe mask | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；M1/M2 逐层等价；非连续 beta/union/逐块/空集合测试通过 | C 任一中间/最终指标变化；mask 泄漏；P0 测试失败；NaN/除零；性能超预算 |
 | O1.5-C | `role_a` 加入白名单（第七组） | O1.5-B | 七组白名单；A 路由更新后 `active_c`/C 仍稳定；`active_a` 数可解释 | C 变化；路由塌缩；吞吐异常 |
 | O1.5-D | 兼容/回滚/性能收口 | O1.5-B | 旧 checkpoint 加载；legacy 路径回归；性能记录 | 旧 ckpt 失败；无法回滚 |
 
@@ -720,10 +758,12 @@ outputs C(sample_i in batch=1) ≈ outputs C(sample_i in batch=N)
 - 对 C 自身无效块：验证其不参与 C 的 `others`/`mean`/`scale`/`agree`/输出；
   不能通过关闭 `active_c` 内有效 mask 位来要求 C 整体输出不变；
 - 每层 FlowStep 后，无效块输出必须为零/被排除，不能在下一层复活；
-- comm 的 `update_side`/`out_side` 必须乘 `mask_side`，无效块不能接收更新；
+- comm 的 `update_side`/`out_side` 必须用 `torch.where` 清零无效块，不能只乘 `mask_side`；
 - `agree` 必须是逐块 `(G,B,T)`，按 masked `mean/scale` 计算，无效块为零；
   `count_b` 只用于 `mean/scale`，不是 agree 自身的除数（P0-10）；
 - `I_c` 的聚合若使用 agree，必须单独定义按 `count_b` 的 masked 聚合；
+- 无效块中间状态人为设为 NaN 时，有效块 `mean/scale/agree/I_c/z_c` 不受污染；
+- 有效块自身 NaN 不得被无效块 mask 掩盖，必须按正常错误路径暴露（P0-11）；
 - `agree`/`mean`/`scale` 的有效块分母正确（P0-8）；
 - `count_b == 0` 的空集合走受控错误/显式零路径，不能 softmax 全 `-inf` 产生 NaN（P0-9）；
 - `settled_side` 必须是 per-block 残差，不得被 `consensus_side` 替代。
@@ -797,6 +837,7 @@ O1.5 回归测试必须同时验证 legacy 行为未被无意改变。
 15. 即使 beta 互异，若本次输入下 `r` 为零，P0-5 测试仍会失去区分能力；必须断言 `r.abs().max() > 0`。
 16. `count_b == 0` 或全无效 key 时直接 softmax 会 NaN；P0-8/P0-9 要求显式 count、断言和受控路径。
 17. 把 `agree` 误写成跨块均值或再除以 `count_b` 会改变其 `(G,B,T)` 语义；P0-10 要求逐块公式与单独聚合分离。
+18. 用乘法 `mask * value` 屏蔽无效块不能消除 NaN；P0-11 要求聚合前 `torch.where`，且不得掩盖有效块 NaN。
 
 ---
 
