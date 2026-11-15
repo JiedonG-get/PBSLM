@@ -230,16 +230,20 @@ out      = where(mask4, valid_Y + update, 0)
 count_b = mask_side.sum(0)                         # (B,)
 # 正常路径先断言 count_b >= 1；任一样本为 0 必须受控报错
 
-valid_h = where(mask4, h, 0)                       # (G,B,T,f) 先清理
-tot     = valid_h.sum(0)                           # (B,T,f)
-mean_b  = tot / count_b[:, None, None]             # (B,T,f)
+mask4     = mask_side[:, :, None, None]             # (G,B,1,1)
+valid_h   = where(mask4, h, 0)                      # (G,B,T,f) 先清理
+tot       = valid_h.sum(0)                          # (B,T,f)
+mean_b    = tot / count_b[:, None, None]            # (B,T,f)
 
 valid_norm = where(mask_side[:, :, None], valid_h.norm(dim=-1), 0)
 scale_b    = valid_norm.sum(0) / count_b[:, None] + 1e-6  # (B,T)
 
-agree_raw  = 1 - ((valid_h - mean_b.unsqueeze(0)).norm(dim=-1)
-                  / scale_b.unsqueeze(0)).clamp(0, 2)
-agree      = where(mask_side[:, :, None], agree_raw, 0)   # (G,B,T)
+# 无效位置的 h 和 mean 都先置零，再计算 centered/norm
+safe_mean = where(mask4, mean_b.unsqueeze(0), 0)     # (G,B,T,f)
+centered  = valid_h - safe_mean                      # 无效位置严格为 0
+centered_norm = centered.norm(dim=-1)
+agree_raw = 1 - (centered_norm / scale_b.unsqueeze(0)).clamp(0, 2)
+agree     = where(mask_side[:, :, None], agree_raw, 0)   # (G,B,T)
 ```
 
 约束：
@@ -247,7 +251,8 @@ agree      = where(mask_side[:, :, None], agree_raw, 0)   # (G,B,T)
 - `valid_h` 必须在任何减法/`norm`/统计之前构造，避免无效 NaN 先进入运算；
 - `count_b` 必须逐样本计算，不能只对整个 batch 判断一次；
 - `count_b == 0` 的正常路径必须受控报错，不得继续除零；
-- `agree` 是逐块 `(G,B,T)`；无效块严格为 0；
+- `agree` 是逐块 `(G,B,T)`；无效位置 `valid_h`、`safe_mean`、`centered` 均为 0，
+  norm 后才 where，无效块严格为 0；
 - `I_side` 的聚合若需要，必须单独使用：
   ```text
   I_side[b] = where(mask_side[:, b], agree[:, b], 0).sum(0) / count_b[b]
