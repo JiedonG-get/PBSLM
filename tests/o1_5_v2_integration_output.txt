@@ -1,0 +1,59 @@
+test_bad_parameter_combination (tests.test_flow_mask_min.CommTests.test_bad_parameter_combination) ... ok
+test_batch_one (tests.test_flow_mask_min.CommTests.test_batch_one) ... ok
+test_block_forward_input_nan_raises (tests.test_flow_mask_min.CommTests.test_block_forward_input_nan_raises) ... ok
+test_invalid_nan_backward_finite (tests.test_flow_mask_min.CommTests.test_invalid_nan_backward_finite) ... ok
+test_invalid_nan_isolated_and_valid_nan_raises (tests.test_flow_mask_min.CommTests.test_invalid_nan_isolated_and_valid_nan_raises) ... ok
+test_legacy_equivalence_with_contiguous_all_valid (tests.test_flow_mask_min.CommTests.test_legacy_equivalence_with_contiguous_all_valid) ... ok
+test_m1_per_sample_equivalence (tests.test_flow_mask_min.CommTests.test_m1_per_sample_equivalence) ... ok
+test_physical_id_and_mask (tests.test_flow_mask_min.CommTests.test_physical_id_and_mask) ... ok
+test_physical_id_validation (tests.test_flow_mask_min.CommTests.test_physical_id_validation) ... ok
+test_backward_finite (tests.test_flow_mask_min.FlowStepTests.test_backward_finite) ... ok
+test_batch_one (tests.test_flow_mask_min.FlowStepTests.test_batch_one) ... ok
+test_empty_mask_raises (tests.test_flow_mask_min.FlowStepTests.test_empty_mask_raises) ... ok
+test_invalid_nan_and_valid_nan (tests.test_flow_mask_min.FlowStepTests.test_invalid_nan_and_valid_nan) ... ok
+test_invalid_nan_backward_finite (tests.test_flow_mask_min.FlowStepTests.test_invalid_nan_backward_finite) ... ok
+test_legacy_equivalence (tests.test_flow_mask_min.FlowStepTests.test_legacy_equivalence) ... ok
+test_m1_per_sample_equivalence (tests.test_flow_mask_min.FlowStepTests.test_m1_per_sample_equivalence) ... ok
+test_per_sample_empty_mask_raises (tests.test_flow_mask_min.FlowStepTests.test_per_sample_empty_mask_raises) ... ok
+test_shapes_and_masked_zero (tests.test_flow_mask_min.FlowStepTests.test_shapes_and_masked_zero) ... ok
+test_backward_finite (tests.test_flow_mask_min.InfoFlowTests.test_backward_finite) ... ok
+test_batch_one (tests.test_flow_mask_min.InfoFlowTests.test_batch_one) ... ok
+test_empty_mask_raises (tests.test_flow_mask_min.InfoFlowTests.test_empty_mask_raises) ... ok
+test_invalid_nan_and_valid_nan (tests.test_flow_mask_min.InfoFlowTests.test_invalid_nan_and_valid_nan) ... ok
+test_invalid_nan_backward_finite (tests.test_flow_mask_min.InfoFlowTests.test_invalid_nan_backward_finite) ... ok
+test_legacy_equivalence (tests.test_flow_mask_min.InfoFlowTests.test_legacy_equivalence) ... ok
+test_m1_per_sample_equivalence (tests.test_flow_mask_min.InfoFlowTests.test_m1_per_sample_equivalence) ... ok
+test_masked_stats_and_outputs (tests.test_flow_mask_min.InfoFlowTests.test_masked_stats_and_outputs) ... ok
+test_per_sample_empty_mask_raises (tests.test_flow_mask_min.InfoFlowTests.test_per_sample_empty_mask_raises) ... ok
+test_cross_sample_isolation (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_cross_sample_isolation) ... ok
+test_index_mask_mapping (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_index_mask_mapping) ... ok
+test_invalid_block_nan_injected_at_comm_does_not_pollute (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_invalid_block_nan_injected_at_comm_does_not_pollute) ... ok
+test_legacy_and_masked_use_same_output_head_contract (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_legacy_and_masked_use_same_output_head_contract) ... ok
+test_legacy_path_remains_default_and_masked_fields_absent (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_legacy_path_remains_default_and_masked_fields_absent) ... ok
+test_masked_forward_fields_and_finiteness (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_masked_forward_fields_and_finiteness) ... ok
+test_parameter_and_state_dict_contract (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_parameter_and_state_dict_contract) ... ok
+test_per_sample_masks_can_differ (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_per_sample_masks_can_differ) ... ok
+test_shared_input_nan_raises_before_block_forward (tests.test_model_v2_mask_integration.ModelV2MaskIntegrationTests.test_shared_input_nan_raises_before_block_forward) ... ok
+test_c_stability_for_allowed_groups (tests.test_online_o1.O1Tests.test_c_stability_for_allowed_groups) ... ok
+test_direct_only_c_stability (tests.test_online_o1.O1Tests.test_direct_only_c_stability) ... ok
+test_field_on_c_stability (tests.test_online_o1.O1Tests.test_field_on_c_stability) ... ok
+test_forward_baseline (tests.test_online_o1.O1Tests.test_forward_baseline) ... ok
+test_load_state_dict_compat (tests.test_online_o1.O1Tests.test_load_state_dict_compat) ... ok
+test_m_written_does_not_alter_c (tests.test_online_o1.O1Tests.test_m_written_does_not_alter_c) ... ok
+test_out_layers_init_and_direct_only (tests.test_online_o1.O1Tests.test_out_layers_init_and_direct_only) ... ok
+test_param_groups_whitelist (tests.test_online_o1.O1Tests.test_param_groups_whitelist) ... ok
+test_role_a_coupling_diagnostic (tests.test_online_o1.O1Tests.test_role_a_coupling_diagnostic) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 1.635s
+
+OK
+
+[comm M1] max_err=0.000e+00
+
+[FlowStep M1] max_err=0.000e+00
+
+[InfoFlow M1] max_err=1.192e-07
+
+[role_a] role_a_setup_ok=True A_selection_changed=True C_changes=True
+  base A=[2] C=[1, 3] active=[1, 2, 3]

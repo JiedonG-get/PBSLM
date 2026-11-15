@@ -41,7 +41,8 @@ class PBSLMv2(nn.Module):
     def __init__(self, vocab, k=30, depth=4, d=768, heads=12, m_max=128,
                  act_x=0.2, e_n=10, e_depth=1, emo_dim=8, refine=2, field_scale=0.0,
                  use_mem=True, trainable_target=True, simple_dec=False,
-                 dense=False, use_flow=True, direct_only=False):
+                 dense=False, use_flow=True, direct_only=False,
+                 use_sample_masks=False):
         super().__init__()
         self.vocab, self.k, self.depth, self.d, self.heads = vocab, k, depth, d, heads
         self.act_x, self.e_n, self.emo_dim = act_x, e_n, emo_dim
@@ -52,6 +53,7 @@ class PBSLMv2(nn.Module):
         self.dense = dense
         self.use_flow = use_flow
         self.direct_only = direct_only
+        self.use_sample_masks = use_sample_masks
         self.refine = refine
         # 输入 token 嵌入（可训练、单位归一化）
         self.tok = nn.Embedding(vocab, d)
@@ -172,6 +174,104 @@ class PBSLMv2(nn.Module):
         c_enc = self.ln_c(x + side_cons(1, sc))
         return a_enc, c_enc, E_feats, side_I(0), side_I(1), active, chosen
 
+    # ---- O1.5: per-sample masked end-to-end path (optional; legacy encode above unchanged)
+    def _select_masked(self, score_a, score_c, kA, kC):
+        if self.dense:
+            allb = torch.arange(self.k, device=score_a.device)
+            ia = allb.unsqueeze(0).expand(score_a.shape[0], -1)
+            ic = ia.clone()
+        else:
+            ia = torch.topk(score_a, kA, dim=-1).indices
+            # C selects independently from all blocks (no A-exclusion) for state isolation.
+            ic = torch.topk(score_c, kC, dim=-1).indices
+        return ia, ic
+
+    @staticmethod
+    def _rows_of(chosen, row_of, device):
+        return torch.tensor([[row_of[j] for j in blocks] for blocks in chosen],
+                            device=device, dtype=torch.long)
+
+    @staticmethod
+    def _mask_of(chosen, row_of, G, B, device):
+        m = torch.zeros(G, B, dtype=torch.bool, device=device)
+        for b, blocks in enumerate(chosen):
+            for j in blocks:
+                m[row_of[j], b] = True
+        return m
+
+    def _side_cons_masked(self, settled, score, chosen_t, rows):
+        B = settled.shape[1]
+        b_idx = torch.arange(B, device=settled.device)[:, None]
+        sel_scores = score.gather(1, chosen_t)             # (B,K)
+        kk = chosen_t.shape[1]
+        w = 0.9 * (1.0 / kk) + 0.1 * torch.softmax(sel_scores, dim=-1)
+        sel = settled[rows, b_idx]                         # (B,K,T,D)
+        return (sel * w[:, :, None, None]).sum(1)
+
+    def _side_I_masked(self, agree, rows):
+        B = agree.shape[1]
+        b_idx = torch.arange(B, device=agree.device)[:, None]
+        return agree[rows, b_idx].mean(1)                  # (B,T)
+
+    def encode_masked(self, ids, act=None):
+        x = self.token_emb(ids)
+        B, T, D = x.shape
+        kA, kC = self.quotas(act)
+        h = x.mean(1)                                      # (B,D), per-sample routing
+        sa, sc = self.role_a(h), self.role_c(h)            # (B,k)
+        ia, ic = self._select_masked(sa, sc, kA, kC)       # (B,kA), (B,kC)
+        chosen_a = ia.tolist()
+        chosen_c = ic.tolist()
+        union = sorted(set(sum(chosen_a, []) + sum(chosen_c, [])))
+        row_of = {j: i for i, j in enumerate(union)}
+        G = len(union)
+        idx = torch.tensor(union, device=x.device, dtype=torch.long)
+        mask_a = self._mask_of(chosen_a, row_of, G, B, x.device)
+        mask_c = self._mask_of(chosen_c, row_of, G, B, x.device)
+        rows_a = self._rows_of(chosen_a, row_of, x.device)
+        rows_c = self._rows_of(chosen_c, row_of, x.device)
+
+        Y = self.bank.block_forward(x, idx)                # (G,B,T,D)
+        delta = Y - x.unsqueeze(0)
+        g1 = torch.ones(G, device=x.device, dtype=x.dtype)
+        delta_a = self.bank.comm(delta, g1, idx=idx, mask=mask_a)
+        delta_c = self.bank.comm(delta, g1, idx=idx, mask=mask_c)
+
+        if self.use_flow:
+            low_a, agree_a, _ = self.flow(delta_a, mask_a)
+            low_c, agree_c, _ = self.flow(delta_c, mask_c)
+            settled_a = delta_a + self.flow.proj_out(low_a)
+            settled_c = delta_c + self.flow.proj_out(low_c)
+            m4a = mask_a[:, :, None, None]
+            m4c = mask_c[:, :, None, None]
+            settled_a = torch.where(m4a, settled_a, torch.zeros_like(settled_a))
+            settled_c = torch.where(m4c, settled_c, torch.zeros_like(settled_c))
+        else:
+            settled_a = torch.where(mask_a[:, :, None, None], delta_a, torch.zeros_like(delta_a))
+            settled_c = torch.where(mask_c[:, :, None, None], delta_c, torch.zeros_like(delta_c))
+            agree_a = torch.ones(G, B, T, device=x.device, dtype=x.dtype)
+            agree_c = torch.ones(G, B, T, device=x.device, dtype=x.dtype)
+
+        side_a = self._side_cons_masked(settled_a, sa, ia, rows_a)
+        side_c = self._side_cons_masked(settled_c, sc, ic, rows_c)
+        I_a = self._side_I_masked(agree_a, rows_a)
+        I_c = self._side_I_masked(agree_c, rows_c)
+
+        E_feats, mem_read = self.e_forward(x)
+        if self.use_mem:
+            a_enc = self.ln_a(x + side_a + 0.1 * self.ea_proj(mem_read))
+        else:
+            a_enc = self.ln_a(x + side_a)
+        c_enc = self.ln_c(x + side_c)
+        return {
+            "a_enc": a_enc, "c_enc": c_enc, "e_feats": E_feats,
+            "I_a": I_a, "I_c": I_c,
+            "chosen_a": chosen_a, "chosen_c": chosen_c,
+            "active_a": chosen_a, "active_c": chosen_c,
+            "active_union_global": union,
+            "mask_a": mask_a, "mask_c": mask_c,
+        }
+
     def _decode(self, layers, q, kv):
         h = q
         for layer in layers:
@@ -189,7 +289,17 @@ class PBSLMv2(nn.Module):
     def forward(self, ids, m, act=None, emo=None, shock=None, sample_noise=True):
         B = ids.shape[0]
         emo = (self.emo_calm.expand(B, -1) if emo is None else emo).to(self.tok.weight.dtype)
-        a_enc, c_enc, E_feats, I_a, I_c, active, chosen = self.encode(ids, act)
+        extra = {}
+        if self.use_sample_masks:
+            enc = self.encode_masked(ids, act)
+            a_enc, c_enc = enc["a_enc"], enc["c_enc"]
+            E_feats, I_a, I_c = enc["e_feats"], enc["I_a"], enc["I_c"]
+            active = enc["active_union_global"]
+            chosen = [enc["chosen_a"], enc["chosen_c"]]
+            extra = {k: enc[k] for k in ("chosen_a", "chosen_c", "active_a", "active_c",
+                                         "active_union_global", "mask_a", "mask_c")}
+        else:
+            a_enc, c_enc, E_feats, I_a, I_c, active, chosen = self.encode(ids, act)
         q0 = (self.q_emb[:m] + self.q_pos[:m]).unsqueeze(0).expand(B, m, self.d)
         q0c = (self.q_emb_c[:m] + self.q_pos_c[:m]).unsqueeze(0).expand(B, m, self.d)
         if self.simple_dec:
@@ -224,10 +334,12 @@ class PBSLMv2(nn.Module):
                 dim=-1)
         else:
             z_pert = z_a
-        return {"z_a": z_a, "z_c": z_c, "field_mu": mu, "field_log_sigma": log_sigma,
-                "z_pert": z_pert,
-                "h_a": h_a, "e_feats": E_feats, "I_a": I_a, "I_c": I_c,
-                "active": active, "chosen": chosen}
+        out = {"z_a": z_a, "z_c": z_c, "field_mu": mu, "field_log_sigma": log_sigma,
+               "z_pert": z_pert,
+               "h_a": h_a, "e_feats": E_feats, "I_a": I_a, "I_c": I_c,
+               "active": active, "chosen": chosen}
+        out.update(extra)
+        return out
 
     # ---- O1: online parameter whitelist -------------------------------------------------
     def online_param_groups(self):
