@@ -2,7 +2,7 @@
 
 状态：**O1.5 架构分析文档（补充 active 三集合、严格 mask、Flow 语义、参数隔离边界、
 BlockBank beta 索引、batch union 语义、逐块独立性、M1/M2 严格等价、
-P0-5 可区分 beta 测试与 P0-6 统一 mask 布局）。
+P0-5 可区分 beta 测试、P0-6 统一 mask 布局、P0-7 非零更新、P0-8 count 定义、P0-9 Flow attention mask）。
 只做设计，不修改模型代码，不运行训练/loss/backward/optimizer.step/smoke。**
 基线：O1 提交 `ad99bc1`；O1 只证明了**输出头已拆分**、六组 A 参数白名单和基础 C 稳定性，
 **不代表 A/C 计算路径已经完全隔离，更不代表 Online Learning 已实现。**
@@ -245,14 +245,36 @@ out_side[g,b]       = mask_side[g,b] · (Y_side[g,b] + update_side[g,b])
 |---|---|
 | `Y` `(G,B,T,D)` | `mask_side[:, :, None, None]` |
 | `h` `(G,B,T,f)` | `mask_side[:, :, None, None]` |
-| `tot/mean` | `(mask_side[:, :, None, None] * h).sum(0) / count` |
-| `agree` | 只用有效块的 `h`，分母 `count_b = mask_side.sum(0)` |
-| Flow attention key | 对样本 b 使用 `mask_side[:, b]`，形状 `(G,)`，广播到 key 维 |
+| `count_b` | `mask_side.sum(0)`，形状 `(B,)` |
+| `tot` | `(mask_side[:, :, None, None] * h).sum(0)`，形状 `(B,T,f/D)` |
+| `mean` | `tot / count_b.clamp_min(1)[:, None, None]`，形状 `(B,T,f/D)` |
+| `scale` | 有效块 norm 的 masked 均值，形状 `(B,T)` |
+| `agree` | 只用有效块的 `h`，分母 `count_b.clamp_min(1)` |
+| Flow attention key | 对样本 b 使用 `mask_side[:, b]`，形状 `(G,)`，作用在 logits 的 key 维 |
 | Flow query | 只对 `mask_side[:, b]` 为真的块产生输出 |
 | 每层输出 | 重新乘 `mask_side[:, :, None, None]` |
 
 所有 A/C comm、FlowStep、mean、agree、settled 计算必须使用同一 `(G,B)` 布局；
 不允许一侧用 `(G,B)`、另一侧用 `(B,G)`。
+
+#### P0-8 count 的数学定义与广播
+
+```text
+count_b = mask_side.sum(0)                 # (B,)
+count_b = count_b.clamp_min(1)             # 防除零；正常路径必须 >=1
+tot     = (mask_side[:, :, None, None] * h).sum(0)   # (B,T,f)
+mean    = tot / count_b[:, None, None]     # (B,T,f)
+scale_b = (mask_side[:, :, None] * h.norm(dim=-1)).sum(0) / count_b[:, None] + 1e-6
+```
+
+- `count_b` 是每个样本在当前角色下的有效块数；
+- `mean` 必须是 `(B,T,f)`；`scale_b` 必须是 `(B,T)`；
+- `agree` 只对有效块计算，分母同样是 `count_b`；
+- `count_b == 0` 不能只用 clamp 掩盖语义错误：
+  - 正常架构不变量是每个样本、每个角色至少 1 个有效块（`kA >= 1`、`kC >= 1`）；
+  - 正常路径必须在 softmax/mean 前断言 `count_b >= 1`；
+  - 若测试或异常路径出现 `count_b == 0`，应抛出受控错误（不得产生 NaN）；
+  - `clamp_min(1)` 只是数值保护，不是“空集合合法”的声明。
 
 #### 2.5.2 `InfoFlow` 与 `FlowStep`
 
@@ -269,6 +291,30 @@ out_side[g,b]       = mask_side[g,b] · (Y_side[g,b] + update_side[g,b])
 
 当前 `InfoFlow.forward()` 使用 `mean = h.mean(0)`、`scale = h.norm(dim=-1).mean(0)`，
 没有 mask；O1.5 需要可选 mask/weights 接口，旧调用保持原语义。
+
+#### 2.5.2.1 P0-9 Flow attention mask 的广播与全无效处理
+
+`h/q/k/v` 形状 `(G,B,T,f)`；attention logits 形状 `(B,T,G,G)`，
+其中最后一维是 **key block** 维。
+
+1. **key mask**：对样本 b，`key_mask_b = mask_side[:, b]`，形状 `(G,)`；
+   将其广播到 logits 最后一维：
+   ```text
+   logits[..., ~key_mask_b] = -inf
+   ```
+   无效 key 不得参与 softmax；
+2. **query mask**：无效 query 可以计算，但输出必须清零；
+   或只对有效 query 计算；无论哪种，`msg`/`h` 的无效行必须乘 query mask；
+3. **每层 FlowStep**：每层输出后重新应用 `mask_side[:, :, None, None]`；
+   下一层 attention 继续使用同一 key/query mask，无效块不能重新进入；
+4. **全无效 key**：
+   - 正常路径不变量：`count_b >= 1`（`kA>=1`, `kC>=1`），必须在 softmax 前断言；
+   - 若 `count_b == 0`：不得对全 `-inf` logits 直接 softmax；
+     必须走受控错误路径（抛 `ValueError`）或显式跳过该样本并置零，
+     具体行为必须由测试固定，且不得产生 NaN；
+   - O1.5 验收要求这是显式不变量 + 受控错误/跳过，不允许静默 NaN。
+5. **每层输出**：无效 query 和无效 key 的状态都不得写回 `h`；
+6. **测试**：构造 `count_b==0` 的 mask，断言受控错误或显式零输出，不能出现 NaN。
 
 #### 2.5.3 mask 的测试要求
 
@@ -352,22 +398,25 @@ beta = torch.sigmoid(self.comm_beta[:Y.shape[0]])
    ```text
    comm_beta = tensor([-2.0, -1.5, -1.0, 0.0, 0.5, 1.0, 1.5, 2.0, ...])
    ```
-2. **设置 `comm2` 为非零权重/偏置**，保证 comm 更新确实受 beta 影响；
-3. 使用 `idx=[2,5,7]` 调用**实际 `comm()`**；
-4. 用同一 `Y`、`g`、`comm1/comm2` 按**物理索引**手工计算参考输出：
+2. **主动设置 `comm2` 为非零权重/偏置**，不能只写“非零”而不验证；
+3. 使用确定性输入 `Y`、`g=ones(3)`、`idx=[2,5,7]` 调用**实际 `comm()`**；
+4. 按同一组 `Y`/`g`/`comm1/comm2` 手工计算参考输出：
    ```text
    tot = Y.sum(0)
    others = tot.unsqueeze(0) - Y
    r = comm2(gelu(comm1(others)))
    expected = Y + sigmoid(comm_beta[[2,5,7]]) * r
    ```
-5. 断言 `actual == expected`；
-6. 用连续切片构造错误参考：
+5. **断言 `r.abs().max() > 0`**，确保本次输入下更新项确实非零；
+   如果为零，测试 setup 失败，不能继续比较；
+6. 用 `torch.testing.assert_close(actual, expected)` 或 `torch.allclose` 比较浮点输出，
+   不要求逐位完全相等；
+7. 用连续切片构造错误参考：
    ```text
    wrong = Y + sigmoid(comm_beta[:3]) * r
    ```
-   断言 `not torch.allclose(actual, wrong)`（前提是 beta 值互异且 comm2 非零）；
-   测试使用 `g=ones(3)`、确定性非零 `Y`，并记录两者最大差值。
+   断言 `not torch.allclose(actual, wrong)`，确认错误路径确实不同；
+8. 记录 `actual/expected` 与 `actual/wrong` 的最大差值。
 
 测试不能只验证手工写出的索引表达式，必须验证实际函数行为。
 
@@ -582,7 +631,7 @@ O1.5 只解决**计算状态隔离**，不解决参数独立：
 |---|---|---|---|---|
 | O1.5-0 | 本设计评审 | O1 | 文档通过 | — |
 | O1.5-A | 逐样本路由 + C 独立选块 | O1.5-0 | 单样本/batch 路由一致；样本顺序无关；`chosen_c`/`active_c` 不因 A 路由变化；共享 comm/flow 下 `z_c` 仍可能变化，只记录剩余耦合 | 同一样本路由随 batch 变化；`chosen_c`/`active_c` 随 A 路由变化 |
-| O1.5-B | A/C 分别 comm/flow + 严格 mask；P0-1 beta 修正、P0-2 union 语义、P0-3 逐块独立性、P0-4 严格等价 | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；M1/M2 逐层等价；非连续 beta/union/逐块测试通过 | C 任一中间/最终指标变化；mask 泄漏；P0 测试失败；性能超预算 |
+| O1.5-B | A/C 分别 comm/flow + 严格 mask；P0-1 beta 修正、P0-2 union 语义、P0-3 逐块独立性、P0-4 严格等价、P0-5/P0-7 beta 可区分测试、P0-6/P0-8/P0-9 mask/count/全无效安全 | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；M1/M2 逐层等价；非连续 beta/union/逐块/空集合测试通过 | C 任一中间/最终指标变化；mask 泄漏；P0 测试失败；NaN/除零；性能超预算 |
 | O1.5-C | `role_a` 加入白名单（第七组） | O1.5-B | 七组白名单；A 路由更新后 `active_c`/C 仍稳定；`active_a` 数可解释 | C 变化；路由塌缩；吞吐异常 |
 | O1.5-D | 兼容/回滚/性能收口 | O1.5-B | 旧 checkpoint 加载；legacy 路径回归；性能记录 | 旧 ckpt 失败；无法回滚 |
 
@@ -661,7 +710,8 @@ outputs C(sample_i in batch=1) ≈ outputs C(sample_i in batch=N)
   不能通过关闭 `active_c` 内有效 mask 位来要求 C 整体输出不变；
 - 每层 FlowStep 后，无效块输出必须为零/被排除，不能在下一层复活；
 - comm 的 `update_side`/`out_side` 必须乘 `mask_side`，无效块不能接收更新；
-- `agree`/`mean`/`scale` 的有效块分母正确；
+- `agree`/`mean`/`scale` 的有效块分母正确（P0-8）；
+- `count_b == 0` 的空集合走受控错误/显式零路径，不能 softmax 全 `-inf` 产生 NaN（P0-9）；
 - `settled_side` 必须是 per-block 残差，不得被 `consensus_side` 替代。
 
 ### 8.8 M1/M2 严格等价测试（P0-4）
@@ -683,8 +733,9 @@ outputs C(sample_i in batch=1) ≈ outputs C(sample_i in batch=N)
 
 - 主动设置互不相同的 `comm_beta`；
 - 设置非零 `comm2` 权重/偏置；
+- 断言本次输入计算的 `r.abs().max() > 0`；
 - `idx=[2,5,7]` 调用实际 `comm()`；
-- 与按物理索引手工计算的 `expected` 比较；
+- 与按物理索引手工计算的 `expected` 使用 `assert_close`/`allclose` 比较；
 - 与连续切片错误路径 `wrong` 比较，确认二者不同；
 - 对 `comm` 的 `others`/`update`/`out` 分别检查物理 block 对齐；
 - 不能只比较手工索引表达式。
@@ -729,6 +780,8 @@ O1.5 回归测试必须同时验证 legacy 行为未被无意改变。
 12. M1/M2 若只比较最终 `z_c`，会漏掉 comm/Flow 中间层泄漏；P0-4 测试必须逐层失败。
 13. 默认 `comm_beta` 全相同、`comm2` 初始为零，beta 测试如果不改这两处就失去区分能力（P0-5）。
 14. mask 布局不统一会引入转置错误；P0-6 要求唯一 `(G,B)` 布局并固定广播规则。
+15. 即使 beta 互异，若本次输入下 `r` 为零，P0-5 测试仍会失去区分能力；必须断言 `r.abs().max() > 0`。
+16. `count_b == 0` 或全无效 key 时直接 softmax 会 NaN；P0-8/P0-9 要求显式 count、断言和受控路径。
 
 ---
 
