@@ -2,7 +2,7 @@
 
 状态：**O1.5 架构分析文档（补充 active 三集合、严格 mask、Flow 语义、参数隔离边界、
 BlockBank beta 索引、batch union 语义、逐块独立性、M1/M2 严格等价、
-P0-5 可区分 beta 测试、P0-6 统一 mask 布局、P0-7 非零更新、P0-8 count 定义、P0-9 Flow attention mask、P0-10 agree 逐块语义、P0-11 NaN-safe mask）。
+P0-5 可区分 beta 测试、P0-6 统一 mask 布局、P0-7 非零更新、P0-8 count 定义、P0-9 Flow attention mask、P0-10 agree 逐块语义、P0-11 NaN-safe mask 与 proj_in 前清理）。
 只做设计，不修改模型代码，不运行训练/loss/backward/optimizer.step/smoke。**
 基线：O1 提交 `ad99bc1`；O1 只证明了**输出头已拆分**、六组 A 参数白名单和基础 C 稳定性，
 **不代表 A/C 计算路径已经完全隔离，更不代表 Online Learning 已实现。**
@@ -313,11 +313,13 @@ I_side[b]  = torch.where(mask_side[:, b], agree[:, b], 0).sum(0) / count_b[b]
 3. `I_side` 聚合前必须 where 置零；
 4. **非线性运算之前**清理：`norm`、`gelu`、`softmax`、`LayerNorm` 等之前，
    必须先构造 `valid_h = torch.where(mask, h, 0)`，不能先算 `h.norm()` 再屏蔽；
-5. comm/FlowStep 每层输入先清理，每层输出也必须 where 清除无效块，不能只乘 mask；
-6. 无效块中间状态若含 NaN，不得污染有效块聚合；
-7. **有效块自身出现 NaN 时不得被 where 掩盖**：where 条件只对无效块取零，
+5. **第一个可训练投影之前**清理：`proj_in`、`comm1/comm2`、`proj_out` 等之前
+   必须先 where 清理无效块输入，投影后再次 where，避免 NaN 污染参数梯度；
+6. comm/FlowStep 每层输入先清理，每层输出也必须 where 清除无效块，不能只乘 mask；
+7. 无效块中间状态若含 NaN，不得污染有效块聚合；
+8. **有效块自身出现 NaN 时不得被 where 掩盖**：where 条件只对无效块取零，
    有效块 NaN 会正常传播到 `mean/scale/agree/I_side`，应触发正常错误路径；
-8. `count_b >= 1` 的正常路径不变量和空集合受控错误路径保持不变。
+9. `count_b >= 1` 的正常路径不变量和空集合受控错误路径保持不变。
 
 测试要求：
 
@@ -326,7 +328,10 @@ I_side[b]  = torch.where(mask_side[:, b], agree[:, b], 0).sum(0) / count_b[b]
 - 人为把有效块中间状态设为 NaN；
 - 断言不会被无效块掩码“洗掉”，而是按正常错误路径暴露；
 - 记录 `torch.isfinite`、`torch.isnan` 检查结果；
-- forward 与 8.9 的 diagnostic backward 必须同时通过，不能只靠 forward 有限性。
+- forward 与 8.9 的 diagnostic backward 必须同时通过，不能只靠 forward 有限性；
+- 显式 `isfinite` 检查必须覆盖有效块输入、`proj_in` 后、每个 FlowStep 后、
+  comm 投影后、`mean/scale/agree/I_side` 前，以及最终输出；
+  不能等到最后输出才检查。
 
 #### 2.5.2 `InfoFlow` 与 `FlowStep`
 
@@ -358,8 +363,9 @@ q = torch.where(mask_side[:, :, None, None], self.q(h_in), 0)
 k = torch.where(mask_side[:, :, None, None], self.k(h_in), 0)
 v = torch.where(mask_side[:, :, None, None], self.v(h_in), 0)
 # attention key 严格屏蔽
-logits = einsum(q, k)
-logits[..., ~key_mask] = -inf
+logits = einsum(q, k)                                   # (B,T,G,G)
+key_mask = mask_side.transpose(0, 1)[:, None, None, :]  # (B,1,1,G)
+logits = logits.masked_fill(~key_mask, float("-inf"))
 # 全无效 key 检查：count_b >= 1 或受控错误
 # softmax 只能看到有效 key
 msg = softmax(logits) @ v      # v 已在 matmul 前清零，0*NaN 不出现
@@ -378,16 +384,43 @@ out = torch.where(mask_side[:, :, None, None], out, 0)
   因此 V 必须在 matmul 前清理；
 - 每层输出重新 where，下一层不得重新引入无效块。
 
+#### `InfoFlow.proj_in` 与所有投影前的清理顺序
+
+`proj_in` 是带参数的可训练线性层；如果无效块 `delta` 已经含 NaN，
+NaN 会先进入 `proj_in` 及其参数梯度，之后再在 FlowStep 内部清理已经太晚。
+因此必须在 `InfoFlow.forward` 的最前面清理：
+
+```text
+# mask_side: (G, B)
+# delta:     (G, B, T, D)
+delta_in = torch.where(mask_side[:, :, None, None], delta, 0.0)
+h = self.proj_in(delta_in)
+# proj_in 有 bias，投影后再次清理
+h = torch.where(mask_side[:, :, None, None], h, 0.0)
+for layer in self.layers:
+    h = layer(h, mask_side)
+```
+
+两次清理都不可省略：
+
+1. `proj_in` 之前清理：避免无效块 NaN 进入线性层及参数梯度；
+2. `proj_in` 之后清理：避免 bias 在无效块位置重新产生非零状态。
+
+同样原则适用于 `comm1/comm2`、`proj_out` 及其他可能接触无效块 NaN 的投影：
+清理必须发生在第一个可训练运算之前，并在投影后重新清理。
+不能只在下游 FlowStep 或最终输出处补救。
+
 #### 2.5.2.1 P0-9 Flow attention mask 的广播与全无效处理
 
 `h/q/k/v` 形状 `(G,B,T,f)`；attention logits 形状 `(B,T,G,G)`，
 其中最后一维是 **key block** 维。
 
-1. **key mask**：对样本 b，`key_mask_b = mask_side[:, b]`，形状 `(G,)`；
-   将其广播到 logits 最后一维：
+1. **key mask**：`mask_side` 为 `(G,B)`，先转置为 `(B,G)`，再扩展到 `(B,1,1,G)`：
    ```text
-   logits[..., ~key_mask_b] = -inf
+   key_mask = mask_side.transpose(0, 1)[:, None, None, :]   # (B,1,1,G)
+   logits = logits.masked_fill(~key_mask, float("-inf"))    # logits: (B,T,G,G)
    ```
+   这样 mask 明确作用于 logits 最后一维（key block 维）；
    无效 key 不得参与 softmax；
 2. **query mask**：无效 query 可以计算，但输出必须清零；
    或只对有效 query 计算；无论哪种，`msg`/`h` 的无效行必须用
@@ -439,6 +472,18 @@ return h, agree, cons
 settled_low, agree, _ = self.flow(delta)          # 忽略 cons
 settled = delta + self.flow.proj_out(settled_low)  # 每块 d 维残差
 side_cons = aggregate(settled[selected_rows], weights)
+```
+
+O1.5 masked Flow 的执行顺序必须是：
+
+```text
+delta_in = where(mask_side[:, :, None, None], delta, 0)
+h = proj_in(delta_in)
+h = where(mask_side[:, :, None, None], h, 0)
+for layer in layers:
+    h = layer(h, mask_side)      # 内部同样逐层清理
+mean/scale/agree = masked_stats(h, mask_side)
+settled = delta_in + proj_out(where(mask_side, h, 0))
 ```
 
 因此 O1.5 必须区分：
@@ -718,7 +763,7 @@ O1.5 只解决**计算状态隔离**，不解决参数独立：
 |---|---|---|---|---|
 | O1.5-0 | 本设计评审 | O1 | 文档通过 | — |
 | O1.5-A | 逐样本路由 + C 独立选块 | O1.5-0 | 单样本/batch 路由一致；样本顺序无关；`chosen_c`/`active_c` 不因 A 路由变化；共享 comm/flow 下 `z_c` 仍可能变化，只记录剩余耦合 | 同一样本路由随 batch 变化；`chosen_c`/`active_c` 随 A 路由变化 |
-| O1.5-B | A/C 分别 comm/flow + 严格 mask；P0-1 beta 修正、P0-2 union 语义、P0-3 逐块独立性、P0-4 严格等价、P0-5/P0-7 beta 可区分测试、P0-6/P0-8/P0-9 mask/count/全无效安全、P0-10 agree 逐块语义、P0-11 NaN-safe mask | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；M1/M2 逐层等价；非连续 beta/union/逐块/空集合测试通过；P0-11 forward/backward 有限性与 NaN 显式报错通过 | C 任一中间/最终指标变化；mask 泄漏；P0 测试失败；NaN/除零；backward 梯度非有限；性能超预算 |
+| O1.5-B | A/C 分别 comm/flow + 严格 mask；P0-1 beta 修正、P0-2 union 语义、P0-3 逐块独立性、P0-4 严格等价、P0-5/P0-7 beta 可区分测试、P0-6/P0-8/P0-9 mask/count/全无效安全、P0-10 agree 逐块语义、P0-11 NaN-safe mask | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；M1/M2 逐层等价；非连续 beta/union/逐块/空集合测试通过；P0-11 proj_in/中间状态/forward/backward 有限性与 NaN 显式报错通过 | C 任一中间/最终指标变化；mask 泄漏；P0 测试失败；NaN/除零；backward 梯度非有限；性能超预算 |
 | O1.5-C | `role_a` 加入白名单（第七组） | O1.5-B | 七组白名单；A 路由更新后 `active_c`/C 仍稳定；`active_a` 数可解释 | C 变化；路由塌缩；吞吐异常 |
 | O1.5-D | 兼容/回滚/性能收口 | O1.5-B | 旧 checkpoint 加载；legacy 路径回归；性能记录 | 旧 ckpt 失败；无法回滚 |
 
@@ -805,6 +850,10 @@ outputs C(sample_i in batch=1) ≈ outputs C(sample_i in batch=N)
 - 有效块自身 NaN 不得被无效块 mask 掩盖，必须按正常错误路径暴露（P0-11）；
 - P0-11 的 backward 验收见 8.9：无效块 NaN 下有效输出/梯度/参数梯度有限；
   有效块 NaN 显式报错；全无效 mask 受控错误；正常输入 forward/backward 正常；
+- 无效块 `delta` 含 NaN 时，`proj_in(delta_in)` 及其参数梯度、每个 FlowStep 输出
+  均不得把 NaN 带入有效块；
+- attention key mask 必须用 `(B,1,1,G)` 批量广播，不能用一维 `(G,)` 直接索引；
+- 有效块输入/关键中间状态的 `isfinite` 检查必须显式执行，不能只看最终输出。
 - `agree`/`mean`/`scale` 的有效块分母正确（P0-8）；
 - `count_b == 0` 的空集合走受控错误/显式零路径，不能 softmax 全 `-inf` 产生 NaN（P0-9）；
 - `settled_side` 必须是 per-block 残差，不得被 `consensus_side` 替代。
@@ -863,6 +912,9 @@ P0-11 不能只验证 forward 输出有限；O1.5-B 的 NaN-safety 测试必须�
 
 - 用输出构造诊断标量并 `backward()`，不调用 optimizer.step；
 - 检查 `torch.isfinite(output)`、`torch.isfinite(param.grad)`；
+- 检查位置必须覆盖：有效块输入、`proj_in` 输出、每个 FlowStep 输出、
+  comm `others/update/out`、`mean/scale/agree/I_side`；
+- 重点检查 `proj_in` 参数梯度：无效块 NaN 不得通过 `NaN×0` 污染它；
 - 有效块 NaN 必须显式失败，不能只靠“最终 loss 非有限”间接发现；
 - 记录每项 `max_abs_grad`、`isfinite` 布尔结果。
 
@@ -905,6 +957,8 @@ O1.5 回归测试必须同时验证 legacy 行为未被无意改变。
 18. 用乘法 `mask * value` 屏蔽无效块不能消除 NaN；P0-11 要求聚合前 `torch.where`，且不得掩盖有效块 NaN。
 19. 只在 FlowStep 输出处清零不够：Q/K/V 投影、attention、V matmul 仍可能让 NaN 进入；必须逐层、投影前后清理。
 20. 仅检查 forward 输出有限不足以证明 NaN-safe；P0-11 要求有效块梯度/参数梯度有限，有效块 NaN 显式报错。
+21. 只在 FlowStep 内清理不够：`proj_in`/`comm`/`proj_out` 等投影可能在清理前接收 NaN，并污染参数梯度；必须在第一个可训练运算前清理。
+22. attention key mask 若没有按 `(B,1,1,G)` 批量广播，会错误屏蔽/泄漏 key；必须固定广播形状并在测试中验证。
 
 ---
 
