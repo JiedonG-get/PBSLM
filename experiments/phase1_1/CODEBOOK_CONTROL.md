@@ -30,6 +30,15 @@ Phase 1 的 A1/A2 同时存在：
 因此 Phase 1 的 A1 vs A2 不能单独归因于「固定码本更好/更差」。
 本对照只解决第 2、3 项；第 1 项通过相同 `codebook_init=fixed_seed` 消除。
 
+## 初始化校验（已完成）
+
+- 两配置在相同 seed 下独立构造，state_dict 逐参数数值完全一致；
+- state hash：`aabd26588df480b7f9c590e9d3e44c747f3f826594f9c09bed1da0b210ae783e`；
+- 总参数：21,160,328 / 21,160,328；
+- 可训练参数：21,094,400 / 16,900,096；
+- tokenizer：id 0 = `<unk>`，`<unk>` id = 0；
+- 校验脚本：`evaluation/check_control_init.py`；结果：`experiments/phase1_1/metrics/control_init_check.json`。
+
 ## 状态
 
 - 配置已就绪；**尚未训练**；

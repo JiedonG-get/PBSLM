@@ -1,5 +1,9 @@
 # Phase 1.1 结果：固定 held-out 评估 + 上下文敏感性/效用/泛化
 
+> **注意：本文件是 Phase 1.1 初版；其中 `last_token_only` 使用“重复最后一个 token”的旧实现，
+> 其 utility 数字已被 `PHASE1_1_1_RESULTS.md` 修正（masked 版本 A1 +2.72pp、A2 +2.51pp）。
+> 本文件保留作历史记录。**
+
 状态：Phase 1.1 评估已完成；**未训练、未改 Phase 1 原始 logs/metrics、未进入 Phase 2。**
 
 ## 1. 目的与协议

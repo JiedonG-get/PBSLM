@@ -1,0 +1,23 @@
+{
+  "configs": {
+    "trainable": "configs/ctrl_codebook_trainable.json",
+    "frozen": "configs/ctrl_codebook_frozen.json"
+  },
+  "state_keys_equal": true,
+  "all_initial_values_equal": true,
+  "state_hash_equal": true,
+  "state_hash": "aabd26588df480b7f9c590e9d3e44c747f3f826594f9c09bed1da0b210ae783e",
+  "total_params": {
+    "trainable": 21160328,
+    "frozen": 21160328
+  },
+  "trainable_params": {
+    "trainable": 21094400,
+    "frozen": 16900096
+  },
+  "tokenizer": {
+    "vocab": 16384,
+    "id0": "<unk>",
+    "unk_id": 0
+  }
+}

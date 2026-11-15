@@ -2,6 +2,14 @@
 
 ## 2026-11-15
 
+### Phase 1.1.1 — last-token / suffix 评估补丁
+- 增加 `last_token_only_masked`（不再用重复最后一个 token 作为主结论）；
+- 增加 `drop_last1/2/4`；
+- 修正 last-token utility：A1 +2.72pp、A2 +2.51pp（旧版 +3.24/+5.18 被高估）；
+- 核实 tokenizer id0=`<unk>`；
+- 校验 codebook 对照初始化 state_dict 完全一致（仅 requires_grad 不同）；
+- 只重评估现有 checkpoint，不训练、不进入 Phase 2。
+
 ### Phase 1.1 — 评估口径修复
 - InfoNCE 文档改为 Phase 1 实际使用的 **sampled-negative**（不改历史实现）；
 - 固定 10k windows / 80k targets 大规模 held-out 评估；

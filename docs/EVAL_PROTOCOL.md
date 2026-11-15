@@ -45,15 +45,18 @@ Phase 1.1 只做评估，不训练。目标是区分三个容易混淆的概念�
 
 | 变体 | 定义 |
 |---|---|
-| `last_token_only` | 把上下文全部替换为最后一个 token（重复 n_in 次） |
-| `drop_prefix` | 前 `n_in//2` 个 token 替换为 `<unk>`(id=0) |
-| `drop_suffix` | 最后 `max(1,n_in//4)` 个 token 替换为 `<unk>` |
+| `last_token_only_masked` | 保留最后一个 token，前 `n_in-1` 位置替换为 `<unk>`(id=0) |
+| `last_token_repeated` | 旧对照：把最后一个 token 复制 n_in 次（人工重复输入，不作为主结论） |
+| `drop_prefix` | 前 `n_in//2` 个 token 替换为 `<unk>` |
+| `drop_last1` / `drop_last2` / `drop_last4` | 只屏蔽最后 1/2/4 个 token |
 | `prefix_shuffle` | 打乱前 `n_in-1` 个 token，最后一个 token 保持不变 |
 
 指标：
 
 - 各变体 top1/top5；
-- `top1_delta_vs_orig = 原 top1 − 变体 top1`；
+- JSON 中同时给出：
+  - `top1_delta_vs_orig = 变体 − 原始`；
+  - `utility_top1 = 原始 − 变体`（正 utility = 原上下文更有用）；
 - 正值表示原上下文比该消融更有用。
 
 注意：`<unk>` 是删除标记，不是自然 token；这仍是受控实验，不能完全代表自然语言中的缺失。
@@ -77,5 +80,12 @@ Phase 1.1 只做评估，不训练。目标是区分三个容易混淆的概念�
 ## 6. 成本
 
 - 10,000 windows × AR8 = 80,000 target；
-- 原始 + 5 变体 = 6 次前向；
+- 原始 + 8 变体 = 9 次前向（Phase 1.1.1 修正后）；
 - 不训练、不更新参数；batch=512，GPU 上预计数分钟。
+
+
+## 7. Phase 1.1.1 修正
+
+Phase 1.1 的 `last_token_only` 使用「重复最后一个 token」，会制造人工重复输入；Phase 1.1.1 增加
+`last_token_only_masked`（保留最后一个 token、其余位置 `<unk>`），并新增 `drop_last1/2/4`。
+因此 **last-token utility 以 `PHASE1_1_1_RESULTS.md` 为准**：A1 +2.72pp、A2 +2.51pp，而不是旧版的 +3.2/+5.2pp。

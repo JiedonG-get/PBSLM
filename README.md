@@ -65,8 +65,8 @@ Phase 1 只跑了最小 baseline：
 完整数据见 [`experiments/phase1/PHASE1_RESULTS.md`](experiments/phase1/PHASE1_RESULTS.md)。
 
 Phase 1.1 用固定 10k windows（80k targets）重新评估，并区分 Context Sensitivity / Utility / Generalization：
-[`experiments/phase1_1/PHASE1_1_RESULTS.md`](experiments/phase1_1/PHASE1_1_RESULTS.md)。
-关键发现：full context 比 last-token-only 好（+3.2 / +5.2 pp），但删前缀/打乱前缀几乎不影响，
+[`experiments/phase1_1/PHASE1_1_1_RESULTS.md`](experiments/phase1_1/PHASE1_1_1_RESULTS.md)（Phase 1.1.1 修正版）。
+关键发现：masked last-token-only 相比完整上下文少 2.7 / 2.5 pp；删前缀/打乱前缀几乎不影响，
 说明当前上下文利用主要是**局部后缀**，长前缀利用尚未证明。
 
 ---

@@ -103,7 +103,7 @@ def main():
     x = torch.from_numpy(xw.reshape(-1, n_in).copy()).long()
     y = torch.from_numpy(yw.reshape(-1).copy()).long()
     N = len(y)
-    print(f"targets={N} windows={windows} variants=6 device={device}", flush=True)
+    print(f"targets={N} windows={windows} device={device}", flush=True)
 
     # 原始上下文
     pred, top5, zorig = predict(model, x, batch, code, device)
@@ -121,13 +121,23 @@ def main():
 
     variants = {}
     variants["matched_natural_context"] = x_other
-    variants["last_token_only"] = x[:, -1:].expand(-1, n_in).clone()
+
+    # 严格版本：只保留最后一个 token，其余位置用 unk 屏蔽（不复制最后一个 token）
+    xv = x.clone(); xv[:, :-1] = ev["unk_id"]
+    variants["last_token_only_masked"] = xv
+    # 旧版对照：把最后一个 token 复制到所有位置（人工重复输入，单独保留）
+    variants["last_token_repeated"] = x[:, -1:].expand(-1, n_in).clone()
+
     xv = x.clone(); xv[:, :n_in // 2] = ev["unk_id"]; variants["drop_prefix"] = xv
-    xv = x.clone(); k = max(1, n_in // 4); xv[:, -k:] = ev["unk_id"]; variants["drop_suffix"] = xv
+    # 只屏蔽最后 k 个 token；drop_last1/2/4 用于区分最后一个 token 与近邻后缀
+    for k in (1, 2, max(1, n_in // 4)):
+        xv = x.clone(); xv[:, -k:] = ev["unk_id"]
+        variants[f"drop_last{k}"] = xv
     g = torch.Generator().manual_seed(seed + 202)
     perm = torch.argsort(torch.rand(N, n_in - 1, generator=g), dim=1)
     xv = x.clone(); xv[:, :-1] = x[:, :-1].gather(1, perm); variants["prefix_shuffle"] = xv
 
+    print(f"variants={len(variants)} (plus original)", flush=True)
     result = {}
     for name, xv in variants.items():
         pv, t5v, zv = predict(model, xv, batch, code, device)
@@ -139,8 +149,10 @@ def main():
             "top1": acc, "top5": acc5,
             "pred_change_rate_vs_orig": change,
             "cos_shift_vs_orig": cos_shift,
-            "top1_delta_vs_orig": acc - orig_acc,
+            "top1_delta_vs_orig": acc - orig_acc,       # 变体 − 原始
             "top5_delta_vs_orig": acc5 - orig_t5,
+            "utility_top1": orig_acc - acc,              # 原始 − 变体（正值=原上下文更有用）
+            "utility_top5": orig_t5 - acc5,
         }
         print(f"{name}: top1={acc:.4f} change={change:.4f} cos_shift={cos_shift:.4f} "
               f"sec={time.time()-t0:.1f}", flush=True)
@@ -159,15 +171,18 @@ def main():
             "matched_natural_context": result["matched_natural_context"],
         },
         "context_utility": {
-            "definition": "fixed target, natural/controlled context ablations; positive delta = original context helps",
+            "definition": "fixed target, natural/controlled context ablations; utility_top1 = original − variant (positive = original context helps)",
             **{k: v for k, v in result.items() if k != "matched_natural_context"},
         },
         "definitions": {
             "freq_thresholds": ev["freq_thresholds"],
             "unk_id": ev["unk_id"],
-            "last_token_only": "repeat last context token across all n_in positions",
+            "last_token_only_masked": "last token kept; first n_in-1 positions -> unk",
+            "last_token_repeated": "repeat last context token across all n_in positions (old control)",
             "drop_prefix": f"first {n_in // 2} context tokens -> unk",
-            "drop_suffix": f"last {max(1, n_in // 4)} context tokens -> unk",
+            "drop_last1": "last 1 context token -> unk",
+            "drop_last2": "last 2 context tokens -> unk",
+            "drop_last4": "last 4 context tokens -> unk",
             "prefix_shuffle": "shuffle first n_in-1 tokens; last token unchanged",
             "matched_natural_context": "natural held context from another window; original target kept",
         },
