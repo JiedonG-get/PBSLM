@@ -1,0 +1,162 @@
+{
+  "task": "synthetic_domain_conditioned_key_to_label",
+  "limitation": "not natural-language learning or runtime concurrency",
+  "config": {
+    "seeds": [
+      0
+    ],
+    "base_steps": 300,
+    "events": 128,
+    "device": "cuda",
+    "output": "experiments/continual_associations/pilot.json"
+  },
+  "torch": "2.11.0+cu128",
+  "runs": [
+    {
+      "seed": 0,
+      "base": {
+        "old": {
+          "a": 1.0,
+          "c": 1.0
+        },
+        "new": {
+          "a": 0.125,
+          "c": 0.0
+        },
+        "old_changed": {
+          "a": 1.0,
+          "c": 1.0
+        }
+      },
+      "base_seconds": 16.3601387000017,
+      "total_seconds": 43.22216929999922,
+      "arms": {
+        "none": {
+          "prequential_accuracy": 0.109375,
+          "first_quarter_accuracy": 0.15625,
+          "last_quarter_accuracy": 0.09375,
+          "after": {
+            "old": {
+              "a": 1.0,
+              "c": 1.0
+            },
+            "new": {
+              "a": 0.125,
+              "c": 0.0
+            },
+            "old_changed": {
+              "a": 1.0,
+              "c": 1.0
+            }
+          },
+          "c_bitwise_stable": true,
+          "protected_hash_stable": true,
+          "memory_norms": [
+            0.0,
+            0.0
+          ]
+        },
+        "a_only": {
+          "prequential_accuracy": 0.6953125,
+          "first_quarter_accuracy": 0.25,
+          "last_quarter_accuracy": 1.0,
+          "after": {
+            "old": {
+              "a": 0.875,
+              "c": 1.0
+            },
+            "new": {
+              "a": 1.0,
+              "c": 0.0
+            },
+            "old_changed": {
+              "a": 0.375,
+              "c": 1.0
+            }
+          },
+          "c_bitwise_stable": true,
+          "protected_hash_stable": true,
+          "memory_norms": [
+            0.0,
+            0.0
+          ]
+        },
+        "memory_only": {
+          "prequential_accuracy": 0.109375,
+          "first_quarter_accuracy": 0.15625,
+          "last_quarter_accuracy": 0.09375,
+          "after": {
+            "old": {
+              "a": 1.0,
+              "c": 1.0
+            },
+            "new": {
+              "a": 0.125,
+              "c": 0.0
+            },
+            "old_changed": {
+              "a": 1.0,
+              "c": 1.0
+            }
+          },
+          "c_bitwise_stable": true,
+          "protected_hash_stable": true,
+          "memory_norms": [
+            1.6705043315887451,
+            1.6879081726074219
+          ]
+        },
+        "a_and_memory": {
+          "prequential_accuracy": 0.7109375,
+          "first_quarter_accuracy": 0.28125,
+          "last_quarter_accuracy": 1.0,
+          "after": {
+            "old": {
+              "a": 0.875,
+              "c": 1.0
+            },
+            "new": {
+              "a": 1.0,
+              "c": 0.0
+            },
+            "old_changed": {
+              "a": 0.375,
+              "c": 1.0
+            }
+          },
+          "c_bitwise_stable": true,
+          "protected_hash_stable": true,
+          "memory_norms": [
+            1.6705043315887451,
+            1.6879081726074219
+          ]
+        },
+        "shuffled_memory": {
+          "prequential_accuracy": 0.109375,
+          "first_quarter_accuracy": 0.15625,
+          "last_quarter_accuracy": 0.09375,
+          "after": {
+            "old": {
+              "a": 1.0,
+              "c": 1.0
+            },
+            "new": {
+              "a": 0.125,
+              "c": 0.0
+            },
+            "old_changed": {
+              "a": 1.0,
+              "c": 1.0
+            }
+          },
+          "c_bitwise_stable": true,
+          "protected_hash_stable": true,
+          "memory_norms": [
+            1.7530516386032104,
+            1.78309166431427
+          ]
+        }
+      }
+    }
+  ]
+}
