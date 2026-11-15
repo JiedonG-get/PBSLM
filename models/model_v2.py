@@ -80,10 +80,16 @@ class PBSLMv2(nn.Module):
         self.refine_proj_c = nn.Linear(d, d)
         self.out_a = nn.Linear(d, d)
         nn.init.eye_(self.out_a.weight)
+        nn.init.zeros_(self.out_a.bias)
+        # C 使用独立输出投影；初始化时复制旧共享 out_a，保证拆分前 C 输出不变
+        self.out_c = nn.Linear(d, d)
+        nn.init.zeros_(self.out_c.bias)
+        with torch.no_grad():
+            self.out_c.weight.copy_(self.out_a.weight)
+            self.out_c.bias.copy_(self.out_a.bias)
         # 直接上下文读出（给编码器/主块一条短梯度路径，避免 decoder 残差把上下文信号淹没）
         self.ctx_a = nn.Linear(d, d)
         self.ctx_c = nn.Linear(d, d)
-        nn.init.zeros_(self.out_a.bias)
         self.a_pred = nn.Linear(d, d)
         self.ln_a, self.ln_c = nn.LayerNorm(d), nn.LayerNorm(d)
         self.field = PerturbField(d, emo_dim)
@@ -164,7 +170,7 @@ class PBSLMv2(nn.Module):
         else:
             a_enc = self.ln_a(x + side_cons(0, sa))
         c_enc = self.ln_c(x + side_cons(1, sc))
-        return a_enc, c_enc, E_feats, side_I(0), side_I(1), active
+        return a_enc, c_enc, E_feats, side_I(0), side_I(1), active, chosen
 
     def _decode(self, layers, q, kv):
         h = q
@@ -183,7 +189,7 @@ class PBSLMv2(nn.Module):
     def forward(self, ids, m, act=None, emo=None, shock=None, sample_noise=True):
         B = ids.shape[0]
         emo = (self.emo_calm.expand(B, -1) if emo is None else emo).to(self.tok.weight.dtype)
-        a_enc, c_enc, E_feats, I_a, I_c, active = self.encode(ids, act)
+        a_enc, c_enc, E_feats, I_a, I_c, active, chosen = self.encode(ids, act)
         q0 = (self.q_emb[:m] + self.q_pos[:m]).unsqueeze(0).expand(B, m, self.d)
         q0c = (self.q_emb_c[:m] + self.q_pos_c[:m]).unsqueeze(0).expand(B, m, self.d)
         if self.simple_dec:
@@ -202,7 +208,7 @@ class PBSLMv2(nn.Module):
             z_c = F.normalize(ctx_c.expand(-1, m, -1), dim=-1)
         else:
             z_a = F.normalize(self.out_a(h_a) + ctx_a, dim=-1)
-            z_c = F.normalize(self.out_a(h_c) + ctx_c, dim=-1)
+            z_c = F.normalize(self.out_c(h_c) + ctx_c, dim=-1)
         # 三旋钮扰动场：activity / shock / emotion；shock 由训练脚本算好后传入（B,1）
         dt = self.tok.weight.dtype
         act_b = torch.full((B, 1), act / self.act_x if act else 1.0, device=ids.device, dtype=dt)
@@ -220,7 +226,48 @@ class PBSLMv2(nn.Module):
             z_pert = z_a
         return {"z_a": z_a, "z_c": z_c, "field_mu": mu, "field_log_sigma": log_sigma,
                 "z_pert": z_pert,
-                "h_a": h_a, "e_feats": E_feats, "I_a": I_a, "I_c": I_c, "active": active}
+                "h_a": h_a, "e_feats": E_feats, "I_a": I_a, "I_c": I_c,
+                "active": active, "chosen": chosen}
+
+    # ---- O1: online parameter whitelist -------------------------------------------------
+    def online_param_groups(self):
+        """O1 方案 B 的可更新 A 参数组（不含 role_a）。"""
+        return {
+            "dec_a": list(self.dec_a.parameters()),
+            "a_query": [self.q_emb, self.q_pos],
+            "refine_proj": list(self.refine_proj.parameters()),
+            "ln_a": list(self.ln_a.parameters()),
+            "ctx_a": list(self.ctx_a.parameters()),
+            "out_a": list(self.out_a.parameters()),
+        }
+
+    def online_parameters(self):
+        seen, out = set(), []
+        for group in self.online_param_groups().values():
+            for p in group:
+                if id(p) not in seen:
+                    seen.add(id(p)); out.append(p)
+        return out
+
+    def freeze_for_online(self):
+        """冻结一切，只保留 O1 白名单；role_a/C/shared/field/a_pred 都冻结。"""
+        keep = {id(p) for p in self.online_parameters()}
+        for p in self.parameters():
+            p.requires_grad_(id(p) in keep)
+        # C 输出投影永远不进入在线 optimizer
+        for p in self.out_c.parameters():
+            p.requires_grad_(False)
+        return self.online_parameters()
+
+    def load_state_dict(self, state_dict, strict=True, assign=False):
+        """兼容旧 checkpoint：旧模型只有 out_a，没有 out_c；
+        缺失时用旧 out_a 初始化 out_c（保证 C 输出不变）。"""
+        sd = dict(state_dict)
+        for name in ("weight", "bias"):
+            kc, ka = f"out_c.{name}", f"out_a.{name}"
+            if kc not in sd and ka in sd:
+                sd[kc] = sd[ka].clone()
+        return super().load_state_dict(sd, strict=strict, assign=assign)
 
     @torch.no_grad()
     def write_memory(self, e_feats, values, gate=1.0, lr=0.05):

@@ -215,6 +215,31 @@ A 路由的在线学习留给 O2/O1.5 的独立路由方案。
 - 更新前后 + 打断/恢复一次；
 - 多 seed 非确定性检查。
 
+### 5.5 `role_a` 耦合测试的约束
+
+不能要求“任意参数扰动都必然改变 C”。必须按以下受控方式测试：
+
+1. 使用 `dense=False`、`use_flow=True`、`direct_only=False`、`use_mem=True`；
+2. 用固定随机种子构造确定性扰动（不是随机 batch/随机训练步）；
+3. **先确认 A 的 top-k 选块确实发生变化**；
+4. 再检查 C 选块、active blocks、`z_c`、`I_c`；
+5. 如果 C 不变，不能直接判为测试失败或通过，必须分析：
+   - A 选块变了但 C 的候选集合是否恰好不变？
+   - `bank.comm`/`flow` 是否对 C 行产生实际差异？
+   - 是否 `dense=True`、`direct_only=True` 或配置没有走到真实路由？
+6. 测试应报告 `role_a_setup_ok`、`A_selection_changed`、`C_changes`，而不是只报一个 pass/fail。
+
+### 5.6 O1 三层测试必须分开
+
+| 层 | 内容 | 允许操作 |
+|---|---|---|
+| L1 前向基线 | 固定输入做前向，记录 C 输出/选块/I | 只 forward |
+| L2 确定性 A 参数扰动 | 按组直接修改参数张量，再 forward | 参数赋值 + forward |
+| L3 optimizer param_groups 白名单 | 只构造/检查 param_groups 内容 | 不 step、不 backward、不算 loss |
+
+**O1 禁止**：任何训练损失、backward、optimizer.step、真实训练步骤。
+测试中的参数扰动必须是显式赋值，不是训练。
+
 ---
 
 ## 6. M 写入因果流程
