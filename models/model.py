@@ -46,6 +46,23 @@ def hrr_unbind(m, q):
                            * torch.conj(torch.fft.rfft(q, dim=-1)), n=d, dim=-1)
 
 
+def _check_finite(t, label):
+    if not torch.isfinite(t).all():
+        raise FloatingPointError(f"non-finite value at {label}")
+
+
+def _check_valid_finite(t, mask, label):
+    """Only valid blocks/positions may contain NaN/Inf; invalid ones must be cleaned first."""
+    if t.numel() == 0:
+        return
+    if mask.dim() == 2:
+        vals = t[mask]
+    else:
+        vals = t
+    if not torch.isfinite(vals).all():
+        raise FloatingPointError(f"non-finite value in valid region at {label}")
+
+
 class BlockBank(nn.Module):
     """nb 个权重独立的真块；每个块 = depth 个子层（子层各自独立权重）。
     forward 只计算传入 idx 的块（活跃块），按块批量 bmm。"""
@@ -118,13 +135,43 @@ class BlockBank(nn.Module):
             y = y + f.view(S, B, T, D)
         return y
 
-    def comm(self, Y, g):
-        w = g[:, None, None, None]
-        tot = (w * Y).sum(0)
-        others = tot.unsqueeze(0) - w * Y
+    def comm(self, Y, g, idx=None, mask=None):
+        # Legacy path: exactly preserve previous behavior.
+        if idx is None and mask is None:
+            w = g[:, None, None, None]
+            tot = (w * Y).sum(0)
+            others = tot.unsqueeze(0) - w * Y
+            r = self.comm2(F.gelu(self.comm1(others)))
+            beta = torch.sigmoid(self.comm_beta[: Y.shape[0]])[:, None, None, None]
+            return Y + beta * w * r
+
+        # New path requires both physical block ids and the (G,B) mask.
+        if idx is None or mask is None:
+            raise ValueError("comm new path requires both idx and mask")
+        if Y.dim() != 4:
+            raise ValueError("comm Y must be (G,B,T,D)")
+        idx = torch.as_tensor(idx, device=Y.device, dtype=torch.long)
+        mask = torch.as_tensor(mask, device=Y.device, dtype=torch.bool)
+        G, B = Y.shape[0], Y.shape[1]
+        if idx.numel() != G or mask.shape != (G, B):
+            raise ValueError(f"comm shape mismatch: Y={tuple(Y.shape)}, idx={tuple(idx.shape)}, mask={tuple(mask.shape)}")
+        if g.numel() != G:
+            raise ValueError("comm g must have length G")
+        w = g.to(dtype=Y.dtype, device=Y.device)[:, None, None, None]
+        mask4 = mask[:, :, None, None]
+        valid_Y = torch.where(mask4, Y, torch.zeros_like(Y))
+        _check_valid_finite(valid_Y, mask, "comm.valid_Y")
+        weighted_Y = w * valid_Y
+        tot = weighted_Y.sum(0)
+        others = torch.where(mask4, tot.unsqueeze(0) - weighted_Y, torch.zeros_like(Y))
+        _check_valid_finite(others, mask, "comm.others")
         r = self.comm2(F.gelu(self.comm1(others)))
-        beta = torch.sigmoid(self.comm_beta[: Y.shape[0]])[:, None, None, None]
-        return Y + beta * w * r
+        _check_valid_finite(r, mask, "comm.r")
+        beta = torch.sigmoid(self.comm_beta[idx])[:, None, None, None]
+        update = torch.where(mask4, beta * w * r, torch.zeros_like(Y))
+        out = torch.where(mask4, valid_Y + update, torch.zeros_like(Y))
+        _check_valid_finite(out, mask, "comm.out")
+        return out
 
 
 class CrossLayer(nn.Module):
@@ -180,12 +227,59 @@ class FlowStep(nn.Module):
         self.o = nn.Linear(fdim, fdim)
         self.ln = nn.LayerNorm(fdim)
 
-    def forward(self, h):
-        # h: (S,B,T,f)；块之间互相流动（每个 (B,T) 内做一次块间注意力）
-        q, k, v = self.q(h), self.k(h), self.v(h)
-        att = torch.softmax(torch.einsum("ibtd,jbtd->btij", q, k) / math.sqrt(q.shape[-1]), -1)
-        msg = torch.einsum("btij,jbtd->ibtd", att, v)
-        return self.ln(h + self.o(msg))
+    def forward(self, h, mask=None, trace=None):
+        # Legacy path: exactly preserve previous behavior.
+        if mask is None:
+            # h: (S,B,T,f)；块之间互相流动（每个 (B,T) 内做一次块间注意力）
+            q, k, v = self.q(h), self.k(h), self.v(h)
+            att = torch.softmax(torch.einsum("ibtd,jbtd->btij", q, k) / math.sqrt(q.shape[-1]), -1)
+            msg = torch.einsum("btij,jbtd->ibtd", att, v)
+            return self.ln(h + self.o(msg))
+
+        if h.dim() != 4:
+            raise ValueError("FlowStep h must be (G,B,T,f)")
+        G, B = h.shape[0], h.shape[1]
+        mask = torch.as_tensor(mask, device=h.device, dtype=torch.bool)
+        if mask.shape != (G, B):
+            raise ValueError(f"FlowStep mask must be (G,B), got {tuple(mask.shape)}")
+        count_b = mask.sum(0)
+        if (count_b < 1).any():
+            raise ValueError("FlowStep empty active set for at least one sample")
+        mask4 = mask[:, :, None, None]
+        h_in = torch.where(mask4, h, torch.zeros_like(h))
+        _check_valid_finite(h_in, mask, "FlowStep.h_in")
+        q = torch.where(mask4, self.q(h_in), torch.zeros_like(h_in))
+        k = torch.where(mask4, self.k(h_in), torch.zeros_like(h_in))
+        v = torch.where(mask4, self.v(h_in), torch.zeros_like(h_in))
+        _check_valid_finite(q, mask, "FlowStep.q")
+        _check_valid_finite(k, mask, "FlowStep.k")
+        _check_valid_finite(v, mask, "FlowStep.v")
+
+        # (G,B,T,f) -> (B,T,G,f)
+        Q = q.permute(1, 2, 0, 3)
+        K = k.permute(1, 2, 0, 3)
+        V = v.permute(1, 2, 0, 3)
+        logits = torch.matmul(Q, K.transpose(-1, -2)) / math.sqrt(h.shape[-1])
+        key_mask = mask.transpose(0, 1)[:, None, None, :]       # (B,1,1,G)
+        logits = logits.masked_fill(~key_mask, float("-inf"))
+        # Check finite valid logits before softmax; invalid key entries are -inf by design.
+        valid_logits = logits.masked_fill(~key_mask, 0.0)
+        _check_finite(valid_logits, "FlowStep.logits")
+        att = torch.softmax(logits, dim=-1)                     # (B,T,G,G)
+        _check_finite(att, "FlowStep.att")
+        msg_b = torch.matmul(att, V)                            # (B,T,G,f)
+        msg = msg_b.permute(2, 0, 1, 3)                         # (G,B,T,f)
+        msg = torch.where(mask4, msg, torch.zeros_like(msg))
+        _check_valid_finite(msg, mask, "FlowStep.msg")
+        out = self.ln(h_in + self.o(msg))
+        out = torch.where(mask4, out, torch.zeros_like(out))
+        _check_valid_finite(out, mask, "FlowStep.out")
+        if trace is not None:
+            trace.update({"h_in": h_in, "q": q, "k": k, "v": v,
+                          "Q": Q, "K": K, "V": V, "logits": logits,
+                          "att": att, "msg": msg, "out": out,
+                          "key_mask": key_mask, "count_b": count_b})
+        return out
 
 
 class InfoFlow(nn.Module):
@@ -198,14 +292,57 @@ class InfoFlow(nn.Module):
         self.layers = nn.ModuleList([FlowStep(fdim) for _ in range(steps)])
         self.proj_out = nn.Linear(fdim, d)
 
-    def forward(self, delta):
-        h = self.proj_in(delta)                    # (S,B,T,f)
+    def forward(self, delta, mask=None, trace=None):
+        # Legacy path: exactly preserve previous behavior.
+        if mask is None:
+            h = self.proj_in(delta)                    # (S,B,T,f)
+            for layer in self.layers:
+                h = layer(h)
+            mean = h.mean(0)                            # (B,T,f)
+            scale = h.norm(dim=-1).mean(0) + 1e-6       # (B,T)
+            agree = 1 - ((h - mean.unsqueeze(0)).norm(dim=-1) / scale.unsqueeze(0)).clamp(0, 2)
+            cons = self.proj_out(mean)                  # (B,T,D)
+            return h, agree, cons
+
+        if delta.dim() != 4:
+            raise ValueError("InfoFlow delta must be (G,B,T,D)")
+        G, B = delta.shape[0], delta.shape[1]
+        mask = torch.as_tensor(mask, device=delta.device, dtype=torch.bool)
+        if mask.shape != (G, B):
+            raise ValueError(f"InfoFlow mask must be (G,B), got {tuple(mask.shape)}")
+        count_b = mask.sum(0)
+        if (count_b < 1).any():
+            raise ValueError("InfoFlow empty active set for at least one sample")
+        mask4 = mask[:, :, None, None]
+        delta_in = torch.where(mask4, delta, torch.zeros_like(delta))
+        _check_valid_finite(delta_in, mask, "InfoFlow.delta_in")
+        h = self.proj_in(delta_in)
+        h = torch.where(mask4, h, torch.zeros_like(h))
+        _check_valid_finite(h, mask, "InfoFlow.proj_in")
+        flow_trace = []
         for layer in self.layers:
-            h = layer(h)
-        mean = h.mean(0)                            # (B,T,f)
-        scale = h.norm(dim=-1).mean(0) + 1e-6       # (B,T)
-        agree = 1 - ((h - mean.unsqueeze(0)).norm(dim=-1) / scale.unsqueeze(0)).clamp(0, 2)
-        cons = self.proj_out(mean)                  # (B,T,D)
+            step_trace = {} if trace is not None else None
+            h = layer(h, mask, trace=step_trace)
+            if step_trace is not None:
+                flow_trace.append(step_trace)
+
+        valid_h = torch.where(mask4, h, torch.zeros_like(h))
+        tot = valid_h.sum(0)
+        mean = tot / count_b[:, None, None]
+        _check_finite(mean, "InfoFlow.mean")
+        valid_norm = torch.where(mask[:, :, None], valid_h.norm(dim=-1), torch.zeros_like(valid_h.norm(dim=-1)))
+        scale = valid_norm.sum(0) / count_b[:, None] + 1e-6
+        _check_finite(scale, "InfoFlow.scale")
+        safe_mean = torch.where(mask4, mean.unsqueeze(0), torch.zeros_like(valid_h))
+        centered = valid_h - safe_mean
+        agree_raw = 1 - (centered.norm(dim=-1) / scale.unsqueeze(0)).clamp(0, 2)
+        agree = torch.where(mask[:, :, None], agree_raw, torch.zeros_like(agree_raw))
+        _check_valid_finite(agree, mask, "InfoFlow.agree")
+        cons = self.proj_out(mean)
+        _check_finite(cons, "InfoFlow.cons")
+        if trace is not None:
+            trace.update({"h": h, "mean": mean, "scale": scale, "agree": agree,
+                          "cons": cons, "flow_steps": flow_trace, "count_b": count_b})
         return h, agree, cons
 
 
