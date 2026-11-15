@@ -2,7 +2,7 @@
 
 状态：**O1.5 架构分析文档（补充 active 三集合、严格 mask、Flow 语义、参数隔离边界、
 BlockBank beta 索引、batch union 语义、逐块独立性、M1/M2 严格等价、
-P0-5 可区分 beta 测试、P0-6 统一 mask 布局、P0-7 非零更新、P0-8 count 定义、P0-9 Flow attention mask、P0-10 agree 逐块语义、P0-11 NaN-safe mask 与 proj_in 前清理）。
+P0-5 可区分 beta 测试、P0-6 统一 mask 布局、P0-7 非零更新、P0-8 count 定义、P0-9 Flow attention mask、P0-10 agree 逐块语义、P0-11 NaN-safe mask 与 proj_in 前清理、P0-12 Flow attention 维度闭合）。
 只做设计，不修改模型代码，不运行训练/loss/backward/optimizer.step/smoke。**
 基线：O1 提交 `ad99bc1`；O1 只证明了**输出头已拆分**、六组 A 参数白名单和基础 C 稳定性，
 **不代表 A/C 计算路径已经完全隔离，更不代表 Online Learning 已实现。**
@@ -476,6 +476,68 @@ for layer in self.layers:
 5. **每层输出**：无效 query 和无效 key 的状态都不得写回 `h`；
 6. **测试**：构造 `count_b==0` 的 mask，断言受控错误或显式零输出，不能出现 NaN。
 
+#### P0-12 Flow Attention 张量维度闭合
+
+记 `G = len(active_union_global)`，`B` = batch，`T` = token 长度，
+`f = InfoFlow.fdim`（当前为 64）。当前 `FlowStep` 是**单头**，没有额外 heads 维；
+若未来引入多头，必须另写 reshape 规范。
+
+##### 维度链
+
+```text
+h                  (G,B,T,f)
+h_in = where(...)  (G,B,T,f)
+q,k,v = linear     (G,B,T,f)       # 投影后再次 where
+Q = q.permute(1,2,0,3)  (B,T,G,f)
+K = k.permute(1,2,0,3)  (B,T,G,f)
+V = v.permute(1,2,0,3)  (B,T,G,f)
+K_t = K.transpose(-1,-2) (B,T,f,G)
+logits = Q @ K_t / sqrt(f)  (B,T,G,G)
+key_mask = mask_side.transpose(0,1)[:,None,None,:]  (B,1,1,G)
+logits = logits.masked_fill(~key_mask, -inf)  (B,T,G,G)
+A = softmax(logits, dim=-1)  (B,T,G,G)   # 最后一维=key block
+msg_b = A @ V  (B,T,G,f)                 # V 不转置
+msg = msg_b.permute(2,0,1,3)  (G,B,T,f)
+msg = where(query_mask, msg, 0)  (G,B,T,f)
+out = ln(h_in + o(msg))  (G,B,T,f)
+out = where(mask, out, 0)  (G,B,T,f)
+```
+
+##### 数学公式
+
+```text
+Attention(Q,K,V) = softmax( Q Kᵀ / sqrt(d_k) + Mask ) V
+```
+
+- 当前单头：`d_k = f`；
+- `Q/K/V` 的形状必须严格为 `(B,T,G,f)`；
+- `Mask` 形状 `(B,1,1,G)`，广播到 `(B,T,G,G)`；
+- softmax 沿最后一维（key block）执行；
+- `V` 不转置；`K` 必须转置为 `(B,T,f,G)`；
+- `msg` 必须从 `(B,T,G,f)` permute 回 `(G,B,T,f)`。
+
+##### 断言与测试设计（P0-12）
+
+每个中间张量都要断言形状：
+
+- `h/q/k/v/msg/out`: `(G,B,T,f)`；
+- `Q/K/V`: `(B,T,G,f)`；
+- `logits/A`: `(B,T,G,G)`；
+- `key_mask`: `(B,1,1,G)`；
+- softmax 维数：`-1`。
+
+必须覆盖：
+
+1. batch=1；
+2. batch>1；
+3. G>1；
+4. 不同样本具有不同有效块集合；
+5. 非连续物理块索引；
+6. 无效 key 不参与 softmax；
+7. 无效 query 输出严格为零；
+8. 全无效 key 受控报错（不得 NaN）；
+9. Attention 输出与逐样本 M1 参考实现一致（逐样本、逐块、逐层）。
+
 #### 2.5.3 mask 的测试要求
 
 必须固定 `chosen_c`/`active_c`，再改变 A 侧输入。
@@ -807,7 +869,7 @@ O1.5 只解决**计算状态隔离**，不解决参数独立：
 |---|---|---|---|---|
 | O1.5-0 | 本设计评审 | O1 | 文档通过 | — |
 | O1.5-A | 逐样本路由 + C 独立选块 | O1.5-0 | 单样本/batch 路由一致；样本顺序无关；`chosen_c`/`active_c` 不因 A 路由变化；共享 comm/flow 下 `z_c` 仍可能变化，只记录剩余耦合 | 同一样本路由随 batch 变化；`chosen_c`/`active_c` 随 A 路由变化 |
-| O1.5-B | A/C 分别 comm/flow + 严格 mask；P0-1 beta 修正、P0-2 union 语义、P0-3 逐块独立性、P0-4 严格等价、P0-5/P0-7 beta 可区分测试、P0-6/P0-8/P0-9 mask/count/全无效安全、P0-10 agree 逐块语义、P0-11 NaN-safe mask | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；M1/M2 逐层等价；非连续 beta/union/逐块/空集合测试通过；P0-11 proj_in/中间状态/forward/backward 有限性与 NaN 显式报错通过 | C 任一中间/最终指标变化；mask 泄漏；P0 测试失败；NaN/除零；backward 梯度非有限；性能超预算 |
+| O1.5-B | A/C 分别 comm/flow + 严格 mask；P0-1 beta 修正、P0-2 union 语义、P0-3 逐块独立性、P0-4 严格等价、P0-5/P0-7 beta 可区分测试、P0-6/P0-8/P0-9 mask/count/全无效安全、P0-10 agree 逐块语义、P0-11 NaN-safe mask | O1.5-A | 六组扰动后 C 的 `settled_c`/`agree_c`/`I_c`/`side_cons_c`/`z_c` 稳定；A 路由变化时同上；M1/M2 逐层等价；非连续 beta/union/逐块/空集合测试通过；P0-11 proj_in/中间状态/forward/backward 有限性与 NaN 显式报错通过；P0-12 Flow attention 维度/等价测试通过 | C 任一中间/最终指标变化；mask 泄漏；P0 测试失败；NaN/除零；backward 梯度非有限；性能超预算 |
 | O1.5-C | `role_a` 加入白名单（第七组） | O1.5-B | 七组白名单；A 路由更新后 `active_c`/C 仍稳定；`active_a` 数可解释 | C 变化；路由塌缩；吞吐异常 |
 | O1.5-D | 兼容/回滚/性能收口 | O1.5-B | 旧 checkpoint 加载；legacy 路径回归；性能记录 | 旧 ckpt 失败；无法回滚 |
 
@@ -965,6 +1027,27 @@ P0-11 不能只验证 forward 输出有限；O1.5-B 的 NaN-safety 测试必须�
 - 检查失败后不得继续执行后续运算；测试可注入 NaN 并断言抛出位置；
 - 记录每项 `max_abs_grad`、`isfinite` 布尔结果。
 
+### 8.10 P0-12 Flow attention 维度/等价测试
+
+对每个中间张量做 shape 断言：
+
+- `h/q/k/v/msg/out`：`(G,B,T,f)`；
+- `Q/K/V`：`(B,T,G,f)`；
+- `logits/A`：`(B,T,G,G)`；
+- `key_mask`：`(B,1,1,G)`；
+- softmax 必须沿最后一维。
+
+测试矩阵：
+
+- batch=1；
+- batch>1，且不同样本有不同有效块集合；
+- G>1；
+- 物理块索引非连续；
+- 无效 key 不参与 softmax；
+- 无效 query 输出严格为零；
+- 全无效 key 受控报错、不得 NaN；
+- 与逐样本 M1 参考实现的 attention 输出逐样本、逐块、逐层 `allclose`。
+
 ---
 
 ## 9. 参数量、计算开销、兼容性与回滚
@@ -1008,6 +1091,7 @@ O1.5 回归测试必须同时验证 legacy 行为未被无意改变。
 22. attention key mask 若没有按 `(B,1,1,G)` 批量广播，会错误屏蔽/泄漏 key；必须固定广播形状并在测试中验证。
 23. `proj_out` 带 bias；只在输入处清理不能保证输出无效位置为零，必须投影后再 where。
 24. 有效块 NaN 若只靠自然传播到最终输出，会晚于其他有效块被污染；必须在每个边界显式检查并受控报错。
+25. Flow attention 的 Q/K/V/logits/msg 若维度链写成 `(G,B,T,f)` 与 `(B,T,G,G)` 混用，形状断言必须逐项覆盖；P0-12 是实施前必须闭合的维度规范。
 
 ---
 
