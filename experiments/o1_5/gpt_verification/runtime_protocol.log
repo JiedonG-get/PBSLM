@@ -1,0 +1,20 @@
+test_causal_write_references_and_confirmation_are_explicit (tests.test_runtime_session.RuntimeSessionTests.test_causal_write_references_and_confirmation_are_explicit) ... ok
+test_commit_idempotent_even_after_interruption (tests.test_runtime_session.RuntimeSessionTests.test_commit_idempotent_even_after_interruption) ... ok
+test_commit_never_confirms_write_or_mutates_memory (tests.test_runtime_session.RuntimeSessionTests.test_commit_never_confirms_write_or_mutates_memory) ... ok
+test_complete_commit_retry_does_not_duplicate_text (tests.test_runtime_session.RuntimeSessionTests.test_complete_commit_retry_does_not_duplicate_text) ... ok
+test_confirmed_log_survives_interrupt_and_cannot_be_rejected (tests.test_runtime_session.RuntimeSessionTests.test_confirmed_log_survives_interrupt_and_cannot_be_rejected) ... ok
+test_explicit_transition_sequence (tests.test_runtime_session.RuntimeSessionTests.test_explicit_transition_sequence) ... ok
+test_future_evidence_and_monotonic_clock (tests.test_runtime_session.RuntimeSessionTests.test_future_evidence_and_monotonic_clock) ... ok
+test_illegal_transitions_and_offsets (tests.test_runtime_session.RuntimeSessionTests.test_illegal_transitions_and_offsets) ... ok
+test_interrupt_partial_commit_and_resume (tests.test_runtime_session.RuntimeSessionTests.test_interrupt_partial_commit_and_resume) ... ok
+test_new_input_invalidates_uncommitted_output (tests.test_runtime_session.RuntimeSessionTests.test_new_input_invalidates_uncommitted_output) ... ok
+test_observed_input_can_be_value_and_reject_is_explicit (tests.test_runtime_session.RuntimeSessionTests.test_observed_input_can_be_value_and_reject_is_explicit) ... ok
+test_restore_rejects_confirmation_forgery (tests.test_runtime_session.RuntimeSessionTests.test_restore_rejects_confirmation_forgery) ... ok
+test_restore_rejects_corrupted_schema_and_state (tests.test_runtime_session.RuntimeSessionTests.test_restore_rejects_corrupted_schema_and_state) ... ok
+test_snapshot_roundtrip_json_and_deterministic_continuation (tests.test_runtime_session.RuntimeSessionTests.test_snapshot_roundtrip_json_and_deterministic_continuation) ... ok
+test_snapshots_all_protocol_states (tests.test_runtime_session.RuntimeSessionTests.test_snapshots_all_protocol_states) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.003s
+
+OK
