@@ -177,11 +177,18 @@ class PBSLMv2(nn.Module):
     # ---- O1.5: per-sample masked end-to-end path (optional; legacy encode above unchanged)
     def _select_masked(self, score_a, score_c, kA, kC):
         if self.dense:
+            # Legacy dense behavior: both roles use every block; this is intentionally
+            # not the sparse A/C mutual-exclusion rule.
             allb = torch.arange(self.k, device=score_a.device)
             ia = allb.unsqueeze(0).expand(score_a.shape[0], -1)
             ic = ia.clone()
         else:
-            # Preserve legacy v2 role semantics per sample: A first, C excludes A.
+            # Sparse path: per-sample A-first, C excludes A (strict mutual exclusion).
+            if kA < 1 or kC < 1 or kA + kC > self.k:
+                raise ValueError(
+                    f"invalid sparse quotas: kA={kA}, kC={kC}, k={self.k}; "
+                    "require kA+kC <= k and kA,kC >= 1"
+                )
             ia = torch.topk(score_a, kA, dim=-1).indices
             taken = torch.zeros_like(score_a, dtype=torch.bool)
             taken.scatter_(1, ia, True)

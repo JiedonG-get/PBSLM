@@ -9,12 +9,12 @@ import torch
 from models.model_v2 import PBSLMv2
 
 
-def make_model(use_sample_masks):
+def make_model(use_sample_masks, dense=False):
     torch.manual_seed(0)
     return PBSLMv2(vocab=64, k=8, depth=1, d=32, heads=4, m_max=8,
                    act_x=0.2, e_n=2, e_depth=1, emo_dim=8, field_scale=0.0,
                    use_mem=True, trainable_target=True, simple_dec=False,
-                   dense=False, use_flow=True, direct_only=False,
+                   dense=dense, use_flow=True, direct_only=False,
                    use_sample_masks=use_sample_masks).eval()
 
 
@@ -57,6 +57,23 @@ class ModelV2MaskIntegrationTests(unittest.TestCase):
             self.assertEqual(c, set(o["chosen_c"][b]))
         self.assertEqual(set(union), set(sum(o["chosen_a"], [])) | set(sum(o["chosen_c"], [])))
         self.assertEqual(union, sorted(union))
+
+    def test_dense_uses_all_blocks_compat(self):
+        dense = make_model(use_sample_masks=True, dense=True)
+        out = forward(dense, self.ids)
+        allb = list(range(dense.k))
+        for b in range(2):
+            self.assertEqual(out["chosen_a"][b], allb)
+            self.assertEqual(out["chosen_c"][b], allb)
+        self.assertEqual(out["active_union_global"], allb)
+        self.assertTrue(bool(out["mask_a"].all()))
+        self.assertTrue(bool(out["mask_c"].all()))
+
+    def test_invalid_sparse_quota_raises(self):
+        m = make_model(use_sample_masks=True)
+        score = torch.zeros(2, m.k)
+        with self.assertRaises(ValueError):
+            m._select_masked(score, score, m.k, 1)
 
     def test_a_c_routes_disjoint_per_sample(self):
         o = self.out
