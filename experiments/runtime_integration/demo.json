@@ -1,0 +1,526 @@
+{
+  "scope": "synchronous token-ID associative demonstration, not language/runtime concurrency",
+  "seed": 0,
+  "offline_training": {
+    "seed": 0,
+    "before": {
+      "episodes": 16,
+      "support_per_episode": 4,
+      "parameter_hash_unchanged": true,
+      "c_bitwise_stable": true,
+      "arms": {
+        "normal": {
+          "a": 0,
+          "c": 4,
+          "matches_written_value": 0,
+          "targets": 64,
+          "a_accuracy": 0.0,
+          "c_accuracy": 0.0625,
+          "written_value_match_rate": 0.0,
+          "mean_memory_norm": 0.20126408338546753
+        },
+        "zero": {
+          "a": 0,
+          "c": 4,
+          "matches_written_value": 0,
+          "targets": 64,
+          "a_accuracy": 0.0,
+          "c_accuracy": 0.0625,
+          "written_value_match_rate": 0.0,
+          "mean_memory_norm": 0.0
+        },
+        "wrong_values": {
+          "a": 0,
+          "c": 4,
+          "matches_written_value": 0,
+          "targets": 64,
+          "a_accuracy": 0.0,
+          "c_accuracy": 0.0625,
+          "written_value_match_rate": 0.0,
+          "mean_memory_norm": 0.20037623029202223
+        }
+      }
+    },
+    "after": {
+      "episodes": 8,
+      "support_per_episode": 4,
+      "parameter_hash_unchanged": true,
+      "c_bitwise_stable": true,
+      "arms": {
+        "normal": {
+          "a": 32,
+          "c": 1,
+          "matches_written_value": 32,
+          "targets": 32,
+          "a_accuracy": 1.0,
+          "c_accuracy": 0.03125,
+          "written_value_match_rate": 1.0,
+          "mean_memory_norm": 0.2002118183299899
+        },
+        "zero": {
+          "a": 3,
+          "c": 1,
+          "matches_written_value": 3,
+          "targets": 32,
+          "a_accuracy": 0.09375,
+          "c_accuracy": 0.03125,
+          "written_value_match_rate": 0.09375,
+          "mean_memory_norm": 0.0
+        },
+        "wrong_values": {
+          "a": 0,
+          "c": 1,
+          "matches_written_value": 32,
+          "targets": 32,
+          "a_accuracy": 0.0,
+          "c_accuracy": 0.03125,
+          "written_value_match_rate": 1.0,
+          "mean_memory_norm": 0.19904607255011797
+        }
+      }
+    },
+    "capacity": {
+      "2": {
+        "episodes": 8,
+        "support_per_episode": 2,
+        "parameter_hash_unchanged": true,
+        "c_bitwise_stable": true,
+        "arms": {
+          "normal": {
+            "a": 16,
+            "c": 0,
+            "matches_written_value": 16,
+            "targets": 16,
+            "a_accuracy": 1.0,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.14217475801706314
+          },
+          "zero": {
+            "a": 3,
+            "c": 0,
+            "matches_written_value": 3,
+            "targets": 16,
+            "a_accuracy": 0.1875,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 0.1875,
+            "mean_memory_norm": 0.0
+          },
+          "wrong_values": {
+            "a": 0,
+            "c": 0,
+            "matches_written_value": 16,
+            "targets": 16,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.14217475708574057
+          }
+        }
+      },
+      "8": {
+        "episodes": 8,
+        "support_per_episode": 8,
+        "parameter_hash_unchanged": true,
+        "c_bitwise_stable": true,
+        "arms": {
+          "normal": {
+            "a": 64,
+            "c": 1,
+            "matches_written_value": 64,
+            "targets": 64,
+            "a_accuracy": 1.0,
+            "c_accuracy": 0.015625,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.2830875664949417
+          },
+          "zero": {
+            "a": 5,
+            "c": 1,
+            "matches_written_value": 5,
+            "targets": 64,
+            "a_accuracy": 0.078125,
+            "c_accuracy": 0.015625,
+            "written_value_match_rate": 0.078125,
+            "mean_memory_norm": 0.0
+          },
+          "wrong_values": {
+            "a": 0,
+            "c": 1,
+            "matches_written_value": 64,
+            "targets": 64,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.015625,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.2841198053210974
+          }
+        }
+      }
+    },
+    "curve": [
+      {
+        "step": 1,
+        "loss": 5.673904895782471,
+        "grad_norm": 20.604820251464844,
+        "training_episode_accuracy": 0.0
+      },
+      {
+        "step": 100,
+        "loss": 0.18403053283691406,
+        "grad_norm": 2.589153289794922,
+        "training_episode_accuracy": 1.0
+      },
+      {
+        "step": 200,
+        "loss": 0.12386016547679901,
+        "grad_norm": 1.0104148387908936,
+        "training_episode_accuracy": 1.0
+      },
+      {
+        "step": 300,
+        "loss": 0.018873659893870354,
+        "grad_norm": 0.11307122558355331,
+        "training_episode_accuracy": 1.0
+      },
+      {
+        "step": 400,
+        "loss": 0.011022595688700676,
+        "grad_norm": 0.034188635647296906,
+        "training_episode_accuracy": 1.0
+      },
+      {
+        "step": 500,
+        "loss": 0.018767602741718292,
+        "grad_norm": 0.09813252836465836,
+        "training_episode_accuracy": 1.0
+      }
+    ],
+    "train_seconds": 24.640833700002986,
+    "total_seconds": 26.817207800006145,
+    "final_parameter_hash": "7e3b63392a18b8b881a8693fcfb90e9db37235ebfbb825d0a0fee52ed9de2c82"
+  },
+  "feedback_trace": [
+    {
+      "key": 4,
+      "prediction_before_feedback": [
+        25
+      ],
+      "revealed_feedback": 26,
+      "memory_version": 1
+    },
+    {
+      "key": 5,
+      "prediction_before_feedback": [
+        27
+      ],
+      "revealed_feedback": 24,
+      "memory_version": 2
+    },
+    {
+      "key": 6,
+      "prediction_before_feedback": [
+        29
+      ],
+      "revealed_feedback": 27,
+      "memory_version": 3
+    },
+    {
+      "key": 7,
+      "prediction_before_feedback": [
+        24
+      ],
+      "revealed_feedback": 25,
+      "memory_version": 4
+    }
+  ],
+  "recall": [
+    {
+      "key": 4,
+      "target": 26,
+      "tokens_a": [
+        26
+      ],
+      "tokens_c": [
+        19
+      ],
+      "correct": true
+    },
+    {
+      "key": 5,
+      "target": 24,
+      "tokens_a": [
+        24
+      ],
+      "tokens_c": [
+        1
+      ],
+      "correct": true
+    },
+    {
+      "key": 6,
+      "target": 27,
+      "tokens_a": [
+        27
+      ],
+      "tokens_c": [
+        25
+      ],
+      "correct": true
+    },
+    {
+      "key": 7,
+      "target": 25,
+      "tokens_a": [
+        25
+      ],
+      "tokens_c": [
+        41
+      ],
+      "correct": true
+    }
+  ],
+  "recall_accuracy": 1.0,
+  "stale_commit_rejected": true,
+  "live_parameter_hash_unchanged": true,
+  "confirmed_versions": 4,
+  "protocol_events": [
+    {
+      "kind": "observe",
+      "time": 1,
+      "revision": 1,
+      "text": "[4, 4, 4, 4]"
+    },
+    {
+      "kind": "advance",
+      "time": 1,
+      "revision": 1
+    },
+    {
+      "kind": "propose",
+      "time": 1,
+      "revision": 1,
+      "proposal_id": "p1"
+    },
+    {
+      "kind": "commit",
+      "time": 1,
+      "revision": 1,
+      "proposal_id": "p1",
+      "offset": 0,
+      "count": 1,
+      "text": "["
+    },
+    {
+      "kind": "interrupt",
+      "time": 1,
+      "revision": 1,
+      "reason": "feedback_arriving"
+    },
+    {
+      "kind": "resume",
+      "time": 1,
+      "revision": 1
+    },
+    {
+      "kind": "advance",
+      "time": 1,
+      "revision": 1
+    },
+    {
+      "kind": "observe",
+      "time": 2,
+      "revision": 2,
+      "text": "feedback:[26]"
+    },
+    {
+      "kind": "propose_write",
+      "time": 2,
+      "revision": 2,
+      "candidate_id": "w1"
+    },
+    {
+      "kind": "confirm_write",
+      "time": 2,
+      "revision": 2,
+      "candidate_id": "w1"
+    },
+    {
+      "kind": "observe",
+      "time": 3,
+      "revision": 3,
+      "text": "[5, 5, 5, 5]"
+    },
+    {
+      "kind": "advance",
+      "time": 3,
+      "revision": 3
+    },
+    {
+      "kind": "propose",
+      "time": 3,
+      "revision": 3,
+      "proposal_id": "p2"
+    },
+    {
+      "kind": "commit",
+      "time": 3,
+      "revision": 3,
+      "proposal_id": "p2",
+      "offset": 0,
+      "count": 4,
+      "text": "[27]"
+    },
+    {
+      "kind": "observe",
+      "time": 4,
+      "revision": 4,
+      "text": "feedback:[24]"
+    },
+    {
+      "kind": "propose_write",
+      "time": 4,
+      "revision": 4,
+      "candidate_id": "w2"
+    },
+    {
+      "kind": "confirm_write",
+      "time": 4,
+      "revision": 4,
+      "candidate_id": "w2"
+    },
+    {
+      "kind": "observe",
+      "time": 5,
+      "revision": 5,
+      "text": "[6, 6, 6, 6]"
+    },
+    {
+      "kind": "advance",
+      "time": 5,
+      "revision": 5
+    },
+    {
+      "kind": "propose",
+      "time": 5,
+      "revision": 5,
+      "proposal_id": "p3"
+    },
+    {
+      "kind": "commit",
+      "time": 5,
+      "revision": 5,
+      "proposal_id": "p3",
+      "offset": 0,
+      "count": 4,
+      "text": "[29]"
+    },
+    {
+      "kind": "observe",
+      "time": 6,
+      "revision": 6,
+      "text": "feedback:[27]"
+    },
+    {
+      "kind": "propose_write",
+      "time": 6,
+      "revision": 6,
+      "candidate_id": "w3"
+    },
+    {
+      "kind": "confirm_write",
+      "time": 6,
+      "revision": 6,
+      "candidate_id": "w3"
+    },
+    {
+      "kind": "observe",
+      "time": 7,
+      "revision": 7,
+      "text": "[7, 7, 7, 7]"
+    },
+    {
+      "kind": "advance",
+      "time": 7,
+      "revision": 7
+    },
+    {
+      "kind": "propose",
+      "time": 7,
+      "revision": 7,
+      "proposal_id": "p4"
+    },
+    {
+      "kind": "commit",
+      "time": 7,
+      "revision": 7,
+      "proposal_id": "p4",
+      "offset": 0,
+      "count": 4,
+      "text": "[24]"
+    },
+    {
+      "kind": "observe",
+      "time": 8,
+      "revision": 8,
+      "text": "feedback:[25]"
+    },
+    {
+      "kind": "propose_write",
+      "time": 8,
+      "revision": 8,
+      "candidate_id": "w4"
+    },
+    {
+      "kind": "confirm_write",
+      "time": 8,
+      "revision": 8,
+      "candidate_id": "w4"
+    },
+    {
+      "kind": "observe",
+      "time": 20,
+      "revision": 9,
+      "text": "[4, 4, 4, 4]"
+    },
+    {
+      "kind": "advance",
+      "time": 20,
+      "revision": 9
+    },
+    {
+      "kind": "observe",
+      "time": 21,
+      "revision": 10,
+      "text": "[5, 5, 5, 5]"
+    },
+    {
+      "kind": "advance",
+      "time": 21,
+      "revision": 10
+    },
+    {
+      "kind": "observe",
+      "time": 22,
+      "revision": 11,
+      "text": "[6, 6, 6, 6]"
+    },
+    {
+      "kind": "advance",
+      "time": 22,
+      "revision": 11
+    },
+    {
+      "kind": "observe",
+      "time": 23,
+      "revision": 12,
+      "text": "[7, 7, 7, 7]"
+    },
+    {
+      "kind": "advance",
+      "time": 23,
+      "revision": 12
+    }
+  ],
+  "snapshot_protocol_and_numeric_memory_restored": true,
+  "warning": "support labels were explicitly observed; no factual correctness or general Online Learning claim"
+}

@@ -1,0 +1,548 @@
+{
+  "scope": "synchronous token-ID associative demonstration, not language/runtime concurrency",
+  "seed": 1,
+  "provenance": {
+    "git_commit": "6beee6ffbacc61b83594405367aa47661b8060bc",
+    "git_status": "M evaluation/continual_associations.py\n M evaluation/episodic_memory.py\n?? evaluation/provenance.py\n?? evaluation/runtime_memory_demo.py\n?? experiments/runtime_integration/\n?? runtime/model_session.py\n?? tests/test_causal_model_session.py",
+    "source_sha256_at_capture": {
+      "evaluation/runtime_memory_demo.py": "cdc84d28c4ace029219a6efca699aa5e9fa92007394a887f79a5d7a877ab1110",
+      "evaluation/episodic_memory.py": "45c65362aa3315cf266b31351e727be7c7571e5da10525502d47ec0324656deb",
+      "runtime/model_session.py": "f744818d9849e18787911fec17c8ae8c6c61dea47d23c11c9bc4a4808470140d",
+      "runtime/session.py": "7d592744992639df0287f4cd1bce69168d94c6a20138c8115e4e7d160ce55164",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "offline_training": {
+    "seed": 1,
+    "before": {
+      "episodes": 16,
+      "support_per_episode": 4,
+      "parameter_hash_unchanged": true,
+      "c_bitwise_stable": true,
+      "arms": {
+        "normal": {
+          "a": 0,
+          "c": 1,
+          "matches_written_value": 0,
+          "targets": 64,
+          "a_accuracy": 0.0,
+          "c_accuracy": 0.015625,
+          "written_value_match_rate": 0.0,
+          "mean_memory_norm": 0.20032180100679398
+        },
+        "zero": {
+          "a": 0,
+          "c": 1,
+          "matches_written_value": 0,
+          "targets": 64,
+          "a_accuracy": 0.0,
+          "c_accuracy": 0.015625,
+          "written_value_match_rate": 0.0,
+          "mean_memory_norm": 0.0
+        },
+        "wrong_values": {
+          "a": 0,
+          "c": 1,
+          "matches_written_value": 0,
+          "targets": 64,
+          "a_accuracy": 0.0,
+          "c_accuracy": 0.015625,
+          "written_value_match_rate": 0.0,
+          "mean_memory_norm": 0.20173055259510875
+        }
+      }
+    },
+    "after": {
+      "episodes": 8,
+      "support_per_episode": 4,
+      "parameter_hash_unchanged": true,
+      "c_bitwise_stable": true,
+      "arms": {
+        "normal": {
+          "a": 32,
+          "c": 0,
+          "matches_written_value": 32,
+          "targets": 32,
+          "a_accuracy": 1.0,
+          "c_accuracy": 0.0,
+          "written_value_match_rate": 1.0,
+          "mean_memory_norm": 0.20158899668604136
+        },
+        "zero": {
+          "a": 2,
+          "c": 0,
+          "matches_written_value": 2,
+          "targets": 32,
+          "a_accuracy": 0.0625,
+          "c_accuracy": 0.0,
+          "written_value_match_rate": 0.0625,
+          "mean_memory_norm": 0.0
+        },
+        "wrong_values": {
+          "a": 0,
+          "c": 0,
+          "matches_written_value": 32,
+          "targets": 32,
+          "a_accuracy": 0.0,
+          "c_accuracy": 0.0,
+          "written_value_match_rate": 1.0,
+          "mean_memory_norm": 0.20118736289441586
+        }
+      }
+    },
+    "capacity": {
+      "2": {
+        "episodes": 8,
+        "support_per_episode": 2,
+        "parameter_hash_unchanged": true,
+        "c_bitwise_stable": true,
+        "arms": {
+          "normal": {
+            "a": 16,
+            "c": 0,
+            "matches_written_value": 16,
+            "targets": 16,
+            "a_accuracy": 1.0,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.14083414198830724
+          },
+          "zero": {
+            "a": 1,
+            "c": 0,
+            "matches_written_value": 1,
+            "targets": 16,
+            "a_accuracy": 0.0625,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 0.0625,
+            "mean_memory_norm": 0.0
+          },
+          "wrong_values": {
+            "a": 0,
+            "c": 0,
+            "matches_written_value": 16,
+            "targets": 16,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.0,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.14083414105698466
+          }
+        }
+      },
+      "8": {
+        "episodes": 8,
+        "support_per_episode": 8,
+        "parameter_hash_unchanged": true,
+        "c_bitwise_stable": true,
+        "arms": {
+          "normal": {
+            "a": 64,
+            "c": 5,
+            "matches_written_value": 64,
+            "targets": 64,
+            "a_accuracy": 1.0,
+            "c_accuracy": 0.078125,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.28609516844153404
+          },
+          "zero": {
+            "a": 11,
+            "c": 5,
+            "matches_written_value": 11,
+            "targets": 64,
+            "a_accuracy": 0.171875,
+            "c_accuracy": 0.078125,
+            "written_value_match_rate": 0.171875,
+            "mean_memory_norm": 0.0
+          },
+          "wrong_values": {
+            "a": 0,
+            "c": 5,
+            "matches_written_value": 64,
+            "targets": 64,
+            "a_accuracy": 0.0,
+            "c_accuracy": 0.078125,
+            "written_value_match_rate": 1.0,
+            "mean_memory_norm": 0.27946480829268694
+          }
+        }
+      }
+    },
+    "curve": [
+      {
+        "step": 1,
+        "loss": 5.7247209548950195,
+        "grad_norm": 18.18438720703125,
+        "training_episode_accuracy": 0.0
+      },
+      {
+        "step": 100,
+        "loss": 0.4931298494338989,
+        "grad_norm": 5.448350429534912,
+        "training_episode_accuracy": 0.75
+      },
+      {
+        "step": 200,
+        "loss": 0.027345890179276466,
+        "grad_norm": 0.16846111416816711,
+        "training_episode_accuracy": 1.0
+      },
+      {
+        "step": 300,
+        "loss": 0.0408974252641201,
+        "grad_norm": 0.38447099924087524,
+        "training_episode_accuracy": 1.0
+      },
+      {
+        "step": 400,
+        "loss": 0.13922443985939026,
+        "grad_norm": 1.2462177276611328,
+        "training_episode_accuracy": 1.0
+      },
+      {
+        "step": 500,
+        "loss": 0.01648906245827675,
+        "grad_norm": 0.12384414672851562,
+        "training_episode_accuracy": 1.0
+      }
+    ],
+    "train_seconds": 24.83325920000061,
+    "total_seconds": 27.014387900002475,
+    "final_parameter_hash": "37b76d32ff7020a28be7450c1c9b79277f38c2ff2f9f341707157e2f8b1687fa"
+  },
+  "feedback_trace": [
+    {
+      "key": 4,
+      "prediction_before_feedback": [
+        30
+      ],
+      "revealed_feedback": 26,
+      "memory_version": 1
+    },
+    {
+      "key": 5,
+      "prediction_before_feedback": [
+        26
+      ],
+      "revealed_feedback": 24,
+      "memory_version": 2
+    },
+    {
+      "key": 6,
+      "prediction_before_feedback": [
+        28
+      ],
+      "revealed_feedback": 27,
+      "memory_version": 3
+    },
+    {
+      "key": 7,
+      "prediction_before_feedback": [
+        26
+      ],
+      "revealed_feedback": 25,
+      "memory_version": 4
+    }
+  ],
+  "recall": [
+    {
+      "key": 4,
+      "target": 26,
+      "tokens_a": [
+        26
+      ],
+      "tokens_c": [
+        18
+      ],
+      "correct": true
+    },
+    {
+      "key": 5,
+      "target": 24,
+      "tokens_a": [
+        24
+      ],
+      "tokens_c": [
+        16
+      ],
+      "correct": true
+    },
+    {
+      "key": 6,
+      "target": 27,
+      "tokens_a": [
+        27
+      ],
+      "tokens_c": [
+        23
+      ],
+      "correct": true
+    },
+    {
+      "key": 7,
+      "target": 25,
+      "tokens_a": [
+        25
+      ],
+      "tokens_c": [
+        23
+      ],
+      "correct": true
+    }
+  ],
+  "recall_accuracy": 1.0,
+  "stale_commit_rejected": true,
+  "live_parameter_hash_unchanged": true,
+  "confirmed_versions": 4,
+  "protocol_events": [
+    {
+      "kind": "observe",
+      "time": 1,
+      "revision": 1,
+      "text": "[4, 4, 4, 4]"
+    },
+    {
+      "kind": "advance",
+      "time": 1,
+      "revision": 1
+    },
+    {
+      "kind": "propose",
+      "time": 1,
+      "revision": 1,
+      "proposal_id": "p1"
+    },
+    {
+      "kind": "commit",
+      "time": 1,
+      "revision": 1,
+      "proposal_id": "p1",
+      "offset": 0,
+      "count": 1,
+      "text": "["
+    },
+    {
+      "kind": "interrupt",
+      "time": 1,
+      "revision": 1,
+      "reason": "feedback_arriving"
+    },
+    {
+      "kind": "resume",
+      "time": 1,
+      "revision": 1
+    },
+    {
+      "kind": "advance",
+      "time": 1,
+      "revision": 1
+    },
+    {
+      "kind": "observe",
+      "time": 2,
+      "revision": 2,
+      "text": "feedback:[26]"
+    },
+    {
+      "kind": "propose_write",
+      "time": 2,
+      "revision": 2,
+      "candidate_id": "w1"
+    },
+    {
+      "kind": "confirm_write",
+      "time": 2,
+      "revision": 2,
+      "candidate_id": "w1"
+    },
+    {
+      "kind": "observe",
+      "time": 3,
+      "revision": 3,
+      "text": "[5, 5, 5, 5]"
+    },
+    {
+      "kind": "advance",
+      "time": 3,
+      "revision": 3
+    },
+    {
+      "kind": "propose",
+      "time": 3,
+      "revision": 3,
+      "proposal_id": "p2"
+    },
+    {
+      "kind": "commit",
+      "time": 3,
+      "revision": 3,
+      "proposal_id": "p2",
+      "offset": 0,
+      "count": 4,
+      "text": "[26]"
+    },
+    {
+      "kind": "observe",
+      "time": 4,
+      "revision": 4,
+      "text": "feedback:[24]"
+    },
+    {
+      "kind": "propose_write",
+      "time": 4,
+      "revision": 4,
+      "candidate_id": "w2"
+    },
+    {
+      "kind": "confirm_write",
+      "time": 4,
+      "revision": 4,
+      "candidate_id": "w2"
+    },
+    {
+      "kind": "observe",
+      "time": 5,
+      "revision": 5,
+      "text": "[6, 6, 6, 6]"
+    },
+    {
+      "kind": "advance",
+      "time": 5,
+      "revision": 5
+    },
+    {
+      "kind": "propose",
+      "time": 5,
+      "revision": 5,
+      "proposal_id": "p3"
+    },
+    {
+      "kind": "commit",
+      "time": 5,
+      "revision": 5,
+      "proposal_id": "p3",
+      "offset": 0,
+      "count": 4,
+      "text": "[28]"
+    },
+    {
+      "kind": "observe",
+      "time": 6,
+      "revision": 6,
+      "text": "feedback:[27]"
+    },
+    {
+      "kind": "propose_write",
+      "time": 6,
+      "revision": 6,
+      "candidate_id": "w3"
+    },
+    {
+      "kind": "confirm_write",
+      "time": 6,
+      "revision": 6,
+      "candidate_id": "w3"
+    },
+    {
+      "kind": "observe",
+      "time": 7,
+      "revision": 7,
+      "text": "[7, 7, 7, 7]"
+    },
+    {
+      "kind": "advance",
+      "time": 7,
+      "revision": 7
+    },
+    {
+      "kind": "propose",
+      "time": 7,
+      "revision": 7,
+      "proposal_id": "p4"
+    },
+    {
+      "kind": "commit",
+      "time": 7,
+      "revision": 7,
+      "proposal_id": "p4",
+      "offset": 0,
+      "count": 4,
+      "text": "[26]"
+    },
+    {
+      "kind": "observe",
+      "time": 8,
+      "revision": 8,
+      "text": "feedback:[25]"
+    },
+    {
+      "kind": "propose_write",
+      "time": 8,
+      "revision": 8,
+      "candidate_id": "w4"
+    },
+    {
+      "kind": "confirm_write",
+      "time": 8,
+      "revision": 8,
+      "candidate_id": "w4"
+    },
+    {
+      "kind": "observe",
+      "time": 20,
+      "revision": 9,
+      "text": "[4, 4, 4, 4]"
+    },
+    {
+      "kind": "advance",
+      "time": 20,
+      "revision": 9
+    },
+    {
+      "kind": "observe",
+      "time": 21,
+      "revision": 10,
+      "text": "[5, 5, 5, 5]"
+    },
+    {
+      "kind": "advance",
+      "time": 21,
+      "revision": 10
+    },
+    {
+      "kind": "observe",
+      "time": 22,
+      "revision": 11,
+      "text": "[6, 6, 6, 6]"
+    },
+    {
+      "kind": "advance",
+      "time": 22,
+      "revision": 11
+    },
+    {
+      "kind": "observe",
+      "time": 23,
+      "revision": 12,
+      "text": "[7, 7, 7, 7]"
+    },
+    {
+      "kind": "advance",
+      "time": 23,
+      "revision": 12
+    }
+  ],
+  "snapshot_protocol_and_numeric_memory_restored": true,
+  "warning": "support labels were explicitly observed; no factual correctness or general Online Learning claim"
+}

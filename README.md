@@ -4,7 +4,7 @@
 
 > 当前状态：Phase 1 Baseline A1/A2 已完成；后续已补充 masked A/C 工程验证与小型合成持续适应、记忆干预实验。
 > v2.1 仍是单路径语言模型 baseline；v2 的可选 masked 路径已有局部证据，**不代表完整 Online Learning 系统或通用语言能力已验证**。
-> 最新证据入口：[研究执行边界](docs/RESEARCH_EXECUTION.md)、[O1.5验证](experiments/o1_5/GPT_VERIFICATION_REPORT.md)、[持续适应](experiments/continual_associations/RESULTS.md)、[随机映射记忆](experiments/episodic_memory/RESULTS.md)。
+> 最新证据入口：[研究执行边界](docs/RESEARCH_EXECUTION.md)、[O1.5验证](experiments/o1_5/GPT_VERIFICATION_REPORT.md)、[持续适应](experiments/continual_associations/RESULTS.md)、[随机映射记忆](experiments/episodic_memory/RESULTS.md)、[模型与Runtime接线](experiments/runtime_integration/RESULTS.md)。
 
 ---
 

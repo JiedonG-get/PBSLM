@@ -13,6 +13,7 @@ from pathlib import Path
 import torch
 import torch.nn.functional as F
 from models.model_v2 import PBSLMv2
+from evaluation.provenance import capture
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -167,7 +168,9 @@ def main():
     p.add_argument('--output', default='experiments/continual_associations/pilot.json')
     args = p.parse_args()
     report = {'task': 'synthetic_domain_conditioned_key_to_label', 'limitation': 'not natural-language learning or runtime concurrency',
-              'config': vars(args), 'torch': torch.__version__, 'runs': []}
+              'config': vars(args), 'torch': torch.__version__,
+              'provenance': capture(['evaluation/continual_associations.py', 'evaluation/provenance.py',
+                                     'models/model.py', 'models/model_v2.py']), 'runs': []}
     for seed in args.seeds:
         result = run(seed, args)
         report['runs'].append(result)

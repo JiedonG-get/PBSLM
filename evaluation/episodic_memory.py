@@ -13,6 +13,7 @@ from pathlib import Path
 import torch
 import torch.nn.functional as F
 from models.model_v2 import PBSLMv2
+from evaluation.provenance import capture
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -91,7 +92,7 @@ def held_eval(model, count, support, seed, device):
             'arms': sums}
 
 
-def run(seed, args):
+def run(seed, args, return_model=False):
     torch.manual_seed(seed)
     device = torch.device(args.device)
     m = PBSLMv2(vocab=48, k=8, depth=1, d=32, heads=4, m_max=2,
@@ -124,9 +125,10 @@ def run(seed, args):
     after = held_eval(m, args.eval_episodes, args.support, seed + 3300, device)
     capacity = {str(size): held_eval(m, args.eval_episodes, size, seed + 4400 + size, device)
                 for size in (2, 8)}
-    return {'seed': seed, 'before': before, 'after': after, 'capacity': capacity, 'curve': curve,
-            'train_seconds': train_seconds, 'total_seconds': time.perf_counter() - start,
-            'final_parameter_hash': hash_parameters(m)}
+    result = {'seed': seed, 'before': before, 'after': after, 'capacity': capacity, 'curve': curve,
+              'train_seconds': train_seconds, 'total_seconds': time.perf_counter() - start,
+              'final_parameter_hash': hash_parameters(m)}
+    return (m, result) if return_model else result
 
 
 def main():
@@ -141,7 +143,10 @@ def main():
     if not 2 <= args.support <= 8:
         p.error('support must be 2..8 for nontrivial wrong-value controls')
     report = {'task': 'fresh_mapping_associative_recall', 'config': vars(args),
-              'torch': torch.__version__, 'notes': ['offline read-path learning; evaluation only writes memory',
+              'torch': torch.__version__,
+              'provenance': capture(['evaluation/episodic_memory.py', 'evaluation/provenance.py',
+                                     'models/model.py', 'models/model_v2.py']),
+              'notes': ['offline training of model to use memory; evaluation only writes memory',
               'no query label used for eval parameter update', 'not language or runtime benchmark'], 'runs': []}
     for seed in args.seeds:
         result = run(seed, args)
