@@ -1,0 +1,12 @@
+test_randomization_changes_only_e_bank_and_mix (tests.test_random_e_ablation.RandomEAblationTests.test_randomization_changes_only_e_bank_and_mix) ... ok
+test_matched_readout_capacity_and_only_readout_gradients (tests.test_feature_readout.FrozenFeatureReadoutTests.test_matched_readout_capacity_and_only_readout_gradients) ... ok
+test_no_memory_access_and_explicit_mode_contract (tests.test_feature_readout.FrozenFeatureReadoutTests.test_no_memory_access_and_explicit_mode_contract) ... ok
+test_invalid_distribution_rejected (tests.test_soft_consolidation_contracts.SoftConsolidationContracts.test_invalid_distribution_rejected) ... ok
+test_kl_direction_matches_manual_teacher_to_student (tests.test_soft_consolidation_contracts.SoftConsolidationContracts.test_kl_direction_matches_manual_teacher_to_student) ... ok
+test_teacher_detached_student_grad_and_zero_when_matching (tests.test_soft_consolidation_contracts.SoftConsolidationContracts.test_teacher_detached_student_grad_and_zero_when_matching) ... ok
+test_unfrozen_student_rejected (tests.test_soft_consolidation_contracts.SoftConsolidationContracts.test_unfrozen_student_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.365s
+
+OK
