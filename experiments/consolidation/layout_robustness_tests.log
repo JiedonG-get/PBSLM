@@ -1,0 +1,10 @@
+test_paired_layout_identity_and_no_truncation (tests.test_layout_robustness.LayoutRobustnessTests.test_paired_layout_identity_and_no_truncation) ... ok
+test_matched_readout_capacity_and_only_readout_gradients (tests.test_feature_readout.FrozenFeatureReadoutTests.test_matched_readout_capacity_and_only_readout_gradients) ... ok
+test_no_memory_access_and_explicit_mode_contract (tests.test_feature_readout.FrozenFeatureReadoutTests.test_no_memory_access_and_explicit_mode_contract) ... ok
+test_bad_input_does_not_mutate (tests.test_reservoir_nearest.ReservoirNearestTests.test_bad_input_does_not_mutate) ... ok
+test_payload_bound_identity_and_reproducible_sampling (tests.test_reservoir_nearest.ReservoirNearestTests.test_payload_bound_identity_and_reproducible_sampling) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.152s
+
+OK
