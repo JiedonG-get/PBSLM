@@ -1,0 +1,3989 @@
+{
+  "reference_sha256": "a7990d6ae381099d027cdee843874c15192e886901deb6d258908f17ea98d566",
+  "scope": "same regularized SSE; direct vs full-history CG isolates solver, current-only changes retained constraints",
+  "runs": [
+    {
+      "seed": 0,
+      "stages": [
+        {
+          "stage": 0,
+          "cumulative_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.25,
+              "predicted": [
+                31,
+                31,
+                26,
+                26,
+                15,
+                15,
+                31,
+                31
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.375,
+              "predicted": [
+                31,
+                31,
+                26,
+                26,
+                31,
+                26,
+                31,
+                31
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                31,
+                31,
+                27,
+                27,
+                27,
+                31,
+                26,
+                26
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.0,
+              "predicted": [
+                31,
+                31,
+                26,
+                26,
+                31,
+                31,
+                31,
+                31
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "cumulative_CG": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.25,
+              "predicted": [
+                31,
+                31,
+                26,
+                26,
+                15,
+                15,
+                31,
+                31
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.375,
+              "predicted": [
+                31,
+                31,
+                26,
+                26,
+                31,
+                26,
+                31,
+                31
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                31,
+                31,
+                27,
+                27,
+                27,
+                31,
+                26,
+                26
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.0,
+              "predicted": [
+                31,
+                31,
+                26,
+                26,
+                31,
+                31,
+                31,
+                31
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "current_only_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.25,
+              "predicted": [
+                31,
+                31,
+                26,
+                26,
+                15,
+                15,
+                31,
+                31
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.375,
+              "predicted": [
+                31,
+                31,
+                26,
+                26,
+                31,
+                26,
+                31,
+                31
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                31,
+                31,
+                27,
+                27,
+                27,
+                31,
+                26,
+                26
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.0,
+              "predicted": [
+                31,
+                31,
+                26,
+                26,
+                31,
+                31,
+                31,
+                31
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "CG": {
+            "iterations": 12,
+            "relative_residual": 4.4156069755367404e-16,
+            "converged": true,
+            "max_iterations": 500,
+            "tolerance": 1e-09
+          },
+          "max_weight_delta": 9.863013183952773e-13,
+          "cumulative_objective_without_constant": {
+            "direct": -199.98224142732153,
+            "CG": -199.98224142732153,
+            "current_only": -199.98224142732153
+          },
+          "cumulative_constraints": 200,
+          "current_constraints": 200
+        },
+        {
+          "stage": 1,
+          "cumulative_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.75,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                27,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.25,
+              "predicted": [
+                26,
+                26,
+                27,
+                27,
+                27,
+                27,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                27,
+                26,
+                27,
+                27,
+                27,
+                26,
+                27,
+                26
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "cumulative_CG": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.75,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                27,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.25,
+              "predicted": [
+                26,
+                26,
+                27,
+                27,
+                27,
+                27,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                27,
+                26,
+                27,
+                27,
+                27,
+                26,
+                27,
+                26
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "current_only_direct": {
+            "group0/train": {
+              "accuracy": 0.5,
+              "predicted": [
+                15,
+                15,
+                31,
+                31,
+                31,
+                31,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                27,
+                26,
+                27,
+                15,
+                27,
+                26,
+                27,
+                15
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.5,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                26,
+                26,
+                26,
+                26
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                27,
+                26,
+                27,
+                26,
+                27,
+                26,
+                27,
+                26
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "CG": {
+            "iterations": 25,
+            "relative_residual": 4.386939423541507e-10,
+            "converged": true,
+            "max_iterations": 500,
+            "tolerance": 1e-09
+          },
+          "max_weight_delta": 6.732444707627239e-09,
+          "cumulative_objective_without_constant": {
+            "direct": -398.45761800359026,
+            "CG": -398.4576180035902,
+            "current_only": -247.06025799363425
+          },
+          "cumulative_constraints": 400,
+          "current_constraints": 200
+        },
+        {
+          "stage": 2,
+          "cumulative_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                26,
+                26,
+                27,
+                26
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.875,
+              "predicted": [
+                31,
+                26,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.875,
+              "predicted": [
+                27,
+                27,
+                31,
+                26,
+                26,
+                26,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "cumulative_CG": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                26,
+                26,
+                27,
+                26
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.875,
+              "predicted": [
+                31,
+                26,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.875,
+              "predicted": [
+                27,
+                27,
+                31,
+                26,
+                26,
+                26,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "current_only_direct": {
+            "group0/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                15,
+                27,
+                26,
+                27,
+                31,
+                31,
+                31,
+                31
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.0,
+              "predicted": [
+                27,
+                27,
+                26,
+                26,
+                26,
+                26,
+                26,
+                26
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.5,
+              "predicted": [
+                31,
+                31,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.125,
+              "predicted": [
+                26,
+                26,
+                26,
+                26,
+                27,
+                27,
+                27,
+                26
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "CG": {
+            "iterations": 52,
+            "relative_residual": 5.469829212542829e-10,
+            "converged": true,
+            "max_iterations": 500,
+            "tolerance": 1e-09
+          },
+          "max_weight_delta": 1.461509802069827e-10,
+          "cumulative_objective_without_constant": {
+            "direct": -596.9348240380795,
+            "CG": -596.9348240380792,
+            "current_only": -231.98984353357773
+          },
+          "cumulative_constraints": 600,
+          "current_constraints": 200
+        }
+      ],
+      "base_unchanged": true,
+      "M_off_zero": true
+    },
+    {
+      "seed": 1,
+      "stages": [
+        {
+          "stage": 0,
+          "cumulative_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.125,
+              "predicted": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                31,
+                21
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.125,
+              "predicted": [
+                31,
+                31,
+                21,
+                28,
+                11,
+                31,
+                21,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                31,
+                31,
+                21,
+                21,
+                28,
+                28,
+                11,
+                11
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                31,
+                31,
+                21,
+                28,
+                21,
+                31,
+                11,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "cumulative_CG": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.125,
+              "predicted": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                31,
+                21
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.125,
+              "predicted": [
+                31,
+                31,
+                21,
+                28,
+                11,
+                31,
+                21,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                31,
+                31,
+                21,
+                21,
+                28,
+                28,
+                11,
+                11
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                31,
+                31,
+                21,
+                28,
+                21,
+                31,
+                11,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "current_only_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.125,
+              "predicted": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                31,
+                21
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.125,
+              "predicted": [
+                31,
+                31,
+                21,
+                28,
+                11,
+                31,
+                21,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                31,
+                31,
+                21,
+                21,
+                28,
+                28,
+                11,
+                11
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                31,
+                31,
+                21,
+                28,
+                21,
+                31,
+                11,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "CG": {
+            "iterations": 12,
+            "relative_residual": 4.0609980733488384e-16,
+            "converged": true,
+            "max_iterations": 500,
+            "tolerance": 1e-09
+          },
+          "max_weight_delta": 1.1648321196489064e-12,
+          "cumulative_objective_without_constant": {
+            "direct": -199.98265303538076,
+            "CG": -199.98265303538076,
+            "current_only": -199.98265303538076
+          },
+          "cumulative_constraints": 200,
+          "current_constraints": 200
+        },
+        {
+          "stage": 1,
+          "cumulative_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                11,
+                11,
+                28,
+                28,
+                11,
+                11,
+                11,
+                11
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.125,
+              "predicted": [
+                11,
+                31,
+                28,
+                28,
+                11,
+                31,
+                11,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "cumulative_CG": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                11,
+                11,
+                28,
+                28,
+                11,
+                11,
+                11,
+                11
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.125,
+              "predicted": [
+                11,
+                31,
+                28,
+                28,
+                11,
+                31,
+                11,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "current_only_direct": {
+            "group0/train": {
+              "accuracy": 0.25,
+              "predicted": [
+                31,
+                31,
+                11,
+                28,
+                28,
+                28,
+                11,
+                11
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.125,
+              "predicted": [
+                31,
+                21,
+                11,
+                28,
+                28,
+                21,
+                11,
+                11
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.25,
+              "predicted": [
+                11,
+                11,
+                28,
+                28,
+                11,
+                11,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                11,
+                11,
+                11,
+                28,
+                11,
+                28,
+                31,
+                11
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "CG": {
+            "iterations": 26,
+            "relative_residual": 8.869525072846809e-13,
+            "converged": true,
+            "max_iterations": 500,
+            "tolerance": 1e-09
+          },
+          "max_weight_delta": 8.411376803407755e-11,
+          "cumulative_objective_without_constant": {
+            "direct": -398.3474523326308,
+            "CG": -398.3474523326308,
+            "current_only": -253.96312297355468
+          },
+          "cumulative_constraints": 400,
+          "current_constraints": 200
+        },
+        {
+          "stage": 2,
+          "cumulative_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.875,
+              "predicted": [
+                21,
+                31,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "cumulative_CG": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.875,
+              "predicted": [
+                21,
+                31,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "current_only_direct": {
+            "group0/train": {
+              "accuracy": 0.25,
+              "predicted": [
+                11,
+                11,
+                11,
+                11,
+                11,
+                11,
+                11,
+                11
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.125,
+              "predicted": [
+                21,
+                11,
+                11,
+                11,
+                21,
+                11,
+                11,
+                11
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.5,
+              "predicted": [
+                28,
+                28,
+                28,
+                28,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                21,
+                11,
+                28,
+                11,
+                28,
+                11,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "CG": {
+            "iterations": 45,
+            "relative_residual": 9.653131983730388e-10,
+            "converged": true,
+            "max_iterations": 500,
+            "tolerance": 1e-09
+          },
+          "max_weight_delta": 1.6687644194268714e-07,
+          "cumulative_objective_without_constant": {
+            "direct": -596.573861438745,
+            "CG": -596.5738614387449,
+            "current_only": -314.333579411358
+          },
+          "cumulative_constraints": 600,
+          "current_constraints": 200
+        }
+      ],
+      "base_unchanged": true,
+      "M_off_zero": true
+    },
+    {
+      "seed": 2,
+      "stages": [
+        {
+          "stage": 0,
+          "cumulative_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                21,
+                21,
+                27,
+                27,
+                20,
+                20,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                21,
+                28,
+                28,
+                27,
+                28,
+                28,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.75,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                21,
+                21,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                21,
+                27,
+                21,
+                27
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "cumulative_CG": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                21,
+                21,
+                27,
+                27,
+                20,
+                20,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                21,
+                28,
+                28,
+                27,
+                28,
+                28,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.75,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                21,
+                21,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                21,
+                27,
+                21,
+                27
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "current_only_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                21,
+                21,
+                27,
+                27,
+                20,
+                20,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                21,
+                28,
+                28,
+                27,
+                28,
+                28,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.75,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                21,
+                21,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                21,
+                27,
+                21,
+                27
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "CG": {
+            "iterations": 12,
+            "relative_residual": 4.1033381044648843e-16,
+            "converged": true,
+            "max_iterations": 500,
+            "tolerance": 1e-09
+          },
+          "max_weight_delta": 1.0173806241908778e-12,
+          "cumulative_objective_without_constant": {
+            "direct": -199.98007806278244,
+            "CG": -199.98007806278255,
+            "current_only": -199.98007806278244
+          },
+          "cumulative_constraints": 200,
+          "current_constraints": 200
+        },
+        {
+          "stage": 1,
+          "cumulative_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.5,
+              "predicted": [
+                27,
+                27,
+                27,
+                27,
+                27,
+                27,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.375,
+              "predicted": [
+                21,
+                27,
+                27,
+                27,
+                27,
+                27,
+                21,
+                27
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "cumulative_CG": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.5,
+              "predicted": [
+                27,
+                27,
+                27,
+                27,
+                27,
+                27,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.375,
+              "predicted": [
+                21,
+                27,
+                27,
+                27,
+                27,
+                27,
+                21,
+                27
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "current_only_direct": {
+            "group0/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                28,
+                28,
+                21,
+                21,
+                20,
+                20,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.0,
+              "predicted": [
+                21,
+                28,
+                21,
+                21,
+                20,
+                20,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.25,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                27,
+                27,
+                28,
+                27
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                27,
+                28,
+                27,
+                20
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "CG": {
+            "iterations": 27,
+            "relative_residual": 9.238412316373554e-10,
+            "converged": true,
+            "max_iterations": 500,
+            "tolerance": 1e-09
+          },
+          "max_weight_delta": 7.862721584928067e-10,
+          "cumulative_objective_without_constant": {
+            "direct": -398.3388105117156,
+            "CG": -398.3388105117158,
+            "current_only": -136.58039588676306
+          },
+          "cumulative_constraints": 400,
+          "current_constraints": 200
+        },
+        {
+          "stage": 2,
+          "cumulative_direct": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "cumulative_CG": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "current_only_direct": {
+            "group0/train": {
+              "accuracy": 0.25,
+              "predicted": [
+                21,
+                21,
+                27,
+                27,
+                20,
+                20,
+                20,
+                20
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                27,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.0,
+              "predicted": [
+                27,
+                27,
+                20,
+                20,
+                20,
+                20,
+                20,
+                20
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.25,
+              "predicted": [
+                27,
+                27,
+                27,
+                27,
+                20,
+                28,
+                20,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "CG": {
+            "iterations": 48,
+            "relative_residual": 9.87113806127613e-10,
+            "converged": true,
+            "max_iterations": 500,
+            "tolerance": 1e-09
+          },
+          "max_weight_delta": 1.5219733565038918e-06,
+          "cumulative_objective_without_constant": {
+            "direct": -596.6275675964921,
+            "CG": -596.6275675964876,
+            "current_only": -202.074644867496
+          },
+          "cumulative_constraints": 600,
+          "current_constraints": 200
+        }
+      ],
+      "base_unchanged": true,
+      "M_off_zero": true
+    }
+  ],
+  "provenance": {
+    "git_commit": "cf7ca3d7d3c5ebce21ea27731a842c632a8180b5",
+    "git_status": "?? evaluation/ridge_same_loss_control.py\n?? models/ridge_iterative.py\n?? tests/test_ridge_iterative.py",
+    "source_sha256_at_capture": {
+      "models/ridge_iterative.py": "dd1f7d13106476727e3f7235c0232fc72817a94308dd719a4e34e48f1eb135c9",
+      "models/cumulative_ridge.py": "d22be05c13bb8e48e650e9558d9f78f13567c062a7eb8afb2ecf06d715f422d6",
+      "models/feature_readout.py": "f119164725a6a8ac9bc3d1d6a13a8eae7b9218f544dee40cee272587c43af351",
+      "evaluation/ridge_same_loss_control.py": "fca879087653ba66c436d6de37e2ba14fce06fcb5fc0ccf65eefc81556b606a0"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  }
+}
