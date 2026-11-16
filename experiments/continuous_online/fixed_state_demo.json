@@ -1,0 +1,718 @@
+{
+  "scenario": {
+    "backend": "deterministic scripted scenario, no neural reasoning",
+    "output": "已收到：根据补充信息，重新组织回答。",
+    "requests": [
+      {
+        "revision": 1,
+        "inputs": [
+          [
+            1,
+            "第一条信息"
+          ]
+        ],
+        "committed_prefix": ""
+      },
+      {
+        "revision": 2,
+        "inputs": [
+          [
+            1,
+            "第一条信息"
+          ],
+          [
+            2,
+            "补充信息改变了条件"
+          ]
+        ],
+        "committed_prefix": "已收到："
+      }
+    ],
+    "journal": [
+      {
+        "kind": "input_received",
+        "at": 3.9000005926936865e-06,
+        "revision": 1,
+        "text": "第一条信息",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_started",
+        "at": 8.560000060242601e-05,
+        "revision": 1,
+        "generation_revision": 1
+      },
+      {
+        "kind": "output_committed",
+        "at": 9.789999967324547e-05,
+        "revision": 1,
+        "unit": "已收到：",
+        "generation_revision": 1
+      },
+      {
+        "kind": "cancel_requested",
+        "at": 0.00011960000119870529,
+        "revision": 2,
+        "reason": "new_input"
+      },
+      {
+        "kind": "input_received",
+        "at": 0.00012100000094505958,
+        "revision": 2,
+        "text": "补充信息改变了条件",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_cancelled",
+        "at": 0.00015560000065306667,
+        "revision": 2,
+        "generation_revision": 1
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.00015999999959603883,
+        "revision": 2,
+        "generation_revision": 2
+      },
+      {
+        "kind": "output_committed",
+        "at": 0.00016510000023117755,
+        "revision": 2,
+        "unit": "根据补充信息，",
+        "generation_revision": 2
+      },
+      {
+        "kind": "output_committed",
+        "at": 0.015807499999937136,
+        "revision": 2,
+        "unit": "重新组织回答。",
+        "generation_revision": 2
+      },
+      {
+        "kind": "generation_finished",
+        "at": 0.015819100000953767,
+        "revision": 2,
+        "generation_revision": 2
+      },
+      {
+        "kind": "input_received",
+        "at": 0.015839800000321702,
+        "revision": 3,
+        "text": "继续到达，但暂时只听",
+        "should_respond": false
+      },
+      {
+        "kind": "closed",
+        "at": 0.015903999999864027,
+        "revision": 4
+      }
+    ],
+    "committed_prefix_preserved": true,
+    "stale_suffix_committed": false,
+    "incoming_input_during_active_generation": true
+  },
+  "real": {
+    "backend": "real fixed PBSLMv2 CPU inference thread, one answer token per query",
+    "model_and_memory_unchanged": true,
+    "checkpoint": {
+      "sha256": "a791e89107788807004c76c44b24b842580e93ee044e06c15a23f3f431965f51",
+      "training": {
+        "seed": 0,
+        "episodes": 800,
+        "eval_episodes": 8,
+        "key_align_weight": 0.2
+      },
+      "provenance": {
+        "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+        "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+        "source_sha256_at_capture": {
+          "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+          "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+          "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+          "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+          "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+        },
+        "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+        "platform": "Windows-11-10.0.22631-SP0",
+        "torch": "2.11.0+cu128",
+        "cuda_build": "12.8",
+        "cudnn": 91900,
+        "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+        "deterministic_algorithms": false,
+        "cudnn_deterministic": false,
+        "cudnn_benchmark": false,
+        "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+      }
+    },
+    "inputs": [
+      {
+        "revision": 2,
+        "observe_started_perf": 13989.4566799,
+        "observe_returned_perf": 13989.4567099,
+        "text": "甲号设备的颜色是什么？",
+        "should_respond": true
+      },
+      {
+        "revision": 3,
+        "observe_started_perf": 13989.4700806,
+        "observe_returned_perf": 13989.4701113,
+        "text": "请说出乙号设备的颜色。",
+        "should_respond": true
+      },
+      {
+        "revision": 4,
+        "observe_started_perf": 13989.4835856,
+        "observe_returned_perf": 13989.4836179,
+        "text": "请回答丙号设备是什么颜色。",
+        "should_respond": true
+      },
+      {
+        "revision": 5,
+        "observe_started_perf": 13989.4964593,
+        "observe_returned_perf": 13989.4964698,
+        "text": "丁号设备是什么颜色的？",
+        "should_respond": false
+      },
+      {
+        "revision": 6,
+        "observe_started_perf": 13989.5034431,
+        "observe_returned_perf": 13989.5034836,
+        "text": "我想知道戊号设备的颜色。",
+        "should_respond": true
+      },
+      {
+        "revision": 7,
+        "observe_started_perf": 13989.5170563,
+        "observe_returned_perf": 13989.5170837,
+        "text": "告诉我，己号设备的颜色是什么？",
+        "should_respond": true
+      },
+      {
+        "revision": 8,
+        "observe_started_perf": 13989.529797,
+        "observe_returned_perf": 13989.529827,
+        "text": "庚号设备的颜色是什么？",
+        "should_respond": true
+      },
+      {
+        "revision": 9,
+        "observe_started_perf": 13989.5423745,
+        "observe_returned_perf": 13989.542385,
+        "text": "请说出辛号设备的颜色。",
+        "should_respond": false
+      },
+      {
+        "revision": 10,
+        "observe_started_perf": 13989.5489226,
+        "observe_returned_perf": 13989.5489531,
+        "text": "请回答甲号设备是什么颜色。",
+        "should_respond": true
+      },
+      {
+        "revision": 11,
+        "observe_started_perf": 13989.5610294,
+        "observe_returned_perf": 13989.5610596,
+        "text": "乙号设备是什么颜色的？",
+        "should_respond": true
+      },
+      {
+        "revision": 12,
+        "observe_started_perf": 13989.5724053,
+        "observe_returned_perf": 13989.5724348,
+        "text": "我想知道丙号设备的颜色。",
+        "should_respond": true
+      },
+      {
+        "revision": 13,
+        "observe_started_perf": 13989.5799608,
+        "observe_returned_perf": 13989.5799892,
+        "text": "告诉我，丁号设备的颜色是什么？",
+        "should_respond": false
+      }
+    ],
+    "inference_metrics": [
+      {
+        "revision": 1,
+        "inference_started_perf": 13989.3970811,
+        "inference_finished_perf": 13989.423369,
+        "seconds": 0.02628790000017034,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 1,
+        "committed_prefix_chars_received": 0,
+        "model_consumes_only_latest_question": true,
+        "token": 26,
+        "answer": "灰"
+      },
+      {
+        "revision": 2,
+        "inference_started_perf": 13989.4569242,
+        "inference_finished_perf": 13989.4698094,
+        "seconds": 0.012885199999800534,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 2,
+        "committed_prefix_chars_received": 1,
+        "model_consumes_only_latest_question": true,
+        "token": 26,
+        "answer": "灰"
+      },
+      {
+        "revision": 3,
+        "inference_started_perf": 13989.4703013,
+        "inference_finished_perf": 13989.4833143,
+        "seconds": 0.013012999999773456,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 3,
+        "committed_prefix_chars_received": 1,
+        "model_consumes_only_latest_question": true,
+        "token": 20,
+        "answer": "黄"
+      },
+      {
+        "revision": 4,
+        "inference_started_perf": 13989.4838248,
+        "inference_finished_perf": 13989.4961947,
+        "seconds": 0.012369899999612244,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 4,
+        "committed_prefix_chars_received": 1,
+        "model_consumes_only_latest_question": true,
+        "token": 26,
+        "answer": "灰"
+      },
+      {
+        "revision": 6,
+        "inference_started_perf": 13989.5037406,
+        "inference_finished_perf": 13989.5168016,
+        "seconds": 0.013061000001471257,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 6,
+        "committed_prefix_chars_received": 1,
+        "model_consumes_only_latest_question": true,
+        "token": 20,
+        "answer": "黄"
+      },
+      {
+        "revision": 7,
+        "inference_started_perf": 13989.5172838,
+        "inference_finished_perf": 13989.5295471,
+        "seconds": 0.012263300000995514,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 7,
+        "committed_prefix_chars_received": 1,
+        "model_consumes_only_latest_question": true,
+        "token": 26,
+        "answer": "灰"
+      },
+      {
+        "revision": 8,
+        "inference_started_perf": 13989.5300247,
+        "inference_finished_perf": 13989.5421354,
+        "seconds": 0.012110699999539065,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 8,
+        "committed_prefix_chars_received": 1,
+        "model_consumes_only_latest_question": true,
+        "token": 26,
+        "answer": "灰"
+      },
+      {
+        "revision": 10,
+        "inference_started_perf": 13989.5491644,
+        "inference_finished_perf": 13989.5607732,
+        "seconds": 0.011608800001340569,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 10,
+        "committed_prefix_chars_received": 1,
+        "model_consumes_only_latest_question": true,
+        "token": 26,
+        "answer": "灰"
+      },
+      {
+        "revision": 11,
+        "inference_started_perf": 13989.5612549,
+        "inference_finished_perf": 13989.5721316,
+        "seconds": 0.010876700000153505,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 11,
+        "committed_prefix_chars_received": 1,
+        "model_consumes_only_latest_question": true,
+        "token": 26,
+        "answer": "灰"
+      },
+      {
+        "revision": 12,
+        "inference_started_perf": 13989.5726479,
+        "inference_finished_perf": 13989.5877405,
+        "seconds": 0.015092599998752121,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 12,
+        "committed_prefix_chars_received": 1,
+        "model_consumes_only_latest_question": true,
+        "token": 20,
+        "answer": "黄"
+      },
+      {
+        "revision": 14,
+        "inference_started_perf": 13989.5883488,
+        "inference_finished_perf": 13989.5948415,
+        "seconds": 0.006492700000308105,
+        "thread": "pbslm-inference_0",
+        "context_events_received": 14,
+        "committed_prefix_chars_received": 1,
+        "model_consumes_only_latest_question": true,
+        "token": 26,
+        "answer": "灰"
+      }
+    ],
+    "journal": [
+      {
+        "kind": "input_received",
+        "at": 7.2999991971300915e-06,
+        "revision": 1,
+        "text": "甲号设备的颜色是什么？",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_started",
+        "at": 6.83999987813877e-05,
+        "revision": 1,
+        "generation_revision": 1
+      },
+      {
+        "kind": "output_committed",
+        "at": 0.0602006999997684,
+        "revision": 1,
+        "unit": "灰",
+        "generation_revision": 1
+      },
+      {
+        "kind": "generation_finished",
+        "at": 0.06022159999884025,
+        "revision": 1,
+        "generation_revision": 1
+      },
+      {
+        "kind": "input_received",
+        "at": 0.06026609999935317,
+        "revision": 2,
+        "text": "甲号设备的颜色是什么？",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.06032079999931739,
+        "revision": 2,
+        "generation_revision": 2
+      },
+      {
+        "kind": "cancel_requested",
+        "at": 0.07367049999993469,
+        "revision": 3,
+        "reason": "new_input"
+      },
+      {
+        "kind": "input_received",
+        "at": 0.07367349999913131,
+        "revision": 3,
+        "text": "请说出乙号设备的颜色。",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_cancelled",
+        "at": 0.07372430000032182,
+        "revision": 3,
+        "generation_revision": 2
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.07373079999888432,
+        "revision": 3,
+        "generation_revision": 3
+      },
+      {
+        "kind": "cancel_requested",
+        "at": 0.08717470000010508,
+        "revision": 4,
+        "reason": "new_input"
+      },
+      {
+        "kind": "input_received",
+        "at": 0.08717799999976705,
+        "revision": 4,
+        "text": "请回答丙号设备是什么颜色。",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_cancelled",
+        "at": 0.08723199999985809,
+        "revision": 4,
+        "generation_revision": 3
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.08723809999901277,
+        "revision": 4,
+        "generation_revision": 4
+      },
+      {
+        "kind": "cancel_requested",
+        "at": 0.1000475999990158,
+        "revision": 5,
+        "reason": "new_input"
+      },
+      {
+        "kind": "input_received",
+        "at": 0.10005079999973532,
+        "revision": 5,
+        "text": "丁号设备是什么颜色的？",
+        "should_respond": false
+      },
+      {
+        "kind": "generation_cancelled",
+        "at": 0.10008169999855454,
+        "revision": 5,
+        "generation_revision": 4
+      },
+      {
+        "kind": "input_received",
+        "at": 0.10703099999955157,
+        "revision": 6,
+        "text": "我想知道戊号设备的颜色。",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.10709369999858609,
+        "revision": 6,
+        "generation_revision": 6
+      },
+      {
+        "kind": "cancel_requested",
+        "at": 0.12064420000024256,
+        "revision": 7,
+        "reason": "new_input"
+      },
+      {
+        "kind": "input_received",
+        "at": 0.12064699999973527,
+        "revision": 7,
+        "text": "告诉我，己号设备的颜色是什么？",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_cancelled",
+        "at": 0.12069589999919117,
+        "revision": 7,
+        "generation_revision": 6
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.12070179999864195,
+        "revision": 7,
+        "generation_revision": 7
+      },
+      {
+        "kind": "cancel_requested",
+        "at": 0.13338560000011057,
+        "revision": 8,
+        "reason": "new_input"
+      },
+      {
+        "kind": "input_received",
+        "at": 0.1333887999990111,
+        "revision": 8,
+        "text": "庚号设备的颜色是什么？",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_cancelled",
+        "at": 0.13343869999880553,
+        "revision": 8,
+        "generation_revision": 7
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.1334447999997792,
+        "revision": 8,
+        "generation_revision": 8
+      },
+      {
+        "kind": "cancel_requested",
+        "at": 0.1459629999990284,
+        "revision": 9,
+        "reason": "new_input"
+      },
+      {
+        "kind": "input_received",
+        "at": 0.14596589999928256,
+        "revision": 9,
+        "text": "请说出辛号设备的颜色。",
+        "should_respond": false
+      },
+      {
+        "kind": "generation_cancelled",
+        "at": 0.14599579999958223,
+        "revision": 9,
+        "generation_revision": 8
+      },
+      {
+        "kind": "input_received",
+        "at": 0.1525095999986661,
+        "revision": 10,
+        "text": "请回答甲号设备是什么颜色。",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.15255719999913708,
+        "revision": 10,
+        "generation_revision": 10
+      },
+      {
+        "kind": "cancel_requested",
+        "at": 0.16461749999871245,
+        "revision": 11,
+        "reason": "new_input"
+      },
+      {
+        "kind": "input_received",
+        "at": 0.16462099999989732,
+        "revision": 11,
+        "text": "乙号设备是什么颜色的？",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_cancelled",
+        "at": 0.16467120000015711,
+        "revision": 11,
+        "generation_revision": 10
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.16467699999884644,
+        "revision": 11,
+        "generation_revision": 11
+      },
+      {
+        "kind": "cancel_requested",
+        "at": 0.17599340000015218,
+        "revision": 12,
+        "reason": "new_input"
+      },
+      {
+        "kind": "input_received",
+        "at": 0.17599650000011025,
+        "revision": 12,
+        "text": "我想知道丙号设备的颜色。",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_cancelled",
+        "at": 0.17604649999884714,
+        "revision": 12,
+        "generation_revision": 11
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.17605209999965155,
+        "revision": 12,
+        "generation_revision": 12
+      },
+      {
+        "kind": "cancel_requested",
+        "at": 0.18355259999952978,
+        "revision": 13,
+        "reason": "new_input"
+      },
+      {
+        "kind": "input_received",
+        "at": 0.1835570999992342,
+        "revision": 13,
+        "text": "告诉我，丁号设备的颜色是什么？",
+        "should_respond": false
+      },
+      {
+        "kind": "generation_cancelled",
+        "at": 0.18362709999928484,
+        "revision": 13,
+        "generation_revision": 12
+      },
+      {
+        "kind": "input_received",
+        "at": 0.1916585999988456,
+        "revision": 14,
+        "text": "告诉我，丁号设备的颜色是什么？",
+        "should_respond": true
+      },
+      {
+        "kind": "generation_started",
+        "at": 0.19171949999872595,
+        "revision": 14,
+        "generation_revision": 14
+      },
+      {
+        "kind": "output_committed",
+        "at": 0.22970669999995152,
+        "revision": 14,
+        "unit": "灰",
+        "generation_revision": 14
+      },
+      {
+        "kind": "generation_finished",
+        "at": 0.2297227999988536,
+        "revision": 14,
+        "generation_revision": 14
+      },
+      {
+        "kind": "closed",
+        "at": 0.22983810000005178,
+        "revision": 15
+      }
+    ],
+    "committed": [
+      {
+        "unit": "灰",
+        "revision": 1,
+        "at": 0.06019629999900644
+      },
+      {
+        "unit": "灰",
+        "revision": 14,
+        "at": 0.22970259999965492
+      }
+    ],
+    "arrival_during_actual_compute": [
+      {
+        "input_revision": 13,
+        "during_inference_revisions": [
+          12
+        ]
+      }
+    ],
+    "max_observe_call_seconds": 4.0499999158782884e-05,
+    "no_stale_commits": true,
+    "model_context_limit": "only latest encoded question consumed; prefix/context received but not semantically processed",
+    "gpu_preemption": false,
+    "output_pacing_seconds": 0.02
+  },
+  "priority": "continuous Online running first; no Online Learning in this run",
+  "provenance": {
+    "git_commit": "421a918aa3b448de72973561440496396441ed69",
+    "git_status": "?? docs/CONTINUOUS_ONLINE_PRIORITY.md\n?? evaluation/continuous_online_demo.py\n?? experiments/continuous_online/\n?? runtime/continuous.py\n?? runtime/pbslm_backend.py\n?? tests/test_continuous_runner.py",
+    "source_sha256_at_capture": {
+      "runtime/continuous.py": "972c4ab09ce6632ad6b0a5aa917dcb5e9e20c5fd8c5b46a439651f4b8f7460f9",
+      "runtime/pbslm_backend.py": "5b720a90999b25712c082c220ca650e0385020b95558226ded557c301ab69272",
+      "evaluation/continuous_online_demo.py": "944c24f5fb9eae9b06d770507094bcae6e6350d6b4fe24023c3d7caa183f2749"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  }
+}
