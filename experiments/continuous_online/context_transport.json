@@ -1,0 +1,540 @@
+{
+  "scope": "context token transport, not semantic continuity or natural language quality",
+  "checkpoint": {
+    "sha256": "a791e89107788807004c76c44b24b842580e93ee044e06c15a23f3f431965f51",
+    "training": {
+      "seed": 0,
+      "episodes": 800,
+      "eval_episodes": 8,
+      "key_align_weight": 0.2
+    },
+    "provenance": {
+      "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+      "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+      "source_sha256_at_capture": {
+        "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+        "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+        "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+        "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+        "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+      },
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.22631-SP0",
+      "torch": "2.11.0+cu128",
+      "cuda_build": "12.8",
+      "cudnn": 91900,
+      "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "deterministic_algorithms": false,
+      "cudnn_deterministic": false,
+      "cudnn_benchmark": false,
+      "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+    }
+  },
+  "model_and_memory_unchanged": true,
+  "output": "灰回答灰丁灰灰灰灰",
+  "journal": [
+    {
+      "kind": "input_received",
+      "at": 1.2699998478638008e-05,
+      "revision": 1,
+      "text": "甲号设备的颜色是什么？",
+      "should_respond": true
+    },
+    {
+      "kind": "generation_started",
+      "at": 0.00017529999968246557,
+      "revision": 1,
+      "generation_revision": 1
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.044589899996935856,
+      "revision": 1,
+      "unit": "灰",
+      "generation_revision": 1
+    },
+    {
+      "kind": "cancel_requested",
+      "at": 0.04476230000000214,
+      "revision": 2,
+      "reason": "new_input"
+    },
+    {
+      "kind": "input_received",
+      "at": 0.04476519999661832,
+      "revision": 2,
+      "text": "乙号设备的颜色是什么？",
+      "should_respond": true
+    },
+    {
+      "kind": "generation_cancelled",
+      "at": 0.044979499998589745,
+      "revision": 2,
+      "generation_revision": 1
+    },
+    {
+      "kind": "generation_started",
+      "at": 0.04499339999892982,
+      "revision": 2,
+      "generation_revision": 2
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.07702769999741577,
+      "revision": 2,
+      "unit": "回答",
+      "generation_revision": 2
+    },
+    {
+      "kind": "cancel_requested",
+      "at": 0.07714259999920614,
+      "revision": 3,
+      "reason": "new_input"
+    },
+    {
+      "kind": "input_received",
+      "at": 0.07714539999869885,
+      "revision": 3,
+      "text": "丙号设备的颜色是什么？",
+      "should_respond": true
+    },
+    {
+      "kind": "generation_cancelled",
+      "at": 0.0773150999993959,
+      "revision": 3,
+      "generation_revision": 2
+    },
+    {
+      "kind": "generation_started",
+      "at": 0.07732810000015888,
+      "revision": 3,
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.10751769999842509,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.13898089999929653,
+      "revision": 3,
+      "unit": "丁",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.1700907999984338,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.20226849999744445,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.2337591999967117,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.263813300000038,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "generation_finished",
+      "at": 0.26383050000004005,
+      "revision": 3,
+      "generation_revision": 3
+    },
+    {
+      "kind": "closed",
+      "at": 0.2639616999986174,
+      "revision": 4
+    }
+  ],
+  "packing": [
+    {
+      "revision": 1,
+      "latest_revision": 1,
+      "initial_compact_ids": [
+        0,
+        0,
+        0,
+        0,
+        19,
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25
+      ],
+      "spans": [
+        {
+          "role": "latest_input",
+          "revision": 1,
+          "start": 4,
+          "end": 12,
+          "source_tokens": 8
+        }
+      ],
+      "truncation": [
+        {
+          "role": "latest_input",
+          "tokens": 0
+        },
+        {
+          "role": "committed_output",
+          "tokens": 0
+        },
+        {
+          "role": "prior_input",
+          "tokens": 0
+        }
+      ],
+      "context_layout_was_not_trained": true
+    },
+    {
+      "revision": 2,
+      "latest_revision": 2,
+      "initial_compact_ids": [
+        7,
+        35,
+        25,
+        26,
+        24,
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25
+      ],
+      "spans": [
+        {
+          "role": "prior_input",
+          "revision": 1,
+          "start": 0,
+          "end": 3,
+          "source_tokens": 8
+        },
+        {
+          "role": "committed_output",
+          "start": 3,
+          "end": 4,
+          "source_tokens": 1
+        },
+        {
+          "role": "latest_input",
+          "revision": 2,
+          "start": 4,
+          "end": 12,
+          "source_tokens": 8
+        }
+      ],
+      "truncation": [
+        {
+          "role": "latest_input",
+          "tokens": 0
+        },
+        {
+          "role": "committed_output",
+          "tokens": 0
+        },
+        {
+          "role": "prior_input",
+          "tokens": 5
+        }
+      ],
+      "context_layout_was_not_trained": true
+    },
+    {
+      "revision": 3,
+      "latest_revision": 3,
+      "initial_compact_ids": [
+        7,
+        35,
+        25,
+        26,
+        40,
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25
+      ],
+      "spans": [
+        {
+          "role": "prior_input",
+          "revision": 2,
+          "start": 0,
+          "end": 3,
+          "source_tokens": 8
+        },
+        {
+          "role": "committed_output",
+          "start": 3,
+          "end": 5,
+          "source_tokens": 2
+        },
+        {
+          "role": "latest_input",
+          "revision": 3,
+          "start": 5,
+          "end": 12,
+          "source_tokens": 8
+        }
+      ],
+      "truncation": [
+        {
+          "role": "latest_input",
+          "tokens": 1
+        },
+        {
+          "role": "committed_output",
+          "tokens": 0
+        },
+        {
+          "role": "prior_input",
+          "tokens": 13
+        }
+      ],
+      "context_layout_was_not_trained": true
+    }
+  ],
+  "neural_steps": [
+    {
+      "revision": 1,
+      "step": 0,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 17949.6328244,
+      "end_perf": 17949.6514649,
+      "thread": "pbslm-inference_0",
+      "actual_compact_input_ids": [
+        0,
+        0,
+        0,
+        0,
+        19,
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25
+      ],
+      "event_context_packed": true
+    },
+    {
+      "revision": 2,
+      "step": 0,
+      "token": 40,
+      "surface": "回答",
+      "start_perf": 17949.6772251,
+      "end_perf": 17949.6906837,
+      "thread": "pbslm-inference_0",
+      "actual_compact_input_ids": [
+        7,
+        35,
+        25,
+        26,
+        24,
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25
+      ],
+      "event_context_packed": true
+    },
+    {
+      "revision": 3,
+      "step": 0,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 17949.7095276,
+      "end_perf": 17949.7242704,
+      "thread": "pbslm-inference_0",
+      "actual_compact_input_ids": [
+        7,
+        35,
+        25,
+        26,
+        40,
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25
+      ],
+      "event_context_packed": true
+    },
+    {
+      "revision": 3,
+      "step": 1,
+      "token": 18,
+      "surface": "丁",
+      "start_perf": 17949.7396024,
+      "end_perf": 17949.7538464,
+      "thread": "pbslm-inference_0",
+      "actual_compact_input_ids": [
+        35,
+        25,
+        26,
+        40,
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25,
+        26
+      ],
+      "event_context_packed": true
+    },
+    {
+      "revision": 3,
+      "step": 2,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 17949.7710365,
+      "end_perf": 17949.7850692,
+      "thread": "pbslm-inference_0",
+      "actual_compact_input_ids": [
+        25,
+        26,
+        40,
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25,
+        26,
+        18
+      ],
+      "event_context_packed": true
+    },
+    {
+      "revision": 3,
+      "step": 3,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 17949.8022134,
+      "end_perf": 17949.8180572,
+      "thread": "pbslm-inference_0",
+      "actual_compact_input_ids": [
+        26,
+        40,
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25,
+        26,
+        18,
+        26
+      ],
+      "event_context_packed": true
+    },
+    {
+      "revision": 3,
+      "step": 4,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 17949.8344318,
+      "end_perf": 17949.84241,
+      "thread": "pbslm-inference_0",
+      "actual_compact_input_ids": [
+        40,
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25,
+        26,
+        18,
+        26,
+        26
+      ],
+      "event_context_packed": true
+    },
+    {
+      "revision": 3,
+      "step": 5,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 17949.8659216,
+      "end_perf": 17949.8744924,
+      "thread": "pbslm-inference_0",
+      "actual_compact_input_ids": [
+        12,
+        30,
+        4,
+        45,
+        7,
+        35,
+        25,
+        26,
+        18,
+        26,
+        26,
+        26
+      ],
+      "event_context_packed": true
+    }
+  ],
+  "all_reported_inputs_match_model_step0": true,
+  "continued_requests_include_three_roles": true,
+  "no_stale_commits": true,
+  "context_layout_not_trained": true,
+  "provenance": {
+    "git_commit": "04bd66061eca56b5d8bb240dd7bc266b9ddcac39",
+    "git_status": "?? evaluation/context_transport_demo.py\n?? runtime/event_context.py\n?? runtime/pbslm_context_backend.py\n?? tests/test_event_context.py",
+    "source_sha256_at_capture": {
+      "runtime/event_context.py": "3213a97c344dee7535b91db2c7a050dccc2b12bd5d84a8edb4b2e955a59244d2",
+      "runtime/pbslm_context_backend.py": "248312e162f5fc5f7bc9cfe61dee377d3ae92fbb97275f2544f5d4ff8fe6101d",
+      "runtime/pbslm_token_backend.py": "012ee086c67958ada723060b9471730b64c660506dc8eb057be94b611dd885ca",
+      "runtime/continuous.py": "53a7548aa6be6f38e2c2907bbb8983eab4fbb212b450b375a2551eca702af774",
+      "evaluation/context_transport_demo.py": "9638e981f7a72276398c2b65a0f07affa1631de6bbeff6100c3ef16f03d0a4d1"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  }
+}
