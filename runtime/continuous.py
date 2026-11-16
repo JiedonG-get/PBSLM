@@ -5,6 +5,7 @@ Protocol correctness, not language understanding. Backend yields atomic output u
 also reject output from a backend that ignores cancellation. No GPU preemption.
 """
 import asyncio
+import copy
 from collections import deque
 from dataclasses import dataclass
 import time
@@ -152,6 +153,19 @@ class ContinuousRunner:
                 self._changed.clear()
                 for event in self.journal:
                     if predicate(event):return event
+                await self._changed.wait()
+        return await asyncio.wait_for(wait(),timeout)
+
+    async def read_events(self,cursor=0,*,timeout=5):
+        """Cursor-based copied journal batches; no repeated-event polling for clients."""
+        if type(cursor) is not int or cursor<0 or cursor>len(self.journal):
+            raise ValueError('journal cursor outside retained range')
+        async def wait():
+            while True:
+                self._changed.clear()
+                if cursor<len(self.journal):
+                    return len(self.journal),copy.deepcopy(self.journal[cursor:])
+                if self.closed and not self._tasks:return cursor,[]
                 await self._changed.wait()
         return await asyncio.wait_for(wait(),timeout)
 

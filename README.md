@@ -2,7 +2,7 @@
 
 **一个以持续 Online 运行为首要目标、探索「并行块 + 双路径判断 + 持续记忆 + 信息流动」的实验原型。**
 
-首要目标是输入不断时仍持续处理、选择性表达、流畅打断与按新信息续接；Online Learning是后续增强，不是“Online”的唯一含义。见[目标澄清](docs/CONTINUOUS_ONLINE_PRIORITY.md)与[固定权重异步运行证据](experiments/continuous_online/RESULTS.md)。
+首要目标是输入不断时仍持续处理、选择性表达、流畅打断与按新信息续接；Online Learning是后续增强，不是“Online”的唯一含义。见[目标澄清](docs/CONTINUOUS_ONLINE_PRIORITY.md)、[第三阶段Online报告](docs/RESEARCH_STAGE3_ONLINE_REPORT.md)与[终端交互入口](runtime/ONLINE_CLI.md)。
 
 > 当前状态：Phase 1 Baseline A1/A2 已完成；后续已补充 masked A/C 工程验证与小型合成持续适应、记忆干预实验。
 > v2.1 仍是单路径语言模型 baseline；v2 的可选 masked 路径已有局部证据，**不代表完整 Online Learning 系统或通用语言能力已验证**。
