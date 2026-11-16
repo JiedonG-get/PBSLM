@@ -55,7 +55,7 @@ async def serve(args):
                     if input_revision is not None and hasattr(backend,'processed'):
                         await asyncio.wait_for(backend.processed(input_revision),timeout=10)
                     generation=runner.revision
-                    if runner._active is not None:
+                    if runner._active is not None or runner._pending_revision==generation:
                         await runner.wait_event(lambda e:e['kind'] in ('generation_finished','generation_failed')
                                                 and e['generation_revision']==generation,timeout=10)
                 elif line.startswith('/listen '):await runner.observe(line[8:],should_respond=False)

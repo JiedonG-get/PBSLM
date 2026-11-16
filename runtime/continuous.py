@@ -38,6 +38,7 @@ class ContinuousRunner:
         self.state = 'listening'
         self.closed = False
         self._active = None
+        self._pending_revision = None
         self._tasks = set()
         self._changed = asyncio.Event()
         self._started = time.perf_counter()
@@ -56,6 +57,26 @@ class ContinuousRunner:
             self._active.cancel()
             self._record('cancel_requested', reason=reason)
         self._active = None
+        self._pending_revision = None
+
+    def _task_done(self,task):
+        self._tasks.discard(task)
+        if not task.cancelled():task.exception()
+        if self._pending_revision==self.revision and not self.closed:
+            self._schedule_response()
+        self._changed.set()
+
+    def _schedule_response(self):
+        if sum(not task.done() for task in self._tasks)>=self.max_generation_tasks:
+            self._pending_revision=self.revision
+            self._record('response_deferred',reason='generation_task_capacity')
+            return
+        self._pending_revision=None
+        request=GenerationRequest(self.revision,tuple(self.inputs),self.output,
+                                  time.perf_counter()-self._started)
+        task=asyncio.create_task(self._consume(request))
+        self._active=task;self._tasks.add(task)
+        task.add_done_callback(self._task_done)
 
     async def observe(self, text, *, should_respond=True):
         """Append event atomically before awaiting anything; never wait for inference."""
@@ -74,15 +95,7 @@ class ContinuousRunner:
         self.inputs.append((self.revision,text))
         self._record('input_received', text=text, should_respond=should_respond)
         self.state='listening'
-        if should_respond:
-            if sum(not task.done() for task in self._tasks)>=self.max_generation_tasks:
-                self._record('response_deferred',reason='generation_task_capacity')
-                return self.revision
-            request=GenerationRequest(self.revision,tuple(self.inputs),self.output,
-                                      time.perf_counter()-self._started)
-            task=asyncio.create_task(self._consume(request))
-            self._active=task;self._tasks.add(task)
-            task.add_done_callback(self._tasks.discard)
+        if should_respond:self._schedule_response()
         return self.revision
 
     async def interrupt(self, reason='external_interrupt'):
@@ -98,14 +111,7 @@ class ContinuousRunner:
         self.revision+=1
         self._invalidate('resume_replan')
         self._record('resume_requested')
-        if sum(not task.done() for task in self._tasks)>=self.max_generation_tasks:
-            self._record('response_deferred',reason='generation_task_capacity')
-            return self.revision
-        request=GenerationRequest(self.revision,tuple(self.inputs),self.output,
-                                  time.perf_counter()-self._started)
-        task=asyncio.create_task(self._consume(request))
-        self._active=task;self._tasks.add(task)
-        task.add_done_callback(self._tasks.discard)
+        self._schedule_response()
         return self.revision
 
     async def _consume(self, request):

@@ -1,0 +1,22 @@
+test_explicit_interrupt_clears_pending_speech (tests.test_deferred_response.DeferredResponseTests.test_explicit_interrupt_clears_pending_speech) ... ok
+test_latest_pending_response_automatically_runs (tests.test_deferred_response.DeferredResponseTests.test_latest_pending_response_automatically_runs) ... ok
+test_silent_input_clears_pending_speech (tests.test_deferred_response.DeferredResponseTests.test_silent_input_clears_pending_speech) ... ok
+test_backend_exception_logged_and_listening_recovers (tests.test_continuous_runner.ContinuousRunnerTests.test_backend_exception_logged_and_listening_recovers) ... ok
+test_close_fence_for_cancellation_resistant_unit (tests.test_continuous_runner.ContinuousRunnerTests.test_close_fence_for_cancellation_resistant_unit) ... ok
+test_close_stops_future_commits_and_rejects_new_work (tests.test_continuous_runner.ContinuousRunnerTests.test_close_stops_future_commits_and_rejects_new_work) ... ok
+test_close_timeout_can_be_retried (tests.test_continuous_runner.ContinuousRunnerTests.test_close_timeout_can_be_retried) ... ok
+test_history_bound_and_output_budget (tests.test_continuous_runner.ContinuousRunnerTests.test_history_bound_and_output_budget) ... ok
+test_input_while_output_active_preserves_prefix_and_replans (tests.test_continuous_runner.ContinuousRunnerTests.test_input_while_output_active_preserves_prefix_and_replans) ... ok
+test_repeated_interruptions_resume_latest_input_and_prefix (tests.test_continuous_runner.ContinuousRunnerTests.test_repeated_interruptions_resume_latest_input_and_prefix) ... ok
+test_revision_fence_drops_backend_that_ignores_one_cancel (tests.test_continuous_runner.ContinuousRunnerTests.test_revision_fence_drops_backend_that_ignores_one_cancel) ... ok
+test_silent_policy_keeps_accepting_inputs_without_generation (tests.test_continuous_runner.ContinuousRunnerTests.test_silent_policy_keeps_accepting_inputs_without_generation) ... ok
+test_stream_finally_runs_on_budget_and_stale_drop (tests.test_continuous_runner.ContinuousRunnerTests.test_stream_finally_runs_on_budget_and_stale_drop) ... ok
+test_cancelled_future_does_not_parallelize_or_commit_old_work (tests.test_inference_worker_scheduling.WorkerSchedulingTests.test_cancelled_future_does_not_parallelize_or_commit_old_work) ... ok
+test_generation_capacity_defers_without_losing_input (tests.test_inference_worker_scheduling.WorkerSchedulingTests.test_generation_capacity_defers_without_losing_input) ... ok
+test_piped_reference_state_no_checkpoint_required (tests.test_online_cli.OnlineCLITests.test_piped_reference_state_no_checkpoint_required) ... ok
+test_journal_cursor_has_no_replay_and_copies (tests.test_online_cli.OnlineInterfaceTests.test_journal_cursor_has_no_replay_and_copies) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 1.897s
+
+OK
