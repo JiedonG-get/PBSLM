@@ -1,0 +1,235 @@
+{
+  "source": "experiments/consolidation/shared_soft200.json",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "before": {
+    "old/train_surface": 1.0,
+    "old/held_surface": 0.5,
+    "new/train_surface": 0.125,
+    "new/held_surface": 0.20833333333333334
+  },
+  "arms": {
+    "none": {
+      "old/train_surface": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "old/held_surface": {
+        "mean": 0.5,
+        "per_seed": [
+          0.25,
+          0.75,
+          0.5
+        ]
+      },
+      "new/train_surface": {
+        "mean": 0.125,
+        "per_seed": [
+          0.0,
+          0.25,
+          0.125
+        ]
+      },
+      "new/held_surface": {
+        "mean": 0.20833333333333334,
+        "per_seed": [
+          0.125,
+          0.375,
+          0.125
+        ]
+      }
+    },
+    "direct": {
+      "old/train_surface": {
+        "mean": 0.5833333333333334,
+        "per_seed": [
+          0.625,
+          0.875,
+          0.25
+        ]
+      },
+      "old/held_surface": {
+        "mean": 0.2916666666666667,
+        "per_seed": [
+          0.125,
+          0.5,
+          0.25
+        ]
+      },
+      "new/train_surface": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "new/held_surface": {
+        "mean": 0.4583333333333333,
+        "per_seed": [
+          0.375,
+          0.5,
+          0.5
+        ]
+      }
+    },
+    "hard_teacher": {
+      "old/train_surface": {
+        "mean": 0.5833333333333334,
+        "per_seed": [
+          0.625,
+          0.875,
+          0.25
+        ]
+      },
+      "old/held_surface": {
+        "mean": 0.2916666666666667,
+        "per_seed": [
+          0.125,
+          0.5,
+          0.25
+        ]
+      },
+      "new/train_surface": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "new/held_surface": {
+        "mean": 0.4583333333333333,
+        "per_seed": [
+          0.375,
+          0.5,
+          0.5
+        ]
+      }
+    },
+    "soft_teacher": {
+      "old/train_surface": {
+        "mean": 0.5416666666666666,
+        "per_seed": [
+          0.75,
+          0.625,
+          0.25
+        ]
+      },
+      "old/held_surface": {
+        "mean": 0.3333333333333333,
+        "per_seed": [
+          0.25,
+          0.5,
+          0.25
+        ]
+      },
+      "new/train_surface": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "new/held_surface": {
+        "mean": 0.4583333333333333,
+        "per_seed": [
+          0.375,
+          0.5,
+          0.5
+        ]
+      }
+    },
+    "zero_soft_teacher": {
+      "old/train_surface": {
+        "mean": 0.16666666666666666,
+        "per_seed": [
+          0.25,
+          0.25,
+          0.0
+        ]
+      },
+      "old/held_surface": {
+        "mean": 0.125,
+        "per_seed": [
+          0.25,
+          0.0,
+          0.125
+        ]
+      },
+      "new/train_surface": {
+        "mean": 0.08333333333333333,
+        "per_seed": [
+          0.25,
+          0.0,
+          0.0
+        ]
+      },
+      "new/held_surface": {
+        "mean": 0.125,
+        "per_seed": [
+          0.25,
+          0.125,
+          0.0
+        ]
+      }
+    },
+    "wrong_soft_teacher": {
+      "old/train_surface": {
+        "mean": 0.5833333333333334,
+        "per_seed": [
+          0.75,
+          0.625,
+          0.375
+        ]
+      },
+      "old/held_surface": {
+        "mean": 0.375,
+        "per_seed": [
+          0.375,
+          0.5,
+          0.25
+        ]
+      },
+      "new/train_surface": {
+        "mean": 0.0,
+        "per_seed": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "new/held_surface": {
+        "mean": 0.2916666666666667,
+        "per_seed": [
+          0.375,
+          0.25,
+          0.25
+        ]
+      }
+    }
+  },
+  "teacher": {
+    "normal": {
+      "top1_mean": 1.0,
+      "entropy_mean": 0.045073055972655617
+    },
+    "zero": {
+      "top1_mean": 0.08333333333333333,
+      "entropy_mean": 1.4078840017318726
+    },
+    "wrong": {
+      "top1_mean": 0.0,
+      "entropy_mean": 0.044279868404070534
+    }
+  },
+  "note": "three-seed descriptive mean, eight correlated queries per metric; no significance claim"
+}
