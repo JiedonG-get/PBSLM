@@ -64,6 +64,10 @@ class ContinuousRunner:
             raise ValueError('nonempty input text required')
         if type(should_respond) is not bool:
             raise ValueError('explicit boolean response policy required')
+        # Optional synchronous queue submission: must not perform inference or await.
+        # Queue rejection happens before revision/history changes, so callers can retry.
+        if hasattr(self.backend,'submit_input'):
+            self.backend.submit_input(self.revision+1,text)
         self.revision += 1
         self._invalidate('new_input')
         self.inputs.append((self.revision,text))
