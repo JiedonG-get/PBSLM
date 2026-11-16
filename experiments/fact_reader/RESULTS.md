@@ -24,7 +24,7 @@ python -m evaluation.train_fact_reader --seeds 0 1 2 --steps 600 --test-examples
 | seen模板 | 100% | 100% | 100% | 0% |
 | held模板 | 82.03% | 31.64% | 81.95% | 3.78% |
 
-held precision perseed：66.67%、80.22%、98.97%；对应错误接受28、18、1条。均值不代表稳定可靠，不能把最好的seed当整体能力。
+held precision perseed：66.67%、80.22%、98.97%；对应错误接受28、18、1条。表中precision是三个seed的macro均值81.95%，不是合并225/272=82.72%的micro值。均值不代表稳定可靠，不能把最好的seed当整体能力。
 
 exact precision定义：候选必须来自valid正例且实体与颜色都正确；负例即使字段恰好匹配提到的词也算错误。单测固定该定义。
 
@@ -57,7 +57,8 @@ python -m evaluation.statement_reader_demo
 - reader本身是额外参数/监督/计算，不能把收益归到PBSLM并行块。
 - canonical query由预测实体class映射，slot不是自由抽取；颜色class映射为已知label。
 - statement候选历史暂时只在内存，未加入会话snapshot；原bounded会话确认记录/M可保存，但未确认reader候选不可恢复。
-- source是调用方文本，不含鉴权/证据验证；没有多来源冲突裁决。
+- source是调用方文本，不含鉴权/证据验证；没有多来源冲突裁决。旧候选可在新陈述之后被显式确认，采用latest-confirmed顺序，不承诺latest-arrived时间优先。
+- 独立静态审查确认source SHA与原文本、指标计数一致；随后加固reader config/vocab、阈值/margin有限范围与运行logits有限性，当前权重/阈值未改变、不重训。
 - seen演示结果不能替代held测试，也不是长期保持或在线参数学习。
 
 下一步应优先收集更丰富、独立验证的否定/时态/不确定数据与校准集，明确人工确认工作量；在提取安全性足够之前，不自动写入。

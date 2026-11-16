@@ -4,6 +4,7 @@ Separate GRU reader, NOT PBSLM architecture gain. Uses repository full BPE IDs.
 A positive classifier is not fact verification. Candidates require external confirm.
 """
 import hashlib
+import math
 from pathlib import Path
 
 import torch
@@ -38,6 +39,8 @@ def tokenizer():
 
 
 def encode(texts,tok,device):
+    if not isinstance(texts,list) or not texts or any(not isinstance(text,str) or not text.strip() for text in texts):
+        raise ValueError('nonempty list of nonempty strings required')
     rows=[tok.encode(text).ids for text in texts]
     if any(not row or len(row)>MAX_LENGTH or 0 in row for row in rows):
         raise ValueError('unsupported empty, unknown-token or overlength fact input')
@@ -47,13 +50,24 @@ def encode(texts,tok,device):
     return ids,lengths
 
 
+def validate_policy(threshold,margin):
+    for name,value in [('threshold',threshold),('margin',margin)]:
+        if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or not 0<=value<=1:
+            raise ValueError(f'{name} must be finite in [0,1]')
+
+
 def load_reader(path,device='cpu'):
     ck=torch.load(path,map_location='cpu',weights_only=True)
     tok,digest=tokenizer()
     if (ck.get('format')!='pbslm.fact_reader.v1' or ck['tokenizer_sha256']!=digest
             or ck['entities']!=ENTITIES or ck['colors']!=COLORS):
         raise ValueError('reader inventory/tokenizer contract mismatch')
-    model=CandidateReader(**ck['config']).to(device).eval()
+    config=ck['config']
+    if (set(config)!={'vocab','embedding','hidden'} or config['vocab']!=tok.get_vocab_size()
+            or any(type(config[name]) is not int or not 1<=config[name]<=512 for name in ('embedding','hidden'))):
+        raise ValueError('unsupported candidate reader configuration')
+    validate_policy(ck['threshold'],ck['margin'])
+    model=CandidateReader(**config).to(device).eval()
     if any(not torch.isfinite(value).all() for value in ck['state_dict'].values()):
         raise FloatingPointError('nonfinite candidate reader checkpoint')
     model.load_state_dict(ck['state_dict'],strict=True)
@@ -63,8 +77,12 @@ def load_reader(path,device='cpu'):
 
 @torch.no_grad()
 def infer(model,texts,tok,device,threshold=.9,margin=.2):
+    validate_policy(threshold,margin)
+    if model.training:raise ValueError('candidate inference requires eval mode')
     ids,lengths=encode(texts,tok,device)
     valid,entity,color=model(ids,lengths)
+    if any(not torch.isfinite(value).all() for value in (valid,entity,color)):
+        raise FloatingPointError('nonfinite candidate reader logits')
     vp=valid.softmax(-1)[:,1]; ep=entity.softmax(-1); cp=color.softmax(-1)
     e_top=ep.topk(2,dim=-1);c_top=cp.topk(2,dim=-1)
     rows=[]
