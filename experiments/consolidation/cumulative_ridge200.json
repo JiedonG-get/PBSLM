@@ -1,0 +1,5561 @@
+{
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "reference": "experiments/consolidation/sequence_random_e200.json",
+    "steps": 200,
+    "output": "experiments/consolidation/cumulative_ridge200.json"
+  },
+  "reference_sha256": "a7990d6ae381099d027cdee843874c15192e886901deb6d258908f17ea98d566",
+  "objective": "sum squared error to true/teacher-expected code vectors + .01 times all coefficients squared, including bias",
+  "provenance": {
+    "git_commit": "a700be2278da97d3aa725e90057e8a7be9cff826",
+    "git_status": "?? evaluation/cumulative_ridge_control.py\n?? models/cumulative_ridge.py\n?? tests/test_cumulative_ridge.py",
+    "source_sha256_at_capture": {
+      "models/cumulative_ridge.py": "d22be05c13bb8e48e650e9558d9f78f13567c062a7eb8afb2ecf06d715f422d6",
+      "models/feature_readout.py": "f119164725a6a8ac9bc3d1d6a13a8eae7b9218f544dee40cee272587c43af351",
+      "evaluation/cumulative_ridge_control.py": "e4f191fa0e7a89f84d33c7d5c892af2838c9b840405ed2bc51ae2cb41f0154a1",
+      "evaluation/sequential_feature_consolidation.py": "7cbc86128d139537b3402ddae439501743ce2861cb2aaa934e3074df33ddea6f",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "checkpoint": {
+        "sha256": "a791e89107788807004c76c44b24b842580e93ee044e06c15a23f3f431965f51",
+        "training": {
+          "seed": 0,
+          "episodes": 800,
+          "eval_episodes": 8,
+          "key_align_weight": 0.2
+        },
+        "provenance": {
+          "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+          "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+          "source_sha256_at_capture": {
+            "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+            "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+            "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+            "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+            "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+          },
+          "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+          "platform": "Windows-11-10.0.22631-SP0",
+          "torch": "2.11.0+cu128",
+          "cuda_build": "12.8",
+          "cudnn": 91900,
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "deterministic_algorithms": false,
+          "cudnn_deterministic": false,
+          "cudnn_benchmark": false,
+          "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+        }
+      },
+      "arms": {
+        "trained_e": {
+          "stages": [
+            {
+              "stage": 0,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    31,
+                    31,
+                    26,
+                    26,
+                    31,
+                    26,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.0,
+                  "predicted": [
+                    31,
+                    31,
+                    27,
+                    27,
+                    27,
+                    31,
+                    26,
+                    26
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.0,
+                  "predicted": [
+                    31,
+                    31,
+                    26,
+                    26,
+                    31,
+                    31,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 200,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 1,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.75,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    27,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    26,
+                    26,
+                    27,
+                    27,
+                    27,
+                    27,
+                    15,
+                    15
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    27,
+                    26,
+                    27,
+                    27,
+                    27,
+                    26,
+                    27,
+                    26
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 400,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 2,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.625,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    26,
+                    26,
+                    27,
+                    26
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.875,
+                  "predicted": [
+                    31,
+                    26,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.875,
+                  "predicted": [
+                    27,
+                    27,
+                    31,
+                    26,
+                    26,
+                    26,
+                    15,
+                    15
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 600,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            }
+          ],
+          "statistics_fit_seconds_excluding_feature_cache": 0.21625549999953364,
+          "reverse_order_max_abs_weight_delta": 7.962068504507869e-12,
+          "base_unchanged": true,
+          "M_disabled_zero": true,
+          "gradient_reference_final": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.5,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                26,
+                26,
+                26,
+                26
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                31,
+                26,
+                26,
+                26,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.5,
+              "predicted": [
+                27,
+                26,
+                31,
+                26,
+                26,
+                26,
+                26,
+                26
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "experimental_raw_constraint_cache_for_order_test_only": 600
+        },
+        "random_e": {
+          "stages": [
+            {
+              "stage": 0,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.875,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    15,
+                    31,
+                    27,
+                    27,
+                    26,
+                    26,
+                    26,
+                    31
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    31,
+                    26,
+                    27,
+                    26,
+                    15,
+                    26,
+                    27,
+                    26
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    26,
+                    26,
+                    15,
+                    26,
+                    27,
+                    27,
+                    15,
+                    15
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    15,
+                    26,
+                    15,
+                    26,
+                    27,
+                    26,
+                    15,
+                    26
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 200,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 1,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.875,
+                  "predicted": [
+                    27,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.625,
+                  "predicted": [
+                    27,
+                    31,
+                    27,
+                    15,
+                    27,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.0,
+                  "predicted": [
+                    26,
+                    26,
+                    26,
+                    26,
+                    27,
+                    27,
+                    26,
+                    26
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.125,
+                  "predicted": [
+                    27,
+                    26,
+                    27,
+                    26,
+                    27,
+                    27,
+                    27,
+                    26
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 400,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 2,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    31,
+                    27,
+                    31,
+                    27,
+                    31,
+                    27,
+                    31,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    31,
+                    27,
+                    31,
+                    27,
+                    31,
+                    27,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    31,
+                    27,
+                    31,
+                    27,
+                    31,
+                    27,
+                    31,
+                    27
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 600,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            }
+          ],
+          "statistics_fit_seconds_excluding_feature_cache": 0.1958468000011635,
+          "reverse_order_max_abs_weight_delta": 9.724766825147668e-11,
+          "base_unchanged": true,
+          "M_disabled_zero": true,
+          "gradient_reference_final": {
+            "group0/train": {
+              "accuracy": 0.75,
+              "predicted": [
+                26,
+                31,
+                31,
+                31,
+                15,
+                31,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.375,
+              "predicted": [
+                27,
+                27,
+                31,
+                27,
+                27,
+                27,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.5,
+              "predicted": [
+                31,
+                31,
+                31,
+                31,
+                31,
+                31,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.375,
+              "predicted": [
+                31,
+                27,
+                27,
+                27,
+                31,
+                27,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 0.75,
+              "predicted": [
+                27,
+                27,
+                31,
+                31,
+                27,
+                27,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.375,
+              "predicted": [
+                27,
+                27,
+                31,
+                27,
+                27,
+                27,
+                31,
+                27
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "experimental_raw_constraint_cache_for_order_test_only": 600
+        },
+        "token_mean": {
+          "stages": [
+            {
+              "stage": 0,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.875,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    31,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    31,
+                    31,
+                    27,
+                    27,
+                    31,
+                    31,
+                    31,
+                    26
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    15,
+                    27,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 200,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 1,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.875,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    31,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.875,
+                  "predicted": [
+                    31,
+                    31,
+                    31,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    27,
+                    27,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.125,
+                  "predicted": [
+                    31,
+                    26,
+                    31,
+                    26,
+                    27,
+                    27,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 400,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 2,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.625,
+                  "predicted": [
+                    31,
+                    26,
+                    31,
+                    31,
+                    31,
+                    15,
+                    31,
+                    27
+                  ],
+                  "targets": [
+                    26,
+                    26,
+                    31,
+                    31,
+                    15,
+                    15,
+                    27,
+                    27
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.625,
+                  "predicted": [
+                    31,
+                    31,
+                    31,
+                    15,
+                    31,
+                    26,
+                    31,
+                    27
+                  ],
+                  "targets": [
+                    31,
+                    31,
+                    15,
+                    15,
+                    26,
+                    26,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.625,
+                  "predicted": [
+                    31,
+                    27,
+                    31,
+                    31,
+                    31,
+                    26,
+                    31,
+                    15
+                  ],
+                  "targets": [
+                    27,
+                    27,
+                    31,
+                    31,
+                    26,
+                    26,
+                    15,
+                    15
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 600,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            }
+          ],
+          "statistics_fit_seconds_excluding_feature_cache": 0.1759924999969371,
+          "reverse_order_max_abs_weight_delta": 2.7240099065295453e-11,
+          "base_unchanged": true,
+          "M_disabled_zero": true,
+          "gradient_reference_final": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.875,
+              "predicted": [
+                26,
+                26,
+                31,
+                31,
+                26,
+                15,
+                27,
+                27
+              ],
+              "targets": [
+                26,
+                26,
+                31,
+                31,
+                15,
+                15,
+                27,
+                27
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.75,
+              "predicted": [
+                31,
+                15,
+                26,
+                15,
+                26,
+                26,
+                27,
+                27
+              ],
+              "targets": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.75,
+              "predicted": [
+                27,
+                27,
+                31,
+                15,
+                26,
+                26,
+                31,
+                15
+              ],
+              "targets": [
+                27,
+                27,
+                31,
+                31,
+                26,
+                26,
+                15,
+                15
+              ]
+            }
+          },
+          "experimental_raw_constraint_cache_for_order_test_only": 600
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "checkpoint": {
+        "sha256": "acd0106abadb1c2f588990c9cf901f001db140f1f291807812b8b7c697743bd5",
+        "training": {
+          "seed": 1,
+          "episodes": 800,
+          "eval_episodes": 8,
+          "key_align_weight": 0.2
+        },
+        "provenance": {
+          "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+          "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+          "source_sha256_at_capture": {
+            "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+            "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+            "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+            "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+            "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+          },
+          "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+          "platform": "Windows-11-10.0.22631-SP0",
+          "torch": "2.11.0+cu128",
+          "cuda_build": "12.8",
+          "cudnn": 91900,
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "deterministic_algorithms": false,
+          "cudnn_deterministic": false,
+          "cudnn_benchmark": false,
+          "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+        }
+      },
+      "arms": {
+        "trained_e": {
+          "stages": [
+            {
+              "stage": 0,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 0.125,
+                  "predicted": [
+                    31,
+                    31,
+                    21,
+                    21,
+                    11,
+                    11,
+                    31,
+                    21
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.125,
+                  "predicted": [
+                    31,
+                    31,
+                    21,
+                    28,
+                    11,
+                    31,
+                    21,
+                    31
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.0,
+                  "predicted": [
+                    31,
+                    31,
+                    21,
+                    21,
+                    28,
+                    28,
+                    11,
+                    11
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    31,
+                    31,
+                    21,
+                    28,
+                    21,
+                    31,
+                    11,
+                    31
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 200,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 1,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.0,
+                  "predicted": [
+                    11,
+                    11,
+                    28,
+                    28,
+                    11,
+                    11,
+                    11,
+                    11
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.125,
+                  "predicted": [
+                    11,
+                    31,
+                    28,
+                    28,
+                    11,
+                    31,
+                    11,
+                    31
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 400,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 2,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.875,
+                  "predicted": [
+                    21,
+                    31,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 600,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            }
+          ],
+          "statistics_fit_seconds_excluding_feature_cache": 0.18292830000063987,
+          "reverse_order_max_abs_weight_delta": 1.0752176926587254e-11,
+          "base_unchanged": true,
+          "M_disabled_zero": true,
+          "gradient_reference_final": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "experimental_raw_constraint_cache_for_order_test_only": 600
+        },
+        "random_e": {
+          "stages": [
+            {
+              "stage": 0,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    28,
+                    28,
+                    28,
+                    31,
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    21,
+                    21,
+                    28,
+                    28,
+                    21,
+                    21,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    28,
+                    31,
+                    28,
+                    28,
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    28,
+                    28,
+                    21,
+                    21,
+                    11,
+                    11,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    28,
+                    28,
+                    28,
+                    28,
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 200,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 1,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    11,
+                    28,
+                    31,
+                    28,
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    11,
+                    28,
+                    11,
+                    28,
+                    28,
+                    28,
+                    31,
+                    28
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    28,
+                    28,
+                    28,
+                    28,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    28,
+                    28,
+                    28,
+                    28,
+                    28,
+                    28,
+                    31,
+                    28
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 400,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 2,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    11,
+                    31,
+                    31,
+                    31,
+                    11,
+                    31,
+                    11,
+                    31
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    11,
+                    31,
+                    11,
+                    11,
+                    11,
+                    31,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    11,
+                    31,
+                    11,
+                    31,
+                    31,
+                    31,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 600,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            }
+          ],
+          "statistics_fit_seconds_excluding_feature_cache": 0.1911175999994157,
+          "reverse_order_max_abs_weight_delta": 4.468381220590345e-11,
+          "base_unchanged": true,
+          "M_disabled_zero": true,
+          "gradient_reference_final": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.5,
+              "predicted": [
+                11,
+                11,
+                28,
+                4,
+                28,
+                28,
+                28,
+                11
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 0.75,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.375,
+              "predicted": [
+                28,
+                28,
+                28,
+                11,
+                28,
+                28,
+                28,
+                4
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                28,
+                28,
+                28,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "experimental_raw_constraint_cache_for_order_test_only": 600
+        },
+        "token_mean": {
+          "stages": [
+            {
+              "stage": 0,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.625,
+                  "predicted": [
+                    11,
+                    28,
+                    31,
+                    28,
+                    28,
+                    28,
+                    21,
+                    28
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    21,
+                    11,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    21,
+                    28,
+                    21,
+                    28,
+                    21,
+                    28,
+                    21,
+                    28
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    28,
+                    28,
+                    28,
+                    28,
+                    11,
+                    11,
+                    11,
+                    11
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    28,
+                    28,
+                    21,
+                    28,
+                    21,
+                    28,
+                    21,
+                    28
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 200,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 1,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.75,
+                  "predicted": [
+                    11,
+                    28,
+                    31,
+                    28,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.75,
+                  "predicted": [
+                    21,
+                    21,
+                    11,
+                    28,
+                    28,
+                    28,
+                    31,
+                    28
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    28,
+                    28,
+                    28,
+                    28,
+                    11,
+                    11,
+                    11,
+                    11
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    28,
+                    28,
+                    28,
+                    28,
+                    21,
+                    28,
+                    21,
+                    28
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 400,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 2,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    11,
+                    11,
+                    31,
+                    11,
+                    11,
+                    11,
+                    21,
+                    11
+                  ],
+                  "targets": [
+                    11,
+                    11,
+                    31,
+                    31,
+                    28,
+                    28,
+                    21,
+                    21
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    21,
+                    11,
+                    11,
+                    11,
+                    11,
+                    11,
+                    31,
+                    11
+                  ],
+                  "targets": [
+                    21,
+                    21,
+                    11,
+                    11,
+                    28,
+                    28,
+                    31,
+                    31
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    11,
+                    11,
+                    11,
+                    11,
+                    21,
+                    11,
+                    31,
+                    11
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    11,
+                    11,
+                    21,
+                    21,
+                    31,
+                    31
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 600,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            }
+          ],
+          "statistics_fit_seconds_excluding_feature_cache": 0.18168550000336836,
+          "reverse_order_max_abs_weight_delta": 3.66583707833712e-11,
+          "base_unchanged": true,
+          "M_disabled_zero": true,
+          "gradient_reference_final": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                11,
+                11,
+                31,
+                31,
+                11,
+                11,
+                21,
+                11
+              ],
+              "targets": [
+                11,
+                11,
+                31,
+                31,
+                28,
+                28,
+                21,
+                21
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.5,
+              "predicted": [
+                21,
+                11,
+                11,
+                11,
+                11,
+                11,
+                31,
+                11
+              ],
+              "targets": [
+                21,
+                21,
+                11,
+                11,
+                28,
+                28,
+                31,
+                31
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.5,
+              "predicted": [
+                11,
+                11,
+                11,
+                11,
+                21,
+                11,
+                31,
+                11
+              ],
+              "targets": [
+                28,
+                28,
+                11,
+                11,
+                21,
+                21,
+                31,
+                31
+              ]
+            }
+          },
+          "experimental_raw_constraint_cache_for_order_test_only": 600
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "checkpoint": {
+        "sha256": "dae3d2ee790ecbeb96a7ab0723074ecd454c7e3c6845b4a68dbc6c6d03667d9a",
+        "training": {
+          "seed": 2,
+          "episodes": 800,
+          "eval_episodes": 8,
+          "key_align_weight": 0.2
+        },
+        "provenance": {
+          "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+          "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+          "source_sha256_at_capture": {
+            "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+            "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+            "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+            "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+            "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+          },
+          "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+          "platform": "Windows-11-10.0.22631-SP0",
+          "torch": "2.11.0+cu128",
+          "cuda_build": "12.8",
+          "cudnn": 91900,
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "deterministic_algorithms": false,
+          "cudnn_deterministic": false,
+          "cudnn_benchmark": false,
+          "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+        }
+      },
+      "arms": {
+        "trained_e": {
+          "stages": [
+            {
+              "stage": 0,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 0.0,
+                  "predicted": [
+                    21,
+                    21,
+                    27,
+                    27,
+                    20,
+                    20,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    21,
+                    28,
+                    28,
+                    27,
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.75,
+                  "predicted": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    21,
+                    21,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.625,
+                  "predicted": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    21,
+                    27,
+                    21,
+                    27
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 200,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 1,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    27,
+                    27,
+                    27,
+                    27,
+                    27,
+                    27,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    21,
+                    27,
+                    27,
+                    27,
+                    27,
+                    27,
+                    21,
+                    27
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 400,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 2,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 600,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            }
+          ],
+          "statistics_fit_seconds_excluding_feature_cache": 0.18621840000196244,
+          "reverse_order_max_abs_weight_delta": 8.650566374335256e-12,
+          "base_unchanged": true,
+          "M_disabled_zero": true,
+          "gradient_reference_final": {
+            "group0/train": {
+              "accuracy": 0.75,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                21,
+                21,
+                28,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.875,
+              "predicted": [
+                20,
+                28,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "experimental_raw_constraint_cache_for_order_test_only": 600
+        },
+        "random_e": {
+          "stages": [
+            {
+              "stage": 0,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.875,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    27,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 0.0,
+                  "predicted": [
+                    27,
+                    27,
+                    27,
+                    27,
+                    27,
+                    27,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    27,
+                    20,
+                    27,
+                    20,
+                    27,
+                    27,
+                    27,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.75,
+                  "predicted": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    27,
+                    27,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    21,
+                    20,
+                    27,
+                    27,
+                    21,
+                    27,
+                    21,
+                    20
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 200,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 1,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.625,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    28,
+                    21,
+                    28,
+                    27,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    27,
+                    20,
+                    21,
+                    28,
+                    27,
+                    28,
+                    27,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    27,
+                    27,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    27,
+                    20,
+                    27,
+                    28,
+                    27,
+                    28,
+                    21,
+                    28
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 400,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 2,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    27,
+                    28,
+                    27,
+                    27,
+                    27,
+                    28,
+                    27,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    27,
+                    28,
+                    27,
+                    28,
+                    27,
+                    28,
+                    27,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    27,
+                    28,
+                    27,
+                    27,
+                    27,
+                    28,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 600,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            }
+          ],
+          "statistics_fit_seconds_excluding_feature_cache": 0.19003700000030221,
+          "reverse_order_max_abs_weight_delta": 7.294670423263483e-11,
+          "base_unchanged": true,
+          "M_disabled_zero": true,
+          "gradient_reference_final": {
+            "group0/train": {
+              "accuracy": 0.5,
+              "predicted": [
+                21,
+                21,
+                27,
+                27,
+                21,
+                21,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.375,
+              "predicted": [
+                28,
+                27,
+                27,
+                27,
+                28,
+                27,
+                28,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.75,
+              "predicted": [
+                28,
+                27,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.75,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                27,
+                21,
+                27
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "experimental_raw_constraint_cache_for_order_test_only": 600
+        },
+        "token_mean": {
+          "stages": [
+            {
+              "stage": 0,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.75,
+                  "predicted": [
+                    21,
+                    20,
+                    21,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 0.0,
+                  "predicted": [
+                    28,
+                    28,
+                    20,
+                    20,
+                    27,
+                    27,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.125,
+                  "predicted": [
+                    21,
+                    21,
+                    21,
+                    20,
+                    21,
+                    21,
+                    21,
+                    20
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.75,
+                  "predicted": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    27,
+                    27,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.25,
+                  "predicted": [
+                    21,
+                    20,
+                    21,
+                    20,
+                    21,
+                    21,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 200,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 1,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    20,
+                    21,
+                    27,
+                    21,
+                    21,
+                    21,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    20,
+                    21,
+                    21,
+                    21,
+                    21,
+                    21,
+                    27,
+                    21
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    28,
+                    28,
+                    28,
+                    28,
+                    27,
+                    27,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.375,
+                  "predicted": [
+                    21,
+                    21,
+                    27,
+                    21,
+                    21,
+                    21,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 400,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            },
+            {
+              "stage": 2,
+              "evaluation": {
+                "group0/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group0/held": {
+                  "accuracy": 0.5,
+                  "predicted": [
+                    20,
+                    21,
+                    27,
+                    21,
+                    21,
+                    21,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    27,
+                    27,
+                    21,
+                    21,
+                    28,
+                    28
+                  ]
+                },
+                "group1/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group1/held": {
+                  "accuracy": 0.625,
+                  "predicted": [
+                    20,
+                    21,
+                    21,
+                    21,
+                    21,
+                    21,
+                    27,
+                    27
+                  ],
+                  "targets": [
+                    20,
+                    20,
+                    21,
+                    21,
+                    28,
+                    28,
+                    27,
+                    27
+                  ]
+                },
+                "group2/train": {
+                  "accuracy": 1.0,
+                  "predicted": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                },
+                "group2/held": {
+                  "accuracy": 0.625,
+                  "predicted": [
+                    21,
+                    28,
+                    27,
+                    21,
+                    20,
+                    21,
+                    21,
+                    21
+                  ],
+                  "targets": [
+                    28,
+                    28,
+                    27,
+                    27,
+                    20,
+                    20,
+                    21,
+                    21
+                  ]
+                }
+              },
+              "storage": {
+                "gram_bytes": 75272,
+                "cross_bytes": 37248,
+                "weight_bytes": 37248,
+                "samples_accumulated": 600,
+                "raw_examples_stored": 0,
+                "note": "excludes Python/model/features/code and transient solve workspace"
+              }
+            }
+          ],
+          "statistics_fit_seconds_excluding_feature_cache": 0.18571589999919524,
+          "reverse_order_max_abs_weight_delta": 5.152622772897075e-11,
+          "base_unchanged": true,
+          "M_disabled_zero": true,
+          "gradient_reference_final": {
+            "group0/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group0/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                21,
+                21,
+                27,
+                27,
+                21,
+                21,
+                27,
+                28
+              ],
+              "targets": [
+                20,
+                20,
+                27,
+                27,
+                21,
+                21,
+                28,
+                28
+              ]
+            },
+            "group1/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group1/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                27,
+                27,
+                21,
+                21,
+                27,
+                28,
+                27,
+                27
+              ],
+              "targets": [
+                20,
+                20,
+                21,
+                21,
+                28,
+                28,
+                27,
+                27
+              ]
+            },
+            "group2/train": {
+              "accuracy": 1.0,
+              "predicted": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            },
+            "group2/held": {
+              "accuracy": 0.625,
+              "predicted": [
+                27,
+                28,
+                27,
+                27,
+                27,
+                27,
+                21,
+                21
+              ],
+              "targets": [
+                28,
+                28,
+                27,
+                27,
+                20,
+                20,
+                21,
+                21
+              ]
+            }
+          },
+          "experimental_raw_constraint_cache_for_order_test_only": 600
+        }
+      }
+    }
+  ]
+}

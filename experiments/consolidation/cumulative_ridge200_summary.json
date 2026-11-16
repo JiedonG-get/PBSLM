@@ -1,0 +1,63 @@
+{
+  "source": "experiments\\consolidation\\cumulative_ridge200.json",
+  "arms": {
+    "trained_e": {
+      "final_train": 1.0,
+      "gradient_reference_final_train": 0.9722222222222222,
+      "oldest_train_stage0": 1.0,
+      "oldest_train_final": 1.0,
+      "final_held": 0.9166666666666666,
+      "gradient_reference_final_held": 0.7916666666666666,
+      "oldest_held_stage0": 1.0,
+      "oldest_held_final": 0.875,
+      "storage_final": {
+        "gram_bytes": 75272,
+        "cross_bytes": 37248,
+        "weight_bytes": 37248,
+        "samples_accumulated": 600,
+        "raw_examples_stored": 0,
+        "note": "excludes Python/model/features/code and transient solve workspace"
+      },
+      "max_reverse_weight_delta": 1.0752176926587254e-11
+    },
+    "random_e": {
+      "final_train": 1.0,
+      "gradient_reference_final_train": 0.8055555555555556,
+      "oldest_train_stage0": 1.0,
+      "oldest_train_final": 1.0,
+      "final_held": 0.3472222222222222,
+      "gradient_reference_final_held": 0.5,
+      "oldest_held_stage0": 0.7083333333333334,
+      "oldest_held_final": 0.3333333333333333,
+      "storage_final": {
+        "gram_bytes": 75272,
+        "cross_bytes": 37248,
+        "weight_bytes": 37248,
+        "samples_accumulated": 600,
+        "raw_examples_stored": 0,
+        "note": "excludes Python/model/features/code and transient solve workspace"
+      },
+      "max_reverse_weight_delta": 9.724766825147668e-11
+    },
+    "token_mean": {
+      "final_train": 1.0,
+      "gradient_reference_final_train": 1.0,
+      "oldest_train_stage0": 1.0,
+      "oldest_train_final": 1.0,
+      "final_held": 0.5694444444444444,
+      "gradient_reference_final_held": 0.6527777777777778,
+      "oldest_held_stage0": 0.75,
+      "oldest_held_final": 0.5416666666666666,
+      "storage_final": {
+        "gram_bytes": 75272,
+        "cross_bytes": 37248,
+        "weight_bytes": 37248,
+        "samples_accumulated": 600,
+        "raw_examples_stored": 0,
+        "note": "excludes Python/model/features/code and transient solve workspace"
+      },
+      "max_reverse_weight_delta": 5.152622772897075e-11
+    }
+  },
+  "note": "descriptive mean, different loss/state budget vs gradient"
+}
