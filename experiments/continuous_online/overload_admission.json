@@ -1,0 +1,409 @@
+{
+  "scope": "thread-gated admission correctness, not model latency or semantic quality",
+  "queue_limit": 4,
+  "queued_while_worker_blocked": 4,
+  "pending_including_active_worker": 5,
+  "accepted_before_release": [
+    {
+      "revision": 1,
+      "text": "甲号设备的颜色是红。"
+    },
+    {
+      "revision": 2,
+      "text": "把甲号设备的颜色更新为蓝。"
+    },
+    {
+      "revision": 3,
+      "text": "乙号设备的颜色是绿。"
+    },
+    {
+      "revision": 4,
+      "text": "把甲号设备的颜色更新为黄。"
+    },
+    {
+      "revision": 5,
+      "text": "丙号设备的颜色是黑。"
+    }
+  ],
+  "explicit_rejections": [
+    {
+      "text": "把乙号设备的颜色更新为白。",
+      "reason": "queue_full",
+      "runner_revision_unchanged": true
+    },
+    {
+      "text": "把甲号设备的颜色更新为紫。",
+      "reason": "queue_full",
+      "runner_revision_unchanged": true
+    }
+  ],
+  "producer_retries": [
+    {
+      "revision": 7,
+      "text": "把乙号设备的颜色更新为白。"
+    },
+    {
+      "revision": 8,
+      "text": "把甲号设备的颜色更新为紫。"
+    }
+  ],
+  "processed_revisions": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8
+  ],
+  "final_state": {
+    "2": {
+      "color": 4,
+      "source_text": "丙号设备的颜色是黑。",
+      "input_revision": 5
+    },
+    "1": {
+      "color": 5,
+      "source_text": "把乙号设备的颜色更新为白。",
+      "input_revision": 7
+    },
+    "0": {
+      "color": 6,
+      "source_text": "把甲号设备的颜色更新为紫。",
+      "input_revision": 8
+    }
+  },
+  "no_silent_loss_of_accepted_inputs": true,
+  "rejected_inputs_require_producer_retry": true,
+  "no_output_from_passive_inputs": true,
+  "runtime_journal": [
+    {
+      "kind": "input_received",
+      "at": 2.890000178012997e-05,
+      "revision": 1,
+      "text": "甲号设备的颜色是红。",
+      "should_respond": false
+    },
+    {
+      "kind": "input_received",
+      "at": 0.0012725000015052501,
+      "revision": 2,
+      "text": "把甲号设备的颜色更新为蓝。",
+      "should_respond": false
+    },
+    {
+      "kind": "input_received",
+      "at": 0.001280899999983376,
+      "revision": 3,
+      "text": "乙号设备的颜色是绿。",
+      "should_respond": false
+    },
+    {
+      "kind": "input_received",
+      "at": 0.0012863000010838732,
+      "revision": 4,
+      "text": "把甲号设备的颜色更新为黄。",
+      "should_respond": false
+    },
+    {
+      "kind": "input_received",
+      "at": 0.0012908999997307546,
+      "revision": 5,
+      "text": "丙号设备的颜色是黑。",
+      "should_respond": false
+    },
+    {
+      "kind": "interrupted",
+      "at": 0.0013013000025239307,
+      "revision": 6,
+      "reason": "producer-overload"
+    },
+    {
+      "kind": "input_received",
+      "at": 0.0023495000023103785,
+      "revision": 7,
+      "text": "把乙号设备的颜色更新为白。",
+      "should_respond": false
+    },
+    {
+      "kind": "input_received",
+      "at": 0.002698100000998238,
+      "revision": 8,
+      "text": "把甲号设备的颜色更新为紫。",
+      "should_respond": false
+    },
+    {
+      "kind": "closed",
+      "at": 0.005092200000945013,
+      "revision": 9
+    }
+  ],
+  "ingest_journal": [
+    {
+      "kind": "ingest_enqueued",
+      "at": 1.7899998056236655e-05,
+      "revision": 1,
+      "text": "甲号设备的颜色是红。"
+    },
+    {
+      "kind": "understanding_started",
+      "at": 0.0005708999997295905,
+      "revision": 1
+    },
+    {
+      "kind": "ingest_enqueued",
+      "at": 0.0012717999998130836,
+      "revision": 2,
+      "text": "把甲号设备的颜色更新为蓝。"
+    },
+    {
+      "kind": "ingest_enqueued",
+      "at": 0.001284599999053171,
+      "revision": 3,
+      "text": "乙号设备的颜色是绿。"
+    },
+    {
+      "kind": "ingest_enqueued",
+      "at": 0.0012907999989693053,
+      "revision": 4,
+      "text": "把甲号设备的颜色更新为黄。"
+    },
+    {
+      "kind": "ingest_enqueued",
+      "at": 0.0012955999991390854,
+      "revision": 5,
+      "text": "丙号设备的颜色是黑。"
+    },
+    {
+      "kind": "understanding_finished",
+      "at": 0.0015151999978115782,
+      "revision": 1,
+      "extraction": {
+        "accepted": true,
+        "entity": 0,
+        "color": 0,
+        "method": "exact_reference"
+      },
+      "state": {
+        "0": {
+          "color": 0,
+          "source_text": "甲号设备的颜色是红。",
+          "input_revision": 1
+        }
+      }
+    },
+    {
+      "kind": "understanding_started",
+      "at": 0.0015324999985750765,
+      "revision": 2
+    },
+    {
+      "kind": "understanding_finished",
+      "at": 0.0016656999978295062,
+      "revision": 2,
+      "extraction": {
+        "accepted": true,
+        "entity": 0,
+        "color": 1,
+        "method": "exact_reference"
+      },
+      "state": {
+        "0": {
+          "color": 1,
+          "source_text": "把甲号设备的颜色更新为蓝。",
+          "input_revision": 2
+        }
+      }
+    },
+    {
+      "kind": "understanding_started",
+      "at": 0.0016847999977471773,
+      "revision": 3
+    },
+    {
+      "kind": "understanding_finished",
+      "at": 0.0018755999990389682,
+      "revision": 3,
+      "extraction": {
+        "accepted": true,
+        "entity": 1,
+        "color": 2,
+        "method": "exact_reference"
+      },
+      "state": {
+        "0": {
+          "color": 1,
+          "source_text": "把甲号设备的颜色更新为蓝。",
+          "input_revision": 2
+        },
+        "1": {
+          "color": 2,
+          "source_text": "乙号设备的颜色是绿。",
+          "input_revision": 3
+        }
+      }
+    },
+    {
+      "kind": "understanding_started",
+      "at": 0.0018909999998868443,
+      "revision": 4
+    },
+    {
+      "kind": "understanding_finished",
+      "at": 0.002097900000080699,
+      "revision": 4,
+      "extraction": {
+        "accepted": true,
+        "entity": 0,
+        "color": 3,
+        "method": "exact_reference"
+      },
+      "state": {
+        "1": {
+          "color": 2,
+          "source_text": "乙号设备的颜色是绿。",
+          "input_revision": 3
+        },
+        "0": {
+          "color": 3,
+          "source_text": "把甲号设备的颜色更新为黄。",
+          "input_revision": 4
+        }
+      }
+    },
+    {
+      "kind": "understanding_started",
+      "at": 0.002113999998982763,
+      "revision": 5
+    },
+    {
+      "kind": "understanding_finished",
+      "at": 0.00231300000086776,
+      "revision": 5,
+      "extraction": {
+        "accepted": true,
+        "entity": 2,
+        "color": 4,
+        "method": "exact_reference"
+      },
+      "state": {
+        "1": {
+          "color": 2,
+          "source_text": "乙号设备的颜色是绿。",
+          "input_revision": 3
+        },
+        "0": {
+          "color": 3,
+          "source_text": "把甲号设备的颜色更新为黄。",
+          "input_revision": 4
+        },
+        "2": {
+          "color": 4,
+          "source_text": "丙号设备的颜色是黑。",
+          "input_revision": 5
+        }
+      }
+    },
+    {
+      "kind": "ingest_enqueued",
+      "at": 0.0023526000004494563,
+      "revision": 7,
+      "text": "把乙号设备的颜色更新为白。"
+    },
+    {
+      "kind": "understanding_started",
+      "at": 0.002372099999774946,
+      "revision": 7
+    },
+    {
+      "kind": "understanding_finished",
+      "at": 0.0026615999995556194,
+      "revision": 7,
+      "extraction": {
+        "accepted": true,
+        "entity": 1,
+        "color": 5,
+        "method": "exact_reference"
+      },
+      "state": {
+        "0": {
+          "color": 3,
+          "source_text": "把甲号设备的颜色更新为黄。",
+          "input_revision": 4
+        },
+        "2": {
+          "color": 4,
+          "source_text": "丙号设备的颜色是黑。",
+          "input_revision": 5
+        },
+        "1": {
+          "color": 5,
+          "source_text": "把乙号设备的颜色更新为白。",
+          "input_revision": 7
+        }
+      }
+    },
+    {
+      "kind": "ingest_enqueued",
+      "at": 0.002701999997952953,
+      "revision": 8,
+      "text": "把甲号设备的颜色更新为紫。"
+    },
+    {
+      "kind": "understanding_started",
+      "at": 0.002714800000831019,
+      "revision": 8
+    },
+    {
+      "kind": "understanding_finished",
+      "at": 0.005040299998654518,
+      "revision": 8,
+      "extraction": {
+        "accepted": true,
+        "entity": 0,
+        "color": 6,
+        "method": "exact_reference"
+      },
+      "state": {
+        "2": {
+          "color": 4,
+          "source_text": "丙号设备的颜色是黑。",
+          "input_revision": 5
+        },
+        "1": {
+          "color": 5,
+          "source_text": "把乙号设备的颜色更新为白。",
+          "input_revision": 7
+        },
+        "0": {
+          "color": 6,
+          "source_text": "把甲号设备的颜色更新为紫。",
+          "input_revision": 8
+        }
+      }
+    },
+    {
+      "kind": "backend_closed",
+      "at": 0.0056471999996574596
+    }
+  ],
+  "provenance": {
+    "git_commit": "d84f432e7b3b60760d0de2397936217e454118f3",
+    "git_status": "?? evaluation/continuous_overload.py",
+    "source_sha256_at_capture": {
+      "runtime/continuous.py": "defe9848b03aceeddbbb8a8b20c8883e7a2195f03406dd845487a2928ba4b046",
+      "runtime/continuous_state.py": "116f95f418c1482e9b8a82c4ed32b7bb3f02acf81636602ef1a05aee044f4052",
+      "evaluation/continuous_overload.py": "fe75285f4e95969e9e26e67c7617f70571b9a0dcd30ddd1711487e62c7a89dee"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  }
+}

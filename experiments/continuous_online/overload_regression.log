@@ -1,0 +1,15 @@
+test_bounded_admission_explicit_retry_and_ordered_drain (tests.test_continuous_overload.ContinuousOverloadTests.test_bounded_admission_explicit_retry_and_ordered_drain) ... ok
+test_cancelled_close_can_resume_drain (tests.test_continuous_state.ContinuousStateTests.test_cancelled_close_can_resume_drain) ... ok
+test_output_cancel_does_not_cancel_ingest (tests.test_continuous_state.ContinuousStateTests.test_output_cancel_does_not_cancel_ingest) ... ok
+test_passive_ingest_processed_before_any_output (tests.test_continuous_state.ContinuousStateTests.test_passive_ingest_processed_before_any_output) ... ok
+test_queue_rejection_leaves_runner_history_unchanged (tests.test_continuous_state.ContinuousStateTests.test_queue_rejection_leaves_runner_history_unchanged) ... ok
+test_returned_state_copy_and_failed_snapshot_bound (tests.test_continuous_state.ContinuousStateTests.test_returned_state_copy_and_failed_snapshot_bound) ... ok
+test_unknown_or_ambiguous_input_does_not_mutate_belief (tests.test_continuous_state.ContinuousStateTests.test_unknown_or_ambiguous_input_does_not_mutate_belief) ... ok
+test_worker_cancel_settles_accepted_inputs_and_close_reports (tests.test_continuous_state.ContinuousStateTests.test_worker_cancel_settles_accepted_inputs_and_close_reports) ... ok
+test_cancelled_future_does_not_parallelize_or_commit_old_work (tests.test_inference_worker_scheduling.WorkerSchedulingTests.test_cancelled_future_does_not_parallelize_or_commit_old_work) ... ok
+test_generation_capacity_defers_without_losing_input (tests.test_inference_worker_scheduling.WorkerSchedulingTests.test_generation_capacity_defers_without_losing_input) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.191s
+
+OK
