@@ -1,0 +1,300 @@
+{
+  "scope": "real bounded neural rollout scheduling, NOT fluent language or semantic resume",
+  "output": "灰灰灰灰灰灰灰灰灰灰",
+  "prefixes_at_interrupt": [
+    "灰",
+    "灰灰",
+    "灰灰灰"
+  ],
+  "journal": [
+    {
+      "kind": "input_received",
+      "at": 1.2500000593718141e-05,
+      "revision": 1,
+      "text": "甲号设备的颜色是什么？",
+      "should_respond": true
+    },
+    {
+      "kind": "generation_started",
+      "at": 0.00016090000281110406,
+      "revision": 1,
+      "generation_revision": 1
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.037469200000487035,
+      "revision": 1,
+      "unit": "灰",
+      "generation_revision": 1
+    },
+    {
+      "kind": "cancel_requested",
+      "at": 0.03758930000185501,
+      "revision": 2,
+      "reason": "new_input"
+    },
+    {
+      "kind": "input_received",
+      "at": 0.037592600001516985,
+      "revision": 2,
+      "text": "乙号设备的颜色是什么？",
+      "should_respond": true
+    },
+    {
+      "kind": "generation_cancelled",
+      "at": 0.03776120000111405,
+      "revision": 2,
+      "generation_revision": 1
+    },
+    {
+      "kind": "generation_started",
+      "at": 0.03777730000001611,
+      "revision": 2,
+      "generation_revision": 2
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.06850860000122339,
+      "revision": 2,
+      "unit": "灰",
+      "generation_revision": 2
+    },
+    {
+      "kind": "cancel_requested",
+      "at": 0.0686178000032669,
+      "revision": 3,
+      "reason": "new_input"
+    },
+    {
+      "kind": "input_received",
+      "at": 0.0686206000027596,
+      "revision": 3,
+      "text": "丙号设备的颜色是什么？",
+      "should_respond": true
+    },
+    {
+      "kind": "generation_cancelled",
+      "at": 0.06878160000269418,
+      "revision": 3,
+      "generation_revision": 2
+    },
+    {
+      "kind": "generation_started",
+      "at": 0.06879440000193426,
+      "revision": 3,
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.0999764000007417,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.13139930000033928,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.16288620000341325,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.19409060000180034,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.2254785000004631,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.2563945000001695,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.28828940000312286,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "output_committed",
+      "at": 0.31937400000242633,
+      "revision": 3,
+      "unit": "灰",
+      "generation_revision": 3
+    },
+    {
+      "kind": "generation_finished",
+      "at": 0.3193922999998904,
+      "revision": 3,
+      "generation_revision": 3
+    },
+    {
+      "kind": "closed",
+      "at": 0.31952280000041355,
+      "revision": 4
+    }
+  ],
+  "neural_steps": [
+    {
+      "revision": 1,
+      "step": 0,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 16890.7869153,
+      "end_perf": 16890.8077293,
+      "thread": "pbslm-inference_0"
+    },
+    {
+      "revision": 2,
+      "step": 0,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 16890.8240415,
+      "end_perf": 16890.8376385,
+      "thread": "pbslm-inference_0"
+    },
+    {
+      "revision": 3,
+      "step": 0,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 16890.8550643,
+      "end_perf": 16890.8682873,
+      "thread": "pbslm-inference_0"
+    },
+    {
+      "revision": 3,
+      "step": 1,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 16890.8862406,
+      "end_perf": 16890.9011597,
+      "thread": "pbslm-inference_0"
+    },
+    {
+      "revision": 3,
+      "step": 2,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 16890.9176191,
+      "end_perf": 16890.9311452,
+      "thread": "pbslm-inference_0"
+    },
+    {
+      "revision": 3,
+      "step": 3,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 16890.9491386,
+      "end_perf": 16890.9599807,
+      "thread": "pbslm-inference_0"
+    },
+    {
+      "revision": 3,
+      "step": 4,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 16890.9803526,
+      "end_perf": 16890.9886473,
+      "thread": "pbslm-inference_0"
+    },
+    {
+      "revision": 3,
+      "step": 5,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 16891.0117262,
+      "end_perf": 16891.0226926,
+      "thread": "pbslm-inference_0"
+    },
+    {
+      "revision": 3,
+      "step": 6,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 16891.0426268,
+      "end_perf": 16891.0514708,
+      "thread": "pbslm-inference_0"
+    },
+    {
+      "revision": 3,
+      "step": 7,
+      "token": 26,
+      "surface": "灰",
+      "start_perf": 16891.0745251,
+      "end_perf": 16891.0842232,
+      "thread": "pbslm-inference_0"
+    }
+  ],
+  "checkpoint": {
+    "sha256": "a791e89107788807004c76c44b24b842580e93ee044e06c15a23f3f431965f51",
+    "training": {
+      "seed": 0,
+      "episodes": 800,
+      "eval_episodes": 8,
+      "key_align_weight": 0.2
+    },
+    "provenance": {
+      "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+      "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+      "source_sha256_at_capture": {
+        "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+        "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+        "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+        "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+        "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+      },
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.22631-SP0",
+      "torch": "2.11.0+cu128",
+      "cuda_build": "12.8",
+      "cudnn": 91900,
+      "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "deterministic_algorithms": false,
+      "cudnn_deterministic": false,
+      "cudnn_benchmark": false,
+      "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+    }
+  },
+  "fixed_model_and_memory": true,
+  "no_stale_token_commits": true,
+  "rendered_prefix_not_model_conditioning": true,
+  "step_delay_explicit_seconds": 0.01,
+  "provenance": {
+    "git_commit": "226700a5297caca61e63e7f1376438d043b8a9d6",
+    "git_status": "?? evaluation/neural_token_online_demo.py\n?? runtime/pbslm_token_backend.py\n?? tests/test_inference_worker_scheduling.py",
+    "source_sha256_at_capture": {
+      "runtime/continuous.py": "53a7548aa6be6f38e2c2907bbb8983eab4fbb212b450b375a2551eca702af774",
+      "runtime/pbslm_token_backend.py": "012ee086c67958ada723060b9471730b64c660506dc8eb057be94b611dd885ca",
+      "evaluation/neural_token_online_demo.py": "91ad803b27e48a92f4dad11432ad8cdc905b8e0d8835b8450361a6296cad504d"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  }
+}

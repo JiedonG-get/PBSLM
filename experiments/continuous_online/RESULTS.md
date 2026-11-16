@@ -57,6 +57,15 @@ python -m evaluation.continuous_online_demo --output experiments/continuous_onli
 - 新增生成器finally与close超时重试测试。全套140 tests通过，日志all_tests_after_audit.log。
 - lifecycle_fixed_demo.json保留最新实际运行：0次落在推理区间的输入重叠，max observe服务时间约36.1微秒，no_stale_commits与模型/M不变通过。先前1次/4次观测均保留，不挑选运行；真实计时依赖调度，零重叠不证明持续理解，非零也不证明理解。
 
+## 串行worker与真实多步神经输出补证
+
+- tests/test_inference_worker_scheduling.py用threading.Event控制旧worker不返回，同时新observe能完成；使用真实executor/generate调度路径但替换模型数学，确认peak并行推理=1，旧结果不提交，第二任务在第一实际结束后开始。它是确定性调度证据，不是神经质量证据。
+- 同文件测试generation capacity背压不会丢掉新input，也不创建无界generation任务。
+- runtime/pbslm_token_backend.py提供最多128步的真实神经rollout：每一步model(m=1)预测token，加入固定长度上下文后下一步；新输入取消旧rollout并重新计划。
+- neural_token_rollout.json：实际执行10个神经步骤，提交10个单位（前两revision各首token，最终revision8token），新输入后无旧revision提交，权重/M指纹不变。
+- 这份小模型没有为流畅长文本rollout训练；输出质量不验收。已显示prefix保留在runner，但不会被该backend语义编码，因此不是语义级自然续接。显式.01秒step_delay只是让调度可观察，不是模型推理性能。
+- 全仓库142 tests通过，原始all_tests_worker_scheduling.log。
+
 ## 与最终目标的差距
 
 - 现在是持续输入/输出调度与旧输出抑制，不是持续理解能力已经证明。
