@@ -1,0 +1,233 @@
+{
+  "scope": "scripted bounded relation candidate demo, explicit operator decisions, not autonomous fact verification",
+  "checkpoint": {
+    "sha256": "a791e89107788807004c76c44b24b842580e93ee044e06c15a23f3f431965f51",
+    "training": {
+      "seed": 0,
+      "episodes": 800,
+      "eval_episodes": 8,
+      "key_align_weight": 0.2
+    },
+    "provenance": {
+      "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+      "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+      "source_sha256_at_capture": {
+        "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+        "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+        "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+        "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+        "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+      },
+      "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+      "platform": "Windows-11-10.0.22631-SP0",
+      "torch": "2.11.0+cu128",
+      "cuda_build": "12.8",
+      "cudnn": 91900,
+      "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "deterministic_algorithms": false,
+      "cudnn_deterministic": false,
+      "cudnn_benchmark": false,
+      "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+    }
+  },
+  "reader": {
+    "threshold": 0.9,
+    "margin": 0.2,
+    "sha256": "b4861b3ff2202242b41672a7d96b1320ed64f7c50646b85f747b00170d0a0cc2"
+  },
+  "trace": [
+    {
+      "candidate": {
+        "candidate_id": "statement-1",
+        "source_text": "甲号设备的颜色是红。",
+        "source_sha256": "1bc1e8b77eb962fa0769827c5b3190e2a3eacd75c7a47959feff864155995b84",
+        "accepted": true,
+        "entity": 0,
+        "color": 0,
+        "entity_name": "甲号设备",
+        "color_name": "红",
+        "valid_score": 0.9998432397842407,
+        "entity_margin": 0.9933871030807495,
+        "color_margin": 0.9981144666671753,
+        "warning": "scores uncalibrated; acceptance is extraction policy, not verified truth",
+        "available_at": 1,
+        "status": "pending",
+        "receipt": null
+      },
+      "receipt": {
+        "event_id": "w1",
+        "version": 1,
+        "operation": "put",
+        "slot": "entity:0/color",
+        "evicted": null,
+        "retained_slots": [
+          "entity:0/color"
+        ],
+        "write_calls": 1,
+        "lr": 0.05,
+        "payload_sha256": "379f308649087432d898c9cb084e5828da4b0a53fdac41aacd9ae93934e151c3",
+        "memory_before": "ef2ff57fedfa0426756f914cd6baa73444c1c2f601419928be316ee009e68f78",
+        "memory_after": "d692f5aedff919188b46c305539df6f923c51213e214f87ed68362b1ea76d3c2",
+        "provenance": "caller_asserted_confirmed_feedback",
+        "observation_id": "observation-2",
+        "replayed": false,
+        "source_sha256": "1bc1e8b77eb962fa0769827c5b3190e2a3eacd75c7a47959feff864155995b84",
+        "warning": "caller confirmed extraction, not independently verified fact"
+      },
+      "decision": "external_confirm"
+    },
+    {
+      "candidate": {
+        "candidate_id": "statement-4",
+        "source_text": "乙号设备的颜色是蓝。",
+        "source_sha256": "63892638c1771f4ca61d280ffa0e4031b4b4fa7e5249a80819e0fb74d82e43e7",
+        "accepted": true,
+        "entity": 1,
+        "color": 1,
+        "entity_name": "乙号设备",
+        "color_name": "蓝",
+        "valid_score": 0.9991666078567505,
+        "entity_margin": 0.994799792766571,
+        "color_margin": 0.9987196326255798,
+        "warning": "scores uncalibrated; acceptance is extraction policy, not verified truth",
+        "available_at": 3,
+        "status": "pending",
+        "receipt": null
+      },
+      "receipt": {
+        "event_id": "w2",
+        "version": 2,
+        "operation": "put",
+        "slot": "entity:1/color",
+        "evicted": null,
+        "retained_slots": [
+          "entity:0/color",
+          "entity:1/color"
+        ],
+        "write_calls": 2,
+        "lr": 0.05,
+        "payload_sha256": "2f8f78d6292e61e5180fd3512fd465c9f8387c6effb2a8036f6eb73ed8df1829",
+        "memory_before": "d692f5aedff919188b46c305539df6f923c51213e214f87ed68362b1ea76d3c2",
+        "memory_after": "9876a3fb412c9cbf095b38c309bec895f7b5423cf9c35e255fa801396f963381",
+        "provenance": "caller_asserted_confirmed_feedback",
+        "observation_id": "observation-5",
+        "replayed": false,
+        "source_sha256": "63892638c1771f4ca61d280ffa0e4031b4b4fa7e5249a80819e0fb74d82e43e7",
+        "warning": "caller confirmed extraction, not independently verified fact"
+      },
+      "decision": "external_confirm"
+    },
+    {
+      "candidate": {
+        "candidate_id": "statement-7",
+        "source_text": "甲号设备不是绿色。",
+        "source_sha256": "60add19fa78e46437a0166cd2bd5149dc18f908e257217193bed7be505c02604",
+        "accepted": false,
+        "entity": 0,
+        "color": 2,
+        "entity_name": "甲号设备",
+        "color_name": "绿",
+        "valid_score": 0.00016401334141846746,
+        "entity_margin": 0.984867513179779,
+        "color_margin": 0.5178168416023254,
+        "warning": "scores uncalibrated; acceptance is extraction policy, not verified truth",
+        "available_at": 5,
+        "status": "pending",
+        "receipt": null
+      },
+      "decision": "external_reject"
+    },
+    {
+      "candidate": {
+        "candidate_id": "statement-8",
+        "source_text": "把甲号设备的颜色更新为绿。",
+        "source_sha256": "2094ee609a8b44aa1095027a9c221999bced9212b5d931964bbb2f8b78d295c8",
+        "accepted": true,
+        "entity": 0,
+        "color": 2,
+        "entity_name": "甲号设备",
+        "color_name": "绿",
+        "valid_score": 0.9994202852249146,
+        "entity_margin": 0.9954663515090942,
+        "color_margin": 0.9978645443916321,
+        "warning": "scores uncalibrated; acceptance is extraction policy, not verified truth",
+        "available_at": 6,
+        "status": "pending",
+        "receipt": null
+      },
+      "receipt": {
+        "event_id": "w3",
+        "version": 3,
+        "operation": "put",
+        "slot": "entity:0/color",
+        "evicted": null,
+        "retained_slots": [
+          "entity:1/color",
+          "entity:0/color"
+        ],
+        "write_calls": 2,
+        "lr": 0.05,
+        "payload_sha256": "eaacb498b4e42689970a47d565ac0f1cf748e318339f86f2148db38c16a19748",
+        "memory_before": "9876a3fb412c9cbf095b38c309bec895f7b5423cf9c35e255fa801396f963381",
+        "memory_after": "3dceed4130bab75ee12a7c3fc13d5a08093515055eda1b6cb9dafc1e738143ef",
+        "provenance": "caller_asserted_confirmed_feedback",
+        "observation_id": "observation-9",
+        "replayed": false,
+        "source_sha256": "2094ee609a8b44aa1095027a9c221999bced9212b5d931964bbb2f8b78d295c8",
+        "warning": "caller confirmed extraction, not independently verified fact"
+      },
+      "decision": "external_confirm"
+    }
+  ],
+  "answers": [
+    {
+      "observation_id": "observation-11",
+      "tokens_a": [
+        28
+      ],
+      "tokens_c": [
+        18
+      ],
+      "question": "请回答甲号设备是什么颜色。",
+      "answer_a": "绿",
+      "answer_c": "<compact-token:18>"
+    },
+    {
+      "observation_id": "observation-12",
+      "tokens_a": [
+        31
+      ],
+      "tokens_c": [
+        18
+      ],
+      "question": "请回答乙号设备是什么颜色。",
+      "answer_a": "蓝",
+      "answer_c": "<compact-token:18>"
+    }
+  ],
+  "parameters_unchanged": true,
+  "memory_slots": [
+    "entity:1/color",
+    "entity:0/color"
+  ],
+  "provenance": {
+    "git_commit": "cf4e037b18ffa2de41ce087f8aa3739f0f20802b",
+    "git_status": "?? evaluation/statement_reader_demo.py\n?? evaluation/train_fact_reader.py\n?? experiments/fact_reader/\n?? runtime/fact_reader.py\n?? runtime/statement_candidates.py\n?? tests/test_fact_reader_protocol.py\n?? tests/test_statement_candidates.py",
+    "source_sha256_at_capture": {
+      "evaluation/statement_reader_demo.py": "6d4c4084d9eac1ba818e5956f5fbe157f575423267a47ae6ed26163943563d8c",
+      "runtime/statement_candidates.py": "5172fbd7bdff54ca8f6b5e1d0f7808035d1bf02cac8e29ce7cfa35b33774f422",
+      "runtime/fact_reader.py": "b3f2da9302615089fdbcbed168f4219cccfc114055c703429c5b23adb8353e30",
+      "runtime/controlled_text.py": "66767dec84ccb0b636c1b39c50ae4e84a1b083b6e8763e11b8c09301a91c836b"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  }
+}
