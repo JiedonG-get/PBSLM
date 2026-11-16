@@ -1,0 +1,311 @@
+{
+  "source": "experiments/text_surfaces/frozen_probe.json",
+  "groups": {
+    "familiar/normal": {
+      "attempted": 2304,
+      "accepted": 1920,
+      "correct": 1885,
+      "coverage": 0.8333333333333334,
+      "accepted_accuracy": 0.9817708333333334,
+      "correct_over_all_attempts": 0.8181423611111112
+    },
+    "familiar/zero": {
+      "attempted": 2304,
+      "accepted": 1920,
+      "correct": 283,
+      "coverage": 0.8333333333333334,
+      "accepted_accuracy": 0.14739583333333334,
+      "correct_over_all_attempts": 0.1228298611111111
+    },
+    "familiar/wrong": {
+      "attempted": 2304,
+      "accepted": 1920,
+      "correct": 7,
+      "coverage": 0.8333333333333334,
+      "accepted_accuracy": 0.0036458333333333334,
+      "correct_over_all_attempts": 0.0030381944444444445
+    },
+    "novel/normal": {
+      "attempted": 2304,
+      "accepted": 1920,
+      "correct": 1605,
+      "coverage": 0.8333333333333334,
+      "accepted_accuracy": 0.8359375,
+      "correct_over_all_attempts": 0.6966145833333334
+    },
+    "novel/zero": {
+      "attempted": 2304,
+      "accepted": 1920,
+      "correct": 264,
+      "coverage": 0.8333333333333334,
+      "accepted_accuracy": 0.1375,
+      "correct_over_all_attempts": 0.11458333333333333
+    },
+    "novel/wrong": {
+      "attempted": 2304,
+      "accepted": 1920,
+      "correct": 104,
+      "coverage": 0.8333333333333334,
+      "accepted_accuracy": 0.05416666666666667,
+      "correct_over_all_attempts": 0.04513888888888889
+    }
+  },
+  "rejection_counts_per_question_not_mode": {
+    "oov_bpe_ids": 768
+  },
+  "per_template": {
+    "0": {
+      "text": "{entity}的颜色？",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 192,
+          "coverage": 1.0,
+          "accepted_accuracy": 1.0,
+          "correct_over_all_attempts": 1.0
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 191,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.9947916666666666,
+          "correct_over_all_attempts": 0.9947916666666666
+        }
+      }
+    },
+    "1": {
+      "text": "颜色是什么，{entity}？",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 162,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.84375,
+          "correct_over_all_attempts": 0.84375
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 136,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.7083333333333334,
+          "correct_over_all_attempts": 0.7083333333333334
+        }
+      }
+    },
+    "2": {
+      "text": "{entity}颜色是什么？",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 192,
+          "coverage": 1.0,
+          "accepted_accuracy": 1.0,
+          "correct_over_all_attempts": 1.0
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 187,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.9739583333333334,
+          "correct_over_all_attempts": 0.9739583333333334
+        }
+      }
+    },
+    "3": {
+      "text": "请回答{entity}的颜色。",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 192,
+          "coverage": 1.0,
+          "accepted_accuracy": 1.0,
+          "correct_over_all_attempts": 1.0
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 191,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.9947916666666666,
+          "correct_over_all_attempts": 0.9947916666666666
+        }
+      }
+    },
+    "4": {
+      "text": "告诉我{entity}是什么颜色。",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 191,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.9947916666666666,
+          "correct_over_all_attempts": 0.9947916666666666
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 95,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.4947916666666667,
+          "correct_over_all_attempts": 0.4947916666666667
+        }
+      }
+    },
+    "5": {
+      "text": "我想知道，{entity}是什么颜色？",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 191,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.9947916666666666,
+          "correct_over_all_attempts": 0.9947916666666666
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 170,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.8854166666666666,
+          "correct_over_all_attempts": 0.8854166666666666
+        }
+      }
+    },
+    "6": {
+      "text": "请说出{entity}是什么颜色的？",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 192,
+          "coverage": 1.0,
+          "accepted_accuracy": 1.0,
+          "correct_over_all_attempts": 1.0
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 191,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.9947916666666666,
+          "correct_over_all_attempts": 0.9947916666666666
+        }
+      }
+    },
+    "7": {
+      "text": "我想知道{entity}的颜色是什么？",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 191,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.9947916666666666,
+          "correct_over_all_attempts": 0.9947916666666666
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 177,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.921875,
+          "correct_over_all_attempts": 0.921875
+        }
+      }
+    },
+    "8": {
+      "text": "请告诉我{entity}的颜色。",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 190,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.9895833333333334,
+          "correct_over_all_attempts": 0.9895833333333334
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 77,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.4010416666666667,
+          "correct_over_all_attempts": 0.4010416666666667
+        }
+      }
+    },
+    "9": {
+      "text": "{entity}，是什么颜色？",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 192,
+          "coverage": 1.0,
+          "accepted_accuracy": 1.0,
+          "correct_over_all_attempts": 1.0
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 192,
+          "correct": 190,
+          "coverage": 1.0,
+          "accepted_accuracy": 0.9895833333333334,
+          "correct_over_all_attempts": 0.9895833333333334
+        }
+      }
+    },
+    "10": {
+      "text": "关于{entity}，它的颜色是？",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 0,
+          "correct": 0,
+          "coverage": 0.0,
+          "accepted_accuracy": null,
+          "correct_over_all_attempts": 0.0
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 0,
+          "correct": 0,
+          "coverage": 0.0,
+          "accepted_accuracy": null,
+          "correct_over_all_attempts": 0.0
+        }
+      }
+    },
+    "11": {
+      "text": "麻烦查询一下{entity}现在的颜色。",
+      "normal": {
+        "familiar": {
+          "attempted": 192,
+          "accepted": 0,
+          "correct": 0,
+          "coverage": 0.0,
+          "accepted_accuracy": null,
+          "correct_over_all_attempts": 0.0
+        },
+        "novel": {
+          "attempted": 192,
+          "accepted": 0,
+          "correct": 0,
+          "coverage": 0.0,
+          "accepted_accuracy": null,
+          "correct_over_all_attempts": 0.0
+        }
+      }
+    }
+  },
+  "note": "micro-averaged correlated template queries; no significance claim"
+}
