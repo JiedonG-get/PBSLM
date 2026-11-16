@@ -1,0 +1,14 @@
+test_backend_view_excludes_labels_and_future (tests.test_online_story_contract.OnlineStoryContractTests.test_backend_view_excludes_labels_and_future) ... ok
+test_empty_predictions_not_counted_as_perfect_silence (tests.test_online_story_contract.OnlineStoryContractTests.test_empty_predictions_not_counted_as_perfect_silence) ... ok
+test_synthetic_oracle_only_checks_scorer (tests.test_online_story_contract.OnlineStoryContractTests.test_synthetic_oracle_only_checks_scorer) ... ok
+test_disjoint_progress_then_relevant_update_interrupts (tests.test_dependency_router.DependencyRouterTests.test_disjoint_progress_then_relevant_update_interrupts) ... ok
+test_unknown_negated_question_and_no_dependencies_fail_closed (tests.test_dependency_router.DependencyRouterTests.test_unknown_negated_question_and_no_dependencies_fail_closed) ... ok
+test_background_burst_allows_current_output_to_progress (tests.test_background_input.BackgroundInputTests.test_background_burst_allows_current_output_to_progress) ... ok
+test_background_updates_independent_ingest_state (tests.test_background_input.BackgroundInputTests.test_background_updates_independent_ingest_state) ... ok
+test_deferred_question_not_replaced_by_background (tests.test_background_input.BackgroundInputTests.test_deferred_question_not_replaced_by_background) ... ok
+test_hard_correction_still_invalidates_after_background (tests.test_background_input.BackgroundInputTests.test_hard_correction_still_invalidates_after_background) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.099s
+
+OK
