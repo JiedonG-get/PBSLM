@@ -33,12 +33,14 @@ class ContinuousRunner:
         self.inputs = deque(maxlen=history_limit)
         self.max_committed_chars = max_committed_chars
         self.revision = 0
+        self._generation_revision = None
         self.committed = []
         self.journal = []
         self.state = 'listening'
         self.closed = False
         self._active = None
         self._pending_revision = None
+        self._response_inputs = ()
         self._tasks = set()
         self._changed = asyncio.Event()
         self._started = time.perf_counter()
@@ -57,6 +59,7 @@ class ContinuousRunner:
             self._active.cancel()
             self._record('cancel_requested', reason=reason)
         self._active = None
+        self._generation_revision = None
         self._pending_revision = None
 
     def _task_done(self,task):
@@ -72,7 +75,8 @@ class ContinuousRunner:
             self._record('response_deferred',reason='generation_task_capacity')
             return
         self._pending_revision=None
-        request=GenerationRequest(self.revision,tuple(self.inputs),self.output,
+        self._generation_revision=self.revision
+        request=GenerationRequest(self.revision,self._response_inputs,self.output,
                                   time.perf_counter()-self._started)
         task=asyncio.create_task(self._consume(request))
         self._active=task;self._tasks.add(task)
@@ -95,7 +99,30 @@ class ContinuousRunner:
         self.inputs.append((self.revision,text))
         self._record('input_received', text=text, should_respond=should_respond)
         self.state='listening'
-        if should_respond:self._schedule_response()
+        if should_respond:
+            self._response_inputs=tuple(self.inputs)
+            self._schedule_response()
+        return self.revision
+
+    async def observe_background(self,text,*,relevance_assertion):
+        """Caller explicitly asserts no effect on current speech; not model judgement.
+
+        Backend ingest still runs if supported. Current generation uses its original
+        snapshot and does not magically consume this new event. Misclassification
+        may permit stale semantic assertions despite a valid scheduling fence.
+        """
+        if self.closed:raise RuntimeError('runner is closed')
+        if not isinstance(text,str) or not text:raise ValueError('nonempty input text required')
+        if not isinstance(relevance_assertion,str) or not relevance_assertion.strip():
+            raise ValueError('explicit nonempty caller relevance justification required')
+        if hasattr(self.backend,'submit_input'):
+            self.backend.submit_input(self.revision+1,text)
+        self.revision+=1
+        self.inputs.append((self.revision,text))
+        if self._pending_revision is not None:self._pending_revision=self.revision
+        self._record('background_input_received',text=text,should_respond=False,
+                     relevance_assertion=relevance_assertion,
+                     output_fence_revision=self._generation_revision)
         return self.revision
 
     async def interrupt(self, reason='external_interrupt'):
@@ -111,6 +138,7 @@ class ContinuousRunner:
         self.revision+=1
         self._invalidate('resume_replan')
         self._record('resume_requested')
+        self._response_inputs=tuple(self.inputs)
         self._schedule_response()
         return self.revision
 
@@ -121,7 +149,7 @@ class ContinuousRunner:
             stream=self.backend.generate(request)
             async for unit in stream:
                 # No await between revision check and append: this is the commit fence.
-                if self.closed or request.revision != self.revision:
+                if self.closed or request.revision != self._generation_revision:
                     self._record('stale_unit_dropped',generation_revision=request.revision)
                     break
                 if not isinstance(unit,str) or not unit:
@@ -132,8 +160,10 @@ class ContinuousRunner:
                 item={'unit':unit,'revision':request.revision,
                       'at':time.perf_counter()-self._started}
                 self.committed.append(item)
-                self._record('output_committed',unit=unit,generation_revision=request.revision)
-            if request.revision==self.revision and not self.closed:
+                self._record('output_committed',unit=unit,generation_revision=request.revision,
+                             output_fence_revision=self._generation_revision,
+                             latest_observation_revision=self.revision)
+            if request.revision==self._generation_revision and not self.closed:
                 self.state='listening';self._record('generation_finished',generation_revision=request.revision)
         except asyncio.CancelledError:
             self._record('generation_cancelled',generation_revision=request.revision)
@@ -141,7 +171,7 @@ class ContinuousRunner:
         except Exception as exc:
             self._record('generation_failed',generation_revision=request.revision,
                          error=type(exc).__name__+': '+str(exc))
-            if request.revision==self.revision:self.state='listening'
+            if request.revision==self._generation_revision:self.state='listening'
         finally:
             if stream is not None and hasattr(stream,'aclose'):
                 try:

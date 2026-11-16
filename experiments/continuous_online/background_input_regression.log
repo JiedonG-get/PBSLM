@@ -1,0 +1,29 @@
+test_background_burst_allows_current_output_to_progress (tests.test_background_input.BackgroundInputTests.test_background_burst_allows_current_output_to_progress) ... ok
+test_background_updates_independent_ingest_state (tests.test_background_input.BackgroundInputTests.test_background_updates_independent_ingest_state) ... ok
+test_deferred_question_not_replaced_by_background (tests.test_background_input.BackgroundInputTests.test_deferred_question_not_replaced_by_background) ... ok
+test_hard_correction_still_invalidates_after_background (tests.test_background_input.BackgroundInputTests.test_hard_correction_still_invalidates_after_background) ... ok
+test_explicit_interrupt_clears_pending_speech (tests.test_deferred_response.DeferredResponseTests.test_explicit_interrupt_clears_pending_speech) ... ok
+test_latest_pending_response_automatically_runs (tests.test_deferred_response.DeferredResponseTests.test_latest_pending_response_automatically_runs) ... ok
+test_silent_input_clears_pending_speech (tests.test_deferred_response.DeferredResponseTests.test_silent_input_clears_pending_speech) ... ok
+test_backend_exception_logged_and_listening_recovers (tests.test_continuous_runner.ContinuousRunnerTests.test_backend_exception_logged_and_listening_recovers) ... ok
+test_close_fence_for_cancellation_resistant_unit (tests.test_continuous_runner.ContinuousRunnerTests.test_close_fence_for_cancellation_resistant_unit) ... ok
+test_close_stops_future_commits_and_rejects_new_work (tests.test_continuous_runner.ContinuousRunnerTests.test_close_stops_future_commits_and_rejects_new_work) ... ok
+test_close_timeout_can_be_retried (tests.test_continuous_runner.ContinuousRunnerTests.test_close_timeout_can_be_retried) ... ok
+test_history_bound_and_output_budget (tests.test_continuous_runner.ContinuousRunnerTests.test_history_bound_and_output_budget) ... ok
+test_input_while_output_active_preserves_prefix_and_replans (tests.test_continuous_runner.ContinuousRunnerTests.test_input_while_output_active_preserves_prefix_and_replans) ... ok
+test_repeated_interruptions_resume_latest_input_and_prefix (tests.test_continuous_runner.ContinuousRunnerTests.test_repeated_interruptions_resume_latest_input_and_prefix) ... ok
+test_revision_fence_drops_backend_that_ignores_one_cancel (tests.test_continuous_runner.ContinuousRunnerTests.test_revision_fence_drops_backend_that_ignores_one_cancel) ... ok
+test_silent_policy_keeps_accepting_inputs_without_generation (tests.test_continuous_runner.ContinuousRunnerTests.test_silent_policy_keeps_accepting_inputs_without_generation) ... ok
+test_stream_finally_runs_on_budget_and_stale_drop (tests.test_continuous_runner.ContinuousRunnerTests.test_stream_finally_runs_on_budget_and_stale_drop) ... ok
+test_cancelled_close_can_resume_drain (tests.test_continuous_state.ContinuousStateTests.test_cancelled_close_can_resume_drain) ... ok
+test_output_cancel_does_not_cancel_ingest (tests.test_continuous_state.ContinuousStateTests.test_output_cancel_does_not_cancel_ingest) ... ok
+test_passive_ingest_processed_before_any_output (tests.test_continuous_state.ContinuousStateTests.test_passive_ingest_processed_before_any_output) ... ok
+test_queue_rejection_leaves_runner_history_unchanged (tests.test_continuous_state.ContinuousStateTests.test_queue_rejection_leaves_runner_history_unchanged) ... ok
+test_returned_state_copy_and_failed_snapshot_bound (tests.test_continuous_state.ContinuousStateTests.test_returned_state_copy_and_failed_snapshot_bound) ... ok
+test_unknown_or_ambiguous_input_does_not_mutate_belief (tests.test_continuous_state.ContinuousStateTests.test_unknown_or_ambiguous_input_does_not_mutate_belief) ... ok
+test_worker_cancel_settles_accepted_inputs_and_close_reports (tests.test_continuous_state.ContinuousStateTests.test_worker_cancel_settles_accepted_inputs_and_close_reports) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.372s
+
+OK
