@@ -1,0 +1,94 @@
+{
+  "source": "experiments/text_runtime/stream96.json",
+  "model_executed": false,
+  "raw_json_modified": false,
+  "assumption": "single restore at len(events)//2, same source-code path; append restore copies tensors",
+  "rows": [
+    {
+      "seed": 0,
+      "arm": "append",
+      "event_count": 104,
+      "correction_events": 8,
+      "feedback_application_writes": 104,
+      "restore_rebuild_writes_derived": 0,
+      "total_numerical_writes_derived": 104
+    },
+    {
+      "seed": 0,
+      "arm": "bounded4",
+      "event_count": 104,
+      "correction_events": 8,
+      "feedback_application_writes": 405,
+      "restore_rebuild_writes_derived": 4,
+      "total_numerical_writes_derived": 409
+    },
+    {
+      "seed": 0,
+      "arm": "bounded8",
+      "event_count": 104,
+      "correction_events": 8,
+      "feedback_application_writes": 780,
+      "restore_rebuild_writes_derived": 8,
+      "total_numerical_writes_derived": 788
+    },
+    {
+      "seed": 1,
+      "arm": "append",
+      "event_count": 104,
+      "correction_events": 8,
+      "feedback_application_writes": 104,
+      "restore_rebuild_writes_derived": 0,
+      "total_numerical_writes_derived": 104
+    },
+    {
+      "seed": 1,
+      "arm": "bounded4",
+      "event_count": 104,
+      "correction_events": 8,
+      "feedback_application_writes": 406,
+      "restore_rebuild_writes_derived": 4,
+      "total_numerical_writes_derived": 410
+    },
+    {
+      "seed": 1,
+      "arm": "bounded8",
+      "event_count": 104,
+      "correction_events": 8,
+      "feedback_application_writes": 761,
+      "restore_rebuild_writes_derived": 8,
+      "total_numerical_writes_derived": 769
+    },
+    {
+      "seed": 2,
+      "arm": "append",
+      "event_count": 104,
+      "correction_events": 8,
+      "feedback_application_writes": 104,
+      "restore_rebuild_writes_derived": 0,
+      "total_numerical_writes_derived": 104
+    },
+    {
+      "seed": 2,
+      "arm": "bounded4",
+      "event_count": 104,
+      "correction_events": 8,
+      "feedback_application_writes": 407,
+      "restore_rebuild_writes_derived": 4,
+      "total_numerical_writes_derived": 411
+    },
+    {
+      "seed": 2,
+      "arm": "bounded8",
+      "event_count": 104,
+      "correction_events": 8,
+      "feedback_application_writes": 764,
+      "restore_rebuild_writes_derived": 8,
+      "total_numerical_writes_derived": 772
+    }
+  ],
+  "mean_total_writes": {
+    "append": 104,
+    "bounded4": 410,
+    "bounded8": 776.3333333333334
+  }
+}

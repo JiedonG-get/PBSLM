@@ -41,6 +41,7 @@ def run_arm(checkpoint,device,sequence,capacity):
     fixed=state_hash(model)
     session=ControlledTextSession(model,task,capacity=capacity)
     clock=0; latest={}; traces=[]; restored_ok=False; stale_rejections=0; writes=0
+    restore_writes=0; restore_evidence=[]
     fixed_x=torch.stack([task.inputs[e,4] for e in range(8)])
     with torch.no_grad(): c_reference=model(fixed_x,1,sample_noise=False)['z_c'].clone()
     start=time.perf_counter()
@@ -89,20 +90,32 @@ def run_arm(checkpoint,device,sequence,capacity):
         if index==len(sequence)//2:
             snapshot=json.loads(json.dumps(session.snapshot()))
             m2,t2,_=load(checkpoint,device)
+            fresh_memory_hash=state_hash(m2,memory=True)
+            expected_memory_hash=state_hash(session.inner.model,memory=True)
             restored=ControlledTextSession.restore(m2,t2,snapshot)
+            restore_writes += len(snapshot['inner']['controller']['ledger']) if capacity is not None else 0
+            restored_memory_hash=state_hash(m2,memory=True)
+            if expected_memory_hash!=restored_memory_hash:
+                raise AssertionError('restored numerical memory hash mismatch')
             if session.snapshot()!=restored.snapshot(): raise AssertionError('snapshot mismatch')
             # Same next question on original and restored session, same timestamp.
             clock+=1
             query=TEMPLATES[5].format(entity=ENTITIES[entity])
             a=session.ask(query,event_time=clock); b=restored.ask(query,event_time=clock)
             if a!=b: raise AssertionError('restored text prediction diverged')
+            restore_evidence.append({'event':index,'fresh_zero_memory_sha256':fresh_memory_hash,
+                                     'expected_memory_sha256':expected_memory_hash,
+                                     'restored_memory_sha256':restored_memory_hash,
+                                     'query':query,'original_prediction':a,'restored_prediction':b})
             session=restored; restored_ok=True
     corrections=[x for x in traces if x['correction']]
     return {'checkpoint_sha256':metadata['sha256'],'capacity':capacity,'events':traces,
             'seconds':time.perf_counter()-start,'average_accuracy':sum(x['accuracy'] for x in traces)/len(traces),
             'final_accuracy':traces[-1]['accuracy'],
             'corrective_feedback_post_accuracy':sum(x['query_after_feedback']==x['truth'] for x in corrections)/len(corrections),
-            'numerical_write_calls':writes,'stale_commit_rejections':stale_rejections,
+            'feedback_application_write_calls':writes,'restore_rebuild_write_calls':restore_writes,
+            'numerical_write_calls':writes+restore_writes,'write_accounting_version':2,
+            'restore_evidence':restore_evidence,'stale_commit_rejections':stale_rejections,
             'midstream_restore_prediction_equal':restored_ok,'parameters_unchanged':True,'c_bitwise_stable':True,
             'external_ledger':capacity is not None,
             'policy':'append' if capacity is None else 'latest-confirmed bounded LRU rebuild'}

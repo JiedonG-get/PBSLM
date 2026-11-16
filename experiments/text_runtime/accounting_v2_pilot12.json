@@ -1,0 +1,2265 @@
+{
+  "config": {
+    "seeds": [
+      0
+    ],
+    "events": 12,
+    "models": "experiments/text_runtime/models800",
+    "output": "experiments/text_runtime/accounting_v2_pilot12.json"
+  },
+  "device": "cuda",
+  "scope": "explicit slots and restricted Chinese templates, not open conversation",
+  "provenance": {
+    "git_commit": "3450b9bd34c9704ae6c063684d62adb385ea26a4",
+    "git_status": "M evaluation/text_runtime_stream.py\n M experiments/text_runtime/RESULTS.md\n?? evaluation/audit_text_runtime_accounting.py\n?? experiments/text_runtime/accounting_audit.json",
+    "source_sha256_at_capture": {
+      "evaluation/text_runtime_stream.py": "a5d984d7c7d8eafb01552c2c4e537fdd0aca8710333540ce735d82627e53fac2",
+      "runtime/controlled_text.py": "66767dec84ccb0b636c1b39c50ae4e84a1b083b6e8763e11b8c09301a91c836b",
+      "runtime/bounded_session.py": "6ffe38f36838126405763cd49081859301a6807fc9c8e86f9ef21599a0d4b09c",
+      "runtime/bounded_memory.py": "9cef30705922cce21910276ddb22f32c31d8b9275fc5bd631a74332f05257b60",
+      "runtime/model_session.py": "7001b7284d3984276057ce9df455431ade6b9d845f721cc28c9000fb403ce6ab"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "arms": {
+        "append": {
+          "checkpoint_sha256": "a791e89107788807004c76c44b24b842580e93ee044e06c15a23f3f431965f51",
+          "capacity": null,
+          "events": [
+            {
+              "entity": 3,
+              "truth": "白",
+              "feedback": "紫",
+              "corrupt": true,
+              "correction": false,
+              "event": 0,
+              "question": "丁号设备的颜色是什么？",
+              "prediction_before_feedback": "灰",
+              "query_after_feedback": "紫",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "白",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                }
+              ],
+              "accuracy": 0.0,
+              "retained_slots": null,
+              "memory_version": 1
+            },
+            {
+              "entity": 3,
+              "truth": "白",
+              "feedback": "白",
+              "corrupt": false,
+              "correction": true,
+              "event": 1,
+              "question": "丁号设备的颜色是什么？",
+              "prediction_before_feedback": "紫",
+              "query_after_feedback": "白",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "白",
+                  "answer_a": "白",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": null,
+              "memory_version": 2
+            },
+            {
+              "entity": 7,
+              "truth": "蓝",
+              "feedback": "蓝",
+              "corrupt": false,
+              "correction": false,
+              "event": 2,
+              "question": "辛号设备的颜色是什么？",
+              "prediction_before_feedback": "灰",
+              "query_after_feedback": "蓝",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "白",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.5,
+              "retained_slots": null,
+              "memory_version": 3
+            },
+            {
+              "entity": 3,
+              "truth": "绿",
+              "feedback": "绿",
+              "corrupt": false,
+              "correction": false,
+              "event": 3,
+              "question": "丁号设备的颜色是什么？",
+              "prediction_before_feedback": "白",
+              "query_after_feedback": "紫",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:25>",
+                  "correct": false
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.5,
+              "retained_slots": null,
+              "memory_version": 4
+            },
+            {
+              "entity": 5,
+              "truth": "灰",
+              "feedback": "灰",
+              "corrupt": false,
+              "correction": false,
+              "event": 4,
+              "question": "己号设备的颜色是什么？",
+              "prediction_before_feedback": "灰",
+              "query_after_feedback": "灰",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.6666666666666666,
+              "retained_slots": null,
+              "memory_version": 5
+            },
+            {
+              "entity": 2,
+              "truth": "灰",
+              "feedback": "灰",
+              "corrupt": false,
+              "correction": false,
+              "event": 5,
+              "question": "丙号设备的颜色是什么？",
+              "prediction_before_feedback": "紫",
+              "query_after_feedback": "灰",
+              "probes": [
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:25>",
+                  "correct": false
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.75,
+              "retained_slots": null,
+              "memory_version": 6
+            },
+            {
+              "entity": 1,
+              "truth": "黑",
+              "feedback": "黑",
+              "corrupt": false,
+              "correction": false,
+              "event": 6,
+              "question": "乙号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "黑",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.8,
+              "retained_slots": null,
+              "memory_version": 7
+            },
+            {
+              "entity": 1,
+              "truth": "灰",
+              "feedback": "灰",
+              "corrupt": false,
+              "correction": false,
+              "event": 7,
+              "question": "乙号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "黑",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "我想知道乙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": false
+                },
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:25>",
+                  "correct": false
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.6,
+              "retained_slots": null,
+              "memory_version": 8
+            },
+            {
+              "entity": 4,
+              "truth": "黑",
+              "feedback": "黑",
+              "corrupt": false,
+              "correction": false,
+              "event": 8,
+              "question": "戊号设备的颜色是什么？",
+              "prediction_before_feedback": "灰",
+              "query_after_feedback": "黑",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 4,
+                  "question": "我想知道戊号设备的颜色。",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.6666666666666666,
+              "retained_slots": null,
+              "memory_version": 9
+            },
+            {
+              "entity": 7,
+              "truth": "蓝",
+              "feedback": "蓝",
+              "corrupt": false,
+              "correction": false,
+              "event": 9,
+              "question": "辛号设备的颜色是什么？",
+              "prediction_before_feedback": "蓝",
+              "query_after_feedback": "蓝",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "我想知道乙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": false
+                },
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:25>",
+                  "correct": false
+                },
+                {
+                  "entity": 4,
+                  "question": "告诉我，戊号设备的颜色是什么？",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.6666666666666666,
+              "retained_slots": null,
+              "memory_version": 10
+            },
+            {
+              "entity": 7,
+              "truth": "红",
+              "feedback": "红",
+              "corrupt": false,
+              "correction": false,
+              "event": 10,
+              "question": "辛号设备的颜色是什么？",
+              "prediction_before_feedback": "蓝",
+              "query_after_feedback": "蓝",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 4,
+                  "question": "我想知道戊号设备的颜色。",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "红",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                }
+              ],
+              "accuracy": 0.5,
+              "retained_slots": null,
+              "memory_version": 11
+            },
+            {
+              "entity": 0,
+              "truth": "红",
+              "feedback": "红",
+              "corrupt": false,
+              "correction": false,
+              "event": 11,
+              "question": "甲号设备的颜色是什么？",
+              "prediction_before_feedback": "黄",
+              "query_after_feedback": "红",
+              "probes": [
+                {
+                  "entity": 0,
+                  "question": "告诉我，甲号设备的颜色是什么？",
+                  "expected_latest_truth": "红",
+                  "answer_a": "红",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 1,
+                  "question": "我想知道乙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": false
+                },
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:25>",
+                  "correct": false
+                },
+                {
+                  "entity": 4,
+                  "question": "告诉我，戊号设备的颜色是什么？",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "红",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": false
+                }
+              ],
+              "accuracy": 0.5714285714285714,
+              "retained_slots": null,
+              "memory_version": 12
+            },
+            {
+              "entity": 0,
+              "truth": "蓝",
+              "feedback": "蓝",
+              "corrupt": false,
+              "correction": false,
+              "event": 12,
+              "question": "甲号设备的颜色是什么？",
+              "prediction_before_feedback": "红",
+              "query_after_feedback": "红",
+              "probes": [
+                {
+                  "entity": 0,
+                  "question": "我想知道甲号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "红",
+                  "answer_c": "<compact-token:25>",
+                  "correct": false
+                },
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 4,
+                  "question": "我想知道戊号设备的颜色。",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "红",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                }
+              ],
+              "accuracy": 0.42857142857142855,
+              "retained_slots": null,
+              "memory_version": 13
+            }
+          ],
+          "seconds": 3.5409769000002598,
+          "average_accuracy": 0.5884615384615384,
+          "final_accuracy": 0.42857142857142855,
+          "corrective_feedback_post_accuracy": 1.0,
+          "feedback_application_write_calls": 13,
+          "restore_rebuild_write_calls": 0,
+          "numerical_write_calls": 13,
+          "write_accounting_version": 2,
+          "restore_evidence": [
+            {
+              "event": 6,
+              "fresh_zero_memory_sha256": "ef2ff57fedfa0426756f914cd6baa73444c1c2f601419928be316ee009e68f78",
+              "expected_memory_sha256": "6303b4e7a135eb7ccf339806e7b5f758a4847b534b66bf53ec0eb4cd25a339f5",
+              "restored_memory_sha256": "6303b4e7a135eb7ccf339806e7b5f758a4847b534b66bf53ec0eb4cd25a339f5",
+              "query": "告诉我，乙号设备的颜色是什么？",
+              "original_prediction": {
+                "observation_id": "observation-33",
+                "tokens_a": [
+                  15
+                ],
+                "tokens_c": [
+                  18
+                ],
+                "question": "告诉我，乙号设备的颜色是什么？",
+                "answer_a": "黑",
+                "answer_c": "<compact-token:18>"
+              },
+              "restored_prediction": {
+                "observation_id": "observation-33",
+                "tokens_a": [
+                  15
+                ],
+                "tokens_c": [
+                  18
+                ],
+                "question": "告诉我，乙号设备的颜色是什么？",
+                "answer_a": "黑",
+                "answer_c": "<compact-token:18>"
+              }
+            }
+          ],
+          "stale_commit_rejections": 1,
+          "midstream_restore_prediction_equal": true,
+          "parameters_unchanged": true,
+          "c_bitwise_stable": true,
+          "external_ledger": false,
+          "policy": "append"
+        },
+        "bounded4": {
+          "checkpoint_sha256": "a791e89107788807004c76c44b24b842580e93ee044e06c15a23f3f431965f51",
+          "capacity": 4,
+          "events": [
+            {
+              "entity": 3,
+              "truth": "白",
+              "feedback": "紫",
+              "corrupt": true,
+              "correction": false,
+              "event": 0,
+              "question": "丁号设备的颜色是什么？",
+              "prediction_before_feedback": "灰",
+              "query_after_feedback": "紫",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "白",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                }
+              ],
+              "accuracy": 0.0,
+              "retained_slots": [
+                "entity:3/color"
+              ],
+              "memory_version": 1
+            },
+            {
+              "entity": 3,
+              "truth": "白",
+              "feedback": "白",
+              "corrupt": false,
+              "correction": true,
+              "event": 1,
+              "question": "丁号设备的颜色是什么？",
+              "prediction_before_feedback": "紫",
+              "query_after_feedback": "白",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "白",
+                  "answer_a": "白",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:3/color"
+              ],
+              "memory_version": 2
+            },
+            {
+              "entity": 7,
+              "truth": "蓝",
+              "feedback": "蓝",
+              "corrupt": false,
+              "correction": false,
+              "event": 2,
+              "question": "辛号设备的颜色是什么？",
+              "prediction_before_feedback": "灰",
+              "query_after_feedback": "蓝",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "白",
+                  "answer_a": "白",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:3/color",
+                "entity:7/color"
+              ],
+              "memory_version": 3
+            },
+            {
+              "entity": 3,
+              "truth": "绿",
+              "feedback": "绿",
+              "corrupt": false,
+              "correction": false,
+              "event": 3,
+              "question": "丁号设备的颜色是什么？",
+              "prediction_before_feedback": "白",
+              "query_after_feedback": "绿",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:7/color",
+                "entity:3/color"
+              ],
+              "memory_version": 4
+            },
+            {
+              "entity": 5,
+              "truth": "灰",
+              "feedback": "灰",
+              "corrupt": false,
+              "correction": false,
+              "event": 4,
+              "question": "己号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "灰",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:7/color",
+                "entity:3/color",
+                "entity:5/color"
+              ],
+              "memory_version": 5
+            },
+            {
+              "entity": 2,
+              "truth": "灰",
+              "feedback": "灰",
+              "corrupt": false,
+              "correction": false,
+              "event": 5,
+              "question": "丙号设备的颜色是什么？",
+              "prediction_before_feedback": "绿",
+              "query_after_feedback": "灰",
+              "probes": [
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:7/color",
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color"
+              ],
+              "memory_version": 6
+            },
+            {
+              "entity": 1,
+              "truth": "黑",
+              "feedback": "黑",
+              "corrupt": false,
+              "correction": false,
+              "event": 6,
+              "question": "乙号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "黑",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                }
+              ],
+              "accuracy": 0.8,
+              "retained_slots": [
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color",
+                "entity:1/color"
+              ],
+              "memory_version": 7
+            },
+            {
+              "entity": 1,
+              "truth": "灰",
+              "feedback": "灰",
+              "corrupt": false,
+              "correction": false,
+              "event": 7,
+              "question": "乙号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "灰",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "我想知道乙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "绿",
+                  "answer_c": "黄",
+                  "correct": false
+                }
+              ],
+              "accuracy": 0.8,
+              "retained_slots": [
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color",
+                "entity:1/color"
+              ],
+              "memory_version": 8
+            },
+            {
+              "entity": 4,
+              "truth": "黑",
+              "feedback": "黑",
+              "corrupt": false,
+              "correction": false,
+              "event": 8,
+              "question": "戊号设备的颜色是什么？",
+              "prediction_before_feedback": "灰",
+              "query_after_feedback": "黑",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 4,
+                  "question": "我想知道戊号设备的颜色。",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                }
+              ],
+              "accuracy": 0.6666666666666666,
+              "retained_slots": [
+                "entity:5/color",
+                "entity:2/color",
+                "entity:1/color",
+                "entity:4/color"
+              ],
+              "memory_version": 9
+            },
+            {
+              "entity": 7,
+              "truth": "蓝",
+              "feedback": "蓝",
+              "corrupt": false,
+              "correction": false,
+              "event": 9,
+              "question": "辛号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "蓝",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "我想知道乙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:25>",
+                  "correct": false
+                },
+                {
+                  "entity": 4,
+                  "question": "告诉我，戊号设备的颜色是什么？",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:25>",
+                  "correct": false
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.6666666666666666,
+              "retained_slots": [
+                "entity:2/color",
+                "entity:1/color",
+                "entity:4/color",
+                "entity:7/color"
+              ],
+              "memory_version": 10
+            },
+            {
+              "entity": 7,
+              "truth": "红",
+              "feedback": "红",
+              "corrupt": false,
+              "correction": false,
+              "event": 10,
+              "question": "辛号设备的颜色是什么？",
+              "prediction_before_feedback": "蓝",
+              "query_after_feedback": "红",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "红",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 4,
+                  "question": "我想知道戊号设备的颜色。",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "红",
+                  "answer_a": "红",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.6666666666666666,
+              "retained_slots": [
+                "entity:2/color",
+                "entity:1/color",
+                "entity:4/color",
+                "entity:7/color"
+              ],
+              "memory_version": 11
+            },
+            {
+              "entity": 0,
+              "truth": "红",
+              "feedback": "红",
+              "corrupt": false,
+              "correction": false,
+              "event": 11,
+              "question": "甲号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "红",
+              "probes": [
+                {
+                  "entity": 0,
+                  "question": "告诉我，甲号设备的颜色是什么？",
+                  "expected_latest_truth": "红",
+                  "answer_a": "红",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 1,
+                  "question": "我想知道乙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "黄",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "红",
+                  "answer_c": "<compact-token:25>",
+                  "correct": false
+                },
+                {
+                  "entity": 4,
+                  "question": "告诉我，戊号设备的颜色是什么？",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:25>",
+                  "correct": false
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "红",
+                  "answer_a": "红",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.5714285714285714,
+              "retained_slots": [
+                "entity:1/color",
+                "entity:4/color",
+                "entity:7/color",
+                "entity:0/color"
+              ],
+              "memory_version": 12
+            },
+            {
+              "entity": 0,
+              "truth": "蓝",
+              "feedback": "蓝",
+              "corrupt": false,
+              "correction": false,
+              "event": 12,
+              "question": "甲号设备的颜色是什么？",
+              "prediction_before_feedback": "红",
+              "query_after_feedback": "蓝",
+              "probes": [
+                {
+                  "entity": 0,
+                  "question": "我想知道甲号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 4,
+                  "question": "我想知道戊号设备的颜色。",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "红",
+                  "answer_a": "红",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 0.5714285714285714,
+              "retained_slots": [
+                "entity:1/color",
+                "entity:4/color",
+                "entity:7/color",
+                "entity:0/color"
+              ],
+              "memory_version": 13
+            }
+          ],
+          "seconds": 3.826485600000069,
+          "average_accuracy": 0.7494505494505493,
+          "final_accuracy": 0.5714285714285714,
+          "corrective_feedback_post_accuracy": 1.0,
+          "feedback_application_write_calls": 41,
+          "restore_rebuild_write_calls": 4,
+          "numerical_write_calls": 45,
+          "write_accounting_version": 2,
+          "restore_evidence": [
+            {
+              "event": 6,
+              "fresh_zero_memory_sha256": "ef2ff57fedfa0426756f914cd6baa73444c1c2f601419928be316ee009e68f78",
+              "expected_memory_sha256": "2949e5b2e1391c2682d50a2817bf5bb8d0007e13e59956449d22a54716e22829",
+              "restored_memory_sha256": "2949e5b2e1391c2682d50a2817bf5bb8d0007e13e59956449d22a54716e22829",
+              "query": "告诉我，乙号设备的颜色是什么？",
+              "original_prediction": {
+                "observation_id": "observation-33",
+                "tokens_a": [
+                  15
+                ],
+                "tokens_c": [
+                  18
+                ],
+                "question": "告诉我，乙号设备的颜色是什么？",
+                "answer_a": "黑",
+                "answer_c": "<compact-token:18>"
+              },
+              "restored_prediction": {
+                "observation_id": "observation-33",
+                "tokens_a": [
+                  15
+                ],
+                "tokens_c": [
+                  18
+                ],
+                "question": "告诉我，乙号设备的颜色是什么？",
+                "answer_a": "黑",
+                "answer_c": "<compact-token:18>"
+              }
+            }
+          ],
+          "stale_commit_rejections": 1,
+          "midstream_restore_prediction_equal": true,
+          "parameters_unchanged": true,
+          "c_bitwise_stable": true,
+          "external_ledger": true,
+          "policy": "latest-confirmed bounded LRU rebuild"
+        },
+        "bounded8": {
+          "checkpoint_sha256": "a791e89107788807004c76c44b24b842580e93ee044e06c15a23f3f431965f51",
+          "capacity": 8,
+          "events": [
+            {
+              "entity": 3,
+              "truth": "白",
+              "feedback": "紫",
+              "corrupt": true,
+              "correction": false,
+              "event": 0,
+              "question": "丁号设备的颜色是什么？",
+              "prediction_before_feedback": "灰",
+              "query_after_feedback": "紫",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "白",
+                  "answer_a": "紫",
+                  "answer_c": "<compact-token:18>",
+                  "correct": false
+                }
+              ],
+              "accuracy": 0.0,
+              "retained_slots": [
+                "entity:3/color"
+              ],
+              "memory_version": 1
+            },
+            {
+              "entity": 3,
+              "truth": "白",
+              "feedback": "白",
+              "corrupt": false,
+              "correction": true,
+              "event": 1,
+              "question": "丁号设备的颜色是什么？",
+              "prediction_before_feedback": "紫",
+              "query_after_feedback": "白",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "白",
+                  "answer_a": "白",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:3/color"
+              ],
+              "memory_version": 2
+            },
+            {
+              "entity": 7,
+              "truth": "蓝",
+              "feedback": "蓝",
+              "corrupt": false,
+              "correction": false,
+              "event": 2,
+              "question": "辛号设备的颜色是什么？",
+              "prediction_before_feedback": "灰",
+              "query_after_feedback": "蓝",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "白",
+                  "answer_a": "白",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:3/color",
+                "entity:7/color"
+              ],
+              "memory_version": 3
+            },
+            {
+              "entity": 3,
+              "truth": "绿",
+              "feedback": "绿",
+              "corrupt": false,
+              "correction": false,
+              "event": 3,
+              "question": "丁号设备的颜色是什么？",
+              "prediction_before_feedback": "白",
+              "query_after_feedback": "绿",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:7/color",
+                "entity:3/color"
+              ],
+              "memory_version": 4
+            },
+            {
+              "entity": 5,
+              "truth": "灰",
+              "feedback": "灰",
+              "corrupt": false,
+              "correction": false,
+              "event": 4,
+              "question": "己号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "灰",
+              "probes": [
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:7/color",
+                "entity:3/color",
+                "entity:5/color"
+              ],
+              "memory_version": 5
+            },
+            {
+              "entity": 2,
+              "truth": "灰",
+              "feedback": "灰",
+              "corrupt": false,
+              "correction": false,
+              "event": 5,
+              "question": "丙号设备的颜色是什么？",
+              "prediction_before_feedback": "绿",
+              "query_after_feedback": "灰",
+              "probes": [
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:7/color",
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color"
+              ],
+              "memory_version": 6
+            },
+            {
+              "entity": 1,
+              "truth": "黑",
+              "feedback": "黑",
+              "corrupt": false,
+              "correction": false,
+              "event": 6,
+              "question": "乙号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "黑",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:7/color",
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color",
+                "entity:1/color"
+              ],
+              "memory_version": 7
+            },
+            {
+              "entity": 1,
+              "truth": "灰",
+              "feedback": "灰",
+              "corrupt": false,
+              "correction": false,
+              "event": 7,
+              "question": "乙号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "灰",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "我想知道乙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:7/color",
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color",
+                "entity:1/color"
+              ],
+              "memory_version": 8
+            },
+            {
+              "entity": 4,
+              "truth": "黑",
+              "feedback": "黑",
+              "corrupt": false,
+              "correction": false,
+              "event": 8,
+              "question": "戊号设备的颜色是什么？",
+              "prediction_before_feedback": "灰",
+              "query_after_feedback": "黑",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 4,
+                  "question": "我想知道戊号设备的颜色。",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:7/color",
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color",
+                "entity:1/color",
+                "entity:4/color"
+              ],
+              "memory_version": 9
+            },
+            {
+              "entity": 7,
+              "truth": "蓝",
+              "feedback": "蓝",
+              "corrupt": false,
+              "correction": false,
+              "event": 9,
+              "question": "辛号设备的颜色是什么？",
+              "prediction_before_feedback": "蓝",
+              "query_after_feedback": "蓝",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "我想知道乙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 4,
+                  "question": "告诉我，戊号设备的颜色是什么？",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color",
+                "entity:1/color",
+                "entity:4/color",
+                "entity:7/color"
+              ],
+              "memory_version": 10
+            },
+            {
+              "entity": 7,
+              "truth": "红",
+              "feedback": "红",
+              "corrupt": false,
+              "correction": false,
+              "event": 10,
+              "question": "辛号设备的颜色是什么？",
+              "prediction_before_feedback": "蓝",
+              "query_after_feedback": "红",
+              "probes": [
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 4,
+                  "question": "我想知道戊号设备的颜色。",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "红",
+                  "answer_a": "红",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color",
+                "entity:1/color",
+                "entity:4/color",
+                "entity:7/color"
+              ],
+              "memory_version": 11
+            },
+            {
+              "entity": 0,
+              "truth": "红",
+              "feedback": "红",
+              "corrupt": false,
+              "correction": false,
+              "event": 11,
+              "question": "甲号设备的颜色是什么？",
+              "prediction_before_feedback": "黑",
+              "query_after_feedback": "红",
+              "probes": [
+                {
+                  "entity": 0,
+                  "question": "告诉我，甲号设备的颜色是什么？",
+                  "expected_latest_truth": "红",
+                  "answer_a": "红",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 1,
+                  "question": "我想知道乙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "告诉我，丙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "我想知道丁号设备的颜色。",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 4,
+                  "question": "告诉我，戊号设备的颜色是什么？",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "我想知道己号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "我想知道辛号设备的颜色。",
+                  "expected_latest_truth": "红",
+                  "answer_a": "红",
+                  "answer_c": "黄",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color",
+                "entity:1/color",
+                "entity:4/color",
+                "entity:7/color",
+                "entity:0/color"
+              ],
+              "memory_version": 12
+            },
+            {
+              "entity": 0,
+              "truth": "蓝",
+              "feedback": "蓝",
+              "corrupt": false,
+              "correction": false,
+              "event": 12,
+              "question": "甲号设备的颜色是什么？",
+              "prediction_before_feedback": "红",
+              "query_after_feedback": "蓝",
+              "probes": [
+                {
+                  "entity": 0,
+                  "question": "我想知道甲号设备的颜色。",
+                  "expected_latest_truth": "蓝",
+                  "answer_a": "蓝",
+                  "answer_c": "<compact-token:25>",
+                  "correct": true
+                },
+                {
+                  "entity": 1,
+                  "question": "告诉我，乙号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 2,
+                  "question": "我想知道丙号设备的颜色。",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 3,
+                  "question": "告诉我，丁号设备的颜色是什么？",
+                  "expected_latest_truth": "绿",
+                  "answer_a": "绿",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 4,
+                  "question": "我想知道戊号设备的颜色。",
+                  "expected_latest_truth": "黑",
+                  "answer_a": "黑",
+                  "answer_c": "黄",
+                  "correct": true
+                },
+                {
+                  "entity": 5,
+                  "question": "告诉我，己号设备的颜色是什么？",
+                  "expected_latest_truth": "灰",
+                  "answer_a": "灰",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                },
+                {
+                  "entity": 7,
+                  "question": "告诉我，辛号设备的颜色是什么？",
+                  "expected_latest_truth": "红",
+                  "answer_a": "红",
+                  "answer_c": "<compact-token:18>",
+                  "correct": true
+                }
+              ],
+              "accuracy": 1.0,
+              "retained_slots": [
+                "entity:3/color",
+                "entity:5/color",
+                "entity:2/color",
+                "entity:1/color",
+                "entity:4/color",
+                "entity:7/color",
+                "entity:0/color"
+              ],
+              "memory_version": 13
+            }
+          ],
+          "seconds": 4.5341482999997424,
+          "average_accuracy": 0.9230769230769231,
+          "final_accuracy": 1.0,
+          "corrective_feedback_post_accuracy": 1.0,
+          "feedback_application_write_calls": 55,
+          "restore_rebuild_write_calls": 5,
+          "numerical_write_calls": 60,
+          "write_accounting_version": 2,
+          "restore_evidence": [
+            {
+              "event": 6,
+              "fresh_zero_memory_sha256": "ef2ff57fedfa0426756f914cd6baa73444c1c2f601419928be316ee009e68f78",
+              "expected_memory_sha256": "ea06e0e84ae6b2bf75cd10c53da34a90ddf48f5dd05297c60be10428d5aadd6f",
+              "restored_memory_sha256": "ea06e0e84ae6b2bf75cd10c53da34a90ddf48f5dd05297c60be10428d5aadd6f",
+              "query": "告诉我，乙号设备的颜色是什么？",
+              "original_prediction": {
+                "observation_id": "observation-33",
+                "tokens_a": [
+                  15
+                ],
+                "tokens_c": [
+                  18
+                ],
+                "question": "告诉我，乙号设备的颜色是什么？",
+                "answer_a": "黑",
+                "answer_c": "<compact-token:18>"
+              },
+              "restored_prediction": {
+                "observation_id": "observation-33",
+                "tokens_a": [
+                  15
+                ],
+                "tokens_c": [
+                  18
+                ],
+                "question": "告诉我，乙号设备的颜色是什么？",
+                "answer_a": "黑",
+                "answer_c": "<compact-token:18>"
+              }
+            }
+          ],
+          "stale_commit_rejections": 1,
+          "midstream_restore_prediction_equal": true,
+          "parameters_unchanged": true,
+          "c_bitwise_stable": true,
+          "external_ledger": true,
+          "policy": "latest-confirmed bounded LRU rebuild"
+        }
+      }
+    }
+  ]
+}
