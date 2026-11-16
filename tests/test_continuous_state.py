@@ -90,6 +90,32 @@ class ContinuousStateTests(unittest.IsolatedAsyncioTestCase):
         finally:
             release.set();await runner.close();await backend.aclose()
 
+    async def test_worker_cancel_settles_accepted_inputs_and_close_reports(self):
+        entered=threading.Event();release=threading.Event()
+        def blocked(text):
+            entered.set()
+            if not release.wait(3):raise TimeoutError('test release')
+            return {'accepted':False}
+        backend=ContinuousStateBackend(blocked);runner=ContinuousRunner(backend)
+        try:
+            a=await runner.observe('first',should_respond=False)
+            self.assertTrue(await asyncio.to_thread(entered.wait,1))
+            b=await runner.observe('second',should_respond=False)
+            backend.worker.cancel()
+            with self.assertRaises(asyncio.CancelledError):await backend.worker
+            for revision in (a,b):
+                with self.assertRaisesRegex(RuntimeError,'worker stopped'):
+                    await asyncio.wait_for(backend.processed(revision),1)
+            with self.assertRaises(RuntimeError):await runner.observe('third',should_respond=False)
+            release.set()
+            with self.assertRaisesRegex(RuntimeError,'worker was cancelled'):
+                await backend.aclose()
+        finally:
+            release.set();await runner.close()
+            if backend._closing is None:
+                try:await backend.aclose()
+                except RuntimeError:pass
+
     async def test_unknown_or_ambiguous_input_does_not_mutate_belief(self):
         backend=ContinuousStateBackend(ExactReferenceExtractor(),state_capacity=1,unit_delay=0)
         runner=ContinuousRunner(backend)
