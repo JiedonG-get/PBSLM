@@ -1,0 +1,10 @@
+test_cross_source_sequences_not_comparable (tests.test_source_order.SourceOrderTests.test_cross_source_sequences_not_comparable) ... ok
+test_idempotence_sequence_conflict_and_copy (tests.test_source_order.SourceOrderTests.test_idempotence_sequence_conflict_and_copy) ... ok
+test_late_observation_cannot_revert_latest_source_state (tests.test_source_order.SourceOrderTests.test_late_observation_cannot_revert_latest_source_state) ... ok
+test_limits_fail_without_dropping_watermark (tests.test_source_order.SourceOrderTests.test_limits_fail_without_dropping_watermark) ... ok
+test_bounded_admission_explicit_retry_and_ordered_drain (tests.test_continuous_overload.ContinuousOverloadTests.test_bounded_admission_explicit_retry_and_ordered_drain) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.035s
+
+OK

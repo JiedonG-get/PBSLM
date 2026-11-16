@@ -1,0 +1,2817 @@
+{
+  "scope": "isolated source-order reference, not integrated sensor/runtime timestamp policy",
+  "model_executed": false,
+  "runs": [
+    {
+      "seed": 0,
+      "trace": [
+        {
+          "arrival": {
+            "id": "e3",
+            "sequence": 3,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e3",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 3,
+            "value": "red",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": null
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 3,
+                "value": "red",
+                "event_id": "e3"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "red",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e10",
+            "sequence": 10,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e10",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 10,
+            "value": "green",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": 3
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 10,
+                "value": "green",
+                "event_id": "e10"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e18",
+            "sequence": 18,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e18",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 18,
+            "value": "red",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": 10
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 18,
+                "value": "red",
+                "event_id": "e18"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "red",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e17",
+            "sequence": 17,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e17",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 17,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 18
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 18,
+                "value": "red",
+                "event_id": "e18"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "red",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e5",
+            "sequence": 5,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e5",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 5,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 18
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 18,
+                "value": "red",
+                "event_id": "e18"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "red",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e0",
+            "sequence": 0,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e0",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 0,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 18
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 18,
+                "value": "red",
+                "event_id": "e18"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "red",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e7",
+            "sequence": 7,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e7",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 7,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 18
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 18,
+                "value": "red",
+                "event_id": "e18"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "red",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e26",
+            "sequence": 26,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e26",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 26,
+            "value": "blue",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": 18
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 26,
+                "value": "blue",
+                "event_id": "e26"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e29",
+            "sequence": 29,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e29",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 29,
+            "value": "blue",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": 26
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e14",
+            "sequence": 14,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e14",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 14,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e20",
+            "sequence": 20,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e20",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 20,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e25",
+            "sequence": 25,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e25",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 25,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e21",
+            "sequence": 21,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e21",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 21,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e2",
+            "sequence": 2,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e2",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 2,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e19",
+            "sequence": 19,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e19",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 19,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e4",
+            "sequence": 4,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e4",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 4,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e23",
+            "sequence": 23,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e23",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 23,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e6",
+            "sequence": 6,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e6",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 6,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e11",
+            "sequence": 11,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e11",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 11,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e22",
+            "sequence": 22,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e22",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 22,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e9",
+            "sequence": 9,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e9",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 9,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e28",
+            "sequence": 28,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e28",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 28,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e15",
+            "sequence": 15,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e15",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 15,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e16",
+            "sequence": 16,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e16",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 16,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e8",
+            "sequence": 8,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e8",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 8,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e1",
+            "sequence": 1,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e1",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 1,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e13",
+            "sequence": 13,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e13",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 13,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e24",
+            "sequence": 24,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e24",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 24,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e12",
+            "sequence": 12,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e12",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 12,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e27",
+            "sequence": 27,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e27",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 27,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        }
+      ],
+      "final_sequence": 29,
+      "late_events_ignored": 25
+    },
+    {
+      "seed": 1,
+      "trace": [
+        {
+          "arrival": {
+            "id": "e26",
+            "sequence": 26,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e26",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 26,
+            "value": "blue",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": null
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 26,
+                "value": "blue",
+                "event_id": "e26"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e16",
+            "sequence": 16,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e16",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 16,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 26
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 26,
+                "value": "blue",
+                "event_id": "e26"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e11",
+            "sequence": 11,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e11",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 11,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 26
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 26,
+                "value": "blue",
+                "event_id": "e26"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e10",
+            "sequence": 10,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e10",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 10,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 26
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 26,
+                "value": "blue",
+                "event_id": "e26"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e23",
+            "sequence": 23,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e23",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 23,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 26
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 26,
+                "value": "blue",
+                "event_id": "e26"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e1",
+            "sequence": 1,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e1",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 1,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 26
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 26,
+                "value": "blue",
+                "event_id": "e26"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e5",
+            "sequence": 5,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e5",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 5,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 26
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 26,
+                "value": "blue",
+                "event_id": "e26"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e29",
+            "sequence": 29,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e29",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 29,
+            "value": "blue",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": 26
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e7",
+            "sequence": 7,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e7",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 7,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e20",
+            "sequence": 20,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e20",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 20,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e9",
+            "sequence": 9,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e9",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 9,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e28",
+            "sequence": 28,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e28",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 28,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e17",
+            "sequence": 17,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e17",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 17,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e13",
+            "sequence": 13,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e13",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 13,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e0",
+            "sequence": 0,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e0",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 0,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e19",
+            "sequence": 19,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e19",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 19,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e22",
+            "sequence": 22,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e22",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 22,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e6",
+            "sequence": 6,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e6",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 6,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e12",
+            "sequence": 12,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e12",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 12,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e21",
+            "sequence": 21,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e21",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 21,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e14",
+            "sequence": 14,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e14",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 14,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e15",
+            "sequence": 15,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e15",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 15,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e3",
+            "sequence": 3,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e3",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 3,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e8",
+            "sequence": 8,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e8",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 8,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e2",
+            "sequence": 2,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e2",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 2,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e24",
+            "sequence": 24,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e24",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 24,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e25",
+            "sequence": 25,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e25",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 25,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e27",
+            "sequence": 27,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e27",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 27,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e18",
+            "sequence": 18,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e18",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 18,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e4",
+            "sequence": 4,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e4",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 4,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        }
+      ],
+      "final_sequence": 29,
+      "late_events_ignored": 28
+    },
+    {
+      "seed": 2,
+      "trace": [
+        {
+          "arrival": {
+            "id": "e3",
+            "sequence": 3,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e3",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 3,
+            "value": "red",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": null
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 3,
+                "value": "red",
+                "event_id": "e3"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "red",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e22",
+            "sequence": 22,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e22",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 22,
+            "value": "green",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": 3
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 22,
+                "value": "green",
+                "event_id": "e22"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e17",
+            "sequence": 17,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e17",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 17,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 22
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 22,
+                "value": "green",
+                "event_id": "e22"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e15",
+            "sequence": 15,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e15",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 15,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 22
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 22,
+                "value": "green",
+                "event_id": "e22"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e0",
+            "sequence": 0,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e0",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 0,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 22
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 22,
+                "value": "green",
+                "event_id": "e22"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e25",
+            "sequence": 25,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e25",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 25,
+            "value": "green",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": 22
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e4",
+            "sequence": 4,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e4",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 4,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e7",
+            "sequence": 7,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e7",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 7,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e14",
+            "sequence": 14,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e14",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 14,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e16",
+            "sequence": 16,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e16",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 16,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e20",
+            "sequence": 20,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e20",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 20,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e24",
+            "sequence": 24,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e24",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 24,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e12",
+            "sequence": 12,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e12",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 12,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e18",
+            "sequence": 18,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e18",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 18,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e10",
+            "sequence": 10,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e10",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 10,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e13",
+            "sequence": 13,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e13",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 13,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e23",
+            "sequence": 23,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e23",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 23,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 25,
+                "value": "green",
+                "event_id": "e25"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e28",
+            "sequence": 28,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e28",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 28,
+            "value": "green",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": 25
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e6",
+            "sequence": 6,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e6",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 6,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e19",
+            "sequence": 19,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e19",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 19,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e8",
+            "sequence": 8,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e8",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 8,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e9",
+            "sequence": 9,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e9",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 9,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e21",
+            "sequence": 21,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e21",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 21,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e5",
+            "sequence": 5,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e5",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 5,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e11",
+            "sequence": 11,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e11",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 11,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e26",
+            "sequence": 26,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e26",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 26,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e2",
+            "sequence": 2,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e2",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 2,
+            "value": "blue",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e1",
+            "sequence": 1,
+            "value": "green"
+          },
+          "receipt": {
+            "event_id": "e1",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 1,
+            "value": "green",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 28,
+                "value": "green",
+                "event_id": "e28"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "green",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e29",
+            "sequence": 29,
+            "value": "blue"
+          },
+          "receipt": {
+            "event_id": "e29",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 29,
+            "value": "blue",
+            "applied": true,
+            "reason": "applied",
+            "prior_sequence": 28
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        },
+        {
+          "arrival": {
+            "id": "e27",
+            "sequence": 27,
+            "value": "red"
+          },
+          "receipt": {
+            "event_id": "e27",
+            "source": "simulated-stream",
+            "slot": "lamp",
+            "sequence": 27,
+            "value": "red",
+            "applied": false,
+            "reason": "late_ignored",
+            "prior_sequence": 29
+          },
+          "state": {
+            "slot": "lamp",
+            "sources": {
+              "simulated-stream": {
+                "sequence": 29,
+                "value": "blue",
+                "event_id": "e29"
+              }
+            },
+            "cross_source_conflict": false,
+            "resolved_value": "blue",
+            "has_value": true,
+            "warning": "agreement is not factual verification; source sequences are caller asserted"
+          }
+        }
+      ],
+      "final_sequence": 29,
+      "late_events_ignored": 25
+    }
+  ]
+}
