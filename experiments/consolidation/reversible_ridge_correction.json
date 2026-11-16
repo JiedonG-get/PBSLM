@@ -1,0 +1,2167 @@
+{
+  "runs": [
+    {
+      "seed": 0,
+      "checkpoint": {
+        "sha256": "a791e89107788807004c76c44b24b842580e93ee044e06c15a23f3f431965f51",
+        "training": {
+          "seed": 0,
+          "episodes": 800,
+          "eval_episodes": 8,
+          "key_align_weight": 0.2
+        },
+        "provenance": {
+          "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+          "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+          "source_sha256_at_capture": {
+            "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+            "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+            "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+            "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+            "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+          },
+          "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+          "platform": "Windows-11-10.0.22631-SP0",
+          "torch": "2.11.0+cu128",
+          "cuda_build": "12.8",
+          "cudnn": 91900,
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "deterministic_algorithms": false,
+          "cudnn_deterministic": false,
+          "cudnn_benchmark": false,
+          "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+        }
+      },
+      "before": {
+        "append": {
+          "changed/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              26,
+              26,
+              31,
+              31,
+              15,
+              15,
+              27,
+              27
+            ],
+            "targets": [
+              26,
+              26,
+              31,
+              31,
+              15,
+              15,
+              27,
+              27
+            ]
+          },
+          "changed/held": {
+            "accuracy": 0.625,
+            "predicted": [
+              26,
+              26,
+              31,
+              31,
+              26,
+              26,
+              27,
+              26
+            ],
+            "targets": [
+              26,
+              26,
+              31,
+              31,
+              15,
+              15,
+              27,
+              27
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ],
+            "targets": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 0.75,
+            "predicted": [
+              31,
+              26,
+              15,
+              26,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              26,
+              26,
+              26,
+              15,
+              26
+            ],
+            "targets": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ]
+          }
+        },
+        "replace": {
+          "changed/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              26,
+              26,
+              31,
+              31,
+              15,
+              15,
+              27,
+              27
+            ],
+            "targets": [
+              26,
+              26,
+              31,
+              31,
+              15,
+              15,
+              27,
+              27
+            ]
+          },
+          "changed/held": {
+            "accuracy": 0.625,
+            "predicted": [
+              26,
+              26,
+              31,
+              31,
+              26,
+              26,
+              27,
+              26
+            ],
+            "targets": [
+              26,
+              26,
+              31,
+              31,
+              15,
+              15,
+              27,
+              27
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ],
+            "targets": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 0.75,
+            "predicted": [
+              31,
+              26,
+              15,
+              26,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              26,
+              26,
+              26,
+              15,
+              26
+            ],
+            "targets": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ]
+          }
+        }
+      },
+      "after_correction": {
+        "append": {
+          "changed/train": {
+            "accuracy": 0.5,
+            "predicted": [
+              27,
+              27,
+              31,
+              26,
+              15,
+              31,
+              27,
+              27
+            ],
+            "targets": [
+              27,
+              27,
+              26,
+              26,
+              31,
+              31,
+              15,
+              15
+            ]
+          },
+          "changed/held": {
+            "accuracy": 0.375,
+            "predicted": [
+              27,
+              26,
+              26,
+              26,
+              26,
+              26,
+              26,
+              26
+            ],
+            "targets": [
+              27,
+              27,
+              26,
+              26,
+              31,
+              31,
+              15,
+              15
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ],
+            "targets": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 0.6875,
+            "predicted": [
+              26,
+              26,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              26,
+              26,
+              26,
+              26,
+              15,
+              26
+            ],
+            "targets": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ]
+          }
+        },
+        "replace": {
+          "changed/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              27,
+              27,
+              26,
+              26,
+              31,
+              31,
+              15,
+              15
+            ],
+            "targets": [
+              27,
+              27,
+              26,
+              26,
+              31,
+              31,
+              15,
+              15
+            ]
+          },
+          "changed/held": {
+            "accuracy": 0.5,
+            "predicted": [
+              27,
+              27,
+              26,
+              26,
+              27,
+              26,
+              26,
+              26
+            ],
+            "targets": [
+              27,
+              27,
+              26,
+              26,
+              31,
+              31,
+              15,
+              15
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ],
+            "targets": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 0.75,
+            "predicted": [
+              26,
+              26,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              26,
+              26,
+              26,
+              26,
+              15,
+              15
+            ],
+            "targets": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              27,
+              27,
+              27,
+              27,
+              31,
+              31,
+              26,
+              26,
+              15,
+              15
+            ]
+          }
+        }
+      },
+      "replacement_vs_latest_only_max_weight_delta": 5.206945985491984e-14,
+      "remove_vs_remaining_max_weight_delta": 0.0,
+      "replacement_receipts": [
+        {
+          "version": 13,
+          "slot": "entity:0/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:1/color",
+            "entity:2/color",
+            "entity:3/color",
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        },
+        {
+          "version": 14,
+          "slot": "entity:1/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:2/color",
+            "entity:3/color",
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color",
+            "entity:1/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        },
+        {
+          "version": 15,
+          "slot": "entity:2/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:3/color",
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color",
+            "entity:1/color",
+            "entity:2/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        },
+        {
+          "version": 16,
+          "slot": "entity:3/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color",
+            "entity:1/color",
+            "entity:2/color",
+            "entity:3/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        }
+      ],
+      "remove_receipts": [
+        {
+          "version": 17,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:1/color",
+            "entity:2/color",
+            "entity:3/color"
+          ]
+        },
+        {
+          "version": 18,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:2/color",
+            "entity:3/color"
+          ]
+        },
+        {
+          "version": 19,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:3/color"
+          ]
+        },
+        {
+          "version": 20,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color"
+          ]
+        }
+      ],
+      "append_storage": {
+        "gram_bytes": 75272,
+        "cross_bytes": 37248,
+        "weight_bytes": 37248,
+        "samples_accumulated": 32,
+        "raw_examples_stored": 0,
+        "note": "excludes Python/model/features/code and transient solve workspace"
+      },
+      "replacement_storage_after_remove": {
+        "gram_bytes": 75272,
+        "cross_bytes": 37248,
+        "weight_bytes": 37248,
+        "samples_accumulated": 16,
+        "raw_examples_stored": 0,
+        "note": "includes ridge tensors and retained slot tensor payload; excludes Python/solve workspace/base model",
+        "slot_tensor_bytes": 18432,
+        "slot_count": 8
+      },
+      "frozen_base_unchanged": true,
+      "M_off_zero": true,
+      "scope": "direct known-label correction, equal one observation per train surface per update; no stage-SGD comparison"
+    },
+    {
+      "seed": 1,
+      "checkpoint": {
+        "sha256": "acd0106abadb1c2f588990c9cf901f001db140f1f291807812b8b7c697743bd5",
+        "training": {
+          "seed": 1,
+          "episodes": 800,
+          "eval_episodes": 8,
+          "key_align_weight": 0.2
+        },
+        "provenance": {
+          "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+          "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+          "source_sha256_at_capture": {
+            "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+            "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+            "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+            "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+            "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+          },
+          "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+          "platform": "Windows-11-10.0.22631-SP0",
+          "torch": "2.11.0+cu128",
+          "cuda_build": "12.8",
+          "cudnn": 91900,
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "deterministic_algorithms": false,
+          "cudnn_deterministic": false,
+          "cudnn_benchmark": false,
+          "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+        }
+      },
+      "before": {
+        "append": {
+          "changed/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              11,
+              11,
+              31,
+              31,
+              28,
+              28,
+              21,
+              21
+            ],
+            "targets": [
+              11,
+              11,
+              31,
+              31,
+              28,
+              28,
+              21,
+              21
+            ]
+          },
+          "changed/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              11,
+              11,
+              31,
+              31,
+              28,
+              28,
+              21,
+              21
+            ],
+            "targets": [
+              11,
+              11,
+              31,
+              31,
+              28,
+              28,
+              21,
+              21
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 0.9375,
+            "predicted": [
+              21,
+              31,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ]
+          }
+        },
+        "replace": {
+          "changed/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              11,
+              11,
+              31,
+              31,
+              28,
+              28,
+              21,
+              21
+            ],
+            "targets": [
+              11,
+              11,
+              31,
+              31,
+              28,
+              28,
+              21,
+              21
+            ]
+          },
+          "changed/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              11,
+              11,
+              31,
+              31,
+              28,
+              28,
+              21,
+              21
+            ],
+            "targets": [
+              11,
+              11,
+              31,
+              31,
+              28,
+              28,
+              21,
+              21
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 0.9375,
+            "predicted": [
+              21,
+              31,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ]
+          }
+        }
+      },
+      "after_correction": {
+        "append": {
+          "changed/train": {
+            "accuracy": 0.625,
+            "predicted": [
+              11,
+              21,
+              11,
+              11,
+              28,
+              31,
+              28,
+              21
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              31,
+              31,
+              28,
+              28
+            ]
+          },
+          "changed/held": {
+            "accuracy": 0.625,
+            "predicted": [
+              21,
+              11,
+              11,
+              11,
+              31,
+              31,
+              21,
+              11
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              31,
+              31,
+              28,
+              28
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ]
+          }
+        },
+        "replace": {
+          "changed/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              21,
+              21,
+              11,
+              11,
+              31,
+              31,
+              28,
+              28
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              31,
+              31,
+              28,
+              28
+            ]
+          },
+          "changed/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              21,
+              21,
+              11,
+              11,
+              31,
+              31,
+              28,
+              28
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              31,
+              31,
+              28,
+              28
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 0.9375,
+            "predicted": [
+              21,
+              11,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ],
+            "targets": [
+              21,
+              21,
+              11,
+              11,
+              28,
+              28,
+              31,
+              31,
+              28,
+              28,
+              11,
+              11,
+              21,
+              21,
+              31,
+              31
+            ]
+          }
+        }
+      },
+      "replacement_vs_latest_only_max_weight_delta": 4.4200754167889045e-14,
+      "remove_vs_remaining_max_weight_delta": 0.0,
+      "replacement_receipts": [
+        {
+          "version": 13,
+          "slot": "entity:0/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:1/color",
+            "entity:2/color",
+            "entity:3/color",
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        },
+        {
+          "version": 14,
+          "slot": "entity:1/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:2/color",
+            "entity:3/color",
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color",
+            "entity:1/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        },
+        {
+          "version": 15,
+          "slot": "entity:2/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:3/color",
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color",
+            "entity:1/color",
+            "entity:2/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        },
+        {
+          "version": 16,
+          "slot": "entity:3/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color",
+            "entity:1/color",
+            "entity:2/color",
+            "entity:3/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        }
+      ],
+      "remove_receipts": [
+        {
+          "version": 17,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:1/color",
+            "entity:2/color",
+            "entity:3/color"
+          ]
+        },
+        {
+          "version": 18,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:2/color",
+            "entity:3/color"
+          ]
+        },
+        {
+          "version": 19,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:3/color"
+          ]
+        },
+        {
+          "version": 20,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color"
+          ]
+        }
+      ],
+      "append_storage": {
+        "gram_bytes": 75272,
+        "cross_bytes": 37248,
+        "weight_bytes": 37248,
+        "samples_accumulated": 32,
+        "raw_examples_stored": 0,
+        "note": "excludes Python/model/features/code and transient solve workspace"
+      },
+      "replacement_storage_after_remove": {
+        "gram_bytes": 75272,
+        "cross_bytes": 37248,
+        "weight_bytes": 37248,
+        "samples_accumulated": 16,
+        "raw_examples_stored": 0,
+        "note": "includes ridge tensors and retained slot tensor payload; excludes Python/solve workspace/base model",
+        "slot_tensor_bytes": 18432,
+        "slot_count": 8
+      },
+      "frozen_base_unchanged": true,
+      "M_off_zero": true,
+      "scope": "direct known-label correction, equal one observation per train surface per update; no stage-SGD comparison"
+    },
+    {
+      "seed": 2,
+      "checkpoint": {
+        "sha256": "dae3d2ee790ecbeb96a7ab0723074ecd454c7e3c6845b4a68dbc6c6d03667d9a",
+        "training": {
+          "seed": 2,
+          "episodes": 800,
+          "eval_episodes": 8,
+          "key_align_weight": 0.2
+        },
+        "provenance": {
+          "git_commit": "712ca3196424ad5022ccda7d6a940b053df11724",
+          "git_status": "M evaluation/text_facts.py\n?? evaluation/text_checkpoint.py\n?? evaluation/train_text_checkpoint.py\n?? tests/test_text_checkpoint.py",
+          "source_sha256_at_capture": {
+            "evaluation/train_text_checkpoint.py": "057d5534f019ae98a9f0760a1114dc92b9a24952a001ea04c907b6c53279791b",
+            "evaluation/text_facts.py": "1c68eeb4e94b915b465b8e34f23e43833ef3cb56410d1af3be72e74bec36c18c",
+            "evaluation/text_checkpoint.py": "9fe1ce8e78d4d895f53dcee247d508b0eb6c646b883e0196cef60127aeeb4ccc",
+            "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+            "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+          },
+          "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+          "platform": "Windows-11-10.0.22631-SP0",
+          "torch": "2.11.0+cu128",
+          "cuda_build": "12.8",
+          "cudnn": 91900,
+          "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+          "deterministic_algorithms": false,
+          "cudnn_deterministic": false,
+          "cudnn_benchmark": false,
+          "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+        }
+      },
+      "before": {
+        "append": {
+          "changed/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              27,
+              27,
+              21,
+              21,
+              28,
+              28
+            ],
+            "targets": [
+              20,
+              20,
+              27,
+              27,
+              21,
+              21,
+              28,
+              28
+            ]
+          },
+          "changed/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              27,
+              27,
+              21,
+              21,
+              28,
+              28
+            ],
+            "targets": [
+              20,
+              20,
+              27,
+              27,
+              21,
+              21,
+              28,
+              28
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ],
+            "targets": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ],
+            "targets": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ]
+          }
+        },
+        "replace": {
+          "changed/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              27,
+              27,
+              21,
+              21,
+              28,
+              28
+            ],
+            "targets": [
+              20,
+              20,
+              27,
+              27,
+              21,
+              21,
+              28,
+              28
+            ]
+          },
+          "changed/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              27,
+              27,
+              21,
+              21,
+              28,
+              28
+            ],
+            "targets": [
+              20,
+              20,
+              27,
+              27,
+              21,
+              21,
+              28,
+              28
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ],
+            "targets": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ],
+            "targets": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ]
+          }
+        }
+      },
+      "after_correction": {
+        "append": {
+          "changed/train": {
+            "accuracy": 0.5,
+            "predicted": [
+              20,
+              28,
+              27,
+              20,
+              27,
+              21,
+              28,
+              21
+            ],
+            "targets": [
+              28,
+              28,
+              20,
+              20,
+              27,
+              27,
+              21,
+              21
+            ]
+          },
+          "changed/held": {
+            "accuracy": 0.625,
+            "predicted": [
+              28,
+              28,
+              20,
+              20,
+              21,
+              21,
+              21,
+              28
+            ],
+            "targets": [
+              28,
+              28,
+              20,
+              20,
+              27,
+              27,
+              21,
+              21
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ],
+            "targets": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ],
+            "targets": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ]
+          }
+        },
+        "replace": {
+          "changed/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              28,
+              28,
+              20,
+              20,
+              27,
+              27,
+              21,
+              21
+            ],
+            "targets": [
+              28,
+              28,
+              20,
+              20,
+              27,
+              27,
+              21,
+              21
+            ]
+          },
+          "changed/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              28,
+              28,
+              20,
+              20,
+              27,
+              27,
+              21,
+              21
+            ],
+            "targets": [
+              28,
+              28,
+              20,
+              20,
+              27,
+              27,
+              21,
+              21
+            ]
+          },
+          "unchanged/train": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ],
+            "targets": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ]
+          },
+          "unchanged/held": {
+            "accuracy": 1.0,
+            "predicted": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ],
+            "targets": [
+              20,
+              20,
+              21,
+              21,
+              28,
+              28,
+              27,
+              27,
+              28,
+              28,
+              27,
+              27,
+              20,
+              20,
+              21,
+              21
+            ]
+          }
+        }
+      },
+      "replacement_vs_latest_only_max_weight_delta": 5.325601071248798e-14,
+      "remove_vs_remaining_max_weight_delta": 0.0,
+      "replacement_receipts": [
+        {
+          "version": 13,
+          "slot": "entity:0/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:1/color",
+            "entity:2/color",
+            "entity:3/color",
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        },
+        {
+          "version": 14,
+          "slot": "entity:1/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:2/color",
+            "entity:3/color",
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color",
+            "entity:1/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        },
+        {
+          "version": 15,
+          "slot": "entity:2/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:3/color",
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color",
+            "entity:1/color",
+            "entity:2/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        },
+        {
+          "version": 16,
+          "slot": "entity:3/color",
+          "evicted": null,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:0/color",
+            "entity:1/color",
+            "entity:2/color",
+            "entity:3/color"
+          ],
+          "retained_constraints": 24,
+          "policy": "latest confirmed update-recency, full rebuild"
+        }
+      ],
+      "remove_receipts": [
+        {
+          "version": 17,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:1/color",
+            "entity:2/color",
+            "entity:3/color"
+          ]
+        },
+        {
+          "version": 18,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:2/color",
+            "entity:3/color"
+          ]
+        },
+        {
+          "version": 19,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color",
+            "entity:3/color"
+          ]
+        },
+        {
+          "version": 20,
+          "removed": true,
+          "retained_slots": [
+            "entity:4/color",
+            "entity:5/color",
+            "entity:6/color",
+            "entity:7/color",
+            "entity:8/color",
+            "entity:9/color",
+            "entity:10/color",
+            "entity:11/color"
+          ]
+        }
+      ],
+      "append_storage": {
+        "gram_bytes": 75272,
+        "cross_bytes": 37248,
+        "weight_bytes": 37248,
+        "samples_accumulated": 32,
+        "raw_examples_stored": 0,
+        "note": "excludes Python/model/features/code and transient solve workspace"
+      },
+      "replacement_storage_after_remove": {
+        "gram_bytes": 75272,
+        "cross_bytes": 37248,
+        "weight_bytes": 37248,
+        "samples_accumulated": 16,
+        "raw_examples_stored": 0,
+        "note": "includes ridge tensors and retained slot tensor payload; excludes Python/solve workspace/base model",
+        "slot_tensor_bytes": 18432,
+        "slot_count": 8
+      },
+      "frozen_base_unchanged": true,
+      "M_off_zero": true,
+      "scope": "direct known-label correction, equal one observation per train surface per update; no stage-SGD comparison"
+    }
+  ],
+  "provenance": {
+    "git_commit": "bb04d014802d302f73a5d3a5b1818bc23439ed3a",
+    "git_status": "?? evaluation/reversible_ridge_control.py\n?? models/reversible_ridge.py\n?? tests/test_reversible_ridge.py",
+    "source_sha256_at_capture": {
+      "models/reversible_ridge.py": "3b766031d2cf4e67158d35da1e22c5779aa16ecbe905b374e89e9379bedf19f4",
+      "models/cumulative_ridge.py": "d22be05c13bb8e48e650e9558d9f78f13567c062a7eb8afb2ecf06d715f422d6",
+      "models/feature_readout.py": "f119164725a6a8ac9bc3d1d6a13a8eae7b9218f544dee40cee272587c43af351",
+      "evaluation/reversible_ridge_control.py": "46894f2d0c828d5a2dae80b7bf0c9e162245aa939dc4d1d050b53a7d00276c55"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "warning": "caller semantic slots and labels, external raw constraints stored, not automatic truth checking or original A consolidation"
+}

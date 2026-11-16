@@ -1,0 +1,11 @@
+test_failure_atomic_capture_and_update_recency_eviction (tests.test_reversible_ridge.ReversibleRidgeTests.test_failure_atomic_capture_and_update_recency_eviction) ... ok
+test_replace_remove_equal_latest_only_rebuild (tests.test_reversible_ridge.ReversibleRidgeTests.test_replace_remove_equal_latest_only_rebuild) ... ok
+test_incremental_stats_equal_joint_ridge_and_permuted_order (tests.test_cumulative_ridge.CumulativeRidgeTests.test_incremental_stats_equal_joint_ridge_and_permuted_order) ... ok
+test_invalid_update_does_not_change_stats (tests.test_cumulative_ridge.CumulativeRidgeTests.test_invalid_update_does_not_change_stats) ... ok
+test_matched_readout_capacity_and_only_readout_gradients (tests.test_feature_readout.FrozenFeatureReadoutTests.test_matched_readout_capacity_and_only_readout_gradients) ... ok
+test_no_memory_access_and_explicit_mode_contract (tests.test_feature_readout.FrozenFeatureReadoutTests.test_no_memory_access_and_explicit_mode_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.120s
+
+OK
