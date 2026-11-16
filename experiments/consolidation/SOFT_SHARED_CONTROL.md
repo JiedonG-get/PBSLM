@@ -21,7 +21,7 @@ python -m evaluation.consolidation_soft_control --seeds 0 1 2 --base-steps 200 -
 python -m evaluation.summarize_soft_consolidation
 ```
 
-soft_control_tests.log包含14项协议测试（soft3、consolidation2、O1九项）：teacher不接收梯度、KL相同分布零、无效概率拒绝、student未按O1冻结拒绝，以及原M隔离/白名单测试。
+soft_control_tests.log包含15项协议测试（soft4、consolidation2、O1九项）：teacher不接收梯度、KL相同分布零、固定非对称分布与手算KL方向一致、无效概率拒绝、student未按O1冻结拒绝，以及原M隔离/白名单测试。
 
 ## 三seed结果
 
