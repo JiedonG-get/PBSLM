@@ -1,0 +1,151 @@
+{
+  "source": "experiments\\consolidation\\feature_readout200.json",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "arms": {
+    "e_key": {
+      "before": {
+        "old/train_surface": {
+          "mean": 1.0,
+          "per_seed": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "old/held_surface": {
+          "mean": 1.0,
+          "per_seed": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "new/train_surface": {
+          "mean": 0.16666666666666666,
+          "per_seed": [
+            0.25,
+            0.25,
+            0.0
+          ]
+        },
+        "new/held_surface": {
+          "mean": 0.08333333333333333,
+          "per_seed": [
+            0.0,
+            0.25,
+            0.0
+          ]
+        }
+      },
+      "after": {
+        "old/train_surface": {
+          "mean": 1.0,
+          "per_seed": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "old/held_surface": {
+          "mean": 0.8333333333333334,
+          "per_seed": [
+            0.75,
+            1.0,
+            0.75
+          ]
+        },
+        "new/train_surface": {
+          "mean": 1.0,
+          "per_seed": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "new/held_surface": {
+          "mean": 0.9166666666666666,
+          "per_seed": [
+            0.75,
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "token_mean": {
+      "before": {
+        "old/train_surface": {
+          "mean": 1.0,
+          "per_seed": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "old/held_surface": {
+          "mean": 0.75,
+          "per_seed": [
+            0.75,
+            0.625,
+            0.875
+          ]
+        },
+        "new/train_surface": {
+          "mean": 0.125,
+          "per_seed": [
+            0.125,
+            0.25,
+            0.0
+          ]
+        },
+        "new/held_surface": {
+          "mean": 0.25,
+          "per_seed": [
+            0.25,
+            0.25,
+            0.25
+          ]
+        }
+      },
+      "after": {
+        "old/train_surface": {
+          "mean": 1.0,
+          "per_seed": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "old/held_surface": {
+          "mean": 0.5,
+          "per_seed": [
+            0.375,
+            0.5,
+            0.625
+          ]
+        },
+        "new/train_surface": {
+          "mean": 1.0,
+          "per_seed": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "new/held_surface": {
+          "mean": 0.5416666666666666,
+          "per_seed": [
+            0.375,
+            0.5,
+            0.75
+          ]
+        }
+      }
+    }
+  },
+  "note": "three-seed descriptive means; no significance claim, explicitly aligned E pretraining prior"
+}

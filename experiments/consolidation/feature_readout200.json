@@ -1,0 +1,2045 @@
+{
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "base_steps": 200,
+    "steps": 200,
+    "reference": "experiments/consolidation/shared_soft200.json",
+    "output": "experiments/consolidation/feature_readout200.json"
+  },
+  "scope": "isolated learned readout, not full language/Runtime architecture solution",
+  "provenance": {
+    "git_commit": "a8d45d3ba13fbf56e2d08b56be93c31c8565cf08",
+    "git_status": "?? evaluation/feature_readout_control.py\n?? models/feature_readout.py\n?? tests/test_feature_readout.py",
+    "source_sha256_at_capture": {
+      "models/feature_readout.py": "f119164725a6a8ac9bc3d1d6a13a8eae7b9218f544dee40cee272587c43af351",
+      "evaluation/feature_readout_control.py": "a00c83adc15b9fbba8602368bc9c3988f5b04b84c9a6827481d9ac7df3a666c5",
+      "evaluation/consolidation_soft_control.py": "237b4652c986e69642bbc1f3828e3bfceb68cd2a4a8cf8cf8ef0b375734cd82f",
+      "evaluation/memory_consolidation.py": "97a026b86252b38b931de1146116cddf8c867ac94a80fca17a8037f0370607ba",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "a9c5fa3cded82b792ee4a804949c95b21fa8ccbc4c5dcff1e6355a50de2fb84a"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "old_ids": [
+        21,
+        26,
+        20,
+        11
+      ],
+      "new_ids": [
+        20,
+        26,
+        11,
+        21
+      ],
+      "arms": {
+        "e_key": {
+          "before": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ],
+              "target_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ],
+              "target_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 0.25,
+              "predicted_ids": [
+                20,
+                20,
+                20,
+                20,
+                40,
+                30,
+                25,
+                26
+              ],
+              "target_ids": [
+                20,
+                20,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 0.0,
+              "predicted_ids": [
+                21,
+                21,
+                21,
+                21,
+                32,
+                21,
+                11,
+                11
+              ],
+              "target_ids": [
+                20,
+                20,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ]
+            }
+          },
+          "after": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ],
+              "target_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 0.75,
+              "predicted_ids": [
+                21,
+                21,
+                26,
+                26,
+                21,
+                20,
+                21,
+                11
+              ],
+              "target_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                20,
+                20,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ],
+              "target_ids": [
+                20,
+                20,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 0.75,
+              "predicted_ids": [
+                21,
+                26,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ],
+              "target_ids": [
+                20,
+                20,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ]
+            }
+          },
+          "base_curve": [
+            {
+              "step": 50,
+              "loss": 0.003983539994806051
+            },
+            {
+              "step": 100,
+              "loss": 0.00393533194437623
+            },
+            {
+              "step": 150,
+              "loss": 0.005869533866643906
+            },
+            {
+              "step": 200,
+              "loss": 0.003364024218171835
+            }
+          ],
+          "new_curve": [
+            {
+              "step": 50,
+              "KL": 0.00019924712250940502
+            },
+            {
+              "step": 100,
+              "KL": 0.00014527776511386037
+            },
+            {
+              "step": 150,
+              "KL": 0.00010659467079676688
+            },
+            {
+              "step": 200,
+              "KL": 7.603361154906452e-05
+            }
+          ],
+          "trainable_parameters": 4656,
+          "frozen_parameters": 498926,
+          "seconds": 2.7232530000001134,
+          "frozen_base_unchanged": true,
+          "M_disabled_zero": true
+        },
+        "token_mean": {
+          "before": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ],
+              "target_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 0.75,
+              "predicted_ids": [
+                21,
+                21,
+                26,
+                26,
+                11,
+                20,
+                11,
+                21
+              ],
+              "target_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 0.125,
+              "predicted_ids": [
+                26,
+                26,
+                11,
+                11,
+                26,
+                26,
+                21,
+                26
+              ],
+              "target_ids": [
+                20,
+                20,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 0.25,
+              "predicted_ids": [
+                26,
+                21,
+                11,
+                21,
+                26,
+                21,
+                21,
+                21
+              ],
+              "target_ids": [
+                20,
+                20,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ]
+            }
+          },
+          "after": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ],
+              "target_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 0.375,
+              "predicted_ids": [
+                21,
+                21,
+                21,
+                21,
+                21,
+                20,
+                21,
+                21
+              ],
+              "target_ids": [
+                21,
+                21,
+                26,
+                26,
+                20,
+                20,
+                11,
+                11
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                20,
+                20,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ],
+              "target_ids": [
+                20,
+                20,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 0.375,
+              "predicted_ids": [
+                21,
+                20,
+                21,
+                21,
+                21,
+                21,
+                21,
+                21
+              ],
+              "target_ids": [
+                20,
+                20,
+                26,
+                26,
+                11,
+                11,
+                21,
+                21
+              ]
+            }
+          },
+          "base_curve": [
+            {
+              "step": 50,
+              "loss": 1.2292381525039673
+            },
+            {
+              "step": 100,
+              "loss": 0.02136104926466942
+            },
+            {
+              "step": 150,
+              "loss": 0.007484727073460817
+            },
+            {
+              "step": 200,
+              "loss": 0.0038415221497416496
+            }
+          ],
+          "new_curve": [
+            {
+              "step": 50,
+              "KL": 1.4676668643951416
+            },
+            {
+              "step": 100,
+              "KL": 0.007477493025362492
+            },
+            {
+              "step": 150,
+              "KL": 0.0008960669510997832
+            },
+            {
+              "step": 200,
+              "KL": 0.0006317502120509744
+            }
+          ],
+          "trainable_parameters": 4656,
+          "frozen_parameters": 498926,
+          "seconds": 0.9708814999976312,
+          "frozen_base_unchanged": true,
+          "M_disabled_zero": true
+        }
+      },
+      "O1_soft_reference": {
+        "before": {
+          "old/train_surface": {
+            "accuracy": 1.0,
+            "predicted_ids": [
+              21,
+              21,
+              26,
+              26,
+              20,
+              20,
+              11,
+              11
+            ],
+            "target_ids": [
+              21,
+              21,
+              26,
+              26,
+              20,
+              20,
+              11,
+              11
+            ]
+          },
+          "old/held_surface": {
+            "accuracy": 0.25,
+            "predicted_ids": [
+              20,
+              20,
+              20,
+              20,
+              20,
+              20,
+              26,
+              21
+            ],
+            "target_ids": [
+              21,
+              21,
+              26,
+              26,
+              20,
+              20,
+              11,
+              11
+            ]
+          },
+          "new/train_surface": {
+            "accuracy": 0.0,
+            "predicted_ids": [
+              11,
+              26,
+              11,
+              11,
+              20,
+              20,
+              11,
+              26
+            ],
+            "target_ids": [
+              20,
+              20,
+              26,
+              26,
+              11,
+              11,
+              21,
+              21
+            ]
+          },
+          "new/held_surface": {
+            "accuracy": 0.125,
+            "predicted_ids": [
+              26,
+              20,
+              20,
+              20,
+              26,
+              20,
+              20,
+              20
+            ],
+            "target_ids": [
+              20,
+              20,
+              26,
+              26,
+              11,
+              11,
+              21,
+              21
+            ]
+          }
+        },
+        "after": {
+          "old/train_surface": {
+            "accuracy": 0.75,
+            "predicted_ids": [
+              21,
+              21,
+              26,
+              26,
+              11,
+              20,
+              26,
+              11
+            ],
+            "target_ids": [
+              21,
+              21,
+              26,
+              26,
+              20,
+              20,
+              11,
+              11
+            ]
+          },
+          "old/held_surface": {
+            "accuracy": 0.25,
+            "predicted_ids": [
+              20,
+              11,
+              20,
+              11,
+              20,
+              11,
+              20,
+              11
+            ],
+            "target_ids": [
+              21,
+              21,
+              26,
+              26,
+              20,
+              20,
+              11,
+              11
+            ]
+          },
+          "new/train_surface": {
+            "accuracy": 1.0,
+            "predicted_ids": [
+              20,
+              20,
+              26,
+              26,
+              11,
+              11,
+              21,
+              21
+            ],
+            "target_ids": [
+              20,
+              20,
+              26,
+              26,
+              11,
+              11,
+              21,
+              21
+            ]
+          },
+          "new/held_surface": {
+            "accuracy": 0.375,
+            "predicted_ids": [
+              20,
+              20,
+              11,
+              11,
+              20,
+              11,
+              20,
+              11
+            ],
+            "target_ids": [
+              20,
+              20,
+              26,
+              26,
+              11,
+              11,
+              21,
+              21
+            ]
+          }
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "old_ids": [
+        31,
+        15,
+        26,
+        28
+      ],
+      "new_ids": [
+        26,
+        28,
+        31,
+        15
+      ],
+      "arms": {
+        "e_key": {
+          "before": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ],
+              "target_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ],
+              "target_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 0.25,
+              "predicted_ids": [
+                15,
+                15,
+                12,
+                12,
+                31,
+                31,
+                16,
+                16
+              ],
+              "target_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 0.25,
+              "predicted_ids": [
+                28,
+                15,
+                28,
+                15,
+                28,
+                15,
+                28,
+                15
+              ],
+              "target_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ]
+            }
+          },
+          "after": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ],
+              "target_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ],
+              "target_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ],
+              "target_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ],
+              "target_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ]
+            }
+          },
+          "base_curve": [
+            {
+              "step": 50,
+              "loss": 0.006157238502055407
+            },
+            {
+              "step": 100,
+              "loss": 0.0038645598106086254
+            },
+            {
+              "step": 150,
+              "loss": 0.004390838090330362
+            },
+            {
+              "step": 200,
+              "loss": 0.004700681660324335
+            }
+          ],
+          "new_curve": [
+            {
+              "step": 50,
+              "KL": 0.0002060917322523892
+            },
+            {
+              "step": 100,
+              "KL": 3.46005690516904e-05
+            },
+            {
+              "step": 150,
+              "KL": 4.391347465571016e-05
+            },
+            {
+              "step": 200,
+              "KL": 2.243008930236101e-05
+            }
+          ],
+          "trainable_parameters": 4656,
+          "frozen_parameters": 498926,
+          "seconds": 1.7649077999994915,
+          "frozen_base_unchanged": true,
+          "M_disabled_zero": true
+        },
+        "token_mean": {
+          "before": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ],
+              "target_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 0.625,
+              "predicted_ids": [
+                31,
+                26,
+                15,
+                26,
+                26,
+                26,
+                28,
+                26
+              ],
+              "target_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 0.25,
+              "predicted_ids": [
+                28,
+                28,
+                28,
+                28,
+                28,
+                28,
+                28,
+                28
+              ],
+              "target_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 0.25,
+              "predicted_ids": [
+                28,
+                26,
+                28,
+                26,
+                28,
+                26,
+                28,
+                26
+              ],
+              "target_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ]
+            }
+          },
+          "after": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ],
+              "target_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 0.5,
+              "predicted_ids": [
+                28,
+                26,
+                15,
+                26,
+                26,
+                26,
+                28,
+                26
+              ],
+              "target_ids": [
+                31,
+                31,
+                15,
+                15,
+                26,
+                26,
+                28,
+                28
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ],
+              "target_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 0.5,
+              "predicted_ids": [
+                26,
+                26,
+                28,
+                26,
+                26,
+                26,
+                15,
+                26
+              ],
+              "target_ids": [
+                26,
+                26,
+                28,
+                28,
+                31,
+                31,
+                15,
+                15
+              ]
+            }
+          },
+          "base_curve": [
+            {
+              "step": 50,
+              "loss": 1.0989803075790405
+            },
+            {
+              "step": 100,
+              "loss": 0.011599832214415073
+            },
+            {
+              "step": 150,
+              "loss": 0.005026560742408037
+            },
+            {
+              "step": 200,
+              "loss": 0.005232804920524359
+            }
+          ],
+          "new_curve": [
+            {
+              "step": 50,
+              "KL": 1.7721614837646484
+            },
+            {
+              "step": 100,
+              "KL": 0.011494386941194534
+            },
+            {
+              "step": 150,
+              "KL": 0.000644934712909162
+            },
+            {
+              "step": 200,
+              "KL": 0.00017381232464686036
+            }
+          ],
+          "trainable_parameters": 4656,
+          "frozen_parameters": 498926,
+          "seconds": 1.0103628000033495,
+          "frozen_base_unchanged": true,
+          "M_disabled_zero": true
+        }
+      },
+      "O1_soft_reference": {
+        "before": {
+          "old/train_surface": {
+            "accuracy": 1.0,
+            "predicted_ids": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              28,
+              28
+            ],
+            "target_ids": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              28,
+              28
+            ]
+          },
+          "old/held_surface": {
+            "accuracy": 0.75,
+            "predicted_ids": [
+              31,
+              15,
+              15,
+              15,
+              26,
+              26,
+              28,
+              15
+            ],
+            "target_ids": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              28,
+              28
+            ]
+          },
+          "new/train_surface": {
+            "accuracy": 0.25,
+            "predicted_ids": [
+              15,
+              28,
+              31,
+              28,
+              31,
+              28,
+              31,
+              28
+            ],
+            "target_ids": [
+              26,
+              26,
+              28,
+              28,
+              31,
+              31,
+              15,
+              15
+            ]
+          },
+          "new/held_surface": {
+            "accuracy": 0.375,
+            "predicted_ids": [
+              28,
+              26,
+              28,
+              15,
+              28,
+              26,
+              28,
+              15
+            ],
+            "target_ids": [
+              26,
+              26,
+              28,
+              28,
+              31,
+              31,
+              15,
+              15
+            ]
+          }
+        },
+        "after": {
+          "old/train_surface": {
+            "accuracy": 0.625,
+            "predicted_ids": [
+              31,
+              31,
+              26,
+              26,
+              26,
+              26,
+              28,
+              31
+            ],
+            "target_ids": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              28,
+              28
+            ]
+          },
+          "old/held_surface": {
+            "accuracy": 0.5,
+            "predicted_ids": [
+              31,
+              26,
+              26,
+              26,
+              26,
+              26,
+              28,
+              26
+            ],
+            "target_ids": [
+              31,
+              31,
+              15,
+              15,
+              26,
+              26,
+              28,
+              28
+            ]
+          },
+          "new/train_surface": {
+            "accuracy": 1.0,
+            "predicted_ids": [
+              26,
+              26,
+              28,
+              28,
+              31,
+              31,
+              15,
+              15
+            ],
+            "target_ids": [
+              26,
+              26,
+              28,
+              28,
+              31,
+              31,
+              15,
+              15
+            ]
+          },
+          "new/held_surface": {
+            "accuracy": 0.5,
+            "predicted_ids": [
+              26,
+              26,
+              28,
+              26,
+              31,
+              26,
+              26,
+              26
+            ],
+            "target_ids": [
+              26,
+              26,
+              28,
+              28,
+              31,
+              31,
+              15,
+              15
+            ]
+          }
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "old_ids": [
+        31,
+        21,
+        11,
+        20
+      ],
+      "new_ids": [
+        31,
+        20,
+        11,
+        21
+      ],
+      "arms": {
+        "e_key": {
+          "before": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 0.0,
+              "predicted_ids": [
+                20,
+                20,
+                31,
+                31,
+                31,
+                31,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 0.0,
+              "predicted_ids": [
+                20,
+                20,
+                18,
+                21,
+                31,
+                21,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ]
+            }
+          },
+          "after": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 0.75,
+              "predicted_ids": [
+                31,
+                31,
+                21,
+                21,
+                31,
+                21,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ],
+              "target_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ],
+              "target_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ]
+            }
+          },
+          "base_curve": [
+            {
+              "step": 50,
+              "loss": 0.003669435391202569
+            },
+            {
+              "step": 100,
+              "loss": 0.004034950863569975
+            },
+            {
+              "step": 150,
+              "loss": 0.003942575305700302
+            },
+            {
+              "step": 200,
+              "loss": 0.006059726700186729
+            }
+          ],
+          "new_curve": [
+            {
+              "step": 50,
+              "KL": 0.0005734020378440619
+            },
+            {
+              "step": 100,
+              "KL": 0.00015586335211992264
+            },
+            {
+              "step": 150,
+              "KL": 0.00017096626106649637
+            },
+            {
+              "step": 200,
+              "KL": 3.98538977606222e-05
+            }
+          ],
+          "trainable_parameters": 4656,
+          "frozen_parameters": 498926,
+          "seconds": 1.7760406999987026,
+          "frozen_base_unchanged": true,
+          "M_disabled_zero": true
+        },
+        "token_mean": {
+          "before": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 0.875,
+              "predicted_ids": [
+                11,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 0.0,
+              "predicted_ids": [
+                20,
+                20,
+                31,
+                31,
+                21,
+                21,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 0.25,
+              "predicted_ids": [
+                11,
+                20,
+                11,
+                11,
+                11,
+                11,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ]
+            }
+          },
+          "after": {
+            "old/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ]
+            },
+            "old/held_surface": {
+              "accuracy": 0.625,
+              "predicted_ids": [
+                11,
+                20,
+                21,
+                11,
+                11,
+                11,
+                20,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                21,
+                21,
+                11,
+                11,
+                20,
+                20
+              ]
+            },
+            "new/train_surface": {
+              "accuracy": 1.0,
+              "predicted_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ],
+              "target_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ]
+            },
+            "new/held_surface": {
+              "accuracy": 0.75,
+              "predicted_ids": [
+                31,
+                20,
+                20,
+                20,
+                11,
+                11,
+                21,
+                20
+              ],
+              "target_ids": [
+                31,
+                31,
+                20,
+                20,
+                11,
+                11,
+                21,
+                21
+              ]
+            }
+          },
+          "base_curve": [
+            {
+              "step": 50,
+              "loss": 0.2529633343219757
+            },
+            {
+              "step": 100,
+              "loss": 0.3105539381504059
+            },
+            {
+              "step": 150,
+              "loss": 0.015308032743632793
+            },
+            {
+              "step": 200,
+              "loss": 0.006734531372785568
+            }
+          ],
+          "new_curve": [
+            {
+              "step": 50,
+              "KL": 0.6738783717155457
+            },
+            {
+              "step": 100,
+              "KL": 0.0454513318836689
+            },
+            {
+              "step": 150,
+              "KL": 0.0032055650372058153
+            },
+            {
+              "step": 200,
+              "KL": 0.0006746533908881247
+            }
+          ],
+          "trainable_parameters": 4656,
+          "frozen_parameters": 498926,
+          "seconds": 0.9793450999968627,
+          "frozen_base_unchanged": true,
+          "M_disabled_zero": true
+        }
+      },
+      "O1_soft_reference": {
+        "before": {
+          "old/train_surface": {
+            "accuracy": 1.0,
+            "predicted_ids": [
+              31,
+              31,
+              21,
+              21,
+              11,
+              11,
+              20,
+              20
+            ],
+            "target_ids": [
+              31,
+              31,
+              21,
+              21,
+              11,
+              11,
+              20,
+              20
+            ]
+          },
+          "old/held_surface": {
+            "accuracy": 0.5,
+            "predicted_ids": [
+              31,
+              31,
+              21,
+              21,
+              31,
+              21,
+              21,
+              31
+            ],
+            "target_ids": [
+              31,
+              31,
+              21,
+              21,
+              11,
+              11,
+              20,
+              20
+            ]
+          },
+          "new/train_surface": {
+            "accuracy": 0.125,
+            "predicted_ids": [
+              20,
+              20,
+              31,
+              20,
+              21,
+              31,
+              20,
+              20
+            ],
+            "target_ids": [
+              31,
+              31,
+              20,
+              20,
+              11,
+              11,
+              21,
+              21
+            ]
+          },
+          "new/held_surface": {
+            "accuracy": 0.125,
+            "predicted_ids": [
+              21,
+              21,
+              21,
+              31,
+              31,
+              21,
+              21,
+              11
+            ],
+            "target_ids": [
+              31,
+              31,
+              20,
+              20,
+              11,
+              11,
+              21,
+              21
+            ]
+          }
+        },
+        "after": {
+          "old/train_surface": {
+            "accuracy": 0.25,
+            "predicted_ids": [
+              11,
+              11,
+              11,
+              31,
+              11,
+              11,
+              31,
+              31
+            ],
+            "target_ids": [
+              31,
+              31,
+              21,
+              21,
+              11,
+              11,
+              20,
+              20
+            ]
+          },
+          "old/held_surface": {
+            "accuracy": 0.25,
+            "predicted_ids": [
+              11,
+              11,
+              11,
+              11,
+              11,
+              11,
+              21,
+              11
+            ],
+            "target_ids": [
+              31,
+              31,
+              21,
+              21,
+              11,
+              11,
+              20,
+              20
+            ]
+          },
+          "new/train_surface": {
+            "accuracy": 1.0,
+            "predicted_ids": [
+              31,
+              31,
+              20,
+              20,
+              11,
+              11,
+              21,
+              21
+            ],
+            "target_ids": [
+              31,
+              31,
+              20,
+              20,
+              11,
+              11,
+              21,
+              21
+            ]
+          },
+          "new/held_surface": {
+            "accuracy": 0.5,
+            "predicted_ids": [
+              21,
+              31,
+              20,
+              11,
+              11,
+              11,
+              11,
+              11
+            ],
+            "target_ids": [
+              31,
+              31,
+              20,
+              20,
+              11,
+              11,
+              21,
+              21
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
