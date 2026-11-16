@@ -1,0 +1,99 @@
+{
+  "scope": "cooperative scripted protocol stress, NOT neural semantic/throughput benchmark",
+  "runs": [
+    {
+      "seed": 0,
+      "actions": 1000,
+      "final_revision": 1001,
+      "generation_calls": 710,
+      "peak_live_backend_generations": 1,
+      "peak_tracked_unfinished_tasks": 2,
+      "max_recent_input_history": 32,
+      "committed_units": 3,
+      "stale_commits": 0,
+      "tasks_after_close": 0,
+      "final_latest_request_completed": true,
+      "pending_after_close": null,
+      "event_counts": {
+        "cancel_requested": 709,
+        "closed": 1,
+        "generation_cancelled": 709,
+        "generation_finished": 1,
+        "generation_started": 710,
+        "input_received": 776,
+        "interrupted": 105,
+        "output_committed": 3,
+        "resume_requested": 120
+      }
+    },
+    {
+      "seed": 1,
+      "actions": 1000,
+      "final_revision": 1001,
+      "generation_calls": 714,
+      "peak_live_backend_generations": 1,
+      "peak_tracked_unfinished_tasks": 2,
+      "max_recent_input_history": 32,
+      "committed_units": 3,
+      "stale_commits": 0,
+      "tasks_after_close": 0,
+      "final_latest_request_completed": true,
+      "pending_after_close": null,
+      "event_counts": {
+        "cancel_requested": 713,
+        "closed": 1,
+        "generation_cancelled": 713,
+        "generation_finished": 1,
+        "generation_started": 714,
+        "input_received": 802,
+        "interrupted": 98,
+        "output_committed": 3,
+        "resume_requested": 101
+      }
+    },
+    {
+      "seed": 2,
+      "actions": 1000,
+      "final_revision": 1001,
+      "generation_calls": 698,
+      "peak_live_backend_generations": 1,
+      "peak_tracked_unfinished_tasks": 2,
+      "max_recent_input_history": 32,
+      "committed_units": 3,
+      "stale_commits": 0,
+      "tasks_after_close": 0,
+      "final_latest_request_completed": true,
+      "pending_after_close": null,
+      "event_counts": {
+        "cancel_requested": 697,
+        "closed": 1,
+        "generation_cancelled": 697,
+        "generation_finished": 1,
+        "generation_started": 698,
+        "input_received": 807,
+        "interrupted": 99,
+        "output_committed": 3,
+        "resume_requested": 95
+      }
+    }
+  ],
+  "no_training": true,
+  "provenance": {
+    "git_commit": "73e7b5474160c5b0dc5ed8e97a0bcbf5d8a4228b",
+    "git_status": "?? evaluation/continuous_protocol_stress.py",
+    "source_sha256_at_capture": {
+      "runtime/continuous.py": "29ac8beec24e851fdd0fac1737da27f3d54ce55b17940c249d119457ca0b325f",
+      "evaluation/continuous_protocol_stress.py": "81991cc33d3ce10d5ccfb4da39dd563add6ba03be4572c925810a6e624068d95"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  }
+}
