@@ -1,0 +1,39 @@
+{
+  "source": "experiments\\recurrent_state\\all_hot2048.json",
+  "total_hot_cases": 24,
+  "arms": {
+    "soft": {
+      "cases": 24,
+      "initial_cold_mean": 0.9906994047619048,
+      "final_cold_mean": 0.4575892857142857,
+      "final_hot_mean": 0.9947916666666666,
+      "colliding": {
+        "n": 32,
+        "initial_accuracy": 0.96875,
+        "final_accuracy": 0.1875
+      },
+      "noncolliding": {
+        "n": 2656,
+        "initial_accuracy": 0.9909638554216867,
+        "final_accuracy": 0.4608433734939759
+      }
+    },
+    "top1_mass": {
+      "cases": 24,
+      "initial_cold_mean": 0.9906994047619048,
+      "final_cold_mean": 0.9813988095238095,
+      "final_hot_mean": 0.9817708333333334,
+      "colliding": {
+        "n": 32,
+        "initial_accuracy": 0.96875,
+        "final_accuracy": 0.21875
+      },
+      "noncolliding": {
+        "n": 2656,
+        "initial_accuracy": 0.9909638554216867,
+        "final_accuracy": 0.9905873493975904
+      }
+    }
+  },
+  "note": "24 seed/hot cases, collision probes mostly one trained checkpoint; not iid significance"
+}

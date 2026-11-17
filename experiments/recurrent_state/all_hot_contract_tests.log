@@ -1,0 +1,10 @@
+test_soft_matches_original_and_sparse_preserves_other_slots (tests.test_state_write_intervention.WriteGateInterventionTests.test_soft_matches_original_and_sparse_preserves_other_slots) ... ok
+test_malformed_contracts_rejected (tests.test_working_state_checkpoint.WorkingStateCheckpointTests.test_malformed_contracts_rejected) ... ok
+test_roundtrip_exact_prediction_and_frozen_weights (tests.test_working_state_checkpoint.WorkingStateCheckpointTests.test_roundtrip_exact_prediction_and_frozen_weights) ... ok
+test_explicit_write_leaves_other_slots_exactly_unchanged (tests.test_slotted_working_state.SlottedWorkingStateTests.test_explicit_write_leaves_other_slots_exactly_unchanged) ... ok
+test_learned_routing_has_gradients_and_fixed_payload (tests.test_slotted_working_state.SlottedWorkingStateTests.test_learned_routing_has_gradients_and_fixed_payload) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.196s
+
+OK
