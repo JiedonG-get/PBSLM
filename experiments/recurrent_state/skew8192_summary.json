@@ -1,0 +1,252 @@
+{
+  "source": "experiments\\recurrent_state\\skew8192.json",
+  "arms": {
+    "global": [
+      {
+        "step": 0,
+        "cold_accuracy_mean": 0.5833333333333334,
+        "cold_per_seed": [
+          0.5714285714285714,
+          0.6160714285714286,
+          0.5625
+        ],
+        "hot_accuracy_mean": 0.375
+      },
+      {
+        "step": 1,
+        "cold_accuracy_mean": 0.5193452380952381,
+        "cold_per_seed": [
+          0.46875,
+          0.5580357142857143,
+          0.53125
+        ],
+        "hot_accuracy_mean": 0.8125
+      },
+      {
+        "step": 8,
+        "cold_accuracy_mean": 0.46726190476190477,
+        "cold_per_seed": [
+          0.48214285714285715,
+          0.45982142857142855,
+          0.45982142857142855
+        ],
+        "hot_accuracy_mean": 0.8125
+      },
+      {
+        "step": 32,
+        "cold_accuracy_mean": 0.39732142857142855,
+        "cold_per_seed": [
+          0.40625,
+          0.38839285714285715,
+          0.39732142857142855
+        ],
+        "hot_accuracy_mean": 0.8333333333333334
+      },
+      {
+        "step": 128,
+        "cold_accuracy_mean": 0.3288690476190476,
+        "cold_per_seed": [
+          0.3080357142857143,
+          0.3392857142857143,
+          0.3392857142857143
+        ],
+        "hot_accuracy_mean": 0.8333333333333334
+      },
+      {
+        "step": 512,
+        "cold_accuracy_mean": 0.23214285714285715,
+        "cold_per_seed": [
+          0.24107142857142858,
+          0.20089285714285715,
+          0.2544642857142857
+        ],
+        "hot_accuracy_mean": 0.8229166666666666
+      },
+      {
+        "step": 2048,
+        "cold_accuracy_mean": 0.16964285714285715,
+        "cold_per_seed": [
+          0.17410714285714285,
+          0.125,
+          0.20982142857142858
+        ],
+        "hot_accuracy_mean": 0.8125
+      },
+      {
+        "step": 8192,
+        "cold_accuracy_mean": 0.13095238095238093,
+        "cold_per_seed": [
+          0.14285714285714285,
+          0.09821428571428571,
+          0.15178571428571427
+        ],
+        "hot_accuracy_mean": 0.8229166666666666
+      }
+    ],
+    "learned": [
+      {
+        "step": 0,
+        "cold_accuracy_mean": 0.9836309523809523,
+        "cold_per_seed": [
+          1.0,
+          0.9508928571428571,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 1,
+        "cold_accuracy_mean": 0.9836309523809523,
+        "cold_per_seed": [
+          1.0,
+          0.9508928571428571,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 8,
+        "cold_accuracy_mean": 0.9836309523809523,
+        "cold_per_seed": [
+          1.0,
+          0.9508928571428571,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 32,
+        "cold_accuracy_mean": 0.9851190476190477,
+        "cold_per_seed": [
+          1.0,
+          0.9553571428571429,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 128,
+        "cold_accuracy_mean": 0.9806547619047619,
+        "cold_per_seed": [
+          1.0,
+          0.9419642857142857,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 512,
+        "cold_accuracy_mean": 0.8273809523809524,
+        "cold_per_seed": [
+          0.8705357142857143,
+          0.8303571428571429,
+          0.78125
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 2048,
+        "cold_accuracy_mean": 0.5,
+        "cold_per_seed": [
+          0.375,
+          0.6026785714285714,
+          0.5223214285714286
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 8192,
+        "cold_accuracy_mean": 0.18154761904761904,
+        "cold_per_seed": [
+          0.19196428571428573,
+          0.24553571428571427,
+          0.10714285714285714
+        ],
+        "hot_accuracy_mean": 1.0
+      }
+    ],
+    "explicit": [
+      {
+        "step": 0,
+        "cold_accuracy_mean": 1.0,
+        "cold_per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 1,
+        "cold_accuracy_mean": 1.0,
+        "cold_per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 8,
+        "cold_accuracy_mean": 1.0,
+        "cold_per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 32,
+        "cold_accuracy_mean": 1.0,
+        "cold_per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 128,
+        "cold_accuracy_mean": 1.0,
+        "cold_per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 512,
+        "cold_accuracy_mean": 1.0,
+        "cold_per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 2048,
+        "cold_accuracy_mean": 1.0,
+        "cold_per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      },
+      {
+        "step": 8192,
+        "cold_accuracy_mean": 1.0,
+        "cold_per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "hot_accuracy_mean": 1.0
+      }
+    ]
+  },
+  "note": "same batch size per seed; seed mean descriptive, checkpoints highly correlated"
+}

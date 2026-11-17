@@ -1,0 +1,11 @@
+test_malformed_contracts_rejected (tests.test_working_state_checkpoint.WorkingStateCheckpointTests.test_malformed_contracts_rejected) ... ok
+test_roundtrip_exact_prediction_and_frozen_weights (tests.test_working_state_checkpoint.WorkingStateCheckpointTests.test_roundtrip_exact_prediction_and_frozen_weights) ... ok
+test_explicit_write_leaves_other_slots_exactly_unchanged (tests.test_slotted_working_state.SlottedWorkingStateTests.test_explicit_write_leaves_other_slots_exactly_unchanged) ... ok
+test_learned_routing_has_gradients_and_fixed_payload (tests.test_slotted_working_state.SlottedWorkingStateTests.test_learned_routing_has_gradients_and_fixed_payload) ... ok
+test_gradients_through_update_and_read (tests.test_recurrent_working_state.RecurrentWorkingStateTests.test_gradients_through_update_and_read) ... ok
+test_state_fixed_size_and_query_read_only (tests.test_recurrent_working_state.RecurrentWorkingStateTests.test_state_fixed_size_and_query_read_only) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.060s
+
+OK
