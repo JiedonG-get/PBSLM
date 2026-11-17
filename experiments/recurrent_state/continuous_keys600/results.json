@@ -1,0 +1,798 @@
+{
+  "config": {
+    "updates": 600,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "output_dir": "experiments/recurrent_state/continuous_keys600"
+  },
+  "scope": "fresh random continuous-key symbolic associations, not language or PBSLM integration",
+  "reference_threshold": 0.9,
+  "provenance": {
+    "git_commit": "2e16b859080a0fba2be1cfc997271c6b8a913bc2",
+    "git_status": "?? evaluation/continuous_key_control.py\n?? models/continuous_key_state.py",
+    "source_sha256_at_capture": {
+      "models/continuous_key_state.py": "09d701c1a3a9ff59e2fc30b805cf7aed52049207013be6102b1c1bfe491517a7",
+      "evaluation/continuous_key_control.py": "0de44751d1544ee934b267a006e3246777184ab17f84c11181dcf1af9c982353"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "curve": [
+        {
+          "update": 100,
+          "loss": 1.5590076446533203
+        },
+        {
+          "update": 200,
+          "loss": 1.5646100044250488
+        },
+        {
+          "update": 300,
+          "loss": 1.5510756969451904
+        },
+        {
+          "update": 400,
+          "loss": 1.5274579524993896
+        },
+        {
+          "update": 500,
+          "loss": 1.4992032051086426
+        },
+        {
+          "update": 600,
+          "loss": 1.5367512702941895
+        }
+      ],
+      "evaluation": {
+        "24/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 12,
+              "accuracy": 0.013904982618771726
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 662,
+              "accuracy": 0.9836552748885586
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 12,
+              "accuracy": 0.013904982618771726
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 662,
+              "accuracy": 0.9836552748885586
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 127,
+              "accuracy": 0.029659037832788417
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1714,
+              "accuracy": 0.920515574650913
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 131,
+              "accuracy": 0.030593180756655767
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1711,
+              "accuracy": 0.9189044038668098
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        }
+      },
+      "weights_sha256": "9f8c61343bd7d087f8ae5a00ec201943992a7c2626269a88b5a18d2d11dbe148",
+      "checkpoint_file_sha256": "5932d1f57a40b6dc778059f910f74fc7f5c65cf80875be4adf33108b626cc561",
+      "parameters": 85193,
+      "state_fp32_bytes_per_stream": 512,
+      "reference_key_value_seen_payload_bytes_per_stream": 584,
+      "seconds_training_and_eval": 23.79038700000092,
+      "eval_weights_unchanged": true,
+      "note": "512byte h vs 584byte reference payload excludes parameters/temporary arrays/Python; no fair compute claim"
+    },
+    {
+      "seed": 1,
+      "curve": [
+        {
+          "update": 100,
+          "loss": 1.5763165950775146
+        },
+        {
+          "update": 200,
+          "loss": 1.5730905532836914
+        },
+        {
+          "update": 300,
+          "loss": 1.571094036102295
+        },
+        {
+          "update": 400,
+          "loss": 1.5748291015625
+        },
+        {
+          "update": 500,
+          "loss": 1.5379637479782104
+        },
+        {
+          "update": 600,
+          "loss": 1.4981999397277832
+        }
+      ],
+      "evaluation": {
+        "24/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 16,
+              "accuracy": 0.020075282308657464
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 722,
+              "accuracy": 0.9769959404600812
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 16,
+              "accuracy": 0.020075282308657464
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 722,
+              "accuracy": 0.9769959404600812
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 334,
+              "accuracy": 0.07812865497076023
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1559,
+              "accuracy": 0.8341359015516319
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 336,
+              "accuracy": 0.07859649122807018
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1557,
+              "accuracy": 0.8330658105939005
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        }
+      },
+      "weights_sha256": "fa3f04f4a2c0cdcea30186a2f056d87c86f86429666a1c69ab4ce2c1f7b4ad0a",
+      "checkpoint_file_sha256": "7a1c37320f260cae6e18f1a89a9d519c97a65ac7c1722af3a92b54a395aba163",
+      "parameters": 85193,
+      "state_fp32_bytes_per_stream": 512,
+      "reference_key_value_seen_payload_bytes_per_stream": 584,
+      "seconds_training_and_eval": 23.349465000002965,
+      "eval_weights_unchanged": true,
+      "note": "512byte h vs 584byte reference payload excludes parameters/temporary arrays/Python; no fair compute claim"
+    },
+    {
+      "seed": 2,
+      "curve": [
+        {
+          "update": 100,
+          "loss": 1.5103871822357178
+        },
+        {
+          "update": 200,
+          "loss": 1.5321528911590576
+        },
+        {
+          "update": 300,
+          "loss": 1.5291988849639893
+        },
+        {
+          "update": 400,
+          "loss": 1.539985179901123
+        },
+        {
+          "update": 500,
+          "loss": 1.5369298458099365
+        },
+        {
+          "update": 600,
+          "loss": 1.5598958730697632
+        }
+      ],
+      "evaluation": {
+        "24/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 7,
+              "accuracy": 0.008588957055214725
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 707,
+              "accuracy": 0.9805825242718447
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 7,
+              "accuracy": 0.008588957055214725
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 707,
+              "accuracy": 0.9805825242718447
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 202,
+              "accuracy": 0.04716320336212935
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1638,
+              "accuracy": 0.8801719505642128
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 201,
+              "accuracy": 0.046929722157366335
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1637,
+              "accuracy": 0.8796346050510478
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        }
+      },
+      "weights_sha256": "58959002c733c53d983a05f8374680dcccd7129d3d7a6b7ca17742f46c150a08",
+      "checkpoint_file_sha256": "aa052d6089046aa655af8c9db6e593a6319ce28b529025263d5a3c1708c691fb",
+      "parameters": 85193,
+      "state_fp32_bytes_per_stream": 512,
+      "reference_key_value_seen_payload_bytes_per_stream": 584,
+      "seconds_training_and_eval": 22.85240789999807,
+      "eval_weights_unchanged": true,
+      "note": "512byte h vs 584byte reference payload excludes parameters/temporary arrays/Python; no fair compute claim"
+    }
+  ]
+}

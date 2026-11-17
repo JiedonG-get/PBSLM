@@ -1,0 +1,8 @@
+test_no_id_interface_query_read_only_and_gradients (tests.test_continuous_key_state.ContinuousKeyStateTests.test_no_id_interface_query_read_only_and_gradients) ... ok
+test_gradients_through_update_and_read (tests.test_recurrent_working_state.RecurrentWorkingStateTests.test_gradients_through_update_and_read) ... ok
+test_state_fixed_size_and_query_read_only (tests.test_recurrent_working_state.RecurrentWorkingStateTests.test_state_fixed_size_and_query_read_only) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.044s
+
+OK
