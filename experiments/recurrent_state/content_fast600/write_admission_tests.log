@@ -1,0 +1,11 @@
+test_full_unmatched_deferred_and_matched_anchor_not_moved (tests.test_conservative_content_slots.ConservativeSlotTests.test_full_unmatched_deferred_and_matched_anchor_not_moved) ... ok
+test_dynamic_allocation_overwrite_and_recency_eviction (tests.test_dynamic_content_slots.DynamicContentSlotsTests.test_dynamic_allocation_overwrite_and_recency_eviction) ... ok
+test_invalid_inputs_do_not_modify_state (tests.test_dynamic_content_slots.DynamicContentSlotsTests.test_invalid_inputs_do_not_modify_state) ... ok
+test_noisy_versions_can_evict_unrelated_cold_record (tests.test_dynamic_content_slots.DynamicContentSlotsTests.test_noisy_versions_can_evict_unrelated_cold_record) ... ok
+test_query_read_only_unknown_and_repeated_clock_bound (tests.test_dynamic_content_slots.DynamicContentSlotsTests.test_query_read_only_unknown_and_repeated_clock_bound) ... ok
+test_similar_distinct_keys_merge_under_declared_threshold (tests.test_dynamic_content_slots.DynamicContentSlotsTests.test_similar_distinct_keys_merge_under_declared_threshold) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.059s
+
+OK
