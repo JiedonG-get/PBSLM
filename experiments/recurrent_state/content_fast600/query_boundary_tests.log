@@ -1,0 +1,9 @@
+test_confusion_keeps_reject_and_wrong_value_separate (tests.test_fast_query_boundary.QueryBoundaryTests.test_confusion_keeps_reject_and_wrong_value_separate) ... ok
+test_nearby_norm_and_angle (tests.test_fast_query_boundary.QueryBoundaryTests.test_nearby_norm_and_angle) ... ok
+test_correlated_keys_overwrite_preserves_other_reads (tests.test_dual_key_reference.DualKeyReferenceTests.test_correlated_keys_overwrite_preserves_other_reads) ... ok
+test_duplicate_keys_rejected (tests.test_dual_key_reference.DualKeyReferenceTests.test_duplicate_keys_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.007s
+
+OK
