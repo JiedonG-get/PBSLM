@@ -1,0 +1,11 @@
+test_decision_independent_of_answers (tests.test_collision_guard.CollisionGuardTests.test_decision_independent_of_answers) ... ok
+test_mismatched_batch_rejected (tests.test_collision_guard.CollisionGuardTests.test_mismatched_batch_rejected) ... ok
+test_no_collision_not_no_error (tests.test_collision_guard.CollisionGuardTests.test_no_collision_not_no_error) ... ok
+test_eval_unaddressed_slots_exact_and_prior_finite (tests.test_sparse_working_state.SparseWorkingStateTests.test_eval_unaddressed_slots_exact_and_prior_finite) ... ok
+test_surrogate_gradient_through_write_without_read_or_prior (tests.test_sparse_working_state.SparseWorkingStateTests.test_surrogate_gradient_through_write_without_read_or_prior) ... ok
+test_train_sparse_forward_and_route_gradients (tests.test_sparse_working_state.SparseWorkingStateTests.test_train_sparse_forward_and_route_gradients) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.032s
+
+OK
