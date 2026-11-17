@@ -1,0 +1,1575 @@
+{
+  "config": {
+    "updates": 600,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "output_dir": "experiments/recurrent_state/content_fast600"
+  },
+  "scope": "fresh-key associative state versus additive, offline fixed-weight evaluation",
+  "provenance": {
+    "git_commit": "7fc88fff9b1442d36e2dd85a6a24b8bb2d66c89b",
+    "git_status": "?? evaluation/content_fast_control.py\n?? models/content_fast_state.py\n?? tests/test_content_fast_state.py",
+    "source_sha256_at_capture": {
+      "models/content_fast_state.py": "e38c0fe2f037199e4111b4664c9453388af8022b76dfa5535465665a19baec55",
+      "evaluation/content_fast_control.py": "fed59b918bad194daef2e91283b3b4566f0d5c7b5e1add4c976820d26010a698",
+      "evaluation/continuous_key_control.py": "0de44751d1544ee934b267a006e3246777184ab17f84c11181dcf1af9c982353"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "rule": "delta",
+      "evaluation": {
+        "24/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 771,
+              "accuracy": 0.8933951332560834
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 617,
+              "accuracy": 0.9167904903417533
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 767,
+              "accuracy": 0.8887601390498262
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 624,
+              "accuracy": 0.9271916790490342
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 3711,
+              "accuracy": 0.8666510976179356
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1617,
+              "accuracy": 0.868421052631579
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 3670,
+              "accuracy": 0.8570761326482952
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1611,
+              "accuracy": 0.8651987110633728
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        }
+      },
+      "curve": [
+        {
+          "update": 100,
+          "loss": 0.6539783477783203
+        },
+        {
+          "update": 200,
+          "loss": 0.3371966779232025
+        },
+        {
+          "update": 300,
+          "loss": 0.3572063148021698
+        },
+        {
+          "update": 400,
+          "loss": 0.272071897983551
+        },
+        {
+          "update": 500,
+          "loss": 0.309844434261322
+        },
+        {
+          "update": 600,
+          "loss": 0.29857298731803894
+        }
+      ],
+      "state_floats": 128,
+      "state_bytes_fp32": 512,
+      "parameters": 938,
+      "write_rate": 0.8653709888458252,
+      "weights_sha256": "49312a6c239efec016af1bcc995d7b136c1c6c06af98d270be774fec72613b3c",
+      "checkpoint_file_sha256": "7070a5148fbd45fb7e58f38f9ca53c89e1e9ca33646c5f16263b1002264ba028",
+      "seconds_training_and_eval": 25.00320550000106,
+      "eval_weights_unchanged": true,
+      "note": "onehot value initialization and explicit associative operation are extra priors; no compute-saving or language claim"
+    },
+    {
+      "seed": 0,
+      "rule": "additive",
+      "evaluation": {
+        "24/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 482,
+              "accuracy": 0.5585168018539977
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 613,
+              "accuracy": 0.9108469539375929
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 486,
+              "accuracy": 0.5631517960602549
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 614,
+              "accuracy": 0.912332838038633
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 863,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 863,
+              "correct": 863,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 673,
+              "correct": 673,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 1570,
+              "accuracy": 0.3666510976179355
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1216,
+              "accuracy": 0.6530612244897959
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 1556,
+              "accuracy": 0.3633815973843998
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1223,
+              "accuracy": 0.6568206229860365
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4282,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4282,
+              "correct": 4282,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1862,
+              "correct": 1862,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        }
+      },
+      "curve": [
+        {
+          "update": 100,
+          "loss": 0.9411839842796326
+        },
+        {
+          "update": 200,
+          "loss": 0.803203284740448
+        },
+        {
+          "update": 300,
+          "loss": 0.8457638621330261
+        },
+        {
+          "update": 400,
+          "loss": 0.7967618703842163
+        },
+        {
+          "update": 500,
+          "loss": 0.785098671913147
+        },
+        {
+          "update": 600,
+          "loss": 0.7624598741531372
+        }
+      ],
+      "state_floats": 128,
+      "state_bytes_fp32": 512,
+      "parameters": 938,
+      "write_rate": 0.9349629282951355,
+      "weights_sha256": "366d11cf52c34014dfc15dd272be82d681de61da6a8d9a72f064b5be9c24e580",
+      "checkpoint_file_sha256": "77a30dab235d2179edbe390866124ae722d8482ab0d2fc38528c23b526894898",
+      "seconds_training_and_eval": 23.80182849999983,
+      "eval_weights_unchanged": true,
+      "note": "onehot value initialization and explicit associative operation are extra priors; no compute-saving or language claim"
+    },
+    {
+      "seed": 1,
+      "rule": "delta",
+      "evaluation": {
+        "24/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 706,
+              "accuracy": 0.8858218318695107
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 696,
+              "accuracy": 0.9418132611637348
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 706,
+              "accuracy": 0.8858218318695107
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 691,
+              "accuracy": 0.9350473612990527
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 3702,
+              "accuracy": 0.8659649122807017
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1624,
+              "accuracy": 0.8689138576779026
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 3669,
+              "accuracy": 0.8582456140350877
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1623,
+              "accuracy": 0.8683788121990369
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        }
+      },
+      "curve": [
+        {
+          "update": 100,
+          "loss": 0.7064735293388367
+        },
+        {
+          "update": 200,
+          "loss": 0.3684234023094177
+        },
+        {
+          "update": 300,
+          "loss": 0.3300623297691345
+        },
+        {
+          "update": 400,
+          "loss": 0.2799827754497528
+        },
+        {
+          "update": 500,
+          "loss": 0.31872114539146423
+        },
+        {
+          "update": 600,
+          "loss": 0.2620021104812622
+        }
+      ],
+      "state_floats": 128,
+      "state_bytes_fp32": 512,
+      "parameters": 938,
+      "write_rate": 0.866741955280304,
+      "weights_sha256": "137720f6afc86023efa64d772e0355432fff999cb5749e67792c6e3546901b08",
+      "checkpoint_file_sha256": "df94025f09c6bd555d7767b5cdfebfd30378a072ae7cf47214817b7ac8a1867d",
+      "seconds_training_and_eval": 25.377204000000347,
+      "eval_weights_unchanged": true,
+      "note": "onehot value initialization and explicit associative operation are extra priors; no compute-saving or language claim"
+    },
+    {
+      "seed": 1,
+      "rule": "additive",
+      "evaluation": {
+        "24/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 471,
+              "accuracy": 0.5909661229611042
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 682,
+              "accuracy": 0.9228687415426252
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 464,
+              "accuracy": 0.5821831869510665
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 685,
+              "accuracy": 0.9269282814614344
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 797,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 797,
+              "correct": 797,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 739,
+              "correct": 739,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 1613,
+              "accuracy": 0.3773099415204678
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1230,
+              "accuracy": 0.6581059390048154
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 1617,
+              "accuracy": 0.3782456140350877
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1230,
+              "accuracy": 0.6581059390048154
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4275,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4275,
+              "correct": 4275,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1869,
+              "correct": 1869,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        }
+      },
+      "curve": [
+        {
+          "update": 100,
+          "loss": 1.0268933773040771
+        },
+        {
+          "update": 200,
+          "loss": 0.8330966830253601
+        },
+        {
+          "update": 300,
+          "loss": 0.8332103490829468
+        },
+        {
+          "update": 400,
+          "loss": 0.774461030960083
+        },
+        {
+          "update": 500,
+          "loss": 0.7724288702011108
+        },
+        {
+          "update": 600,
+          "loss": 0.6912190318107605
+        }
+      ],
+      "state_floats": 128,
+      "state_bytes_fp32": 512,
+      "parameters": 938,
+      "write_rate": 0.9349237680435181,
+      "weights_sha256": "7aad953a4c9393a09398b11ab9f4c8ec027714fcfdc4dfda0e2291c190b907da",
+      "checkpoint_file_sha256": "1c322656bbeb4db4da8947b264a65c78546b183a7f91d503747eb4047d4446ec",
+      "seconds_training_and_eval": 23.46477959999902,
+      "eval_weights_unchanged": true,
+      "note": "onehot value initialization and explicit associative operation are extra priors; no compute-saving or language claim"
+    },
+    {
+      "seed": 2,
+      "rule": "delta",
+      "evaluation": {
+        "24/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 712,
+              "accuracy": 0.8736196319018404
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 678,
+              "accuracy": 0.9403606102635229
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 698,
+              "accuracy": 0.8564417177914111
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 678,
+              "accuracy": 0.9403606102635229
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 3688,
+              "accuracy": 0.8610786831660051
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1627,
+              "accuracy": 0.8742611499193982
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 3656,
+              "accuracy": 0.8536072846135886
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1617,
+              "accuracy": 0.8688876947877485
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        }
+      },
+      "curve": [
+        {
+          "update": 100,
+          "loss": 0.6830538511276245
+        },
+        {
+          "update": 200,
+          "loss": 0.3429245352745056
+        },
+        {
+          "update": 300,
+          "loss": 0.3861059546470642
+        },
+        {
+          "update": 400,
+          "loss": 0.28076252341270447
+        },
+        {
+          "update": 500,
+          "loss": 0.33179399371147156
+        },
+        {
+          "update": 600,
+          "loss": 0.23885171115398407
+        }
+      ],
+      "state_floats": 128,
+      "state_bytes_fp32": 512,
+      "parameters": 938,
+      "write_rate": 0.8643738031387329,
+      "weights_sha256": "a49eea7e6a46f68b9f4170ef64e994e77f479baa9b566858c78201a82d4d9427",
+      "checkpoint_file_sha256": "a648735c70534a01b988d4c0087c8816ee1364c51a6fc0cfb14466882d7b61e1",
+      "seconds_training_and_eval": 24.816228100000444,
+      "eval_weights_unchanged": true,
+      "note": "onehot value initialization and explicit associative operation are extra priors; no compute-saving or language claim"
+    },
+    {
+      "seed": 2,
+      "rule": "additive",
+      "evaluation": {
+        "24/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 500,
+              "accuracy": 0.6134969325153374
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 661,
+              "accuracy": 0.9167822468793343
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 501,
+              "accuracy": 0.6147239263803681
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 657,
+              "accuracy": 0.9112343966712899
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "24/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 815,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 815,
+              "correct": 815,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 721,
+              "correct": 721,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 1630,
+              "accuracy": 0.380574363763717
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1183,
+              "accuracy": 0.6356797420741537
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.0/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetFalse": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 1622,
+              "accuracy": 0.3787065141256129
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1184,
+              "accuracy": 0.6362170875873187
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        },
+        "96/noise0.05/resetTrue": {
+          "learned": {
+            "known": {
+              "n": 4283,
+              "correct": 0,
+              "accuracy": 0.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "key_value_bank_reference": {
+            "known": {
+              "n": 4283,
+              "correct": 4283,
+              "accuracy": 1.0
+            },
+            "unknown": {
+              "n": 1861,
+              "correct": 1861,
+              "accuracy": 1.0
+            }
+          },
+          "state_finite": true
+        }
+      },
+      "curve": [
+        {
+          "update": 100,
+          "loss": 0.9342583417892456
+        },
+        {
+          "update": 200,
+          "loss": 0.8097116947174072
+        },
+        {
+          "update": 300,
+          "loss": 0.7801284790039062
+        },
+        {
+          "update": 400,
+          "loss": 0.7441041469573975
+        },
+        {
+          "update": 500,
+          "loss": 0.7746626734733582
+        },
+        {
+          "update": 600,
+          "loss": 0.7973728179931641
+        }
+      ],
+      "state_floats": 128,
+      "state_bytes_fp32": 512,
+      "parameters": 938,
+      "write_rate": 0.9351208209991455,
+      "weights_sha256": "6ec4534adacfbfa31bab007f9041c9184249e06ea07730e1d31bfacf9a042e1a",
+      "checkpoint_file_sha256": "3f546bb4eaa2c4909f8a96c5868cf86c4e14dad75bc5757442cb765d860a911d",
+      "seconds_training_and_eval": 23.627349900001718,
+      "eval_weights_unchanged": true,
+      "note": "onehot value initialization and explicit associative operation are extra priors; no compute-saving or language claim"
+    }
+  ]
+}

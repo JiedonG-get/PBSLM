@@ -1,0 +1,12 @@
+test_delta_exact_unit_gate_overwrites_orthogonal_key_without_touching_other (tests.test_content_fast_state.ContentFastStateTests.test_delta_exact_unit_gate_overwrites_orthogonal_key_without_touching_other) ... ok
+test_first_write_equal_and_same_key_residual_contracts (tests.test_content_fast_state.ContentFastStateTests.test_first_write_equal_and_same_key_residual_contracts) ... ok
+test_query_read_only_and_gradients (tests.test_content_fast_state.ContentFastStateTests.test_query_read_only_and_gradients) ... ok
+test_episode_has_unknown_queries_and_explicit_corrections (tests.test_continuous_key_state.ContinuousKeyTaskTests.test_episode_has_unknown_queries_and_explicit_corrections) ... ok
+test_training_episode_produces_finite_loss_and_gradients (tests.test_continuous_key_state.ContinuousKeyTaskTests.test_training_episode_produces_finite_loss_and_gradients) ... ok
+test_gradients_through_update_and_read (tests.test_recurrent_working_state.RecurrentWorkingStateTests.test_gradients_through_update_and_read) ... ok
+test_state_fixed_size_and_query_read_only (tests.test_recurrent_working_state.RecurrentWorkingStateTests.test_state_fixed_size_and_query_read_only) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.095s
+
+OK
