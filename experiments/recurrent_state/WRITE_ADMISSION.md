@@ -23,7 +23,7 @@ python -m unittest tests.test_conservative_content_slots tests.test_dynamic_cont
 
 每条件hot48query、cold336query，接收计24576次热写。另送第9身份，跨9run共144条：原策略全接受且当场读对；保守策略全拒绝，当场读对0。新身份全部拒绝是容量政策的直接结果，不表示识别了无效信息。表中高噪声hot低分不能只归拒绝：不同写入接收时刻、label偶然相同、reader输出均可影响，未作独立因果分解。
 
-主代理逐保存prediction/target重新核对全部hot/coldcorrect计数，零不一致；6项定向测试通过（0.074秒初次，最终原始输出见content_fast600/write_admission_tests.log）。本轮没有额外独立代理代码/数据审计，不冒称已完成；文档与实验不支持任何语言能力或生产可靠性主张。
+主代理逐保存prediction/target重新核对全部hot/coldcorrect计数，零不一致；6项定向测试通过（0.074秒初次，最终原始输出见content_fast600/write_admission_tests.log）。阶段收尾独立只读审查重算全部9run计数与第9身份144个probe，均一致；审查没有执行模型、测试或读取权重。文档与实验不支持任何语言能力或生产可靠性主张。
 
 原始hot/cold预测、target、实际接收/拒绝总数、最后写入接收标记、9th身份结果保留write_admission512.json。拒绝不代表知道输入真伪，同样可能拒掉有效纠正；锚定key也可能不适应身份表征真实演变。
 
