@@ -1,0 +1,10 @@
+test_conflicting_records_remain_ambiguous (tests.test_query_attribute_attention.QueryAttributeAttentionTests.test_conflicting_records_remain_ambiguous) ... ok
+test_query_attributes_correction_and_distractors (tests.test_query_attribute_attention.QueryAttributeAttentionTests.test_query_attributes_correction_and_distractors) ... ok
+test_hard_tie_is_order_dependent_but_soft_value_is_not (tests.test_segmented_working_read.SegmentedWorkingReadTests.test_hard_tie_is_order_dependent_but_soft_value_is_not) ... ok
+test_invalid_inputs_fail_explicitly (tests.test_segmented_working_read.SegmentedWorkingReadTests.test_invalid_inputs_fail_explicitly) ... ok
+test_permutation_invariance_and_correct_record (tests.test_segmented_working_read.SegmentedWorkingReadTests.test_permutation_invariance_and_correct_record) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.043s
+
+OK
