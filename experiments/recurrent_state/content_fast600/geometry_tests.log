@@ -1,0 +1,10 @@
+test_key_geometry_and_confusion_partition (tests.test_fast_state_geometry.FastGeometryTests.test_key_geometry_and_confusion_partition) ... ok
+test_cross_key_read_change_matches_inner_product (tests.test_content_fast_state.ContentFastStateTests.test_cross_key_read_change_matches_inner_product) ... ok
+test_delta_exact_unit_gate_overwrites_orthogonal_key_without_touching_other (tests.test_content_fast_state.ContentFastStateTests.test_delta_exact_unit_gate_overwrites_orthogonal_key_without_touching_other) ... ok
+test_first_write_equal_and_same_key_residual_contracts (tests.test_content_fast_state.ContentFastStateTests.test_first_write_equal_and_same_key_residual_contracts) ... ok
+test_query_read_only_and_gradients (tests.test_content_fast_state.ContentFastStateTests.test_query_read_only_and_gradients) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.030s
+
+OK

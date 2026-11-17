@@ -27,6 +27,18 @@ class ContentFastStateTests(unittest.TestCase):
         target=delta.value_embedding(value);beta=delta.write_logit.sigmoid()
         torch.testing.assert_close(after,(1-beta)*before+beta*target)
 
+    def test_cross_key_read_change_matches_inner_product(self):
+        torch.manual_seed(51);model=ContentFastState()
+        key=torch.nn.functional.normalize(torch.randn(2,16),dim=-1)
+        query=torch.nn.functional.normalize(torch.randn(2,16),dim=-1)
+        state=torch.randn(2,16,8);value=torch.tensor([1,5])
+        target=model.value_embedding(value)
+        residual=target-torch.einsum('bd,bdv->bv',key,state)
+        changed=model.observe(state,key,value)-state
+        actual=torch.einsum('bd,bdv->bv',query,changed)
+        expected=model.write_logit.sigmoid()*(query*key).sum(-1,keepdim=True)*residual
+        torch.testing.assert_close(actual,expected,atol=1e-6,rtol=1e-5)
+
     def test_query_read_only_and_gradients(self):
         model=ContentFastState();key=torch.randn(2,16);values=torch.tensor([1,4])
         state=model.observe(model.initial(2),key,values);saved=state.detach().clone()
