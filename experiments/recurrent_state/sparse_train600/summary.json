@@ -1,0 +1,185 @@
+{
+  "source": "experiments\\recurrent_state\\sparse_train600\\results.json",
+  "arms": {
+    "soft": {
+      "per_seed": [
+        {
+          "seed": 0,
+          "uniform384": 1.0,
+          "all_hot": 1.0,
+          "all_cold": 0.38392857142857145,
+          "distinct_top_slots": 8,
+          "colliding": {
+            "correct": 0,
+            "n": 0
+          },
+          "noncolliding": {
+            "correct": 344,
+            "n": 896
+          }
+        },
+        {
+          "seed": 1,
+          "uniform384": 0.90869140625,
+          "all_hot": 0.984375,
+          "all_cold": 0.5859375,
+          "distinct_top_slots": 7,
+          "colliding": {
+            "correct": 6,
+            "n": 32
+          },
+          "noncolliding": {
+            "correct": 519,
+            "n": 864
+          }
+        },
+        {
+          "seed": 2,
+          "uniform384": 1.0,
+          "all_hot": 1.0,
+          "all_cold": 0.4029017857142857,
+          "distinct_top_slots": 8,
+          "colliding": {
+            "correct": 0,
+            "n": 0
+          },
+          "noncolliding": {
+            "correct": 361,
+            "n": 896
+          }
+        }
+      ],
+      "means": {
+        "uniform384": 0.9695638020833334,
+        "all_hot": 0.9947916666666666,
+        "all_cold": 0.4575892857142857
+      },
+      "prior_final": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "note": "top-slot collisions do not prove shared full representation, read remains soft"
+    },
+    "sparse": {
+      "per_seed": [
+        {
+          "seed": 0,
+          "uniform384": 0.9994303385416666,
+          "all_hot": 1.0,
+          "all_cold": 0.96875,
+          "distinct_top_slots": 7,
+          "colliding": {
+            "correct": 4,
+            "n": 32
+          },
+          "noncolliding": {
+            "correct": 864,
+            "n": 864
+          }
+        },
+        {
+          "seed": 1,
+          "uniform384": 0.9997151692708334,
+          "all_hot": 1.0,
+          "all_cold": 0.9095982142857143,
+          "distinct_top_slots": 5,
+          "colliding": {
+            "correct": 15,
+            "n": 96
+          },
+          "noncolliding": {
+            "correct": 800,
+            "n": 800
+          }
+        },
+        {
+          "seed": 2,
+          "uniform384": 0.9897867838541666,
+          "all_hot": 1.0,
+          "all_cold": 0.9006696428571429,
+          "distinct_top_slots": 5,
+          "colliding": {
+            "correct": 9,
+            "n": 96
+          },
+          "noncolliding": {
+            "correct": 798,
+            "n": 800
+          }
+        }
+      ],
+      "means": {
+        "uniform384": 0.9963107638888888,
+        "all_hot": 1.0,
+        "all_cold": 0.9263392857142857
+      },
+      "prior_final": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "note": "top-slot collisions do not prove shared full representation, read remains soft"
+    },
+    "sparse_collision": {
+      "per_seed": [
+        {
+          "seed": 0,
+          "uniform384": 1.0,
+          "all_hot": 1.0,
+          "all_cold": 1.0,
+          "distinct_top_slots": 8,
+          "colliding": {
+            "correct": 0,
+            "n": 0
+          },
+          "noncolliding": {
+            "correct": 896,
+            "n": 896
+          }
+        },
+        {
+          "seed": 1,
+          "uniform384": 0.9999186197916666,
+          "all_hot": 1.0,
+          "all_cold": 0.9386160714285714,
+          "distinct_top_slots": 6,
+          "colliding": {
+            "correct": 9,
+            "n": 64
+          },
+          "noncolliding": {
+            "correct": 832,
+            "n": 832
+          }
+        },
+        {
+          "seed": 2,
+          "uniform384": 0.9974365234375,
+          "all_hot": 1.0,
+          "all_cold": 0.9676339285714286,
+          "distinct_top_slots": 7,
+          "colliding": {
+            "correct": 3,
+            "n": 32
+          },
+          "noncolliding": {
+            "correct": 864,
+            "n": 864
+          }
+        }
+      ],
+      "means": {
+        "uniform384": 0.9991183810763888,
+        "all_hot": 1.0,
+        "all_cold": 0.96875
+      },
+      "prior_final": [
+        0.007210296578705311,
+        0.07342055439949036,
+        0.039147328585386276
+      ],
+      "note": "top-slot collisions do not prove shared full representation, read remains soft"
+    }
+  }
+}
