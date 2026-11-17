@@ -1,0 +1,600 @@
+{
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "updates": 600,
+    "width": 96,
+    "output": "experiments/recurrent_state/pilot600.json"
+  },
+  "scope": "learned fixed recurrent state, no raw history query, symbolic mechanism only",
+  "provenance": {
+    "git_commit": "5a41e7d0626f8ed9e6076caa0b153763aef99ac2",
+    "git_status": "?? evaluation/recurrent_state_control.py\n?? models/recurrent_working_state.py",
+    "source_sha256_at_capture": {
+      "models/recurrent_working_state.py": "6253b69c1f102b7f0d94327d90f7d8475f417ef82699f2cdeb7c60d20e2bba06",
+      "evaluation/recurrent_state_control.py": "d074b829d2c6c716d445a52140901eae34d53511f747fe250e3af30c46221699"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "seconds": 20.05527619999998,
+      "curve": [
+        {
+          "update": 100,
+          "loss": 1.6502994298934937,
+          "accuracy": 0.3151041666666667
+        },
+        {
+          "update": 200,
+          "loss": 1.5714848041534424,
+          "accuracy": 0.359375
+        },
+        {
+          "update": 300,
+          "loss": 1.5363167524337769,
+          "accuracy": 0.375
+        },
+        {
+          "update": 400,
+          "loss": 1.487282156944275,
+          "accuracy": 0.3697916666666667
+        },
+        {
+          "update": 500,
+          "loss": 1.3009777069091797,
+          "accuracy": 0.4986979166666667
+        },
+        {
+          "update": 600,
+          "loss": 1.026170015335083,
+          "accuracy": 0.62890625
+        }
+      ],
+      "evaluation": {
+        "24/state": {
+          "correct": 947,
+          "n": 1536,
+          "accuracy": 0.6165364583333334,
+          "by_write_age": {
+            "0": {
+              "correct": 310,
+              "n": 356
+            },
+            "1-3": {
+              "correct": 404,
+              "n": 600
+            },
+            "4-15": {
+              "correct": 226,
+              "n": 543
+            },
+            "16+": {
+              "correct": 7,
+              "n": 37
+            }
+          }
+        },
+        "24/query_reset": {
+          "correct": 176,
+          "n": 1536,
+          "accuracy": 0.11458333333333333,
+          "by_write_age": {
+            "0": {
+              "correct": 33,
+              "n": 356
+            },
+            "1-3": {
+              "correct": 65,
+              "n": 600
+            },
+            "4-15": {
+              "correct": 73,
+              "n": 543
+            },
+            "16+": {
+              "correct": 5,
+              "n": 37
+            }
+          }
+        },
+        "96/state": {
+          "correct": 3245,
+          "n": 6144,
+          "accuracy": 0.5281575520833334,
+          "by_write_age": {
+            "0": {
+              "correct": 740,
+              "n": 950
+            },
+            "1-3": {
+              "correct": 1145,
+              "n": 1877
+            },
+            "4-15": {
+              "correct": 1203,
+              "n": 2779
+            },
+            "16+": {
+              "correct": 157,
+              "n": 538
+            }
+          }
+        },
+        "96/query_reset": {
+          "correct": 787,
+          "n": 6144,
+          "accuracy": 0.12809244791666666,
+          "by_write_age": {
+            "0": {
+              "correct": 119,
+              "n": 950
+            },
+            "1-3": {
+              "correct": 237,
+              "n": 1877
+            },
+            "4-15": {
+              "correct": 374,
+              "n": 2779
+            },
+            "16+": {
+              "correct": 57,
+              "n": 538
+            }
+          }
+        },
+        "384/state": {
+          "correct": 12600,
+          "n": 24576,
+          "accuracy": 0.5126953125,
+          "by_write_age": {
+            "0": {
+              "correct": 2414,
+              "n": 3204
+            },
+            "1-3": {
+              "correct": 4503,
+              "n": 7288
+            },
+            "4-15": {
+              "correct": 4916,
+              "n": 11292
+            },
+            "16+": {
+              "correct": 767,
+              "n": 2792
+            }
+          }
+        },
+        "384/query_reset": {
+          "correct": 3039,
+          "n": 24576,
+          "accuracy": 0.1236572265625,
+          "by_write_age": {
+            "0": {
+              "correct": 386,
+              "n": 3204
+            },
+            "1-3": {
+              "correct": 903,
+              "n": 7288
+            },
+            "4-15": {
+              "correct": 1380,
+              "n": 11292
+            },
+            "16+": {
+              "correct": 370,
+              "n": 2792
+            }
+          }
+        }
+      },
+      "state_floats_per_stream": 96,
+      "state_bytes_fp32": 384,
+      "model_parameters": 54824,
+      "weights_sha256": "57dafcc5a6806ac2918ff50dfa4514c2e7639e31ae17ebe69d86ae12728976f5",
+      "raw_history_access_at_query": false,
+      "eval_parameters_unchanged": true,
+      "limitations": [
+        "symbolic writes/queries",
+        "8 known slots/classes",
+        "training BPTT activations not constant memory",
+        "evaluation truth/metrics stored externally but never query inputs",
+        "not PBSLM main model integration"
+      ]
+    },
+    {
+      "seed": 1,
+      "seconds": 20.71745450000003,
+      "curve": [
+        {
+          "update": 100,
+          "loss": 1.579607367515564,
+          "accuracy": 0.3736979166666667
+        },
+        {
+          "update": 200,
+          "loss": 1.5049837827682495,
+          "accuracy": 0.3841145833333333
+        },
+        {
+          "update": 300,
+          "loss": 1.4700064659118652,
+          "accuracy": 0.3919270833333333
+        },
+        {
+          "update": 400,
+          "loss": 1.3322954177856445,
+          "accuracy": 0.4947916666666667
+        },
+        {
+          "update": 500,
+          "loss": 1.1157053709030151,
+          "accuracy": 0.5651041666666666
+        },
+        {
+          "update": 600,
+          "loss": 0.908042311668396,
+          "accuracy": 0.6575520833333334
+        }
+      ],
+      "evaluation": {
+        "24/state": {
+          "correct": 1022,
+          "n": 1536,
+          "accuracy": 0.6653645833333334,
+          "by_write_age": {
+            "0": {
+              "correct": 305,
+              "n": 354
+            },
+            "1-3": {
+              "correct": 431,
+              "n": 597
+            },
+            "4-15": {
+              "correct": 278,
+              "n": 556
+            },
+            "16+": {
+              "correct": 8,
+              "n": 29
+            }
+          }
+        },
+        "24/query_reset": {
+          "correct": 162,
+          "n": 1536,
+          "accuracy": 0.10546875,
+          "by_write_age": {
+            "0": {
+              "correct": 44,
+              "n": 354
+            },
+            "1-3": {
+              "correct": 66,
+              "n": 597
+            },
+            "4-15": {
+              "correct": 51,
+              "n": 556
+            },
+            "16+": {
+              "correct": 1,
+              "n": 29
+            }
+          }
+        },
+        "96/state": {
+          "correct": 3564,
+          "n": 6144,
+          "accuracy": 0.580078125,
+          "by_write_age": {
+            "0": {
+              "correct": 748,
+              "n": 930
+            },
+            "1-3": {
+              "correct": 1298,
+              "n": 1911
+            },
+            "4-15": {
+              "correct": 1322,
+              "n": 2743
+            },
+            "16+": {
+              "correct": 196,
+              "n": 560
+            }
+          }
+        },
+        "96/query_reset": {
+          "correct": 808,
+          "n": 6144,
+          "accuracy": 0.13151041666666666,
+          "by_write_age": {
+            "0": {
+              "correct": 112,
+              "n": 930
+            },
+            "1-3": {
+              "correct": 246,
+              "n": 1911
+            },
+            "4-15": {
+              "correct": 388,
+              "n": 2743
+            },
+            "16+": {
+              "correct": 62,
+              "n": 560
+            }
+          }
+        },
+        "384/state": {
+          "correct": 13738,
+          "n": 24576,
+          "accuracy": 0.5590006510416666,
+          "by_write_age": {
+            "0": {
+              "correct": 2417,
+              "n": 3184
+            },
+            "1-3": {
+              "correct": 4851,
+              "n": 7362
+            },
+            "4-15": {
+              "correct": 5609,
+              "n": 11329
+            },
+            "16+": {
+              "correct": 861,
+              "n": 2701
+            }
+          }
+        },
+        "384/query_reset": {
+          "correct": 3292,
+          "n": 24576,
+          "accuracy": 0.13395182291666666,
+          "by_write_age": {
+            "0": {
+              "correct": 420,
+              "n": 3184
+            },
+            "1-3": {
+              "correct": 936,
+              "n": 7362
+            },
+            "4-15": {
+              "correct": 1537,
+              "n": 11329
+            },
+            "16+": {
+              "correct": 399,
+              "n": 2701
+            }
+          }
+        }
+      },
+      "state_floats_per_stream": 96,
+      "state_bytes_fp32": 384,
+      "model_parameters": 54824,
+      "weights_sha256": "5a0248f49ed03251dffb18b130a37f0d6127377e41d696f6c57be791efddc2b5",
+      "raw_history_access_at_query": false,
+      "eval_parameters_unchanged": true,
+      "limitations": [
+        "symbolic writes/queries",
+        "8 known slots/classes",
+        "training BPTT activations not constant memory",
+        "evaluation truth/metrics stored externally but never query inputs",
+        "not PBSLM main model integration"
+      ]
+    },
+    {
+      "seed": 2,
+      "seconds": 19.88053919999993,
+      "curve": [
+        {
+          "update": 100,
+          "loss": 1.5628352165222168,
+          "accuracy": 0.3528645833333333
+        },
+        {
+          "update": 200,
+          "loss": 1.4995410442352295,
+          "accuracy": 0.3815104166666667
+        },
+        {
+          "update": 300,
+          "loss": 1.475975751876831,
+          "accuracy": 0.3802083333333333
+        },
+        {
+          "update": 400,
+          "loss": 1.4720805883407593,
+          "accuracy": 0.4088541666666667
+        },
+        {
+          "update": 500,
+          "loss": 1.2611613273620605,
+          "accuracy": 0.5442708333333334
+        },
+        {
+          "update": 600,
+          "loss": 0.8906592130661011,
+          "accuracy": 0.7239583333333334
+        }
+      ],
+      "evaluation": {
+        "24/state": {
+          "correct": 1041,
+          "n": 1536,
+          "accuracy": 0.677734375,
+          "by_write_age": {
+            "0": {
+              "correct": 300,
+              "n": 349
+            },
+            "1-3": {
+              "correct": 425,
+              "n": 589
+            },
+            "4-15": {
+              "correct": 304,
+              "n": 571
+            },
+            "16+": {
+              "correct": 12,
+              "n": 27
+            }
+          }
+        },
+        "24/query_reset": {
+          "correct": 178,
+          "n": 1536,
+          "accuracy": 0.11588541666666667,
+          "by_write_age": {
+            "0": {
+              "correct": 34,
+              "n": 349
+            },
+            "1-3": {
+              "correct": 69,
+              "n": 589
+            },
+            "4-15": {
+              "correct": 71,
+              "n": 571
+            },
+            "16+": {
+              "correct": 4,
+              "n": 27
+            }
+          }
+        },
+        "96/state": {
+          "correct": 3643,
+          "n": 6144,
+          "accuracy": 0.5929361979166666,
+          "by_write_age": {
+            "0": {
+              "correct": 735,
+              "n": 923
+            },
+            "1-3": {
+              "correct": 1369,
+              "n": 1933
+            },
+            "4-15": {
+              "correct": 1366,
+              "n": 2724
+            },
+            "16+": {
+              "correct": 173,
+              "n": 564
+            }
+          }
+        },
+        "96/query_reset": {
+          "correct": 790,
+          "n": 6144,
+          "accuracy": 0.12858072916666666,
+          "by_write_age": {
+            "0": {
+              "correct": 116,
+              "n": 923
+            },
+            "1-3": {
+              "correct": 265,
+              "n": 1933
+            },
+            "4-15": {
+              "correct": 334,
+              "n": 2724
+            },
+            "16+": {
+              "correct": 75,
+              "n": 564
+            }
+          }
+        },
+        "384/state": {
+          "correct": 13980,
+          "n": 24576,
+          "accuracy": 0.56884765625,
+          "by_write_age": {
+            "0": {
+              "correct": 2506,
+              "n": 3242
+            },
+            "1-3": {
+              "correct": 4722,
+              "n": 7153
+            },
+            "4-15": {
+              "correct": 5755,
+              "n": 11398
+            },
+            "16+": {
+              "correct": 997,
+              "n": 2783
+            }
+          }
+        },
+        "384/query_reset": {
+          "correct": 3073,
+          "n": 24576,
+          "accuracy": 0.12504069010416666,
+          "by_write_age": {
+            "0": {
+              "correct": 443,
+              "n": 3242
+            },
+            "1-3": {
+              "correct": 888,
+              "n": 7153
+            },
+            "4-15": {
+              "correct": 1396,
+              "n": 11398
+            },
+            "16+": {
+              "correct": 346,
+              "n": 2783
+            }
+          }
+        }
+      },
+      "state_floats_per_stream": 96,
+      "state_bytes_fp32": 384,
+      "model_parameters": 54824,
+      "weights_sha256": "0bed42c2d0ee9920ab91be1b2f5a491db8e033af1e9bf6dc22c378f7865cf6ba",
+      "raw_history_access_at_query": false,
+      "eval_parameters_unchanged": true,
+      "limitations": [
+        "symbolic writes/queries",
+        "8 known slots/classes",
+        "training BPTT activations not constant memory",
+        "evaluation truth/metrics stored externally but never query inputs",
+        "not PBSLM main model integration"
+      ]
+    }
+  ]
+}
