@@ -21,6 +21,24 @@ class DynamicContentSlotsTests(unittest.TestCase):
         self.assertEqual(set(state[0,:,25].tolist()),{0.,1.})
         logits=model.query(state,keys[2:3]);self.assertEqual(int(logits.argmax(-1)),8)
 
+    def test_similar_distinct_keys_merge_under_declared_threshold(self):
+        model=self.model();state=model.initial(1);eye=torch.eye(16)
+        key_a=eye[0:1];key_b=.95*key_a+(1-.95**2)**.5*eye[1:2]
+        state=model.observe(state,key_a,torch.tensor([1]))
+        state=model.observe(state,key_b,torch.tensor([2]))
+        self.assertEqual(int((state[:,:,24]>.5).sum()),1)
+        torch.testing.assert_close(state[:,0,16:24],model.reader.value_embedding(torch.tensor([2])))
+
+    def test_noisy_versions_can_evict_unrelated_cold_record(self):
+        model=self.model();state=model.initial(1);eye=torch.eye(16)
+        state=model.observe(state,eye[0:1],torch.tensor([1]))
+        state=model.observe(state,eye[1:2],torch.tensor([2]))
+        a=.85*eye[0:1]+(1-.85**2)**.5*eye[2:3]
+        b=.85*eye[0:1]-(1-.85**2)**.5*eye[2:3]
+        state=model.observe(state,a,torch.tensor([3]))
+        state=model.observe(state,b,torch.tensor([4]))
+        self.assertEqual(int(model.query(state,eye[1:2]).argmax(-1)),8)
+
     def test_invalid_inputs_do_not_modify_state(self):
         model=self.model();state=model.initial(1);saved=state.clone()
         for key,value in [(torch.zeros(1,16),torch.tensor([1])),(torch.eye(16)[:1],torch.tensor([8]))]:
