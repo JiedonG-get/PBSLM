@@ -1,0 +1,12 @@
+test_projection_only_gradients_and_identity_targets (tests.test_text_key_projector.TextKeyProjectorTests.test_projection_only_gradients_and_identity_targets) ... ok
+test_fixed_projection_independent_of_data_and_orthonormal_columns (tests.test_text_key_transfer.TextKeyTransferTests.test_fixed_projection_independent_of_data_and_orthonormal_columns) ... ok
+test_no_unknown_queries_not_divided_by_zero_or_counted_correct (tests.test_text_key_transfer.TextKeyTransferTests.test_no_unknown_queries_not_divided_by_zero_or_counted_correct) ... ok
+test_cross_key_read_change_matches_inner_product (tests.test_content_fast_state.ContentFastStateTests.test_cross_key_read_change_matches_inner_product) ... ok
+test_delta_exact_unit_gate_overwrites_orthogonal_key_without_touching_other (tests.test_content_fast_state.ContentFastStateTests.test_delta_exact_unit_gate_overwrites_orthogonal_key_without_touching_other) ... ok
+test_first_write_equal_and_same_key_residual_contracts (tests.test_content_fast_state.ContentFastStateTests.test_first_write_equal_and_same_key_residual_contracts) ... ok
+test_query_read_only_and_gradients (tests.test_content_fast_state.ContentFastStateTests.test_query_read_only_and_gradients) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.033s
+
+OK
