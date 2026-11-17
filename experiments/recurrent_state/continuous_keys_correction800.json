@@ -1,0 +1,1498 @@
+{
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "updates": 800,
+    "width": 96,
+    "validation_batches": 16,
+    "output": "experiments/recurrent_state/continuous_keys_correction800.json"
+  },
+  "scope": "random continuous keys with unknown query and correction events; no natural language",
+  "provenance": {
+    "git_commit": "f9fc05b6a8e33f6ee8c0a34956a8bb0daf945bb0",
+    "git_status": "M tests/test_continuous_key_state.py\n?? evaluation/continuous_key_state_control.py\n?? experiments/recurrent_state/continuous_key_smoke.json",
+    "source_sha256_at_capture": {
+      "models/continuous_key_state.py": "09d701c1a3a9ff59e2fc30b805cf7aed52049207013be6102b1c1bfe491517a7",
+      "evaluation/continuous_key_state_control.py": "e9ecba500f2fa616cb97df584757f0c920f4b08f3b4028f0420c2a9d9c077b51"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "updates": 800,
+      "curve": [
+        {
+          "update": 100,
+          "loss": 2.038628101348877
+        },
+        {
+          "update": 200,
+          "loss": 2.109250545501709
+        },
+        {
+          "update": 300,
+          "loss": 2.075059413909912
+        },
+        {
+          "update": 400,
+          "loss": 2.069758653640747
+        },
+        {
+          "update": 500,
+          "loss": 2.08359694480896
+        },
+        {
+          "update": 600,
+          "loss": 2.0904488563537598
+        },
+        {
+          "update": 700,
+          "loss": 2.0446789264678955
+        },
+        {
+          "update": 800,
+          "loss": 2.0717597007751465
+        }
+      ],
+      "dictionary_threshold": {
+        "threshold": 0.94,
+        "balanced_accuracy": 1.0,
+        "known_coverage": 1.0,
+        "unknown_false_accept_rate": 0.0
+      },
+      "threshold_grid": [
+        {
+          "threshold": 0.2,
+          "balanced_accuracy": 0.5712890625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.857421875
+        },
+        {
+          "threshold": 0.22,
+          "balanced_accuracy": 0.5927734375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.814453125
+        },
+        {
+          "threshold": 0.24,
+          "balanced_accuracy": 0.6142578125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.771484375
+        },
+        {
+          "threshold": 0.26,
+          "balanced_accuracy": 0.6376953125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.724609375
+        },
+        {
+          "threshold": 0.28,
+          "balanced_accuracy": 0.658203125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.68359375
+        },
+        {
+          "threshold": 0.3,
+          "balanced_accuracy": 0.6806640625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.638671875
+        },
+        {
+          "threshold": 0.32,
+          "balanced_accuracy": 0.712890625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.57421875
+        },
+        {
+          "threshold": 0.34,
+          "balanced_accuracy": 0.744140625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.51171875
+        },
+        {
+          "threshold": 0.36,
+          "balanced_accuracy": 0.7724609375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.455078125
+        },
+        {
+          "threshold": 0.38,
+          "balanced_accuracy": 0.7939453125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.412109375
+        },
+        {
+          "threshold": 0.4,
+          "balanced_accuracy": 0.826171875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.34765625
+        },
+        {
+          "threshold": 0.42,
+          "balanced_accuracy": 0.8515625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.296875
+        },
+        {
+          "threshold": 0.44,
+          "balanced_accuracy": 0.8701171875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.259765625
+        },
+        {
+          "threshold": 0.46,
+          "balanced_accuracy": 0.8935546875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.212890625
+        },
+        {
+          "threshold": 0.48,
+          "balanced_accuracy": 0.9091796875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.181640625
+        },
+        {
+          "threshold": 0.5,
+          "balanced_accuracy": 0.927734375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.14453125
+        },
+        {
+          "threshold": 0.52,
+          "balanced_accuracy": 0.94140625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.1171875
+        },
+        {
+          "threshold": 0.54,
+          "balanced_accuracy": 0.95703125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0859375
+        },
+        {
+          "threshold": 0.56,
+          "balanced_accuracy": 0.9697265625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.060546875
+        },
+        {
+          "threshold": 0.58,
+          "balanced_accuracy": 0.9755859375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.048828125
+        },
+        {
+          "threshold": 0.6,
+          "balanced_accuracy": 0.978515625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.04296875
+        },
+        {
+          "threshold": 0.62,
+          "balanced_accuracy": 0.9833984375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.033203125
+        },
+        {
+          "threshold": 0.64,
+          "balanced_accuracy": 0.986328125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.02734375
+        },
+        {
+          "threshold": 0.66,
+          "balanced_accuracy": 0.990234375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.01953125
+        },
+        {
+          "threshold": 0.68,
+          "balanced_accuracy": 0.994140625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.01171875
+        },
+        {
+          "threshold": 0.7,
+          "balanced_accuracy": 0.99609375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0078125
+        },
+        {
+          "threshold": 0.72,
+          "balanced_accuracy": 0.9970703125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.005859375
+        },
+        {
+          "threshold": 0.74,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.76,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.78,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.8,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.82,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.84,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.86,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.88,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.9,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.92,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.94,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        }
+      ],
+      "evaluation": {
+        "24/0.0": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.23828125,
+              "known_accuracy": 0.04113110539845758,
+              "unknown_accuracy": 0.8617886178861789,
+              "unknown_false_accept_rate": 0.13821138211382114,
+              "known_coverage": 52,
+              "correct": 122,
+              "known_correct": 16,
+              "known_n": 389,
+              "unknown_correct": 106,
+              "unknown_n": 123,
+              "false_accept": 17,
+              "total": 512
+            },
+            "reset": {
+              "accuracy": 0.240234375,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 123,
+              "known_correct": 0,
+              "known_n": 389,
+              "unknown_correct": 123,
+              "unknown_n": 123,
+              "false_accept": 0,
+              "total": 512
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 389,
+              "correct": 512,
+              "known_correct": 389,
+              "known_n": 389,
+              "unknown_correct": 123,
+              "unknown_n": 123,
+              "false_accept": 0,
+              "total": 512
+            }
+          },
+          "total_events": 24,
+          "queries": 512,
+          "correction_writes": 126,
+          "query_key_noise_sigma": 0.0,
+          "memory_keys": 8
+        },
+        "24/0.05": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.2734375,
+              "known_accuracy": 0.0215633423180593,
+              "unknown_accuracy": 0.9361702127659575,
+              "unknown_false_accept_rate": 0.06382978723404255,
+              "known_coverage": 23,
+              "correct": 140,
+              "known_correct": 8,
+              "known_n": 371,
+              "unknown_correct": 132,
+              "unknown_n": 141,
+              "false_accept": 9,
+              "total": 512
+            },
+            "reset": {
+              "accuracy": 0.275390625,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 141,
+              "known_correct": 0,
+              "known_n": 371,
+              "unknown_correct": 141,
+              "unknown_n": 141,
+              "false_accept": 0,
+              "total": 512
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 371,
+              "correct": 512,
+              "known_correct": 371,
+              "known_n": 371,
+              "unknown_correct": 141,
+              "unknown_n": 141,
+              "false_accept": 0,
+              "total": 512
+            }
+          },
+          "total_events": 24,
+          "queries": 512,
+          "correction_writes": 112,
+          "query_key_noise_sigma": 0.05,
+          "memory_keys": 8
+        },
+        "96/0.0": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.24609375,
+              "known_accuracy": 0.10739856801909307,
+              "unknown_accuracy": 0.6490984743411928,
+              "unknown_false_accept_rate": 0.3509015256588072,
+              "known_coverage": 712,
+              "correct": 693,
+              "known_correct": 225,
+              "known_n": 2095,
+              "unknown_correct": 468,
+              "unknown_n": 721,
+              "false_accept": 253,
+              "total": 2816
+            },
+            "reset": {
+              "accuracy": 0.2560369318181818,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 721,
+              "known_correct": 0,
+              "known_n": 2095,
+              "unknown_correct": 721,
+              "unknown_n": 721,
+              "false_accept": 0,
+              "total": 2816
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 2095,
+              "correct": 2816,
+              "known_correct": 2095,
+              "known_n": 2095,
+              "unknown_correct": 721,
+              "unknown_n": 721,
+              "false_accept": 0,
+              "total": 2816
+            }
+          },
+          "total_events": 96,
+          "queries": 2816,
+          "correction_writes": 705,
+          "query_key_noise_sigma": 0.0,
+          "memory_keys": 8
+        },
+        "96/0.05": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.2393465909090909,
+              "known_accuracy": 0.06034889203206035,
+              "unknown_accuracy": 0.7856115107913669,
+              "unknown_false_accept_rate": 0.2143884892086331,
+              "known_coverage": 442,
+              "correct": 674,
+              "known_correct": 128,
+              "known_n": 2121,
+              "unknown_correct": 546,
+              "unknown_n": 695,
+              "false_accept": 149,
+              "total": 2816
+            },
+            "reset": {
+              "accuracy": 0.24680397727272727,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 695,
+              "known_correct": 0,
+              "known_n": 2121,
+              "unknown_correct": 695,
+              "unknown_n": 695,
+              "false_accept": 0,
+              "total": 2816
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 2121,
+              "correct": 2816,
+              "known_correct": 2121,
+              "known_n": 2121,
+              "unknown_correct": 695,
+              "unknown_n": 695,
+              "false_accept": 0,
+              "total": 2816
+            }
+          },
+          "total_events": 96,
+          "queries": 2816,
+          "correction_writes": 704,
+          "query_key_noise_sigma": 0.05,
+          "memory_keys": 8
+        }
+      },
+      "parameters": 51657,
+      "state_floats": 96,
+      "state_bytes_fp32": 384,
+      "weights_sha256": "b69d69c05e6ed77382226ce329e6ad926a950d0f9699157ac8178a07e2757f57",
+      "validation_batches": 16,
+      "test_batches_per_event_stream": 32,
+      "seconds_train_and_eval": 28.61730399999942,
+      "scope_limit": "8 random keys; training corrections, fixed-dimension key/value classes; symbolic only, not PBSLM"
+    },
+    {
+      "seed": 1,
+      "updates": 800,
+      "curve": [
+        {
+          "update": 100,
+          "loss": 2.076326608657837
+        },
+        {
+          "update": 200,
+          "loss": 2.073941707611084
+        },
+        {
+          "update": 300,
+          "loss": 2.0620834827423096
+        },
+        {
+          "update": 400,
+          "loss": 2.0908660888671875
+        },
+        {
+          "update": 500,
+          "loss": 2.0864267349243164
+        },
+        {
+          "update": 600,
+          "loss": 2.0696115493774414
+        },
+        {
+          "update": 700,
+          "loss": 2.0565834045410156
+        },
+        {
+          "update": 800,
+          "loss": 2.082219123840332
+        }
+      ],
+      "dictionary_threshold": {
+        "threshold": 0.94,
+        "balanced_accuracy": 1.0,
+        "known_coverage": 1.0,
+        "unknown_false_accept_rate": 0.0
+      },
+      "threshold_grid": [
+        {
+          "threshold": 0.2,
+          "balanced_accuracy": 0.5595703125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.880859375
+        },
+        {
+          "threshold": 0.22,
+          "balanced_accuracy": 0.5751953125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.849609375
+        },
+        {
+          "threshold": 0.24,
+          "balanced_accuracy": 0.6005859375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.798828125
+        },
+        {
+          "threshold": 0.26,
+          "balanced_accuracy": 0.6181640625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.763671875
+        },
+        {
+          "threshold": 0.28,
+          "balanced_accuracy": 0.642578125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.71484375
+        },
+        {
+          "threshold": 0.3,
+          "balanced_accuracy": 0.6650390625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.669921875
+        },
+        {
+          "threshold": 0.32,
+          "balanced_accuracy": 0.701171875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.59765625
+        },
+        {
+          "threshold": 0.34,
+          "balanced_accuracy": 0.7275390625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.544921875
+        },
+        {
+          "threshold": 0.36,
+          "balanced_accuracy": 0.7568359375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.486328125
+        },
+        {
+          "threshold": 0.38,
+          "balanced_accuracy": 0.783203125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.43359375
+        },
+        {
+          "threshold": 0.4,
+          "balanced_accuracy": 0.8076171875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.384765625
+        },
+        {
+          "threshold": 0.42,
+          "balanced_accuracy": 0.83203125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.3359375
+        },
+        {
+          "threshold": 0.44,
+          "balanced_accuracy": 0.8642578125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.271484375
+        },
+        {
+          "threshold": 0.46,
+          "balanced_accuracy": 0.884765625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.23046875
+        },
+        {
+          "threshold": 0.48,
+          "balanced_accuracy": 0.904296875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.19140625
+        },
+        {
+          "threshold": 0.5,
+          "balanced_accuracy": 0.9228515625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.154296875
+        },
+        {
+          "threshold": 0.52,
+          "balanced_accuracy": 0.935546875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.12890625
+        },
+        {
+          "threshold": 0.54,
+          "balanced_accuracy": 0.9453125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.109375
+        },
+        {
+          "threshold": 0.56,
+          "balanced_accuracy": 0.9560546875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.087890625
+        },
+        {
+          "threshold": 0.58,
+          "balanced_accuracy": 0.97265625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0546875
+        },
+        {
+          "threshold": 0.6,
+          "balanced_accuracy": 0.98046875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0390625
+        },
+        {
+          "threshold": 0.62,
+          "balanced_accuracy": 0.990234375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.01953125
+        },
+        {
+          "threshold": 0.64,
+          "balanced_accuracy": 0.994140625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.01171875
+        },
+        {
+          "threshold": 0.66,
+          "balanced_accuracy": 0.9951171875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.009765625
+        },
+        {
+          "threshold": 0.68,
+          "balanced_accuracy": 0.9951171875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.009765625
+        },
+        {
+          "threshold": 0.7,
+          "balanced_accuracy": 0.99609375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0078125
+        },
+        {
+          "threshold": 0.72,
+          "balanced_accuracy": 0.9990234375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.001953125
+        },
+        {
+          "threshold": 0.74,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.76,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.78,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.8,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.82,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.84,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.86,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.88,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.9,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.92,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.94,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        }
+      ],
+      "evaluation": {
+        "24/0.0": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.25,
+              "known_accuracy": 0.038560411311053984,
+              "unknown_accuracy": 0.9186991869918699,
+              "unknown_false_accept_rate": 0.08130081300813008,
+              "known_coverage": 30,
+              "correct": 128,
+              "known_correct": 15,
+              "known_n": 389,
+              "unknown_correct": 113,
+              "unknown_n": 123,
+              "false_accept": 10,
+              "total": 512
+            },
+            "reset": {
+              "accuracy": 0.240234375,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 123,
+              "known_correct": 0,
+              "known_n": 389,
+              "unknown_correct": 123,
+              "unknown_n": 123,
+              "false_accept": 0,
+              "total": 512
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 389,
+              "correct": 512,
+              "known_correct": 389,
+              "known_n": 389,
+              "unknown_correct": 123,
+              "unknown_n": 123,
+              "false_accept": 0,
+              "total": 512
+            }
+          },
+          "total_events": 24,
+          "queries": 512,
+          "correction_writes": 130,
+          "query_key_noise_sigma": 0.0,
+          "memory_keys": 8
+        },
+        "24/0.05": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.271484375,
+              "known_accuracy": 0.00804289544235925,
+              "unknown_accuracy": 0.9784172661870504,
+              "unknown_false_accept_rate": 0.02158273381294964,
+              "known_coverage": 8,
+              "correct": 139,
+              "known_correct": 3,
+              "known_n": 373,
+              "unknown_correct": 136,
+              "unknown_n": 139,
+              "false_accept": 3,
+              "total": 512
+            },
+            "reset": {
+              "accuracy": 0.271484375,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 139,
+              "known_correct": 0,
+              "known_n": 373,
+              "unknown_correct": 139,
+              "unknown_n": 139,
+              "false_accept": 0,
+              "total": 512
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 373,
+              "correct": 512,
+              "known_correct": 373,
+              "known_n": 373,
+              "unknown_correct": 139,
+              "unknown_n": 139,
+              "false_accept": 0,
+              "total": 512
+            }
+          },
+          "total_events": 24,
+          "queries": 512,
+          "correction_writes": 135,
+          "query_key_noise_sigma": 0.05,
+          "memory_keys": 8
+        },
+        "96/0.0": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.26136363636363635,
+              "known_accuracy": 0.06952380952380953,
+              "unknown_accuracy": 0.8240223463687151,
+              "unknown_false_accept_rate": 0.17597765363128492,
+              "known_coverage": 403,
+              "correct": 736,
+              "known_correct": 146,
+              "known_n": 2100,
+              "unknown_correct": 590,
+              "unknown_n": 716,
+              "false_accept": 126,
+              "total": 2816
+            },
+            "reset": {
+              "accuracy": 0.25426136363636365,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 716,
+              "known_correct": 0,
+              "known_n": 2100,
+              "unknown_correct": 716,
+              "unknown_n": 716,
+              "false_accept": 0,
+              "total": 2816
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 2100,
+              "correct": 2816,
+              "known_correct": 2100,
+              "known_n": 2100,
+              "unknown_correct": 716,
+              "unknown_n": 716,
+              "false_accept": 0,
+              "total": 2816
+            }
+          },
+          "total_events": 96,
+          "queries": 2816,
+          "correction_writes": 709,
+          "query_key_noise_sigma": 0.0,
+          "memory_keys": 8
+        },
+        "96/0.05": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.25816761363636365,
+              "known_accuracy": 0.06494117647058824,
+              "unknown_accuracy": 0.8523878437047757,
+              "unknown_false_accept_rate": 0.1476121562952243,
+              "known_coverage": 341,
+              "correct": 727,
+              "known_correct": 138,
+              "known_n": 2125,
+              "unknown_correct": 589,
+              "unknown_n": 691,
+              "false_accept": 102,
+              "total": 2816
+            },
+            "reset": {
+              "accuracy": 0.24538352272727273,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 691,
+              "known_correct": 0,
+              "known_n": 2125,
+              "unknown_correct": 691,
+              "unknown_n": 691,
+              "false_accept": 0,
+              "total": 2816
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 2125,
+              "correct": 2816,
+              "known_correct": 2125,
+              "known_n": 2125,
+              "unknown_correct": 691,
+              "unknown_n": 691,
+              "false_accept": 0,
+              "total": 2816
+            }
+          },
+          "total_events": 96,
+          "queries": 2816,
+          "correction_writes": 703,
+          "query_key_noise_sigma": 0.05,
+          "memory_keys": 8
+        }
+      },
+      "parameters": 51657,
+      "state_floats": 96,
+      "state_bytes_fp32": 384,
+      "weights_sha256": "40d708fdada79c864156df2f3b148d22fe6b4c193cb18682cf205e0c8c38bfc0",
+      "validation_batches": 16,
+      "test_batches_per_event_stream": 32,
+      "seconds_train_and_eval": 28.553216799999063,
+      "scope_limit": "8 random keys; training corrections, fixed-dimension key/value classes; symbolic only, not PBSLM"
+    },
+    {
+      "seed": 2,
+      "updates": 800,
+      "curve": [
+        {
+          "update": 100,
+          "loss": 2.0934863090515137
+        },
+        {
+          "update": 200,
+          "loss": 2.0938353538513184
+        },
+        {
+          "update": 300,
+          "loss": 2.049640655517578
+        },
+        {
+          "update": 400,
+          "loss": 2.0615925788879395
+        },
+        {
+          "update": 500,
+          "loss": 2.086341619491577
+        },
+        {
+          "update": 600,
+          "loss": 2.104794979095459
+        },
+        {
+          "update": 700,
+          "loss": 2.051408290863037
+        },
+        {
+          "update": 800,
+          "loss": 2.1061630249023438
+        }
+      ],
+      "dictionary_threshold": {
+        "threshold": 0.94,
+        "balanced_accuracy": 1.0,
+        "known_coverage": 1.0,
+        "unknown_false_accept_rate": 0.0
+      },
+      "threshold_grid": [
+        {
+          "threshold": 0.2,
+          "balanced_accuracy": 0.5537109375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.892578125
+        },
+        {
+          "threshold": 0.22,
+          "balanced_accuracy": 0.5703125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.859375
+        },
+        {
+          "threshold": 0.24,
+          "balanced_accuracy": 0.591796875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.81640625
+        },
+        {
+          "threshold": 0.26,
+          "balanced_accuracy": 0.609375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.78125
+        },
+        {
+          "threshold": 0.28,
+          "balanced_accuracy": 0.6337890625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.732421875
+        },
+        {
+          "threshold": 0.3,
+          "balanced_accuracy": 0.6650390625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.669921875
+        },
+        {
+          "threshold": 0.32,
+          "balanced_accuracy": 0.69140625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.6171875
+        },
+        {
+          "threshold": 0.34,
+          "balanced_accuracy": 0.72265625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.5546875
+        },
+        {
+          "threshold": 0.36,
+          "balanced_accuracy": 0.7548828125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.490234375
+        },
+        {
+          "threshold": 0.38,
+          "balanced_accuracy": 0.77734375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.4453125
+        },
+        {
+          "threshold": 0.4,
+          "balanced_accuracy": 0.8056640625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.388671875
+        },
+        {
+          "threshold": 0.42,
+          "balanced_accuracy": 0.83203125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.3359375
+        },
+        {
+          "threshold": 0.44,
+          "balanced_accuracy": 0.859375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.28125
+        },
+        {
+          "threshold": 0.46,
+          "balanced_accuracy": 0.884765625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.23046875
+        },
+        {
+          "threshold": 0.48,
+          "balanced_accuracy": 0.904296875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.19140625
+        },
+        {
+          "threshold": 0.5,
+          "balanced_accuracy": 0.9208984375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.158203125
+        },
+        {
+          "threshold": 0.52,
+          "balanced_accuracy": 0.9326171875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.134765625
+        },
+        {
+          "threshold": 0.54,
+          "balanced_accuracy": 0.9482421875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.103515625
+        },
+        {
+          "threshold": 0.56,
+          "balanced_accuracy": 0.962890625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.07421875
+        },
+        {
+          "threshold": 0.58,
+          "balanced_accuracy": 0.9677734375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.064453125
+        },
+        {
+          "threshold": 0.6,
+          "balanced_accuracy": 0.9794921875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.041015625
+        },
+        {
+          "threshold": 0.62,
+          "balanced_accuracy": 0.982421875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.03515625
+        },
+        {
+          "threshold": 0.64,
+          "balanced_accuracy": 0.986328125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.02734375
+        },
+        {
+          "threshold": 0.66,
+          "balanced_accuracy": 0.9892578125,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.021484375
+        },
+        {
+          "threshold": 0.68,
+          "balanced_accuracy": 0.990234375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.01953125
+        },
+        {
+          "threshold": 0.7,
+          "balanced_accuracy": 0.994140625,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.01171875
+        },
+        {
+          "threshold": 0.72,
+          "balanced_accuracy": 0.998046875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.00390625
+        },
+        {
+          "threshold": 0.74,
+          "balanced_accuracy": 0.998046875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.00390625
+        },
+        {
+          "threshold": 0.76,
+          "balanced_accuracy": 0.998046875,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.00390625
+        },
+        {
+          "threshold": 0.78,
+          "balanced_accuracy": 0.9990234375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.001953125
+        },
+        {
+          "threshold": 0.8,
+          "balanced_accuracy": 0.9990234375,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.001953125
+        },
+        {
+          "threshold": 0.82,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.84,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.86,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.88,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.9,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.92,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        },
+        {
+          "threshold": 0.94,
+          "balanced_accuracy": 1.0,
+          "known_coverage": 1.0,
+          "unknown_false_accept_rate": 0.0
+        }
+      ],
+      "evaluation": {
+        "24/0.0": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.251953125,
+              "known_accuracy": 0.01804123711340206,
+              "unknown_accuracy": 0.9838709677419355,
+              "unknown_false_accept_rate": 0.016129032258064516,
+              "known_coverage": 17,
+              "correct": 129,
+              "known_correct": 7,
+              "known_n": 388,
+              "unknown_correct": 122,
+              "unknown_n": 124,
+              "false_accept": 2,
+              "total": 512
+            },
+            "reset": {
+              "accuracy": 0.2421875,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 124,
+              "known_correct": 0,
+              "known_n": 388,
+              "unknown_correct": 124,
+              "unknown_n": 124,
+              "false_accept": 0,
+              "total": 512
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 388,
+              "correct": 512,
+              "known_correct": 388,
+              "known_n": 388,
+              "unknown_correct": 124,
+              "unknown_n": 124,
+              "false_accept": 0,
+              "total": 512
+            }
+          },
+          "total_events": 24,
+          "queries": 512,
+          "correction_writes": 123,
+          "query_key_noise_sigma": 0.0,
+          "memory_keys": 8
+        },
+        "24/0.05": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.25390625,
+              "known_accuracy": 0.013089005235602094,
+              "unknown_accuracy": 0.9615384615384616,
+              "unknown_false_accept_rate": 0.038461538461538464,
+              "known_coverage": 16,
+              "correct": 130,
+              "known_correct": 5,
+              "known_n": 382,
+              "unknown_correct": 125,
+              "unknown_n": 130,
+              "false_accept": 5,
+              "total": 512
+            },
+            "reset": {
+              "accuracy": 0.25390625,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 130,
+              "known_correct": 0,
+              "known_n": 382,
+              "unknown_correct": 130,
+              "unknown_n": 130,
+              "false_accept": 0,
+              "total": 512
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 382,
+              "correct": 512,
+              "known_correct": 382,
+              "known_n": 382,
+              "unknown_correct": 130,
+              "unknown_n": 130,
+              "false_accept": 0,
+              "total": 512
+            }
+          },
+          "total_events": 24,
+          "queries": 512,
+          "correction_writes": 135,
+          "query_key_noise_sigma": 0.05,
+          "memory_keys": 8
+        },
+        "96/0.0": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.24609375,
+              "known_accuracy": 0.04543303360151443,
+              "unknown_accuracy": 0.8492176386913229,
+              "unknown_false_accept_rate": 0.1507823613086771,
+              "known_coverage": 292,
+              "correct": 693,
+              "known_correct": 96,
+              "known_n": 2113,
+              "unknown_correct": 597,
+              "unknown_n": 703,
+              "false_accept": 106,
+              "total": 2816
+            },
+            "reset": {
+              "accuracy": 0.24964488636363635,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 703,
+              "known_correct": 0,
+              "known_n": 2113,
+              "unknown_correct": 703,
+              "unknown_n": 703,
+              "false_accept": 0,
+              "total": 2816
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 2113,
+              "correct": 2816,
+              "known_correct": 2113,
+              "known_n": 2113,
+              "unknown_correct": 703,
+              "unknown_n": 703,
+              "false_accept": 0,
+              "total": 2816
+            }
+          },
+          "total_events": 96,
+          "queries": 2816,
+          "correction_writes": 733,
+          "query_key_noise_sigma": 0.0,
+          "memory_keys": 8
+        },
+        "96/0.05": {
+          "metrics": {
+            "state": {
+              "accuracy": 0.2510653409090909,
+              "known_accuracy": 0.05518234165067178,
+              "unknown_accuracy": 0.8087431693989071,
+              "unknown_false_accept_rate": 0.1912568306010929,
+              "known_coverage": 350,
+              "correct": 707,
+              "known_correct": 115,
+              "known_n": 2084,
+              "unknown_correct": 592,
+              "unknown_n": 732,
+              "false_accept": 140,
+              "total": 2816
+            },
+            "reset": {
+              "accuracy": 0.2599431818181818,
+              "known_accuracy": 0.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 0,
+              "correct": 732,
+              "known_correct": 0,
+              "known_n": 2084,
+              "unknown_correct": 732,
+              "unknown_n": 732,
+              "false_accept": 0,
+              "total": 2816
+            },
+            "dictionary": {
+              "accuracy": 1.0,
+              "known_accuracy": 1.0,
+              "unknown_accuracy": 1.0,
+              "unknown_false_accept_rate": 0.0,
+              "known_coverage": 2084,
+              "correct": 2816,
+              "known_correct": 2084,
+              "known_n": 2084,
+              "unknown_correct": 732,
+              "unknown_n": 732,
+              "false_accept": 0,
+              "total": 2816
+            }
+          },
+          "total_events": 96,
+          "queries": 2816,
+          "correction_writes": 716,
+          "query_key_noise_sigma": 0.05,
+          "memory_keys": 8
+        }
+      },
+      "parameters": 51657,
+      "state_floats": 96,
+      "state_bytes_fp32": 384,
+      "weights_sha256": "7fea8bede5e955c88d35deb2ac802c2d294f294d38d2c1b5bf9474c7c06284ef",
+      "validation_batches": 16,
+      "test_batches_per_event_stream": 32,
+      "seconds_train_and_eval": 28.64741259999937,
+      "scope_limit": "8 random keys; training corrections, fixed-dimension key/value classes; symbolic only, not PBSLM"
+    }
+  ]
+}

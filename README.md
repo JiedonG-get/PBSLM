@@ -89,7 +89,7 @@ v2.1 是单路径语言 baseline；v2 的 `use_sample_masks=True` 是可选独�
 | 中文表面迁移与错误抽取 | [文本事实](experiments/text_facts/RESULTS.md)、[新问法](experiments/text_surfaces/RESULTS.md)、[事实候选](experiments/fact_reader/RESULTS.md)、[校准失败](experiments/fact_reader/CALIBRATION.md) |
 | 持续运行与状态处理 | [异步运行](experiments/continuous_online/RESULTS.md)、[独立输入处理](experiments/continuous_online/CONTINUOUS_STATE.md)、[过载](experiments/continuous_online/OVERLOAD.md) |
 | 特征、约束与泛化 | [冻结 E 读出](experiments/consolidation/FEATURE_READOUT.md)、[同损失历史对照](experiments/consolidation/SAME_LOSS_HISTORY.md)、[压缩](experiments/consolidation/RANK_COMPRESSION.md)、[布局迁移](experiments/consolidation/LAYOUT_ROBUSTNESS.md) |
-| 内部状态与选择性写入 | [全局状态基线](experiments/recurrent_state/RESULTS.md)、[分槽](experiments/recurrent_state/SLOTTED_CONTROL.md)、[写门控干预](experiments/recurrent_state/WRITE_GATE.md)、[全热实体碰撞](experiments/recurrent_state/ALL_HOT_COLLISIONS.md) |
+| 内部状态候选与失败 | [递归全局状态](experiments/recurrent_state/RESULTS.md)、[分槽状态](experiments/recurrent_state/SLOTTED_CONTROL.md)、[8192 次热写衰减](experiments/recurrent_state/SKEW_RETENTION.md)、[写门控与碰撞](experiments/recurrent_state/SPARSE_MATCHED_TRAINING.md)、[随机连续键与拒答回退](experiments/recurrent_state/CONTINUOUS_KEYS.md)、[离线字典回退回放](experiments/recurrent_state/FALLBACK_REPLAY.md) |
 
 运行完整实现回归：
 

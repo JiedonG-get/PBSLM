@@ -1,0 +1,8 @@
+test_only_explicit_unknown_state_queries_trigger_fallback (tests.test_continuous_fallback.ContinuousFallbackTests.test_only_explicit_unknown_state_queries_trigger_fallback) ... ok
+test_episode_has_unknown_queries_and_explicit_corrections (tests.test_continuous_key_state.ContinuousKeyTaskTests.test_episode_has_unknown_queries_and_explicit_corrections) ... ok
+test_training_episode_produces_finite_loss_and_gradients (tests.test_continuous_key_state.ContinuousKeyTaskTests.test_training_episode_produces_finite_loss_and_gradients) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.069s
+
+OK
