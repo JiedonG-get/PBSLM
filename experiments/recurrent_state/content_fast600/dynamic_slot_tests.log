@@ -1,0 +1,12 @@
+test_dynamic_allocation_overwrite_and_recency_eviction (tests.test_dynamic_content_slots.DynamicContentSlotsTests.test_dynamic_allocation_overwrite_and_recency_eviction) ... ok
+test_invalid_inputs_do_not_modify_state (tests.test_dynamic_content_slots.DynamicContentSlotsTests.test_invalid_inputs_do_not_modify_state) ... ok
+test_query_read_only_unknown_and_repeated_clock_bound (tests.test_dynamic_content_slots.DynamicContentSlotsTests.test_query_read_only_unknown_and_repeated_clock_bound) ... ok
+test_cross_key_read_change_matches_inner_product (tests.test_content_fast_state.ContentFastStateTests.test_cross_key_read_change_matches_inner_product) ... ok
+test_delta_exact_unit_gate_overwrites_orthogonal_key_without_touching_other (tests.test_content_fast_state.ContentFastStateTests.test_delta_exact_unit_gate_overwrites_orthogonal_key_without_touching_other) ... ok
+test_first_write_equal_and_same_key_residual_contracts (tests.test_content_fast_state.ContentFastStateTests.test_first_write_equal_and_same_key_residual_contracts) ... ok
+test_query_read_only_and_gradients (tests.test_content_fast_state.ContentFastStateTests.test_query_read_only_and_gradients) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.102s
+
+OK

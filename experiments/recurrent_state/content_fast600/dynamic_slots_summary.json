@@ -1,0 +1,114 @@
+{
+  "source": "experiments\\recurrent_state\\content_fast600\\dynamic_slots.json",
+  "summary": {
+    "capacity4/noise0.0": {
+      "known": {
+        "mean": 0.5276557672847589,
+        "per_seed": [
+          0.53176085941149,
+          0.5396491228070175,
+          0.5115573196357693
+        ]
+      },
+      "unknown": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "capacity4/noise0.05": {
+      "known": {
+        "mean": 0.5276557672847589,
+        "per_seed": [
+          0.53176085941149,
+          0.5396491228070175,
+          0.5115573196357693
+        ]
+      },
+      "unknown": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "capacity4/noise0.15": {
+      "known": {
+        "mean": 0.12920857239106476,
+        "per_seed": [
+          0.1361513311536665,
+          0.13309941520467836,
+          0.1183749708148494
+        ]
+      },
+      "unknown": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "capacity8/noise0.0": {
+      "known": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "unknown": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "capacity8/noise0.05": {
+      "known": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "unknown": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "capacity8/noise0.15": {
+      "known": {
+        "mean": 0.24174395010866892,
+        "per_seed": [
+          0.2480149462867819,
+          0.24,
+          0.23721690403922485
+        ]
+      },
+      "unknown": {
+        "mean": 1.0,
+        "per_seed": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "note": "counter arithmetic only; no per-event predictions saved"
+}
