@@ -1,0 +1,11 @@
+test_fallback_answers_from_ledger_and_miss_abstains (tests.test_fallback_replay.FallbackReplayTests.test_fallback_answers_from_ledger_and_miss_abstains) ... ok
+test_mismatched_streams_rejected (tests.test_fallback_replay.FallbackReplayTests.test_mismatched_streams_rejected) ... ok
+test_observed_write_ledger_matches_only_retained_truth (tests.test_fallback_replay.FallbackReplayTests.test_observed_write_ledger_matches_only_retained_truth) ... ok
+test_decision_independent_of_answers (tests.test_collision_guard.CollisionGuardTests.test_decision_independent_of_answers) ... ok
+test_mismatched_batch_rejected (tests.test_collision_guard.CollisionGuardTests.test_mismatched_batch_rejected) ... ok
+test_no_collision_not_no_error (tests.test_collision_guard.CollisionGuardTests.test_no_collision_not_no_error) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK
