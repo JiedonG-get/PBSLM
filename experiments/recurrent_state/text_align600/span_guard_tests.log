@@ -1,0 +1,10 @@
+test_matches_explicit_complement_projector (tests.test_key_span_state.KeySpanStateTests.test_matches_explicit_complement_projector) ... ok
+test_observed_span_and_unseen_in_span_not_distinguished (tests.test_key_span_state.KeySpanStateTests.test_observed_span_and_unseen_in_span_not_distinguished) ... ok
+test_projection_only_gradients_and_identity_targets (tests.test_text_key_projector.TextKeyProjectorTests.test_projection_only_gradients_and_identity_targets) ... ok
+test_fixed_projection_independent_of_data_and_orthonormal_columns (tests.test_text_key_transfer.TextKeyTransferTests.test_fixed_projection_independent_of_data_and_orthonormal_columns) ... ok
+test_no_unknown_queries_not_divided_by_zero_or_counted_correct (tests.test_text_key_transfer.TextKeyTransferTests.test_no_unknown_queries_not_divided_by_zero_or_counted_correct) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.029s
+
+OK
