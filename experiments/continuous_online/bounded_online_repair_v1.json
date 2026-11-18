@@ -1,0 +1,5553 @@
+{
+  "scope": "Six scripted cases crossed with three memory arms using one fixed decoder.",
+  "capacity": 16,
+  "max_new_tokens": 48,
+  "system_prompt": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。",
+  "schedule": "Whole-answer host delivery is held in the during-generation condition. Worker overlap measures the inference job interval, including rendering and decoding. Worker jobs drain on cancellation; timestamps include the scripted arrival conditions.",
+  "scoring": "Label presence uses literal matching. Mention of an old label can form part of a withdrawal. Explicit withdrawal requires separate review of the committed text.",
+  "checkpoint_files_sha256": {
+    ".msc": "e346a4b32926eb050f689b86a9b62837e2d0f89f6d5579ae27786424d98e696e",
+    ".mv": "f8db4d402dad1592699be370a6953bc543dc04a29c63100c31d3790ff50d5daf",
+    "config.json": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+    "configuration.json": "f888421726665e8a84b738eed42a64875aed79de8be7daade851ac8bf4c0cef9",
+    "generation_config.json": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "model-00001-of-00002.safetensors": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+    "model-00002-of-00002.safetensors": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9",
+    "model.safetensors.index.json": "0d660e94b165eb912669a5249dff44b83188c4777a07ddb9611fb78d91b0578d",
+    "README.md": "d50c7b66b42ffb892a7819f46853a4c6ae97ad07f1f46abf5f13d4a617ae07c0",
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "tokenizer_config.json": "5a7303fcb1a27ede63134a2cbd61d5282c247ca6d769ce4746d4ffa124aedd63",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "provenance": {
+    "git_commit": "7710b784cdfefbb1f63940a7f2373f25eebcd7ac",
+    "git_status": "?? evaluation/analyze_qwen_story.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? evaluation/score_bounded_online.py\n?? experiments/continuous_online/bounded_online_predictions_v1.json\n?? experiments/continuous_online/bounded_online_repeat_v1.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/recurrent_state/continuous_event_tests.log",
+    "source_sha256_at_capture": {
+      "evaluation/bounded_online_memory.py": "68075cb9d9ba6b459f31b96a18c5a5f950895b83a09b1b302fd181295b359882",
+      "evaluation/bounded_online_repair.py": "12434bf17270db557ff5d1b53bd47be3bf23f8ab034d87619720b07438f1b87a",
+      "evaluation/local_qwen_adapter.py": "35e497bc1b3c60aeb0e9cb49b0b785466e0f050c1d24869795a3fb866d65f753",
+      "evaluation/qwen_scheduler_smoke.py": "b8a8c64d770fc9f6d0e4724adfcdb03db1bea4367d80536c5c5289b58b2da5dd",
+      "runtime/continuous.py": "5b04d92a94d3ab24852c4b7e2a91f4457da1e54effe1351f90e9d34c098d7023"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "arm": "pbs_slots",
+      "case": "precommit_room",
+      "arrival_condition": "during_held_first_generation",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": 2,
+      "hold_released_perf": 24856.318791,
+      "initial_worker_active_at_update": true,
+      "prefix_at_update": "",
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "雨燕厅",
+        "revision": 3,
+        "at": 0.5096806000001379
+      },
+      "committed": [
+        {
+          "unit": "雨燕厅",
+          "revision": 3,
+          "at": 0.5096806000001379
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：场务甲一号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24856.3144038,
+          "route_started_perf": 24856.315342,
+          "memory_and_parse_seconds": 0.0009382000025652815
+        },
+        {
+          "revision": 2,
+          "text": "请问场务甲一号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "场务甲一号样件",
+          "value_before": null,
+          "value_after": "松间厅",
+          "route": "query",
+          "received_perf": 24856.3153544,
+          "route_started_perf": 24856.3162005,
+          "memory_and_parse_seconds": 0.000846099999762373
+        },
+        {
+          "revision": 3,
+          "text": "确认：场务甲一号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": "场务甲一号样件",
+          "value_before": "松间厅",
+          "value_after": "雨燕厅",
+          "route": "replace",
+          "received_perf": 24856.3176614,
+          "route_started_perf": 24856.3187608,
+          "memory_and_parse_seconds": 0.001099400000384776
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 0.0009470000004512258,
+          "revision": 1,
+          "text": "确认：场务甲一号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 0.0018075999978464097,
+          "revision": 2,
+          "text": "请问场务甲一号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0019109999993816018,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "cancel_requested",
+          "at": 0.004369899997982429,
+          "revision": 3,
+          "reason": "new_input"
+        },
+        {
+          "kind": "input_received",
+          "at": 0.00437219999730587,
+          "revision": 3,
+          "text": "确认：场务甲一号样件的存放位置是雨燕厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_cancelled",
+          "at": 0.004451400000107242,
+          "revision": 3,
+          "generation_revision": 2
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.004457899998669745,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.5096830999973463,
+          "revision": 3,
+          "unit": "雨燕厅",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.5096917999981088,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.5097628999974404,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24856.3167304,
+          "finish_perf": 24856.6967187,
+          "duration": 0.37998829999924055,
+          "input_tokens": 85,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "松间厅",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问场务甲一号样件的当前存放位置？\n当前资料：松间厅。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24856.6968148,
+          "finish_perf": 24856.8239236,
+          "duration": 0.12710879999940516,
+          "input_tokens": 85,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "雨燕厅",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问场务甲一号样件的当前存放位置？\n当前资料：雨燕厅。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 1664,
+        "peak_persistent_payload_bytes": 1664,
+        "payload_accounting": "allocated fp32 state tensor, excluding temporary tensors, runtime overhead, instrumentation, and the fixed reader and location vocabulary",
+        "fixed_reader_bytes": 3752,
+        "reader": {
+          "format": "pbslm.content_fast_state.fp32_json.v1",
+          "seed": 0,
+          "weights_sha256": "49312a6c239efec016af1bcc995d7b136c1c6c06af98d270be774fec72613b3c",
+          "checkpoint_file_sha256": "7070a5148fbd45fb7e58f38f9ca53c89e1e9ca33646c5f16263b1002264ba028"
+        },
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 0.0025894
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "雨燕厅",
+            "labels": [
+              "雨燕厅"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 1,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": true,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_unbounded",
+      "case": "precommit_room",
+      "arrival_condition": "during_held_first_generation",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": 2,
+      "hold_released_perf": 24856.8259214,
+      "initial_worker_active_at_update": true,
+      "prefix_at_update": "",
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "雨燕厅",
+        "revision": 3,
+        "at": 0.2456988999983878
+      },
+      "committed": [
+        {
+          "unit": "雨燕厅",
+          "revision": 3,
+          "at": 0.2456988999983878
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：场务甲一号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24856.8252837,
+          "route_started_perf": 24856.825305,
+          "memory_and_parse_seconds": 2.1299998479662463e-05
+        },
+        {
+          "revision": 2,
+          "text": "请问场务甲一号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "场务甲一号样件",
+          "value_before": null,
+          "value_after": "松间厅",
+          "route": "query",
+          "received_perf": 24856.8253134,
+          "route_started_perf": 24856.8253206,
+          "memory_and_parse_seconds": 7.200000254670158e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：场务甲一号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": "场务甲一号样件",
+          "value_before": "松间厅",
+          "value_after": "雨燕厅",
+          "route": "replace",
+          "received_perf": 24856.8258754,
+          "route_started_perf": 24856.8259001,
+          "memory_and_parse_seconds": 2.469999890308827e-05
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.7300000510876998e-05,
+          "revision": 1,
+          "text": "确认：场务甲一号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 4.199999966658652e-05,
+          "revision": 2,
+          "text": "请问场务甲一号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 7.700000060140155e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "cancel_requested",
+          "at": 0.0006245000004128087,
+          "revision": 3,
+          "reason": "new_input"
+        },
+        {
+          "kind": "input_received",
+          "at": 0.000625900000159163,
+          "revision": 3,
+          "text": "确认：场务甲一号样件的存放位置是雨燕厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_cancelled",
+          "at": 0.0006699000005028211,
+          "revision": 3,
+          "generation_revision": 2
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0006837000000814442,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.24570129999847268,
+          "revision": 3,
+          "unit": "雨燕厅",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.24571049999940442,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.24580470000000787,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24856.8256316,
+          "finish_perf": 24856.9449215,
+          "duration": 0.11928989999796613,
+          "input_tokens": 85,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "松间厅",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问场务甲一号样件的当前存放位置？\n当前资料：松间厅。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24856.9450183,
+          "finish_perf": 24857.0707729,
+          "duration": 0.12575459999789018,
+          "input_tokens": 85,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "雨燕厅",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问场务甲一号样件的当前存放位置？\n当前资料：雨燕厅。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": null,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 22,
+        "peak_persistent_payload_bytes": 22,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 2.28e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "雨燕厅",
+            "labels": [
+              "雨燕厅"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 1,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": true,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_bounded",
+      "case": "precommit_room",
+      "arrival_condition": "during_held_first_generation",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": 2,
+      "hold_released_perf": 24857.0726838,
+      "initial_worker_active_at_update": true,
+      "prefix_at_update": "",
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "雨燕厅",
+        "revision": 3,
+        "at": 0.25987570000143023
+      },
+      "committed": [
+        {
+          "unit": "雨燕厅",
+          "revision": 3,
+          "at": 0.25987570000143023
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：场务甲一号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24857.0719116,
+          "route_started_perf": 24857.0719344,
+          "memory_and_parse_seconds": 2.2799998987466097e-05
+        },
+        {
+          "revision": 2,
+          "text": "请问场务甲一号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "场务甲一号样件",
+          "value_before": null,
+          "value_after": "松间厅",
+          "route": "query",
+          "received_perf": 24857.0719403,
+          "route_started_perf": 24857.0719459,
+          "memory_and_parse_seconds": 5.599998985417187e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：场务甲一号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": "场务甲一号样件",
+          "value_before": "松间厅",
+          "value_after": "雨燕厅",
+          "route": "replace",
+          "received_perf": 24857.0726388,
+          "route_started_perf": 24857.0726614,
+          "memory_and_parse_seconds": 2.260000110254623e-05
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.7000001864507794e-05,
+          "revision": 1,
+          "text": "确认：场务甲一号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 3.930000093532726e-05,
+          "revision": 2,
+          "text": "请问场务甲一号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 7.399999958579428e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "cancel_requested",
+          "at": 0.0007579000011901371,
+          "revision": 3,
+          "reason": "new_input"
+        },
+        {
+          "kind": "input_received",
+          "at": 0.0007598000011057593,
+          "revision": 3,
+          "text": "确认：场务甲一号样件的存放位置是雨燕厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_cancelled",
+          "at": 0.0012310000020079315,
+          "revision": 3,
+          "generation_revision": 2
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0012394000004860573,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.2598777000021073,
+          "revision": 3,
+          "unit": "雨燕厅",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.2598885000006703,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.2599582000002556,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24857.0725804,
+          "finish_perf": 24857.2029866,
+          "duration": 0.13040620000174385,
+          "input_tokens": 85,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "松间厅",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问场务甲一号样件的当前存放位置？\n当前资料：松间厅。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24857.2030663,
+          "finish_perf": 24857.3315897,
+          "duration": 0.12852339999881224,
+          "input_tokens": 85,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "雨燕厅",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问场务甲一号样件的当前存放位置？\n当前资料：雨燕厅。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 22,
+        "peak_persistent_payload_bytes": 22,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 1.94e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "雨燕厅",
+            "labels": [
+              "雨燕厅"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 1,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": true,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "pbs_slots",
+      "case": "precommit_cabinet",
+      "arrival_condition": "during_held_first_generation",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": 2,
+      "hold_released_perf": 24857.3368702,
+      "initial_worker_active_at_update": true,
+      "prefix_at_update": "",
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "不确定。",
+        "revision": 3,
+        "at": 0.22624269999869284
+      },
+      "committed": [
+        {
+          "unit": "不确定。",
+          "revision": 3,
+          "at": 0.22624269999869284
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：制版室乙二号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24857.3339626,
+          "route_started_perf": 24857.3344273,
+          "memory_and_parse_seconds": 0.00046469999870168976
+        },
+        {
+          "revision": 2,
+          "text": "请问制版室乙二号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "制版室乙二号样件",
+          "value_before": null,
+          "value_after": "澄光柜",
+          "route": "query",
+          "received_perf": 24857.3344353,
+          "route_started_perf": 24857.3347321,
+          "memory_and_parse_seconds": 0.00029680000079679303
+        },
+        {
+          "revision": 3,
+          "text": "确认：制版室乙二号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": "制版室乙二号样件",
+          "value_before": "澄光柜",
+          "value_after": "竹溪站",
+          "route": "replace",
+          "received_perf": 24857.3353226,
+          "route_started_perf": 24857.3368442,
+          "memory_and_parse_seconds": 0.0015215999992506113
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 0.0004698999982792884,
+          "revision": 1,
+          "text": "确认：制版室乙二号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 0.0007760000007692724,
+          "revision": 2,
+          "text": "请问制版室乙二号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0008211999993363861,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "cancel_requested",
+          "at": 0.0028907999985676724,
+          "revision": 3,
+          "reason": "new_input"
+        },
+        {
+          "kind": "input_received",
+          "at": 0.002892299999075476,
+          "revision": 3,
+          "text": "确认：制版室乙二号样件的存放位置是竹溪站。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_cancelled",
+          "at": 0.0029603000002680346,
+          "revision": 3,
+          "generation_revision": 2
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.002965899999253452,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.22624440000072354,
+          "revision": 3,
+          "unit": "不确定。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.2262534000001324,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.2262998999976844,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24857.3351191,
+          "finish_perf": 24857.4605623,
+          "duration": 0.12544319999869913,
+          "input_tokens": 87,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "澄光柜",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问制版室乙二号样件的当前存放位置？\n当前资料：澄光柜。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24857.4606568,
+          "finish_perf": 24857.560028,
+          "duration": 0.09937119999813149,
+          "input_tokens": 87,
+          "output_tokens": 3,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "不确定。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问制版室乙二号样件的当前存放位置？\n当前资料：竹溪站。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 1664,
+        "peak_persistent_payload_bytes": 1664,
+        "payload_accounting": "allocated fp32 state tensor, excluding temporary tensors, runtime overhead, instrumentation, and the fixed reader and location vocabulary",
+        "fixed_reader_bytes": 3752,
+        "reader": {
+          "format": "pbslm.content_fast_state.fp32_json.v1",
+          "seed": 0,
+          "weights_sha256": "49312a6c239efec016af1bcc995d7b136c1c6c06af98d270be774fec72613b3c",
+          "checkpoint_file_sha256": "7070a5148fbd45fb7e58f38f9ca53c89e1e9ca33646c5f16263b1002264ba028"
+        },
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 0.0014501
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "竹溪站",
+            "labels": [],
+            "current_label_present": false,
+            "only_current_label": false,
+            "uncertain_text_present": true,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 1,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": false,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_unbounded",
+      "case": "precommit_cabinet",
+      "arrival_condition": "during_held_first_generation",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": 2,
+      "hold_released_perf": 24857.561705,
+      "initial_worker_active_at_update": true,
+      "prefix_at_update": "",
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "不确定。",
+        "revision": 3,
+        "at": 0.2234228000015719
+      },
+      "committed": [
+        {
+          "unit": "不确定。",
+          "revision": 3,
+          "at": 0.2234228000015719
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：制版室乙二号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24857.5609756,
+          "route_started_perf": 24857.5609951,
+          "memory_and_parse_seconds": 1.9499999325489625e-05
+        },
+        {
+          "revision": 2,
+          "text": "请问制版室乙二号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "制版室乙二号样件",
+          "value_before": null,
+          "value_after": "澄光柜",
+          "route": "query",
+          "received_perf": 24857.5610007,
+          "route_started_perf": 24857.561006,
+          "memory_and_parse_seconds": 5.300000339047983e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：制版室乙二号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": "制版室乙二号样件",
+          "value_before": "澄光柜",
+          "value_after": "竹溪站",
+          "route": "replace",
+          "received_perf": 24857.5616735,
+          "route_started_perf": 24857.5616883,
+          "memory_and_parse_seconds": 1.4799999917158857e-05
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.3399999918183312e-05,
+          "revision": 1,
+          "text": "确认：制版室乙二号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 3.49000001733657e-05,
+          "revision": 2,
+          "text": "请问制版室乙二号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 6.370000119204633e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "cancel_requested",
+          "at": 0.0007189999996626284,
+          "revision": 3,
+          "reason": "new_input"
+        },
+        {
+          "kind": "input_received",
+          "at": 0.0007203999994089827,
+          "revision": 3,
+          "text": "确认：制版室乙二号样件的存放位置是竹溪站。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_cancelled",
+          "at": 0.0007667999998375308,
+          "revision": 3,
+          "generation_revision": 2
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0007732000012765639,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.2234242999984417,
+          "revision": 3,
+          "unit": "不确定。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.22343230000115,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.22349060000124155,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24857.5613679,
+          "finish_perf": 24857.690457,
+          "duration": 0.12908909999896423,
+          "input_tokens": 87,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "澄光柜",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问制版室乙二号样件的当前存放位置？\n当前资料：澄光柜。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24857.690544,
+          "finish_perf": 24857.7842145,
+          "duration": 0.09367049999855226,
+          "input_tokens": 87,
+          "output_tokens": 3,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "不确定。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问制版室乙二号样件的当前存放位置？\n当前资料：竹溪站。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": null,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 25,
+        "peak_persistent_payload_bytes": 25,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 1.64e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "竹溪站",
+            "labels": [],
+            "current_label_present": false,
+            "only_current_label": false,
+            "uncertain_text_present": true,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 1,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": false,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_bounded",
+      "case": "precommit_cabinet",
+      "arrival_condition": "during_held_first_generation",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": 2,
+      "hold_released_perf": 24857.7857264,
+      "initial_worker_active_at_update": true,
+      "prefix_at_update": "",
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "不确定。",
+        "revision": 3,
+        "at": 0.21699720000106026
+      },
+      "committed": [
+        {
+          "unit": "不确定。",
+          "revision": 3,
+          "at": 0.21699720000106026
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：制版室乙二号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24857.7851227,
+          "route_started_perf": 24857.7851433,
+          "memory_and_parse_seconds": 2.0600000425474718e-05
+        },
+        {
+          "revision": 2,
+          "text": "请问制版室乙二号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "制版室乙二号样件",
+          "value_before": null,
+          "value_after": "澄光柜",
+          "route": "query",
+          "received_perf": 24857.7851495,
+          "route_started_perf": 24857.7851547,
+          "memory_and_parse_seconds": 5.199999577598646e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：制版室乙二号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": "制版室乙二号样件",
+          "value_before": "澄光柜",
+          "value_after": "竹溪站",
+          "route": "replace",
+          "received_perf": 24857.7856915,
+          "route_started_perf": 24857.7857071,
+          "memory_and_parse_seconds": 1.559999873279594e-05
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.4500001018168405e-05,
+          "revision": 1,
+          "text": "确认：制版室乙二号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 3.670000296551734e-05,
+          "revision": 2,
+          "text": "请问制版室乙二号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 9.340000178781338e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "cancel_requested",
+          "at": 0.0005906000005779788,
+          "revision": 3,
+          "reason": "new_input"
+        },
+        {
+          "kind": "input_received",
+          "at": 0.0005917000016779639,
+          "revision": 3,
+          "text": "确认：制版室乙二号样件的存放位置是竹溪站。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_cancelled",
+          "at": 0.0006413000010070391,
+          "revision": 3,
+          "generation_revision": 2
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0006460000004153699,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.21699880000232952,
+          "revision": 3,
+          "unit": "不确定。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.21700700000292272,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.21705480000309763,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24857.7854894,
+          "finish_perf": 24857.9038797,
+          "duration": 0.11839029999828199,
+          "input_tokens": 87,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "澄光柜",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问制版室乙二号样件的当前存放位置？\n当前资料：澄光柜。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24857.9039515,
+          "finish_perf": 24858.001968,
+          "duration": 0.09801650000008522,
+          "input_tokens": 87,
+          "output_tokens": 3,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "不确定。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问制版室乙二号样件的当前存放位置？\n当前资料：竹溪站。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 25,
+        "peak_persistent_payload_bytes": 25,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 1.57e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "竹溪站",
+            "labels": [],
+            "current_label_present": false,
+            "only_current_label": false,
+            "uncertain_text_present": true,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 1,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": false,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "pbs_slots",
+      "case": "unrelated_during_generation",
+      "arrival_condition": "during_held_first_generation",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": 2,
+      "hold_released_perf": 24858.0071474,
+      "initial_worker_active_at_update": true,
+      "prefix_at_update": "",
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "石桥厅。",
+        "revision": 2,
+        "at": 0.15174760000081733
+      },
+      "committed": [
+        {
+          "unit": "石桥厅。",
+          "revision": 2,
+          "at": 0.15174760000081733
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：版画社丙三号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24858.0040565,
+          "route_started_perf": 24858.0046574,
+          "memory_and_parse_seconds": 0.0006008999989717267
+        },
+        {
+          "revision": 2,
+          "text": "请问版画社丙三号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "版画社丙三号样件",
+          "value_before": null,
+          "value_after": "石桥厅",
+          "route": "query",
+          "received_perf": 24858.0046658,
+          "route_started_perf": 24858.0049991,
+          "memory_and_parse_seconds": 0.0003333000022394117
+        },
+        {
+          "revision": 3,
+          "text": "确认：版画社庚一号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": "版画社丙三号样件",
+          "value_before": "石桥厅",
+          "value_after": "石桥厅",
+          "route": "background",
+          "received_perf": 24858.0056766,
+          "route_started_perf": 24858.0071394,
+          "memory_and_parse_seconds": 0.0014627999989897944
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 0.0006065999987185933,
+          "revision": 1,
+          "text": "确认：版画社丙三号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 0.0009496000020590145,
+          "revision": 2,
+          "text": "请问版画社丙三号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0009988999991037417,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.003087900000537047,
+          "revision": 3,
+          "text": "确认：版画社庚一号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.15174929999921005,
+          "revision": 3,
+          "unit": "石桥厅。",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.15175770000132616,
+          "revision": 3,
+          "generation_revision": 2
+        },
+        {
+          "kind": "closed",
+          "at": 0.1518065000018396,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24858.0053817,
+          "finish_perf": 24858.1556313,
+          "duration": 0.15024959999936982,
+          "input_tokens": 87,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "石桥厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问版画社丙三号样件的当前存放位置？\n当前资料：石桥厅。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 2,
+        "persistent_payload_bytes": 1664,
+        "peak_persistent_payload_bytes": 1664,
+        "payload_accounting": "allocated fp32 state tensor, excluding temporary tensors, runtime overhead, instrumentation, and the fixed reader and location vocabulary",
+        "fixed_reader_bytes": 3752,
+        "reader": {
+          "format": "pbslm.content_fast_state.fp32_json.v1",
+          "seed": 0,
+          "weights_sha256": "49312a6c239efec016af1bcc995d7b136c1c6c06af98d270be774fec72613b3c",
+          "checkpoint_file_sha256": "7070a5148fbd45fb7e58f38f9ca53c89e1e9ca33646c5f16263b1002264ba028"
+        },
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 0.0015146
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 2,
+            "after_update": true,
+            "expected": "石桥厅",
+            "labels": [
+              "石桥厅"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": false,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": true,
+        "replacement_started": false,
+        "replacement_committed": false,
+        "replacement_current_label_present": false,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_unbounded",
+      "case": "unrelated_during_generation",
+      "arrival_condition": "during_held_first_generation",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": 2,
+      "hold_released_perf": 24858.1572121,
+      "initial_worker_active_at_update": true,
+      "prefix_at_update": "",
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "石桥厅。",
+        "revision": 2,
+        "at": 0.15817650000099093
+      },
+      "committed": [
+        {
+          "unit": "石桥厅。",
+          "revision": 2,
+          "at": 0.15817650000099093
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：版画社丙三号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24858.1565934,
+          "route_started_perf": 24858.1566196,
+          "memory_and_parse_seconds": 2.6199999410891905e-05
+        },
+        {
+          "revision": 2,
+          "text": "请问版画社丙三号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "版画社丙三号样件",
+          "value_before": null,
+          "value_after": "石桥厅",
+          "route": "query",
+          "received_perf": 24858.1566257,
+          "route_started_perf": 24858.1566313,
+          "memory_and_parse_seconds": 5.599998985417187e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：版画社庚一号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": "版画社丙三号样件",
+          "value_before": "石桥厅",
+          "value_after": "石桥厅",
+          "route": "background",
+          "received_perf": 24858.1571828,
+          "route_started_perf": 24858.1572059,
+          "memory_and_parse_seconds": 2.30999976338353e-05
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 3.0300001526484266e-05,
+          "revision": 1,
+          "text": "确认：版画社丙三号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 4.2499999835854396e-05,
+          "revision": 2,
+          "text": "请问版画社丙三号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 7.689999983995222e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0006166000021039508,
+          "revision": 3,
+          "text": "确认：版画社庚一号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.15817820000302163,
+          "revision": 3,
+          "unit": "石桥厅。",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.158188200002769,
+          "revision": 3,
+          "generation_revision": 2
+        },
+        {
+          "kind": "closed",
+          "at": 0.15824480000082985,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24858.1569551,
+          "finish_perf": 24858.3145819,
+          "duration": 0.15762679999897955,
+          "input_tokens": 87,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "石桥厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问版画社丙三号样件的当前存放位置？\n当前资料：石桥厅。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": null,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 2,
+        "persistent_payload_bytes": 50,
+        "peak_persistent_payload_bytes": 50,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.015625,
+        "operation_wall_seconds": 1.94e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 2,
+            "after_update": true,
+            "expected": "石桥厅",
+            "labels": [
+              "石桥厅"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": false,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": true,
+        "replacement_started": false,
+        "replacement_committed": false,
+        "replacement_current_label_present": false,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_bounded",
+      "case": "unrelated_during_generation",
+      "arrival_condition": "during_held_first_generation",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": 2,
+      "hold_released_perf": 24858.3160938,
+      "initial_worker_active_at_update": true,
+      "prefix_at_update": "",
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "石桥厅。",
+        "revision": 2,
+        "at": 0.15337089999957243
+      },
+      "committed": [
+        {
+          "unit": "石桥厅。",
+          "revision": 2,
+          "at": 0.15337089999957243
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：版画社丙三号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24858.3156211,
+          "route_started_perf": 24858.3156466,
+          "memory_and_parse_seconds": 2.550000135670416e-05
+        },
+        {
+          "revision": 2,
+          "text": "请问版画社丙三号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "版画社丙三号样件",
+          "value_before": null,
+          "value_after": "石桥厅",
+          "route": "query",
+          "received_perf": 24858.3156529,
+          "route_started_perf": 24858.3156584,
+          "memory_and_parse_seconds": 5.49999822396785e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：版画社庚一号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": "版画社丙三号样件",
+          "value_before": "石桥厅",
+          "value_after": "石桥厅",
+          "route": "background",
+          "received_perf": 24858.3160743,
+          "route_started_perf": 24858.3160892,
+          "memory_and_parse_seconds": 1.4900000678608194e-05
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.9800001357216388e-05,
+          "revision": 1,
+          "text": "确认：版画社丙三号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 4.2499999835854396e-05,
+          "revision": 2,
+          "text": "请问版画社丙三号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 7.800000093993731e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0004716000003099907,
+          "revision": 3,
+          "text": "确认：版画社庚一号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.15337259999796515,
+          "revision": 3,
+          "unit": "石桥厅。",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.15338119999796618,
+          "revision": 3,
+          "generation_revision": 2
+        },
+        {
+          "kind": "closed",
+          "at": 0.15342859999873326,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24858.3160406,
+          "finish_perf": 24858.4688507,
+          "duration": 0.15281010000035167,
+          "input_tokens": 87,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "石桥厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问版画社丙三号样件的当前存放位置？\n当前资料：石桥厅。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 2,
+        "persistent_payload_bytes": 50,
+        "peak_persistent_payload_bytes": 50,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 1.75e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 2,
+            "after_update": true,
+            "expected": "石桥厅",
+            "labels": [
+              "石桥厅"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": false,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": true,
+        "replacement_started": false,
+        "replacement_committed": false,
+        "replacement_current_label_present": false,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "pbs_slots",
+      "case": "postcommit_door",
+      "arrival_condition": "after_first_generation_finished",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": null,
+      "hold_released_perf": null,
+      "initial_worker_active_at_update": false,
+      "prefix_at_update": "江柳门。",
+      "prefix_preserved": true,
+      "first_commit": {
+        "unit": "江柳门。",
+        "revision": 2,
+        "at": 0.17584250000072643
+      },
+      "committed": [
+        {
+          "unit": "江柳门。",
+          "revision": 2,
+          "at": 0.17584250000072643
+        },
+        {
+          "unit": "月湾站。",
+          "revision": 3,
+          "at": 0.34853389999989304
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：陶土坊丁一号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24858.4708458,
+          "route_started_perf": 24858.4712886,
+          "memory_and_parse_seconds": 0.0004428000029292889
+        },
+        {
+          "revision": 2,
+          "text": "请问陶土坊丁一号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "陶土坊丁一号样件",
+          "value_before": null,
+          "value_after": "江柳门",
+          "route": "query",
+          "received_perf": 24858.4712966,
+          "route_started_perf": 24858.4715838,
+          "memory_and_parse_seconds": 0.0002872000004572328
+        },
+        {
+          "revision": 3,
+          "text": "确认：陶土坊丁一号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": "陶土坊丁一号样件",
+          "value_before": "江柳门",
+          "value_after": "月湾站",
+          "route": "replace",
+          "received_perf": 24858.6467538,
+          "route_started_perf": 24858.6487932,
+          "memory_and_parse_seconds": 0.0020393999984662514
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 0.0004487000005610753,
+          "revision": 1,
+          "text": "确认：陶土坊丁一号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 0.0007445000010193326,
+          "revision": 2,
+          "text": "请问陶土坊丁一号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0007903000005171634,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.17584630000055768,
+          "revision": 2,
+          "unit": "江柳门。",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 2
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.17586410000149044,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "input_received",
+          "at": 0.17795879999903264,
+          "revision": 3,
+          "text": "确认：陶土坊丁一号样件的存放位置是月湾站。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.17806170000039856,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.3485352999996394,
+          "revision": 3,
+          "unit": "月湾站。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.34854320000158623,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.3485897999998997,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24858.4719183,
+          "finish_perf": 24858.6463932,
+          "duration": 0.17447489999904064,
+          "input_tokens": 86,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "江柳门。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问陶土坊丁一号样件的当前存放位置？\n当前资料：江柳门。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24858.6490173,
+          "finish_perf": 24858.8192492,
+          "duration": 0.17023190000327304,
+          "input_tokens": 113,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "月湾站。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问陶土坊丁一号样件的当前存放位置？"
+            },
+            {
+              "role": "assistant",
+              "content": "江柳门。"
+            },
+            {
+              "role": "user",
+              "content": "请问陶土坊丁一号样件的当前存放位置？\n当前资料：月湾站。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 1664,
+        "peak_persistent_payload_bytes": 1664,
+        "payload_accounting": "allocated fp32 state tensor, excluding temporary tensors, runtime overhead, instrumentation, and the fixed reader and location vocabulary",
+        "fixed_reader_bytes": 3752,
+        "reader": {
+          "format": "pbslm.content_fast_state.fp32_json.v1",
+          "seed": 0,
+          "weights_sha256": "49312a6c239efec016af1bcc995d7b136c1c6c06af98d270be774fec72613b3c",
+          "checkpoint_file_sha256": "7070a5148fbd45fb7e58f38f9ca53c89e1e9ca33646c5f16263b1002264ba028"
+        },
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 0.0019703
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 2,
+            "after_update": false,
+            "expected": "江柳门",
+            "labels": [
+              "江柳门"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          },
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "月湾站",
+            "labels": [
+              "月湾站"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": true,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_unbounded",
+      "case": "postcommit_door",
+      "arrival_condition": "after_first_generation_finished",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": null,
+      "hold_released_perf": null,
+      "initial_worker_active_at_update": false,
+      "prefix_at_update": "江柳门。",
+      "prefix_preserved": true,
+      "first_commit": {
+        "unit": "江柳门。",
+        "revision": 2,
+        "at": 0.14753019999989192
+      },
+      "committed": [
+        {
+          "unit": "江柳门。",
+          "revision": 2,
+          "at": 0.14753019999989192
+        },
+        {
+          "unit": "月湾站。",
+          "revision": 3,
+          "at": 0.2958355999980995
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：陶土坊丁一号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24858.8201426,
+          "route_started_perf": 24858.8201636,
+          "memory_and_parse_seconds": 2.099999983329326e-05
+        },
+        {
+          "revision": 2,
+          "text": "请问陶土坊丁一号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "陶土坊丁一号样件",
+          "value_before": null,
+          "value_after": "江柳门",
+          "route": "query",
+          "received_perf": 24858.8201693,
+          "route_started_perf": 24858.8201746,
+          "memory_and_parse_seconds": 5.300000339047983e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：陶土坊丁一号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": "陶土坊丁一号样件",
+          "value_before": "江柳门",
+          "value_after": "月湾站",
+          "route": "replace",
+          "received_perf": 24858.967698,
+          "route_started_perf": 24858.9677235,
+          "memory_and_parse_seconds": 2.550000135670416e-05
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.479999966453761e-05,
+          "revision": 1,
+          "text": "确认：陶土坊丁一号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 3.640000068116933e-05,
+          "revision": 2,
+          "text": "请问陶土坊丁一号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 7.090000144671649e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.14753170000039972,
+          "revision": 2,
+          "unit": "江柳门。",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 2
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.14753940000082366,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "input_received",
+          "at": 0.1475864999993064,
+          "revision": 3,
+          "text": "确认：陶土坊丁一号样件的存放位置是月湾站。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.14762429999973392,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.29583719999936875,
+          "revision": 3,
+          "unit": "月湾站。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.29584629999953904,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.2958985000004759,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24858.820512,
+          "finish_perf": 24858.9675297,
+          "duration": 0.14701770000101533,
+          "input_tokens": 86,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "江柳门。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问陶土坊丁一号样件的当前存放位置？\n当前资料：江柳门。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24858.9678006,
+          "finish_perf": 24859.1158257,
+          "duration": 0.14802509999935864,
+          "input_tokens": 113,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "月湾站。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问陶土坊丁一号样件的当前存放位置？"
+            },
+            {
+              "role": "assistant",
+              "content": "江柳门。"
+            },
+            {
+              "role": "user",
+              "content": "请问陶土坊丁一号样件的当前存放位置？\n当前资料：月湾站。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": null,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 25,
+        "peak_persistent_payload_bytes": 25,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 1.96e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 2,
+            "after_update": false,
+            "expected": "江柳门",
+            "labels": [
+              "江柳门"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          },
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "月湾站",
+            "labels": [
+              "月湾站"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": true,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_bounded",
+      "case": "postcommit_door",
+      "arrival_condition": "after_first_generation_finished",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": null,
+      "hold_released_perf": null,
+      "initial_worker_active_at_update": false,
+      "prefix_at_update": "江柳门。",
+      "prefix_preserved": true,
+      "first_commit": {
+        "unit": "江柳门。",
+        "revision": 2,
+        "at": 0.14707470000212197
+      },
+      "committed": [
+        {
+          "unit": "江柳门。",
+          "revision": 2,
+          "at": 0.14707470000212197
+        },
+        {
+          "unit": "月湾站。",
+          "revision": 3,
+          "at": 0.30801079999946523
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：陶土坊丁一号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24859.116715,
+          "route_started_perf": 24859.1167359,
+          "memory_and_parse_seconds": 2.0899999071843922e-05
+        },
+        {
+          "revision": 2,
+          "text": "请问陶土坊丁一号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "陶土坊丁一号样件",
+          "value_before": null,
+          "value_after": "江柳门",
+          "route": "query",
+          "received_perf": 24859.1167424,
+          "route_started_perf": 24859.1167476,
+          "memory_and_parse_seconds": 5.199999577598646e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：陶土坊丁一号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": "陶土坊丁一号样件",
+          "value_before": "江柳门",
+          "value_after": "月湾站",
+          "route": "replace",
+          "received_perf": 24859.2638164,
+          "route_started_perf": 24859.2638409,
+          "memory_and_parse_seconds": 2.4499997380189598e-05
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.5200002710334957e-05,
+          "revision": 1,
+          "text": "确认：陶土坊丁一号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 3.730000025825575e-05,
+          "revision": 2,
+          "text": "请问陶土坊丁一号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 7.380000170087442e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.14707620000262978,
+          "revision": 2,
+          "unit": "江柳门。",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 2
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.147084399999585,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "input_received",
+          "at": 0.14713210000263643,
+          "revision": 3,
+          "text": "确认：陶土坊丁一号样件的存放位置是月湾站。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.1471689999998489,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.30801229999997304,
+          "revision": 3,
+          "unit": "月湾站。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.30802050000056624,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.30806870000014897,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24859.1170795,
+          "finish_perf": 24859.2636471,
+          "duration": 0.1465676000007079,
+          "input_tokens": 86,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "江柳门。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问陶土坊丁一号样件的当前存放位置？\n当前资料：江柳门。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24859.2639168,
+          "finish_perf": 24859.4245743,
+          "duration": 0.16065750000052503,
+          "input_tokens": 113,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "月湾站。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问陶土坊丁一号样件的当前存放位置？"
+            },
+            {
+              "role": "assistant",
+              "content": "江柳门。"
+            },
+            {
+              "role": "user",
+              "content": "请问陶土坊丁一号样件的当前存放位置？\n当前资料：月湾站。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 25,
+        "peak_persistent_payload_bytes": 25,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 1.83e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 2,
+            "after_update": false,
+            "expected": "江柳门",
+            "labels": [
+              "江柳门"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          },
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "月湾站",
+            "labels": [
+              "月湾站"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": true,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "pbs_slots",
+      "case": "postcommit_studio",
+      "arrival_condition": "after_first_generation_finished",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": null,
+      "hold_released_perf": null,
+      "initial_worker_active_at_update": false,
+      "prefix_at_update": "东练功房。",
+      "prefix_preserved": true,
+      "first_commit": {
+        "unit": "东练功房。",
+        "revision": 2,
+        "at": 0.187077099999442
+      },
+      "committed": [
+        {
+          "unit": "东练功房。",
+          "revision": 2,
+          "at": 0.187077099999442
+        },
+        {
+          "unit": "松间厅。",
+          "revision": 3,
+          "at": 0.331244400000287
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：录音棚戊二号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24859.4268136,
+          "route_started_perf": 24859.427271,
+          "memory_and_parse_seconds": 0.0004574000013235491
+        },
+        {
+          "revision": 2,
+          "text": "请问录音棚戊二号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "录音棚戊二号样件",
+          "value_before": null,
+          "value_after": "东练功房",
+          "route": "query",
+          "received_perf": 24859.4272794,
+          "route_started_perf": 24859.4275869,
+          "memory_and_parse_seconds": 0.00030750000223633833
+        },
+        {
+          "revision": 3,
+          "text": "确认：录音棚戊二号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": "录音棚戊二号样件",
+          "value_before": "东练功房",
+          "value_after": "松间厅",
+          "route": "replace",
+          "received_perf": 24859.6139189,
+          "route_started_perf": 24859.6147429,
+          "memory_and_parse_seconds": 0.0008240000024670735
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 0.0004633999997167848,
+          "revision": 1,
+          "text": "确认：录音棚戊二号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 0.0007809999988239724,
+          "revision": 2,
+          "text": "请问录音棚戊二号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0008286999982374255,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.18707889999859617,
+          "revision": 2,
+          "unit": "东练功房。",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 2
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.1870880999995279,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "input_received",
+          "at": 0.18793839999852935,
+          "revision": 3,
+          "text": "确认：录音棚戊二号样件的存放位置是松间厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.18799880000005942,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.3312458999971568,
+          "revision": 3,
+          "unit": "松间厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.3312570999987656,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.3313051000004634,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24859.427951,
+          "finish_perf": 24859.6137342,
+          "duration": 0.18578319999869564,
+          "input_tokens": 87,
+          "output_tokens": 6,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "东练功房。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问录音棚戊二号样件的当前存放位置？\n当前资料：东练功房。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24859.6148703,
+          "finish_perf": 24859.7579029,
+          "duration": 0.14303260000087903,
+          "input_tokens": 114,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "松间厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问录音棚戊二号样件的当前存放位置？"
+            },
+            {
+              "role": "assistant",
+              "content": "东练功房。"
+            },
+            {
+              "role": "user",
+              "content": "请问录音棚戊二号样件的当前存放位置？\n当前资料：松间厅。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 1664,
+        "peak_persistent_payload_bytes": 1664,
+        "payload_accounting": "allocated fp32 state tensor, excluding temporary tensors, runtime overhead, instrumentation, and the fixed reader and location vocabulary",
+        "fixed_reader_bytes": 3752,
+        "reader": {
+          "format": "pbslm.content_fast_state.fp32_json.v1",
+          "seed": 0,
+          "weights_sha256": "49312a6c239efec016af1bcc995d7b136c1c6c06af98d270be774fec72613b3c",
+          "checkpoint_file_sha256": "7070a5148fbd45fb7e58f38f9ca53c89e1e9ca33646c5f16263b1002264ba028"
+        },
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 0.0012445
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 2,
+            "after_update": false,
+            "expected": "东练功房",
+            "labels": [
+              "东练功房"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          },
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "松间厅",
+            "labels": [
+              "松间厅"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": true,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_unbounded",
+      "case": "postcommit_studio",
+      "arrival_condition": "after_first_generation_finished",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": null,
+      "hold_released_perf": null,
+      "initial_worker_active_at_update": false,
+      "prefix_at_update": "东练功房。",
+      "prefix_preserved": true,
+      "first_commit": {
+        "unit": "东练功房。",
+        "revision": 2,
+        "at": 0.19206650000342051
+      },
+      "committed": [
+        {
+          "unit": "东练功房。",
+          "revision": 2,
+          "at": 0.19206650000342051
+        },
+        {
+          "unit": "松间厅。",
+          "revision": 3,
+          "at": 0.35405050000190386
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：录音棚戊二号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24859.7587613,
+          "route_started_perf": 24859.7587822,
+          "memory_and_parse_seconds": 2.0899999071843922e-05
+        },
+        {
+          "revision": 2,
+          "text": "请问录音棚戊二号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "录音棚戊二号样件",
+          "value_before": null,
+          "value_after": "东练功房",
+          "route": "query",
+          "received_perf": 24859.758788,
+          "route_started_perf": 24859.7587929,
+          "memory_and_parse_seconds": 4.900000931229442e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：录音棚戊二号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": "录音棚戊二号样件",
+          "value_before": "东练功房",
+          "value_after": "松间厅",
+          "route": "replace",
+          "received_perf": 24859.9508539,
+          "route_started_perf": 24859.950879,
+          "memory_and_parse_seconds": 2.5099998310906813e-05
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.4800003302516416e-05,
+          "revision": 1,
+          "text": "确认：录音棚戊二号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 3.6299999919719994e-05,
+          "revision": 2,
+          "text": "请问录音棚戊二号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 7.069999992381781e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.19206800000029034,
+          "revision": 2,
+          "unit": "东练功房。",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 2
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.19207570000071428,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "input_received",
+          "at": 0.19212400000105845,
+          "revision": 3,
+          "text": "确认：录音棚戊二号样件的存放位置是松间厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.19216159999996307,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.35405200000241166,
+          "revision": 3,
+          "unit": "松间厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.3540612000033434,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.354110700001911,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24859.7591172,
+          "finish_perf": 24859.9506912,
+          "duration": 0.1915740000004007,
+          "input_tokens": 87,
+          "output_tokens": 6,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "东练功房。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问录音棚戊二号样件的当前存放位置？\n当前资料：东练功房。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24859.9509558,
+          "finish_perf": 24860.1126134,
+          "duration": 0.1616576000014902,
+          "input_tokens": 114,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "松间厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问录音棚戊二号样件的当前存放位置？"
+            },
+            {
+              "role": "assistant",
+              "content": "东练功房。"
+            },
+            {
+              "role": "user",
+              "content": "请问录音棚戊二号样件的当前存放位置？\n当前资料：松间厅。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": null,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 25,
+        "peak_persistent_payload_bytes": 25,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 1.83e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 2,
+            "after_update": false,
+            "expected": "东练功房",
+            "labels": [
+              "东练功房"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          },
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "松间厅",
+            "labels": [
+              "松间厅"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": true,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_bounded",
+      "case": "postcommit_studio",
+      "arrival_condition": "after_first_generation_finished",
+      "initial_revision": 2,
+      "update_revision": 3,
+      "held_revision": null,
+      "hold_released_perf": null,
+      "initial_worker_active_at_update": false,
+      "prefix_at_update": "东练功房。",
+      "prefix_preserved": true,
+      "first_commit": {
+        "unit": "东练功房。",
+        "revision": 2,
+        "at": 0.18769410000095377
+      },
+      "committed": [
+        {
+          "unit": "东练功房。",
+          "revision": 2,
+          "at": 0.18769410000095377
+        },
+        {
+          "unit": "松间厅。",
+          "revision": 3,
+          "at": 0.3322781999995641
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：录音棚戊二号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.1135732,
+          "route_started_perf": 24860.1135926,
+          "memory_and_parse_seconds": 1.939999856404029e-05
+        },
+        {
+          "revision": 2,
+          "text": "请问录音棚戊二号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "录音棚戊二号样件",
+          "value_before": null,
+          "value_after": "东练功房",
+          "route": "query",
+          "received_perf": 24860.113599,
+          "route_started_perf": 24860.1136047,
+          "memory_and_parse_seconds": 5.699999746866524e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：录音棚戊二号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": "录音棚戊二号样件",
+          "value_before": "东练功房",
+          "value_after": "松间厅",
+          "route": "replace",
+          "received_perf": 24860.3013001,
+          "route_started_perf": 24860.3013263,
+          "memory_and_parse_seconds": 2.6199999410891905e-05
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.3699998564552516e-05,
+          "revision": 1,
+          "text": "确认：录音棚戊二号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 3.690000085043721e-05,
+          "revision": 2,
+          "text": "请问录音棚戊二号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 7.74000000092201e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.18769569999858504,
+          "revision": 2,
+          "unit": "东练功房。",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 2
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.18770510000103968,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "input_received",
+          "at": 0.1877600000007078,
+          "revision": 3,
+          "text": "确认：录音棚戊二号样件的存放位置是松间厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.1878047999998671,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.33227999999871827,
+          "revision": 3,
+          "unit": "松间厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.33228890000100364,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.3323374999999942,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 24860.1139587,
+          "finish_perf": 24860.3011117,
+          "duration": 0.18715299999894341,
+          "input_tokens": 87,
+          "output_tokens": 6,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "东练功房。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问录音棚戊二号样件的当前存放位置？\n当前资料：东练功房。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 24860.3014154,
+          "finish_perf": 24860.445692,
+          "duration": 0.14427660000001197,
+          "input_tokens": 114,
+          "output_tokens": 5,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "松间厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问录音棚戊二号样件的当前存放位置？"
+            },
+            {
+              "role": "assistant",
+              "content": "东练功房。"
+            },
+            {
+              "role": "user",
+              "content": "请问录音棚戊二号样件的当前存放位置？\n当前资料：松间厅。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 2,
+        "evictions": 0,
+        "resident_entries": 1,
+        "persistent_payload_bytes": 25,
+        "peak_persistent_payload_bytes": 25,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 2.02e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 2,
+            "after_update": false,
+            "expected": "东练功房",
+            "labels": [
+              "东练功房"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          },
+          {
+            "generation_revision": 3,
+            "after_update": true,
+            "expected": "松间厅",
+            "labels": [
+              "松间厅"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": true,
+        "false_replacement": false,
+        "missed_replacement": false,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": false,
+        "replacement_started": true,
+        "replacement_committed": true,
+        "replacement_current_label_present": true,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "pbs_slots",
+      "case": "cold_retention",
+      "arrival_condition": "query_only",
+      "initial_revision": 26,
+      "update_revision": null,
+      "held_revision": null,
+      "hold_released_perf": null,
+      "initial_worker_active_at_update": null,
+      "prefix_at_update": null,
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "不确定",
+        "revision": 26,
+        "at": 0.07648349999726634
+      },
+      "committed": [
+        {
+          "unit": "不确定",
+          "revision": 26,
+          "at": 0.07648349999726634
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：借阅站己三号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4477126,
+          "route_started_perf": 24860.4481527,
+          "memory_and_parse_seconds": 0.00044010000056005083
+        },
+        {
+          "revision": 2,
+          "text": "确认：工艺社货架第00号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4481605,
+          "route_started_perf": 24860.4484628,
+          "memory_and_parse_seconds": 0.0003022999990207609
+        },
+        {
+          "revision": 3,
+          "text": "确认：工艺社货架第01号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4484673,
+          "route_started_perf": 24860.4487379,
+          "memory_and_parse_seconds": 0.0002705999977479223
+        },
+        {
+          "revision": 4,
+          "text": "确认：工艺社货架第02号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4487419,
+          "route_started_perf": 24860.4490012,
+          "memory_and_parse_seconds": 0.0002592999990156386
+        },
+        {
+          "revision": 5,
+          "text": "确认：工艺社货架第03号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4490047,
+          "route_started_perf": 24860.449259,
+          "memory_and_parse_seconds": 0.00025430000096093863
+        },
+        {
+          "revision": 6,
+          "text": "确认：工艺社货架第04号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4492626,
+          "route_started_perf": 24860.4495239,
+          "memory_and_parse_seconds": 0.0002612999996927101
+        },
+        {
+          "revision": 7,
+          "text": "确认：工艺社货架第05号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4495277,
+          "route_started_perf": 24860.4497915,
+          "memory_and_parse_seconds": 0.0002638000005390495
+        },
+        {
+          "revision": 8,
+          "text": "确认：工艺社货架第06号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.449795,
+          "route_started_perf": 24860.4500511,
+          "memory_and_parse_seconds": 0.00025610000011511147
+        },
+        {
+          "revision": 9,
+          "text": "确认：工艺社货架第07号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4500545,
+          "route_started_perf": 24860.4503057,
+          "memory_and_parse_seconds": 0.00025119999918388203
+        },
+        {
+          "revision": 10,
+          "text": "确认：工艺社货架第08号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4503093,
+          "route_started_perf": 24860.450562,
+          "memory_and_parse_seconds": 0.00025270000332966447
+        },
+        {
+          "revision": 11,
+          "text": "确认：工艺社货架第09号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4505654,
+          "route_started_perf": 24860.4508153,
+          "memory_and_parse_seconds": 0.00024990000019897707
+        },
+        {
+          "revision": 12,
+          "text": "确认：工艺社货架第10号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4508185,
+          "route_started_perf": 24860.4510692,
+          "memory_and_parse_seconds": 0.00025069999901461415
+        },
+        {
+          "revision": 13,
+          "text": "确认：工艺社货架第11号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4510727,
+          "route_started_perf": 24860.4513278,
+          "memory_and_parse_seconds": 0.0002550999997765757
+        },
+        {
+          "revision": 14,
+          "text": "确认：工艺社货架第12号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.451331,
+          "route_started_perf": 24860.4515784,
+          "memory_and_parse_seconds": 0.0002473999993526377
+        },
+        {
+          "revision": 15,
+          "text": "确认：工艺社货架第13号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4515815,
+          "route_started_perf": 24860.4518353,
+          "memory_and_parse_seconds": 0.00025379999715369195
+        },
+        {
+          "revision": 16,
+          "text": "确认：工艺社货架第14号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4518385,
+          "route_started_perf": 24860.452089,
+          "memory_and_parse_seconds": 0.0002504999974917155
+        },
+        {
+          "revision": 17,
+          "text": "确认：工艺社货架第15号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4520924,
+          "route_started_perf": 24860.4525461,
+          "memory_and_parse_seconds": 0.00045370000225375406
+        },
+        {
+          "revision": 18,
+          "text": "确认：工艺社货架第16号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4525503,
+          "route_started_perf": 24860.4529738,
+          "memory_and_parse_seconds": 0.00042349999785074033
+        },
+        {
+          "revision": 19,
+          "text": "确认：工艺社货架第17号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4529775,
+          "route_started_perf": 24860.4533649,
+          "memory_and_parse_seconds": 0.000387399999453919
+        },
+        {
+          "revision": 20,
+          "text": "确认：工艺社货架第18号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4533683,
+          "route_started_perf": 24860.4537479,
+          "memory_and_parse_seconds": 0.00037959999826853164
+        },
+        {
+          "revision": 21,
+          "text": "确认：工艺社货架第19号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4537513,
+          "route_started_perf": 24860.4541483,
+          "memory_and_parse_seconds": 0.0003969999997934792
+        },
+        {
+          "revision": 22,
+          "text": "确认：工艺社货架第20号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4541518,
+          "route_started_perf": 24860.4546383,
+          "memory_and_parse_seconds": 0.0004865000009885989
+        },
+        {
+          "revision": 23,
+          "text": "确认：工艺社货架第21号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4546433,
+          "route_started_perf": 24860.4550836,
+          "memory_and_parse_seconds": 0.0004403000020829495
+        },
+        {
+          "revision": 24,
+          "text": "确认：工艺社货架第22号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4550877,
+          "route_started_perf": 24860.4554997,
+          "memory_and_parse_seconds": 0.00041200000123353675
+        },
+        {
+          "revision": 25,
+          "text": "确认：工艺社货架第23号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.4555031,
+          "route_started_perf": 24860.4559387,
+          "memory_and_parse_seconds": 0.00043559999903663993
+        },
+        {
+          "revision": 26,
+          "text": "请问借阅站己三号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "借阅站己三号样件",
+          "value_before": null,
+          "value_after": null,
+          "route": "query",
+          "received_perf": 24860.4559434,
+          "route_started_perf": 24860.4562415,
+          "memory_and_parse_seconds": 0.000298099999781698
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 0.0004450999986147508,
+          "revision": 1,
+          "text": "确认：借阅站己三号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0007541999984823633,
+          "revision": 2,
+          "text": "确认：工艺社货架第00号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0010290999998687766,
+          "revision": 3,
+          "text": "确认：工艺社货架第01号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.001292299999477109,
+          "revision": 4,
+          "text": "确认：工艺社货架第02号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.001549900000100024,
+          "revision": 5,
+          "text": "确认：工艺社货架第03号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0018149999996239785,
+          "revision": 6,
+          "text": "确认：工艺社货架第04号样件的存放位置是竹溪站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.002082499999232823,
+          "revision": 7,
+          "text": "确认：工艺社货架第05号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.002342099996894831,
+          "revision": 8,
+          "text": "确认：工艺社货架第06号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.002596599999378668,
+          "revision": 9,
+          "text": "确认：工艺社货架第07号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0028528999973786995,
+          "revision": 10,
+          "text": "确认：工艺社货架第08号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0031061999980011024,
+          "revision": 11,
+          "text": "确认：工艺社货架第09号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.003360200000315672,
+          "revision": 12,
+          "text": "确认：工艺社货架第10号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0036187000005156733,
+          "revision": 13,
+          "text": "确认：工艺社货架第11号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.003869199998007389,
+          "revision": 14,
+          "text": "确认：工艺社货架第12号样件的存放位置是竹溪站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.004126099996938137,
+          "revision": 15,
+          "text": "确认：工艺社货架第13号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.004379899997729808,
+          "revision": 16,
+          "text": "确认：工艺社货架第14号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0048373999998148065,
+          "revision": 17,
+          "text": "确认：工艺社货架第15号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0052647999982582405,
+          "revision": 18,
+          "text": "确认：工艺社货架第16号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.005655900000419933,
+          "revision": 19,
+          "text": "确认：工艺社货架第17号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.006038899999111891,
+          "revision": 20,
+          "text": "确认：工艺社货架第18号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.006439400000090245,
+          "revision": 21,
+          "text": "确认：工艺社货架第19号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.006929899998795008,
+          "revision": 22,
+          "text": "确认：工艺社货架第20号样件的存放位置是竹溪站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0073749000002862886,
+          "revision": 23,
+          "text": "确认：工艺社货架第21号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0077905999969516415,
+          "revision": 24,
+          "text": "确认：工艺社货架第22号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.008229799997934606,
+          "revision": 25,
+          "text": "确认：工艺社货架第23号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 0.00853609999830951,
+          "revision": 26,
+          "text": "请问借阅站己三号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.008604399998148438,
+          "revision": 26,
+          "generation_revision": 26
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.07648499999777414,
+          "revision": 26,
+          "unit": "不确定",
+          "generation_revision": 26,
+          "output_fence_revision": 26,
+          "latest_observation_revision": 26
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.07649379999929806,
+          "revision": 26,
+          "generation_revision": 26
+        },
+        {
+          "kind": "closed",
+          "at": 0.07654769999862765,
+          "revision": 27
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 26,
+          "start_perf": 24860.4566987,
+          "finish_perf": 24860.5240096,
+          "duration": 0.06731090000175755,
+          "input_tokens": 90,
+          "output_tokens": 2,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "不确定",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问借阅站己三号样件的当前存放位置？\n当前资料：暂无已确认的地点。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 25,
+        "evictions": 9,
+        "resident_entries": 16,
+        "persistent_payload_bytes": 1664,
+        "peak_persistent_payload_bytes": 1664,
+        "payload_accounting": "allocated fp32 state tensor, excluding temporary tensors, runtime overhead, instrumentation, and the fixed reader and location vocabulary",
+        "fixed_reader_bytes": 3752,
+        "reader": {
+          "format": "pbslm.content_fast_state.fp32_json.v1",
+          "seed": 0,
+          "weights_sha256": "49312a6c239efec016af1bcc995d7b136c1c6c06af98d270be774fec72613b3c",
+          "checkpoint_file_sha256": "7070a5148fbd45fb7e58f38f9ca53c89e1e9ca33646c5f16263b1002264ba028"
+        },
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 0.0083074
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 26,
+            "after_update": false,
+            "expected": "雨燕厅",
+            "labels": [],
+            "current_label_present": false,
+            "only_current_label": false,
+            "uncertain_text_present": true,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": null,
+        "false_replacement": null,
+        "missed_replacement": null,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": null,
+        "replacement_started": false,
+        "replacement_committed": false,
+        "replacement_current_label_present": false,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_unbounded",
+      "case": "cold_retention",
+      "arrival_condition": "query_only",
+      "initial_revision": 26,
+      "update_revision": null,
+      "held_revision": null,
+      "hold_released_perf": null,
+      "initial_worker_active_at_update": null,
+      "prefix_at_update": null,
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "雨燕厅",
+        "revision": 26,
+        "at": 0.12458739999783575
+      },
+      "committed": [
+        {
+          "unit": "雨燕厅",
+          "revision": 26,
+          "at": 0.12458739999783575
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：借阅站己三号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252156,
+          "route_started_perf": 24860.5252378,
+          "memory_and_parse_seconds": 2.220000169472769e-05
+        },
+        {
+          "revision": 2,
+          "text": "确认：工艺社货架第00号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252443,
+          "route_started_perf": 24860.5252492,
+          "memory_and_parse_seconds": 4.900000931229442e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：工艺社货架第01号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252515,
+          "route_started_perf": 24860.5252551,
+          "memory_and_parse_seconds": 3.6000019463244826e-06
+        },
+        {
+          "revision": 4,
+          "text": "确认：工艺社货架第02号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252564,
+          "route_started_perf": 24860.5252599,
+          "memory_and_parse_seconds": 3.5000011848751456e-06
+        },
+        {
+          "revision": 5,
+          "text": "确认：工艺社货架第03号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.525261,
+          "route_started_perf": 24860.5252646,
+          "memory_and_parse_seconds": 3.6000019463244826e-06
+        },
+        {
+          "revision": 6,
+          "text": "确认：工艺社货架第04号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.525266,
+          "route_started_perf": 24860.5252697,
+          "memory_and_parse_seconds": 3.6999990697950125e-06
+        },
+        {
+          "revision": 7,
+          "text": "确认：工艺社货架第05号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252709,
+          "route_started_perf": 24860.5252743,
+          "memory_and_parse_seconds": 3.3999967854470015e-06
+        },
+        {
+          "revision": 8,
+          "text": "确认：工艺社货架第06号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252755,
+          "route_started_perf": 24860.5252787,
+          "memory_and_parse_seconds": 3.1999989005271345e-06
+        },
+        {
+          "revision": 9,
+          "text": "确认：工艺社货架第07号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252798,
+          "route_started_perf": 24860.5252833,
+          "memory_and_parse_seconds": 3.5000011848751456e-06
+        },
+        {
+          "revision": 10,
+          "text": "确认：工艺社货架第08号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252845,
+          "route_started_perf": 24860.5252881,
+          "memory_and_parse_seconds": 3.6000019463244826e-06
+        },
+        {
+          "revision": 11,
+          "text": "确认：工艺社货架第09号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252893,
+          "route_started_perf": 24860.5252927,
+          "memory_and_parse_seconds": 3.4000004234258085e-06
+        },
+        {
+          "revision": 12,
+          "text": "确认：工艺社货架第10号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252939,
+          "route_started_perf": 24860.525297,
+          "memory_and_parse_seconds": 3.1000017770566046e-06
+        },
+        {
+          "revision": 13,
+          "text": "确认：工艺社货架第11号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5252983,
+          "route_started_perf": 24860.5253016,
+          "memory_and_parse_seconds": 3.2999996619764715e-06
+        },
+        {
+          "revision": 14,
+          "text": "确认：工艺社货架第12号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5253028,
+          "route_started_perf": 24860.5253059,
+          "memory_and_parse_seconds": 3.0999981390777975e-06
+        },
+        {
+          "revision": 15,
+          "text": "确认：工艺社货架第13号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5253072,
+          "route_started_perf": 24860.5253114,
+          "memory_and_parse_seconds": 4.19999923906289e-06
+        },
+        {
+          "revision": 16,
+          "text": "确认：工艺社货架第14号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.525313,
+          "route_started_perf": 24860.5253166,
+          "memory_and_parse_seconds": 3.6000019463244826e-06
+        },
+        {
+          "revision": 17,
+          "text": "确认：工艺社货架第15号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.525318,
+          "route_started_perf": 24860.5253213,
+          "memory_and_parse_seconds": 3.2999996619764715e-06
+        },
+        {
+          "revision": 18,
+          "text": "确认：工艺社货架第16号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5253229,
+          "route_started_perf": 24860.5253262,
+          "memory_and_parse_seconds": 3.2999996619764715e-06
+        },
+        {
+          "revision": 19,
+          "text": "确认：工艺社货架第17号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5253276,
+          "route_started_perf": 24860.525331,
+          "memory_and_parse_seconds": 3.4000004234258085e-06
+        },
+        {
+          "revision": 20,
+          "text": "确认：工艺社货架第18号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5253324,
+          "route_started_perf": 24860.5253358,
+          "memory_and_parse_seconds": 3.4000004234258085e-06
+        },
+        {
+          "revision": 21,
+          "text": "确认：工艺社货架第19号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5253371,
+          "route_started_perf": 24860.5253404,
+          "memory_and_parse_seconds": 3.2999996619764715e-06
+        },
+        {
+          "revision": 22,
+          "text": "确认：工艺社货架第20号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5253417,
+          "route_started_perf": 24860.5253462,
+          "memory_and_parse_seconds": 4.5000015234109014e-06
+        },
+        {
+          "revision": 23,
+          "text": "确认：工艺社货架第21号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5253474,
+          "route_started_perf": 24860.5253507,
+          "memory_and_parse_seconds": 3.3000032999552786e-06
+        },
+        {
+          "revision": 24,
+          "text": "确认：工艺社货架第22号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5253521,
+          "route_started_perf": 24860.5253554,
+          "memory_and_parse_seconds": 3.2999996619764715e-06
+        },
+        {
+          "revision": 25,
+          "text": "确认：工艺社货架第23号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.5253567,
+          "route_started_perf": 24860.5253599,
+          "memory_and_parse_seconds": 3.1999989005271345e-06
+        },
+        {
+          "revision": 26,
+          "text": "请问借阅站己三号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "借阅站己三号样件",
+          "value_before": null,
+          "value_after": "雨燕厅",
+          "route": "query",
+          "received_perf": 24860.5253617,
+          "route_started_perf": 24860.5253713,
+          "memory_and_parse_seconds": 9.599996701581404e-06
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.689999746507965e-05,
+          "revision": 1,
+          "text": "确认：借阅站己三号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 3.6399997043190524e-05,
+          "revision": 2,
+          "text": "确认：工艺社货架第00号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 4.199999966658652e-05,
+          "revision": 3,
+          "text": "确认：工艺社货架第01号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 4.669999907491729e-05,
+          "revision": 4,
+          "text": "确认：工艺社货架第02号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 5.149999924469739e-05,
+          "revision": 5,
+          "text": "确认：工艺社货架第03号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 5.6499997299397364e-05,
+          "revision": 6,
+          "text": "确认：工艺社货架第04号样件的存放位置是竹溪站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 6.119999670772813e-05,
+          "revision": 7,
+          "text": "确认：工艺社货架第05号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 6.55999974696897e-05,
+          "revision": 8,
+          "text": "确认：工艺社货架第06号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 7.00999989931006e-05,
+          "revision": 9,
+          "text": "确认：工艺社货架第07号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 7.499999992433004e-05,
+          "revision": 10,
+          "text": "确认：工艺社货架第08号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 7.959999857121147e-05,
+          "revision": 11,
+          "text": "确认：工艺社货架第09号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 8.38999985717237e-05,
+          "revision": 12,
+          "text": "确认：工艺社货架第10号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 8.849999721860513e-05,
+          "revision": 13,
+          "text": "确认：工艺社货架第11号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 9.269999645766802e-05,
+          "revision": 14,
+          "text": "确认：工艺社货架第12号样件的存放位置是竹溪站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 9.839999984251335e-05,
+          "revision": 15,
+          "text": "确认：工艺社货架第13号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.000103599999420112,
+          "revision": 16,
+          "text": "确认：工艺社货架第14号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00010829999882844277,
+          "revision": 17,
+          "text": "确认：工艺社货架第15号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00011309999899822287,
+          "revision": 18,
+          "text": "确认：工艺社货架第16号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00011799999992945231,
+          "revision": 19,
+          "text": "确认：工艺社货架第17号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00012269999933778308,
+          "revision": 20,
+          "text": "确认：工艺社货架第18号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00012729999798466451,
+          "revision": 21,
+          "text": "确认：工艺社货架第19号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00013309999849298038,
+          "revision": 22,
+          "text": "确认：工艺社货架第20号样件的存放位置是竹溪站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0001376999971398618,
+          "revision": 23,
+          "text": "确认：工艺社货架第21号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00014229999942472205,
+          "revision": 24,
+          "text": "确认：工艺社货架第22号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00014679999731015414,
+          "revision": 25,
+          "text": "确认：工艺社货架第23号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 0.00016109999705804512,
+          "revision": 26,
+          "text": "请问借阅站己三号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0001987999967241194,
+          "revision": 26,
+          "generation_revision": 26
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.12458929999775137,
+          "revision": 26,
+          "unit": "雨燕厅",
+          "generation_revision": 26,
+          "output_fence_revision": 26,
+          "latest_observation_revision": 26
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.12459820000003674,
+          "revision": 26,
+          "generation_revision": 26
+        },
+        {
+          "kind": "closed",
+          "at": 0.12465439999868977,
+          "revision": 27
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 26,
+          "start_perf": 24860.5257762,
+          "finish_perf": 24860.6496282,
+          "duration": 0.12385200000062468,
+          "input_tokens": 87,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "雨燕厅",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问借阅站己三号样件的当前存放位置？\n当前资料：雨燕厅。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": null,
+        "reads": 1,
+        "writes": 25,
+        "evictions": 0,
+        "resident_entries": 25,
+        "persistent_payload_bytes": 745,
+        "peak_persistent_payload_bytes": 745,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 5.34e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 26,
+            "after_update": false,
+            "expected": "雨燕厅",
+            "labels": [
+              "雨燕厅"
+            ],
+            "current_label_present": true,
+            "only_current_label": true,
+            "uncertain_text_present": false,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": null,
+        "false_replacement": null,
+        "missed_replacement": null,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": null,
+        "replacement_started": false,
+        "replacement_committed": false,
+        "replacement_current_label_present": false,
+        "commits_with_only_outdated_label": 0
+      }
+    },
+    {
+      "arm": "exact_bounded",
+      "case": "cold_retention",
+      "arrival_condition": "query_only",
+      "initial_revision": 26,
+      "update_revision": null,
+      "held_revision": null,
+      "hold_released_perf": null,
+      "initial_worker_active_at_update": null,
+      "prefix_at_update": null,
+      "prefix_preserved": null,
+      "first_commit": {
+        "unit": "不确定",
+        "revision": 26,
+        "at": 0.06436960000064573
+      },
+      "committed": [
+        {
+          "unit": "不确定",
+          "revision": 26,
+          "at": 0.06436960000064573
+        }
+      ],
+      "route_trace": [
+        {
+          "revision": 1,
+          "text": "确认：借阅站己三号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6505393,
+          "route_started_perf": 24860.6505547,
+          "memory_and_parse_seconds": 1.5400000847876072e-05
+        },
+        {
+          "revision": 2,
+          "text": "确认：工艺社货架第00号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6505603,
+          "route_started_perf": 24860.6505649,
+          "memory_and_parse_seconds": 4.599998646881431e-06
+        },
+        {
+          "revision": 3,
+          "text": "确认：工艺社货架第01号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6505669,
+          "route_started_perf": 24860.6505706,
+          "memory_and_parse_seconds": 3.6999990697950125e-06
+        },
+        {
+          "revision": 4,
+          "text": "确认：工艺社货架第02号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.650572,
+          "route_started_perf": 24860.6505753,
+          "memory_and_parse_seconds": 3.2999996619764715e-06
+        },
+        {
+          "revision": 5,
+          "text": "确认：工艺社货架第03号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6505764,
+          "route_started_perf": 24860.6505797,
+          "memory_and_parse_seconds": 3.2999996619764715e-06
+        },
+        {
+          "revision": 6,
+          "text": "确认：工艺社货架第04号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.650581,
+          "route_started_perf": 24860.6505844,
+          "memory_and_parse_seconds": 3.3999967854470015e-06
+        },
+        {
+          "revision": 7,
+          "text": "确认：工艺社货架第05号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6505856,
+          "route_started_perf": 24860.6505886,
+          "memory_and_parse_seconds": 3.0000010156072676e-06
+        },
+        {
+          "revision": 8,
+          "text": "确认：工艺社货架第06号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6505897,
+          "route_started_perf": 24860.650594,
+          "memory_and_parse_seconds": 4.300000000512227e-06
+        },
+        {
+          "revision": 9,
+          "text": "确认：工艺社货架第07号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6505951,
+          "route_started_perf": 24860.6505983,
+          "memory_and_parse_seconds": 3.1999989005271345e-06
+        },
+        {
+          "revision": 10,
+          "text": "确认：工艺社货架第08号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6505996,
+          "route_started_perf": 24860.6506027,
+          "memory_and_parse_seconds": 3.0999981390777975e-06
+        },
+        {
+          "revision": 11,
+          "text": "确认：工艺社货架第09号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506038,
+          "route_started_perf": 24860.6506067,
+          "memory_and_parse_seconds": 2.9000002541579306e-06
+        },
+        {
+          "revision": 12,
+          "text": "确认：工艺社货架第10号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506078,
+          "route_started_perf": 24860.6506105,
+          "memory_and_parse_seconds": 2.7000023692380637e-06
+        },
+        {
+          "revision": 13,
+          "text": "确认：工艺社货架第11号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506115,
+          "route_started_perf": 24860.6506146,
+          "memory_and_parse_seconds": 3.0999981390777975e-06
+        },
+        {
+          "revision": 14,
+          "text": "确认：工艺社货架第12号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506156,
+          "route_started_perf": 24860.6506183,
+          "memory_and_parse_seconds": 2.6999987312592566e-06
+        },
+        {
+          "revision": 15,
+          "text": "确认：工艺社货架第13号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506197,
+          "route_started_perf": 24860.6506225,
+          "memory_and_parse_seconds": 2.7999994927085936e-06
+        },
+        {
+          "revision": 16,
+          "text": "确认：工艺社货架第14号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506236,
+          "route_started_perf": 24860.6506263,
+          "memory_and_parse_seconds": 2.7000023692380637e-06
+        },
+        {
+          "revision": 17,
+          "text": "确认：工艺社货架第15号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506274,
+          "route_started_perf": 24860.6506344,
+          "memory_and_parse_seconds": 7.000002369750291e-06
+        },
+        {
+          "revision": 18,
+          "text": "确认：工艺社货架第16号样件的存放位置是松间厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506358,
+          "route_started_perf": 24860.6506399,
+          "memory_and_parse_seconds": 4.099998477613553e-06
+        },
+        {
+          "revision": 19,
+          "text": "确认：工艺社货架第17号样件的存放位置是雨燕厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506412,
+          "route_started_perf": 24860.6506444,
+          "memory_and_parse_seconds": 3.1999989005271345e-06
+        },
+        {
+          "revision": 20,
+          "text": "确认：工艺社货架第18号样件的存放位置是石桥厅。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506454,
+          "route_started_perf": 24860.6506483,
+          "memory_and_parse_seconds": 2.9000002541579306e-06
+        },
+        {
+          "revision": 21,
+          "text": "确认：工艺社货架第19号样件的存放位置是东练功房。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506493,
+          "route_started_perf": 24860.6506522,
+          "memory_and_parse_seconds": 2.9000002541579306e-06
+        },
+        {
+          "revision": 22,
+          "text": "确认：工艺社货架第20号样件的存放位置是竹溪站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506532,
+          "route_started_perf": 24860.6506567,
+          "memory_and_parse_seconds": 3.5000011848751456e-06
+        },
+        {
+          "revision": 23,
+          "text": "确认：工艺社货架第21号样件的存放位置是江柳门。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506579,
+          "route_started_perf": 24860.6506612,
+          "memory_and_parse_seconds": 3.2999996619764715e-06
+        },
+        {
+          "revision": 24,
+          "text": "确认：工艺社货架第22号样件的存放位置是月湾站。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506625,
+          "route_started_perf": 24860.6506654,
+          "memory_and_parse_seconds": 2.9000002541579306e-06
+        },
+        {
+          "revision": 25,
+          "text": "确认：工艺社货架第23号样件的存放位置是澄光柜。",
+          "kind": "observation",
+          "active_key": null,
+          "value_before": null,
+          "value_after": null,
+          "route": "background",
+          "received_perf": 24860.6506666,
+          "route_started_perf": 24860.6506696,
+          "memory_and_parse_seconds": 3.0000010156072676e-06
+        },
+        {
+          "revision": 26,
+          "text": "请问借阅站己三号样件的当前存放位置？",
+          "kind": "query",
+          "active_key": "借阅站己三号样件",
+          "value_before": null,
+          "value_after": null,
+          "route": "query",
+          "received_perf": 24860.6506709,
+          "route_started_perf": 24860.6506759,
+          "memory_and_parse_seconds": 5.000001692678779e-06
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 1.920000067912042e-05,
+          "revision": 1,
+          "text": "确认：借阅站己三号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 2.7900001441594213e-05,
+          "revision": 2,
+          "text": "确认：工艺社货架第00号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 3.3399999665562063e-05,
+          "revision": 3,
+          "text": "确认：工艺社货架第01号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 3.80000019504223e-05,
+          "revision": 4,
+          "text": "确认：工艺社货架第02号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 4.2499999835854396e-05,
+          "revision": 5,
+          "text": "确认：工艺社货架第03号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 4.7199999244185165e-05,
+          "revision": 6,
+          "text": "确认：工艺社货架第04号样件的存放位置是竹溪站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 5.120000059832819e-05,
+          "revision": 7,
+          "text": "确认：工艺社货架第05号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 5.669999882229604e-05,
+          "revision": 8,
+          "text": "确认：工艺社货架第06号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 6.10999995842576e-05,
+          "revision": 9,
+          "text": "确认：工艺社货架第07号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 6.539999958476983e-05,
+          "revision": 10,
+          "text": "确认：工艺社货架第08号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 6.940000093891285e-05,
+          "revision": 11,
+          "text": "确认：工艺社货架第09号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 7.32000007701572e-05,
+          "revision": 12,
+          "text": "确认：工艺社货架第10号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 7.729999924777076e-05,
+          "revision": 13,
+          "text": "确认：工艺社货架第11号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 8.100000195554458e-05,
+          "revision": 14,
+          "text": "确认：工艺社货架第12号样件的存放位置是竹溪站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 8.520000119460747e-05,
+          "revision": 15,
+          "text": "确认：工艺社货架第13号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 8.900000102585182e-05,
+          "revision": 16,
+          "text": "确认：工艺社货架第14号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 9.720000161905773e-05,
+          "revision": 17,
+          "text": "确认：工艺社货架第15号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00010280000060447492,
+          "revision": 18,
+          "text": "确认：工艺社货架第16号样件的存放位置是松间厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00010710000060498714,
+          "revision": 19,
+          "text": "确认：工艺社货架第17号样件的存放位置是雨燕厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00011100000119768083,
+          "revision": 20,
+          "text": "确认：工艺社货架第18号样件的存放位置是石桥厅。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00011499999891384505,
+          "revision": 21,
+          "text": "确认：工艺社货架第19号样件的存放位置是东练功房。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00011950000043725595,
+          "revision": 22,
+          "text": "确认：工艺社货架第20号样件的存放位置是竹溪站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00012409999908413738,
+          "revision": 23,
+          "text": "确认：工艺社货架第21号样件的存放位置是江柳门。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.00012820000119972974,
+          "revision": 24,
+          "text": "确认：工艺社货架第22号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0001322999996773433,
+          "revision": 25,
+          "text": "确认：工艺社货架第23号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "active readout unchanged or no active query",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 0.00014170000213198364,
+          "revision": 26,
+          "text": "请问借阅站己三号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.00018040000213659368,
+          "revision": 26,
+          "generation_revision": 26
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.0643716000013228,
+          "revision": 26,
+          "unit": "不确定",
+          "generation_revision": 26,
+          "output_fence_revision": 26,
+          "latest_observation_revision": 26
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.06438150000030873,
+          "revision": 26,
+          "generation_revision": 26
+        },
+        {
+          "kind": "closed",
+          "at": 0.06444330000158516,
+          "revision": 27
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 26,
+          "start_perf": 24860.6510475,
+          "finish_perf": 24860.7147523,
+          "duration": 0.06370479999895906,
+          "input_tokens": 90,
+          "output_tokens": 2,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "不确定",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问借阅站己三号样件的当前存放位置？\n当前资料：暂无已确认的地点。"
+            }
+          ]
+        }
+      ],
+      "memory_metrics": {
+        "capacity": 16,
+        "reads": 1,
+        "writes": 25,
+        "evictions": 9,
+        "resident_entries": 16,
+        "persistent_payload_bytes": 480,
+        "peak_persistent_payload_bytes": 480,
+        "payload_accounting": "UTF-8 key bytes plus one byte per class ID, excluding Python objects, ordered-dictionary overhead, instrumentation, and the fixed location vocabulary",
+        "fixed_reader_bytes": 0,
+        "reader": null,
+        "operation_cpu_seconds": 0.0,
+        "operation_wall_seconds": 5.11e-05
+      },
+      "generation_errors": [],
+      "scores": {
+        "commit_scores": [
+          {
+            "generation_revision": 26,
+            "after_update": false,
+            "expected": "雨燕厅",
+            "labels": [],
+            "current_label_present": false,
+            "only_current_label": false,
+            "uncertain_text_present": true,
+            "outdated_label_present": false,
+            "only_outdated_label": false
+          }
+        ],
+        "update_changed_oracle": null,
+        "false_replacement": null,
+        "missed_replacement": null,
+        "update_cancel_attempts": 0,
+        "stale_units_dropped_by_fence": 0,
+        "initial_committed_after_update": null,
+        "replacement_started": false,
+        "replacement_committed": false,
+        "replacement_current_label_present": false,
+        "commits_with_only_outdated_label": 0
+      }
+    }
+  ]
+}

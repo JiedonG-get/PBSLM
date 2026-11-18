@@ -8,7 +8,9 @@
 
 ## 当前状态（2026-11-18）
 
-最新阶段已从固定 ID 推进到连续动态键：标准差值快速状态改善了随机键绑定，但相似键、写入噪声和文本迁移仍会失败；显式内容槽与保守写入也有容量和新信息接收代价。候选已接入结构化事件的异步运行器，但没有整合成原 PBSLM 的语言理解能力。见[动态键阶段报告](docs/DYNAMIC_KEY_STAGE_REPORT.md)。
+固定 Qwen3-1.7B 的 144 题对照中，PBSLM 16 槽与等容量精确检索逐题一致，均答对 100 题。无界精确检索答对 132 题。槽位方案在容量保持与逻辑载荷上未达到继续投入门槛。调度器在提交前阻止了旧回答，提交后仍缺少显式撤回。见[有界工作状态对照](experiments/continuous_online/BOUNDED_ONLINE_V1.md)。
+
+动态键实验中，标准差值快速状态改善了随机键绑定，仍受相似键和写入噪声影响。显式内容槽与保守写入也有容量和新信息接收代价。见[动态键阶段报告](docs/DYNAMIC_KEY_STAGE_REPORT.md)。
 
 已经有可运行的异步调度骨架、真实 PBSLM 小模型推理接线，以及内部状态记忆的独立结构候选。**尚未形成一个可靠持续理解、流畅对话的完整模型，也没有证明 PBSLM 整体优于普通模型加检索。**
 
@@ -90,7 +92,7 @@ v2.1 是单路径语言 baseline；v2 的 `use_sample_masks=True` 是可选独�
 | M 读出与持续干扰 | [随机映射记忆](experiments/episodic_memory/RESULTS.md)、[持久记忆](experiments/persistent_memory/RESULTS.md) |
 | 中文表面迁移与错误抽取 | [文本事实](experiments/text_facts/RESULTS.md)、[新问法](experiments/text_surfaces/RESULTS.md)、[事实候选](experiments/fact_reader/RESULTS.md)、[校准失败](experiments/fact_reader/CALIBRATION.md) |
 | 持续运行与状态处理 | [异步运行](experiments/continuous_online/RESULTS.md)、[独立输入处理](experiments/continuous_online/CONTINUOUS_STATE.md)、[过载](experiments/continuous_online/OVERLOAD.md) |
-| 固定语言后端与连续文本 | [Qwen3 调度烟测与四种记忆快照对照](experiments/continuous_online/CONTINUOUS_MEMORY_V1.md) |
+| 固定语言后端与连续文本 | [有界工作状态对照](experiments/continuous_online/BOUNDED_ONLINE_V1.md)、[Qwen3 调度烟测与四种记忆快照对照](experiments/continuous_online/CONTINUOUS_MEMORY_V1.md) |
 | 特征、约束与泛化 | [冻结 E 读出](experiments/consolidation/FEATURE_READOUT.md)、[同损失历史对照](experiments/consolidation/SAME_LOSS_HISTORY.md)、[压缩](experiments/consolidation/RANK_COMPRESSION.md)、[布局迁移](experiments/consolidation/LAYOUT_ROBUSTNESS.md) |
 | 内部状态候选与失败 | [递归全局状态](experiments/recurrent_state/RESULTS.md)、[分槽状态](experiments/recurrent_state/SLOTTED_CONTROL.md)、[8192 次热写衰减](experiments/recurrent_state/SKEW_RETENTION.md)、[写门控与碰撞](experiments/recurrent_state/SPARSE_MATCHED_TRAINING.md)、[随机连续键与拒答回退](experiments/recurrent_state/CONTINUOUS_KEYS.md)、[离线字典回退回放](experiments/recurrent_state/FALLBACK_REPLAY.md) |
 
