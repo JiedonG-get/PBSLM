@@ -1,0 +1,6079 @@
+{
+  "split": "formal",
+  "arms": {
+    "direct_prefix": {
+      "outcomes": {
+        "initial": {
+          "total": 10,
+          "pass": 10
+        },
+        "silent": {
+          "total": 21,
+          "pass": 21
+        },
+        "withdraw_and_replace": {
+          "total": 12,
+          "pass": 0
+        },
+        "resolve_unknown": {
+          "total": 1,
+          "pass": 1
+        }
+      },
+      "withdrawals_mentioning_expected_new_value": 11,
+      "withdrawal_prior_claims_matching_gold": 12,
+      "repair_prior_claims_recognized": 13,
+      "repair_prior_claims_matching_gold": 13,
+      "repair_delivery_reasons": {
+        "model": 13
+      },
+      "valid_journal_runs": 10,
+      "generation_errors": 0,
+      "repair_model_calls": 13,
+      "repair_input_tokens": 1489,
+      "repair_output_tokens": 61,
+      "repair_worker_seconds": 1.8546878000051947,
+      "update_settlement_seconds": 1.8585652000110713
+    },
+    "structured_prompt": {
+      "outcomes": {
+        "initial": {
+          "total": 10,
+          "pass": 10
+        },
+        "silent": {
+          "total": 21,
+          "pass": 21
+        },
+        "withdraw_and_replace": {
+          "total": 12,
+          "pass": 12
+        },
+        "resolve_unknown": {
+          "total": 1,
+          "pass": 1
+        }
+      },
+      "withdrawals_mentioning_expected_new_value": 12,
+      "withdrawal_prior_claims_matching_gold": 12,
+      "repair_prior_claims_recognized": 13,
+      "repair_prior_claims_matching_gold": 13,
+      "repair_delivery_reasons": {
+        "model": 13
+      },
+      "valid_journal_runs": 10,
+      "generation_errors": 0,
+      "repair_model_calls": 13,
+      "repair_input_tokens": 1751,
+      "repair_output_tokens": 241,
+      "repair_worker_seconds": 7.062624700000015,
+      "update_settlement_seconds": 7.066908000004332
+    },
+    "guarded_commit": {
+      "outcomes": {
+        "initial": {
+          "total": 10,
+          "pass": 10
+        },
+        "silent": {
+          "total": 21,
+          "pass": 21
+        },
+        "withdraw_and_replace": {
+          "total": 12,
+          "pass": 12
+        },
+        "resolve_unknown": {
+          "total": 1,
+          "pass": 1
+        }
+      },
+      "withdrawals_mentioning_expected_new_value": 12,
+      "withdrawal_prior_claims_matching_gold": 12,
+      "repair_prior_claims_recognized": 13,
+      "repair_prior_claims_matching_gold": 13,
+      "repair_delivery_reasons": {
+        "verified_model": 13
+      },
+      "valid_journal_runs": 10,
+      "generation_errors": 0,
+      "repair_model_calls": 13,
+      "repair_input_tokens": 1751,
+      "repair_output_tokens": 241,
+      "repair_worker_seconds": 7.0643982000074175,
+      "update_settlement_seconds": 7.068508899992594
+    },
+    "deterministic_template": {
+      "outcomes": {
+        "initial": {
+          "total": 10,
+          "pass": 10
+        },
+        "silent": {
+          "total": 21,
+          "pass": 21
+        },
+        "withdraw_and_replace": {
+          "total": 12,
+          "pass": 12
+        },
+        "resolve_unknown": {
+          "total": 1,
+          "pass": 1
+        }
+      },
+      "withdrawals_mentioning_expected_new_value": 12,
+      "withdrawal_prior_claims_matching_gold": 12,
+      "repair_prior_claims_recognized": 13,
+      "repair_prior_claims_matching_gold": 13,
+      "repair_delivery_reasons": {
+        "template": 13
+      },
+      "valid_journal_runs": 10,
+      "generation_errors": 0,
+      "repair_model_calls": 0,
+      "repair_input_tokens": 0,
+      "repair_output_tokens": 0,
+      "repair_worker_seconds": 0,
+      "update_settlement_seconds": 0.0008611000012024306
+    }
+  },
+  "per_case": [
+    {
+      "case": "idempotent_delivery",
+      "arm": "deterministic_template",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "雨燕厅"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "雨燕厅",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "撤回先前的地点说法（雨燕厅），更正为江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        },
+        {
+          "event_id": "e03",
+          "revision": null,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e06",
+          "revision": 5,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        }
+      ]
+    },
+    {
+      "case": "idempotent_delivery",
+      "arm": "direct_prefix",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "雨燕厅"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "雨燕厅",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "江柳门"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": null,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e06",
+          "revision": 5,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        }
+      ]
+    },
+    {
+      "case": "idempotent_delivery",
+      "arm": "guarded_commit",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "雨燕厅"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "雨燕厅",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "撤回先前的地点说法（雨燕厅），更正为江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        },
+        {
+          "event_id": "e03",
+          "revision": null,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e06",
+          "revision": 5,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        }
+      ]
+    },
+    {
+      "case": "idempotent_delivery",
+      "arm": "structured_prompt",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "雨燕厅"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "雨燕厅",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "撤回先前的地点说法（雨燕厅），更正为江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": null,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e06",
+          "revision": 5,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        }
+      ]
+    },
+    {
+      "case": "new_evidence",
+      "arm": "deterministic_template",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [
+            "不确定"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "resolve_unknown",
+          "gold_old": null,
+          "gold_new": "江柳门",
+          "committed_units": [
+            "现已确认存放位置是江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        },
+        {
+          "event_id": "e06",
+          "revision": 6,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "江柳门",
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "撤回先前的地点说法（江柳门），更正为雨燕厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    },
+    {
+      "case": "new_evidence",
+      "arm": "direct_prefix",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [
+            "不确定"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "resolve_unknown",
+          "gold_old": null,
+          "gold_new": "江柳门",
+          "committed_units": [
+            "江柳门"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e06",
+          "revision": 6,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "江柳门",
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "雨燕厅"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "new_evidence",
+      "arm": "guarded_commit",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [
+            "不确定"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "resolve_unknown",
+          "gold_old": null,
+          "gold_new": "江柳门",
+          "committed_units": [
+            "现已确认存放位置是江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        },
+        {
+          "event_id": "e06",
+          "revision": 6,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "江柳门",
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "撤回先前的地点说法（江柳门），更正为雨燕厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "case": "new_evidence",
+      "arm": "structured_prompt",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [
+            "不确定"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "resolve_unknown",
+          "gold_old": null,
+          "gold_new": "江柳门",
+          "committed_units": [
+            "现已确认存放位置是江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e06",
+          "revision": 6,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "江柳门",
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "撤回先前的地点说法（江柳门），更正为雨燕厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "reversal",
+      "arm": "deterministic_template",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "江柳门",
+          "committed_units": [
+            "江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "江柳门",
+          "gold_new": "月湾站",
+          "committed_units": [
+            "撤回先前的地点说法（江柳门），更正为月湾站。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        },
+        {
+          "event_id": "e03",
+          "revision": null,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 4,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "撤回先前的地点说法（月湾站），更正为江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    },
+    {
+      "case": "reversal",
+      "arm": "direct_prefix",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "江柳门",
+          "committed_units": [
+            "江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "江柳门",
+          "gold_new": "月湾站",
+          "committed_units": [
+            "月湾站。"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": null,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 4,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "江柳门。"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "reversal",
+      "arm": "guarded_commit",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "江柳门",
+          "committed_units": [
+            "江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "江柳门",
+          "gold_new": "月湾站",
+          "committed_units": [
+            "撤回先前的地点说法（江柳门），更正为月湾站。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        },
+        {
+          "event_id": "e03",
+          "revision": null,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 4,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "撤回先前的地点说法（月湾站），更正为江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "case": "reversal",
+      "arm": "structured_prompt",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "江柳门",
+          "committed_units": [
+            "江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "江柳门",
+          "gold_new": "月湾站",
+          "committed_units": [
+            "撤回先前的地点说法（江柳门），更正为月湾站。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": null,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 4,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "撤回先前的地点说法（月湾站），更正为江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "straight_a",
+      "arm": "deterministic_template",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "石桥厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "撤回先前的地点说法（石桥厅），更正为江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    },
+    {
+      "case": "straight_a",
+      "arm": "direct_prefix",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "石桥厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "江柳门。"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "straight_a",
+      "arm": "guarded_commit",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "石桥厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "撤回先前的地点说法（石桥厅），更正为江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "case": "straight_a",
+      "arm": "structured_prompt",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "石桥厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "江柳门",
+          "committed_units": [
+            "撤回先前的地点说法（石桥厅），更正为江柳门。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "straight_b",
+      "arm": "deterministic_template",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "松间厅",
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "撤回先前的地点说法（松间厅），更正为雨燕厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    },
+    {
+      "case": "straight_b",
+      "arm": "direct_prefix",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "松间厅",
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "雨燕厅。"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "straight_b",
+      "arm": "guarded_commit",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "松间厅",
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "撤回先前的地点说法（松间厅），更正为雨燕厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "case": "straight_b",
+      "arm": "structured_prompt",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "松间厅",
+          "gold_new": "雨燕厅",
+          "committed_units": [
+            "撤回先前的地点说法（松间厅），更正为雨燕厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "straight_c",
+      "arm": "deterministic_template",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "澄光柜",
+          "committed_units": [
+            "澄光柜"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "澄光柜",
+          "gold_new": "竹溪站",
+          "committed_units": [
+            "撤回先前的地点说法（澄光柜），更正为竹溪站。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    },
+    {
+      "case": "straight_c",
+      "arm": "direct_prefix",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "澄光柜",
+          "committed_units": [
+            "澄光柜"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "澄光柜",
+          "gold_new": "竹溪站",
+          "committed_units": [
+            "澄光柜"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": false,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "straight_c",
+      "arm": "guarded_commit",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "澄光柜",
+          "committed_units": [
+            "澄光柜"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "澄光柜",
+          "gold_new": "竹溪站",
+          "committed_units": [
+            "撤回先前的地点说法（澄光柜），更正为竹溪站。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "case": "straight_c",
+      "arm": "structured_prompt",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "澄光柜",
+          "committed_units": [
+            "澄光柜"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "澄光柜",
+          "gold_new": "竹溪站",
+          "committed_units": [
+            "撤回先前的地点说法（澄光柜），更正为竹溪站。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "straight_d",
+      "arm": "deterministic_template",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "东练功房",
+          "committed_units": [
+            "东练功房。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "东练功房",
+          "gold_new": "月湾站",
+          "committed_units": [
+            "撤回先前的地点说法（东练功房），更正为月湾站。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    },
+    {
+      "case": "straight_d",
+      "arm": "direct_prefix",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "东练功房",
+          "committed_units": [
+            "东练功房。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "东练功房",
+          "gold_new": "月湾站",
+          "committed_units": [
+            "月湾站。"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "straight_d",
+      "arm": "guarded_commit",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "东练功房",
+          "committed_units": [
+            "东练功房。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "东练功房",
+          "gold_new": "月湾站",
+          "committed_units": [
+            "撤回先前的地点说法（东练功房），更正为月湾站。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "case": "straight_d",
+      "arm": "structured_prompt",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "东练功房",
+          "committed_units": [
+            "东练功房。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "东练功房",
+          "gold_new": "月湾站",
+          "committed_units": [
+            "撤回先前的地点说法（东练功房），更正为月湾站。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "successive_corrections",
+      "arm": "deterministic_template",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "松间厅",
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "撤回先前的地点说法（松间厅），更正为石桥厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "东练功房",
+          "committed_units": [
+            "撤回先前的地点说法（石桥厅），更正为东练功房。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    },
+    {
+      "case": "successive_corrections",
+      "arm": "direct_prefix",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "松间厅",
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "石桥厅。"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "东练功房",
+          "committed_units": [
+            "东练功房。"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "successive_corrections",
+      "arm": "guarded_commit",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "松间厅",
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "撤回先前的地点说法（松间厅），更正为石桥厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "东练功房",
+          "committed_units": [
+            "撤回先前的地点说法（石桥厅），更正为东练功房。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "case": "successive_corrections",
+      "arm": "structured_prompt",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "松间厅",
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "撤回先前的地点说法（松间厅），更正为石桥厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "东练功房",
+          "committed_units": [
+            "撤回先前的地点说法（石桥厅），更正为东练功房。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "unconfirmed_then_confirmed",
+      "arm": "deterministic_template",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "石桥厅"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "东练功房",
+          "committed_units": [
+            "撤回先前的地点说法（石桥厅），更正为东练功房。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    },
+    {
+      "case": "unconfirmed_then_confirmed",
+      "arm": "direct_prefix",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "石桥厅"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "东练功房",
+          "committed_units": [
+            "东练功房"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "unconfirmed_then_confirmed",
+      "arm": "guarded_commit",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "石桥厅"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "东练功房",
+          "committed_units": [
+            "撤回先前的地点说法（石桥厅），更正为东练功房。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "case": "unconfirmed_then_confirmed",
+      "arm": "structured_prompt",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "石桥厅"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "石桥厅",
+          "gold_new": "东练功房",
+          "committed_units": [
+            "撤回先前的地点说法（石桥厅），更正为东练功房。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "unrelated_and_unchanged",
+      "arm": "deterministic_template",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "月湾站",
+          "committed_units": [
+            "月湾站"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "松间厅",
+          "committed_units": [
+            "撤回先前的地点说法（月湾站），更正为松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    },
+    {
+      "case": "unrelated_and_unchanged",
+      "arm": "direct_prefix",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "月湾站",
+          "committed_units": [
+            "月湾站"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "松间厅",
+          "committed_units": [
+            "松间厅"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "case": "unrelated_and_unchanged",
+      "arm": "guarded_commit",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "月湾站",
+          "committed_units": [
+            "月湾站"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "松间厅",
+          "committed_units": [
+            "撤回先前的地点说法（月湾站），更正为松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "case": "unrelated_and_unchanged",
+      "arm": "structured_prompt",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "月湾站",
+          "committed_units": [
+            "月湾站"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e04",
+          "revision": 4,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e05",
+          "revision": 5,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "松间厅",
+          "committed_units": [
+            "撤回先前的地点说法（月湾站），更正为松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    }
+  ],
+  "formal_absolute_criteria": {
+    "direct_prefix": false,
+    "structured_prompt": true,
+    "guarded_commit": true,
+    "deterministic_template": true
+  },
+  "replay": {
+    "split": "formal",
+    "arms": {
+      "direct_prefix": {
+        "outcomes": {
+          "initial": {
+            "total": 10,
+            "pass": 10
+          },
+          "silent": {
+            "total": 21,
+            "pass": 21
+          },
+          "withdraw_and_replace": {
+            "total": 12,
+            "pass": 0
+          },
+          "resolve_unknown": {
+            "total": 1,
+            "pass": 1
+          }
+        },
+        "withdrawals_mentioning_expected_new_value": 11,
+        "withdrawal_prior_claims_matching_gold": 12,
+        "repair_prior_claims_recognized": 13,
+        "repair_prior_claims_matching_gold": 13,
+        "repair_delivery_reasons": {
+          "model": 13
+        },
+        "valid_journal_runs": 10,
+        "generation_errors": 0,
+        "repair_model_calls": 13,
+        "repair_input_tokens": 1489,
+        "repair_output_tokens": 61,
+        "repair_worker_seconds": 2.0672440999987884,
+        "update_settlement_seconds": 2.0723864000065078
+      },
+      "structured_prompt": {
+        "outcomes": {
+          "initial": {
+            "total": 10,
+            "pass": 10
+          },
+          "silent": {
+            "total": 21,
+            "pass": 21
+          },
+          "withdraw_and_replace": {
+            "total": 12,
+            "pass": 12
+          },
+          "resolve_unknown": {
+            "total": 1,
+            "pass": 1
+          }
+        },
+        "withdrawals_mentioning_expected_new_value": 12,
+        "withdrawal_prior_claims_matching_gold": 12,
+        "repair_prior_claims_recognized": 13,
+        "repair_prior_claims_matching_gold": 13,
+        "repair_delivery_reasons": {
+          "model": 13
+        },
+        "valid_journal_runs": 10,
+        "generation_errors": 0,
+        "repair_model_calls": 13,
+        "repair_input_tokens": 1751,
+        "repair_output_tokens": 241,
+        "repair_worker_seconds": 8.131811799994466,
+        "update_settlement_seconds": 8.136385599995265
+      },
+      "guarded_commit": {
+        "outcomes": {
+          "initial": {
+            "total": 10,
+            "pass": 10
+          },
+          "silent": {
+            "total": 21,
+            "pass": 21
+          },
+          "withdraw_and_replace": {
+            "total": 12,
+            "pass": 12
+          },
+          "resolve_unknown": {
+            "total": 1,
+            "pass": 1
+          }
+        },
+        "withdrawals_mentioning_expected_new_value": 12,
+        "withdrawal_prior_claims_matching_gold": 12,
+        "repair_prior_claims_recognized": 13,
+        "repair_prior_claims_matching_gold": 13,
+        "repair_delivery_reasons": {
+          "verified_model": 13
+        },
+        "valid_journal_runs": 10,
+        "generation_errors": 0,
+        "repair_model_calls": 13,
+        "repair_input_tokens": 1751,
+        "repair_output_tokens": 241,
+        "repair_worker_seconds": 7.847206099999312,
+        "update_settlement_seconds": 7.852093900004547
+      },
+      "deterministic_template": {
+        "outcomes": {
+          "initial": {
+            "total": 10,
+            "pass": 10
+          },
+          "silent": {
+            "total": 21,
+            "pass": 21
+          },
+          "withdraw_and_replace": {
+            "total": 12,
+            "pass": 12
+          },
+          "resolve_unknown": {
+            "total": 1,
+            "pass": 1
+          }
+        },
+        "withdrawals_mentioning_expected_new_value": 12,
+        "withdrawal_prior_claims_matching_gold": 12,
+        "repair_prior_claims_recognized": 13,
+        "repair_prior_claims_matching_gold": 13,
+        "repair_delivery_reasons": {
+          "template": 13
+        },
+        "valid_journal_runs": 10,
+        "generation_errors": 0,
+        "repair_model_calls": 0,
+        "repair_input_tokens": 0,
+        "repair_output_tokens": 0,
+        "repair_worker_seconds": 0,
+        "update_settlement_seconds": 0.0010721000035118777
+      }
+    },
+    "per_case": [
+      {
+        "case": "idempotent_delivery",
+        "arm": "deterministic_template",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "雨燕厅"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "雨燕厅",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "撤回先前的地点说法（雨燕厅），更正为江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          },
+          {
+            "event_id": "e03",
+            "revision": null,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e06",
+            "revision": 5,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          }
+        ]
+      },
+      {
+        "case": "idempotent_delivery",
+        "arm": "direct_prefix",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "雨燕厅"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "雨燕厅",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "江柳门"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": null,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e06",
+            "revision": 5,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          }
+        ]
+      },
+      {
+        "case": "idempotent_delivery",
+        "arm": "guarded_commit",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "雨燕厅"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "雨燕厅",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "撤回先前的地点说法（雨燕厅），更正为江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          },
+          {
+            "event_id": "e03",
+            "revision": null,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e06",
+            "revision": 5,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          }
+        ]
+      },
+      {
+        "case": "idempotent_delivery",
+        "arm": "structured_prompt",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "雨燕厅"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "雨燕厅",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "撤回先前的地点说法（雨燕厅），更正为江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": null,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e06",
+            "revision": 5,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          }
+        ]
+      },
+      {
+        "case": "new_evidence",
+        "arm": "deterministic_template",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [
+              "不确定"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "resolve_unknown",
+            "gold_old": null,
+            "gold_new": "江柳门",
+            "committed_units": [
+              "现已确认存放位置是江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          },
+          {
+            "event_id": "e06",
+            "revision": 6,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "江柳门",
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "撤回先前的地点说法（江柳门），更正为雨燕厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          }
+        ]
+      },
+      {
+        "case": "new_evidence",
+        "arm": "direct_prefix",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [
+              "不确定"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "resolve_unknown",
+            "gold_old": null,
+            "gold_new": "江柳门",
+            "committed_units": [
+              "江柳门"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e06",
+            "revision": 6,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "江柳门",
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "雨燕厅"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "new_evidence",
+        "arm": "guarded_commit",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [
+              "不确定"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "resolve_unknown",
+            "gold_old": null,
+            "gold_new": "江柳门",
+            "committed_units": [
+              "现已确认存放位置是江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          },
+          {
+            "event_id": "e06",
+            "revision": 6,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "江柳门",
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "撤回先前的地点说法（江柳门），更正为雨燕厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          }
+        ]
+      },
+      {
+        "case": "new_evidence",
+        "arm": "structured_prompt",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [
+              "不确定"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "resolve_unknown",
+            "gold_old": null,
+            "gold_new": "江柳门",
+            "committed_units": [
+              "现已确认存放位置是江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e06",
+            "revision": 6,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "江柳门",
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "撤回先前的地点说法（江柳门），更正为雨燕厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "reversal",
+        "arm": "deterministic_template",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "江柳门",
+            "committed_units": [
+              "江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "江柳门",
+            "gold_new": "月湾站",
+            "committed_units": [
+              "撤回先前的地点说法（江柳门），更正为月湾站。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          },
+          {
+            "event_id": "e03",
+            "revision": null,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 4,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "月湾站",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "撤回先前的地点说法（月湾站），更正为江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          }
+        ]
+      },
+      {
+        "case": "reversal",
+        "arm": "direct_prefix",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "江柳门",
+            "committed_units": [
+              "江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "江柳门",
+            "gold_new": "月湾站",
+            "committed_units": [
+              "月湾站。"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": null,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 4,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "月湾站",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "江柳门。"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "reversal",
+        "arm": "guarded_commit",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "江柳门",
+            "committed_units": [
+              "江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "江柳门",
+            "gold_new": "月湾站",
+            "committed_units": [
+              "撤回先前的地点说法（江柳门），更正为月湾站。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          },
+          {
+            "event_id": "e03",
+            "revision": null,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 4,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "月湾站",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "撤回先前的地点说法（月湾站），更正为江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          }
+        ]
+      },
+      {
+        "case": "reversal",
+        "arm": "structured_prompt",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "江柳门",
+            "committed_units": [
+              "江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "江柳门",
+            "gold_new": "月湾站",
+            "committed_units": [
+              "撤回先前的地点说法（江柳门），更正为月湾站。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": null,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 4,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "月湾站",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "撤回先前的地点说法（月湾站），更正为江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "straight_a",
+        "arm": "deterministic_template",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "石桥厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "撤回先前的地点说法（石桥厅），更正为江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          }
+        ]
+      },
+      {
+        "case": "straight_a",
+        "arm": "direct_prefix",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "石桥厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "江柳门。"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "straight_a",
+        "arm": "guarded_commit",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "石桥厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "撤回先前的地点说法（石桥厅），更正为江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          }
+        ]
+      },
+      {
+        "case": "straight_a",
+        "arm": "structured_prompt",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "石桥厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "江柳门",
+            "committed_units": [
+              "撤回先前的地点说法（石桥厅），更正为江柳门。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "straight_b",
+        "arm": "deterministic_template",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "松间厅",
+            "committed_units": [
+              "松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "松间厅",
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "撤回先前的地点说法（松间厅），更正为雨燕厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          }
+        ]
+      },
+      {
+        "case": "straight_b",
+        "arm": "direct_prefix",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "松间厅",
+            "committed_units": [
+              "松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "松间厅",
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "雨燕厅。"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "straight_b",
+        "arm": "guarded_commit",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "松间厅",
+            "committed_units": [
+              "松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "松间厅",
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "撤回先前的地点说法（松间厅），更正为雨燕厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          }
+        ]
+      },
+      {
+        "case": "straight_b",
+        "arm": "structured_prompt",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "松间厅",
+            "committed_units": [
+              "松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "松间厅",
+            "gold_new": "雨燕厅",
+            "committed_units": [
+              "撤回先前的地点说法（松间厅），更正为雨燕厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "straight_c",
+        "arm": "deterministic_template",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "澄光柜",
+            "committed_units": [
+              "澄光柜"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "澄光柜",
+            "gold_new": "竹溪站",
+            "committed_units": [
+              "撤回先前的地点说法（澄光柜），更正为竹溪站。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          }
+        ]
+      },
+      {
+        "case": "straight_c",
+        "arm": "direct_prefix",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "澄光柜",
+            "committed_units": [
+              "澄光柜"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "澄光柜",
+            "gold_new": "竹溪站",
+            "committed_units": [
+              "澄光柜"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": false,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "straight_c",
+        "arm": "guarded_commit",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "澄光柜",
+            "committed_units": [
+              "澄光柜"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "澄光柜",
+            "gold_new": "竹溪站",
+            "committed_units": [
+              "撤回先前的地点说法（澄光柜），更正为竹溪站。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          }
+        ]
+      },
+      {
+        "case": "straight_c",
+        "arm": "structured_prompt",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "澄光柜",
+            "committed_units": [
+              "澄光柜"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "澄光柜",
+            "gold_new": "竹溪站",
+            "committed_units": [
+              "撤回先前的地点说法（澄光柜），更正为竹溪站。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "straight_d",
+        "arm": "deterministic_template",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "东练功房",
+            "committed_units": [
+              "东练功房。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "东练功房",
+            "gold_new": "月湾站",
+            "committed_units": [
+              "撤回先前的地点说法（东练功房），更正为月湾站。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          }
+        ]
+      },
+      {
+        "case": "straight_d",
+        "arm": "direct_prefix",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "东练功房",
+            "committed_units": [
+              "东练功房。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "东练功房",
+            "gold_new": "月湾站",
+            "committed_units": [
+              "月湾站。"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "straight_d",
+        "arm": "guarded_commit",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "东练功房",
+            "committed_units": [
+              "东练功房。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "东练功房",
+            "gold_new": "月湾站",
+            "committed_units": [
+              "撤回先前的地点说法（东练功房），更正为月湾站。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          }
+        ]
+      },
+      {
+        "case": "straight_d",
+        "arm": "structured_prompt",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "东练功房",
+            "committed_units": [
+              "东练功房。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "东练功房",
+            "gold_new": "月湾站",
+            "committed_units": [
+              "撤回先前的地点说法（东练功房），更正为月湾站。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "successive_corrections",
+        "arm": "deterministic_template",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "松间厅",
+            "committed_units": [
+              "松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "松间厅",
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "撤回先前的地点说法（松间厅），更正为石桥厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "东练功房",
+            "committed_units": [
+              "撤回先前的地点说法（石桥厅），更正为东练功房。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          }
+        ]
+      },
+      {
+        "case": "successive_corrections",
+        "arm": "direct_prefix",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "松间厅",
+            "committed_units": [
+              "松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "松间厅",
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "石桥厅。"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "东练功房",
+            "committed_units": [
+              "东练功房。"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "successive_corrections",
+        "arm": "guarded_commit",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "松间厅",
+            "committed_units": [
+              "松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "松间厅",
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "撤回先前的地点说法（松间厅），更正为石桥厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "东练功房",
+            "committed_units": [
+              "撤回先前的地点说法（石桥厅），更正为东练功房。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          }
+        ]
+      },
+      {
+        "case": "successive_corrections",
+        "arm": "structured_prompt",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "松间厅",
+            "committed_units": [
+              "松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "松间厅",
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "撤回先前的地点说法（松间厅），更正为石桥厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "东练功房",
+            "committed_units": [
+              "撤回先前的地点说法（石桥厅），更正为东练功房。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "unconfirmed_then_confirmed",
+        "arm": "deterministic_template",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "石桥厅"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "东练功房",
+            "committed_units": [
+              "撤回先前的地点说法（石桥厅），更正为东练功房。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          }
+        ]
+      },
+      {
+        "case": "unconfirmed_then_confirmed",
+        "arm": "direct_prefix",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "石桥厅"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "东练功房",
+            "committed_units": [
+              "东练功房"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "unconfirmed_then_confirmed",
+        "arm": "guarded_commit",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "石桥厅"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "东练功房",
+            "committed_units": [
+              "撤回先前的地点说法（石桥厅），更正为东练功房。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          }
+        ]
+      },
+      {
+        "case": "unconfirmed_then_confirmed",
+        "arm": "structured_prompt",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "石桥厅",
+            "committed_units": [
+              "石桥厅"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "石桥厅",
+            "gold_new": "东练功房",
+            "committed_units": [
+              "撤回先前的地点说法（石桥厅），更正为东练功房。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "unrelated_and_unchanged",
+        "arm": "deterministic_template",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "月湾站",
+            "committed_units": [
+              "月湾站"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "月湾站",
+            "gold_new": "松间厅",
+            "committed_units": [
+              "撤回先前的地点说法（月湾站），更正为松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "template"
+          }
+        ]
+      },
+      {
+        "case": "unrelated_and_unchanged",
+        "arm": "direct_prefix",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "月湾站",
+            "committed_units": [
+              "月湾站"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "月湾站",
+            "gold_new": "松间厅",
+            "committed_units": [
+              "松间厅"
+            ],
+            "strict_pass": false,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      },
+      {
+        "case": "unrelated_and_unchanged",
+        "arm": "guarded_commit",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "月湾站",
+            "committed_units": [
+              "月湾站"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "月湾站",
+            "gold_new": "松间厅",
+            "committed_units": [
+              "撤回先前的地点说法（月湾站），更正为松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "verified_model"
+          }
+        ]
+      },
+      {
+        "case": "unrelated_and_unchanged",
+        "arm": "structured_prompt",
+        "scores": [
+          {
+            "event_id": "e01",
+            "revision": 1,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e02",
+            "revision": 2,
+            "expected_kind": "initial",
+            "gold_old": null,
+            "gold_new": "月湾站",
+            "committed_units": [
+              "月湾站"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": false,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": "model"
+          },
+          {
+            "event_id": "e03",
+            "revision": 3,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e04",
+            "revision": 4,
+            "expected_kind": "silent",
+            "gold_old": null,
+            "gold_new": null,
+            "committed_units": [],
+            "strict_pass": true,
+            "correct_readout": null,
+            "new_value_mentioned": null,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": null,
+            "delivery_reason": null
+          },
+          {
+            "event_id": "e05",
+            "revision": 5,
+            "expected_kind": "withdraw_and_replace",
+            "gold_old": "月湾站",
+            "gold_new": "松间厅",
+            "committed_units": [
+              "撤回先前的地点说法（月湾站），更正为松间厅。"
+            ],
+            "strict_pass": true,
+            "correct_readout": true,
+            "new_value_mentioned": true,
+            "prior_claim_recognized": true,
+            "prior_claim_matches_gold": true,
+            "delivery_reason": "model"
+          }
+        ]
+      }
+    ],
+    "formal_absolute_criteria": {
+      "direct_prefix": false,
+      "structured_prompt": true,
+      "guarded_commit": true,
+      "deterministic_template": true
+    }
+  },
+  "replay_comparison": {
+    "equivalent": true,
+    "metadata_differences": [],
+    "run_differences": []
+  }
+}
