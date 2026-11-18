@@ -1,0 +1,439 @@
+{
+  "task": "two_phrase_relation_query_with_offset4_counterfactual_holdout",
+  "data_seed": 0,
+  "model_seed": 0,
+  "config": {
+    "data_seed": 0,
+    "model_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "pretrain_steps": 800,
+    "frozen_steps": 800,
+    "joint_steps": 800,
+    "baseline_steps": 800,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cuda",
+    "output": "experiments/latent_chunk/task_aware_joint_recon_int4_offset4_data0_model0-4.json",
+    "reconstruction_weight": 1.0
+  },
+  "split": {
+    "data_seed": 0,
+    "held_out_ordered_value_pairs": [
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        3
+      ]
+    ],
+    "train_examples": 3384,
+    "test_examples": 712,
+    "standard_test_split_used": false
+  },
+  "code_storage": {
+    "bits_per_component": 4,
+    "rank_per_phrase": 4,
+    "phrase_count": 2,
+    "components": 256,
+    "int4_payload_bytes_estimate": 128,
+    "dequantized_fp32_input_bytes": 1024,
+    "raw_input_token_count": 16,
+    "input_token_bit_width": 4,
+    "raw_token_payload_bytes_4bit_packed_estimate": 8,
+    "raw_fp32_embedding_input_bytes": 2048,
+    "latent_to_bitpacked_token_payload_ratio": 16.0,
+    "shared_autoencoder_and_decoder_excluded": true
+  },
+  "provenance": {
+    "git_commit": "f5ae7ee1be077cc060ef88b5b1ac84695dc74ff9",
+    "git_status": "M experiments/latent_chunk/REPORT.md\n?? evaluation/analyze_qwen_story.py\n?? evaluation/latent_chunk_adapter_thinking.py\n?? evaluation/latent_chunk_decoded_control.py\n?? evaluation/latent_chunk_fixed_data_budget.py\n?? evaluation/latent_chunk_qat_control.py\n?? evaluation/latent_chunk_soft_reader_confirmatory.py\n?? evaluation/latent_chunk_soft_reader_rank_sweep.py\n?? evaluation/latent_chunk_task_aware_joint_reconstruction.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? experiments/continuous_online/alias_online_dev_frozen_scores_v2.json\n?? experiments/continuous_online/alias_online_dev_frozen_v2.json\n?? experiments/continuous_online/alias_online_development_batch_scores_v2.json\n?? experiments/continuous_online/alias_online_development_batch_v2.json\n?? experiments/continuous_online/alias_online_development_final_scores_v2.json\n?? experiments/continuous_online/alias_online_development_final_v2.json\n?? experiments/continuous_online/alias_online_development_initial_scores_v2.json\n?? experiments/continuous_online/alias_online_development_initial_v2.json\n?? experiments/continuous_online/alias_online_development_retry_v2.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/latent_chunk/QUANTIZED_DECODED_CONTROL_8BIT.md\n?? experiments/latent_chunk/decoded_latent_int4_qat_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_int4_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_int8_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/direct_adapter_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/fixed_data_seed0_model_seeds0-4_rank4_budgets800_1600.json\n?? experiments/latent_chunk/preflight_matched.json\n?? experiments/latent_chunk/preflight_seed0_rank1.json\n?? experiments/latent_chunk/soft_reader_int4_offset4_3seed_rank4_800.json\n?? experiments/latent_chunk/soft_reader_int4_offset4_extra5seed_rank4_800.json\n?? experiments/latent_chunk/soft_reader_int4_offset4_rank12_3seed_800.json\n?? experiments/latent_chunk/soft_reader_offset4_rank_tradeoff.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_offset4_seed0.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_offset4_seed0.md\n?? experiments/recurrent_state/continuous_event_tests.log",
+    "source_sha256_at_capture": {
+      "evaluation/latent_chunk_task_aware_joint_reconstruction.py": "8fd58247dcccb8f34690a6a8d5b7cfa56d7999534e318d7503dc413b9f2bc85f",
+      "evaluation/latent_chunk_soft_reader_confirmatory.py": "02b8ef43bc5555f6d374c117be673f9895feff837795564d81827037cf0bd24b",
+      "evaluation/latent_chunk_reconstruction.py": "fb468a9f4c9ee5a39f926a348abf583f3afccec8756e4d647ce8ac4a0e26c73d",
+      "evaluation/latent_chunk_ab_thinking.py": "3da790e222a000e7f367ef12595aa281bfe8540ca2a0dff0887a22337b9da571",
+      "evaluation/latent_chunk_relations.py": "070377ad5b4980a20a4b43953e67b80dfb976376da1cc6e28dba5c2ea54da312",
+      "evaluation/provenance.py": "061924cbf9c0c5d326501be75102734bea03be6f1f315dfe032fdff1a34ebdee",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "685d275de48e923e93adc9614319e0743f80573619bead16a1f7b06aeeff8d05"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "progress": {
+    "complete": true,
+    "checkpoint_model_seed": 0
+  },
+  "run": {
+    "model_seed": 0,
+    "train_examples": 3384,
+    "test_examples": 712,
+    "autoencoder_parameters": 38224,
+    "shared_encoder_parameters": 24768,
+    "shared_decoder_parameters": 13456,
+    "pretraining": {
+      "train_reconstruction": {
+        "x_token_accuracy": 0.9998153001070023,
+        "y_token_accuracy": 1.0,
+        "all_16_token_accuracy": 0.9999076500535011,
+        "x_variable_token_accuracy": 0.9997889144080025,
+        "y_variable_token_accuracy": 1.0,
+        "query_key_accuracy": 0.9994089603424072,
+        "y_edge_symbol_accuracy": 1.0,
+        "x_filler_accuracy": 0.9998522400856018,
+        "y_filler_accuracy": 1.0,
+        "x_phrase_exact": 0.9985224586288416,
+        "y_phrase_exact": 1.0,
+        "both_phrases_exact": 0.9985224586288416,
+        "position_accuracy": {
+          "x": [
+            1.0,
+            0.9994089603424072,
+            0.9994089603424072,
+            1.0,
+            0.9997044801712036,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "y": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "examples": 3384
+      },
+      "test_reconstruction": {
+        "x_token_accuracy": 0.9984199553728104,
+        "y_token_accuracy": 0.9982443824410439,
+        "all_16_token_accuracy": 0.9983321689069271,
+        "x_variable_token_accuracy": 0.9981942347117833,
+        "y_variable_token_accuracy": 0.9979935799326215,
+        "query_key_accuracy": 0.9971910119056702,
+        "y_edge_symbol_accuracy": 0.9971910119056702,
+        "x_filler_accuracy": 0.9983614385128021,
+        "y_filler_accuracy": 0.9990636706352234,
+        "x_phrase_exact": 0.9887640449438202,
+        "y_phrase_exact": 0.9859550561797753,
+        "both_phrases_exact": 0.976123595505618,
+        "position_accuracy": {
+          "x": [
+            1.0,
+            0.9971910119056702,
+            0.9957865476608276,
+            0.9971910119056702,
+            1.0,
+            0.9985955357551575,
+            1.0,
+            0.9985955357551575
+          ],
+          "y": [
+            1.0,
+            1.0,
+            0.9943820238113403,
+            0.9971910119056702,
+            0.9971910119056702,
+            1.0,
+            1.0,
+            0.9971910119056702
+          ]
+        },
+        "examples": 712
+      },
+      "final_batch_loss": 0.02369339019060135,
+      "train_seconds": 2.1668175000013434
+    },
+    "pretraining_int4_reconstruction": {
+      "train": {
+        "all_16_token_accuracy": 0.9997414238750935,
+        "x_token_accuracy": 0.999556727707386,
+        "y_token_accuracy": 0.9999261200428009,
+        "query_key_accuracy": 0.9994089603424072,
+        "y_edge_symbol_accuracy": 0.9998522400856018,
+        "x_phrase_exact": 0.9964539007092199,
+        "y_phrase_exact": 0.9994089834515366,
+        "both_phrases_exact": 0.9958628841607565,
+        "examples": 3384
+      },
+      "test": {
+        "all_16_token_accuracy": 0.9971032366156578,
+        "x_token_accuracy": 0.9977177083492279,
+        "y_token_accuracy": 0.9964887648820877,
+        "query_key_accuracy": 0.9971910119056702,
+        "y_edge_symbol_accuracy": 0.9943820238113403,
+        "x_phrase_exact": 0.9845505617977528,
+        "y_phrase_exact": 0.9719101123595506,
+        "both_phrases_exact": 0.9578651685393258,
+        "examples": 712
+      }
+    },
+    "frozen_int4_latent": {
+      "train": {
+        "accuracy": 0.9943853616714478,
+        "counterfactual_pair_exact": 0.9887706637382507,
+        "ordered_value_pair_accuracy": {
+          "0->1": 0.9899999499320984,
+          "0->3": 1.0,
+          "0->5": 0.9888889193534851,
+          "0->6": 1.0,
+          "0->7": 1.0,
+          "1->0": 0.9880952835083008,
+          "1->2": 1.0,
+          "1->4": 1.0,
+          "1->6": 0.9886363744735718,
+          "1->7": 0.987500011920929,
+          "2->0": 0.989130437374115,
+          "2->1": 0.9999999403953552,
+          "2->3": 1.0,
+          "2->5": 0.9886363744735718,
+          "2->7": 0.9615384936332703,
+          "3->0": 0.9886363744735718,
+          "3->1": 1.0,
+          "3->2": 1.0,
+          "3->4": 0.9999999403953552,
+          "3->6": 1.0,
+          "4->1": 0.9999999403953552,
+          "4->2": 1.0,
+          "4->3": 1.0,
+          "4->5": 0.9861111044883728,
+          "4->7": 0.9864864945411682,
+          "5->0": 0.9871795177459717,
+          "5->2": 0.9864864945411682,
+          "5->3": 1.0,
+          "5->4": 0.9878048300743103,
+          "5->6": 1.0,
+          "6->1": 0.9878048300743103,
+          "6->3": 1.0,
+          "6->4": 1.0,
+          "6->5": 1.0,
+          "6->7": 0.9883720874786377,
+          "7->0": 1.0,
+          "7->2": 1.0,
+          "7->4": 1.0,
+          "7->5": 1.0,
+          "7->6": 0.9895833730697632
+        },
+        "examples": 3384
+      },
+      "test": {
+        "accuracy": 0.25280898809432983,
+        "counterfactual_pair_exact": 0.03932584449648857,
+        "ordered_value_pair_accuracy": {
+          "0->4": 0.2874999940395355,
+          "1->5": 0.28431373834609985,
+          "2->6": 0.29999998211860657,
+          "3->7": 0.3333333432674408,
+          "4->0": 0.125,
+          "5->1": 0.1875,
+          "6->2": 0.19230769574642181,
+          "7->3": 0.23333333432674408
+        },
+        "examples": 712
+      },
+      "final_batch_task_loss": 0.026465333998203278,
+      "train_seconds": 15.42552550000255,
+      "trainable_trunk_parameters": 201306,
+      "trainable_role_tag_parameters": 512
+    },
+    "joint_int4_latent": {
+      "train": {
+        "accuracy": 0.9497635960578918,
+        "counterfactual_pair_exact": 0.8995271921157837,
+        "ordered_value_pair_accuracy": {
+          "0->1": 0.9799999594688416,
+          "0->3": 0.9824561476707458,
+          "0->5": 0.9111111164093018,
+          "0->6": 0.8879310488700867,
+          "0->7": 0.9803922176361084,
+          "1->0": 0.9642857313156128,
+          "1->2": 0.875,
+          "1->4": 0.9393939971923828,
+          "1->6": 0.9204545617103577,
+          "1->7": 0.949999988079071,
+          "2->0": 0.945652186870575,
+          "2->1": 0.9468084573745728,
+          "2->3": 0.9375,
+          "2->5": 0.9772727489471436,
+          "2->7": 0.9871795177459717,
+          "3->0": 0.9545454978942871,
+          "3->1": 0.949999988079071,
+          "3->2": 0.9523809552192688,
+          "3->4": 0.9090908765792847,
+          "3->6": 0.90625,
+          "4->1": 0.9512194991111755,
+          "4->2": 0.96875,
+          "4->3": 0.967391312122345,
+          "4->5": 0.944444477558136,
+          "4->7": 0.9729729890823364,
+          "5->0": 0.9871795177459717,
+          "5->2": 0.9594594836235046,
+          "5->3": 0.9642857313156128,
+          "5->4": 0.9756097197532654,
+          "5->6": 0.9285714626312256,
+          "6->1": 0.8292682766914368,
+          "6->3": 0.9189189672470093,
+          "6->4": 0.982758641242981,
+          "6->5": 0.9605263471603394,
+          "6->7": 0.9651162624359131,
+          "7->0": 1.0,
+          "7->2": 0.9605263471603394,
+          "7->4": 0.9871795177459717,
+          "7->5": 0.9864864945411682,
+          "7->6": 0.96875
+        },
+        "examples": 3384
+      },
+      "test": {
+        "accuracy": 0.37780898809432983,
+        "counterfactual_pair_exact": 0.08426966518163681,
+        "ordered_value_pair_accuracy": {
+          "0->4": 0.48750001192092896,
+          "1->5": 0.44117647409439087,
+          "2->6": 0.4636363387107849,
+          "3->7": 0.3055555522441864,
+          "4->0": 0.328125,
+          "5->1": 0.3125,
+          "6->2": 0.29487180709838867,
+          "7->3": 0.35555556416511536
+        },
+        "examples": 712
+      },
+      "int4_train_reconstruction": {
+        "all_16_token_accuracy": 0.9995382688939571,
+        "x_token_accuracy": 0.9993720501661301,
+        "y_token_accuracy": 0.9997044876217842,
+        "query_key_accuracy": 1.0,
+        "y_edge_symbol_accuracy": 1.0,
+        "x_phrase_exact": 0.9958628841607565,
+        "y_phrase_exact": 0.9976359338061466,
+        "both_phrases_exact": 0.9934988179669031,
+        "examples": 3384
+      },
+      "int4_test_reconstruction": {
+        "all_16_token_accuracy": 0.9970154576003551,
+        "x_token_accuracy": 0.998244397342205,
+        "y_token_accuracy": 0.9957865178585052,
+        "query_key_accuracy": 0.9971910119056702,
+        "y_edge_symbol_accuracy": 0.9957865178585052,
+        "x_phrase_exact": 0.9873595505617978,
+        "y_phrase_exact": 0.9662921348314607,
+        "both_phrases_exact": 0.9550561797752809,
+        "examples": 712
+      },
+      "final_batch_task_loss": 0.13595595955848694,
+      "final_batch_reconstruction_loss": 0.010532347485423088,
+      "train_seconds": 17.709330199999386,
+      "trainable_trunk_parameters": 201306,
+      "trainable_autoencoder_parameters": 38224,
+      "trainable_role_tag_parameters": 512
+    },
+    "raw_token_baseline": {
+      "accuracy": 0.8609550595283508,
+      "counterfactual_pair_exact": 0.7415730357170105,
+      "ordered_value_pair_accuracy": {
+        "0->4": 0.9000000357627869,
+        "1->5": 0.7647058963775635,
+        "2->6": 0.8090909123420715,
+        "3->7": 0.8981481790542603,
+        "4->0": 0.96875,
+        "5->1": 0.800000011920929,
+        "6->2": 0.8717948794364929,
+        "7->3": 0.9222222566604614
+      },
+      "examples": 712,
+      "train_evaluation": {
+        "accuracy": 0.9515366554260254,
+        "counterfactual_pair_exact": 0.9030733108520508,
+        "ordered_value_pair_accuracy": {
+          "0->1": 0.9599999785423279,
+          "0->3": 0.9298245906829834,
+          "0->5": 0.8888888955116272,
+          "0->6": 0.982758641242981,
+          "0->7": 0.9901961088180542,
+          "1->0": 1.0,
+          "1->2": 0.96875,
+          "1->4": 0.9848484992980957,
+          "1->6": 0.9545454978942871,
+          "1->7": 0.987500011920929,
+          "2->0": 0.8913043737411499,
+          "2->1": 0.9574467539787292,
+          "2->3": 0.96875,
+          "2->5": 0.8636363744735718,
+          "2->7": 0.9230769276618958,
+          "3->0": 0.9886363744735718,
+          "3->1": 0.9750000238418579,
+          "3->2": 0.9404761791229248,
+          "3->4": 0.9636363387107849,
+          "3->6": 1.0,
+          "4->1": 0.9878048300743103,
+          "4->2": 1.0,
+          "4->3": 0.97826087474823,
+          "4->5": 0.944444477558136,
+          "4->7": 0.9864864945411682,
+          "5->0": 0.9358974695205688,
+          "5->2": 0.8108108043670654,
+          "5->3": 0.9047619104385376,
+          "5->4": 0.9390243291854858,
+          "5->6": 0.9047619104385376,
+          "6->1": 0.9512194991111755,
+          "6->3": 0.9324324727058411,
+          "6->4": 0.9482758641242981,
+          "6->5": 0.9605263471603394,
+          "6->7": 0.9767441749572754,
+          "7->0": 0.9545454978942871,
+          "7->2": 0.9605263471603394,
+          "7->4": 0.9102564454078674,
+          "7->5": 0.9729729890823364,
+          "7->6": 0.96875
+        },
+        "examples": 3384
+      },
+      "train_seconds": 15.308265599996957
+    }
+  }
+}

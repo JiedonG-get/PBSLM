@@ -53,6 +53,20 @@ The int4 rank-4 codes reached 99.38% mean all-token reconstruction accuracy and 
 
 The `a` query-key field probe reached 100% across ranks and seeds. The `b` result is a four-symbol field probe, not reconstruction of the full phrase. The target probe is trained with target labels and does not by itself demonstrate that `c/d` encode reusable meaning. Full-minus-mismatch differences are small and inconsistent, so the current results do not show robust query-specific benefit from `c/d`. The larger full-minus-zero differences should be interpreted cautiously because that intervention also removes the learned slot tags.
 
+## Task-Aware Joint Tuning Follow-up
+
+The next experiment used the same data seed 0 split and model seeds 0–4. For each seed, it compared a raw-token baseline, a trunk trained on frozen rank-4 int4 codes, and a model that jointly tuned the encoder, decoder, role tags, and trunk using task cross-entropy plus full-phrase reconstruction cross-entropy with weight 1.0. Each phase ran for 800 steps. The latent codes used straight-through fake quantization and remained dequantized FP32 tensors at runtime.
+
+| Condition | Test accuracy | Counterfactual pair exact |
+|---|---:|---:|
+| Raw-token baseline | 77.02 ± 11.52% | 58.54 ± 20.37% |
+| Frozen int4 latent | 23.76 ± 2.85% | 4.66 ± 1.19% |
+| Joint task + reconstruction | 36.26 ± 3.05% | 10.00 ± 1.60% |
+
+The joint model improved on frozen latents for all five seeds by 8.15–18.54 pp, with a mean paired gain of 12.50 ± 4.02 pp. It remained below the raw-token baseline for every seed, with a mean paired difference of -40.76 ± 8.62 pp. Averaged across the five seeds, all eight held-out ordered value pairs improved over the frozen-latent model, yet joint accuracy remained far below raw-token accuracy for each pair.
+
+Joint tuning preserved phrase reconstruction. Mean int4 all-token accuracy rose from 99.39 ± 0.24% before task tuning to 99.53 ± 0.13% afterward, and mean both-phrase exact recovery rose from 91.43 ± 3.14% to 92.95 ± 1.82%. High reconstruction accuracy therefore did not translate into comparable held-out relation reasoning. This is a promising optimization effect on one synthetic split, not evidence of natural-language memory capability or a general solution. The split contains only eight held-out ordered value pairs, and all five model seeds reuse that same split. The per-seed and per-pair measurements, checkpoint digests, and source hashes are in [task_aware_joint_recon_int4_offset4_data0_model0-4.json](task_aware_joint_recon_int4_offset4_data0_model0-4.json) and [its Markdown summary](task_aware_joint_recon_int4_offset4_data0_model0-4.md).
+
 ## Payload and State
 
 The following are FP32 payload arithmetic per example. They exclude shared model and encoder parameters, metadata, allocator overhead, and any online state implementation.
