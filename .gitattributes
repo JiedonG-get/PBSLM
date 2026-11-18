@@ -1,3 +1,5 @@
 evaluation/fixtures/continuous_events_dev.jsonl text eol=lf
 evaluation/fixtures/continuous_memory_eval_v1.jsonl text eol=lf
 experiments/continuous_online/continuous_memory_*predictions_v1.json text eol=lf
+evaluation/fixtures/bounded_online_v1.jsonl text eol=lf
+experiments/continuous_online/bounded_online_*_v1.json text eol=lf
