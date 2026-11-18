@@ -1,0 +1,2069 @@
+{
+  "scope": "Post-commit whole-answer repair with explicitly structured Chinese notices.",
+  "split": "development",
+  "arms": [
+    "direct_prefix",
+    "structured_prompt",
+    "guarded_commit",
+    "deterministic_template"
+  ],
+  "max_new_tokens": 48,
+  "checkpoint_files_sha256": {
+    ".msc": "e346a4b32926eb050f689b86a9b62837e2d0f89f6d5579ae27786424d98e696e",
+    ".mv": "f8db4d402dad1592699be370a6953bc543dc04a29c63100c31d3790ff50d5daf",
+    "config.json": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+    "configuration.json": "f888421726665e8a84b738eed42a64875aed79de8be7daade851ac8bf4c0cef9",
+    "generation_config.json": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "model-00001-of-00002.safetensors": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+    "model-00002-of-00002.safetensors": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9",
+    "model.safetensors.index.json": "0d660e94b165eb912669a5249dff44b83188c4777a07ddb9611fb78d91b0578d",
+    "README.md": "d50c7b66b42ffb892a7819f46853a4c6ae97ad07f1f46abf5f13d4a617ae07c0",
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "tokenizer_config.json": "5a7303fcb1a27ede63134a2cbd61d5282c247ca6d769ce4746d4ffa124aedd63",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "provenance": {
+    "git_commit": "007ebfa98083a1000497f9b7e65fef329cb49cb3",
+    "git_status": "?? evaluation/alias_online_compare.py\n?? evaluation/alias_online_state.py\n?? evaluation/alias_retrieval.py\n?? evaluation/analyze_qwen_story.py\n?? evaluation/fixtures/alias_retrieval_dev_v1.jsonl\n?? evaluation/fixtures/postcommit_repair_contract_v1.py\n?? evaluation/postcommit_repair_contract.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? evaluation/score_alias_online.py\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/recurrent_state/continuous_event_tests.log\n?? tests/test_alias_retrieval.py\n?? tests/test_postcommit_repair_contract.py\n?? tests/test_score_alias_online.py",
+    "source_sha256_at_capture": {
+      "evaluation/bounded_online_memory.py": "68075cb9d9ba6b459f31b96a18c5a5f950895b83a09b1b302fd181295b359882",
+      "evaluation/bounded_online_repair.py": "12434bf17270db557ff5d1b53bd47be3bf23f8ab034d87619720b07438f1b87a",
+      "evaluation/fixtures/postcommit_repair_contract_v1.py": "73fb31eaaae5090f1ec8619b0ae59bd3f444d6ed6af2cbd5ca351d38efeef75e",
+      "evaluation/local_qwen_adapter.py": "35e497bc1b3c60aeb0e9cb49b0b785466e0f050c1d24869795a3fb866d65f753",
+      "evaluation/postcommit_repair_contract.py": "fc30556b87d0ba225c470c19136ddf496c81acace0c3ad92c941217f553b0bd2",
+      "evaluation/qwen_scheduler_smoke.py": "b8a8c64d770fc9f6d0e4724adfcdb03db1bea4367d80536c5c5289b58b2da5dd",
+      "runtime/continuous.py": "5b04d92a94d3ab24852c4b7e2a91f4457da1e54effe1351f90e9d34c098d7023"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "arm": "direct_prefix",
+      "trace": [
+        {
+          "event_id": "e01",
+          "text": "确认：玻璃工坊甲三号样件的存放位置是月湾站。",
+          "revision": 1,
+          "route": "background",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27024.7555686,
+          "routing_seconds": 2.4999997549457476e-05,
+          "settled_seconds": 2.5699999241624027e-05
+        },
+        {
+          "event_id": "e02",
+          "text": "请问玻璃工坊甲三号样件的当前存放位置？",
+          "revision": 2,
+          "route": "query",
+          "evidence_before": null,
+          "evidence_after": "月湾站",
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27024.7555954,
+          "routing_seconds": 3.719999949680641e-05,
+          "settled_seconds": 0.3891554999972868
+        },
+        {
+          "event_id": "e03",
+          "text": "确认：玻璃工坊甲三号样件的存放位置是石桥厅。",
+          "revision": 3,
+          "route": "update",
+          "evidence_before": "月湾站",
+          "evidence_after": "石桥厅",
+          "previous_claim_status": "location",
+          "previous_claim_value": "月湾站",
+          "prior_commit_count": 1,
+          "prior_committed_unit": "月湾站",
+          "received_perf": 27025.1447521,
+          "routing_seconds": 6.170000051497482e-05,
+          "settled_seconds": 0.1230969999996887
+        }
+      ],
+      "committed": [
+        {
+          "unit": "月湾站",
+          "revision": 2,
+          "at": 0.3891527000014321
+        },
+        {
+          "unit": "石桥厅",
+          "revision": 3,
+          "at": 0.5122537999995984
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.2700001863995567e-05,
+          "revision": 1,
+          "text": "确认：玻璃工坊甲三号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "unmodified current evidence",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 4.5900000259280205e-05,
+          "revision": 2,
+          "text": "请问玻璃工坊甲三号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.00014379999993252568,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.38915450000058627,
+          "revision": 2,
+          "unit": "月湾站",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 2
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.38916020000033313,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "input_received",
+          "at": 0.38923090000025695,
+          "revision": 3,
+          "text": "确认：玻璃工坊甲三号样件的存放位置是石桥厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.3892742999996699,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.5122559000010369,
+          "revision": 3,
+          "unit": "石桥厅",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.5122611000006145,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.5123338000012154,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 27024.7561187,
+          "finish_perf": 27025.1445428,
+          "duration": 0.3884241000014299,
+          "input_tokens": 87,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "月湾站",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问玻璃工坊甲三号样件的当前存放位置？\n当前资料：月湾站。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 27025.1448864,
+          "finish_perf": 27025.2676572,
+          "duration": 0.12277079999694251,
+          "input_tokens": 114,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "石桥厅",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问玻璃工坊甲三号样件的当前存放位置？"
+            },
+            {
+              "role": "assistant",
+              "content": "月湾站"
+            },
+            {
+              "role": "user",
+              "content": "请问玻璃工坊甲三号样件的当前存放位置？\n当前资料：石桥厅。"
+            }
+          ]
+        }
+      ],
+      "delivery_decisions": [
+        {
+          "revision": 2,
+          "eligible": false,
+          "reason": "model",
+          "model_candidate": "月湾站",
+          "offered_unit": "月湾站",
+          "decision_seconds": 0.38899659999879077
+        },
+        {
+          "revision": 3,
+          "eligible": true,
+          "reason": "model",
+          "model_candidate": "石桥厅",
+          "offered_unit": "石桥厅",
+          "decision_seconds": 0.12297159999798168
+        }
+      ],
+      "case": "dev_change",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "月湾站",
+          "committed_units": [
+            "月湾站"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "石桥厅"
+          ],
+          "strict_pass": false,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "arm": "structured_prompt",
+      "trace": [
+        {
+          "event_id": "e01",
+          "text": "确认：玻璃工坊甲三号样件的存放位置是月湾站。",
+          "revision": 1,
+          "route": "background",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27025.2690389,
+          "routing_seconds": 2.4099997972371057e-05,
+          "settled_seconds": 2.4499997380189598e-05
+        },
+        {
+          "event_id": "e02",
+          "text": "请问玻璃工坊甲三号样件的当前存放位置？",
+          "revision": 2,
+          "route": "query",
+          "evidence_before": null,
+          "evidence_after": "月湾站",
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27025.2690641,
+          "routing_seconds": 2.3399999918183312e-05,
+          "settled_seconds": 0.11845270000048913
+        },
+        {
+          "event_id": "e03",
+          "text": "确认：玻璃工坊甲三号样件的存放位置是石桥厅。",
+          "revision": 3,
+          "route": "update",
+          "evidence_before": "月湾站",
+          "evidence_after": "石桥厅",
+          "previous_claim_status": "location",
+          "previous_claim_value": "月湾站",
+          "prior_commit_count": 1,
+          "prior_committed_unit": "月湾站",
+          "received_perf": 27025.3875178,
+          "routing_seconds": 4.789999729837291e-05,
+          "settled_seconds": 0.5676309999980731
+        }
+      ],
+      "committed": [
+        {
+          "unit": "月湾站",
+          "revision": 2,
+          "at": 0.11845619999803603
+        },
+        {
+          "unit": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "revision": 3,
+          "at": 0.6860844999973779
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.269999822601676e-05,
+          "revision": 1,
+          "text": "确认：玻璃工坊甲三号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "unmodified current evidence",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 3.7599998904624954e-05,
+          "revision": 2,
+          "text": "请问玻璃工坊甲三号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 6.819999907747842e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.11845790000006673,
+          "revision": 2,
+          "unit": "月湾站",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 2
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.11846309999964433,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "input_received",
+          "at": 0.11851349999778904,
+          "revision": 3,
+          "text": "确认：玻璃工坊甲三号样件的存放位置是石桥厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.11854939999830094,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.6860861999994086,
+          "revision": 3,
+          "unit": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.6860913999989862,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.6861567999985709,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 27025.26936,
+          "finish_perf": 27025.3873287,
+          "duration": 0.11796870000034687,
+          "input_tokens": 87,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "月湾站",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问玻璃工坊甲三号样件的当前存放位置？\n当前资料：月湾站。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 27025.3876273,
+          "finish_perf": 27025.9549249,
+          "duration": 0.5672976000023482,
+          "input_tokens": 135,
+          "output_tokens": 19,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据已给出的两个字段修订样件的存放位置。只输出一个完整句子。如果已发地点字段包含地点，严格照此格式输出：撤回先前的地点说法（旧地点），更正为新地点。如果已发地点字段为不确定，严格照此格式输出：现已确认存放位置是新地点。把旧地点和新地点替换成字段里的原文，不添加其他文字。"
+            },
+            {
+              "role": "user",
+              "content": "请问玻璃工坊甲三号样件的当前存放位置？\n已发地点：月湾站\n当前确认地点：石桥厅"
+            }
+          ]
+        }
+      ],
+      "delivery_decisions": [
+        {
+          "revision": 2,
+          "eligible": false,
+          "reason": "model",
+          "model_candidate": "月湾站",
+          "offered_unit": "月湾站",
+          "decision_seconds": 0.11838070000158041
+        },
+        {
+          "revision": 3,
+          "eligible": true,
+          "reason": "model",
+          "model_candidate": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "offered_unit": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "decision_seconds": 0.5675287000012759
+        }
+      ],
+      "case": "dev_change",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "月湾站",
+          "committed_units": [
+            "月湾站"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "撤回先前的地点说法（月湾站），更正为石桥厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "arm": "guarded_commit",
+      "trace": [
+        {
+          "event_id": "e01",
+          "text": "确认：玻璃工坊甲三号样件的存放位置是月湾站。",
+          "revision": 1,
+          "route": "background",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27025.9560129,
+          "routing_seconds": 2.8800001018680632e-05,
+          "settled_seconds": 2.930000118794851e-05
+        },
+        {
+          "event_id": "e02",
+          "text": "请问玻璃工坊甲三号样件的当前存放位置？",
+          "revision": 2,
+          "route": "query",
+          "evidence_before": null,
+          "evidence_after": "月湾站",
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27025.956043,
+          "routing_seconds": 2.7800000680144876e-05,
+          "settled_seconds": 0.11545760000080918
+        },
+        {
+          "event_id": "e03",
+          "text": "确认：玻璃工坊甲三号样件的存放位置是石桥厅。",
+          "revision": 3,
+          "route": "update",
+          "evidence_before": "月湾站",
+          "evidence_after": "石桥厅",
+          "previous_claim_status": "location",
+          "previous_claim_value": "月湾站",
+          "prior_commit_count": 1,
+          "prior_committed_unit": "月湾站",
+          "received_perf": 27026.0715018,
+          "routing_seconds": 4.5999997382750735e-05,
+          "settled_seconds": 0.5615858999990451
+        }
+      ],
+      "committed": [
+        {
+          "unit": "月湾站",
+          "revision": 2,
+          "at": 0.11546609999641078
+        },
+        {
+          "unit": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "revision": 3,
+          "at": 0.677052699997148
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.689999746507965e-05,
+          "revision": 1,
+          "text": "确认：玻璃工坊甲三号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "unmodified current evidence",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 4.27999984822236e-05,
+          "revision": 2,
+          "text": "请问玻璃工坊甲三号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 8.229999730247073e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.11546789999920293,
+          "revision": 2,
+          "unit": "月湾站",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 2
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.11547299999801908,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "input_received",
+          "at": 0.11552229999870178,
+          "revision": 3,
+          "text": "确认：玻璃工坊甲三号样件的存放位置是石桥厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.11555759999828297,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.6770540999968944,
+          "revision": 3,
+          "unit": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.6770589999978256,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.6771104999970703,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 27025.9564704,
+          "finish_perf": 27026.071327,
+          "duration": 0.114856600001076,
+          "input_tokens": 87,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "月湾站",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问玻璃工坊甲三号样件的当前存放位置？\n当前资料：月湾站。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 27026.0716286,
+          "finish_perf": 27026.6328982,
+          "duration": 0.5612696000025608,
+          "input_tokens": 135,
+          "output_tokens": 19,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据已给出的两个字段修订样件的存放位置。只输出一个完整句子。如果已发地点字段包含地点，严格照此格式输出：撤回先前的地点说法（旧地点），更正为新地点。如果已发地点字段为不确定，严格照此格式输出：现已确认存放位置是新地点。把旧地点和新地点替换成字段里的原文，不添加其他文字。"
+            },
+            {
+              "role": "user",
+              "content": "请问玻璃工坊甲三号样件的当前存放位置？\n已发地点：月湾站\n当前确认地点：石桥厅"
+            }
+          ]
+        }
+      ],
+      "delivery_decisions": [
+        {
+          "revision": 2,
+          "eligible": false,
+          "reason": "model",
+          "model_candidate": "月湾站",
+          "offered_unit": "月湾站",
+          "decision_seconds": 0.11537519999910728
+        },
+        {
+          "revision": 3,
+          "eligible": true,
+          "reason": "verified_model",
+          "model_candidate": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "offered_unit": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "decision_seconds": 0.5614894999998796
+        }
+      ],
+      "case": "dev_change",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "月湾站",
+          "committed_units": [
+            "月湾站"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "撤回先前的地点说法（月湾站），更正为石桥厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "arm": "deterministic_template",
+      "trace": [
+        {
+          "event_id": "e01",
+          "text": "确认：玻璃工坊甲三号样件的存放位置是月湾站。",
+          "revision": 1,
+          "route": "background",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27026.633802,
+          "routing_seconds": 2.5099998310906813e-05,
+          "settled_seconds": 2.559999848017469e-05
+        },
+        {
+          "event_id": "e02",
+          "text": "请问玻璃工坊甲三号样件的当前存放位置？",
+          "revision": 2,
+          "route": "query",
+          "evidence_before": null,
+          "evidence_after": "月湾站",
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27026.6338283,
+          "routing_seconds": 2.479999966453761e-05,
+          "settled_seconds": 0.12721479999891017
+        },
+        {
+          "event_id": "e03",
+          "text": "确认：玻璃工坊甲三号样件的存放位置是石桥厅。",
+          "revision": 3,
+          "route": "update",
+          "evidence_before": "月湾站",
+          "evidence_after": "石桥厅",
+          "previous_claim_status": "location",
+          "previous_claim_value": "月湾站",
+          "prior_commit_count": 1,
+          "prior_committed_unit": "月湾站",
+          "received_perf": 27026.7610444,
+          "routing_seconds": 4.940000144415535e-05,
+          "settled_seconds": 8.850000085658394e-05
+        }
+      ],
+      "committed": [
+        {
+          "unit": "月湾站",
+          "revision": 2,
+          "at": 0.12721919999967213
+        },
+        {
+          "unit": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "revision": 3,
+          "at": 0.1273228999998537
+        }
+      ],
+      "journal": [
+        {
+          "kind": "background_input_received",
+          "at": 2.3399999918183312e-05,
+          "revision": 1,
+          "text": "确认：玻璃工坊甲三号样件的存放位置是月湾站。",
+          "should_respond": false,
+          "relevance_assertion": "unmodified current evidence",
+          "output_fence_revision": null
+        },
+        {
+          "kind": "input_received",
+          "at": 3.809999907389283e-05,
+          "revision": 2,
+          "text": "请问玻璃工坊甲三号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 7.410000034724362e-05,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.12722109999958775,
+          "revision": 2,
+          "unit": "月湾站",
+          "generation_revision": 2,
+          "output_fence_revision": 2,
+          "latest_observation_revision": 2
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.12722610000128043,
+          "revision": 2,
+          "generation_revision": 2
+        },
+        {
+          "kind": "input_received",
+          "at": 0.1272785000001022,
+          "revision": 3,
+          "text": "确认：玻璃工坊甲三号样件的存放位置是石桥厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.12731519999942975,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.1273235000007844,
+          "revision": 3,
+          "unit": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.12732490000053076,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.1273551000012958,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 2,
+          "start_perf": 27026.6341922,
+          "finish_perf": 27026.7608467,
+          "duration": 0.12665449999985867,
+          "input_tokens": 87,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "月湾站",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问玻璃工坊甲三号样件的当前存放位置？\n当前资料：月湾站。"
+            }
+          ]
+        }
+      ],
+      "delivery_decisions": [
+        {
+          "revision": 2,
+          "eligible": false,
+          "reason": "model",
+          "model_candidate": "月湾站",
+          "offered_unit": "月湾站",
+          "decision_seconds": 0.1271374999996624
+        },
+        {
+          "revision": 3,
+          "eligible": true,
+          "reason": "template",
+          "model_candidate": null,
+          "offered_unit": "撤回先前的地点说法（月湾站），更正为石桥厅。",
+          "decision_seconds": 4.19999923906289e-06
+        }
+      ],
+      "case": "dev_change",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": "月湾站",
+          "committed_units": [
+            "月湾站"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "withdraw_and_replace",
+          "gold_old": "月湾站",
+          "gold_new": "石桥厅",
+          "committed_units": [
+            "撤回先前的地点说法（月湾站），更正为石桥厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    },
+    {
+      "arm": "direct_prefix",
+      "trace": [
+        {
+          "event_id": "e01",
+          "text": "请问档案室甲七号样件的当前存放位置？",
+          "revision": 1,
+          "route": "query",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27026.7617952,
+          "routing_seconds": 2.7800000680144876e-05,
+          "settled_seconds": 0.06766979999883915
+        },
+        {
+          "event_id": "e02",
+          "text": "传闻：档案室甲七号样件的存放位置是澄光柜。",
+          "revision": 2,
+          "route": "background",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "uncertain",
+          "previous_claim_value": null,
+          "prior_commit_count": 1,
+          "prior_committed_unit": "不确定",
+          "received_perf": 27026.8294661,
+          "routing_seconds": 2.5400000595254824e-05,
+          "settled_seconds": 2.5800000003073364e-05
+        },
+        {
+          "event_id": "e03",
+          "text": "确认：档案室甲七号样件的存放位置是松间厅。",
+          "revision": 3,
+          "route": "update",
+          "evidence_before": null,
+          "evidence_after": "松间厅",
+          "previous_claim_status": "uncertain",
+          "previous_claim_value": null,
+          "prior_commit_count": 1,
+          "prior_committed_unit": "不确定",
+          "received_perf": 27026.8294925,
+          "routing_seconds": 2.809999932651408e-05,
+          "settled_seconds": 0.11335049999979674
+        }
+      ],
+      "committed": [
+        {
+          "unit": "不确定",
+          "revision": 1,
+          "at": 0.06764900000052876
+        },
+        {
+          "unit": "松间厅",
+          "revision": 3,
+          "at": 0.1810260999991442
+        }
+      ],
+      "journal": [
+        {
+          "kind": "input_received",
+          "at": 1.6199999663513154e-05,
+          "revision": 1,
+          "text": "请问档案室甲七号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 4.569999873638153e-05,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.06765050000103656,
+          "revision": 1,
+          "unit": "不确定",
+          "generation_revision": 1,
+          "output_fence_revision": 1,
+          "latest_observation_revision": 1
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.06765539999832981,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.06769580000036513,
+          "revision": 2,
+          "text": "传闻：档案室甲七号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "unmodified current evidence",
+          "output_fence_revision": 1
+        },
+        {
+          "kind": "input_received",
+          "at": 0.06771289999960572,
+          "revision": 3,
+          "text": "确认：档案室甲七号样件的存放位置是松间厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.06774819999918691,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.181027599999652,
+          "revision": 3,
+          "unit": "松间厅",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.18103250000058324,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.1810808000009274,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 1,
+          "start_perf": 27026.7621382,
+          "finish_perf": 27026.8292837,
+          "duration": 0.06714550000106101,
+          "input_tokens": 89,
+          "output_tokens": 2,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "不确定",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问档案室甲七号样件的当前存放位置？\n当前资料：暂无已确认的地点。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 27026.8296716,
+          "finish_perf": 27026.9426788,
+          "duration": 0.11300719999780995,
+          "input_tokens": 110,
+          "output_tokens": 4,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "松间厅",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问档案室甲七号样件的当前存放位置？"
+            },
+            {
+              "role": "assistant",
+              "content": "不确定"
+            },
+            {
+              "role": "user",
+              "content": "请问档案室甲七号样件的当前存放位置？\n当前资料：松间厅。"
+            }
+          ]
+        }
+      ],
+      "delivery_decisions": [
+        {
+          "revision": 1,
+          "eligible": false,
+          "reason": "model",
+          "model_candidate": "不确定",
+          "offered_unit": "不确定",
+          "decision_seconds": 0.06759620000229916
+        },
+        {
+          "revision": 3,
+          "eligible": true,
+          "reason": "model",
+          "model_candidate": "松间厅",
+          "offered_unit": "松间厅",
+          "decision_seconds": 0.11327250000249478
+        }
+      ],
+      "case": "dev_unknown",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [
+            "不确定"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "resolve_unknown",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "松间厅"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "arm": "structured_prompt",
+      "trace": [
+        {
+          "event_id": "e01",
+          "text": "请问档案室甲七号样件的当前存放位置？",
+          "revision": 1,
+          "route": "query",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27026.943494,
+          "routing_seconds": 3.420000211917795e-05,
+          "settled_seconds": 0.06032070000219392
+        },
+        {
+          "event_id": "e02",
+          "text": "传闻：档案室甲七号样件的存放位置是澄光柜。",
+          "revision": 2,
+          "route": "background",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "uncertain",
+          "previous_claim_value": null,
+          "prior_commit_count": 1,
+          "prior_committed_unit": "不确定",
+          "received_perf": 27027.0038158,
+          "routing_seconds": 2.429999949526973e-05,
+          "settled_seconds": 2.470000254106708e-05
+        },
+        {
+          "event_id": "e03",
+          "text": "确认：档案室甲七号样件的存放位置是松间厅。",
+          "revision": 3,
+          "route": "update",
+          "evidence_before": null,
+          "evidence_after": "松间厅",
+          "previous_claim_status": "uncertain",
+          "previous_claim_value": null,
+          "prior_commit_count": 1,
+          "prior_committed_unit": "不确定",
+          "received_perf": 27027.003841,
+          "routing_seconds": 2.729999687289819e-05,
+          "settled_seconds": 0.29580069999792613
+        }
+      ],
+      "committed": [
+        {
+          "unit": "不确定",
+          "revision": 1,
+          "at": 0.06030050000117626
+        },
+        {
+          "unit": "现已确认存放位置是松间厅。",
+          "revision": 3,
+          "at": 0.3561251999999513
+        }
+      ],
+      "journal": [
+        {
+          "kind": "input_received",
+          "at": 2.0800001948373392e-05,
+          "revision": 1,
+          "text": "请问档案室甲七号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 5.329999839887023e-05,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.060302000001684064,
+          "revision": 1,
+          "unit": "不确定",
+          "generation_revision": 1,
+          "output_fence_revision": 1,
+          "latest_observation_revision": 1
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.060306999999738764,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.060345300000335556,
+          "revision": 2,
+          "text": "传闻：档案室甲七号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "unmodified current evidence",
+          "output_fence_revision": 1
+        },
+        {
+          "kind": "input_received",
+          "at": 0.060362399999576155,
+          "revision": 3,
+          "text": "确认：档案室甲七号样件的存放位置是松间厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.060396299999410985,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.356126900001982,
+          "revision": 3,
+          "unit": "现已确认存放位置是松间厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.356131299999106,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.3561836000008043,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 1,
+          "start_perf": 27026.9438323,
+          "finish_perf": 27027.0036612,
+          "duration": 0.05982890000086627,
+          "input_tokens": 89,
+          "output_tokens": 2,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "不确定",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问档案室甲七号样件的当前存放位置？\n当前资料：暂无已确认的地点。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 27027.0039237,
+          "finish_perf": 27027.299413,
+          "duration": 0.29548930000237306,
+          "input_tokens": 132,
+          "output_tokens": 10,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "现已确认存放位置是松间厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据已给出的两个字段修订样件的存放位置。只输出一个完整句子。如果已发地点字段包含地点，严格照此格式输出：撤回先前的地点说法（旧地点），更正为新地点。如果已发地点字段为不确定，严格照此格式输出：现已确认存放位置是新地点。把旧地点和新地点替换成字段里的原文，不添加其他文字。"
+            },
+            {
+              "role": "user",
+              "content": "请问档案室甲七号样件的当前存放位置？\n已发地点：不确定\n当前确认地点：松间厅"
+            }
+          ]
+        }
+      ],
+      "delivery_decisions": [
+        {
+          "revision": 1,
+          "eligible": false,
+          "reason": "model",
+          "model_candidate": "不确定",
+          "offered_unit": "不确定",
+          "decision_seconds": 0.06023989999812329
+        },
+        {
+          "revision": 3,
+          "eligible": true,
+          "reason": "model",
+          "model_candidate": "现已确认存放位置是松间厅。",
+          "offered_unit": "现已确认存放位置是松间厅。",
+          "decision_seconds": 0.29572360000020126
+        }
+      ],
+      "case": "dev_unknown",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [
+            "不确定"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "resolve_unknown",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "现已确认存放位置是松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "model"
+        }
+      ]
+    },
+    {
+      "arm": "guarded_commit",
+      "trace": [
+        {
+          "event_id": "e01",
+          "text": "请问档案室甲七号样件的当前存放位置？",
+          "revision": 1,
+          "route": "query",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27027.3004812,
+          "routing_seconds": 3.429999924264848e-05,
+          "settled_seconds": 0.0665776999994705
+        },
+        {
+          "event_id": "e02",
+          "text": "传闻：档案室甲七号样件的存放位置是澄光柜。",
+          "revision": 2,
+          "route": "background",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "uncertain",
+          "previous_claim_value": null,
+          "prior_commit_count": 1,
+          "prior_committed_unit": "不确定",
+          "received_perf": 27027.3670599,
+          "routing_seconds": 2.4600001779617742e-05,
+          "settled_seconds": 2.5000001187436283e-05
+        },
+        {
+          "event_id": "e03",
+          "text": "确认：档案室甲七号样件的存放位置是松间厅。",
+          "revision": 3,
+          "route": "update",
+          "evidence_before": null,
+          "evidence_after": "松间厅",
+          "previous_claim_status": "uncertain",
+          "previous_claim_value": null,
+          "prior_commit_count": 1,
+          "prior_committed_unit": "不确定",
+          "received_perf": 27027.3670854,
+          "routing_seconds": 2.769999991869554e-05,
+          "settled_seconds": 0.30074839999724645
+        }
+      ],
+      "committed": [
+        {
+          "unit": "不确定",
+          "revision": 1,
+          "at": 0.06655719999980647
+        },
+        {
+          "unit": "现已确认存放位置是松间厅。",
+          "revision": 3,
+          "at": 0.36733190000086324
+        }
+      ],
+      "journal": [
+        {
+          "kind": "input_received",
+          "at": 2.0200001017656177e-05,
+          "revision": 1,
+          "text": "请问档案室甲七号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 5.6000000768108293e-05,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.06655890000183717,
+          "revision": 1,
+          "unit": "不确定",
+          "generation_revision": 1,
+          "output_fence_revision": 1,
+          "latest_observation_revision": 1
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.06656350000048405,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.0666029999993043,
+          "revision": 2,
+          "text": "传闻：档案室甲七号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "unmodified current evidence",
+          "output_fence_revision": 1
+        },
+        {
+          "kind": "input_received",
+          "at": 0.06661970000277506,
+          "revision": 3,
+          "text": "确认：档案室甲七号样件的存放位置是松间厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.06665450000218698,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.3673333000006096,
+          "revision": 3,
+          "unit": "现已确认存放位置是松间厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.367337800002133,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.3673844000004465,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 1,
+          "start_perf": 27027.300869,
+          "finish_perf": 27027.3668864,
+          "duration": 0.066017400000419,
+          "input_tokens": 89,
+          "output_tokens": 2,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "不确定",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问档案室甲七号样件的当前存放位置？\n当前资料：暂无已确认的地点。"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 27027.3671724,
+          "finish_perf": 27027.667651,
+          "duration": 0.30047859999831417,
+          "input_tokens": 132,
+          "output_tokens": 10,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "现已确认存放位置是松间厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据已给出的两个字段修订样件的存放位置。只输出一个完整句子。如果已发地点字段包含地点，严格照此格式输出：撤回先前的地点说法（旧地点），更正为新地点。如果已发地点字段为不确定，严格照此格式输出：现已确认存放位置是新地点。把旧地点和新地点替换成字段里的原文，不添加其他文字。"
+            },
+            {
+              "role": "user",
+              "content": "请问档案室甲七号样件的当前存放位置？\n已发地点：不确定\n当前确认地点：松间厅"
+            }
+          ]
+        }
+      ],
+      "delivery_decisions": [
+        {
+          "revision": 1,
+          "eligible": false,
+          "reason": "model",
+          "model_candidate": "不确定",
+          "offered_unit": "不确定",
+          "decision_seconds": 0.06649299999844516
+        },
+        {
+          "revision": 3,
+          "eligible": true,
+          "reason": "verified_model",
+          "model_candidate": "现已确认存放位置是松间厅。",
+          "offered_unit": "现已确认存放位置是松间厅。",
+          "decision_seconds": 0.300672500001383
+        }
+      ],
+      "case": "dev_unknown",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [
+            "不确定"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "resolve_unknown",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "现已确认存放位置是松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "verified_model"
+        }
+      ]
+    },
+    {
+      "arm": "deterministic_template",
+      "trace": [
+        {
+          "event_id": "e01",
+          "text": "请问档案室甲七号样件的当前存放位置？",
+          "revision": 1,
+          "route": "query",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "absent",
+          "previous_claim_value": null,
+          "prior_commit_count": 0,
+          "prior_committed_unit": null,
+          "received_perf": 27027.6684421,
+          "routing_seconds": 3.4100001357728615e-05,
+          "settled_seconds": 0.05772540000180015
+        },
+        {
+          "event_id": "e02",
+          "text": "传闻：档案室甲七号样件的存放位置是澄光柜。",
+          "revision": 2,
+          "route": "background",
+          "evidence_before": null,
+          "evidence_after": null,
+          "previous_claim_status": "uncertain",
+          "previous_claim_value": null,
+          "prior_commit_count": 1,
+          "prior_committed_unit": "不确定",
+          "received_perf": 27027.7261686,
+          "routing_seconds": 2.550000135670416e-05,
+          "settled_seconds": 2.5800000003073364e-05
+        },
+        {
+          "event_id": "e03",
+          "text": "确认：档案室甲七号样件的存放位置是松间厅。",
+          "revision": 3,
+          "route": "update",
+          "evidence_before": null,
+          "evidence_after": "松间厅",
+          "previous_claim_status": "uncertain",
+          "previous_claim_value": null,
+          "prior_commit_count": 1,
+          "prior_committed_unit": "不确定",
+          "received_perf": 27027.7261949,
+          "routing_seconds": 2.890000178012997e-05,
+          "settled_seconds": 8.300000263261609e-05
+        }
+      ],
+      "committed": [
+        {
+          "unit": "不确定",
+          "revision": 1,
+          "at": 0.057705600000190316
+        },
+        {
+          "unit": "现已确认存放位置是松间厅。",
+          "revision": 3,
+          "at": 0.05782399999952759
+        }
+      ],
+      "journal": [
+        {
+          "kind": "input_received",
+          "at": 2.1600000764010474e-05,
+          "revision": 1,
+          "text": "请问档案室甲七号样件的当前存放位置？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 5.32000012753997e-05,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.05770710000069812,
+          "revision": 1,
+          "unit": "不确定",
+          "generation_revision": 1,
+          "output_fence_revision": 1,
+          "latest_observation_revision": 1
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.05771150000146008,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.057751600001211045,
+          "revision": 2,
+          "text": "传闻：档案室甲七号样件的存放位置是澄光柜。",
+          "should_respond": false,
+          "relevance_assertion": "unmodified current evidence",
+          "output_fence_revision": 1
+        },
+        {
+          "kind": "input_received",
+          "at": 0.05776920000062091,
+          "revision": 3,
+          "text": "确认：档案室甲七号样件的存放位置是松间厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.05781820000265725,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.057824600000458304,
+          "revision": 3,
+          "unit": "现已确认存放位置是松间厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.05782589999944321,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.05786010000156239,
+          "revision": 4
+        }
+      ],
+      "worker_jobs": [
+        {
+          "revision": 1,
+          "start_perf": 27027.6687722,
+          "finish_perf": 27027.7260175,
+          "duration": 0.05724530000225059,
+          "input_tokens": 89,
+          "output_tokens": 2,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "不确定",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你根据当前已确认的资料回答样件的存放位置。没有资料时回答“不确定”。如果你此前给出的地点与当前资料冲突，请明确撤回先前的说法并给出新的地点。请用一句简短的话回答。"
+            },
+            {
+              "role": "user",
+              "content": "请问档案室甲七号样件的当前存放位置？\n当前资料：暂无已确认的地点。"
+            }
+          ]
+        }
+      ],
+      "delivery_decisions": [
+        {
+          "revision": 1,
+          "eligible": false,
+          "reason": "model",
+          "model_candidate": "不确定",
+          "offered_unit": "不确定",
+          "decision_seconds": 0.05764479999925243
+        },
+        {
+          "revision": 3,
+          "eligible": true,
+          "reason": "template",
+          "model_candidate": null,
+          "offered_unit": "现已确认存放位置是松间厅。",
+          "decision_seconds": 2.2999993234407157e-06
+        }
+      ],
+      "case": "dev_unknown",
+      "scores": [
+        {
+          "event_id": "e01",
+          "revision": 1,
+          "expected_kind": "initial",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [
+            "不确定"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": false,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": "model"
+        },
+        {
+          "event_id": "e02",
+          "revision": 2,
+          "expected_kind": "silent",
+          "gold_old": null,
+          "gold_new": null,
+          "committed_units": [],
+          "strict_pass": true,
+          "correct_readout": null,
+          "new_value_mentioned": null,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": null,
+          "delivery_reason": null
+        },
+        {
+          "event_id": "e03",
+          "revision": 3,
+          "expected_kind": "resolve_unknown",
+          "gold_old": null,
+          "gold_new": "松间厅",
+          "committed_units": [
+            "现已确认存放位置是松间厅。"
+          ],
+          "strict_pass": true,
+          "correct_readout": true,
+          "new_value_mentioned": true,
+          "prior_claim_recognized": true,
+          "prior_claim_matches_gold": true,
+          "delivery_reason": "template"
+        }
+      ]
+    }
+  ]
+}
