@@ -1,0 +1,361 @@
+{
+  "task": "two_phrase_key_value_relation_query_with_counterfactual_pairs",
+  "condition": "separate_a_x_and_b_y_latents_only",
+  "limitation": "Synthetic relation task. The trunk receives only a(x) and b(y), trained with the query target loss alone. No c/d codes, probes, reconstruction heads, or alignment losses are used. Parameter and FLOP counts differ from the raw-token baseline.",
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "ranks": [
+      1,
+      2,
+      4
+    ],
+    "steps": 800,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cuda",
+    "output": "experiments/latent_chunk/pure_ab_thinking_3seed_rank_800.json"
+  },
+  "torch": "2.11.0+cu128",
+  "provenance": {
+    "git_commit": "9ff7cbde7a48258a6e227c6e2bee5447900c9a40",
+    "git_status": "?? evaluation/analyze_qwen_story.py\n?? evaluation/latent_chunk_ab_thinking.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? experiments/continuous_online/alias_online_dev_frozen_scores_v2.json\n?? experiments/continuous_online/alias_online_dev_frozen_v2.json\n?? experiments/continuous_online/alias_online_development_batch_scores_v2.json\n?? experiments/continuous_online/alias_online_development_batch_v2.json\n?? experiments/continuous_online/alias_online_development_final_scores_v2.json\n?? experiments/continuous_online/alias_online_development_final_v2.json\n?? experiments/continuous_online/alias_online_development_initial_scores_v2.json\n?? experiments/continuous_online/alias_online_development_initial_v2.json\n?? experiments/continuous_online/alias_online_development_retry_v2.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/latent_chunk/preflight_matched.json\n?? experiments/latent_chunk/preflight_seed0_rank1.json\n?? experiments/recurrent_state/continuous_event_tests.log",
+    "source_sha256_at_capture": {
+      "evaluation/latent_chunk_ab_thinking.py": "3da790e222a000e7f367ef12595aa281bfe8540ca2a0dff0887a22337b9da571",
+      "evaluation/latent_chunk_relations.py": "070377ad5b4980a20a4b43953e67b80dfb976376da1cc6e28dba5c2ea54da312",
+      "evaluation/provenance.py": "061924cbf9c0c5d326501be75102734bea03be6f1f315dfe032fdff1a34ebdee",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "685d275de48e923e93adc9614319e0743f80573619bead16a1f7b06aeeff8d05"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "rank": 1,
+      "test_examples": 3072,
+      "latent_input_vectors": 2,
+      "latent_payload_bytes_fp32": 256,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 18656,
+      "pure_ab_thinking": {
+        "accuracy": 0.4840494791666667,
+        "counterfactual_pair_exact": 0.203125,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.879150390625,
+          "counterfactual_pair_exact": 0.76513671875,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.2822798788547516,
+          "target": 0.2822798788547516
+        },
+        "train_seconds": 17.129177099996014
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.90625,
+        "counterfactual_pair_exact": 0.818359375,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.950927734375,
+          "counterfactual_pair_exact": 0.90283203125,
+          "examples": 4096
+        },
+        "train_seconds": 14.94482699999935
+      }
+    },
+    {
+      "seed": 0,
+      "rank": 2,
+      "test_examples": 3072,
+      "latent_input_vectors": 4,
+      "latent_payload_bytes_fp32": 512,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 20864,
+      "pure_ab_thinking": {
+        "accuracy": 0.4625651041666667,
+        "counterfactual_pair_exact": 0.1770833432674408,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.946533203125,
+          "counterfactual_pair_exact": 0.89599609375,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.22368961572647095,
+          "target": 0.22368961572647095
+        },
+        "train_seconds": 16.02395379999507
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.90625,
+        "counterfactual_pair_exact": 0.818359375,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.950927734375,
+          "counterfactual_pair_exact": 0.90283203125,
+          "examples": 4096
+        },
+        "train_seconds": 15.799235300000873
+      }
+    },
+    {
+      "seed": 0,
+      "rank": 4,
+      "test_examples": 3072,
+      "latent_input_vectors": 8,
+      "latent_payload_bytes_fp32": 1024,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 25280,
+      "pure_ab_thinking": {
+        "accuracy": 0.4541015625,
+        "counterfactual_pair_exact": 0.18359375,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.97705078125,
+          "counterfactual_pair_exact": 0.9541015625,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.07840026915073395,
+          "target": 0.07840026915073395
+        },
+        "train_seconds": 16.9352940999961
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.90625,
+        "counterfactual_pair_exact": 0.818359375,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.950927734375,
+          "counterfactual_pair_exact": 0.90283203125,
+          "examples": 4096
+        },
+        "train_seconds": 14.991055799997412
+      }
+    },
+    {
+      "seed": 1,
+      "rank": 1,
+      "test_examples": 3072,
+      "latent_input_vectors": 2,
+      "latent_payload_bytes_fp32": 256,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 18656,
+      "pure_ab_thinking": {
+        "accuracy": 0.5009765625,
+        "counterfactual_pair_exact": 0.1985677182674408,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.8876953125,
+          "counterfactual_pair_exact": 0.78076171875,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.25780051946640015,
+          "target": 0.25780051946640015
+        },
+        "train_seconds": 15.983070199996291
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.6949869990348816,
+        "counterfactual_pair_exact": 0.4453125,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.8369140625,
+          "counterfactual_pair_exact": 0.68603515625,
+          "examples": 4096
+        },
+        "train_seconds": 15.538224800002354
+      }
+    },
+    {
+      "seed": 1,
+      "rank": 2,
+      "test_examples": 3072,
+      "latent_input_vectors": 4,
+      "latent_payload_bytes_fp32": 512,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 20864,
+      "pure_ab_thinking": {
+        "accuracy": 0.4752604166666667,
+        "counterfactual_pair_exact": 0.1770833432674408,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.9375,
+          "counterfactual_pair_exact": 0.876953125,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.2153090238571167,
+          "target": 0.2153090238571167
+        },
+        "train_seconds": 16.873144599994703
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.6949869990348816,
+        "counterfactual_pair_exact": 0.4453125,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.8369140625,
+          "counterfactual_pair_exact": 0.68603515625,
+          "examples": 4096
+        },
+        "train_seconds": 15.474731899994367
+      }
+    },
+    {
+      "seed": 1,
+      "rank": 4,
+      "test_examples": 3072,
+      "latent_input_vectors": 8,
+      "latent_payload_bytes_fp32": 1024,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 25280,
+      "pure_ab_thinking": {
+        "accuracy": 0.4420572916666667,
+        "counterfactual_pair_exact": 0.1569010466337204,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.9775390625,
+          "counterfactual_pair_exact": 0.955078125,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.08141960203647614,
+          "target": 0.08141960203647614
+        },
+        "train_seconds": 16.40615599999728
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.6949869990348816,
+        "counterfactual_pair_exact": 0.4453125,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.8369140625,
+          "counterfactual_pair_exact": 0.68603515625,
+          "examples": 4096
+        },
+        "train_seconds": 15.013348600004974
+      }
+    },
+    {
+      "seed": 2,
+      "rank": 1,
+      "test_examples": 3072,
+      "latent_input_vectors": 2,
+      "latent_payload_bytes_fp32": 256,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 18656,
+      "pure_ab_thinking": {
+        "accuracy": 0.4794921875,
+        "counterfactual_pair_exact": 0.1920572966337204,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.86083984375,
+          "counterfactual_pair_exact": 0.73974609375,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.362192302942276,
+          "target": 0.362192302942276
+        },
+        "train_seconds": 16.034877499994764
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.9296875,
+        "counterfactual_pair_exact": 0.8639323115348816,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.950439453125,
+          "counterfactual_pair_exact": 0.90185546875,
+          "examples": 4096
+        },
+        "train_seconds": 14.96823110000696
+      }
+    },
+    {
+      "seed": 2,
+      "rank": 2,
+      "test_examples": 3072,
+      "latent_input_vectors": 4,
+      "latent_payload_bytes_fp32": 512,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 20864,
+      "pure_ab_thinking": {
+        "accuracy": 0.4765625,
+        "counterfactual_pair_exact": 0.1796875,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.94921875,
+          "counterfactual_pair_exact": 0.89990234375,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.18842390179634094,
+          "target": 0.18842390179634094
+        },
+        "train_seconds": 16.556820199999493
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.9296875,
+        "counterfactual_pair_exact": 0.8639323115348816,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.950439453125,
+          "counterfactual_pair_exact": 0.90185546875,
+          "examples": 4096
+        },
+        "train_seconds": 16.024347300000954
+      }
+    },
+    {
+      "seed": 2,
+      "rank": 4,
+      "test_examples": 3072,
+      "latent_input_vectors": 8,
+      "latent_payload_bytes_fp32": 1024,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 25280,
+      "pure_ab_thinking": {
+        "accuracy": 0.44921875,
+        "counterfactual_pair_exact": 0.173828125,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.970458984375,
+          "counterfactual_pair_exact": 0.94091796875,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.061746746301651,
+          "target": 0.061746746301651
+        },
+        "train_seconds": 16.244530800002394
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.9296875,
+        "counterfactual_pair_exact": 0.8639323115348816,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": 0.950439453125,
+          "counterfactual_pair_exact": 0.90185546875,
+          "examples": 4096
+        },
+        "train_seconds": 14.969762400003674
+      }
+    }
+  ]
+}

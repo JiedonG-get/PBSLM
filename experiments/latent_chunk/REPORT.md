@@ -6,6 +6,8 @@ PBSLMv2 can accept learned continuous vectors as its main input sequence. In thi
 
 The current encoder did not preserve the raw-token model's generalization on the tested held-out relation combinations. Across three seeds, the full latent model reached 51.8% to 57.5% test accuracy by rank, compared with 84.4% for the matched raw-token baseline. Increasing the number of vectors did not produce a consistent gain. The experiment does not establish that the proposed memory mechanism is impossible, and it does not test natural-language semantics.
 
+A follow-up removed the `c/d` construction, probes, and alignment loss entirely. With only task supervision, the separate `a(x)+b(y)` condition scored 44.8% to 48.8% across ranks, compared with 84.4% for the matched raw-token baseline. It reached high training accuracy but remained far below the raw-token baseline on held-out value pairs. See [PURE_AB_THINKING_REPORT.md](PURE_AB_THINKING_REPORT.md) for the protocol, paired results, and limitations.
+
 ## Method
 
 Each example contains an 8-token query phrase `x` and an 8-token relation phrase `y`. The query names one of two keys in `y`, and the target is that key's associated value. There are eight target classes. Training uses 4,096 examples. Testing uses 3,072 examples from eight ordered value pairs reserved from training. Every class occurs in training, all complete 16-token rows are unique across the split, and adjacent test rows share `y` while querying different keys.
