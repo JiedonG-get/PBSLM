@@ -82,6 +82,33 @@ Doubling the task budget changed the mean frozen and joint latent accuracies by 
 
 The corrected per-seed results, checkpoint digests, and source hashes are in [the 800-step JSON](task_aware_joint_recon_int4_matched_data0_model0-4_steps800_corrected.json) and [Markdown summary](task_aware_joint_recon_int4_matched_data0_model0-4_steps800_corrected.md), and in the [1,600-step JSON](task_aware_joint_recon_int4_matched_data0_model0-4_steps1600_corrected.json) and [Markdown summary](task_aware_joint_recon_int4_matched_data0_model0-4_steps1600_corrected.md). The corrected runner is [latent_chunk_task_aware_matched.py](../../evaluation/latent_chunk_task_aware_matched.py).
 
+### Alternate Relation Holdout
+
+To test whether the optimization effect persists across a different set of unseen relations, a separate balanced split held out offsets 3 and 5, covering 16 ordered value pairs. It has 4,096 training rows and 3,072 test rows, with exact target balance and no relation-pair or full-phrase `y` overlap between splits. Five model seeds ran at 800 task steps. Because this split uses a different generator and test budget from the legacy offset-4 split, interpret it as an independent replication rather than a paired split comparison.
+
+| Condition | Test accuracy | Counterfactual pair exact |
+|---|---:|---:|
+| Raw-token baseline | 78.44 ± 14.22% | 60.63 ± 25.14% |
+| Matched frozen int4 latent | 30.83 ± 0.97% | 6.50 ± 0.84% |
+| Joint int4 latent | 40.20 ± 4.14% | 13.35 ± 4.14% |
+
+The mean paired joint-minus-frozen difference was +9.36 ± 4.12 pp across model seeds. Joint accuracy exceeded frozen accuracy for all five seeds and on each of the 16 pair-wise seed-averaged comparisons. Raw-token accuracy remained substantially higher. The split supports the same narrow optimization finding on a second set of held-out relations, while the remaining gap shows that high phrase reconstruction alone is insufficient for direct short-code reasoning. These five seeds share one split and measure initialization/optimization variation conditional on it. The [offsets 3/5 JSON](task_aware_joint_recon_int4_matched_data0_offsets3-5_model0-4_steps800.json) and [Markdown summary](task_aware_joint_recon_int4_matched_data0_offsets3-5_model0-4_steps800.md) contain per-seed and per-pair results with checkpoint hashes.
+
+The exact runner source for this earlier three-condition offsets 3/5 artifact is not present in Git history, although its source hash is recorded in the JSON. The later task-only offsets 3/5 run records and preserves the matched runner source used for its four-condition replication.
+
+### Task-Only Encoder Adaptation on Balanced Splits
+
+An ablation tested whether task loss alone could adapt the encoder, with the decoder frozen after reconstruction pretraining. All latent conditions trained the trunk and role tags from matched initializations. The joint condition trained the encoder and decoder with task loss plus reconstruction loss. Both balanced splits used 4,096 training and 3,072 test rows, rank 4 per phrase, and 800 steps per phase. Results are mean ± sample SD across five model seeds.
+
+| Split | Raw-token test | Matched frozen int4 | Task-only int4 | Joint int4 | Task-only − frozen | Task-only − joint |
+|---|---:|---:|---:|---:|---:|---:|
+| Offset 4 | 85.22 ± 14.27% | 29.15 ± 1.58% | 39.47 ± 3.84% | 36.97 ± 3.41% | +10.32 ± 4.04 pp | +2.50 ± 2.83 pp |
+| Offsets 3/5 | 78.44 ± 14.22% | 30.83 ± 0.97% | 40.99 ± 2.46% | 40.20 ± 4.14% | +10.16 ± 1.67 pp | +0.79 ± 3.35 pp |
+
+Task-only exceeded the frozen condition in all five seeds on each split. Its paired advantage over joint training was less stable, with four of five positive seeds on offset 4 and three of five on offsets 3/5. With the original decoder held fixed, task-only int4 reconstruction reached 64.83% and 65.11% token accuracy, while both phrases were recovered exactly in 0.08% and 0.07% of examples. Joint training reached 99.48% and 99.67% token accuracy, with exact recovery of both phrases at 92.40% and 95.01%. These outcomes do not isolate the reconstruction loss because the joint arm also trains the decoder. The five seeds share each split, so they measure initialization and optimization variability conditional on those synthetic data splits.
+
+The [offset-4 task-only JSON](task_aware_int4_task_only_offset4_data0_model0-4_steps800.json) and [summary](task_aware_int4_task_only_offset4_data0_model0-4_steps800.md), and the [offsets 3/5 task-only JSON](task_aware_int4_task_only_offsets3-5_data0_model0-4_steps800.json) and [summary](task_aware_int4_task_only_offsets3-5_data0_model0-4_steps800.md), include per-seed results, source hashes, and checkpoint digests. The matched runner and balanced split generator are [latent_chunk_task_aware_matched.py](../../evaluation/latent_chunk_task_aware_matched.py) and [latent_chunk_holdout.py](../../evaluation/latent_chunk_holdout.py).
+
 ## Payload and State
 
 The following are FP32 payload arithmetic per example. They exclude shared model and encoder parameters, metadata, allocator overhead, and any online state implementation.

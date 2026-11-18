@@ -1,0 +1,613 @@
+{
+  "task": "two_phrase_relation_query_with_modular_counterfactual_holdout",
+  "condition": "frozen_task_only_and_joint_int4_with_matched_trainable_role_tags",
+  "config": {
+    "data_seed": 0,
+    "held_out_offsets": [
+      3,
+      5
+    ],
+    "model_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "pretrain_steps": 800,
+    "frozen_steps": 800,
+    "joint_steps": 800,
+    "baseline_steps": 800,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cuda",
+    "output": "experiments/latent_chunk/task_aware_int4_task_only_offsets3-5_data0_model0-4_steps800.json",
+    "reconstruction_weight": 1.0,
+    "frozen_trainable_role_tags": true,
+    "task_only_trainable_encoder": true,
+    "joint_trainable_role_tags": true
+  },
+  "split": {
+    "data_seed": 0,
+    "held_out_offsets": [
+      3,
+      5
+    ],
+    "held_out_ordered_value_pairs": [
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        7,
+        4
+      ]
+    ],
+    "train_examples": 4096,
+    "test_examples": 3072,
+    "standard_test_split_used": false
+  },
+  "code_storage": {
+    "bits_per_component": 4,
+    "rank_per_phrase": 4,
+    "phrase_count": 2,
+    "components": 256,
+    "int4_payload_bytes_estimate": 128,
+    "dequantized_fp32_input_bytes": 1024,
+    "raw_input_token_count": 16,
+    "input_token_bit_width": 4,
+    "raw_token_payload_bytes_4bit_packed_estimate": 8,
+    "raw_fp32_embedding_input_bytes": 2048,
+    "latent_to_bitpacked_token_payload_ratio": 16.0,
+    "shared_autoencoder_and_decoder_excluded": true
+  },
+  "provenance": {
+    "git_commit": "a319b905738040f9fe6c207ac26a0b1e44a6bf1c",
+    "git_status": "M evaluation/latent_chunk_task_aware_matched.py\n M experiments/latent_chunk/REPORT.md\n?? evaluation/analyze_qwen_story.py\n?? evaluation/latent_chunk_holdout.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? experiments/continuous_online/alias_online_dev_frozen_scores_v2.json\n?? experiments/continuous_online/alias_online_dev_frozen_v2.json\n?? experiments/continuous_online/alias_online_development_batch_scores_v2.json\n?? experiments/continuous_online/alias_online_development_batch_v2.json\n?? experiments/continuous_online/alias_online_development_final_scores_v2.json\n?? experiments/continuous_online/alias_online_development_final_v2.json\n?? experiments/continuous_online/alias_online_development_initial_scores_v2.json\n?? experiments/continuous_online/alias_online_development_initial_v2.json\n?? experiments/continuous_online/alias_online_development_retry_v2.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/latent_chunk/preflight_matched.json\n?? experiments/latent_chunk/preflight_seed0_rank1.json\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_data0_model0-4_steps800.json\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_data0_model0-4_steps800.md\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_data0_model0-4_steps800_checkpoints/\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_seed0_pilot_steps800.json\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_seed0_pilot_steps800.md\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_seed0_pilot_steps800_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_model0-4_steps1600.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_model0-4_steps1600.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_model0-4_steps1600_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_model0-4_steps800.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_model0-4_steps800.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_model0-4_steps800_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_seed0_pilot_steps800.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_seed0_pilot_steps800.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_seed0_pilot_steps800_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_seed0_pilot_steps1600.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_seed0_pilot_steps1600.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_seed0_pilot_steps1600_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_offset4_seed0.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_offset4_seed0.md\n?? experiments/recurrent_state/continuous_event_tests.log",
+    "source_sha256_at_capture": {
+      "evaluation/latent_chunk_task_aware_matched.py": "72ac307dfa9d71526793e6b47d60996116f54b0d2626106ea07996054cb62f32",
+      "evaluation/latent_chunk_task_aware_joint_reconstruction.py": "8fd58247dcccb8f34690a6a8d5b7cfa56d7999534e318d7503dc413b9f2bc85f",
+      "evaluation/latent_chunk_holdout.py": "71b801414c93ff7f4d3421122b4fc4382012749e900f5609a763847cb7171dfe",
+      "evaluation/latent_chunk_soft_reader_confirmatory.py": "02b8ef43bc5555f6d374c117be673f9895feff837795564d81827037cf0bd24b",
+      "evaluation/latent_chunk_reconstruction.py": "fb468a9f4c9ee5a39f926a348abf583f3afccec8756e4d647ce8ac4a0e26c73d",
+      "evaluation/latent_chunk_ab_thinking.py": "3da790e222a000e7f367ef12595aa281bfe8540ca2a0dff0887a22337b9da571",
+      "evaluation/latent_chunk_relations.py": "070377ad5b4980a20a4b43953e67b80dfb976376da1cc6e28dba5c2ea54da312",
+      "evaluation/provenance.py": "061924cbf9c0c5d326501be75102734bea03be6f1f315dfe032fdff1a34ebdee",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "685d275de48e923e93adc9614319e0743f80573619bead16a1f7b06aeeff8d05"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "data_seed": 0,
+  "model_seed": 2,
+  "progress": {
+    "complete": true,
+    "checkpoint_model_seed": 2
+  },
+  "run": {
+    "model_seed": 2,
+    "train_examples": 4096,
+    "test_examples": 3072,
+    "autoencoder_parameters": 38224,
+    "shared_encoder_parameters": 24768,
+    "shared_decoder_parameters": 13456,
+    "pretraining": {
+      "train_reconstruction": {
+        "x_token_accuracy": 0.99932861328125,
+        "y_token_accuracy": 0.99993896484375,
+        "all_16_token_accuracy": 0.9996337890625,
+        "x_variable_token_accuracy": 0.9992327008928571,
+        "y_variable_token_accuracy": 0.9999302455357143,
+        "query_key_accuracy": 0.999267578125,
+        "y_edge_symbol_accuracy": 0.9998779296875,
+        "x_filler_accuracy": 0.9992268880208334,
+        "y_filler_accuracy": 1.0,
+        "x_phrase_exact": 0.9951171875,
+        "y_phrase_exact": 0.99951171875,
+        "both_phrases_exact": 0.99462890625,
+        "position_accuracy": {
+          "x": [
+            1.0,
+            0.999267578125,
+            0.99853515625,
+            0.99951171875,
+            0.998291015625,
+            1.0,
+            0.999755859375,
+            0.999267578125
+          ],
+          "y": [
+            1.0,
+            0.99951171875,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "examples": 4096
+      },
+      "test_reconstruction": {
+        "x_token_accuracy": 0.9977213740348816,
+        "y_token_accuracy": 0.9951985776424408,
+        "all_16_token_accuracy": 0.9964599758386612,
+        "x_variable_token_accuracy": 0.9973958560398647,
+        "y_variable_token_accuracy": 0.9945126601627895,
+        "query_key_accuracy": 0.9977213740348816,
+        "y_edge_symbol_accuracy": 0.9915364682674408,
+        "x_filler_accuracy": 0.9973416030406952,
+        "y_filler_accuracy": 0.9984809160232544,
+        "x_phrase_exact": 0.9840494791666666,
+        "y_phrase_exact": 0.962890625,
+        "both_phrases_exact": 0.947265625,
+        "position_accuracy": {
+          "x": [
+            1.0,
+            0.9977213740348816,
+            0.9957682490348816,
+            0.9957682490348816,
+            0.9973958730697632,
+            0.9977213740348816,
+            0.9986979365348816,
+            0.9986979365348816
+          ],
+          "y": [
+            1.0,
+            1.0,
+            0.978515625,
+            0.9986979365348816,
+            0.9889323115348816,
+            0.998046875,
+            0.9973958730697632,
+            1.0
+          ]
+        },
+        "examples": 3072
+      },
+      "final_batch_loss": 0.025096187368035316,
+      "train_seconds": 2.109596900001634
+    },
+    "pretraining_int4_reconstruction": {
+      "train": {
+        "all_16_token_accuracy": 0.9990997314453125,
+        "x_token_accuracy": 0.998687744140625,
+        "y_token_accuracy": 0.99951171875,
+        "query_key_accuracy": 0.997314453125,
+        "y_edge_symbol_accuracy": 0.99951171875,
+        "x_phrase_exact": 0.990478515625,
+        "y_phrase_exact": 0.99609375,
+        "both_phrases_exact": 0.986572265625,
+        "examples": 4096
+      },
+      "test": {
+        "all_16_token_accuracy": 0.994608573615551,
+        "x_token_accuracy": 0.9967041164636612,
+        "y_token_accuracy": 0.9925130307674408,
+        "query_key_accuracy": 0.9957682490348816,
+        "y_edge_symbol_accuracy": 0.9877929836511612,
+        "x_phrase_exact": 0.9765625,
+        "y_phrase_exact": 0.9427083333333334,
+        "both_phrases_exact": 0.9202473958333334,
+        "examples": 3072
+      }
+    },
+    "frozen_int4_latent": {
+      "train": {
+        "accuracy": 0.99609375,
+        "counterfactual_pair_exact": 0.9921875,
+        "ordered_value_pair_accuracy": {
+          "0->1": 1.0,
+          "0->2": 1.0,
+          "0->4": 1.0,
+          "0->6": 1.0,
+          "0->7": 1.0,
+          "1->0": 0.9901961088180542,
+          "1->2": 1.0,
+          "1->3": 1.0,
+          "1->5": 0.9901961088180542,
+          "1->7": 1.0,
+          "2->0": 1.0,
+          "2->1": 1.0,
+          "2->3": 1.0,
+          "2->4": 0.9901961088180542,
+          "2->6": 1.0,
+          "3->1": 0.9803922176361084,
+          "3->2": 1.0,
+          "3->4": 1.0,
+          "3->5": 1.0,
+          "3->7": 0.9901961088180542,
+          "4->0": 1.0,
+          "4->2": 1.0,
+          "4->3": 1.0,
+          "4->5": 1.0,
+          "4->6": 0.9901961088180542,
+          "5->1": 0.9803922176361084,
+          "5->3": 1.0,
+          "5->4": 1.0,
+          "5->6": 0.9807692766189575,
+          "5->7": 1.0,
+          "6->0": 0.9901961088180542,
+          "6->2": 1.0,
+          "6->4": 1.0,
+          "6->5": 1.0,
+          "6->7": 1.0,
+          "7->0": 0.9903846383094788,
+          "7->1": 1.0,
+          "7->3": 0.9901961088180542,
+          "7->5": 0.9803922176361084,
+          "7->6": 1.0
+        },
+        "examples": 4096
+      },
+      "test": {
+        "accuracy": 0.3141276240348816,
+        "counterfactual_pair_exact": 0.0703125,
+        "ordered_value_pair_accuracy": {
+          "0->3": 0.3125,
+          "0->5": 0.3020833432674408,
+          "1->4": 0.2447916716337204,
+          "1->6": 0.203125,
+          "2->5": 0.3541666865348816,
+          "2->7": 0.4166666865348816,
+          "3->0": 0.2135416716337204,
+          "3->6": 0.3697916865348816,
+          "4->1": 0.375,
+          "4->7": 0.4635416865348816,
+          "5->0": 0.3333333432674408,
+          "5->2": 0.2916666865348816,
+          "6->1": 0.1822916716337204,
+          "6->3": 0.2760416865348816,
+          "7->2": 0.34375,
+          "7->4": 0.34375
+        },
+        "examples": 3072
+      },
+      "final_batch_task_loss": 0.027176879346370697,
+      "train_seconds": 15.14279489999899,
+      "trainable_trunk_parameters": 201306,
+      "trainable_role_tag_parameters": 512,
+      "max_abs_role_tag_parameter_updates": {
+        "role": 0.10360819101333618,
+        "position": 0.10360773652791977
+      }
+    },
+    "task_only_adapted_int4_latent": {
+      "train": {
+        "accuracy": 0.939453125,
+        "counterfactual_pair_exact": 0.8818359375,
+        "ordered_value_pair_accuracy": {
+          "0->1": 0.8942307829856873,
+          "0->2": 0.9803922176361084,
+          "0->4": 0.9215686321258545,
+          "0->6": 0.9313725829124451,
+          "0->7": 0.960784375667572,
+          "1->0": 0.960784375667572,
+          "1->2": 0.9615384936332703,
+          "1->3": 0.9803922176361084,
+          "1->5": 0.9509804248809814,
+          "1->7": 0.960784375667572,
+          "2->0": 0.9117647409439087,
+          "2->1": 0.9215686321258545,
+          "2->3": 0.9230769872665405,
+          "2->4": 0.9705882668495178,
+          "2->6": 0.9509804248809814,
+          "3->1": 0.9313725829124451,
+          "3->2": 0.9901961088180542,
+          "3->4": 0.951923131942749,
+          "3->5": 0.9901961088180542,
+          "3->7": 0.9117647409439087,
+          "4->0": 0.9215686321258545,
+          "4->2": 0.9411765336990356,
+          "4->3": 0.9509804248809814,
+          "4->5": 0.8557692766189575,
+          "4->6": 0.9509804248809814,
+          "5->1": 0.960784375667572,
+          "5->3": 0.9411765336990356,
+          "5->4": 0.9019607901573181,
+          "5->6": 0.942307710647583,
+          "5->7": 0.9509804248809814,
+          "6->0": 0.9411765336990356,
+          "6->2": 0.8921568989753723,
+          "6->4": 0.9215686321258545,
+          "6->5": 0.9509804248809814,
+          "6->7": 0.951923131942749,
+          "7->0": 0.9134615659713745,
+          "7->1": 0.9509804248809814,
+          "7->3": 0.9411765336990356,
+          "7->5": 0.9117647409439087,
+          "7->6": 0.9313725829124451
+        },
+        "examples": 4096
+      },
+      "test": {
+        "accuracy": 0.423828125,
+        "counterfactual_pair_exact": 0.1477864682674408,
+        "ordered_value_pair_accuracy": {
+          "0->3": 0.5,
+          "0->5": 0.3697916865348816,
+          "1->4": 0.3854166865348816,
+          "1->6": 0.375,
+          "2->5": 0.5,
+          "2->7": 0.4739583432674408,
+          "3->0": 0.4375,
+          "3->6": 0.5104166865348816,
+          "4->1": 0.34375,
+          "4->7": 0.4583333432674408,
+          "5->0": 0.3854166865348816,
+          "5->2": 0.46875,
+          "6->1": 0.4322916865348816,
+          "6->3": 0.34375,
+          "7->2": 0.390625,
+          "7->4": 0.40625
+        },
+        "examples": 3072
+      },
+      "int4_train_reconstruction": {
+        "all_16_token_accuracy": 0.6621551513671875,
+        "x_token_accuracy": 0.674041748046875,
+        "y_token_accuracy": 0.6502685546875,
+        "query_key_accuracy": 0.5947265625,
+        "y_edge_symbol_accuracy": 0.7208251953125,
+        "x_phrase_exact": 0.033447265625,
+        "y_phrase_exact": 0.029296875,
+        "both_phrases_exact": 0.001708984375,
+        "examples": 4096
+      },
+      "int4_test_reconstruction": {
+        "all_16_token_accuracy": 0.6501871924847364,
+        "x_token_accuracy": 0.6731770969927311,
+        "y_token_accuracy": 0.6271972879767418,
+        "query_key_accuracy": 0.61328125,
+        "y_edge_symbol_accuracy": 0.6593424677848816,
+        "x_phrase_exact": 0.037109375,
+        "y_phrase_exact": 0.022786458333333332,
+        "both_phrases_exact": 0.0009765625,
+        "examples": 3072
+      },
+      "final_batch_task_loss": 0.17846016585826874,
+      "train_seconds": 16.20730840000033,
+      "trainable_trunk_parameters": 201306,
+      "trainable_encoder_parameters": 24768,
+      "trainable_role_tag_parameters": 512,
+      "encoder_parameter_max_abs_updates": 0.1538723111152649
+    },
+    "joint_int4_latent": {
+      "train": {
+        "accuracy": 0.939453125,
+        "counterfactual_pair_exact": 0.8798828125,
+        "ordered_value_pair_accuracy": {
+          "0->1": 0.8942307829856873,
+          "0->2": 0.9901961088180542,
+          "0->4": 0.960784375667572,
+          "0->6": 0.9705882668495178,
+          "0->7": 0.9803922176361084,
+          "1->0": 0.8725490570068359,
+          "1->2": 0.9038462042808533,
+          "1->3": 0.9117647409439087,
+          "1->5": 0.8235294222831726,
+          "1->7": 0.8921568989753723,
+          "2->0": 0.9803922176361084,
+          "2->1": 0.9215686321258545,
+          "2->3": 0.9038462042808533,
+          "2->4": 0.960784375667572,
+          "2->6": 0.9509804248809814,
+          "3->1": 0.9509804248809814,
+          "3->2": 0.9215686321258545,
+          "3->4": 0.9615384936332703,
+          "3->5": 0.960784375667572,
+          "3->7": 0.9803922176361084,
+          "4->0": 0.960784375667572,
+          "4->2": 0.9705882668495178,
+          "4->3": 0.9509804248809814,
+          "4->5": 0.9711538553237915,
+          "4->6": 0.9705882668495178,
+          "5->1": 0.9313725829124451,
+          "5->3": 0.9117647409439087,
+          "5->4": 0.960784375667572,
+          "5->6": 0.951923131942749,
+          "5->7": 0.9215686321258545,
+          "6->0": 0.9117647409439087,
+          "6->2": 0.9411765336990356,
+          "6->4": 0.9411765336990356,
+          "6->5": 0.9411765336990356,
+          "6->7": 0.9326923489570618,
+          "7->0": 0.9134615659713745,
+          "7->1": 0.9705882668495178,
+          "7->3": 0.9509804248809814,
+          "7->5": 0.9509804248809814,
+          "7->6": 0.9313725829124451
+        },
+        "examples": 4096
+      },
+      "test": {
+        "accuracy": 0.3948567807674408,
+        "counterfactual_pair_exact": 0.1204427108168602,
+        "ordered_value_pair_accuracy": {
+          "0->3": 0.34375,
+          "0->5": 0.3489583432674408,
+          "1->4": 0.328125,
+          "1->6": 0.3333333432674408,
+          "2->5": 0.5,
+          "2->7": 0.3177083432674408,
+          "3->0": 0.359375,
+          "3->6": 0.4635416865348816,
+          "4->1": 0.40625,
+          "4->7": 0.4166666865348816,
+          "5->0": 0.421875,
+          "5->2": 0.4895833432674408,
+          "6->1": 0.3958333432674408,
+          "6->3": 0.4322916865348816,
+          "7->2": 0.421875,
+          "7->4": 0.3385416865348816
+        },
+        "examples": 3072
+      },
+      "int4_train_reconstruction": {
+        "all_16_token_accuracy": 0.9988861083984375,
+        "x_token_accuracy": 0.998199462890625,
+        "y_token_accuracy": 0.99957275390625,
+        "query_key_accuracy": 0.997314453125,
+        "y_edge_symbol_accuracy": 0.99951171875,
+        "x_phrase_exact": 0.986328125,
+        "y_phrase_exact": 0.99658203125,
+        "both_phrases_exact": 0.98291015625,
+        "examples": 4096
+      },
+      "int4_test_reconstruction": {
+        "all_16_token_accuracy": 0.9967854991555214,
+        "x_token_accuracy": 0.9972330927848816,
+        "y_token_accuracy": 0.9963379055261612,
+        "query_key_accuracy": 0.9983724355697632,
+        "y_edge_symbol_accuracy": 0.9956054836511612,
+        "x_phrase_exact": 0.9791666666666666,
+        "y_phrase_exact": 0.97265625,
+        "both_phrases_exact": 0.9524739583333334,
+        "examples": 3072
+      },
+      "final_batch_task_loss": 0.16166406869888306,
+      "final_batch_reconstruction_loss": 0.015684083104133606,
+      "train_seconds": 18.25011689999519,
+      "trainable_trunk_parameters": 201306,
+      "trainable_autoencoder_parameters": 38224,
+      "trainable_role_tag_parameters": 512
+    },
+    "raw_token_baseline": {
+      "accuracy": 0.92578125,
+      "counterfactual_pair_exact": 0.85546875,
+      "ordered_value_pair_accuracy": {
+        "0->3": 0.953125,
+        "0->5": 0.9427083730697632,
+        "1->4": 0.9270833730697632,
+        "1->6": 0.953125,
+        "2->5": 0.9270833730697632,
+        "2->7": 0.90625,
+        "3->0": 0.9010416865348816,
+        "3->6": 0.8854166865348816,
+        "4->1": 0.9479166865348816,
+        "4->7": 0.9270833730697632,
+        "5->0": 0.9010416865348816,
+        "5->2": 0.9322916865348816,
+        "6->1": 0.8958333730697632,
+        "6->3": 0.9270833730697632,
+        "7->2": 0.9583333730697632,
+        "7->4": 0.9270833730697632
+      },
+      "examples": 3072,
+      "train_evaluation": {
+        "accuracy": 0.950439453125,
+        "counterfactual_pair_exact": 0.90185546875,
+        "ordered_value_pair_accuracy": {
+          "0->1": 0.9615384936332703,
+          "0->2": 0.960784375667572,
+          "0->4": 0.9705882668495178,
+          "0->6": 0.9705882668495178,
+          "0->7": 0.9215686321258545,
+          "1->0": 0.9411765336990356,
+          "1->2": 0.9711538553237915,
+          "1->3": 0.9705882668495178,
+          "1->5": 0.9509804248809814,
+          "1->7": 0.960784375667572,
+          "2->0": 0.8627451062202454,
+          "2->1": 0.9215686321258545,
+          "2->3": 0.9615384936332703,
+          "2->4": 0.9705882668495178,
+          "2->6": 0.9215686321258545,
+          "3->1": 0.9215686321258545,
+          "3->2": 0.9313725829124451,
+          "3->4": 0.951923131942749,
+          "3->5": 0.960784375667572,
+          "3->7": 0.960784375667572,
+          "4->0": 0.9411765336990356,
+          "4->2": 0.9803922176361084,
+          "4->3": 0.9705882668495178,
+          "4->5": 0.9807692766189575,
+          "4->6": 0.960784375667572,
+          "5->1": 0.9411765336990356,
+          "5->3": 0.9411765336990356,
+          "5->4": 0.9313725829124451,
+          "5->6": 0.9326923489570618,
+          "5->7": 0.9215686321258545,
+          "6->0": 0.9509804248809814,
+          "6->2": 0.9509804248809814,
+          "6->4": 0.9705882668495178,
+          "6->5": 0.9509804248809814,
+          "6->7": 0.951923131942749,
+          "7->0": 0.9711538553237915,
+          "7->1": 0.9313725829124451,
+          "7->3": 0.9803922176361084,
+          "7->5": 0.9803922176361084,
+          "7->6": 0.9313725829124451
+        },
+        "examples": 4096
+      },
+      "train_seconds": 15.70132790000207
+    }
+  }
+}
