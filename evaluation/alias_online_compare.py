@@ -44,7 +44,7 @@ def answer_messages(question, previous_question, *, evidence=None, entity=None, 
     return messages(ANSWER_PROMPT, json.dumps(content, ensure_ascii=False))
 
 
-def replay(generate, stream, arm):
+def replay(generate, stream, arm, *, record_query_seconds=False):
     started = time.perf_counter()
     memory = AliasState() if arm.startswith('structured') else None
     keep_history = arm != 'structured'
@@ -79,6 +79,7 @@ def replay(generate, stream, arm):
                 ingress.append({'event_id': event_id, 'validated_operations': rows, 'applied_operations': applied,
                                 'rejected_parse': rejected_parse, 'rejected_state': rejected_state})
         else:
+            query_started = time.perf_counter() if record_query_seconds else None
             entity = readout = method = None
             evidence = []
             fallback = False
@@ -94,11 +95,14 @@ def replay(generate, stream, arm):
                 answer_evidence = evidence
             answer = call('answer', answer_prompt, ANSWER_TOKENS)
             cost['fallback_queries'] += fallback
-            predictions.append({'arm': arm, 'stream_id': stream['stream_id'], 'event_id': event_id,
-                                'answer': answer, 'entity': entity, 'readout': readout, 'link_method': method,
-                                'evidence_event_ids': answer_evidence, 'memory_evidence_event_ids': evidence,
-                                'fallback': fallback, 'available_observations': len(history) if keep_history else None,
-                                'messages': answer_prompt})
+            prediction = {'arm': arm, 'stream_id': stream['stream_id'], 'event_id': event_id,
+                          'answer': answer, 'entity': entity, 'readout': readout, 'link_method': method,
+                          'evidence_event_ids': answer_evidence, 'memory_evidence_event_ids': evidence,
+                          'fallback': fallback, 'available_observations': len(history) if keep_history else None,
+                          'messages': answer_prompt}
+            if record_query_seconds:
+                prediction['query_seconds'] = time.perf_counter() - query_started
+            predictions.append(prediction)
             previous_question = text
         history_bytes = json_bytes(history) if keep_history else 0
         state_bytes = memory.payload_bytes() if memory is not None else 0
