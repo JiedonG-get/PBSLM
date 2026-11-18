@@ -1,5 +1,7 @@
 # Task-Aware Joint Reconstruction Experiment
 
+**Control correction.** The frozen arm applied its role and position tags under `torch.no_grad()`, so those parameters received gradients only in the joint arm. This affects the frozen-versus-joint comparison. The tables preserve the observed measurements from the original run.
+
 - Status: `complete` (5/5 model seeds completed)
 - Data seed: `0`
 - Model seeds requested: `[0, 1, 2, 3, 4]`
