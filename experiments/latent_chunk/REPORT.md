@@ -55,9 +55,9 @@ The `a` query-key field probe reached 100% across ranks and seeds. The `b` resul
 
 ## Task-Aware Joint Tuning Follow-up
 
-**Control correction.** In this 800-step run, `train_frozen_int4` applied the role and position tags inside `torch.no_grad()`. The tags received gradients only in the joint arm. The frozen arm's parameter count lists tags in the optimizer even though they were frozen by this code path. The table records the original run. The measured gap between its latent arms combines differences in tag training, encoder updates, and the reconstruction objective.
+**Historical control correction.** In the original 800-step run, `train_frozen_int4` applied role and position tags inside `torch.no_grad()`. Those tags therefore received gradients only in the joint arm. The historical table preserves the observed measurements, but its frozen-versus-joint gap is confounded by tag training as well as encoder updates and the reconstruction objective.
 
-The next experiment used the same data seed 0 split and model seeds 0–4. For each seed, it compared a raw-token baseline, a trunk trained on frozen rank-4 int4 codes, and a model that jointly tuned the encoder, decoder, role tags, and trunk using task cross-entropy plus full-phrase reconstruction cross-entropy with weight 1.0. Each phase ran for 800 steps. The latent codes used straight-through fake quantization and remained dequantized FP32 tensors at runtime.
+The original experiment used data seed 0 and model seeds 0–4. It compared a raw-token baseline, a trunk trained on frozen rank-4 int4 codes, and a model that jointly tuned the encoder, decoder, role tags, and trunk using task cross-entropy plus full-phrase reconstruction cross-entropy with weight 1.0. Each phase ran for 800 steps. The latent codes used straight-through fake quantization and remained dequantized FP32 tensors at runtime.
 
 | Condition | Test accuracy | Counterfactual pair exact |
 |---|---:|---:|
@@ -65,9 +65,22 @@ The next experiment used the same data seed 0 split and model seeds 0–4. For e
 | Frozen int4 latent | 23.76 ± 2.85% | 4.66 ± 1.19% |
 | Joint task + reconstruction | 36.26 ± 3.05% | 10.00 ± 1.60% |
 
-The original joint arm scored 8.15–18.54 pp higher than the frozen arm across the five seeds, with a mean paired difference of +12.50 ± 4.02 pp. The comparison has the tag-training confound described above. The joint arm scored below the raw-token baseline for every seed, with a mean paired difference of -40.76 ± 8.62 pp. Mean joint accuracy across seeds was also lower than raw-token accuracy for each of the eight held-out value pairs.
+The original joint arm scored 8.15–18.54 pp higher than the frozen arm across the five seeds, with an observed mean paired difference of +12.50 ± 4.02 pp. This estimate is not a matched-control effect because the frozen tags did not train.
 
-Joint tuning preserved phrase reconstruction. Mean int4 all-token accuracy rose from 99.39 ± 0.24% before task tuning to 99.53 ± 0.13% afterward, and mean both-phrase exact recovery rose from 91.43 ± 3.14% to 92.95 ± 1.82%. The split contains eight held-out ordered value pairs, and all five model seeds reuse that same synthetic split. The per-seed and per-pair measurements, checkpoint digests, and source hashes are in [task_aware_joint_recon_int4_offset4_data0_model0-4.json](task_aware_joint_recon_int4_offset4_data0_model0-4.json) and [its Markdown summary](task_aware_joint_recon_int4_offset4_data0_model0-4.md).
+### Matched-Tag Recheck
+
+A corrected runner trains the role and position tags in both latent arms. Both arms start from the same pretrained encoder, model weights, tag initialization, and task minibatch sequence. The frozen arm updates only the trunk and tags. The joint arm also updates the encoder and decoder with the reconstruction objective. All five frozen-arm runs assert that both tag tensors changed. The same offset-4 split, data seed 0, and model seeds 0–4 were used at both budgets.
+
+| Task budget per arm | Raw-token test | Matched frozen int4 test | Joint int4 test | Paired joint-minus-frozen |
+|---:|---:|---:|---:|---:|
+| 800 | 77.02 ± 11.52% | 27.13 ± 3.58% | 36.26 ± 3.05% | +9.13 ± 4.72 pp |
+| 1,600 | 99.19 ± 0.59% | 27.95 ± 3.70% | 37.02 ± 3.25% | +9.07 ± 6.27 pp |
+
+Values are means ± sample SD across five model seeds on the same fixed synthetic split. Joint accuracy exceeded matched frozen-latent accuracy for all five seeds at both budgets. Counterfactual pair-exact accuracy at 800 steps was 58.54 ± 20.37% for raw tokens, 4.38 ± 1.25% for matched frozen int4, and 10.00 ± 1.60% for joint int4. At 1,600 steps it was 98.37 ± 1.18%, 5.96 ± 1.84%, and 12.75 ± 3.25%, respectively.
+
+Doubling the task budget changed the mean frozen and joint latent accuracies by less than one percentage point, while raw-token accuracy rose by 22.16 pp. This is consistent with an input-representation or interface bottleneck in this task, though it does not isolate that cause. Mean int4 all-token reconstruction was 99.39% before task tuning at both budgets, and 99.53% and 99.70% after joint tuning at 800 and 1,600 steps. Exact recovery of both phrases rose from 91.43% to 92.95% and 95.39%, respectively. High reconstruction therefore coexists with weak direct-latent relation generalization.
+
+The corrected per-seed results, checkpoint digests, and source hashes are in [the 800-step JSON](task_aware_joint_recon_int4_matched_data0_model0-4_steps800_corrected.json) and [Markdown summary](task_aware_joint_recon_int4_matched_data0_model0-4_steps800_corrected.md), and in the [1,600-step JSON](task_aware_joint_recon_int4_matched_data0_model0-4_steps1600_corrected.json) and [Markdown summary](task_aware_joint_recon_int4_matched_data0_model0-4_steps1600_corrected.md). The corrected runner is [latent_chunk_task_aware_matched.py](../../evaluation/latent_chunk_task_aware_matched.py).
 
 ## Payload and State
 
@@ -81,7 +94,7 @@ The following are FP32 payload arithmetic per example. They exclude shared model
 
 The input contains 16 token IDs, which are 64 B when packed as 32-bit integers and 128 B in the current `torch.long` tensors. The same input is 2,048 B as 16 learned 32-dimensional FP32 embeddings. Rank 4 has the same number of input vectors and the same payload size as those embeddings. The conventional K/V arithmetic is 4,096 B per layer, or 4,096, 16,384, and 49,152 B for 1, 4, and 12 layers. These values are not measured PBSLM runtime cache sizes or memory savings. The latent encoder has 26,608, 31,024, and 39,856 trainable parameters at ranks 1, 2, and 4, including auxiliary probe heads. PBSLM has 201,306 trainable parameters in each run, so the latent condition is not parameter- or FLOP-matched.
 
-The synthetic input alphabet has only 10 possible IDs (0–9), so an ideal fixed-width representation needs 4 bits per ID, or 8 B for the 16-token input. The 64 B comparison above assumes 32-bit integer storage and is not an optimally packed token baseline. The rank-4 int4 latent payload estimate is 128 B, which is larger than this bit-packed synthetic input before counting the shared encoder and decoder.
+The synthetic input alphabet has only 10 possible IDs (0–9), so an ideal fixed-width representation needs 4 bits per ID, or 8 B for the 16-token input. The 64 B comparison above assumes 32-bit integer storage and is not an optimally packed token baseline. The rank-4 int4 latent payload estimate is 128 B, which is larger than this bit-packed synthetic input before counting the shared encoder and decoder. See the [packed-state storage audit](PACKED_STATE_STORAGE_AUDIT.md) for int4 payload estimates, break-even arithmetic, and packing limitations.
 
 An evaluation-only fixed FP32 delta state used IID random normalized keys, with 64 episodes at each length. At rank 1 and 96 stored examples, the state occupies 8,192 B versus 55,296 B for an explicit key-plus-payload table. The oldest item's mean payload cosine was 0.074, and state-query accuracy was 12.0%, compared with 57.3% when the model read the pristine payload directly. Latest-item payload cosine was 0.992. This indicates strong recency retention and substantial interference for old items in this random-key test. It is not a semantic-addressing test, and the pristine-table result is an upper-bound reference.
 
