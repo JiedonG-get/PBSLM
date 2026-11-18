@@ -1,0 +1,520 @@
+{
+  "format": "pbslm.continuous_memory_score.v1",
+  "query_items": 6,
+  "unknown_label": "不确定",
+  "arms": [
+    "history",
+    "recent",
+    "retrieval",
+    "bounded_summary"
+  ],
+  "by_arm": {
+    "history": {
+      "overall": {
+        "items": 6,
+        "correct": 4,
+        "accuracy": 0.6666666666666666,
+        "answered": 6,
+        "coverage": 1.0,
+        "abstained": 0,
+        "blank": 0
+      },
+      "known": {
+        "items": 6,
+        "correct": 4,
+        "accuracy": 0.6666666666666666,
+        "answered": 6,
+        "coverage": 1.0,
+        "abstained": 0,
+        "blank": 0
+      },
+      "unknown": {
+        "items": 0,
+        "correct": 0,
+        "accuracy": null,
+        "answered": 0,
+        "coverage": null,
+        "abstained": 0,
+        "blank": 0
+      },
+      "by_case": {
+        "unspecified": {
+          "items": 6,
+          "correct": 4,
+          "accuracy": 0.6666666666666666,
+          "answered": 6,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        }
+      }
+    },
+    "recent": {
+      "overall": {
+        "items": 6,
+        "correct": 5,
+        "accuracy": 0.8333333333333334,
+        "answered": 5,
+        "coverage": 0.8333333333333334,
+        "abstained": 1,
+        "blank": 0
+      },
+      "known": {
+        "items": 6,
+        "correct": 5,
+        "accuracy": 0.8333333333333334,
+        "answered": 5,
+        "coverage": 0.8333333333333334,
+        "abstained": 1,
+        "blank": 0
+      },
+      "unknown": {
+        "items": 0,
+        "correct": 0,
+        "accuracy": null,
+        "answered": 0,
+        "coverage": null,
+        "abstained": 0,
+        "blank": 0
+      },
+      "by_case": {
+        "unspecified": {
+          "items": 6,
+          "correct": 5,
+          "accuracy": 0.8333333333333334,
+          "answered": 5,
+          "coverage": 0.8333333333333334,
+          "abstained": 1,
+          "blank": 0
+        }
+      }
+    },
+    "retrieval": {
+      "overall": {
+        "items": 6,
+        "correct": 5,
+        "accuracy": 0.8333333333333334,
+        "answered": 5,
+        "coverage": 0.8333333333333334,
+        "abstained": 1,
+        "blank": 0
+      },
+      "known": {
+        "items": 6,
+        "correct": 5,
+        "accuracy": 0.8333333333333334,
+        "answered": 5,
+        "coverage": 0.8333333333333334,
+        "abstained": 1,
+        "blank": 0
+      },
+      "unknown": {
+        "items": 0,
+        "correct": 0,
+        "accuracy": null,
+        "answered": 0,
+        "coverage": null,
+        "abstained": 0,
+        "blank": 0
+      },
+      "by_case": {
+        "unspecified": {
+          "items": 6,
+          "correct": 5,
+          "accuracy": 0.8333333333333334,
+          "answered": 5,
+          "coverage": 0.8333333333333334,
+          "abstained": 1,
+          "blank": 0
+        }
+      }
+    },
+    "bounded_summary": {
+      "overall": {
+        "items": 6,
+        "correct": 3,
+        "accuracy": 0.5,
+        "answered": 5,
+        "coverage": 0.8333333333333334,
+        "abstained": 1,
+        "blank": 0
+      },
+      "known": {
+        "items": 6,
+        "correct": 3,
+        "accuracy": 0.5,
+        "answered": 5,
+        "coverage": 0.8333333333333334,
+        "abstained": 1,
+        "blank": 0
+      },
+      "unknown": {
+        "items": 0,
+        "correct": 0,
+        "accuracy": null,
+        "answered": 0,
+        "coverage": null,
+        "abstained": 0,
+        "blank": 0
+      },
+      "by_case": {
+        "unspecified": {
+          "items": 6,
+          "correct": 3,
+          "accuracy": 0.5,
+          "answered": 5,
+          "coverage": 0.8333333333333334,
+          "abstained": 1,
+          "blank": 0
+        }
+      }
+    }
+  },
+  "paired": [
+    {
+      "arms": [
+        "history",
+        "recent"
+      ],
+      "both_correct": 3,
+      "left_only_correct": 1,
+      "right_only_correct": 2,
+      "both_wrong": 0,
+      "answer_disagreements": 3,
+      "disagreements": [
+        {
+          "stream_id": "dev-mixed-causal-002",
+          "event_id": "m6",
+          "case": "unspecified",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "dev-object-possession-002",
+          "event_id": "o6",
+          "case": "unspecified",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "dev-object-possession-002",
+          "event_id": "o8",
+          "case": "unspecified",
+          "correctness": "right_only_correct"
+        }
+      ]
+    },
+    {
+      "arms": [
+        "history",
+        "retrieval"
+      ],
+      "both_correct": 3,
+      "left_only_correct": 1,
+      "right_only_correct": 2,
+      "both_wrong": 0,
+      "answer_disagreements": 3,
+      "disagreements": [
+        {
+          "stream_id": "dev-mixed-causal-002",
+          "event_id": "m6",
+          "case": "unspecified",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "dev-object-possession-002",
+          "event_id": "o6",
+          "case": "unspecified",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "dev-object-possession-002",
+          "event_id": "o8",
+          "case": "unspecified",
+          "correctness": "right_only_correct"
+        }
+      ]
+    },
+    {
+      "arms": [
+        "history",
+        "bounded_summary"
+      ],
+      "both_correct": 3,
+      "left_only_correct": 1,
+      "right_only_correct": 0,
+      "both_wrong": 2,
+      "answer_disagreements": 1,
+      "disagreements": [
+        {
+          "stream_id": "dev-mixed-causal-002",
+          "event_id": "m6",
+          "case": "unspecified",
+          "correctness": "left_only_correct"
+        }
+      ]
+    },
+    {
+      "arms": [
+        "recent",
+        "retrieval"
+      ],
+      "both_correct": 5,
+      "left_only_correct": 0,
+      "right_only_correct": 0,
+      "both_wrong": 1,
+      "answer_disagreements": 0,
+      "disagreements": []
+    },
+    {
+      "arms": [
+        "recent",
+        "bounded_summary"
+      ],
+      "both_correct": 3,
+      "left_only_correct": 2,
+      "right_only_correct": 0,
+      "both_wrong": 1,
+      "answer_disagreements": 2,
+      "disagreements": [
+        {
+          "stream_id": "dev-object-possession-002",
+          "event_id": "o6",
+          "case": "unspecified",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "dev-object-possession-002",
+          "event_id": "o8",
+          "case": "unspecified",
+          "correctness": "left_only_correct"
+        }
+      ]
+    },
+    {
+      "arms": [
+        "retrieval",
+        "bounded_summary"
+      ],
+      "both_correct": 3,
+      "left_only_correct": 2,
+      "right_only_correct": 0,
+      "both_wrong": 1,
+      "answer_disagreements": 2,
+      "disagreements": [
+        {
+          "stream_id": "dev-object-possession-002",
+          "event_id": "o6",
+          "case": "unspecified",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "dev-object-possession-002",
+          "event_id": "o8",
+          "case": "unspecified",
+          "correctness": "left_only_correct"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "stream_id": "dev-mixed-causal-002",
+      "event_id": "m3",
+      "case": "unspecified",
+      "target": "车站",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "车站",
+          "normalized_answer": "车站",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "车站",
+          "normalized_answer": "车站",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "车站",
+          "normalized_answer": "车站",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "车站",
+          "normalized_answer": "车站",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "dev-mixed-causal-002",
+      "event_id": "m6",
+      "case": "unspecified",
+      "target": "图书馆门口",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "图书馆门口",
+          "normalized_answer": "图书馆门口",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": false
+        },
+        "bounded_summary": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": false
+        }
+      }
+    },
+    {
+      "stream_id": "dev-mixed-causal-002",
+      "event_id": "m8",
+      "case": "unspecified",
+      "target": "图书馆门口",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "图书馆门口",
+          "normalized_answer": "图书馆门口",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "图书馆门口",
+          "normalized_answer": "图书馆门口",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "图书馆门口",
+          "normalized_answer": "图书馆门口",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "图书馆门口",
+          "normalized_answer": "图书馆门口",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "dev-object-possession-002",
+      "event_id": "o3",
+      "case": "unspecified",
+      "target": "周禾",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "周禾",
+          "normalized_answer": "周禾",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "周禾",
+          "normalized_answer": "周禾",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "周禾",
+          "normalized_answer": "周禾",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "周禾",
+          "normalized_answer": "周禾",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "dev-object-possession-002",
+      "event_id": "o6",
+      "case": "unspecified",
+      "target": "顾南",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "周禾",
+          "normalized_answer": "周禾",
+          "status": "answered",
+          "correct": false
+        },
+        "recent": {
+          "raw_answer": "顾南",
+          "normalized_answer": "顾南",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "顾南",
+          "normalized_answer": "顾南",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "周禾",
+          "normalized_answer": "周禾",
+          "status": "answered",
+          "correct": false
+        }
+      }
+    },
+    {
+      "stream_id": "dev-object-possession-002",
+      "event_id": "o8",
+      "case": "unspecified",
+      "target": "顾南",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "周禾",
+          "normalized_answer": "周禾",
+          "status": "answered",
+          "correct": false
+        },
+        "recent": {
+          "raw_answer": "顾南",
+          "normalized_answer": "顾南",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "顾南",
+          "normalized_answer": "顾南",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "周禾",
+          "normalized_answer": "周禾",
+          "status": "answered",
+          "correct": false
+        }
+      }
+    }
+  ],
+  "fixture_sha256": "e9d905ab3dd26219ce4fa74c295e51668155c14d471c28cb0394194764562771",
+  "prediction_sha256": "a44cc312e54e852befc55891384704fe5d34c08a081522675c129f9678ff194d"
+}

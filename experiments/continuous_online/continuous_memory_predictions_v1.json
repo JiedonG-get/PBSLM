@@ -1,0 +1,4764 @@
+{
+  "arms": [
+    "history",
+    "recent",
+    "retrieval",
+    "bounded_summary"
+  ],
+  "predictions": [
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e3",
+      "answer": "松间厅",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 43,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 35
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e7",
+      "answer": "雨燕厅",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5",
+        "e6"
+      ],
+      "evidence_chars": 124,
+      "stored_evidence_rows": 5,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 105
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e10",
+      "answer": "松间厅",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5",
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 164,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 180
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e11",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5",
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 164,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 205
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e3",
+      "answer": "松间厅",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 43,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 35
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e7",
+      "answer": "雨燕厅",
+      "evidence_event_ids": [
+        "e4",
+        "e5",
+        "e6"
+      ],
+      "evidence_chars": 80,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 105
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e10",
+      "answer": "石桥厅",
+      "evidence_event_ids": [
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 67,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 180
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e11",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 67,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 205
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e3",
+      "answer": "松间厅",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 43,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 2,
+      "scheduled_delivery_ms": 35
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e7",
+      "answer": "雨燕厅",
+      "evidence_event_ids": [
+        "e2",
+        "e4",
+        "e6"
+      ],
+      "evidence_chars": 81,
+      "stored_evidence_rows": 5,
+      "retrieval_rows_scanned": 5,
+      "scheduled_delivery_ms": 105
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e10",
+      "answer": "东练功房",
+      "evidence_event_ids": [
+        "e1",
+        "e4",
+        "e6"
+      ],
+      "evidence_chars": 85,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 7,
+      "scheduled_delivery_ms": 180
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e11",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 67,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 7,
+      "scheduled_delivery_ms": 205
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e3",
+      "answer": "松间厅",
+      "evidence_event_ids": [],
+      "evidence_chars": 44,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 35
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e7",
+      "answer": "雨燕厅",
+      "evidence_event_ids": [],
+      "evidence_chars": 92,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 105
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e10",
+      "answer": "东练功房",
+      "evidence_event_ids": [],
+      "evidence_chars": 128,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 180
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e11",
+      "answer": "不确定",
+      "evidence_event_ids": [],
+      "evidence_chars": 128,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 205
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e4",
+      "answer": "丙九架",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3"
+      ],
+      "evidence_chars": 63,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 60
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e7",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3",
+        "e5",
+        "e6"
+      ],
+      "evidence_chars": 98,
+      "stored_evidence_rows": 5,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 112
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e9",
+      "answer": "乙七架",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3",
+        "e5",
+        "e6",
+        "e8"
+      ],
+      "evidence_chars": 127,
+      "stored_evidence_rows": 6,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 145
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e11",
+      "answer": "乙七架",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3",
+        "e5",
+        "e6",
+        "e8",
+        "e10"
+      ],
+      "evidence_chars": 149,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 197
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e4",
+      "answer": "丙九架",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3"
+      ],
+      "evidence_chars": 63,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 60
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e7",
+      "answer": "丙九",
+      "evidence_event_ids": [
+        "e3",
+        "e5",
+        "e6"
+      ],
+      "evidence_chars": 59,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 112
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e9",
+      "answer": "东侧",
+      "evidence_event_ids": [
+        "e5",
+        "e6",
+        "e8"
+      ],
+      "evidence_chars": 63,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 145
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e11",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e6",
+        "e8",
+        "e10"
+      ],
+      "evidence_chars": 65,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 197
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e4",
+      "answer": "丙九架",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3"
+      ],
+      "evidence_chars": 63,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 3,
+      "scheduled_delivery_ms": 60
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e7",
+      "answer": "丙九",
+      "evidence_event_ids": [
+        "e3",
+        "e5",
+        "e6"
+      ],
+      "evidence_chars": 59,
+      "stored_evidence_rows": 5,
+      "retrieval_rows_scanned": 5,
+      "scheduled_delivery_ms": 112
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e9",
+      "answer": "丙九架",
+      "evidence_event_ids": [
+        "e2",
+        "e3",
+        "e8"
+      ],
+      "evidence_chars": 71,
+      "stored_evidence_rows": 6,
+      "retrieval_rows_scanned": 6,
+      "scheduled_delivery_ms": 145
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e11",
+      "answer": "乙七",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e10"
+      ],
+      "evidence_chars": 60,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 7,
+      "scheduled_delivery_ms": 197
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e4",
+      "answer": "丙九架",
+      "evidence_event_ids": [],
+      "evidence_chars": 27,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 60
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e7",
+      "answer": "不确定",
+      "evidence_event_ids": [],
+      "evidence_chars": 55,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 112
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e9",
+      "answer": "乙七架",
+      "evidence_event_ids": [],
+      "evidence_chars": 78,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 145
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e11",
+      "answer": "乙七架",
+      "evidence_event_ids": [],
+      "evidence_chars": 99,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 197
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e3",
+      "answer": "竹溪站",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 41,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 34
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e7",
+      "answer": "江柳门",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5",
+        "e6"
+      ],
+      "evidence_chars": 105,
+      "stored_evidence_rows": 5,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 125
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e10",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5",
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 152,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 203
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e11",
+      "answer": "江柳门",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5",
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 152,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 235
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e3",
+      "answer": "竹溪站",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 41,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 34
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e7",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e4",
+        "e5",
+        "e6"
+      ],
+      "evidence_chars": 63,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 125
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e10",
+      "answer": "竹溪站",
+      "evidence_event_ids": [
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 66,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 203
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e11",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 66,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 235
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e3",
+      "answer": "竹溪站",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 41,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 2,
+      "scheduled_delivery_ms": 34
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e7",
+      "answer": "江柳门",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e6"
+      ],
+      "evidence_chars": 61,
+      "stored_evidence_rows": 5,
+      "retrieval_rows_scanned": 5,
+      "scheduled_delivery_ms": 125
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e10",
+      "answer": "月湾",
+      "evidence_event_ids": [
+        "e2",
+        "e5",
+        "e9"
+      ],
+      "evidence_chars": 58,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 7,
+      "scheduled_delivery_ms": 203
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e11",
+      "answer": "江柳门",
+      "evidence_event_ids": [
+        "e1",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 68,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 7,
+      "scheduled_delivery_ms": 235
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e3",
+      "answer": "竹溪站",
+      "evidence_event_ids": [],
+      "evidence_chars": 36,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 34
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e7",
+      "answer": "江柳门",
+      "evidence_event_ids": [],
+      "evidence_chars": 75,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 125
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e10",
+      "answer": "月湾",
+      "evidence_event_ids": [],
+      "evidence_chars": 126,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 203
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e11",
+      "answer": "江柳门",
+      "evidence_event_ids": [],
+      "evidence_chars": 126,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 235
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e3",
+      "answer": "澄光柜",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 38,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 36
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e6",
+      "answer": "听风柜",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5"
+      ],
+      "evidence_chars": 90,
+      "stored_evidence_rows": 4,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 95
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e9",
+      "answer": "白砾滩",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5",
+        "e7",
+        "e8"
+      ],
+      "evidence_chars": 135,
+      "stored_evidence_rows": 6,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 164
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e11",
+      "answer": "桃岭",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5",
+        "e7",
+        "e8",
+        "e10"
+      ],
+      "evidence_chars": 152,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 226
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e3",
+      "answer": "澄光柜",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 38,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 36
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e6",
+      "answer": "听风柜",
+      "evidence_event_ids": [
+        "e2",
+        "e4",
+        "e5"
+      ],
+      "evidence_chars": 67,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 95
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e9",
+      "answer": "白砾滩",
+      "evidence_event_ids": [
+        "e5",
+        "e7",
+        "e8"
+      ],
+      "evidence_chars": 71,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 164
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e11",
+      "answer": "白砾滩",
+      "evidence_event_ids": [
+        "e7",
+        "e8",
+        "e10"
+      ],
+      "evidence_chars": 61,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 226
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e3",
+      "answer": "澄光柜",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 38,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 2,
+      "scheduled_delivery_ms": 36
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e6",
+      "answer": "听风柜",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4"
+      ],
+      "evidence_chars": 63,
+      "stored_evidence_rows": 4,
+      "retrieval_rows_scanned": 4,
+      "scheduled_delivery_ms": 95
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e9",
+      "answer": "桃岭",
+      "evidence_event_ids": [
+        "e1",
+        "e7",
+        "e8"
+      ],
+      "evidence_chars": 67,
+      "stored_evidence_rows": 6,
+      "retrieval_rows_scanned": 6,
+      "scheduled_delivery_ms": 164
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e11",
+      "answer": "桃岭",
+      "evidence_event_ids": [
+        "e1",
+        "e5",
+        "e8"
+      ],
+      "evidence_chars": 65,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 7,
+      "scheduled_delivery_ms": 226
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e3",
+      "answer": "澄光柜",
+      "evidence_event_ids": [],
+      "evidence_chars": 37,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 36
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e6",
+      "answer": "听风柜",
+      "evidence_event_ids": [],
+      "evidence_chars": 70,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 95
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e9",
+      "answer": "桃岭",
+      "evidence_event_ids": [],
+      "evidence_chars": 120,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 164
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e11",
+      "answer": "桃岭",
+      "evidence_event_ids": [],
+      "evidence_chars": 120,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 226
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e5",
+      "answer": "许栀",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3",
+        "e4"
+      ],
+      "evidence_chars": 90,
+      "stored_evidence_rows": 4,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 76
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e7",
+      "answer": "许栀",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3",
+        "e4",
+        "e6"
+      ],
+      "evidence_chars": 121,
+      "stored_evidence_rows": 5,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 122
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e10",
+      "answer": "桑榆",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3",
+        "e4",
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 155,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 204
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e11",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3",
+        "e4",
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 155,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 237
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e5",
+      "answer": "许栀",
+      "evidence_event_ids": [
+        "e2",
+        "e3",
+        "e4"
+      ],
+      "evidence_chars": 69,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 76
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e7",
+      "answer": "许栀",
+      "evidence_event_ids": [
+        "e3",
+        "e4",
+        "e6"
+      ],
+      "evidence_chars": 77,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 122
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e10",
+      "answer": "钟穗",
+      "evidence_event_ids": [
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 64,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 204
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e11",
+      "answer": "钟穗",
+      "evidence_event_ids": [
+        "e6",
+        "e8",
+        "e9"
+      ],
+      "evidence_chars": 64,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 237
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e5",
+      "answer": "许栀",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e3"
+      ],
+      "evidence_chars": 71,
+      "stored_evidence_rows": 4,
+      "retrieval_rows_scanned": 4,
+      "scheduled_delivery_ms": 76
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e7",
+      "answer": "许栀",
+      "evidence_event_ids": [
+        "e2",
+        "e3",
+        "e6"
+      ],
+      "evidence_chars": 81,
+      "stored_evidence_rows": 5,
+      "retrieval_rows_scanned": 5,
+      "scheduled_delivery_ms": 122
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e10",
+      "answer": "桑榆",
+      "evidence_event_ids": [
+        "e1",
+        "e3",
+        "e8"
+      ],
+      "evidence_chars": 69,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 7,
+      "scheduled_delivery_ms": 204
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e11",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e1",
+        "e3",
+        "e8"
+      ],
+      "evidence_chars": 69,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 7,
+      "scheduled_delivery_ms": 237
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e5",
+      "answer": "许栀",
+      "evidence_event_ids": [],
+      "evidence_chars": 57,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 76
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e7",
+      "answer": "许栀",
+      "evidence_event_ids": [],
+      "evidence_chars": 90,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 122
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e10",
+      "answer": "桑榆",
+      "evidence_event_ids": [],
+      "evidence_chars": 128,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 204
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e11",
+      "answer": "不确定",
+      "evidence_event_ids": [],
+      "evidence_chars": 128,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 237
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e3",
+      "answer": "《微浪》",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 46,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 39
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e6",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5"
+      ],
+      "evidence_chars": 97,
+      "stored_evidence_rows": 4,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 110
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e9",
+      "answer": "《薄雾》",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5",
+        "e7",
+        "e8"
+      ],
+      "evidence_chars": 140,
+      "stored_evidence_rows": 6,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 178
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e11",
+      "answer": "木铃",
+      "evidence_event_ids": [
+        "e1",
+        "e2",
+        "e4",
+        "e5",
+        "e7",
+        "e8",
+        "e10"
+      ],
+      "evidence_chars": 158,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 238
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e3",
+      "answer": "《微浪》",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 46,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 39
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e6",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e2",
+        "e4",
+        "e5"
+      ],
+      "evidence_chars": 73,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 110
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e9",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e5",
+        "e7",
+        "e8"
+      ],
+      "evidence_chars": 67,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 178
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e11",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e7",
+        "e8",
+        "e10"
+      ],
+      "evidence_chars": 60,
+      "stored_evidence_rows": 3,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 238
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e3",
+      "answer": "《微浪》",
+      "evidence_event_ids": [
+        "e1",
+        "e2"
+      ],
+      "evidence_chars": 46,
+      "stored_evidence_rows": 2,
+      "retrieval_rows_scanned": 2,
+      "scheduled_delivery_ms": 39
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e6",
+      "answer": "不确定",
+      "evidence_event_ids": [
+        "e2",
+        "e4",
+        "e5"
+      ],
+      "evidence_chars": 73,
+      "stored_evidence_rows": 4,
+      "retrieval_rows_scanned": 4,
+      "scheduled_delivery_ms": 110
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e9",
+      "answer": "《薄雾》",
+      "evidence_event_ids": [
+        "e2",
+        "e4",
+        "e7"
+      ],
+      "evidence_chars": 75,
+      "stored_evidence_rows": 6,
+      "retrieval_rows_scanned": 6,
+      "scheduled_delivery_ms": 178
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e11",
+      "answer": "木铃",
+      "evidence_event_ids": [
+        "e1",
+        "e8",
+        "e10"
+      ],
+      "evidence_chars": 57,
+      "stored_evidence_rows": 7,
+      "retrieval_rows_scanned": 7,
+      "scheduled_delivery_ms": 238
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e3",
+      "answer": "《微浪》",
+      "evidence_event_ids": [],
+      "evidence_chars": 52,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 39
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e6",
+      "answer": "《薄雾》",
+      "evidence_event_ids": [],
+      "evidence_chars": 105,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 110
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e9",
+      "answer": "《薄雾》",
+      "evidence_event_ids": [],
+      "evidence_chars": 114,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 178
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e11",
+      "answer": "《掌声》",
+      "evidence_event_ids": [],
+      "evidence_chars": 128,
+      "stored_evidence_rows": 0,
+      "retrieval_rows_scanned": 0,
+      "scheduled_delivery_ms": 238
+    }
+  ],
+  "calls": [
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督在排班板上确认，纸偶工坊使用东练功房。\n今晚《海灯》的合排地点先登记在松间厅。\n\n问题\n《海灯》这场合排最初登记在哪个厅？"
+        }
+      ],
+      "raw_output": "松间厅",
+      "input_tokens": 116,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.6322882000022219
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督在排班板上确认，纸偶工坊使用东练功房。\n今晚《海灯》的合排地点先登记在松间厅。\n舞台监督刚发了正式更正，《海灯》合排移到雨燕厅，松间厅的登记作废。\n音响组把两箱线缆送进了隔壁的储物间。\n前台有人猜海灯剧组会回松间厅，但舞台监督没有再发通知。\n\n问题\n按最新正式通知，《海灯》今晚在哪个厅合排？"
+        }
+      ],
+      "raw_output": "雨燕厅",
+      "input_tokens": 180,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.21875010000076145
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督在排班板上确认，纸偶工坊使用东练功房。\n今晚《海灯》的合排地点先登记在松间厅。\n舞台监督刚发了正式更正，《海灯》合排移到雨燕厅，松间厅的登记作废。\n音响组把两箱线缆送进了隔壁的储物间。\n前台有人猜海灯剧组会回松间厅，但舞台监督没有再发通知。\n短片放映组已经领取了门禁卡，具体场地还等排片表。\n合唱团正式改为在石桥厅排练。\n\n问题\n过了一会儿，有人来问纸偶工坊该去哪间房，登记的房间名是什么？"
+        }
+      ],
+      "raw_output": "松间厅",
+      "input_tokens": 217,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.2650546000004397
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督在排班板上确认，纸偶工坊使用东练功房。\n今晚《海灯》的合排地点先登记在松间厅。\n舞台监督刚发了正式更正，《海灯》合排移到雨燕厅，松间厅的登记作废。\n音响组把两箱线缆送进了隔壁的储物间。\n前台有人猜海灯剧组会回松间厅，但舞台监督没有再发通知。\n短片放映组已经领取了门禁卡，具体场地还等排片表。\n合唱团正式改为在石桥厅排练。\n\n问题\n短片放映安排在哪间房？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 203,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.07090229999812436
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督在排班板上确认，纸偶工坊使用东练功房。\n今晚《海灯》的合排地点先登记在松间厅。\n\n问题\n《海灯》这场合排最初登记在哪个厅？"
+        }
+      ],
+      "raw_output": "松间厅",
+      "input_tokens": 116,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.22391970000171568
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督刚发了正式更正，《海灯》合排移到雨燕厅，松间厅的登记作废。\n音响组把两箱线缆送进了隔壁的储物间。\n前台有人猜海灯剧组会回松间厅，但舞台监督没有再发通知。\n\n问题\n按最新正式通知，《海灯》今晚在哪个厅合排？"
+        }
+      ],
+      "raw_output": "雨燕厅",
+      "input_tokens": 145,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.2525414000010642
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n前台有人猜海灯剧组会回松间厅，但舞台监督没有再发通知。\n短片放映组已经领取了门禁卡，具体场地还等排片表。\n合唱团正式改为在石桥厅排练。\n\n问题\n过了一会儿，有人来问纸偶工坊该去哪间房，登记的房间名是什么？"
+        }
+      ],
+      "raw_output": "石桥厅",
+      "input_tokens": 140,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.26584039999943343
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n前台有人猜海灯剧组会回松间厅，但舞台监督没有再发通知。\n短片放映组已经领取了门禁卡，具体场地还等排片表。\n合唱团正式改为在石桥厅排练。\n\n问题\n短片放映安排在哪间房？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 126,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.14262679999956163
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督在排班板上确认，纸偶工坊使用东练功房。\n今晚《海灯》的合排地点先登记在松间厅。\n\n问题\n《海灯》这场合排最初登记在哪个厅？"
+        }
+      ],
+      "raw_output": "松间厅",
+      "input_tokens": 116,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.25573570000051404
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n今晚《海灯》的合排地点先登记在松间厅。\n舞台监督刚发了正式更正，《海灯》合排移到雨燕厅，松间厅的登记作废。\n前台有人猜海灯剧组会回松间厅，但舞台监督没有再发通知。\n\n问题\n按最新正式通知，《海灯》今晚在哪个厅合排？"
+        }
+      ],
+      "raw_output": "雨燕厅",
+      "input_tokens": 146,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.2724287999990338
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督在排班板上确认，纸偶工坊使用东练功房。\n舞台监督刚发了正式更正，《海灯》合排移到雨燕厅，松间厅的登记作废。\n前台有人猜海灯剧组会回松间厅，但舞台监督没有再发通知。\n\n问题\n过了一会儿，有人来问纸偶工坊该去哪间房，登记的房间名是什么？"
+        }
+      ],
+      "raw_output": "东练功房",
+      "input_tokens": 156,
+      "output_tokens": 5,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.31524630000058096
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n前台有人猜海灯剧组会回松间厅，但舞台监督没有再发通知。\n短片放映组已经领取了门禁卡，具体场地还等排片表。\n合唱团正式改为在石桥厅排练。\n\n问题\n短片放映安排在哪间房？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 126,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.10048339999775635
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e1",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n\n\n新观察\n舞台监督在排班板上确认，纸偶工坊使用东练功房。"
+        }
+      ],
+      "raw_output": "舞台监督在排班板上确认，纸偶工坊使用东练功房。",
+      "input_tokens": 101,
+      "output_tokens": 20,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.2642809999997553
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e2",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n舞台监督在排班板上确认，纸偶工坊使用东练功房。\n\n新观察\n今晚《海灯》的合排地点先登记在松间厅。"
+        }
+      ],
+      "raw_output": "舞台监督在排班板上确认，纸偶工坊使用东练功房。  \n今晚《海灯》的合排地点登记在松间厅。",
+      "input_tokens": 117,
+      "output_tokens": 36,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.1871706999991147
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督在排班板上确认，纸偶工坊使用东练功房。  \n今晚《海灯》的合排地点登记在松间厅。\n\n问题\n《海灯》这场合排最初登记在哪个厅？"
+        }
+      ],
+      "raw_output": "松间厅",
+      "input_tokens": 116,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.27149830000053043
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e4",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n舞台监督在排班板上确认，纸偶工坊使用东练功房。  \n今晚《海灯》的合排地点登记在松间厅。\n\n新观察\n舞台监督刚发了正式更正，《海灯》合排移到雨燕厅，松间厅的登记作废。"
+        }
+      ],
+      "raw_output": "舞台监督确认，纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。",
+      "input_tokens": 144,
+      "output_tokens": 37,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.297269899998355
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e5",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n舞台监督确认，纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。\n\n新观察\n音响组把两箱线缆送进了隔壁的储物间。"
+        }
+      ],
+      "raw_output": "舞台监督确认，纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。",
+      "input_tokens": 133,
+      "output_tokens": 52,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.903108099999372
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e6",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n舞台监督确认，纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。\n\n新观察\n前台有人猜海灯剧组会回松间厅，但舞台监督没有再发通知。"
+        }
+      ],
+      "raw_output": "舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。",
+      "input_tokens": 153,
+      "output_tokens": 72,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 4.3742462000009255
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。\n\n问题\n按最新正式通知，《海灯》今晚在哪个厅合排？"
+        }
+      ],
+      "raw_output": "雨燕厅",
+      "input_tokens": 154,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.22155230000134907
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e8",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。\n\n新观察\n短片放映组已经领取了门禁卡，具体场地还等排片表。"
+        }
+      ],
+      "raw_output": "舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。  \n短片放映组已领取门禁卡，具体场地待排片表确认。",
+      "input_tokens": 172,
+      "output_tokens": 91,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 5.704077600003075
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e9",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。  \n短片放映组已领取门禁卡，具体场地待排片表确认。\n\n新观察\n合唱团正式改为在石桥厅排练。"
+        }
+      ],
+      "raw_output": "舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。  \n短片放映组已领取门禁卡，具体场地待排片表确认。  \n合唱团正式改为在",
+      "input_tokens": 183,
+      "output_tokens": 96,
+      "finished_by_eos": false,
+      "max_new_tokens": 96,
+      "service_seconds": 6.168100600003527
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。  \n短片放映组已领取门禁卡，具体场地待排片表确认。  \n合唱团正式改为\n\n问题\n过了一会儿，有人来问纸偶工坊该去哪间房，登记的房间名是什么？"
+        }
+      ],
+      "raw_output": "东练功房",
+      "input_tokens": 186,
+      "output_tokens": 5,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.3272188000009919
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-theater",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。  \n短片放映组已领取门禁卡，具体场地待排片表确认。  \n合唱团正式改为\n\n问题\n短片放映安排在哪间房？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 172,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.1718737000010151
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e4",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员扫过青藤箱的标签，确认它在乙七架。\n银杉箱刚入库，系统显示放在甲三架。\n库管完成调架扫描，银杉箱已经从甲三架移到丙九架。\n\n问题\n查最新的入库记录，银杉箱在哪个货架？"
+        }
+      ],
+      "raw_output": "丙九架",
+      "input_tokens": 130,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.26475480000226526
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员扫过青藤箱的标签，确认它在乙七架。\n银杉箱刚入库，系统显示放在甲三架。\n库管完成调架扫描，银杉箱已经从甲三架移到丙九架。\n橡果箱的封条已换，物品没有离开验货台。\n这班的叉车停在东侧通道充电。\n\n问题\n桦芽箱现在登记在哪个货架？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 155,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12527570000020205
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员扫过青藤箱的标签，确认它在乙七架。\n银杉箱刚入库，系统显示放在甲三架。\n库管完成调架扫描，银杉箱已经从甲三架移到丙九架。\n橡果箱的封条已换，物品没有离开验货台。\n这班的叉车停在东侧通道充电。\n交接人说银杉箱下一班也许会移去丁六架，这只是他随口预测。\n\n问题\n下一班的猜测先放一边，银杉箱的已确认货架是哪个？"
+        }
+      ],
+      "raw_output": "乙七架",
+      "input_tokens": 186,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.20773660000122618
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员扫过青藤箱的标签，确认它在乙七架。\n银杉箱刚入库，系统显示放在甲三架。\n库管完成调架扫描，银杉箱已经从甲三架移到丙九架。\n橡果箱的封条已换，物品没有离开验货台。\n这班的叉车停在东侧通道充电。\n交接人说银杉箱下一班也许会移去丁六架，这只是他随口预测。\n验货结束后，橡果箱在戊二架的入库扫描成功。\n\n问题\n麻烦查一开始入库的青藤箱，它现在登记在哪个货架？"
+        }
+      ],
+      "raw_output": "乙七架",
+      "input_tokens": 200,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.22365840000202297
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e4",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员扫过青藤箱的标签，确认它在乙七架。\n银杉箱刚入库，系统显示放在甲三架。\n库管完成调架扫描，银杉箱已经从甲三架移到丙九架。\n\n问题\n查最新的入库记录，银杉箱在哪个货架？"
+        }
+      ],
+      "raw_output": "丙九架",
+      "input_tokens": 130,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.2856528000011167
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n库管完成调架扫描，银杉箱已经从甲三架移到丙九架。\n橡果箱的封条已换，物品没有离开验货台。\n这班的叉车停在东侧通道充电。\n\n问题\n桦芽箱现在登记在哪个货架？"
+        }
+      ],
+      "raw_output": "丙九",
+      "input_tokens": 125,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.18649749999894993
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n橡果箱的封条已换，物品没有离开验货台。\n这班的叉车停在东侧通道充电。\n交接人说银杉箱下一班也许会移去丁六架，这只是他随口预测。\n\n问题\n下一班的猜测先放一边，银杉箱的已确认货架是哪个？"
+        }
+      ],
+      "raw_output": "东侧",
+      "input_tokens": 136,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.17117420000067796
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n这班的叉车停在东侧通道充电。\n交接人说银杉箱下一班也许会移去丁六架，这只是他随口预测。\n验货结束后，橡果箱在戊二架的入库扫描成功。\n\n问题\n麻烦查一开始入库的青藤箱，它现在登记在哪个货架？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 134,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.1266604999982519
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e4",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员扫过青藤箱的标签，确认它在乙七架。\n银杉箱刚入库，系统显示放在甲三架。\n库管完成调架扫描，银杉箱已经从甲三架移到丙九架。\n\n问题\n查最新的入库记录，银杉箱在哪个货架？"
+        }
+      ],
+      "raw_output": "丙九架",
+      "input_tokens": 130,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.2440136999975948
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n库管完成调架扫描，银杉箱已经从甲三架移到丙九架。\n橡果箱的封条已换，物品没有离开验货台。\n这班的叉车停在东侧通道充电。\n\n问题\n桦芽箱现在登记在哪个货架？"
+        }
+      ],
+      "raw_output": "丙九",
+      "input_tokens": 125,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.1907735999993747
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n银杉箱刚入库，系统显示放在甲三架。\n库管完成调架扫描，银杉箱已经从甲三架移到丙九架。\n交接人说银杉箱下一班也许会移去丁六架，这只是他随口预测。\n\n问题\n下一班的猜测先放一边，银杉箱的已确认货架是哪个？"
+        }
+      ],
+      "raw_output": "丙九架",
+      "input_tokens": 141,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.21593729999949574
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员扫过青藤箱的标签，确认它在乙七架。\n银杉箱刚入库，系统显示放在甲三架。\n验货结束后，橡果箱在戊二架的入库扫描成功。\n\n问题\n麻烦查一开始入库的青藤箱，它现在登记在哪个货架？"
+        }
+      ],
+      "raw_output": "乙七",
+      "input_tokens": 130,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.17542300000059186
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e1",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n\n\n新观察\n入库员扫过青藤箱的标签，确认它在乙七架。"
+        }
+      ],
+      "raw_output": "入库员确认青藤箱在乙七架。",
+      "input_tokens": 99,
+      "output_tokens": 12,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 0.7038291999997455
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e2",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n入库员确认青藤箱在乙七架。\n\n新观察\n银杉箱刚入库，系统显示放在甲三架。"
+        }
+      ],
+      "raw_output": "入库员确认青藤箱在乙七架。银杉箱刚入库，系统显示放在甲三架。",
+      "input_tokens": 106,
+      "output_tokens": 25,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.6066790000004403
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e3",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n入库员确认青藤箱在乙七架。银杉箱刚入库，系统显示放在甲三架。\n\n新观察\n库管完成调架扫描，银杉箱已经从甲三架移到丙九架。"
+        }
+      ],
+      "raw_output": "入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。",
+      "input_tokens": 126,
+      "output_tokens": 26,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.5072932000002766
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e4",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。\n\n问题\n查最新的入库记录，银杉箱在哪个货架？"
+        }
+      ],
+      "raw_output": "丙九架",
+      "input_tokens": 105,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.24916659999871626
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e5",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。\n\n新观察\n橡果箱的封条已换，物品没有离开验货台。"
+        }
+      ],
+      "raw_output": "入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。",
+      "input_tokens": 123,
+      "output_tokens": 41,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.63373920000231
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e6",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。\n\n新观察\n这班的叉车停在东侧通道充电。"
+        }
+      ],
+      "raw_output": "入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。",
+      "input_tokens": 134,
+      "output_tokens": 50,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.9353440000013507
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。\n\n问题\n桦芽箱现在登记在哪个货架？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 126,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.15434800000002724
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e8",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。\n\n新观察\n交接人说银杉箱下一班也许会移去丁六架，这只是他随口预测。"
+        }
+      ],
+      "raw_output": "入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。银杉箱下一班可能移至丁六架（属预测，未确认）。",
+      "input_tokens": 153,
+      "output_tokens": 68,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.3842468000002555
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。银杉箱下一班可能移至丁六架（属预测，未确认）。\n\n问题\n下一班的猜测先放一边，银杉箱的已确认货架是哪个？"
+        }
+      ],
+      "raw_output": "乙七架",
+      "input_tokens": 154,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12069199999677949
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e10",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。银杉箱下一班可能移至丁六架（属预测，未确认）。\n\n新观察\n验货结束后，橡果箱在戊二架的入库扫描成功。"
+        }
+      ],
+      "raw_output": "入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。银杉箱下一班可能移至丁六架（属预测，未确认）。验货结束后，橡果箱在戊二架的入库扫描成功。",
+      "input_tokens": 166,
+      "output_tokens": 84,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.4458762999965984
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。银杉箱下一班可能移至丁六架（属预测，未确认）。验货结束后，橡果箱在戊二架的入库扫描成功。\n\n问题\n麻烦查一开始入库的青藤箱，它现在登记在哪个货架？"
+        }
+      ],
+      "raw_output": "乙七架",
+      "input_tokens": 167,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11952469999960158
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n车站电子牌今天确认，员工线终点停靠江柳门。\n当天游客线第一版通知写的是竹溪站上车。\n\n问题\n游客线按第一版通知在哪一站上车？"
+        }
+      ],
+      "raw_output": "竹溪站",
+      "input_tokens": 108,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12334329999794136
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n车站电子牌今天确认，员工线终点停靠江柳门。\n当天游客线第一版通知写的是竹溪站上车。\n河口路面施工，路边的自行车已经收走了。\n调度台发布替代通知，游客线当天改在月湾站上车。\n早班司机把失物袋放进车站服务台的柜子。\n\n问题\n我要坐的是员工线，它今天的终点叫哪扇门？"
+        }
+      ],
+      "raw_output": "江柳门",
+      "input_tokens": 155,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.1242326999999932
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n车站电子牌今天确认，员工线终点停靠江柳门。\n当天游客线第一版通知写的是竹溪站上车。\n河口路面施工，路边的自行车已经收走了。\n调度台发布替代通知，游客线当天改在月湾站上车。\n早班司机把失物袋放进车站服务台的柜子。\n候车的人说如果月湾站封闭也许会恢复竹溪站，调度台还未宣布封闭。\n志愿者胸前佩戴的是黄色徽章。\n\n问题\n游客线乘客现在应在哪一站上车？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 181,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.07303200000023935
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n车站电子牌今天确认，员工线终点停靠江柳门。\n当天游客线第一版通知写的是竹溪站上车。\n河口路面施工，路边的自行车已经收走了。\n调度台发布替代通知，游客线当天改在月湾站上车。\n早班司机把失物袋放进车站服务台的柜子。\n候车的人说如果月湾站封闭也许会恢复竹溪站，调度台还未宣布封闭。\n志愿者胸前佩戴的是黄色徽章。\n\n问题\n今天的夜间加班车终点叫什么？"
+        }
+      ],
+      "raw_output": "江柳门",
+      "input_tokens": 179,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.1250261999994109
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n车站电子牌今天确认，员工线终点停靠江柳门。\n当天游客线第一版通知写的是竹溪站上车。\n\n问题\n游客线按第一版通知在哪一站上车？"
+        }
+      ],
+      "raw_output": "竹溪站",
+      "input_tokens": 108,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11658560000068974
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n河口路面施工，路边的自行车已经收走了。\n调度台发布替代通知，游客线当天改在月湾站上车。\n早班司机把失物袋放进车站服务台的柜子。\n\n问题\n我要坐的是员工线，它今天的终点叫哪扇门？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 126,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.07221419999768841
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n早班司机把失物袋放进车站服务台的柜子。\n候车的人说如果月湾站封闭也许会恢复竹溪站，调度台还未宣布封闭。\n志愿者胸前佩戴的是黄色徽章。\n\n问题\n游客线乘客现在应在哪一站上车？"
+        }
+      ],
+      "raw_output": "竹溪站",
+      "input_tokens": 123,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12551230000099167
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n早班司机把失物袋放进车站服务台的柜子。\n候车的人说如果月湾站封闭也许会恢复竹溪站，调度台还未宣布封闭。\n志愿者胸前佩戴的是黄色徽章。\n\n问题\n今天的夜间加班车终点叫什么？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 121,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.05694660000153817
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n车站电子牌今天确认，员工线终点停靠江柳门。\n当天游客线第一版通知写的是竹溪站上车。\n\n问题\n游客线按第一版通知在哪一站上车？"
+        }
+      ],
+      "raw_output": "竹溪站",
+      "input_tokens": 108,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11798269999781041
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n车站电子牌今天确认，员工线终点停靠江柳门。\n当天游客线第一版通知写的是竹溪站上车。\n早班司机把失物袋放进车站服务台的柜子。\n\n问题\n我要坐的是员工线，它今天的终点叫哪扇门？"
+        }
+      ],
+      "raw_output": "江柳门",
+      "input_tokens": 126,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11603520000062417
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n当天游客线第一版通知写的是竹溪站上车。\n调度台发布替代通知，游客线当天改在月湾站上车。\n志愿者胸前佩戴的是黄色徽章。\n\n问题\n游客线乘客现在应在哪一站上车？"
+        }
+      ],
+      "raw_output": "月湾",
+      "input_tokens": 117,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.08997099999760394
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n车站电子牌今天确认，员工线终点停靠江柳门。\n候车的人说如果月湾站封闭也许会恢复竹溪站，调度台还未宣布封闭。\n志愿者胸前佩戴的是黄色徽章。\n\n问题\n今天的夜间加班车终点叫什么？"
+        }
+      ],
+      "raw_output": "江柳门",
+      "input_tokens": 121,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11643029999686405
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e1",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n\n\n新观察\n车站电子牌今天确认，员工线终点停靠江柳门。"
+        }
+      ],
+      "raw_output": "车站电子牌确认，员工线终点停靠江柳门。",
+      "input_tokens": 97,
+      "output_tokens": 15,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 0.42953050000141957
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e2",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n车站电子牌确认，员工线终点停靠江柳门。\n\n新观察\n当天游客线第一版通知写的是竹溪站上车。"
+        }
+      ],
+      "raw_output": "车站电子牌确认，员工线终点停靠江柳门。游客线第一版通知写的是竹溪站上车。",
+      "input_tokens": 110,
+      "output_tokens": 28,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 0.8249858999988646
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n车站电子牌确认，员工线终点停靠江柳门。游客线第一版通知写的是竹溪站上车。\n\n问题\n游客线按第一版通知在哪一站上车？"
+        }
+      ],
+      "raw_output": "竹溪站",
+      "input_tokens": 106,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11276079999879585
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e4",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n车站电子牌确认，员工线终点停靠江柳门。游客线第一版通知写的是竹溪站上车。\n\n新观察\n河口路面施工，路边的自行车已经收走了。"
+        }
+      ],
+      "raw_output": "车站电子牌确认，员工线终点停靠江柳门。游客线第一版通知写的是竹溪站上车。河口路面施工，路边的自行车已收走。",
+      "input_tokens": 121,
+      "output_tokens": 40,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.168588099997578
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e5",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n车站电子牌确认，员工线终点停靠江柳门。游客线第一版通知写的是竹溪站上车。河口路面施工，路边的自行车已收走。\n\n新观察\n调度台发布替代通知，游客线当天改在月湾站上车。"
+        }
+      ],
+      "raw_output": "车站电子牌确认，员工线终点停靠江柳门。游客线替代通知已发布，当天改在月湾站上车。河口路面施工，路边的自行车已收走。",
+      "input_tokens": 138,
+      "output_tokens": 43,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.2536803999973927
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e6",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n车站电子牌确认，员工线终点停靠江柳门。游客线替代通知已发布，当天改在月湾站上车。河口路面施工，路边的自行车已收走。\n\n新观察\n早班司机把失物袋放进车站服务台的柜子。"
+        }
+      ],
+      "raw_output": "车站电子牌确认，员工线终点停靠江柳门。游客线替代通知已发布，当天改在月湾站上车。河口路面施工，路边的自行车已收走。早班司机将失物袋放入车站服务台柜子。",
+      "input_tokens": 139,
+      "output_tokens": 57,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.6524849999987055
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n车站电子牌确认，员工线终点停靠江柳门。游客线替代通知已发布，当天改在月湾站上车。河口路面施工，路边的自行车已收走。早班司机将失物袋放入车站服务台柜子。\n\n问题\n我要坐的是员工线，它今天的终点叫哪扇门？"
+        }
+      ],
+      "raw_output": "江柳门",
+      "input_tokens": 138,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11884199999985867
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e8",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n车站电子牌确认，员工线终点停靠江柳门。游客线替代通知已发布，当天改在月湾站上车。河口路面施工，路边的自行车已收走。早班司机将失物袋放入车站服务台柜子。\n\n新观察\n候车的人说如果月湾站封闭也许会恢复竹溪站，调度台还未宣布封闭。"
+        }
+      ],
+      "raw_output": "车站电子牌确认，员工线终点停靠江柳门。游客线替代通知已发布，当天改在月湾站上车。河口路面施工，路边的自行车已收走。早班司机将失物袋放入车站服务台柜子。候车人员称若月湾站封闭可能恢复竹溪站，但调度台尚未宣布封闭。",
+      "input_tokens": 160,
+      "output_tokens": 79,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.300256899998203
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e9",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n车站电子牌确认，员工线终点停靠江柳门。游客线替代通知已发布，当天改在月湾站上车。河口路面施工，路边的自行车已收走。早班司机将失物袋放入车站服务台柜子。候车人员称若月湾站封闭可能恢复竹溪站，但调度台尚未宣布封闭。\n\n新观察\n志愿者胸前佩戴的是黄色徽章。"
+        }
+      ],
+      "raw_output": "- 车站电子牌确认，员工线终点停靠江柳门。  \n- 游客线替代通知已发布，当天改在月湾站上车。  \n- 河口路面施工，路边的自行车已收走。  \n- 早班司机将失物袋放入车站服务台柜子。  \n- 候车人员称若月湾站封闭可能恢复竹溪站，但调度台尚未宣布封闭",
+      "input_tokens": 168,
+      "output_tokens": 96,
+      "finished_by_eos": false,
+      "max_new_tokens": 96,
+      "service_seconds": 2.730358900000283
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n- 车站电子牌确认，员工线终点停靠江柳门。  \n- 游客线替代通知已发布，当天改在月湾站上车。  \n- 河口路面施工，路边的自行车已收走。  \n- 早班司机将失物袋放入车站服务台柜子。  \n- 候车人员称若月湾站封闭可能恢复竹溪站，但调度台尚未宣布封闭\n\n问题\n游客线乘客现在应在哪一站上车？"
+        }
+      ],
+      "raw_output": "月湾",
+      "input_tokens": 175,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.10181190000002971
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n- 车站电子牌确认，员工线终点停靠江柳门。  \n- 游客线替代通知已发布，当天改在月湾站上车。  \n- 河口路面施工，路边的自行车已收走。  \n- 早班司机将失物袋放入车站服务台柜子。  \n- 候车人员称若月湾站封闭可能恢复竹溪站，但调度台尚未宣布封闭\n\n问题\n今天的夜间加班车终点叫什么？"
+        }
+      ],
+      "raw_output": "江柳门",
+      "input_tokens": 173,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12362380000195117
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地是桃岭。\n铜灯的盘点卡将它登记在澄光柜。\n\n问题\n铜灯的盘点卡现在写的是哪个柜子？"
+        }
+      ],
+      "raw_output": "澄光柜",
+      "input_tokens": 111,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11573520000092685
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e6",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地是桃岭。\n铜灯的盘点卡将它登记在澄光柜。\n库房完成铜灯的移柜验收，新的盘点卡地点是听风柜。\n摄影师今天拍的是石印的侧面，盘点卡暂时收在文件夹里。\n\n问题\n移柜验收后，铜灯登记在哪个柜子？"
+        }
+      ],
+      "raw_output": "听风柜",
+      "input_tokens": 149,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12439269999958924
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地是桃岭。\n铜灯的盘点卡将它登记在澄光柜。\n库房完成铜灯的移柜验收，新的盘点卡地点是听风柜。\n摄影师今天拍的是石印的侧面，盘点卡暂时收在文件夹里。\n看板预告玉鱼的展签还有一栏待填，负责核对的人下周才回来。\n纸扇展签上标的出土地是白砾滩。\n\n问题\n玉鱼展签上的出土地叫什么？"
+        }
+      ],
+      "raw_output": "白砾滩",
+      "input_tokens": 181,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.1271420000011858
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地是桃岭。\n铜灯的盘点卡将它登记在澄光柜。\n库房完成铜灯的移柜验收，新的盘点卡地点是听风柜。\n摄影师今天拍的是石印的侧面，盘点卡暂时收在文件夹里。\n看板预告玉鱼的展签还有一栏待填，负责核对的人下周才回来。\n纸扇展签上标的出土地是白砾滩。\n负责展柜照明的人带来了新的灯泡。\n\n问题\n如果从展签抄录石印的出土地，应抄哪一个地名？"
+        }
+      ],
+      "raw_output": "桃岭",
+      "input_tokens": 199,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09925570000268635
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地是桃岭。\n铜灯的盘点卡将它登记在澄光柜。\n\n问题\n铜灯的盘点卡现在写的是哪个柜子？"
+        }
+      ],
+      "raw_output": "澄光柜",
+      "input_tokens": 111,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12194759999692906
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e6",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n铜灯的盘点卡将它登记在澄光柜。\n库房完成铜灯的移柜验收，新的盘点卡地点是听风柜。\n摄影师今天拍的是石印的侧面，盘点卡暂时收在文件夹里。\n\n问题\n移柜验收后，铜灯登记在哪个柜子？"
+        }
+      ],
+      "raw_output": "听风柜",
+      "input_tokens": 131,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12014130000170553
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n摄影师今天拍的是石印的侧面，盘点卡暂时收在文件夹里。\n看板预告玉鱼的展签还有一栏待填，负责核对的人下周才回来。\n纸扇展签上标的出土地是白砾滩。\n\n问题\n玉鱼展签上的出土地叫什么？"
+        }
+      ],
+      "raw_output": "白砾滩",
+      "input_tokens": 131,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.1244248000002699
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n看板预告玉鱼的展签还有一栏待填，负责核对的人下周才回来。\n纸扇展签上标的出土地是白砾滩。\n负责展柜照明的人带来了新的灯泡。\n\n问题\n如果从展签抄录石印的出土地，应抄哪一个地名？"
+        }
+      ],
+      "raw_output": "白砾滩",
+      "input_tokens": 131,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11727999999857275
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地是桃岭。\n铜灯的盘点卡将它登记在澄光柜。\n\n问题\n铜灯的盘点卡现在写的是哪个柜子？"
+        }
+      ],
+      "raw_output": "澄光柜",
+      "input_tokens": 111,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11422630000015488
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e6",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地是桃岭。\n铜灯的盘点卡将它登记在澄光柜。\n库房完成铜灯的移柜验收，新的盘点卡地点是听风柜。\n\n问题\n移柜验收后，铜灯登记在哪个柜子？"
+        }
+      ],
+      "raw_output": "听风柜",
+      "input_tokens": 131,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12258420000216574
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地是桃岭。\n看板预告玉鱼的展签还有一栏待填，负责核对的人下周才回来。\n纸扇展签上标的出土地是白砾滩。\n\n问题\n玉鱼展签上的出土地叫什么？"
+        }
+      ],
+      "raw_output": "桃岭",
+      "input_tokens": 131,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09815059999891673
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地是桃岭。\n摄影师今天拍的是石印的侧面，盘点卡暂时收在文件夹里。\n纸扇展签上标的出土地是白砾滩。\n\n问题\n如果从展签抄录石印的出土地，应抄哪一个地名？"
+        }
+      ],
+      "raw_output": "桃岭",
+      "input_tokens": 135,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09216259999811882
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e1",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n\n\n新观察\n馆藏登记员确认，石印展签上标的出土地是桃岭。"
+        }
+      ],
+      "raw_output": "馆藏登记员确认，石印展签上标的出土地为桃岭。",
+      "input_tokens": 100,
+      "output_tokens": 19,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 0.5394663000006403
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e2",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n馆藏登记员确认，石印展签上标的出土地为桃岭。\n\n新观察\n铜灯的盘点卡将它登记在澄光柜。"
+        }
+      ],
+      "raw_output": "馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡将其登记在澄光柜。",
+      "input_tokens": 113,
+      "output_tokens": 31,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 0.8914244000006875
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡将其登记在澄光柜。\n\n问题\n铜灯的盘点卡现在写的是哪个柜子？"
+        }
+      ],
+      "raw_output": "澄光柜",
+      "input_tokens": 110,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12654760000077658
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e4",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡将其登记在澄光柜。\n\n新观察\n库房完成铜灯的移柜验收，新的盘点卡地点是听风柜。"
+        }
+      ],
+      "raw_output": "馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡登记在澄光柜。库房完成铜灯移柜验收，新的盘点卡地点为听风柜。",
+      "input_tokens": 131,
+      "output_tokens": 48,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.4025728000015079
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e5",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡登记在澄光柜。库房完成铜灯移柜验收，新的盘点卡地点为听风柜。\n\n新观察\n摄影师今天拍的是石印的侧面，盘点卡暂时收在文件夹里。"
+        }
+      ],
+      "raw_output": "馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡登记在澄光柜。库房完成铜灯移柜验收，新的盘点卡地点为听风柜。盘点卡暂时收在文件夹里。",
+      "input_tokens": 147,
+      "output_tokens": 57,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.6913036000005377
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e6",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡登记在澄光柜。库房完成铜灯移柜验收，新的盘点卡地点为听风柜。盘点卡暂时收在文件夹里。\n\n问题\n移柜验收后，铜灯登记在哪个柜子？"
+        }
+      ],
+      "raw_output": "听风柜",
+      "input_tokens": 137,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.11524619999909191
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e7",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡登记在澄光柜。库房完成铜灯移柜验收，新的盘点卡地点为听风柜。盘点卡暂时收在文件夹里。\n\n新观察\n看板预告玉鱼的展签还有一栏待填，负责核对的人下周才回来。"
+        }
+      ],
+      "raw_output": "- 石印展签出土地为桃岭，已确认。  \n- 铜灯盘点卡登记在澄光柜，已确认。  \n- 新的盘点卡地点为听风柜，已确认。  \n- 盘点卡暂时收在文件夹里，已确认。  \n- 看板预告玉鱼展签待填栏仍待核对，下周才回，未确认是否已填。",
+      "input_tokens": 160,
+      "output_tokens": 93,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.696461499999714
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e8",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n- 石印展签出土地为桃岭，已确认。  \n- 铜灯盘点卡登记在澄光柜，已确认。  \n- 新的盘点卡地点为听风柜，已确认。  \n- 盘点卡暂时收在文件夹里，已确认。  \n- 看板预告玉鱼展签待填栏仍待核对，下周才回，未确认是否已填。\n\n新观察\n纸扇展签上标的出土地是白砾滩。"
+        }
+      ],
+      "raw_output": "- 石印展签出土地为桃岭，已确认。  \n- 铜灯盘点卡登记在澄光柜，已确认。  \n- 新的盘点卡地点为听风柜，已确认。  \n- 盘点卡暂时收在文件夹里，已确认。  \n- 看板预告玉鱼展签待填栏仍待核对，下周才回，未确认是否已填。  \n- �",
+      "input_tokens": 187,
+      "output_tokens": 96,
+      "finished_by_eos": false,
+      "max_new_tokens": 96,
+      "service_seconds": 2.787753299999167
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n- 石印展签出土地为桃岭，已确认。  \n- 铜灯盘点卡登记在澄光柜，已确认。  \n- 新的盘点卡地点为听风柜，已确认。  \n- 盘点卡暂时收在文件夹里，已确认。  \n- 看板预告玉鱼展签待填栏仍待核对，下周才回，未确认是否已填。  \n- �\n\n问题\n玉鱼展签上的出土地叫什么？"
+        }
+      ],
+      "raw_output": "桃岭",
+      "input_tokens": 174,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09302610000304412
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e10",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n- 石印展签出土地为桃岭，已确认。  \n- 铜灯盘点卡登记在澄光柜，已确认。  \n- 新的盘点卡地点为听风柜，已确认。  \n- 盘点卡暂时收在文件夹里，已确认。  \n- 看板预告玉鱼展签待填栏仍待核对，下周才回，未确认是否已填。  \n- �\n\n新观察\n负责展柜照明的人带来了新的灯泡。"
+        }
+      ],
+      "raw_output": "- 石印展签出土地为桃岭，已确认。  \n- 铜灯盘点卡登记在澄光柜，已确认。  \n- 新的盘点卡地点为听风柜，已确认。  \n- 盘点卡暂时收在文件夹里，已确认。  \n- 看板预告玉鱼展签待填栏仍待核对，下周才回，未确认是否已填。  \n- �",
+      "input_tokens": 188,
+      "output_tokens": 96,
+      "finished_by_eos": false,
+      "max_new_tokens": 96,
+      "service_seconds": 2.7285253000009106
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-museum",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n- 石印展签出土地为桃岭，已确认。  \n- 铜灯盘点卡登记在澄光柜，已确认。  \n- 新的盘点卡地点为听风柜，已确认。  \n- 盘点卡暂时收在文件夹里，已确认。  \n- 看板预告玉鱼展签待填栏仍待核对，下周才回，未确认是否已填。  \n- �\n\n问题\n如果从展签抄录石印的出土地，应抄哪一个地名？"
+        }
+      ],
+      "raw_output": "桃岭",
+      "input_tokens": 182,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09342199999809964
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e5",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者把蝴蝶花苗的最终交接人登记为桑榆。\n香柠树苗原定交给杜岑，他来取之前先留在棚里。\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。\n棚顶漏了一滴水，值班员拿抹布擦掉了。\n\n问题\n照已签的交接单，香柠树苗由谁签收？"
+        }
+      ],
+      "raw_output": "许栀",
+      "input_tokens": 155,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09022410000034142
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者把蝴蝶花苗的最终交接人登记为桑榆。\n香柠树苗原定交给杜岑，他来取之前先留在棚里。\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。\n棚顶漏了一滴水，值班员拿抹布擦掉了。\n有人在群里说可能还是杜岑搬走了香柠树苗，发消息的人没有到场。\n\n问题\n群里的说法出来后，已确认签收香柠树苗的人叫什么？"
+        }
+      ],
+      "raw_output": "许栀",
+      "input_tokens": 178,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12224839999907999
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者把蝴蝶花苗的最终交接人登记为桑榆。\n香柠树苗原定交给杜岑，他来取之前先留在棚里。\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。\n棚顶漏了一滴水，值班员拿抹布擦掉了。\n有人在群里说可能还是杜岑搬走了香柠树苗，发消息的人没有到场。\n荷花种子交给了钟穗，交接人已写到册子里。\n园艺剪用完挂回了工具板。\n\n问题\n蝴蝶花苗那一项登记的交接对象是谁？"
+        }
+      ],
+      "raw_output": "桑榆",
+      "input_tokens": 197,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09707120000166469
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者把蝴蝶花苗的最终交接人登记为桑榆。\n香柠树苗原定交给杜岑，他来取之前先留在棚里。\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。\n棚顶漏了一滴水，值班员拿抹布擦掉了。\n有人在群里说可能还是杜岑搬走了香柠树苗，发消息的人没有到场。\n荷花种子交给了钟穗，交接人已写到册子里。\n园艺剪用完挂回了工具板。\n\n问题\n银桂种子这一项，登记的交接人是谁？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 198,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.07353149999835296
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e5",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n香柠树苗原定交给杜岑，他来取之前先留在棚里。\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。\n棚顶漏了一滴水，值班员拿抹布擦掉了。\n\n问题\n照已签的交接单，香柠树苗由谁签收？"
+        }
+      ],
+      "raw_output": "许栀",
+      "input_tokens": 141,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09407860000283108
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。\n棚顶漏了一滴水，值班员拿抹布擦掉了。\n有人在群里说可能还是杜岑搬走了香柠树苗，发消息的人没有到场。\n\n问题\n群里的说法出来后，已确认签收香柠树苗的人叫什么？"
+        }
+      ],
+      "raw_output": "许栀",
+      "input_tokens": 145,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.08985260000190465
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n有人在群里说可能还是杜岑搬走了香柠树苗，发消息的人没有到场。\n荷花种子交给了钟穗，交接人已写到册子里。\n园艺剪用完挂回了工具板。\n\n问题\n蝴蝶花苗那一项登记的交接对象是谁？"
+        }
+      ],
+      "raw_output": "钟穗",
+      "input_tokens": 126,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.0886382999997295
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n有人在群里说可能还是杜岑搬走了香柠树苗，发消息的人没有到场。\n荷花种子交给了钟穗，交接人已写到册子里。\n园艺剪用完挂回了工具板。\n\n问题\n银桂种子这一项，登记的交接人是谁？"
+        }
+      ],
+      "raw_output": "钟穗",
+      "input_tokens": 127,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.0898743999969156
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e5",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者把蝴蝶花苗的最终交接人登记为桑榆。\n香柠树苗原定交给杜岑，他来取之前先留在棚里。\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。\n\n问题\n照已签的交接单，香柠树苗由谁签收？"
+        }
+      ],
+      "raw_output": "许栀",
+      "input_tokens": 140,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09279850000166334
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n香柠树苗原定交给杜岑，他来取之前先留在棚里。\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。\n有人在群里说可能还是杜岑搬走了香柠树苗，发消息的人没有到场。\n\n问题\n群里的说法出来后，已确认签收香柠树苗的人叫什么？"
+        }
+      ],
+      "raw_output": "许栀",
+      "input_tokens": 149,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.094242100003612
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者把蝴蝶花苗的最终交接人登记为桑榆。\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。\n荷花种子交给了钟穗，交接人已写到册子里。\n\n问题\n蝴蝶花苗那一项登记的交接对象是谁？"
+        }
+      ],
+      "raw_output": "桑榆",
+      "input_tokens": 131,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09265819999927771
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者把蝴蝶花苗的最终交接人登记为桑榆。\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。\n荷花种子交给了钟穗，交接人已写到册子里。\n\n问题\n银桂种子这一项，登记的交接人是谁？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 132,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.06459360000008019
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e1",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n\n\n新观察\n志愿者把蝴蝶花苗的最终交接人登记为桑榆。"
+        }
+      ],
+      "raw_output": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。",
+      "input_tokens": 96,
+      "output_tokens": 15,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 0.4304104000002553
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e2",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n志愿者将蝴蝶花苗的最终交接人登记为桑榆。\n\n新观察\n香柠树苗原定交给杜岑，他来取之前先留在棚里。"
+        }
+      ],
+      "raw_output": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗原定交给杜岑，他来取之前先留在棚里。",
+      "input_tokens": 115,
+      "output_tokens": 35,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.0244286999986798
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e3",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗原定交给杜岑，他来取之前先留在棚里。\n\n新观察\n交接单刚签完，香柠树苗由许栀签收，杜岑的预约已经取消。"
+        }
+      ],
+      "raw_output": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。",
+      "input_tokens": 139,
+      "output_tokens": 33,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 0.969366599998466
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e4",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。\n\n新观察\n棚顶漏了一滴水，值班员拿抹布擦掉了。"
+        }
+      ],
+      "raw_output": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。",
+      "input_tokens": 129,
+      "output_tokens": 45,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.288397199998144
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e5",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。\n\n问题\n照已签的交接单，香柠树苗由谁签收？"
+        }
+      ],
+      "raw_output": "许栀",
+      "input_tokens": 127,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09042910000061966
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e6",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。\n\n新观察\n有人在群里说可能还是杜岑搬走了香柠树苗，发消息的人没有到场。"
+        }
+      ],
+      "raw_output": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。",
+      "input_tokens": 146,
+      "output_tokens": 67,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.941737799999828
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e7",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。\n\n问题\n群里的说法出来后，已确认签收香柠树苗的人叫什么？"
+        }
+      ],
+      "raw_output": "许栀",
+      "input_tokens": 152,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09087930000168853
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e8",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。\n\n新观察\n荷花种子交给了钟穗，交接人已写到册子里。"
+        }
+      ],
+      "raw_output": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。  \n荷花种子交给了钟穗，交接人已写到册子里。",
+      "input_tokens": 163,
+      "output_tokens": 83,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.3884318999989773
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e9",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。  \n荷花种子交给了钟穗，交接人已写到册子里。\n\n新观察\n园艺剪用完挂回了工具板。"
+        }
+      ],
+      "raw_output": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。  \n荷花种子交给了钟穗，交接人已写到册子里。  \n园艺剪用完，已挂回工具板。",
+      "input_tokens": 175,
+      "output_tokens": 96,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.7599617000014405
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e10",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。  \n荷花种子交给了钟穗，交接人已写到册子里。  \n园艺剪用完，已挂回工具板\n\n问题\n蝴蝶花苗那一项登记的交接对象是谁？"
+        }
+      ],
+      "raw_output": "桑榆",
+      "input_tokens": 174,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.09309420000136015
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-garden",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。  \n荷花种子交给了钟穗，交接人已写到册子里。  \n园艺剪用完，已挂回工具板\n\n问题\n银桂种子这一项，登记的交接人是谁？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 175,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.06646019999971031
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈成片使用木铃作为开场音效。\n晨间简报的第一份导出单把片尾曲写成《微浪》。\n\n问题\n第一份导出单上，晨间简报的片尾曲是哪一首？"
+        }
+      ],
+      "raw_output": "《微浪》",
+      "input_tokens": 123,
+      "output_tokens": 5,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.14139609999983804
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e6",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈成片使用木铃作为开场音效。\n晨间简报的第一份导出单把片尾曲写成《微浪》。\n制片人签下正式修订，晨间简报的片尾曲换成《薄雾》。\n导播还在等天气栏目的配乐决定，设备检查已经完成。\n\n问题\n天气栏目最终用哪一首配乐？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 150,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.06161529999735649
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈成片使用木铃作为开场音效。\n晨间简报的第一份导出单把片尾曲写成《微浪》。\n制片人签下正式修订，晨间简报的片尾曲换成《薄雾》。\n导播还在等天气栏目的配乐决定，设备检查已经完成。\n实习生提议把晨间简报改回《微浪》，制片人还没有批准。\n晚间访谈试剪用掌声做开场音效。\n\n问题\n按目前生效的导出单，晨间简报的片尾曲叫什么？"
+        }
+      ],
+      "raw_output": "《薄雾》",
+      "input_tokens": 190,
+      "output_tokens": 5,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.14732939999885275
+    },
+    {
+      "arm": "history",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈成片使用木铃作为开场音效。\n晨间简报的第一份导出单把片尾曲写成《微浪》。\n制片人签下正式修订，晨间简报的片尾曲换成《薄雾》。\n导播还在等天气栏目的配乐决定，设备检查已经完成。\n实习生提议把晨间简报改回《微浪》，制片人还没有批准。\n晚间访谈试剪用掌声做开场音效。\n两位配音员去隔壁房间录下一段旁白。\n\n问题\n请确认，午后访谈成片的开场音效叫什么？"
+        }
+      ],
+      "raw_output": "木铃",
+      "input_tokens": 197,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.10050399999818183
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈成片使用木铃作为开场音效。\n晨间简报的第一份导出单把片尾曲写成《微浪》。\n\n问题\n第一份导出单上，晨间简报的片尾曲是哪一首？"
+        }
+      ],
+      "raw_output": "《微浪》",
+      "input_tokens": 123,
+      "output_tokens": 5,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.15002699999968172
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e6",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n晨间简报的第一份导出单把片尾曲写成《微浪》。\n制片人签下正式修订，晨间简报的片尾曲换成《薄雾》。\n导播还在等天气栏目的配乐决定，设备检查已经完成。\n\n问题\n天气栏目最终用哪一首配乐？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 134,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.06497369999851799
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n导播还在等天气栏目的配乐决定，设备检查已经完成。\n实习生提议把晨间简报改回《微浪》，制片人还没有批准。\n晚间访谈试剪用掌声做开场音效。\n\n问题\n按目前生效的导出单，晨间简报的片尾曲叫什么？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 133,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.06519029999981285
+    },
+    {
+      "arm": "recent",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n实习生提议把晨间简报改回《微浪》，制片人还没有批准。\n晚间访谈试剪用掌声做开场音效。\n两位配音员去隔壁房间录下一段旁白。\n\n问题\n请确认，午后访谈成片的开场音效叫什么？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 124,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.06330919999891194
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈成片使用木铃作为开场音效。\n晨间简报的第一份导出单把片尾曲写成《微浪》。\n\n问题\n第一份导出单上，晨间简报的片尾曲是哪一首？"
+        }
+      ],
+      "raw_output": "《微浪》",
+      "input_tokens": 123,
+      "output_tokens": 5,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.15285080000103335
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e6",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n晨间简报的第一份导出单把片尾曲写成《微浪》。\n制片人签下正式修订，晨间简报的片尾曲换成《薄雾》。\n导播还在等天气栏目的配乐决定，设备检查已经完成。\n\n问题\n天气栏目最终用哪一首配乐？"
+        }
+      ],
+      "raw_output": "不确定",
+      "input_tokens": 134,
+      "output_tokens": 2,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.06299479999870528
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n晨间简报的第一份导出单把片尾曲写成《微浪》。\n制片人签下正式修订，晨间简报的片尾曲换成《薄雾》。\n实习生提议把晨间简报改回《微浪》，制片人还没有批准。\n\n问题\n按目前生效的导出单，晨间简报的片尾曲叫什么？"
+        }
+      ],
+      "raw_output": "《薄雾》",
+      "input_tokens": 147,
+      "output_tokens": 5,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.14546129999871482
+    },
+    {
+      "arm": "retrieval",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈成片使用木铃作为开场音效。\n晚间访谈试剪用掌声做开场音效。\n两位配音员去隔壁房间录下一段旁白。\n\n问题\n请确认，午后访谈成片的开场音效叫什么？"
+        }
+      ],
+      "raw_output": "木铃",
+      "input_tokens": 121,
+      "output_tokens": 3,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.08602850000170292
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e1",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n\n\n新观察\n制作单确认，午后访谈成片使用木铃作为开场音效。"
+        }
+      ],
+      "raw_output": "制作单确认，午后访谈成片使用木铃作为开场音效。",
+      "input_tokens": 98,
+      "output_tokens": 17,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 0.5024441999994451
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e2",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n制作单确认，午后访谈成片使用木铃作为开场音效。\n\n新观察\n晨间简报的第一份导出单把片尾曲写成《微浪》。"
+        }
+      ],
+      "raw_output": "制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。",
+      "input_tokens": 118,
+      "output_tokens": 41,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.1863056999973196
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e3",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。\n\n问题\n第一份导出单上，晨间简报的片尾曲是哪一首？"
+        }
+      ],
+      "raw_output": "《微浪》",
+      "input_tokens": 128,
+      "output_tokens": 5,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.14498660000026575
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e4",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。\n\n新观察\n制片人签下正式修订，晨间简报的片尾曲换成《薄雾》。"
+        }
+      ],
+      "raw_output": "制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。",
+      "input_tokens": 144,
+      "output_tokens": 62,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 1.7917567000004055
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e5",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。\n\n新观察\n导播还在等天气栏目的配乐决定，设备检查已经完成。"
+        }
+      ],
+      "raw_output": "制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播仍在等天气栏目的配乐决定，设备检查已完成。",
+      "input_tokens": 159,
+      "output_tokens": 78,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.2565171999995073
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e6",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播仍在等天气栏目的配乐决定，设备检查已完成。\n\n问题\n天气栏目最终用哪一首配乐？"
+        }
+      ],
+      "raw_output": "《薄雾》",
+      "input_tokens": 154,
+      "output_tokens": 5,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.14964959999997518
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e7",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播仍在等天气栏目的配乐决定，设备检查已完成。\n\n新观察\n实习生提议把晨间简报改回《微浪》，制片人还没有批准。"
+        }
+      ],
+      "raw_output": "制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播仍在等天气栏目的配乐决定，设备检查已完成。  \n实习生提议将晨间简报改回《微浪》，但制片人尚未",
+      "input_tokens": 178,
+      "output_tokens": 96,
+      "finished_by_eos": false,
+      "max_new_tokens": 96,
+      "service_seconds": 2.776268700003129
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e8",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播仍在等天气栏目的配乐决定，设备检查已完成。  \n实习生提议将晨间简报改回《微浪》，但制片\n\n新观察\n晚间访谈试剪用掌声做开场音效。"
+        }
+      ],
+      "raw_output": "制作单确认，午后访谈使用掌声作为开场音效。  \n晨间简报片尾曲仍为《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播等待天气栏目的配乐决定，设备检查已完成。  \n实习生提议改回《微浪》未被采纳。",
+      "input_tokens": 188,
+      "output_tokens": 81,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 2.4217640000024403
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e9",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈使用掌声作为开场音效。  \n晨间简报片尾曲仍为《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播等待天气栏目的配乐决定，设备检查已完成。  \n实习生提议改回《微浪》未被采纳。\n\n问题\n按目前生效的导出单，晨间简报的片尾曲叫什么？"
+        }
+      ],
+      "raw_output": "《薄雾》",
+      "input_tokens": 167,
+      "output_tokens": 5,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.16705130000264035
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e10",
+      "purpose": "update",
+      "messages": [
+        {
+          "role": "system",
+          "content": "把上一份笔记和新观察合并成用于之后问答的简短事实笔记。用简短分句保留各对象已确认的当前事实与明确更正；保留原有仍有效的事实。未经证实的传闻不能推翻已确认事实。只输出更新后的笔记。"
+        },
+        {
+          "role": "user",
+          "content": "旧笔记\n制作单确认，午后访谈使用掌声作为开场音效。  \n晨间简报片尾曲仍为《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播等待天气栏目的配乐决定，设备检查已完成。  \n实习生提议改回《微浪》未被采纳。\n\n新观察\n两位配音员去隔壁房间录下一段旁白。"
+        }
+      ],
+      "raw_output": "制作单确认，午后访谈使用掌声作为开场音效。  \n晨间简报片尾曲仍为《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播等待天气栏目的配乐决定，设备检查已完成。  \n实习生提议改回《微浪》未被采纳。  \n两位配音员去隔壁房间录下一段旁白。",
+      "input_tokens": 174,
+      "output_tokens": 94,
+      "finished_by_eos": true,
+      "max_new_tokens": 96,
+      "service_seconds": 3.006027700001141
+    },
+    {
+      "arm": "bounded_summary",
+      "stream_id": "memory-v1-studio",
+      "event_id": "e11",
+      "purpose": "query",
+      "messages": [
+        {
+          "role": "system",
+          "content": "根据给出的观察回答当前问题。以已确认的最新信息为准，未经证实的猜测不能推翻已确认的事实。只输出简短答案，不加解释。没有足够证据时只输出“不确定”。"
+        },
+        {
+          "role": "user",
+          "content": "观察资料\n制作单确认，午后访谈使用掌声作为开场音效。  \n晨间简报片尾曲仍为《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播等待天气栏目的配乐决定，设备检查已完成。  \n实习生提议改回《微浪》未被采纳。  \n两位配音员去隔壁房间录\n\n问题\n请确认，午后访谈成片的开场音效叫什么？"
+        }
+      ],
+      "raw_output": "《掌声》",
+      "input_tokens": 171,
+      "output_tokens": 4,
+      "finished_by_eos": true,
+      "max_new_tokens": 24,
+      "service_seconds": 0.12649880000026315
+    }
+  ],
+  "state_updates": [
+    {
+      "stream_id": "memory-v1-theater",
+      "updates": [
+        {
+          "event_id": "e1",
+          "state": "舞台监督在排班板上确认，纸偶工坊使用东练功房。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e2",
+          "state": "舞台监督在排班板上确认，纸偶工坊使用东练功房。  \n今晚《海灯》的合排地点登记在松间厅。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e4",
+          "state": "舞台监督确认，纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e5",
+          "state": "舞台监督确认，纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e6",
+          "state": "舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e8",
+          "state": "舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。  \n短片放映组已领取门禁卡，具体场地待排片表确认。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e9",
+          "state": "舞台监督确认纸偶工坊使用东练功房。  \n《海灯》合排地点更正为雨燕厅，松间厅登记作废。  \n音响组将两箱线缆送入隔壁储物间。  \n前台有人猜测海灯剧组会回松间厅，但舞台监督未再发通知。  \n短片放映组已领取门禁卡，具体场地待排片表确认。  \n合唱团正式改为",
+          "character_limit_applied": true,
+          "empty_update_kept_old_state": false
+        }
+      ]
+    },
+    {
+      "stream_id": "memory-v1-warehouse",
+      "updates": [
+        {
+          "event_id": "e1",
+          "state": "入库员确认青藤箱在乙七架。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e2",
+          "state": "入库员确认青藤箱在乙七架。银杉箱刚入库，系统显示放在甲三架。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e3",
+          "state": "入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e5",
+          "state": "入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e6",
+          "state": "入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e8",
+          "state": "入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。银杉箱下一班可能移至丁六架（属预测，未确认）。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e10",
+          "state": "入库员确认青藤箱在乙七架。银杉箱已从甲三架移至丙九架。橡果箱封条已换，物品未离开验货台。叉车停在东侧通道充电。银杉箱下一班可能移至丁六架（属预测，未确认）。验货结束后，橡果箱在戊二架的入库扫描成功。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        }
+      ]
+    },
+    {
+      "stream_id": "memory-v1-shuttle",
+      "updates": [
+        {
+          "event_id": "e1",
+          "state": "车站电子牌确认，员工线终点停靠江柳门。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e2",
+          "state": "车站电子牌确认，员工线终点停靠江柳门。游客线第一版通知写的是竹溪站上车。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e4",
+          "state": "车站电子牌确认，员工线终点停靠江柳门。游客线第一版通知写的是竹溪站上车。河口路面施工，路边的自行车已收走。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e5",
+          "state": "车站电子牌确认，员工线终点停靠江柳门。游客线替代通知已发布，当天改在月湾站上车。河口路面施工，路边的自行车已收走。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e6",
+          "state": "车站电子牌确认，员工线终点停靠江柳门。游客线替代通知已发布，当天改在月湾站上车。河口路面施工，路边的自行车已收走。早班司机将失物袋放入车站服务台柜子。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e8",
+          "state": "车站电子牌确认，员工线终点停靠江柳门。游客线替代通知已发布，当天改在月湾站上车。河口路面施工，路边的自行车已收走。早班司机将失物袋放入车站服务台柜子。候车人员称若月湾站封闭可能恢复竹溪站，但调度台尚未宣布封闭。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e9",
+          "state": "- 车站电子牌确认，员工线终点停靠江柳门。  \n- 游客线替代通知已发布，当天改在月湾站上车。  \n- 河口路面施工，路边的自行车已收走。  \n- 早班司机将失物袋放入车站服务台柜子。  \n- 候车人员称若月湾站封闭可能恢复竹溪站，但调度台尚未宣布封闭",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        }
+      ]
+    },
+    {
+      "stream_id": "memory-v1-museum",
+      "updates": [
+        {
+          "event_id": "e1",
+          "state": "馆藏登记员确认，石印展签上标的出土地为桃岭。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e2",
+          "state": "馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡将其登记在澄光柜。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e4",
+          "state": "馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡登记在澄光柜。库房完成铜灯移柜验收，新的盘点卡地点为听风柜。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e5",
+          "state": "馆藏登记员确认，石印展签上标的出土地为桃岭。铜灯的盘点卡登记在澄光柜。库房完成铜灯移柜验收，新的盘点卡地点为听风柜。盘点卡暂时收在文件夹里。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e7",
+          "state": "- 石印展签出土地为桃岭，已确认。  \n- 铜灯盘点卡登记在澄光柜，已确认。  \n- 新的盘点卡地点为听风柜，已确认。  \n- 盘点卡暂时收在文件夹里，已确认。  \n- 看板预告玉鱼展签待填栏仍待核对，下周才回，未确认是否已填。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e8",
+          "state": "- 石印展签出土地为桃岭，已确认。  \n- 铜灯盘点卡登记在澄光柜，已确认。  \n- 新的盘点卡地点为听风柜，已确认。  \n- 盘点卡暂时收在文件夹里，已确认。  \n- 看板预告玉鱼展签待填栏仍待核对，下周才回，未确认是否已填。  \n- �",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e10",
+          "state": "- 石印展签出土地为桃岭，已确认。  \n- 铜灯盘点卡登记在澄光柜，已确认。  \n- 新的盘点卡地点为听风柜，已确认。  \n- 盘点卡暂时收在文件夹里，已确认。  \n- 看板预告玉鱼展签待填栏仍待核对，下周才回，未确认是否已填。  \n- �",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        }
+      ]
+    },
+    {
+      "stream_id": "memory-v1-garden",
+      "updates": [
+        {
+          "event_id": "e1",
+          "state": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e2",
+          "state": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗原定交给杜岑，他来取之前先留在棚里。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e3",
+          "state": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e4",
+          "state": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e6",
+          "state": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e8",
+          "state": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。  \n荷花种子交给了钟穗，交接人已写到册子里。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e9",
+          "state": "志愿者将蝴蝶花苗的最终交接人登记为桑榆。  \n香柠树苗由许栀签收，杜岑的预约已取消。  \n棚顶漏水，值班员已擦除。  \n有人在群里说可能还是杜岑搬走了香柠树苗，但发消息的人未到场。  \n荷花种子交给了钟穗，交接人已写到册子里。  \n园艺剪用完，已挂回工具板",
+          "character_limit_applied": true,
+          "empty_update_kept_old_state": false
+        }
+      ]
+    },
+    {
+      "stream_id": "memory-v1-studio",
+      "updates": [
+        {
+          "event_id": "e1",
+          "state": "制作单确认，午后访谈成片使用木铃作为开场音效。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e2",
+          "state": "制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e4",
+          "state": "制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e5",
+          "state": "制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播仍在等天气栏目的配乐决定，设备检查已完成。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e7",
+          "state": "制作单确认，午后访谈成片使用木铃作为开场音效。  \n晨间简报第一份导出单将片尾曲写成《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播仍在等天气栏目的配乐决定，设备检查已完成。  \n实习生提议将晨间简报改回《微浪》，但制片",
+          "character_limit_applied": true,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e8",
+          "state": "制作单确认，午后访谈使用掌声作为开场音效。  \n晨间简报片尾曲仍为《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播等待天气栏目的配乐决定，设备检查已完成。  \n实习生提议改回《微浪》未被采纳。",
+          "character_limit_applied": false,
+          "empty_update_kept_old_state": false
+        },
+        {
+          "event_id": "e10",
+          "state": "制作单确认，午后访谈使用掌声作为开场音效。  \n晨间简报片尾曲仍为《微浪》（已确认）。  \n制片人签署正式修订，晨间简报片尾曲改为《薄雾》。  \n导播等待天气栏目的配乐决定，设备检查已完成。  \n实习生提议改回《微浪》未被采纳。  \n两位配音员去隔壁房间录",
+          "character_limit_applied": true,
+          "empty_update_kept_old_state": false
+        }
+      ]
+    }
+  ],
+  "fixture_sha256": "2db90a8d31d2165131ef14a8a59fffea2bdb44a86810d6fd456c6c786f1928fe",
+  "checkpoint_files_sha256": {
+    ".msc": "e346a4b32926eb050f689b86a9b62837e2d0f89f6d5579ae27786424d98e696e",
+    ".mv": "f8db4d402dad1592699be370a6953bc543dc04a29c63100c31d3790ff50d5daf",
+    "config.json": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+    "configuration.json": "f888421726665e8a84b738eed42a64875aed79de8be7daade851ac8bf4c0cef9",
+    "generation_config.json": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "model-00001-of-00002.safetensors": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+    "model-00002-of-00002.safetensors": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9",
+    "model.safetensors.index.json": "0d660e94b165eb912669a5249dff44b83188c4777a07ddb9611fb78d91b0578d",
+    "README.md": "d50c7b66b42ffb892a7819f46853a4c6ae97ad07f1f46abf5f13d4a617ae07c0",
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "tokenizer_config.json": "5a7303fcb1a27ede63134a2cbd61d5282c247ca6d769ce4746d4ffa124aedd63",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "config": {
+    "window": 3,
+    "state_chars": 128,
+    "query_tokens": 24,
+    "update_tokens": 96,
+    "device": "cuda",
+    "decoding": "greedy, non-thinking"
+  },
+  "scope": "sequential synthetic query snapshots; no timed ingress, interruption or semantic continuation",
+  "provenance": {
+    "git_commit": "22db5197d9ab02bc7f3ce28b941fb350be9d3259",
+    "git_status": "M docs/ONLINE_LANGUAGE_PROTOCOL.md\n?? evaluation/analyze_qwen_story.py\n?? evaluation/continuous_event_protocol.py\n?? evaluation/continuous_memory_compare.py\n?? evaluation/fixtures/continuous_event_dev.json\n?? evaluation/fixtures/continuous_events_dev.jsonl\n?? evaluation/fixtures/continuous_memory_eval_v1.jsonl\n?? evaluation/local_qwen_adapter.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_local_preflight.py\n?? evaluation/qwen_scheduler_smoke.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? evaluation/score_continuous_memory.py\n?? experiments/continuous_online/continuous_memory_dev_predictions_v1.json\n?? experiments/continuous_online/qwen_direct_preflight_v1.json\n?? experiments/continuous_online/qwen_direct_scheduler_v1.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/recurrent_state/continuous_event_tests.log\n?? tests/test_continuous_event_fixtures.py\n?? tests/test_continuous_event_protocol.py\n?? tests/test_continuous_memory_compare.py\n?? tests/test_score_continuous_memory.py",
+    "source_sha256_at_capture": {
+      "evaluation/continuous_memory_compare.py": "bf64f84f0b855a0614891e3ba2143505e41ea9e5698099ec7f3f13ecf060040e",
+      "evaluation/continuous_event_protocol.py": "e73a0c4ba79cd4978b88b48ca7de9f5de787a8c699afdcaa650239432f19c9c5",
+      "evaluation/local_qwen_adapter.py": "35e497bc1b3c60aeb0e9cb49b0b785466e0f050c1d24869795a3fb866d65f753"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  }
+}

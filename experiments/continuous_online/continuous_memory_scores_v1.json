@@ -1,0 +1,1517 @@
+{
+  "format": "pbslm.continuous_memory_score.v1",
+  "query_items": 24,
+  "unknown_label": "不确定",
+  "arms": [
+    "history",
+    "recent",
+    "retrieval",
+    "bounded_summary"
+  ],
+  "by_arm": {
+    "history": {
+      "overall": {
+        "items": 24,
+        "correct": 17,
+        "accuracy": 0.7083333333333334,
+        "answered": 19,
+        "coverage": 0.7916666666666666,
+        "abstained": 5,
+        "blank": 0
+      },
+      "known": {
+        "items": 18,
+        "correct": 13,
+        "accuracy": 0.7222222222222222,
+        "answered": 17,
+        "coverage": 0.9444444444444444,
+        "abstained": 1,
+        "blank": 0
+      },
+      "unknown": {
+        "items": 6,
+        "correct": 4,
+        "accuracy": 0.6666666666666666,
+        "answered": 2,
+        "coverage": 0.3333333333333333,
+        "abstained": 4,
+        "blank": 0
+      },
+      "by_case": {
+        "initial": {
+          "items": 4,
+          "correct": 3,
+          "accuracy": 0.75,
+          "answered": 4,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        },
+        "rumor": {
+          "items": 5,
+          "correct": 2,
+          "accuracy": 0.4,
+          "answered": 4,
+          "coverage": 0.8,
+          "abstained": 1,
+          "blank": 0
+        },
+        "retention": {
+          "items": 6,
+          "correct": 5,
+          "accuracy": 0.8333333333333334,
+          "answered": 6,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        },
+        "unknown": {
+          "items": 6,
+          "correct": 4,
+          "accuracy": 0.6666666666666666,
+          "answered": 2,
+          "coverage": 0.3333333333333333,
+          "abstained": 4,
+          "blank": 0
+        },
+        "corrected": {
+          "items": 3,
+          "correct": 3,
+          "accuracy": 1.0,
+          "answered": 3,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        }
+      }
+    },
+    "recent": {
+      "overall": {
+        "items": 24,
+        "correct": 11,
+        "accuracy": 0.4583333333333333,
+        "answered": 17,
+        "coverage": 0.7083333333333334,
+        "abstained": 7,
+        "blank": 0
+      },
+      "known": {
+        "items": 18,
+        "correct": 8,
+        "accuracy": 0.4444444444444444,
+        "answered": 14,
+        "coverage": 0.7777777777777778,
+        "abstained": 4,
+        "blank": 0
+      },
+      "unknown": {
+        "items": 6,
+        "correct": 3,
+        "accuracy": 0.5,
+        "answered": 3,
+        "coverage": 0.5,
+        "abstained": 3,
+        "blank": 0
+      },
+      "by_case": {
+        "initial": {
+          "items": 4,
+          "correct": 3,
+          "accuracy": 0.75,
+          "answered": 4,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        },
+        "rumor": {
+          "items": 5,
+          "correct": 2,
+          "accuracy": 0.4,
+          "answered": 4,
+          "coverage": 0.8,
+          "abstained": 1,
+          "blank": 0
+        },
+        "retention": {
+          "items": 6,
+          "correct": 0,
+          "accuracy": 0.0,
+          "answered": 3,
+          "coverage": 0.5,
+          "abstained": 3,
+          "blank": 0
+        },
+        "unknown": {
+          "items": 6,
+          "correct": 3,
+          "accuracy": 0.5,
+          "answered": 3,
+          "coverage": 0.5,
+          "abstained": 3,
+          "blank": 0
+        },
+        "corrected": {
+          "items": 3,
+          "correct": 3,
+          "accuracy": 1.0,
+          "answered": 3,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        }
+      }
+    },
+    "retrieval": {
+      "overall": {
+        "items": 24,
+        "correct": 17,
+        "accuracy": 0.7083333333333334,
+        "answered": 21,
+        "coverage": 0.875,
+        "abstained": 3,
+        "blank": 0
+      },
+      "known": {
+        "items": 18,
+        "correct": 14,
+        "accuracy": 0.7777777777777778,
+        "answered": 18,
+        "coverage": 1.0,
+        "abstained": 0,
+        "blank": 0
+      },
+      "unknown": {
+        "items": 6,
+        "correct": 3,
+        "accuracy": 0.5,
+        "answered": 3,
+        "coverage": 0.5,
+        "abstained": 3,
+        "blank": 0
+      },
+      "by_case": {
+        "initial": {
+          "items": 4,
+          "correct": 3,
+          "accuracy": 0.75,
+          "answered": 4,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        },
+        "rumor": {
+          "items": 5,
+          "correct": 3,
+          "accuracy": 0.6,
+          "answered": 5,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        },
+        "retention": {
+          "items": 6,
+          "correct": 5,
+          "accuracy": 0.8333333333333334,
+          "answered": 6,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        },
+        "unknown": {
+          "items": 6,
+          "correct": 3,
+          "accuracy": 0.5,
+          "answered": 3,
+          "coverage": 0.5,
+          "abstained": 3,
+          "blank": 0
+        },
+        "corrected": {
+          "items": 3,
+          "correct": 3,
+          "accuracy": 1.0,
+          "answered": 3,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        }
+      }
+    },
+    "bounded_summary": {
+      "overall": {
+        "items": 24,
+        "correct": 16,
+        "accuracy": 0.6666666666666666,
+        "answered": 21,
+        "coverage": 0.875,
+        "abstained": 3,
+        "blank": 0
+      },
+      "known": {
+        "items": 18,
+        "correct": 13,
+        "accuracy": 0.7222222222222222,
+        "answered": 18,
+        "coverage": 1.0,
+        "abstained": 0,
+        "blank": 0
+      },
+      "unknown": {
+        "items": 6,
+        "correct": 3,
+        "accuracy": 0.5,
+        "answered": 3,
+        "coverage": 0.5,
+        "abstained": 3,
+        "blank": 0
+      },
+      "by_case": {
+        "initial": {
+          "items": 4,
+          "correct": 3,
+          "accuracy": 0.75,
+          "answered": 4,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        },
+        "rumor": {
+          "items": 5,
+          "correct": 2,
+          "accuracy": 0.4,
+          "answered": 5,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        },
+        "retention": {
+          "items": 6,
+          "correct": 5,
+          "accuracy": 0.8333333333333334,
+          "answered": 6,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        },
+        "unknown": {
+          "items": 6,
+          "correct": 3,
+          "accuracy": 0.5,
+          "answered": 3,
+          "coverage": 0.5,
+          "abstained": 3,
+          "blank": 0
+        },
+        "corrected": {
+          "items": 3,
+          "correct": 3,
+          "accuracy": 1.0,
+          "answered": 3,
+          "coverage": 1.0,
+          "abstained": 0,
+          "blank": 0
+        }
+      }
+    }
+  },
+  "paired": [
+    {
+      "arms": [
+        "history",
+        "recent"
+      ],
+      "both_correct": 10,
+      "left_only_correct": 7,
+      "right_only_correct": 1,
+      "both_wrong": 6,
+      "answer_disagreements": 12,
+      "disagreements": [
+        {
+          "stream_id": "memory-v1-theater",
+          "event_id": "e10",
+          "case": "retention",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e7",
+          "case": "unknown",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e9",
+          "case": "rumor",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e7",
+          "case": "retention",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e10",
+          "case": "rumor",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e11",
+          "case": "unknown",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-museum",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-garden",
+          "event_id": "e10",
+          "case": "retention",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-garden",
+          "event_id": "e11",
+          "case": "unknown",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e9",
+          "case": "rumor",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "left_only_correct"
+        }
+      ]
+    },
+    {
+      "arms": [
+        "history",
+        "retrieval"
+      ],
+      "both_correct": 15,
+      "left_only_correct": 2,
+      "right_only_correct": 2,
+      "both_wrong": 5,
+      "answer_disagreements": 6,
+      "disagreements": [
+        {
+          "stream_id": "memory-v1-theater",
+          "event_id": "e10",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e7",
+          "case": "unknown",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e9",
+          "case": "rumor",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e10",
+          "case": "rumor",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-museum",
+          "event_id": "e9",
+          "case": "unknown",
+          "correctness": "both_wrong"
+        }
+      ]
+    },
+    {
+      "arms": [
+        "history",
+        "bounded_summary"
+      ],
+      "both_correct": 15,
+      "left_only_correct": 2,
+      "right_only_correct": 1,
+      "both_wrong": 6,
+      "answer_disagreements": 5,
+      "disagreements": [
+        {
+          "stream_id": "memory-v1-theater",
+          "event_id": "e10",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e10",
+          "case": "rumor",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-museum",
+          "event_id": "e9",
+          "case": "unknown",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e6",
+          "case": "unknown",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "left_only_correct"
+        }
+      ]
+    },
+    {
+      "arms": [
+        "recent",
+        "retrieval"
+      ],
+      "both_correct": 10,
+      "left_only_correct": 1,
+      "right_only_correct": 7,
+      "both_wrong": 6,
+      "answer_disagreements": 12,
+      "disagreements": [
+        {
+          "stream_id": "memory-v1-theater",
+          "event_id": "e10",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e9",
+          "case": "rumor",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e7",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e10",
+          "case": "rumor",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e11",
+          "case": "unknown",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-museum",
+          "event_id": "e9",
+          "case": "unknown",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-museum",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-garden",
+          "event_id": "e10",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-garden",
+          "event_id": "e11",
+          "case": "unknown",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e9",
+          "case": "rumor",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        }
+      ]
+    },
+    {
+      "arms": [
+        "recent",
+        "bounded_summary"
+      ],
+      "both_correct": 9,
+      "left_only_correct": 2,
+      "right_only_correct": 7,
+      "both_wrong": 6,
+      "answer_disagreements": 14,
+      "disagreements": [
+        {
+          "stream_id": "memory-v1-theater",
+          "event_id": "e10",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e7",
+          "case": "unknown",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e9",
+          "case": "rumor",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e7",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e10",
+          "case": "rumor",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-shuttle",
+          "event_id": "e11",
+          "case": "unknown",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-museum",
+          "event_id": "e9",
+          "case": "unknown",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-museum",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-garden",
+          "event_id": "e10",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-garden",
+          "event_id": "e11",
+          "case": "unknown",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e6",
+          "case": "unknown",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e9",
+          "case": "rumor",
+          "correctness": "both_wrong"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "both_wrong"
+        }
+      ]
+    },
+    {
+      "arms": [
+        "retrieval",
+        "bounded_summary"
+      ],
+      "both_correct": 14,
+      "left_only_correct": 3,
+      "right_only_correct": 2,
+      "both_wrong": 5,
+      "answer_disagreements": 5,
+      "disagreements": [
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e7",
+          "case": "unknown",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e9",
+          "case": "rumor",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-warehouse",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "right_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e6",
+          "case": "unknown",
+          "correctness": "left_only_correct"
+        },
+        {
+          "stream_id": "memory-v1-studio",
+          "event_id": "e11",
+          "case": "retention",
+          "correctness": "left_only_correct"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "stream_id": "memory-v1-theater",
+      "event_id": "e3",
+      "case": "initial",
+      "target": "松间厅",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "松间厅",
+          "normalized_answer": "松间厅",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "松间厅",
+          "normalized_answer": "松间厅",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "松间厅",
+          "normalized_answer": "松间厅",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "松间厅",
+          "normalized_answer": "松间厅",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-theater",
+      "event_id": "e7",
+      "case": "rumor",
+      "target": "雨燕厅",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "雨燕厅",
+          "normalized_answer": "雨燕厅",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "雨燕厅",
+          "normalized_answer": "雨燕厅",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "雨燕厅",
+          "normalized_answer": "雨燕厅",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "雨燕厅",
+          "normalized_answer": "雨燕厅",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-theater",
+      "event_id": "e10",
+      "case": "retention",
+      "target": "东练功房",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "松间厅",
+          "normalized_answer": "松间厅",
+          "status": "answered",
+          "correct": false
+        },
+        "recent": {
+          "raw_answer": "石桥厅",
+          "normalized_answer": "石桥厅",
+          "status": "answered",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "东练功房",
+          "normalized_answer": "东练功房",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "东练功房",
+          "normalized_answer": "东练功房",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-theater",
+      "event_id": "e11",
+      "case": "unknown",
+      "target": "不确定",
+      "known": false,
+      "outcomes": {
+        "history": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e4",
+      "case": "corrected",
+      "target": "丙九架",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "丙九架",
+          "normalized_answer": "丙九架",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "丙九架",
+          "normalized_answer": "丙九架",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "丙九架",
+          "normalized_answer": "丙九架",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "丙九架",
+          "normalized_answer": "丙九架",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e7",
+      "case": "unknown",
+      "target": "不确定",
+      "known": false,
+      "outcomes": {
+        "history": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "丙九",
+          "normalized_answer": "丙九",
+          "status": "answered",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "丙九",
+          "normalized_answer": "丙九",
+          "status": "answered",
+          "correct": false
+        },
+        "bounded_summary": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e9",
+      "case": "rumor",
+      "target": "丙九架",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "乙七架",
+          "normalized_answer": "乙七架",
+          "status": "answered",
+          "correct": false
+        },
+        "recent": {
+          "raw_answer": "东侧",
+          "normalized_answer": "东侧",
+          "status": "answered",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "丙九架",
+          "normalized_answer": "丙九架",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "乙七架",
+          "normalized_answer": "乙七架",
+          "status": "answered",
+          "correct": false
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-warehouse",
+      "event_id": "e11",
+      "case": "retention",
+      "target": "乙七架",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "乙七架",
+          "normalized_answer": "乙七架",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "乙七",
+          "normalized_answer": "乙七",
+          "status": "answered",
+          "correct": false
+        },
+        "bounded_summary": {
+          "raw_answer": "乙七架",
+          "normalized_answer": "乙七架",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e3",
+      "case": "initial",
+      "target": "竹溪站",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "竹溪站",
+          "normalized_answer": "竹溪站",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "竹溪站",
+          "normalized_answer": "竹溪站",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "竹溪站",
+          "normalized_answer": "竹溪站",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "竹溪站",
+          "normalized_answer": "竹溪站",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e7",
+      "case": "retention",
+      "target": "江柳门",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "江柳门",
+          "normalized_answer": "江柳门",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "江柳门",
+          "normalized_answer": "江柳门",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "江柳门",
+          "normalized_answer": "江柳门",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e10",
+      "case": "rumor",
+      "target": "月湾站",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": false
+        },
+        "recent": {
+          "raw_answer": "竹溪站",
+          "normalized_answer": "竹溪站",
+          "status": "answered",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "月湾",
+          "normalized_answer": "月湾",
+          "status": "answered",
+          "correct": false
+        },
+        "bounded_summary": {
+          "raw_answer": "月湾",
+          "normalized_answer": "月湾",
+          "status": "answered",
+          "correct": false
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-shuttle",
+      "event_id": "e11",
+      "case": "unknown",
+      "target": "不确定",
+      "known": false,
+      "outcomes": {
+        "history": {
+          "raw_answer": "江柳门",
+          "normalized_answer": "江柳门",
+          "status": "answered",
+          "correct": false
+        },
+        "recent": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "江柳门",
+          "normalized_answer": "江柳门",
+          "status": "answered",
+          "correct": false
+        },
+        "bounded_summary": {
+          "raw_answer": "江柳门",
+          "normalized_answer": "江柳门",
+          "status": "answered",
+          "correct": false
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-museum",
+      "event_id": "e3",
+      "case": "initial",
+      "target": "澄光柜",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "澄光柜",
+          "normalized_answer": "澄光柜",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "澄光柜",
+          "normalized_answer": "澄光柜",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "澄光柜",
+          "normalized_answer": "澄光柜",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "澄光柜",
+          "normalized_answer": "澄光柜",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-museum",
+      "event_id": "e6",
+      "case": "corrected",
+      "target": "听风柜",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "听风柜",
+          "normalized_answer": "听风柜",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "听风柜",
+          "normalized_answer": "听风柜",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "听风柜",
+          "normalized_answer": "听风柜",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "听风柜",
+          "normalized_answer": "听风柜",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-museum",
+      "event_id": "e9",
+      "case": "unknown",
+      "target": "不确定",
+      "known": false,
+      "outcomes": {
+        "history": {
+          "raw_answer": "白砾滩",
+          "normalized_answer": "白砾滩",
+          "status": "answered",
+          "correct": false
+        },
+        "recent": {
+          "raw_answer": "白砾滩",
+          "normalized_answer": "白砾滩",
+          "status": "answered",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "桃岭",
+          "normalized_answer": "桃岭",
+          "status": "answered",
+          "correct": false
+        },
+        "bounded_summary": {
+          "raw_answer": "桃岭",
+          "normalized_answer": "桃岭",
+          "status": "answered",
+          "correct": false
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-museum",
+      "event_id": "e11",
+      "case": "retention",
+      "target": "桃岭",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "桃岭",
+          "normalized_answer": "桃岭",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "白砾滩",
+          "normalized_answer": "白砾滩",
+          "status": "answered",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "桃岭",
+          "normalized_answer": "桃岭",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "桃岭",
+          "normalized_answer": "桃岭",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-garden",
+      "event_id": "e5",
+      "case": "corrected",
+      "target": "许栀",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "许栀",
+          "normalized_answer": "许栀",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "许栀",
+          "normalized_answer": "许栀",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "许栀",
+          "normalized_answer": "许栀",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "许栀",
+          "normalized_answer": "许栀",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-garden",
+      "event_id": "e7",
+      "case": "rumor",
+      "target": "许栀",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "许栀",
+          "normalized_answer": "许栀",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "许栀",
+          "normalized_answer": "许栀",
+          "status": "answered",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "许栀",
+          "normalized_answer": "许栀",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "许栀",
+          "normalized_answer": "许栀",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-garden",
+      "event_id": "e10",
+      "case": "retention",
+      "target": "桑榆",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "桑榆",
+          "normalized_answer": "桑榆",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "钟穗",
+          "normalized_answer": "钟穗",
+          "status": "answered",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "桑榆",
+          "normalized_answer": "桑榆",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "桑榆",
+          "normalized_answer": "桑榆",
+          "status": "answered",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-garden",
+      "event_id": "e11",
+      "case": "unknown",
+      "target": "不确定",
+      "known": false,
+      "outcomes": {
+        "history": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "钟穗",
+          "normalized_answer": "钟穗",
+          "status": "answered",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-studio",
+      "event_id": "e3",
+      "case": "initial",
+      "target": "微浪",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "《微浪》",
+          "normalized_answer": "《微浪》",
+          "status": "answered",
+          "correct": false
+        },
+        "recent": {
+          "raw_answer": "《微浪》",
+          "normalized_answer": "《微浪》",
+          "status": "answered",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "《微浪》",
+          "normalized_answer": "《微浪》",
+          "status": "answered",
+          "correct": false
+        },
+        "bounded_summary": {
+          "raw_answer": "《微浪》",
+          "normalized_answer": "《微浪》",
+          "status": "answered",
+          "correct": false
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-studio",
+      "event_id": "e6",
+      "case": "unknown",
+      "target": "不确定",
+      "known": false,
+      "outcomes": {
+        "history": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        },
+        "retrieval": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "《薄雾》",
+          "normalized_answer": "《薄雾》",
+          "status": "answered",
+          "correct": false
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-studio",
+      "event_id": "e9",
+      "case": "rumor",
+      "target": "薄雾",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "《薄雾》",
+          "normalized_answer": "《薄雾》",
+          "status": "answered",
+          "correct": false
+        },
+        "recent": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "《薄雾》",
+          "normalized_answer": "《薄雾》",
+          "status": "answered",
+          "correct": false
+        },
+        "bounded_summary": {
+          "raw_answer": "《薄雾》",
+          "normalized_answer": "《薄雾》",
+          "status": "answered",
+          "correct": false
+        }
+      }
+    },
+    {
+      "stream_id": "memory-v1-studio",
+      "event_id": "e11",
+      "case": "retention",
+      "target": "木铃",
+      "known": true,
+      "outcomes": {
+        "history": {
+          "raw_answer": "木铃",
+          "normalized_answer": "木铃",
+          "status": "answered",
+          "correct": true
+        },
+        "recent": {
+          "raw_answer": "不确定",
+          "normalized_answer": "不确定",
+          "status": "abstained",
+          "correct": false
+        },
+        "retrieval": {
+          "raw_answer": "木铃",
+          "normalized_answer": "木铃",
+          "status": "answered",
+          "correct": true
+        },
+        "bounded_summary": {
+          "raw_answer": "《掌声》",
+          "normalized_answer": "《掌声》",
+          "status": "answered",
+          "correct": false
+        }
+      }
+    }
+  ],
+  "fixture_sha256": "2db90a8d31d2165131ef14a8a59fffea2bdb44a86810d6fd456c6c786f1928fe",
+  "prediction_sha256": "9dcf0b0b21ef408d418c5cd52cec585a6df46918665a509588ceefc4dc0402f3"
+}
