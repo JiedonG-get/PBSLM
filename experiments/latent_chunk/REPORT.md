@@ -166,6 +166,29 @@ Post-hoc int4 reduced accuracy by 0.89 ± 0.51 percentage points on offset 4 and
 
 The payload is eight tagged 32-dimensional vectors, or 128 bytes per example, compared with 1,024 bytes as FP32 vectors. It excludes shared reader and trunk parameters. The compact reader still decodes the source phrases to construct the stored vectors. The evaluation verifies nibble packing and dequantization in memory before PBSLM inference, not a serialized storage pipeline, a packed-input kernel, measured runtime memory, or latency. At 128 bytes, the latent payload remains sixteen times larger than the ideal 8-byte packing of this task's 16 source IDs. See the [int4 JSON](compact_reader_int4_data0_model0-4_steps800.json) and [summary](compact_reader_int4_data0_model0-4_steps800.md) for per-seed metrics and source hashes.
 
+### Decoder-Free Read Adapter
+
+A shared 128→64→128 MLP maps each packed rank-4 phrase code to four compact input vectors. The adapter receives only `a/b`. For feature distillation, its training targets are the teacher's pre-tag compact vectors. The trunk and tags stay frozen, and the three adapter objectives use the same initialization and 800 minibatch draws. At test time the adapter consumes decoded int4 numbers from the stored bytes and bypasses the phrase vocabulary decoder. The teacher evaluates its final input vectors in FP32, while the student packs and unpacks its tagged input vectors before the trunk.
+
+| Held-out offsets | Condition | Test accuracy | Counterfactual pair exact |
+|---|---|---:|---:|
+| 4 | Raw tokens | 85.22 ± 14.27% | 72.79 ± 24.76% |
+| 4 | Compact teacher | 95.93 ± 2.47% | 92.47 ± 4.41% |
+| 4 | Direct `a/b` into frozen teacher trunk | 11.99 ± 1.69% | 1.00 ± 0.33% |
+| 4 | Feature-distilled adapter | 85.80 ± 2.74% | 73.23 ± 4.83% |
+| 4 | Task-only adapter | 35.49 ± 4.42% | 5.51 ± 1.52% |
+| 4 | Feature + task adapter | 57.73 ± 13.04% | 29.79 ± 19.74% |
+| 3/5 | Raw tokens | 78.44 ± 14.22% | 60.63 ± 25.14% |
+| 3/5 | Compact teacher | 97.25 ± 0.46% | 94.82 ± 0.86% |
+| 3/5 | Direct `a/b` into frozen teacher trunk | 12.12 ± 1.26% | 0.90 ± 0.37% |
+| 3/5 | Feature-distilled adapter | 84.90 ± 3.62% | 71.81 ± 6.09% |
+| 3/5 | Task-only adapter | 39.67 ± 0.95% | 6.34 ± 1.71% |
+| 3/5 | Feature + task adapter | 51.57 ± 14.36% | 21.29 ± 20.70% |
+
+Feature distillation outperformed either other adapter objective in all ten seed/split comparisons. Relative to the raw-token baseline, its paired accuracy difference was +0.58 ± 12.83 percentage points on offset 4 and +6.46 ± 14.73 points on offsets 3/5, with positive differences in two and three of five seeds, respectively. This experiment does not establish a reliable advantage over raw tokens. The adapter trailed the compact teacher by 10.13 ± 4.70 and 12.34 ± 3.46 points. Those teacher comparisons include both the changed reader and the difference in final input quantization.
+
+The adapter adds 16,576 shared parameters and reads a 128-byte packed `a/b` record. The packed intermediate trunk input also occupies 128 bytes during this evaluation. This study uses synthetic phrases and matched splits from the earlier reader studies. It measures downstream relation accuracy and storage payload. Runtime memory, latency, and natural-language generalization were outside the evaluation. The [result JSON](compact_reader_decoder_free_data0_model0-4_steps800.json), [summary](compact_reader_decoder_free_data0_model0-4_steps800.md), and [runner](../../evaluation/latent_chunk_compact_student.py) give the per-seed results and exact source hashes.
+
 ## Payload and State
 
 The following are FP32 payload arithmetic per example. They exclude shared model and encoder parameters, metadata, allocator overhead, and any online state implementation.
