@@ -111,6 +111,61 @@ Counterfactual pair-exact accuracy was 12.14 ± 2.19% for task-only, 5.81 ± 1.3
 
 The [offset-4 task-only JSON](task_aware_int4_task_only_offset4_data0_model0-4_steps800.json) and [summary](task_aware_int4_task_only_offset4_data0_model0-4_steps800.md), and the [offsets 3/5 task-only JSON](task_aware_int4_task_only_offsets3-5_data0_model0-4_steps800.json) and [summary](task_aware_int4_task_only_offsets3-5_data0_model0-4_steps800.md), include per-seed results, source hashes, and checkpoint digests. The matched runner and balanced split generator are [latent_chunk_task_aware_matched.py](../../evaluation/latent_chunk_task_aware_matched.py) and [latent_chunk_holdout.py](../../evaluation/latent_chunk_holdout.py).
 
+## Compact Reader
+
+The first run froze the rank-4 phrase autoencoder after 800 reconstruction steps. The compact reader independently decoded each int4 phrase code to eight soft token embeddings, merged adjacent embeddings with one shared linear layer, normalized the resulting vectors, and added learned phrase-role and slot tags. PBSLM received four vectors per phrase and learned the relation task through the trunk. The compact merge and tags add 2,080 and 512 trainable parameters, respectively. All arms used matched trunk initializations, minibatch sequences, and 800 task steps. Each fixed balanced split used 4,096 training rows, 3,072 test rows, and model seeds 0–4.
+
+| Held-out offsets | Input | Vectors | Test accuracy | Counterfactual pair exact |
+|---|---|---:|---:|---:|
+| 4 | Raw tokens | 16 | 85.22 ± 14.27% | 72.79 ± 24.76% |
+| 4 | Direct int4 `a/b` | 8 | 29.15 ± 1.58% | 5.81 ± 1.39% |
+| 4 | Compact soft reader | 8 | 96.07 ± 2.22% | 92.63 ± 3.99% |
+| 4 | Full soft reader | 16 | 80.34 ± 12.75% | 64.36 ± 21.04% |
+| 3/5 | Raw tokens | 16 | 78.44 ± 14.22% | 60.63 ± 25.14% |
+| 3/5 | Direct int4 `a/b` | 8 | 30.83 ± 0.97% | 6.50 ± 0.84% |
+| 3/5 | Compact soft reader | 8 | 97.09 ± 0.40% | 94.52 ± 0.57% |
+| 3/5 | Full soft reader | 16 | 74.58 ± 15.43% | 54.36 ± 26.51% |
+
+Across five matched model seeds per split, the compact reader exceeded raw-token accuracy by +10.85 ± 14.30 pp on offset 4 and +18.65 ± 14.09 pp on offsets 3/5. All ten paired differences were positive. Values are means ± sample SD. The compact and full-reader arms differ in merge parameters, normalization, and explicit tags, so the first run cannot attribute the gain to the merge alone. The seeds share fixed synthetic splits with a fixed phrase layout and training budget.
+
+The compact reader presents 1,024 B of FP32 vectors to the trunk, compared with 2,048 B for the full reader, while still computing all sixteen soft embeddings internally. The stored-code estimate is 128 B with ideal int4 packing, compared with 8 B for packed source token IDs. The experiment used simulated int4 and did not measure end-to-end memory, latency, natural-language generalization, or online state retrieval.
+
+Per-seed results and source hashes are in the [first-run JSON](compact_reader_balanced_data0_model0-4_steps800.json) and [summary](compact_reader_balanced_data0_model0-4_steps800.md). The [historical runner](https://github.com/JiedonG-get/PBSLM/blob/d06756828a882c0b3fb7839c35e535715f5b10e3/evaluation/latent_chunk_compact_reader.py) is preserved at commit `d067568`.
+
+### Matched-Tag Control
+
+A follow-up added the same learned phrase-role and slot tags to the sixteen-vector soft reader. The two 16-vector arms use matched model initialization, data split, minibatch sequence, and 800 task steps. Results are mean ± sample SD across five seeds on each fixed split.
+
+| Held-out offsets | Input | Test accuracy | Counterfactual pair exact |
+|---|---|---:|---:|
+| 4 | Compact, 8 vectors | 96.07 ± 2.22% | 92.63 ± 3.99% |
+| 4 | Soft reader with tags, 16 vectors | 95.13 ± 2.95% | 90.99 ± 5.15% |
+| 4 | Untagged soft reader, 16 vectors | 80.34 ± 12.75% | 64.36 ± 21.04% |
+| 3/5 | Compact, 8 vectors | 97.09 ± 0.40% | 94.52 ± 0.57% |
+| 3/5 | Soft reader with tags, 16 vectors | 96.60 ± 0.63% | 93.45 ± 1.11% |
+| 3/5 | Untagged soft reader, 16 vectors | 74.58 ± 15.43% | 54.36 ± 26.51% |
+
+The paired compact-minus-tagged accuracy difference was +0.94 ± 0.94 percentage points on offset 4 and +0.49 ± 0.45 points on offsets 3/5. Pair-exact differences were +1.64 ± 1.61 and +1.07 ± 0.82 points, respectively. Compact accuracy was higher for all five seeds on offset 4 and four of five seeds on offsets 3/5. Pair-exact accuracy was higher in all ten seed/split comparisons. The larger tagged-versus-untagged difference shows that these explicit tags account for much of the gain over the original full soft reader. The compact-vs-tagged comparison still changes pair mixing and normalization as well as trunk input length, so it does not isolate a sequence-length effect.
+
+This remains decoder-mediated task input compression. The compact path materializes sixteen decoded embeddings before merging them to eight trunk vectors. The 128-byte int4 payload exceeds the 8-byte ideal packing of this synthetic input, and no runtime memory or latency was measured. Per-seed metrics and source hashes are in the [matched-tag JSON](compact_reader_matched_tags_data0_model0-4_steps800.json) and [summary](compact_reader_matched_tags_data0_model0-4_steps800.md).
+
+### Packed Int4 Reader
+
+A quantization follow-up compared the same FP32-trained compact checkpoint before and after an actual signed-nibble pack/unpack round trip, then compared it with a separate quantization-aware training arm. All arms used five matched model seeds, the same balanced splits, and 800 task steps. The post-hoc rows isolate inference quantization because both scores come from the same trained weights.
+
+| Held-out offsets | Condition | Test accuracy | Counterfactual pair exact |
+|---|---|---:|---:|
+| 4 | FP32-trained, FP32 input | 96.07 ± 2.22% | 92.63 ± 3.99% |
+| 4 | Same checkpoint, packed int4 input | 95.18 ± 2.40% | 90.90 ± 4.32% |
+| 4 | Quantization-aware trained, packed int4 input | 95.76 ± 2.34% | 92.01 ± 4.31% |
+| 3/5 | FP32-trained, FP32 input | 97.09 ± 0.40% | 94.52 ± 0.57% |
+| 3/5 | Same checkpoint, packed int4 input | 96.17 ± 0.60% | 92.77 ± 0.98% |
+| 3/5 | Quantization-aware trained, packed int4 input | 97.17 ± 0.56% | 94.64 ± 0.93% |
+
+Post-hoc int4 reduced accuracy by 0.89 ± 0.51 percentage points on offset 4 and 0.92 ± 0.34 points on offsets 3/5. Pair-exact accuracy fell by 1.73 ± 1.02 and 1.74 ± 0.63 points. Every seed scored lower after post-hoc quantization. Quantization-aware training recovered 0.58 ± 0.62 and 1.00 ± 0.81 accuracy points relative to the packed post-hoc reader, with less consistent paired gains on offset 4. This supports the feasibility of feeding the task-trained compact representation through a 4-bit payload for this synthetic task.
+
+The payload is eight tagged 32-dimensional vectors, or 128 bytes per example, compared with 1,024 bytes as FP32 vectors. It excludes shared reader and trunk parameters. The compact reader still decodes the source phrases to construct the stored vectors. The evaluation verifies nibble packing and dequantization in memory before PBSLM inference, not a serialized storage pipeline, a packed-input kernel, measured runtime memory, or latency. At 128 bytes, the latent payload remains sixteen times larger than the ideal 8-byte packing of this task's 16 source IDs. See the [int4 JSON](compact_reader_int4_data0_model0-4_steps800.json) and [summary](compact_reader_int4_data0_model0-4_steps800.md) for per-seed metrics and source hashes.
+
 ## Payload and State
 
 The following are FP32 payload arithmetic per example. They exclude shared model and encoder parameters, metadata, allocator overhead, and any online state implementation.

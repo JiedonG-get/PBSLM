@@ -27,6 +27,16 @@ from evaluation.provenance import capture
 
 ROOT = Path(__file__).resolve().parents[1]
 PHRASE_VOCAB = CLASSES + 2
+SOURCE_PATHS = (
+    "evaluation/latent_chunk_compact_reader.py",
+    "evaluation/latent_chunk_soft_reader_confirmatory.py",
+    "evaluation/latent_chunk_reconstruction.py",
+    "evaluation/latent_chunk_ab_thinking.py",
+    "evaluation/latent_chunk_holdout.py",
+    "evaluation/latent_chunk_relations.py",
+    "evaluation/provenance.py",
+    "models/model_v2.py",
+)
 
 
 class CompactPairReader(nn.Module):
@@ -129,6 +139,89 @@ def train_compact_reader(seed, source_model, encoder, train, test, args, device,
     }
 
 
+def tagged_soft_embeddings(model, source_model, encoder, tags, ids):
+    with torch.no_grad():
+        a, b = encoder.encode(source_model, ids)
+        a = (a * 7).round().clamp(-7, 7) / 7
+        b = (b * 7).round().clamp(-7, 7) / 7
+        probabilities = torch.cat((encoder.decode(a), encoder.decode(b)), dim=1).softmax(-1)
+
+    token_embeddings = F.normalize(model.tok.weight[:PHRASE_VOCAB], dim=-1)
+    decoded = probabilities @ token_embeddings
+    batch, _, width = decoded.shape
+    paired_slots = decoded.reshape(batch, 2, RANK, 2, width)
+    slot_tags = tags.role + tags.position
+    tagged = paired_slots + slot_tags.unsqueeze(0).unsqueeze(-2)
+    return tagged.reshape(batch, 2 * PHRASE_LENGTH, width)
+
+
+@torch.no_grad()
+def evaluate_tagged_soft_reader(model, source_model, encoder, tags, data, batch_size=256):
+    model.eval()
+    source_model.eval()
+    encoder.eval()
+    tags.eval()
+    predictions = []
+    for start in range(0, data["target"].numel(), batch_size):
+        sl = slice(start, min(start + batch_size, data["target"].numel()))
+        embeds = tagged_soft_embeddings(
+            model, source_model, encoder, tags, data["ids"][sl]
+        )
+        output = model(None, 1, inputs_embeds=embeds, sample_noise=False)
+        predictions.extend(class_logits(model, output).argmax(-1).tolist())
+
+    predictions = torch.tensor(predictions, device=data["target"].device)
+    pair_exact = (
+        predictions[0::2].eq(data["target"][0::2])
+        & predictions[1::2].eq(data["target"][1::2])
+    ).float().mean()
+    return {
+        "accuracy": float((predictions == data["target"]).float().mean()),
+        "counterfactual_pair_exact": float(pair_exact),
+        "examples": data["target"].numel(),
+    }
+
+
+def train_tagged_soft_reader(seed, source_model, encoder, train, test, args, device, initial_state):
+    model = new_model(seed, device)
+    model.load_state_dict(initial_state)
+    tags = LatentRoleTags(RANK, model.d).to(device)
+    for parameter in encoder.parameters():
+        parameter.requires_grad_(False)
+
+    trainable = [parameter for parameter in model.parameters() if parameter.requires_grad]
+    trainable.extend(tags.parameters())
+    optimizer = torch.optim.AdamW(trainable, lr=args.lr, weight_decay=1e-4)
+    torch.manual_seed(seed * 1009 + 7)
+    rng = torch.Generator(device=device).manual_seed(seed * 997 + 19)
+    model.train()
+    tags.train()
+
+    for _ in range(args.steps):
+        indices = torch.randint(
+            train["target"].numel(), (args.batch_size,), generator=rng, device=device
+        )
+        ids = train["ids"][indices]
+        embeds = tagged_soft_embeddings(model, source_model, encoder, tags, ids)
+        output = model(None, 1, inputs_embeds=embeds, sample_noise=False)
+        objective = F.cross_entropy(class_logits(model, output), train["target"][indices])
+        optimizer.zero_grad(set_to_none=True)
+        objective.backward()
+        torch.nn.utils.clip_grad_norm_(trainable, 1.0)
+        optimizer.step()
+
+    return {
+        "test": evaluate_tagged_soft_reader(model, source_model, encoder, tags, test),
+        "train": evaluate_tagged_soft_reader(model, source_model, encoder, tags, train),
+        "input_vectors": 2 * PHRASE_LENGTH,
+        "additional_reader_parameters": 0,
+        "role_tag_parameters": sum(parameter.numel() for parameter in tags.parameters()),
+        "trainable_model_parameters": sum(
+            parameter.numel() for parameter in model.parameters() if parameter.requires_grad
+        ),
+    }
+
+
 def mean_sd(values):
     return statistics.mean(values), statistics.stdev(values) if len(values) > 1 else 0.0
 
@@ -155,9 +248,12 @@ def summarize(report):
         "direct_int4_latent": "Direct int4 a/b",
         "compact_8_vector_reader": "Compact soft reader",
         "soft_16_vector_reader": "Full soft reader",
+        "tagged_soft_16_vector_reader": "Matched-tag soft reader",
     }
     for offsets, runs in sorted(by_offsets.items()):
         for arm, label in arm_names.items():
+            if any(arm not in run for run in runs):
+                continue
             metrics = [
                 run[arm] if arm == "raw_token_baseline" else run[arm]["test"]
                 for run in runs
@@ -166,7 +262,9 @@ def summarize(report):
             pair_mean, pair_sd = mean_sd(
                 [item["counterfactual_pair_exact"] for item in metrics]
             )
-            vectors = 16 if arm in ("raw_token_baseline", "soft_16_vector_reader") else 8
+            vectors = 8 if arm in (
+                "direct_int4_latent", "compact_8_vector_reader"
+            ) else 16
             lines.append(
                 f"| {list(offsets)} | {label} | {vectors} | "
                 f"{100 * acc_mean:.2f} ± {100 * acc_sd:.2f}% | "
@@ -174,9 +272,9 @@ def summarize(report):
             )
     lines.extend([
         "",
-        "The rank-4 a/b code has 128 B of ideal int4 payload, while its dequantized FP32 training representation uses 1,024 B. The compact reader expands to eight 32-dimensional FP32 vectors (1,024 B) and the full reader to sixteen (2,048 B). These figures exclude shared encoder/decoder and reader parameters. The synthetic 16-token input can be represented in 8 B with ideal 4-bit packing, so the latent payload is not smaller than packed source IDs.",
+        "The rank-4 a/b code has 128 B of ideal int4 payload, while its dequantized FP32 training representation uses 1,024 B. The compact reader first materializes sixteen decoded token embeddings, then merges them to eight 32-dimensional FP32 trunk inputs (1,024 B). The full reader sends all sixteen to the trunk (2,048 B). These figures exclude shared encoder/decoder and reader parameters. The synthetic 16-token input can be represented in 8 B with ideal 4-bit packing, so the latent payload is not smaller than packed source IDs. The compact reader adds 2,080 merge parameters and 512 role/slot-tag parameters.",
         "",
-        "The compact reader merges adjacent decoded token pairs with one shared linear layer, then adds trainable phrase-role and slot tags. It is trained with task loss only. This synthetic benchmark does not establish natural-language retrieval or actual packed-runtime memory and latency savings.",
+        "The compact reader merges adjacent decoded token pairs with one shared linear layer, then adds trainable phrase-role and slot tags. It is trained with task loss only. Comparing the two 16-vector readers tests the effect of adding tags. Comparing the compact and matched-tag readers also changes pair mixing and normalization alongside trunk input length. This synthetic benchmark does not establish natural-language retrieval or actual packed-runtime memory and latency savings.",
         "",
     ])
     return "\n".join(lines)
@@ -210,7 +308,7 @@ def main():
     parser.add_argument("--resume", action="store_true")
     parser.add_argument(
         "--output",
-        default="experiments/latent_chunk/compact_reader_balanced_data0_model0-4_steps800.json",
+        default="experiments/latent_chunk/compact_reader_matched_tags_data0_model0-4_steps800.json",
     )
     cli = parser.parse_args()
     if min(cli.steps, cli.pretrain_steps, cli.batch_size) <= 0:
@@ -234,6 +332,7 @@ def main():
     offsets_sets = make_offsets_sets(cli.held_out_offsets)
     config = vars(cli).copy()
     config.pop("resume")
+    provenance = capture(SOURCE_PATHS)
 
     if output_path.exists():
         if not cli.resume:
@@ -241,10 +340,14 @@ def main():
         report = json.loads(output_path.read_text(encoding="utf-8"))
         if report["config"] != config:
             parser.error("resume configuration does not match the existing result")
+        if report["provenance"]["source_sha256_at_capture"] != provenance["source_sha256_at_capture"]:
+            parser.error("resume source hashes do not match the existing result")
+        if any("tagged_soft_16_vector_reader" not in run for run in report["runs"]):
+            parser.error("resume result is missing the matched-tag condition")
     else:
         report = {
             "task": "compact_reader_for_two_phrase_relation_composition",
-            "method": "Train raw, direct int4 a/b, an 8-vector compact soft reader, and a 16-vector soft reader on matched initializations, held-out splits, minibatch sequences, and task budgets.",
+            "method": "Train raw, direct int4 a/b, an 8-vector compact soft reader, an untagged 16-vector soft reader, and a 16-vector soft reader with the same phrase/slot tags as the compact arm on matched initializations, splits, minibatch sequences, and task budgets.",
             "config": config,
             "storage": {
                 "fake_int4_ab_payload_bytes": 2 * RANK * 32 * BITS // 8,
@@ -260,19 +363,11 @@ def main():
                 "compact_merge_parameters": 2 * 32 * 32 + 32,
                 "compact_role_and_position_parameters": 4 * RANK * 32,
                 "full_soft_reader_additional_parameters": 0,
+                "matched_tag_soft_reader_additional_parameters": 4 * RANK * 32,
             },
-            "limitations": "Synthetic task with frozen randomly initialized source embeddings. The compact merge, tags, token embeddings, and trunk receive task gradients, while the phrase encoder/decoder stay frozen after reconstruction pretraining. FP32 tensors simulate int4 values. No packed runtime, latency, natural-language, or online memory-write test is performed.",
+            "limitations": "Synthetic task with frozen randomly initialized source embeddings. The compact merge, tags, token embeddings, and trunk receive task gradients, while the phrase encoder/decoder stay frozen after reconstruction pretraining. The compact path materializes sixteen decoded embeddings before merging to eight trunk inputs. FP32 tensors simulate int4 values. No packed runtime, latency, natural-language, or online memory-write test is performed.",
             "torch": torch.__version__,
-            "provenance": capture([
-                "evaluation/latent_chunk_compact_reader.py",
-                "evaluation/latent_chunk_soft_reader_confirmatory.py",
-                "evaluation/latent_chunk_reconstruction.py",
-                "evaluation/latent_chunk_ab_thinking.py",
-                "evaluation/latent_chunk_holdout.py",
-                "evaluation/latent_chunk_relations.py",
-                "evaluation/provenance.py",
-                "models/model_v2.py",
-            ]),
+            "provenance": provenance,
             "progress": {"complete": False},
             "runs": [],
         }
@@ -313,6 +408,9 @@ def main():
             compact = train_compact_reader(
                 seed, source_model, encoder, train, test, args, device, initial_state
             )
+            tagged_soft = train_tagged_soft_reader(
+                seed, source_model, encoder, train, test, args, device, initial_state
+            )
             decoded_test = decode_int4(source_model, encoder, test)
             record = {
                 "held_out_offsets": offsets,
@@ -328,6 +426,7 @@ def main():
                 "direct_int4_latent": direct,
                 "compact_8_vector_reader": compact,
                 "soft_16_vector_reader": soft,
+                "tagged_soft_16_vector_reader": tagged_soft,
                 "compact_expanded_vectors": 2 * RANK,
                 "full_reader_expanded_vectors": 2 * PHRASE_LENGTH,
             }
