@@ -1,0 +1,1187 @@
+{
+  "task": "decoder_free_packed_int4_phrase_writer",
+  "config": {
+    "data_seed": 1,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "steps": 800,
+    "teacher_steps": 800,
+    "pretrain_steps": 800,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cuda",
+    "output": "experiments/latent_chunk/compact_writer_balanced_data1_offsets1-7_model0-4_steps800.json"
+  },
+  "held_out_offsets": [
+    1,
+    7
+  ],
+  "held_out_pairs": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      7
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      2
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      4,
+      3
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      5,
+      4
+    ],
+    [
+      5,
+      6
+    ],
+    [
+      6,
+      5
+    ],
+    [
+      6,
+      7
+    ],
+    [
+      7,
+      0
+    ],
+    [
+      7,
+      6
+    ]
+  ],
+  "storage": {
+    "source_autoencoder_code_bytes_per_example": 128,
+    "writer_persistent_code_bytes_per_phrase": 64,
+    "writer_persistent_ab_code_bytes_per_example": 128,
+    "writer_temporary_packed_trunk_input_bytes_per_example": 128,
+    "unpacked_trunk_input_bytes_per_example": 1024,
+    "ideal_packed_synthetic_token_ids_bytes_per_example": 8
+  },
+  "storage_notes": "Payload sizes exclude model weights and runtime buffers. The writer persists only pre-tag a/b codes. Trunk inputs are unpacked to FP32 for computation.",
+  "training_notes": "Raw and direct baselines train their own trunks on training labels. The decoder-mediated teacher trains on training labels with unquantized tagged trunk inputs. Writer conditions use the same phrase-encoder initialization, training rows, and minibatches, with a frozen teacher trunk and frozen source embeddings.",
+  "provenance": {
+    "git_commit": "a9f6f6198c2c7a087d61711d78eaf07447a247cb",
+    "git_status": "?? evaluation/analyze_qwen_story.py\n?? evaluation/latent_chunk_compact_state.py\n?? evaluation/latent_chunk_compact_writer.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? experiments/continuous_online/alias_online_dev_frozen_scores_v2.json\n?? experiments/continuous_online/alias_online_dev_frozen_v2.json\n?? experiments/continuous_online/alias_online_development_batch_scores_v2.json\n?? experiments/continuous_online/alias_online_development_batch_v2.json\n?? experiments/continuous_online/alias_online_development_final_scores_v2.json\n?? experiments/continuous_online/alias_online_development_final_v2.json\n?? experiments/continuous_online/alias_online_development_initial_scores_v2.json\n?? experiments/continuous_online/alias_online_development_initial_v2.json\n?? experiments/continuous_online/alias_online_development_retry_v2.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/latent_chunk/preflight_matched.json\n?? experiments/latent_chunk/preflight_seed0_rank1.json\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_seed0_pilot_steps800.json\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_seed0_pilot_steps800.md\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_seed0_pilot_steps800_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_model0-4_steps1600.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_model0-4_steps1600.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_model0-4_steps1600_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_seed0_pilot_steps800.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_seed0_pilot_steps800.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_seed0_pilot_steps800_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_seed0_pilot_steps1600.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_seed0_pilot_steps1600.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_seed0_pilot_steps1600_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_offset4_seed0.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_offset4_seed0.md\n?? experiments/recurrent_state/continuous_event_tests.log",
+    "source_sha256_at_capture": {
+      "evaluation/latent_chunk_compact_writer.py": "67833dae991406a71c74a33dc58eac2d861fcd31335db5e70c1d4326ca31f3df",
+      "evaluation/latent_chunk_ab_thinking.py": "3da790e222a000e7f367ef12595aa281bfe8540ca2a0dff0887a22337b9da571",
+      "evaluation/latent_chunk_compact_int4.py": "3a4ac19e58ce8c6eafa77d4838ba3d4342aadb932c8562d6d58c5d6bc5c2e55e",
+      "evaluation/latent_chunk_compact_reader.py": "6ad88fdb525ace98f3c3a766af4d8e8c805b1c9b84c7aa00032de4e3b72600e2",
+      "evaluation/latent_chunk_compact_student.py": "33c31eff8bb2e486c0a65544b4cd416130dc438a98d1420635a54373479f3c29",
+      "evaluation/latent_chunk_holdout.py": "71b801414c93ff7f4d3421122b4fc4382012749e900f5609a763847cb7171dfe",
+      "evaluation/latent_chunk_reconstruction.py": "fb468a9f4c9ee5a39f926a348abf583f3afccec8756e4d647ce8ac4a0e26c73d",
+      "evaluation/latent_chunk_relations.py": "070377ad5b4980a20a4b43953e67b80dfb976376da1cc6e28dba5c2ea54da312",
+      "evaluation/latent_chunk_soft_reader_confirmatory.py": "02b8ef43bc5555f6d374c117be673f9895feff837795564d81827037cf0bd24b",
+      "evaluation/provenance.py": "061924cbf9c0c5d326501be75102734bea03be6f1f315dfe032fdff1a34ebdee",
+      "models/model_v2.py": "685d275de48e923e93adc9614319e0743f80573619bead16a1f7b06aeeff8d05"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "progress": {
+    "complete": true
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "train_examples": 4096,
+      "test_examples": 3072,
+      "parameters": {
+        "trunk": 205466,
+        "trunk_trainable_in_baselines": 201306,
+        "frozen_source_embedding_table": 576,
+        "phrase_encoder_or_writer": 24768,
+        "phrase_decoder": 13456,
+        "teacher_merge": 2080,
+        "role_and_position_tags": 512
+      },
+      "reconstruction_pretraining": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.999237060546875,
+          "y_token_accuracy": 0.99993896484375,
+          "all_16_token_accuracy": 0.9995880126953125,
+          "x_variable_token_accuracy": 0.9991280691964286,
+          "y_variable_token_accuracy": 0.9999302455357143,
+          "query_key_accuracy": 0.99951171875,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9990641276041666,
+          "y_filler_accuracy": 0.9998372395833334,
+          "x_phrase_exact": 0.993896484375,
+          "y_phrase_exact": 0.99951171875,
+          "both_phrases_exact": 0.993408203125,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.99951171875,
+              0.997314453125,
+              0.999267578125,
+              0.998291015625,
+              0.999755859375,
+              0.999755859375,
+              1.0
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.99951171875,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 4096
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9984131008386612,
+          "y_token_accuracy": 0.9925130382180214,
+          "all_16_token_accuracy": 0.9954630695283413,
+          "x_variable_token_accuracy": 0.9981864009584699,
+          "y_variable_token_accuracy": 0.9914434722491673,
+          "query_key_accuracy": 0.9986979365348816,
+          "y_edge_symbol_accuracy": 0.985677108168602,
+          "x_filler_accuracy": 0.998101145029068,
+          "y_filler_accuracy": 0.999131957689921,
+          "x_phrase_exact": 0.9879557291666666,
+          "y_phrase_exact": 0.94921875,
+          "both_phrases_exact": 0.9378255208333334,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9986979365348816,
+              0.99609375,
+              0.9977213740348816,
+              0.9967448115348816,
+              0.9990234375,
+              0.9996744990348816,
+              0.9993489980697632
+            ],
+            "y": [
+              1.0,
+              0.998046875,
+              0.9700521230697632,
+              0.9993489980697632,
+              0.9752604365348816,
+              1.0,
+              0.998046875,
+              0.9993489980697632
+            ]
+          },
+          "examples": 3072
+        },
+        "final_batch_loss": 0.027189329266548157,
+        "train_seconds": 2.223971300001722
+      },
+      "source_int4_test_reconstruction": {
+        "all_16_token_accuracy": 0.9938558340072632,
+        "both_phrases_exact": 0.9156901240348816,
+        "query_key_accuracy": 0.9977213740348816,
+        "y_edge_symbol_accuracy": 0.9817708730697632,
+        "examples": 3072
+      },
+      "raw_token_baseline": {
+        "test": {
+          "accuracy": 0.9124349355697632,
+          "counterfactual_pair_exact": 0.828125,
+          "examples": 3072,
+          "train_evaluation": {
+            "accuracy": 0.944580078125,
+            "counterfactual_pair_exact": 0.88916015625,
+            "examples": 4096
+          },
+          "train_seconds": 15.595807399993646
+        },
+        "train": {
+          "accuracy": 0.944580078125,
+          "counterfactual_pair_exact": 0.88916015625,
+          "examples": 4096
+        }
+      },
+      "direct_int4": {
+        "test": {
+          "accuracy": 0.3056640625,
+          "counterfactual_pair_exact": 0.0690104216337204,
+          "examples": 3072
+        },
+        "train": {
+          "accuracy": 0.987548828125,
+          "counterfactual_pair_exact": 0.97509765625,
+          "examples": 4096
+        },
+        "trainable_model_parameters": 201306,
+        "role_tag_parameters": 512
+      },
+      "teacher_float": {
+        "test": {
+          "accuracy": 0.95703125,
+          "counterfactual_pair_exact": 0.9244791865348816,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 1024.0
+        },
+        "train": {
+          "accuracy": 1.0,
+          "counterfactual_pair_exact": 1.0,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 1024.0
+        }
+      },
+      "teacher_packed": {
+        "test": {
+          "accuracy": 0.9456380605697632,
+          "counterfactual_pair_exact": 0.90234375,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 128.0
+        },
+        "train": {
+          "accuracy": 0.989990234375,
+          "counterfactual_pair_exact": 0.97998046875,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 128.0
+        }
+      },
+      "direct_int4_frozen_teacher": {
+        "test": {
+          "accuracy": 0.1305338591337204,
+          "counterfactual_pair_exact": 0.0078125,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 128.0
+        },
+        "train": {
+          "accuracy": 0.13037109375,
+          "counterfactual_pair_exact": 0.0078125,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 128.0
+        }
+      },
+      "feature_only": {
+        "test": {
+          "accuracy": 0.9557291865348816,
+          "counterfactual_pair_exact": 0.9114583730697632,
+          "examples": 3072,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.9680604934692383
+        },
+        "train": {
+          "accuracy": 0.966064453125,
+          "counterfactual_pair_exact": 0.93212890625,
+          "examples": 4096,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.9712336659431458
+        },
+        "trainable_writer_parameters": 24768
+      },
+      "feature_and_task": {
+        "test": {
+          "accuracy": 0.6630859375,
+          "counterfactual_pair_exact": 0.3938802182674408,
+          "examples": 3072,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.7248163223266602
+        },
+        "train": {
+          "accuracy": 0.851806640625,
+          "counterfactual_pair_exact": 0.71142578125,
+          "examples": 4096,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.7301536798477173
+        },
+        "trainable_writer_parameters": 24768
+      }
+    },
+    {
+      "seed": 1,
+      "train_examples": 4096,
+      "test_examples": 3072,
+      "parameters": {
+        "trunk": 205466,
+        "trunk_trainable_in_baselines": 201306,
+        "frozen_source_embedding_table": 576,
+        "phrase_encoder_or_writer": 24768,
+        "phrase_decoder": 13456,
+        "teacher_merge": 2080,
+        "role_and_position_tags": 512
+      },
+      "reconstruction_pretraining": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.999420166015625,
+          "y_token_accuracy": 0.99981689453125,
+          "all_16_token_accuracy": 0.9996185302734375,
+          "x_variable_token_accuracy": 0.9993373325892857,
+          "y_variable_token_accuracy": 0.9997907366071429,
+          "query_key_accuracy": 0.99951171875,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9993082682291666,
+          "y_filler_accuracy": 0.99951171875,
+          "x_phrase_exact": 0.995849609375,
+          "y_phrase_exact": 0.99853515625,
+          "both_phrases_exact": 0.994384765625,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.99951171875,
+              0.9990234375,
+              0.999267578125,
+              0.999267578125,
+              0.999755859375,
+              0.99951171875,
+              0.9990234375
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.99853515625,
+              1.0
+            ]
+          },
+          "examples": 4096
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9974365308880806,
+          "y_token_accuracy": 0.9970703348517418,
+          "all_16_token_accuracy": 0.9972534328699112,
+          "x_variable_token_accuracy": 0.9970703210149493,
+          "y_variable_token_accuracy": 0.9966518112591335,
+          "query_key_accuracy": 0.998046875,
+          "y_edge_symbol_accuracy": 0.994954451918602,
+          "x_filler_accuracy": 0.9969075620174408,
+          "y_filler_accuracy": 0.9989149570465088,
+          "x_phrase_exact": 0.9807942708333334,
+          "y_phrase_exact": 0.9778645833333334,
+          "both_phrases_exact": 0.958984375,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.998046875,
+              0.994140625,
+              0.9970703125,
+              0.9947916865348816,
+              0.9986979365348816,
+              0.9977213740348816,
+              0.9990234375
+            ],
+            "y": [
+              1.0,
+              0.9993489980697632,
+              0.9908854365348816,
+              0.9973958730697632,
+              0.9921875,
+              0.9993489980697632,
+              0.9986979365348816,
+              0.9986979365348816
+            ]
+          },
+          "examples": 3072
+        },
+        "final_batch_loss": 0.024730201810598373,
+        "train_seconds": 2.2190027000033297
+      },
+      "source_int4_test_reconstruction": {
+        "all_16_token_accuracy": 0.9956258535385132,
+        "both_phrases_exact": 0.9342448115348816,
+        "query_key_accuracy": 0.9967448115348816,
+        "y_edge_symbol_accuracy": 0.9923502802848816,
+        "examples": 3072
+      },
+      "raw_token_baseline": {
+        "test": {
+          "accuracy": 0.5537109375,
+          "counterfactual_pair_exact": 0.21875,
+          "examples": 3072,
+          "train_evaluation": {
+            "accuracy": 0.7138671875,
+            "counterfactual_pair_exact": 0.484375,
+            "examples": 4096
+          },
+          "train_seconds": 15.576910999996471
+        },
+        "train": {
+          "accuracy": 0.7138671875,
+          "counterfactual_pair_exact": 0.484375,
+          "examples": 4096
+        }
+      },
+      "direct_int4": {
+        "test": {
+          "accuracy": 0.3111979365348816,
+          "counterfactual_pair_exact": 0.0696614608168602,
+          "examples": 3072
+        },
+        "train": {
+          "accuracy": 0.99072265625,
+          "counterfactual_pair_exact": 0.9814453125,
+          "examples": 4096
+        },
+        "trainable_model_parameters": 201306,
+        "role_tag_parameters": 512
+      },
+      "teacher_float": {
+        "test": {
+          "accuracy": 0.9775390625,
+          "counterfactual_pair_exact": 0.9557291865348816,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 1024.0
+        },
+        "train": {
+          "accuracy": 1.0,
+          "counterfactual_pair_exact": 1.0,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 1024.0
+        }
+      },
+      "teacher_packed": {
+        "test": {
+          "accuracy": 0.970703125,
+          "counterfactual_pair_exact": 0.94140625,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 128.0
+        },
+        "train": {
+          "accuracy": 0.994140625,
+          "counterfactual_pair_exact": 0.98828125,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 128.0
+        }
+      },
+      "direct_int4_frozen_teacher": {
+        "test": {
+          "accuracy": 0.1171875,
+          "counterfactual_pair_exact": 0.01106770895421505,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 128.0
+        },
+        "train": {
+          "accuracy": 0.11083984375,
+          "counterfactual_pair_exact": 0.0107421875,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 128.0
+        }
+      },
+      "feature_only": {
+        "test": {
+          "accuracy": 0.982421875,
+          "counterfactual_pair_exact": 0.96484375,
+          "examples": 3072,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.9687204360961914
+        },
+        "train": {
+          "accuracy": 0.985107421875,
+          "counterfactual_pair_exact": 0.97021484375,
+          "examples": 4096,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.9717373251914978
+        },
+        "trainable_writer_parameters": 24768
+      },
+      "feature_and_task": {
+        "test": {
+          "accuracy": 0.9710286855697632,
+          "counterfactual_pair_exact": 0.9427083730697632,
+          "examples": 3072,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.8143113454182943
+        },
+        "train": {
+          "accuracy": 0.994384765625,
+          "counterfactual_pair_exact": 0.98876953125,
+          "examples": 4096,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.8195836544036865
+        },
+        "trainable_writer_parameters": 24768
+      }
+    },
+    {
+      "seed": 2,
+      "train_examples": 4096,
+      "test_examples": 3072,
+      "parameters": {
+        "trunk": 205466,
+        "trunk_trainable_in_baselines": 201306,
+        "frozen_source_embedding_table": 576,
+        "phrase_encoder_or_writer": 24768,
+        "phrase_decoder": 13456,
+        "teacher_merge": 2080,
+        "role_and_position_tags": 512
+      },
+      "reconstruction_pretraining": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.99908447265625,
+          "y_token_accuracy": 1.0,
+          "all_16_token_accuracy": 0.999542236328125,
+          "x_variable_token_accuracy": 0.9989536830357143,
+          "y_variable_token_accuracy": 1.0,
+          "query_key_accuracy": 0.99853515625,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9990234375,
+          "y_filler_accuracy": 1.0,
+          "x_phrase_exact": 0.9931640625,
+          "y_phrase_exact": 1.0,
+          "both_phrases_exact": 0.9931640625,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.99853515625,
+              0.99658203125,
+              0.99951171875,
+              0.998779296875,
+              1.0,
+              0.999755859375,
+              0.99951171875
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 4096
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.997395858168602,
+          "y_token_accuracy": 0.9894206002354622,
+          "all_16_token_accuracy": 0.9934082292020321,
+          "x_variable_token_accuracy": 0.9970238379069737,
+          "y_variable_token_accuracy": 0.9879092574119568,
+          "query_key_accuracy": 0.9983724355697632,
+          "y_edge_symbol_accuracy": 0.9804687798023224,
+          "x_filler_accuracy": 0.9967990716298422,
+          "y_filler_accuracy": 0.9978298942248026,
+          "x_phrase_exact": 0.9801432291666666,
+          "y_phrase_exact": 0.927734375,
+          "both_phrases_exact": 0.9104817708333334,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9983724355697632,
+              0.9931640625,
+              0.9973958730697632,
+              0.9934896230697632,
+              0.9986979365348816,
+              0.9996744990348816,
+              0.9983724355697632
+            ],
+            "y": [
+              1.0,
+              0.9993489980697632,
+              0.9537760615348816,
+              0.9993489980697632,
+              0.9694010615348816,
+              0.9954427480697632,
+              0.9993489980697632,
+              0.9986979365348816
+            ]
+          },
+          "examples": 3072
+        },
+        "final_batch_loss": 0.02976771630346775,
+        "train_seconds": 2.2005810999980895
+      },
+      "source_int4_test_reconstruction": {
+        "all_16_token_accuracy": 0.9911906123161316,
+        "both_phrases_exact": 0.8759765625,
+        "query_key_accuracy": 0.99609375,
+        "y_edge_symbol_accuracy": 0.97509765625,
+        "examples": 3072
+      },
+      "raw_token_baseline": {
+        "test": {
+          "accuracy": 0.9342448115348816,
+          "counterfactual_pair_exact": 0.873046875,
+          "examples": 3072,
+          "train_evaluation": {
+            "accuracy": 0.96142578125,
+            "counterfactual_pair_exact": 0.92333984375,
+            "examples": 4096
+          },
+          "train_seconds": 15.310872299989569
+        },
+        "train": {
+          "accuracy": 0.96142578125,
+          "counterfactual_pair_exact": 0.92333984375,
+          "examples": 4096
+        }
+      },
+      "direct_int4": {
+        "test": {
+          "accuracy": 0.3089192807674408,
+          "counterfactual_pair_exact": 0.0677083358168602,
+          "examples": 3072
+        },
+        "train": {
+          "accuracy": 0.9873046875,
+          "counterfactual_pair_exact": 0.974609375,
+          "examples": 4096
+        },
+        "trainable_model_parameters": 201306,
+        "role_tag_parameters": 512
+      },
+      "teacher_float": {
+        "test": {
+          "accuracy": 0.9378255605697632,
+          "counterfactual_pair_exact": 0.8860677480697632,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 1024.0
+        },
+        "train": {
+          "accuracy": 1.0,
+          "counterfactual_pair_exact": 1.0,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 1024.0
+        }
+      },
+      "teacher_packed": {
+        "test": {
+          "accuracy": 0.9319661855697632,
+          "counterfactual_pair_exact": 0.8763021230697632,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 128.0
+        },
+        "train": {
+          "accuracy": 0.998291015625,
+          "counterfactual_pair_exact": 0.99658203125,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 128.0
+        }
+      },
+      "direct_int4_frozen_teacher": {
+        "test": {
+          "accuracy": 0.1145833358168602,
+          "counterfactual_pair_exact": 0.009765625,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 128.0
+        },
+        "train": {
+          "accuracy": 0.1083984375,
+          "counterfactual_pair_exact": 0.01025390625,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 128.0
+        }
+      },
+      "feature_only": {
+        "test": {
+          "accuracy": 0.9905599355697632,
+          "counterfactual_pair_exact": 0.9811198115348816,
+          "examples": 3072,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.9661417007446289
+        },
+        "train": {
+          "accuracy": 0.993408203125,
+          "counterfactual_pair_exact": 0.98681640625,
+          "examples": 4096,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.9713929891586304
+        },
+        "trainable_writer_parameters": 24768
+      },
+      "feature_and_task": {
+        "test": {
+          "accuracy": 0.9742838740348816,
+          "counterfactual_pair_exact": 0.9485677480697632,
+          "examples": 3072,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.8307703336079916
+        },
+        "train": {
+          "accuracy": 0.995849609375,
+          "counterfactual_pair_exact": 0.99169921875,
+          "examples": 4096,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.8384939432144165
+        },
+        "trainable_writer_parameters": 24768
+      }
+    },
+    {
+      "seed": 3,
+      "train_examples": 4096,
+      "test_examples": 3072,
+      "parameters": {
+        "trunk": 205466,
+        "trunk_trainable_in_baselines": 201306,
+        "frozen_source_embedding_table": 576,
+        "phrase_encoder_or_writer": 24768,
+        "phrase_decoder": 13456,
+        "teacher_merge": 2080,
+        "role_and_position_tags": 512
+      },
+      "reconstruction_pretraining": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.999725341796875,
+          "y_token_accuracy": 0.999755859375,
+          "all_16_token_accuracy": 0.9997406005859375,
+          "x_variable_token_accuracy": 0.9996861049107143,
+          "y_variable_token_accuracy": 0.9997209821428571,
+          "query_key_accuracy": 0.99951171875,
+          "y_edge_symbol_accuracy": 0.9998779296875,
+          "x_filler_accuracy": 0.9997151692708334,
+          "y_filler_accuracy": 0.99951171875,
+          "x_phrase_exact": 0.998046875,
+          "y_phrase_exact": 0.99853515625,
+          "both_phrases_exact": 0.99658203125,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.99951171875,
+              0.998779296875,
+              0.999755859375,
+              0.999755859375,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "y": [
+              1.0,
+              0.99951171875,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.99951171875,
+              0.9990234375
+            ]
+          },
+          "examples": 4096
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.998331718146801,
+          "y_token_accuracy": 0.9961751475930214,
+          "all_16_token_accuracy": 0.9972534328699112,
+          "x_variable_token_accuracy": 0.9980933921677726,
+          "y_variable_token_accuracy": 0.9956287401063102,
+          "query_key_accuracy": 0.99609375,
+          "y_edge_symbol_accuracy": 0.993489608168602,
+          "x_filler_accuracy": 0.9984266658624014,
+          "y_filler_accuracy": 0.9984809160232544,
+          "x_phrase_exact": 0.9889322916666666,
+          "y_phrase_exact": 0.970703125,
+          "both_phrases_exact": 0.9602864583333334,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.99609375,
+              0.9973958730697632,
+              0.9990234375,
+              0.9970703125,
+              0.9990234375,
+              0.9986979365348816,
+              0.9993489980697632
+            ],
+            "y": [
+              1.0,
+              0.9986979365348816,
+              0.986328125,
+              0.9973958730697632,
+              0.9915364980697632,
+              0.9986979365348816,
+              0.9986979365348816,
+              0.998046875
+            ]
+          },
+          "examples": 3072
+        },
+        "final_batch_loss": 0.023953353986144066,
+        "train_seconds": 2.39438969999901
+      },
+      "source_int4_test_reconstruction": {
+        "all_16_token_accuracy": 0.99603271484375,
+        "both_phrases_exact": 0.9420573115348816,
+        "query_key_accuracy": 0.9964193105697632,
+        "y_edge_symbol_accuracy": 0.9905599355697632,
+        "examples": 3072
+      },
+      "raw_token_baseline": {
+        "test": {
+          "accuracy": 0.7259114980697632,
+          "counterfactual_pair_exact": 0.490234375,
+          "examples": 3072,
+          "train_evaluation": {
+            "accuracy": 0.856201171875,
+            "counterfactual_pair_exact": 0.72119140625,
+            "examples": 4096
+          },
+          "train_seconds": 16.320325500011677
+        },
+        "train": {
+          "accuracy": 0.856201171875,
+          "counterfactual_pair_exact": 0.72119140625,
+          "examples": 4096
+        }
+      },
+      "direct_int4": {
+        "test": {
+          "accuracy": 0.2607421875,
+          "counterfactual_pair_exact": 0.0436197929084301,
+          "examples": 3072
+        },
+        "train": {
+          "accuracy": 0.986572265625,
+          "counterfactual_pair_exact": 0.97314453125,
+          "examples": 4096
+        },
+        "trainable_model_parameters": 201306,
+        "role_tag_parameters": 512
+      },
+      "teacher_float": {
+        "test": {
+          "accuracy": 0.9807943105697632,
+          "counterfactual_pair_exact": 0.9622396230697632,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 1024.0
+        },
+        "train": {
+          "accuracy": 1.0,
+          "counterfactual_pair_exact": 1.0,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 1024.0
+        }
+      },
+      "teacher_packed": {
+        "test": {
+          "accuracy": 0.974609375,
+          "counterfactual_pair_exact": 0.94921875,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 128.0
+        },
+        "train": {
+          "accuracy": 0.998779296875,
+          "counterfactual_pair_exact": 0.99755859375,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 128.0
+        }
+      },
+      "direct_int4_frozen_teacher": {
+        "test": {
+          "accuracy": 0.1110026091337204,
+          "counterfactual_pair_exact": 0.00911458395421505,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 128.0
+        },
+        "train": {
+          "accuracy": 0.101806640625,
+          "counterfactual_pair_exact": 0.00537109375,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 128.0
+        }
+      },
+      "feature_only": {
+        "test": {
+          "accuracy": 0.9612630605697632,
+          "counterfactual_pair_exact": 0.9225260615348816,
+          "examples": 3072,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.9696725209554037
+        },
+        "train": {
+          "accuracy": 0.971435546875,
+          "counterfactual_pair_exact": 0.94287109375,
+          "examples": 4096,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.9726222157478333
+        },
+        "trainable_writer_parameters": 24768
+      },
+      "feature_and_task": {
+        "test": {
+          "accuracy": 0.9694010615348816,
+          "counterfactual_pair_exact": 0.9388021230697632,
+          "examples": 3072,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.8305089473724365
+        },
+        "train": {
+          "accuracy": 0.9921875,
+          "counterfactual_pair_exact": 0.984375,
+          "examples": 4096,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.8344705700874329
+        },
+        "trainable_writer_parameters": 24768
+      }
+    },
+    {
+      "seed": 4,
+      "train_examples": 4096,
+      "test_examples": 3072,
+      "parameters": {
+        "trunk": 205466,
+        "trunk_trainable_in_baselines": 201306,
+        "frozen_source_embedding_table": 576,
+        "phrase_encoder_or_writer": 24768,
+        "phrase_decoder": 13456,
+        "teacher_merge": 2080,
+        "role_and_position_tags": 512
+      },
+      "reconstruction_pretraining": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.998809814453125,
+          "y_token_accuracy": 0.99981689453125,
+          "all_16_token_accuracy": 0.9993133544921875,
+          "x_variable_token_accuracy": 0.9986397879464286,
+          "y_variable_token_accuracy": 0.9997907366071429,
+          "query_key_accuracy": 0.998046875,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9987386067708334,
+          "y_filler_accuracy": 0.99951171875,
+          "x_phrase_exact": 0.99169921875,
+          "y_phrase_exact": 0.99853515625,
+          "both_phrases_exact": 0.990234375,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.998046875,
+              0.998046875,
+              0.999755859375,
+              0.99609375,
+              0.9990234375,
+              0.99951171875,
+              1.0
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.99951171875,
+              0.99951171875,
+              0.99951171875
+            ]
+          },
+          "examples": 4096
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9974772334098816,
+          "y_token_accuracy": 0.9930013120174408,
+          "all_16_token_accuracy": 0.9952392727136612,
+          "x_variable_token_accuracy": 0.9971168381827218,
+          "y_variable_token_accuracy": 0.9920014994485038,
+          "query_key_accuracy": 0.9983724355697632,
+          "y_edge_symbol_accuracy": 0.9877929836511612,
+          "x_filler_accuracy": 0.9969075719515482,
+          "y_filler_accuracy": 0.9976128538449606,
+          "x_phrase_exact": 0.9807942708333334,
+          "y_phrase_exact": 0.9524739583333334,
+          "both_phrases_exact": 0.9339192708333334,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9983724355697632,
+              0.9947916865348816,
+              0.9993489980697632,
+              0.9915364980697632,
+              1.0,
+              0.998046875,
+              0.9977213740348816
+            ],
+            "y": [
+              1.0,
+              0.9986979365348816,
+              0.982421875,
+              0.9973958730697632,
+              0.97265625,
+              0.99609375,
+              0.998046875,
+              0.9986979365348816
+            ]
+          },
+          "examples": 3072
+        },
+        "final_batch_loss": 0.027671128511428833,
+        "train_seconds": 2.231577799990191
+      },
+      "source_int4_test_reconstruction": {
+        "all_16_token_accuracy": 0.9937947988510132,
+        "both_phrases_exact": 0.9111328125,
+        "query_key_accuracy": 0.9967448115348816,
+        "y_edge_symbol_accuracy": 0.9847005605697632,
+        "examples": 3072
+      },
+      "raw_token_baseline": {
+        "test": {
+          "accuracy": 0.5559896230697632,
+          "counterfactual_pair_exact": 0.2369791716337204,
+          "examples": 3072,
+          "train_evaluation": {
+            "accuracy": 0.711669921875,
+            "counterfactual_pair_exact": 0.47021484375,
+            "examples": 4096
+          },
+          "train_seconds": 15.261921900004381
+        },
+        "train": {
+          "accuracy": 0.711669921875,
+          "counterfactual_pair_exact": 0.47021484375,
+          "examples": 4096
+        }
+      },
+      "direct_int4": {
+        "test": {
+          "accuracy": 0.2923177182674408,
+          "counterfactual_pair_exact": 0.0670572966337204,
+          "examples": 3072
+        },
+        "train": {
+          "accuracy": 0.9873046875,
+          "counterfactual_pair_exact": 0.974609375,
+          "examples": 4096
+        },
+        "trainable_model_parameters": 201306,
+        "role_tag_parameters": 512
+      },
+      "teacher_float": {
+        "test": {
+          "accuracy": 0.9638671875,
+          "counterfactual_pair_exact": 0.93359375,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 1024.0
+        },
+        "train": {
+          "accuracy": 1.0,
+          "counterfactual_pair_exact": 1.0,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 1024.0
+        }
+      },
+      "teacher_packed": {
+        "test": {
+          "accuracy": 0.9557291865348816,
+          "counterfactual_pair_exact": 0.9186198115348816,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 128.0
+        },
+        "train": {
+          "accuracy": 0.99658203125,
+          "counterfactual_pair_exact": 0.9931640625,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 128.0
+        }
+      },
+      "direct_int4_frozen_teacher": {
+        "test": {
+          "accuracy": 0.1311849057674408,
+          "counterfactual_pair_exact": 0.0162760429084301,
+          "examples": 3072,
+          "trunk_input_bytes_per_example": 128.0
+        },
+        "train": {
+          "accuracy": 0.135986328125,
+          "counterfactual_pair_exact": 0.0126953125,
+          "examples": 4096,
+          "trunk_input_bytes_per_example": 128.0
+        }
+      },
+      "feature_only": {
+        "test": {
+          "accuracy": 0.9596354365348816,
+          "counterfactual_pair_exact": 0.9192708730697632,
+          "examples": 3072,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.9683512051900228
+        },
+        "train": {
+          "accuracy": 0.959228515625,
+          "counterfactual_pair_exact": 0.9189453125,
+          "examples": 4096,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.972027599811554
+        },
+        "trainable_writer_parameters": 24768
+      },
+      "feature_and_task": {
+        "test": {
+          "accuracy": 0.9612630605697632,
+          "counterfactual_pair_exact": 0.9225260615348816,
+          "examples": 3072,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.7981530030568441
+        },
+        "train": {
+          "accuracy": 0.98681640625,
+          "counterfactual_pair_exact": 0.9736328125,
+          "examples": 4096,
+          "stored_ab_code_bytes_per_example": 128.0,
+          "trunk_input_bytes_per_example": 128.0,
+          "stored_code_teacher_feature_cosine": 0.8036553859710693
+        },
+        "trainable_writer_parameters": 24768
+      }
+    }
+  ]
+}

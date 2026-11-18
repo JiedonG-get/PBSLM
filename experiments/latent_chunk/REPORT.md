@@ -168,7 +168,7 @@ The payload is eight tagged 32-dimensional vectors, or 128 bytes per example, co
 
 ### Decoder-Free Read Adapter
 
-A shared 128→64→128 MLP maps each packed rank-4 phrase code to four compact input vectors. The adapter receives only `a/b`. For feature distillation, its training targets are the teacher's pre-tag compact vectors. The trunk and tags stay frozen, and the three adapter objectives use the same initialization and 800 minibatch draws. At test time the adapter consumes decoded int4 numbers from the stored bytes and bypasses the phrase vocabulary decoder. The teacher evaluates its final input vectors in FP32, while the student packs and unpacks its tagged input vectors before the trunk.
+A shared 128→64→128 MLP maps each packed rank-4 phrase code to four compact input vectors. The adapter receives only `a/b`. For feature distillation, its training targets are the teacher's pre-tag compact vectors. The trunk and tags stay frozen, and the three adapter objectives use the same initialization and 800 minibatch draws. At test time the adapter consumes the dequantized vectors recovered from packed `a/b` bytes and bypasses the phrase vocabulary decoder. The teacher evaluates its final input vectors in FP32, while the student packs and unpacks its tagged input vectors before the trunk.
 
 | Held-out offsets | Condition | Test accuracy | Counterfactual pair exact |
 |---|---|---:|---:|
@@ -189,6 +189,24 @@ Feature distillation outperformed either other adapter objective in all ten seed
 
 The adapter adds 16,576 shared parameters and reads a 128-byte packed `a/b` record. The packed intermediate trunk input also occupies 128 bytes during this evaluation. This study uses synthetic phrases and matched splits from the earlier reader studies. It measures downstream relation accuracy and storage payload. Runtime memory, latency, and natural-language generalization were outside the evaluation. The [result JSON](compact_reader_decoder_free_data0_model0-4_steps800.json), [summary](compact_reader_decoder_free_data0_model0-4_steps800.md), and [runner](../../evaluation/latent_chunk_compact_student.py) give the per-seed results and exact source hashes.
 
+### Decoder-Free Compact Writer
+
+A separate confirmation used data seed 1 and held out offsets 1 and 7, which reserve sixteen ordered relation pairs for testing. All five model seeds used the same 4,096 training rows, 3,072 test rows, and 800-step budgets. Each writer starts from the reconstruction-pretrained phrase encoder, then receives frozen source-token embeddings and maps each eight-token phrase directly to four normalized 32-dimensional vectors. Feature targets come from the compact teacher's pre-tag reader output on training rows. The teacher, tags, and source embeddings remain frozen during writer training. At evaluation, the pre-tag codes are packed to int4, restored, tagged, and the trunk input is separately packed to int4 before being restored for FP32 computation.
+
+| Condition | Test accuracy | Counterfactual pair exact |
+|---|---:|---:|
+| Raw tokens with separately trained trunk | 73.65 ± 18.45% | 52.94 ± 31.26% |
+| Direct int4 `a/b` with separately trained trunk | 29.58 ± 2.09% | 6.34 ± 1.11% |
+| Direct int4 `a/b` in the frozen compact teacher | 12.09 ± 0.94% | 1.08 ± 0.33% |
+| Decoder-mediated teacher, FP32 trunk input | 96.34 ± 1.73% | 93.24 ± 3.02% |
+| Same teacher, packed int4 trunk input | 95.57 ± 1.77% | 91.76 ± 2.96% |
+| Decoder-free writer, feature distillation | 96.99 ± 1.55% | 93.98 ± 3.11% |
+| Decoder-free writer, feature plus task loss | 90.78 ± 13.69% | 82.93 ± 24.36% |
+
+Feature-only writers exceeded the paired raw-token model on all five seeds, by a mean of 23.35 ± 18.35 percentage points. Against the same seed's decoder-mediated teacher, the mean difference was +0.65 ± 2.74 points, with the writer higher on two seeds. Against the packed teacher it was +1.42 ± 2.67 points, with the writer higher on four seeds. The equal-weight feature-plus-task arm was less stable and scored below the FP32 teacher on four seeds. These results show that this small writer can reproduce task-useful teacher features for the held-out synthetic relations without running the phrase vocabulary decoder at read time. They do not establish a general advantage over token input.
+
+The writer adds 24,768 shared parameters. Its persistent rank-4 int4 `a/b` payload is 128 bytes per example, and the separately packed tagged trunk input is another 128 bytes while reading. The ideal fixed-width encoding of the sixteen source IDs in this task is 8 bytes. Thus the learned representation improves this task's measured accuracy while increasing payload size. The experiment uses one data split and five model initializations, fixed phrase layout, random frozen token embeddings, and no measured runtime memory or latency. The [result JSON](compact_writer_balanced_data1_offsets1-7_model0-4_steps800.json), [summary](compact_writer_balanced_data1_offsets1-7_model0-4_steps800.md), and [runner](../../evaluation/latent_chunk_compact_writer.py) record per-seed results and provenance.
+
 ## Payload and State
 
 The following are FP32 payload arithmetic per example. They exclude shared model and encoder parameters, metadata, allocator overhead, and any online state implementation.
@@ -207,6 +225,6 @@ An evaluation-only fixed FP32 delta state used IID random normalized keys, with 
 
 ## Scope
 
-The data are synthetic and test held-out value-pair composition, not natural language, multimodal grounding, unseen key vocabularies, or online memory writing. The auxiliary probes add supervision and parameters to the latent condition. The random-key state test does not evaluate learned semantic retrieval. Results support the claim that multi-vector continuous inputs can run through the PBSLM trunk, while the particular `a/b/c/d` construction needs better compositional generalization before it can support a practical memory claim.
+The data are synthetic and test held-out value-pair composition, not natural language, multimodal grounding, unseen key vocabularies, or online memory writing. Directly passing quantized `a/b` codes to a trunk trained on reader outputs performs poorly. A feature-distilled writer restores high accuracy on the tested synthetic splits without the vocabulary decoder at read time, but uses more payload bytes than ideal source-token packing. The random-key state test does not evaluate learned semantic addressing. These results support the feasibility of trained continuous multi-vector inputs for this narrow task, while practical memory efficiency, robust open-domain composition, and the `a/b/c/d` state mechanism remain unproven.
 
 Raw per-run outputs and source provenance are in [formal_matched_3seed_rank_800.json](formal_matched_3seed_rank_800.json).
