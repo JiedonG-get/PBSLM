@@ -1,0 +1,976 @@
+{
+  "scope": "scripted query, background and correction; whole-answer commits; post-commit semantics annotated separately",
+  "checkpoint_files_sha256": {
+    ".msc": "e346a4b32926eb050f689b86a9b62837e2d0f89f6d5579ae27786424d98e696e",
+    ".mv": "f8db4d402dad1592699be370a6953bc543dc04a29c63100c31d3790ff50d5daf",
+    "config.json": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+    "configuration.json": "f888421726665e8a84b738eed42a64875aed79de8be7daade851ac8bf4c0cef9",
+    "generation_config.json": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "model-00001-of-00002.safetensors": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5",
+    "model-00002-of-00002.safetensors": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9",
+    "model.safetensors.index.json": "0d660e94b165eb912669a5249dff44b83188c4777a07ddb9611fb78d91b0578d",
+    "README.md": "d50c7b66b42ffb892a7819f46853a4c6ae97ad07f1f46abf5f13d4a617ae07c0",
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "tokenizer_config.json": "5a7303fcb1a27ede63134a2cbd61d5282c247ca6d769ce4746d4ffa124aedd63",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "runs": [
+    {
+      "scenario": "inspection",
+      "prefix_condition": "present",
+      "initial_output": "钟楼例行检修从上午九点开始。",
+      "repair_output": "钟楼例行检修改到下午三点开始。",
+      "initial_commit_preserved": true,
+      "background_preserved_output": true,
+      "background_started_generation": false,
+      "generation_errors": [],
+      "backend_metrics": [
+        {
+          "revision": 1,
+          "start_perf": 23278.1604409,
+          "finish_perf": 23279.2294925,
+          "duration": 1.0690515999995114,
+          "input_tokens": 65,
+          "output_tokens": 11,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "钟楼例行检修从上午九点开始。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "维修组确认，钟楼例行检修从上午九点开始。钟楼例行检修几点开始？"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 23279.2299025,
+          "finish_perf": 23279.5437063,
+          "duration": 0.3138037999997323,
+          "input_tokens": 111,
+          "output_tokens": 11,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "钟楼例行检修改到下午三点开始。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "维修组确认，钟楼例行检修从上午九点开始。钟楼例行检修几点开始？"
+            },
+            {
+              "role": "assistant",
+              "content": "钟楼例行检修从上午九点开始。"
+            },
+            {
+              "role": "user",
+              "content": "登记台放了两把备用伞。\n维修组发来新通知，钟楼例行检修改到下午三点开始。"
+            }
+          ]
+        }
+      ],
+      "journal": [
+        {
+          "kind": "input_received",
+          "at": 6.499998562503606e-06,
+          "revision": 1,
+          "text": "维修组确认，钟楼例行检修从上午九点开始。钟楼例行检修几点开始？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.0001021999996737577,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "output_committed",
+          "at": 1.0697904999979073,
+          "revision": 1,
+          "unit": "钟楼例行检修从上午九点开始。",
+          "generation_revision": 1,
+          "output_fence_revision": 1,
+          "latest_observation_revision": 1
+        },
+        {
+          "kind": "generation_finished",
+          "at": 1.069798599997739,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "background_input_received",
+          "at": 1.0698321999989275,
+          "revision": 2,
+          "text": "登记台放了两把备用伞。",
+          "should_respond": false,
+          "relevance_assertion": "Scripted unrelated observation",
+          "output_fence_revision": 1
+        },
+        {
+          "kind": "input_received",
+          "at": 1.0698392999984208,
+          "revision": 3,
+          "text": "维修组发来新通知，钟楼例行检修改到下午三点开始。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 1.0699079999976675,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 1.3839359999983571,
+          "revision": 3,
+          "unit": "钟楼例行检修改到下午三点开始。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 1.3839420999975118,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 1.3840142999979435,
+          "revision": 4
+        }
+      ],
+      "committed": [
+        {
+          "unit": "钟楼例行检修从上午九点开始。",
+          "revision": 1,
+          "at": 1.0697872999990068
+        },
+        {
+          "unit": "钟楼例行检修改到下午三点开始。",
+          "revision": 3,
+          "at": 1.3839334999975108
+        }
+      ]
+    },
+    {
+      "scenario": "inspection",
+      "prefix_condition": "omitted",
+      "initial_output": "钟楼例行检修从上午九点开始。",
+      "repair_output": "钟楼例行检修时间改为下午三点。",
+      "initial_commit_preserved": true,
+      "background_preserved_output": true,
+      "background_started_generation": false,
+      "generation_errors": [],
+      "backend_metrics": [
+        {
+          "revision": 1,
+          "start_perf": 23279.5468918,
+          "finish_perf": 23279.8644391,
+          "duration": 0.31754730000102427,
+          "input_tokens": 65,
+          "output_tokens": 11,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "钟楼例行检修从上午九点开始。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "维修组确认，钟楼例行检修从上午九点开始。钟楼例行检修几点开始？"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 23279.8646842,
+          "finish_perf": 23280.1736307,
+          "duration": 0.3089464999975462,
+          "input_tokens": 96,
+          "output_tokens": 10,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "钟楼例行检修时间改为下午三点。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "维修组确认，钟楼例行检修从上午九点开始。钟楼例行检修几点开始？"
+            },
+            {
+              "role": "user",
+              "content": "登记台放了两把备用伞。\n维修组发来新通知，钟楼例行检修改到下午三点开始。"
+            }
+          ]
+        }
+      ],
+      "journal": [
+        {
+          "kind": "input_received",
+          "at": 3.0000010156072676e-06,
+          "revision": 1,
+          "text": "维修组确认，钟楼例行检修从上午九点开始。钟楼例行检修几点开始？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 3.35000004270114e-05,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.31798450000133016,
+          "revision": 1,
+          "unit": "钟楼例行检修从上午九点开始。",
+          "generation_revision": 1,
+          "output_fence_revision": 1,
+          "latest_observation_revision": 1
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.3179898000016692,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.3180121000004874,
+          "revision": 2,
+          "text": "登记台放了两把备用伞。",
+          "should_respond": false,
+          "relevance_assertion": "Scripted unrelated observation",
+          "output_fence_revision": 1
+        },
+        {
+          "kind": "input_received",
+          "at": 0.31801570000243373,
+          "revision": 3,
+          "text": "维修组发来新通知，钟楼例行检修改到下午三点开始。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.3180506000026071,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.6271845000010217,
+          "revision": 3,
+          "unit": "钟楼例行检修时间改为下午三点。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.6271901000000071,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.6272462000015366,
+          "revision": 4
+        }
+      ],
+      "committed": [
+        {
+          "unit": "钟楼例行检修从上午九点开始。",
+          "revision": 1,
+          "at": 0.3179829000000609
+        },
+        {
+          "unit": "钟楼例行检修时间改为下午三点。",
+          "revision": 3,
+          "at": 0.6271828999997524
+        }
+      ]
+    },
+    {
+      "scenario": "handoff",
+      "prefix_condition": "present",
+      "initial_output": "沈禾签收了编号七的作品。",
+      "repair_output": "程芮签收了编号七的作品。",
+      "initial_commit_preserved": true,
+      "background_preserved_output": true,
+      "background_started_generation": false,
+      "generation_errors": [],
+      "backend_metrics": [
+        {
+          "revision": 1,
+          "start_perf": 23280.1747898,
+          "finish_perf": 23280.4748998,
+          "duration": 0.30011000000013155,
+          "input_tokens": 68,
+          "output_tokens": 10,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "沈禾签收了编号七的作品。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "陶艺工坊通知，烧制编号七的作品由沈禾签收。谁签收编号七的作品？"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 23280.4751498,
+          "finish_perf": 23280.7677887,
+          "duration": 0.29263889999856474,
+          "input_tokens": 114,
+          "output_tokens": 10,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "程芮签收了编号七的作品。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "陶艺工坊通知，烧制编号七的作品由沈禾签收。谁签收编号七的作品？"
+            },
+            {
+              "role": "assistant",
+              "content": "沈禾签收了编号七的作品。"
+            },
+            {
+              "role": "user",
+              "content": "展柜外的走廊刚刚打扫过。\n工坊公布最新取件安排，编号七的作品改由程芮签收。"
+            }
+          ]
+        }
+      ],
+      "journal": [
+        {
+          "kind": "input_received",
+          "at": 2.6999987312592566e-06,
+          "revision": 1,
+          "text": "陶艺工坊通知，烧制编号七的作品由沈禾签收。谁签收编号七的作品？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 3.479999941191636e-05,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.30060950000188313,
+          "revision": 1,
+          "unit": "沈禾签收了编号七的作品。",
+          "generation_revision": 1,
+          "output_fence_revision": 1,
+          "latest_observation_revision": 1
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.3006150000001071,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.3006357999984175,
+          "revision": 2,
+          "text": "展柜外的走廊刚刚打扫过。",
+          "should_respond": false,
+          "relevance_assertion": "Scripted unrelated observation",
+          "output_fence_revision": 1
+        },
+        {
+          "kind": "input_received",
+          "at": 0.30063890000019455,
+          "revision": 3,
+          "text": "工坊公布最新取件安排，编号七的作品改由程芮签收。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.3006743000005372,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.5934839000001375,
+          "revision": 3,
+          "unit": "程芮签收了编号七的作品。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.593489300001238,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.5935376000015822,
+          "revision": 4
+        }
+      ],
+      "committed": [
+        {
+          "unit": "沈禾签收了编号七的作品。",
+          "revision": 1,
+          "at": 0.30060779999985243
+        },
+        {
+          "unit": "程芮签收了编号七的作品。",
+          "revision": 3,
+          "at": 0.5934821000009833
+        }
+      ]
+    },
+    {
+      "scenario": "handoff",
+      "prefix_condition": "omitted",
+      "initial_output": "沈禾签收了编号七的作品。",
+      "repair_output": "程芮签收编号七的作品。",
+      "initial_commit_preserved": true,
+      "background_preserved_output": true,
+      "background_started_generation": false,
+      "generation_errors": [],
+      "backend_metrics": [
+        {
+          "revision": 1,
+          "start_perf": 23280.768865,
+          "finish_perf": 23281.070077,
+          "duration": 0.3012120000021241,
+          "input_tokens": 68,
+          "output_tokens": 10,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "沈禾签收了编号七的作品。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "陶艺工坊通知，烧制编号七的作品由沈禾签收。谁签收编号七的作品？"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 23281.0703265,
+          "finish_perf": 23281.329366,
+          "duration": 0.2590395000006538,
+          "input_tokens": 100,
+          "output_tokens": 9,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "程芮签收编号七的作品。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "陶艺工坊通知，烧制编号七的作品由沈禾签收。谁签收编号七的作品？"
+            },
+            {
+              "role": "user",
+              "content": "展柜外的走廊刚刚打扫过。\n工坊公布最新取件安排，编号七的作品改由程芮签收。"
+            }
+          ]
+        }
+      ],
+      "journal": [
+        {
+          "kind": "input_received",
+          "at": 2.7000023692380637e-06,
+          "revision": 1,
+          "text": "陶艺工坊通知，烧制编号七的作品由沈禾签收。谁签收编号七的作品？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 3.35000004270114e-05,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.3016931000020122,
+          "revision": 1,
+          "unit": "沈禾签收了编号七的作品。",
+          "generation_revision": 1,
+          "output_fence_revision": 1,
+          "latest_observation_revision": 1
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.3016986000002362,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.30171899999913876,
+          "revision": 2,
+          "text": "展柜外的走廊刚刚打扫过。",
+          "should_respond": false,
+          "relevance_assertion": "Scripted unrelated observation",
+          "output_fence_revision": 1
+        },
+        {
+          "kind": "input_received",
+          "at": 0.3017218999993929,
+          "revision": 3,
+          "text": "工坊公布最新取件安排，编号七的作品改由程芮签收。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.30175660000168136,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.5609895000015968,
+          "revision": 3,
+          "unit": "程芮签收编号七的作品。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.5609952000013436,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.561045300000842,
+          "revision": 4
+        }
+      ],
+      "committed": [
+        {
+          "unit": "沈禾签收了编号七的作品。",
+          "revision": 1,
+          "at": 0.30169129999922006
+        },
+        {
+          "unit": "程芮签收编号七的作品。",
+          "revision": 3,
+          "at": 0.560988000001089
+        }
+      ]
+    },
+    {
+      "scenario": "room",
+      "prefix_condition": "present",
+      "initial_output": "周五的诗歌讲座在青和厅。",
+      "repair_output": "周五的诗歌讲座在晓竹厅。",
+      "initial_commit_preserved": true,
+      "background_preserved_output": true,
+      "background_started_generation": false,
+      "generation_errors": [],
+      "backend_metrics": [
+        {
+          "revision": 1,
+          "start_perf": 23281.3306289,
+          "finish_perf": 23281.6245437,
+          "duration": 0.2939148000004934,
+          "input_tokens": 65,
+          "output_tokens": 10,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "周五的诗歌讲座在青和厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "场务确认，周五诗歌讲座使用青和厅。请问周五的诗歌讲座在哪个厅？"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 23281.6248222,
+          "finish_perf": 23281.9236357,
+          "duration": 0.2988135000014154,
+          "input_tokens": 107,
+          "output_tokens": 10,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "周五的诗歌讲座在晓竹厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "场务确认，周五诗歌讲座使用青和厅。请问周五的诗歌讲座在哪个厅？"
+            },
+            {
+              "role": "assistant",
+              "content": "周五的诗歌讲座在青和厅。"
+            },
+            {
+              "role": "user",
+              "content": "签到桌上增加了一份节目单。\n场务刚发布通知，周五诗歌讲座改在晓竹厅。"
+            }
+          ]
+        }
+      ],
+      "journal": [
+        {
+          "kind": "input_received",
+          "at": 2.7999994927085936e-06,
+          "revision": 1,
+          "text": "场务确认，周五诗歌讲座使用青和厅。请问周五的诗歌讲座在哪个厅？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 3.7599998904624954e-05,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.29443999999784864,
+          "revision": 1,
+          "unit": "周五的诗歌讲座在青和厅。",
+          "generation_revision": 1,
+          "output_fence_revision": 1,
+          "latest_observation_revision": 1
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.2944467999986955,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.2944692999990366,
+          "revision": 2,
+          "text": "签到桌上增加了一份节目单。",
+          "should_respond": false,
+          "relevance_assertion": "Scripted unrelated observation",
+          "output_fence_revision": 1
+        },
+        {
+          "kind": "input_received",
+          "at": 0.29447269999946,
+          "revision": 3,
+          "text": "场务刚发布通知，周五诗歌讲座改在晓竹厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.2945166999998037,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.5935589000000618,
+          "revision": 3,
+          "unit": "周五的诗歌讲座在晓竹厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.5935654999993858,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.5936239000002388,
+          "revision": 4
+        }
+      ],
+      "committed": [
+        {
+          "unit": "周五的诗歌讲座在青和厅。",
+          "revision": 1,
+          "at": 0.2944376999985252
+        },
+        {
+          "unit": "周五的诗歌讲座在晓竹厅。",
+          "revision": 3,
+          "at": 0.5935567999986233
+        }
+      ]
+    },
+    {
+      "scenario": "room",
+      "prefix_condition": "omitted",
+      "initial_output": "周五的诗歌讲座在青和厅。",
+      "repair_output": "周五的诗歌讲座在晓竹厅。",
+      "initial_commit_preserved": true,
+      "background_preserved_output": true,
+      "background_started_generation": false,
+      "generation_errors": [],
+      "backend_metrics": [
+        {
+          "revision": 1,
+          "start_perf": 23281.9250183,
+          "finish_perf": 23282.2205095,
+          "duration": 0.2954911999986507,
+          "input_tokens": 65,
+          "output_tokens": 10,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "周五的诗歌讲座在青和厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "场务确认，周五诗歌讲座使用青和厅。请问周五的诗歌讲座在哪个厅？"
+            }
+          ]
+        },
+        {
+          "revision": 3,
+          "start_perf": 23282.2207801,
+          "finish_perf": 23282.5127045,
+          "duration": 0.2919244000004255,
+          "input_tokens": 93,
+          "output_tokens": 10,
+          "max_new_tokens": 48,
+          "finished_by_eos": true,
+          "enable_thinking": false,
+          "thinking_detected": false,
+          "thinking_incomplete": false,
+          "checkpoint_type": "bfloat16",
+          "device": "cuda",
+          "local_files_only": true,
+          "answer": "周五的诗歌讲座在晓竹厅。",
+          "messages": [
+            {
+              "role": "system",
+              "content": "你正在参与一段对话。根据最新输入自然作答，采用明确确认的新信息。每次用一句简短的话回应。"
+            },
+            {
+              "role": "user",
+              "content": "场务确认，周五诗歌讲座使用青和厅。请问周五的诗歌讲座在哪个厅？"
+            },
+            {
+              "role": "user",
+              "content": "签到桌上增加了一份节目单。\n场务刚发布通知，周五诗歌讲座改在晓竹厅。"
+            }
+          ]
+        }
+      ],
+      "journal": [
+        {
+          "kind": "input_received",
+          "at": 3.0999981390777975e-06,
+          "revision": 1,
+          "text": "场务确认，周五诗歌讲座使用青和厅。请问周五的诗歌讲座在哪个厅？",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 3.949999882024713e-05,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.29605299999821,
+          "revision": 1,
+          "unit": "周五的诗歌讲座在青和厅。",
+          "generation_revision": 1,
+          "output_fence_revision": 1,
+          "latest_observation_revision": 1
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.29605910000100266,
+          "revision": 1,
+          "generation_revision": 1
+        },
+        {
+          "kind": "background_input_received",
+          "at": 0.2960821999986365,
+          "revision": 2,
+          "text": "签到桌上增加了一份节目单。",
+          "should_respond": false,
+          "relevance_assertion": "Scripted unrelated observation",
+          "output_fence_revision": 1
+        },
+        {
+          "kind": "input_received",
+          "at": 0.2960858000005828,
+          "revision": 3,
+          "text": "场务刚发布通知，周五诗歌讲座改在晓竹厅。",
+          "should_respond": true
+        },
+        {
+          "kind": "generation_started",
+          "at": 0.2961265000012645,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "output_committed",
+          "at": 0.5882339999989199,
+          "revision": 3,
+          "unit": "周五的诗歌讲座在晓竹厅。",
+          "generation_revision": 3,
+          "output_fence_revision": 3,
+          "latest_observation_revision": 3
+        },
+        {
+          "kind": "generation_finished",
+          "at": 0.588239299999259,
+          "revision": 3,
+          "generation_revision": 3
+        },
+        {
+          "kind": "closed",
+          "at": 0.5882856999996875,
+          "revision": 4
+        }
+      ],
+      "committed": [
+        {
+          "unit": "周五的诗歌讲座在青和厅。",
+          "revision": 1,
+          "at": 0.2960511999990558
+        },
+        {
+          "unit": "周五的诗歌讲座在晓竹厅。",
+          "revision": 3,
+          "at": 0.5882323000005272
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "git_commit": "8369c711c6f5369dcb6fcc9f6d1f3339af1d386d",
+    "git_status": "M evaluation/qwen_scheduler_smoke.py\n?? evaluation/analyze_qwen_story.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_postcommit_repair.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/recurrent_state/continuous_event_tests.log",
+    "source_sha256_at_capture": {
+      "evaluation/local_qwen_adapter.py": "35e497bc1b3c60aeb0e9cb49b0b785466e0f050c1d24869795a3fb866d65f753",
+      "evaluation/qwen_scheduler_smoke.py": "b8a8c64d770fc9f6d0e4724adfcdb03db1bea4367d80536c5c5289b58b2da5dd",
+      "evaluation/qwen_postcommit_repair.py": "983351ac4c92fac946856201cbfdf949e0274e2b70dda31d08ff0c72ef3ea54e",
+      "runtime/continuous.py": "5b04d92a94d3ab24852c4b7e2a91f4457da1e54effe1351f90e9d34c098d7023"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  }
+}

@@ -20,10 +20,18 @@ CORRECTION = '计划更正：林舟不去车站了，改在图书馆门口等许
 LATEST_QUESTION = '请回答：林舟最后准备在哪里等许岚？只给地点。'
 
 
+def scheduler_messages(request):
+    return [
+        {'role': 'system', 'content': '根据截至目前的事件回答最后一个问题，采用明确更正后的信息。只给简短答案。'},
+        {'role': 'user', 'content': '\n'.join(text for _, text in request.inputs)},
+    ]
+
+
 class LocalQwenBackend:
-    def __init__(self, model, max_new_tokens):
+    def __init__(self, model, max_new_tokens, *, render_messages=scheduler_messages):
         self.model = model
         self.max_new_tokens = max_new_tokens
+        self.render_messages = render_messages
         self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix='qwen-inference')
         self.started = asyncio.Event()
         self.metrics = []
@@ -31,10 +39,7 @@ class LocalQwenBackend:
     def _infer(self, request, loop):
         started = time.perf_counter()
         loop.call_soon_threadsafe(self.started.set)
-        messages = [
-            {'role': 'system', 'content': '根据截至目前的事件回答最后一个问题，采用明确更正后的信息。只给简短答案。'},
-            {'role': 'user', 'content': '\n'.join(text for _, text in request.inputs)},
-        ]
+        messages = self.render_messages(request)
         answer, metrics = self.model.generate(messages, max_new_tokens=self.max_new_tokens)
         finished = time.perf_counter()
         self.metrics.append({
@@ -44,6 +49,7 @@ class LocalQwenBackend:
             'duration': finished - started,
             **metrics,
             'answer': answer,
+            'messages': messages,
         })
         return answer
 
