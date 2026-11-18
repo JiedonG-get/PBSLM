@@ -107,6 +107,8 @@ An ablation tested whether task loss alone could adapt the encoder, with the dec
 
 Task-only exceeded the frozen condition in all five seeds on each split. Its paired advantage over joint training was less stable, with four of five positive seeds on offset 4 and three of five on offsets 3/5. With the original decoder held fixed, task-only int4 reconstruction reached 64.83% and 65.11% token accuracy, while both phrases were recovered exactly in 0.08% and 0.07% of examples. Joint training reached 99.48% and 99.67% token accuracy, with exact recovery of both phrases at 92.40% and 95.01%. These outcomes do not isolate the reconstruction loss because the joint arm also trains the decoder. The five seeds share each split, so they measure initialization and optimization variability conditional on those synthetic data splits.
 
+Counterfactual pair-exact accuracy was 12.14 ± 2.19% for task-only, 5.81 ± 1.39% for matched frozen, and 10.53 ± 1.90% for joint training on offset 4. On offsets 3/5, the corresponding values were 13.84 ± 1.66%, 6.50 ± 0.84%, and 13.35 ± 4.14%.
+
 The [offset-4 task-only JSON](task_aware_int4_task_only_offset4_data0_model0-4_steps800.json) and [summary](task_aware_int4_task_only_offset4_data0_model0-4_steps800.md), and the [offsets 3/5 task-only JSON](task_aware_int4_task_only_offsets3-5_data0_model0-4_steps800.json) and [summary](task_aware_int4_task_only_offsets3-5_data0_model0-4_steps800.md), include per-seed results, source hashes, and checkpoint digests. The matched runner and balanced split generator are [latent_chunk_task_aware_matched.py](../../evaluation/latent_chunk_task_aware_matched.py) and [latent_chunk_holdout.py](../../evaluation/latent_chunk_holdout.py).
 
 ## Payload and State
