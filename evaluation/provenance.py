@@ -13,11 +13,17 @@ ROOT = Path(__file__).resolve().parents[1]
 def capture(paths):
     def git(*args):
         return subprocess.check_output(['git', *args], cwd=ROOT, text=True).strip()
+
+    try:
+        git_commit = git('rev-parse', 'HEAD')
+    except subprocess.CalledProcessError:
+        git_commit = None
+
     sources = {}
     for name in paths:
         data = (ROOT / name).read_bytes()
         sources[name] = hashlib.sha256(data).hexdigest()
-    return {'git_commit': git('rev-parse', 'HEAD'), 'git_status': git('status', '--short'),
+    return {'git_commit': git_commit, 'git_status': git('status', '--short'),
             'source_sha256_at_capture': sources, 'python': sys.version,
             'platform': platform.platform(), 'torch': torch.__version__,
             'cuda_build': torch.version.cuda, 'cudnn': torch.backends.cudnn.version(),

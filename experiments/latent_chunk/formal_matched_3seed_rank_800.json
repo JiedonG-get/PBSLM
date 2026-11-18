@@ -1,0 +1,1687 @@
+{
+  "task": "two_phrase_key_value_relation_query_with_counterfactual_pairs",
+  "limitation": "Synthetic relational task. Tests continuous latent inputs through PBSLMv2's shared encoder and decoder with its direct context bypass zeroed. Does not test online fast-state writing during training or natural-language semantics. Model initialization and minibatch order are shared across latent ranks and training modes within each seed. Latent models add encoder parameters and auxiliary supervision, so this is not parameter- or FLOP-matched.",
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "ranks": [
+      1,
+      2,
+      4
+    ],
+    "steps": 800,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cuda",
+    "output": "experiments/latent_chunk/formal_matched_3seed_rank_800.json"
+  },
+  "torch": "2.11.0+cu128",
+  "provenance": {
+    "git_commit": "df3e1a2d26da4add363866b99facfecfe9ef3592",
+    "git_status": "M evaluation/provenance.py\n M models/model_v2.py\n?? evaluation/analyze_qwen_story.py\n?? evaluation/latent_chunk_pilot.py\n?? evaluation/latent_chunk_relations.py\n?? evaluation/latent_chunk_state.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? experiments/continuous_online/alias_online_dev_frozen_scores_v2.json\n?? experiments/continuous_online/alias_online_dev_frozen_v2.json\n?? experiments/continuous_online/alias_online_development_batch_scores_v2.json\n?? experiments/continuous_online/alias_online_development_batch_v2.json\n?? experiments/continuous_online/alias_online_development_final_scores_v2.json\n?? experiments/continuous_online/alias_online_development_final_v2.json\n?? experiments/continuous_online/alias_online_development_initial_scores_v2.json\n?? experiments/continuous_online/alias_online_development_initial_v2.json\n?? experiments/continuous_online/alias_online_development_retry_v2.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/latent_chunk/\n?? experiments/recurrent_state/continuous_event_tests.log\n?? tests/test_model_v2_inputs_embeds.py",
+    "source_sha256_at_capture": {
+      "evaluation/latent_chunk_pilot.py": "a1a8df2746b38cae541899ad61f6524b0dca7b69370fd4ae4f295317c8a8c4f7",
+      "evaluation/latent_chunk_relations.py": "070377ad5b4980a20a4b43953e67b80dfb976376da1cc6e28dba5c2ea54da312",
+      "evaluation/latent_chunk_state.py": "0c531cb1452751730f99338763228923834db21c7e4111b8ff7a0eea6aa38919",
+      "evaluation/provenance.py": "061924cbf9c0c5d326501be75102734bea03be6f1f315dfe032fdff1a34ebdee",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "685d275de48e923e93adc9614319e0743f80573619bead16a1f7b06aeeff8d05"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "storage": {
+    "input_token_ids_bytes_int32": 64,
+    "input_token_ids_bytes_torch_long": 128,
+    "input_embedding_bytes": 2048,
+    "latent_payload_bytes": {
+      "1": 512,
+      "2": 1024,
+      "4": 2048
+    },
+    "two_sided_ab_payload_bytes": {
+      "1": 256,
+      "2": 512,
+      "4": 1024
+    },
+    "input_kv_bytes_by_layers": {
+      "1": 4096,
+      "4": 16384,
+      "12": 49152
+    },
+    "note": "Float32 payload estimates. Excludes encoder/decoder parameters, metadata, allocator overhead, and fixed shared state. KV uses 2*K/V tensors per layer and token. Latent payload is not an implemented online memory state."
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "rank": 1,
+      "test_examples": 3072,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 26608,
+      "full": {
+        "accuracy": {
+          "full": 0.5071614583333334,
+          "a_only": 0.12630208333333334,
+          "b_only": 0.4820963541666667,
+          "ab": 0.4440104166666667,
+          "cd": 0.16341145833333334,
+          "zero_cd": 0.484375,
+          "mismatch_cd": 0.5172526041666666
+        },
+        "counterfactual_pair_exact": 0.2447916716337204,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.6726888020833334
+        },
+        "cd_joint_probe_accuracy": 0.4557291666666667,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.99365234375,
+            "a_only": 0.12939453125,
+            "b_only": 0.4951171875,
+            "ab": 0.656494140625,
+            "cd": 0.153076171875,
+            "zero_cd": 0.71142578125,
+            "mismatch_cd": 0.982421875
+          },
+          "counterfactual_pair_exact": 0.9873046875,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.87353515625
+          },
+          "cd_joint_probe_accuracy": 0.528564453125,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.7001149654388428,
+          "main": 0.04487469792366028,
+          "phrase": 1.2234859466552734,
+          "joint_probe": 0.993079423904419,
+          "alignment": 0.0119401216506958
+        },
+        "train_seconds": 20.457851599996502,
+        "mode": "full"
+      },
+      "ab_only_trained": {
+        "accuracy": {
+          "full": 0.5377604166666666,
+          "a_only": 0.12141927083333333,
+          "b_only": 0.3453776041666667,
+          "ab": 0.6917317708333334,
+          "cd": 0.0849609375,
+          "zero_cd": 0.6634114583333334,
+          "mismatch_cd": 0.54296875
+        },
+        "counterfactual_pair_exact": 0.255859375,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.7141927083333334
+        },
+        "cd_joint_probe_accuracy": 0.5022786458333334,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.85888671875,
+            "a_only": 0.128173828125,
+            "b_only": 0.451171875,
+            "ab": 0.997802734375,
+            "cd": 0.187744140625,
+            "zero_cd": 0.943359375,
+            "mismatch_cd": 0.86328125
+          },
+          "counterfactual_pair_exact": 0.76171875,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.900634765625
+          },
+          "cd_joint_probe_accuracy": 0.551513671875,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.5773152709007263,
+          "main": 0.011088342405855656,
+          "phrase": 1.0487885475158691,
+          "joint_probe": 0.8664144277572632,
+          "alignment": 0.005231618881225586
+        },
+        "train_seconds": 20.286059599995497,
+        "mode": "ab"
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.90625,
+        "train_seconds": 14.975194000006013
+      },
+      "fixed_state_retrieval": {
+        "method": "fixed_fp32_delta_state",
+        "write_strength": 0.865,
+        "key_distribution": "iid_standard_normal_l2_normalized_16d",
+        "state_dtype": "float32",
+        "episode_count_per_length": 64,
+        "payload_shape_per_item": [
+          4,
+          1,
+          32
+        ],
+        "payload_source_dtype": "torch.float32",
+        "exact_table_prediction_source": "perfect_key_lookup_of_pristine_payload",
+        "sampling": "without_replacement_within_episode_from_held_out_pool",
+        "table_predictions_match_pristine_by_construction": true,
+        "seed": 100,
+        "episodes": {
+          "8": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 8192,
+            "exact_table_bytes_keys_plus_payload_per_episode": 4608,
+            "state_to_table_byte_ratio": 1.7777777777777777,
+            "oldest_query_mean": {
+              "state_accuracy": 0.28125,
+              "exact_table_accuracy": 0.4375,
+              "state_prediction_matches_exact_table": 0.375,
+              "payload_mse": 0.020412037149071693,
+              "payload_cosine": 0.7232015132904053
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.40625,
+              "exact_table_accuracy": 0.390625,
+              "state_prediction_matches_exact_table": 0.90625,
+              "payload_mse": 0.0009484352776780725,
+              "payload_cosine": 0.9970521926879883
+            }
+          },
+          "32": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 8192,
+            "exact_table_bytes_keys_plus_payload_per_episode": 18432,
+            "state_to_table_byte_ratio": 0.4444444444444444,
+            "oldest_query_mean": {
+              "state_accuracy": 0.140625,
+              "exact_table_accuracy": 0.484375,
+              "state_prediction_matches_exact_table": 0.125,
+              "payload_mse": 0.061138566583395004,
+              "payload_cosine": 0.16715578734874725
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.609375,
+              "exact_table_accuracy": 0.578125,
+              "state_prediction_matches_exact_table": 0.9375,
+              "payload_mse": 0.0012269457802176476,
+              "payload_cosine": 0.9931519031524658
+            }
+          },
+          "96": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 8192,
+            "exact_table_bytes_keys_plus_payload_per_episode": 55296,
+            "state_to_table_byte_ratio": 0.14814814814814814,
+            "oldest_query_mean": {
+              "state_accuracy": 0.171875,
+              "exact_table_accuracy": 0.515625,
+              "state_prediction_matches_exact_table": 0.140625,
+              "payload_mse": 0.06992781162261963,
+              "payload_cosine": 0.05402950569987297
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.5,
+              "exact_table_accuracy": 0.46875,
+              "state_prediction_matches_exact_table": 0.90625,
+              "payload_mse": 0.0013719478156417608,
+              "payload_cosine": 0.9919133186340332
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "rank": 2,
+      "test_examples": 3072,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 31024,
+      "full": {
+        "accuracy": {
+          "full": 0.5166015625,
+          "a_only": 0.13346354166666666,
+          "b_only": 0.3170572916666667,
+          "ab": 0.3883463541666667,
+          "cd": 0.14388020833333334,
+          "zero_cd": 0.4156901041666667,
+          "mismatch_cd": 0.4853515625
+        },
+        "counterfactual_pair_exact": 0.2708333432674408,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.552734375
+        },
+        "cd_joint_probe_accuracy": 0.3665364583333333,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.981689453125,
+            "a_only": 0.12353515625,
+            "b_only": 0.42431640625,
+            "ab": 0.596435546875,
+            "cd": 0.1142578125,
+            "zero_cd": 0.64794921875,
+            "mismatch_cd": 0.9267578125
+          },
+          "counterfactual_pair_exact": 0.96337890625,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.8238525390625
+          },
+          "cd_joint_probe_accuracy": 0.50390625,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.7755160927772522,
+          "main": 0.05421345680952072,
+          "phrase": 1.3406141996383667,
+          "joint_probe": 1.0966567993164062,
+          "alignment": 0.015461564064025879
+        },
+        "train_seconds": 21.151241700004903,
+        "mode": "full"
+      },
+      "ab_only_trained": {
+        "accuracy": {
+          "full": 0.408203125,
+          "a_only": 0.13313802083333334,
+          "b_only": 0.2923177083333333,
+          "ab": 0.4938151041666667,
+          "cd": 0.08919270833333333,
+          "zero_cd": 0.4560546875,
+          "mismatch_cd": 0.4140625
+        },
+        "counterfactual_pair_exact": 0.1497395932674408,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.5382486979166666
+        },
+        "cd_joint_probe_accuracy": 0.4007161458333333,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.691162109375,
+            "a_only": 0.115966796875,
+            "b_only": 0.4140625,
+            "ab": 0.986083984375,
+            "cd": 0.14599609375,
+            "zero_cd": 0.833251953125,
+            "mismatch_cd": 0.697265625
+          },
+          "counterfactual_pair_exact": 0.4677734375,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.8345947265625
+          },
+          "cd_joint_probe_accuracy": 0.5361328125,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.7625815272331238,
+          "main": 0.0542142428457737,
+          "phrase": 1.408761739730835,
+          "joint_probe": 1.016676902770996,
+          "alignment": 0.0022661685943603516
+        },
+        "train_seconds": 20.61804800000391,
+        "mode": "ab"
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.90625,
+        "train_seconds": 14.981373900001927
+      },
+      "fixed_state_retrieval": {
+        "method": "fixed_fp32_delta_state",
+        "write_strength": 0.865,
+        "key_distribution": "iid_standard_normal_l2_normalized_16d",
+        "state_dtype": "float32",
+        "episode_count_per_length": 64,
+        "payload_shape_per_item": [
+          4,
+          2,
+          32
+        ],
+        "payload_source_dtype": "torch.float32",
+        "exact_table_prediction_source": "perfect_key_lookup_of_pristine_payload",
+        "sampling": "without_replacement_within_episode_from_held_out_pool",
+        "table_predictions_match_pristine_by_construction": true,
+        "seed": 100,
+        "episodes": {
+          "8": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 16384,
+            "exact_table_bytes_keys_plus_payload_per_episode": 8704,
+            "state_to_table_byte_ratio": 1.8823529411764706,
+            "oldest_query_mean": {
+              "state_accuracy": 0.3125,
+              "exact_table_accuracy": 0.4375,
+              "state_prediction_matches_exact_table": 0.390625,
+              "payload_mse": 0.021626878529787064,
+              "payload_cosine": 0.7171103954315186
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.421875,
+              "exact_table_accuracy": 0.46875,
+              "state_prediction_matches_exact_table": 0.859375,
+              "payload_mse": 0.001023411168716848,
+              "payload_cosine": 0.9971875548362732
+            }
+          },
+          "32": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 16384,
+            "exact_table_bytes_keys_plus_payload_per_episode": 34816,
+            "state_to_table_byte_ratio": 0.47058823529411764,
+            "oldest_query_mean": {
+              "state_accuracy": 0.046875,
+              "exact_table_accuracy": 0.515625,
+              "state_prediction_matches_exact_table": 0.15625,
+              "payload_mse": 0.06274349987506866,
+              "payload_cosine": 0.18809446692466736
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.515625,
+              "exact_table_accuracy": 0.484375,
+              "state_prediction_matches_exact_table": 0.78125,
+              "payload_mse": 0.0013563006650656462,
+              "payload_cosine": 0.9933393597602844
+            }
+          },
+          "96": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 16384,
+            "exact_table_bytes_keys_plus_payload_per_episode": 104448,
+            "state_to_table_byte_ratio": 0.1568627450980392,
+            "oldest_query_mean": {
+              "state_accuracy": 0.1875,
+              "exact_table_accuracy": 0.53125,
+              "state_prediction_matches_exact_table": 0.140625,
+              "payload_mse": 0.07376006245613098,
+              "payload_cosine": 0.056774310767650604
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.546875,
+              "exact_table_accuracy": 0.5625,
+              "state_prediction_matches_exact_table": 0.875,
+              "payload_mse": 0.0014228138606995344,
+              "payload_cosine": 0.9919776320457458
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 0,
+      "rank": 4,
+      "test_examples": 3072,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 39856,
+      "full": {
+        "accuracy": {
+          "full": 0.5836588541666666,
+          "a_only": 0.14127604166666666,
+          "b_only": 0.4475911458333333,
+          "ab": 0.4716796875,
+          "cd": 0.11393229166666667,
+          "zero_cd": 0.484375,
+          "mismatch_cd": 0.5862630208333334
+        },
+        "counterfactual_pair_exact": 0.3580729365348816,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.49609375
+        },
+        "cd_joint_probe_accuracy": 0.4026692708333333,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.989501953125,
+            "a_only": 0.130859375,
+            "b_only": 0.486572265625,
+            "ab": 0.71142578125,
+            "cd": 0.082763671875,
+            "zero_cd": 0.742431640625,
+            "mismatch_cd": 0.97998046875
+          },
+          "counterfactual_pair_exact": 0.97900390625,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.80517578125
+          },
+          "cd_joint_probe_accuracy": 0.5078125,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.72933429479599,
+          "main": 0.02606763318181038,
+          "phrase": 1.3714516162872314,
+          "joint_probe": 1.0278202295303345,
+          "alignment": 0.004444479942321777
+        },
+        "train_seconds": 20.553038500002003,
+        "mode": "full"
+      },
+      "ab_only_trained": {
+        "accuracy": {
+          "full": 0.37109375,
+          "a_only": 0.12923177083333334,
+          "b_only": 0.4150390625,
+          "ab": 0.4599609375,
+          "cd": 0.138671875,
+          "zero_cd": 0.4303385416666667,
+          "mismatch_cd": 0.3424479166666667
+        },
+        "counterfactual_pair_exact": 0.10546875,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 0.99609375,
+          "b_edge_symbols": 0.5260416666666666
+        },
+        "cd_joint_probe_accuracy": 0.4498697916666667,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.638916015625,
+            "a_only": 0.14208984375,
+            "b_only": 0.465576171875,
+            "ab": 0.9658203125,
+            "cd": 0.154296875,
+            "zero_cd": 0.764892578125,
+            "mismatch_cd": 0.64501953125
+          },
+          "counterfactual_pair_exact": 0.416015625,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 0.992919921875,
+            "b_edge_symbols": 0.7723388671875
+          },
+          "cd_joint_probe_accuracy": 0.5224609375,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 1.0130360126495361,
+          "main": 0.14467714726924896,
+          "phrase": 2.0316905975341797,
+          "joint_probe": 1.029341459274292,
+          "alignment": 0.0011110305786132812
+        },
+        "train_seconds": 21.197999900003197,
+        "mode": "ab"
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.90625,
+        "train_seconds": 16.247523199999705
+      },
+      "fixed_state_retrieval": {
+        "method": "fixed_fp32_delta_state",
+        "write_strength": 0.865,
+        "key_distribution": "iid_standard_normal_l2_normalized_16d",
+        "state_dtype": "float32",
+        "episode_count_per_length": 64,
+        "payload_shape_per_item": [
+          4,
+          4,
+          32
+        ],
+        "payload_source_dtype": "torch.float32",
+        "exact_table_prediction_source": "perfect_key_lookup_of_pristine_payload",
+        "sampling": "without_replacement_within_episode_from_held_out_pool",
+        "table_predictions_match_pristine_by_construction": true,
+        "seed": 100,
+        "episodes": {
+          "8": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 32768,
+            "exact_table_bytes_keys_plus_payload_per_episode": 16896,
+            "state_to_table_byte_ratio": 1.9393939393939394,
+            "oldest_query_mean": {
+              "state_accuracy": 0.359375,
+              "exact_table_accuracy": 0.5625,
+              "state_prediction_matches_exact_table": 0.5,
+              "payload_mse": 0.022806506603956223,
+              "payload_cosine": 0.7004413604736328
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.53125,
+              "exact_table_accuracy": 0.515625,
+              "state_prediction_matches_exact_table": 0.984375,
+              "payload_mse": 0.0010280769784003496,
+              "payload_cosine": 0.9972349405288696
+            }
+          },
+          "32": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 32768,
+            "exact_table_bytes_keys_plus_payload_per_episode": 67584,
+            "state_to_table_byte_ratio": 0.48484848484848486,
+            "oldest_query_mean": {
+              "state_accuracy": 0.09375,
+              "exact_table_accuracy": 0.5,
+              "state_prediction_matches_exact_table": 0.125,
+              "payload_mse": 0.06311403214931488,
+              "payload_cosine": 0.18118195235729218
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.515625,
+              "exact_table_accuracy": 0.546875,
+              "state_prediction_matches_exact_table": 0.875,
+              "payload_mse": 0.001351104467175901,
+              "payload_cosine": 0.9935094118118286
+            }
+          },
+          "96": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 32768,
+            "exact_table_bytes_keys_plus_payload_per_episode": 202752,
+            "state_to_table_byte_ratio": 0.16161616161616163,
+            "oldest_query_mean": {
+              "state_accuracy": 0.15625,
+              "exact_table_accuracy": 0.53125,
+              "state_prediction_matches_exact_table": 0.109375,
+              "payload_mse": 0.07499063014984131,
+              "payload_cosine": 0.03488549962639809
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.59375,
+              "exact_table_accuracy": 0.5625,
+              "state_prediction_matches_exact_table": 0.96875,
+              "payload_mse": 0.001441512955352664,
+              "payload_cosine": 0.9922919273376465
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "rank": 1,
+      "test_examples": 3072,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 26608,
+      "full": {
+        "accuracy": {
+          "full": 0.5677083333333334,
+          "a_only": 0.13346354166666666,
+          "b_only": 0.4358723958333333,
+          "ab": 0.5305989583333334,
+          "cd": 0.15950520833333334,
+          "zero_cd": 0.5895182291666666,
+          "mismatch_cd": 0.576171875
+        },
+        "counterfactual_pair_exact": 0.3444010615348816,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.7189127604166666
+        },
+        "cd_joint_probe_accuracy": 0.5006510416666666,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.995849609375,
+            "a_only": 0.12744140625,
+            "b_only": 0.4794921875,
+            "ab": 0.814697265625,
+            "cd": 0.16357421875,
+            "zero_cd": 0.8837890625,
+            "mismatch_cd": 0.988037109375
+          },
+          "counterfactual_pair_exact": 0.99169921875,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.88427734375
+          },
+          "cd_joint_probe_accuracy": 0.530517578125,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.6380523443222046,
+          "main": 0.021052032709121704,
+          "phrase": 1.1533235311508179,
+          "joint_probe": 0.9336235523223877,
+          "alignment": 0.012674450874328613
+        },
+        "train_seconds": 22.316894800002046,
+        "mode": "full"
+      },
+      "ab_only_trained": {
+        "accuracy": {
+          "full": 0.7591145833333334,
+          "a_only": 0.12825520833333334,
+          "b_only": 0.4856770833333333,
+          "ab": 0.8919270833333334,
+          "cd": 0.1591796875,
+          "zero_cd": 0.7477213541666666,
+          "mismatch_cd": 0.76171875
+        },
+        "counterfactual_pair_exact": 0.5572916865348816,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.8548177083333334
+        },
+        "cd_joint_probe_accuracy": 0.5084635416666666,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.863525390625,
+            "a_only": 0.126953125,
+            "b_only": 0.48486328125,
+            "ab": 0.999267578125,
+            "cd": 0.207763671875,
+            "zero_cd": 0.9140625,
+            "mismatch_cd": 0.862548828125
+          },
+          "counterfactual_pair_exact": 0.72802734375,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.91552734375
+          },
+          "cd_joint_probe_accuracy": 0.55908203125,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.555202066898346,
+          "main": 0.006384328939020634,
+          "phrase": 0.9983915090560913,
+          "joint_probe": 0.8525010943412781,
+          "alignment": 0.005629897117614746
+        },
+        "train_seconds": 20.904159500001697,
+        "mode": "ab"
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.6949869791666666,
+        "train_seconds": 14.949114299997746
+      },
+      "fixed_state_retrieval": {
+        "method": "fixed_fp32_delta_state",
+        "write_strength": 0.865,
+        "key_distribution": "iid_standard_normal_l2_normalized_16d",
+        "state_dtype": "float32",
+        "episode_count_per_length": 64,
+        "payload_shape_per_item": [
+          4,
+          1,
+          32
+        ],
+        "payload_source_dtype": "torch.float32",
+        "exact_table_prediction_source": "perfect_key_lookup_of_pristine_payload",
+        "sampling": "without_replacement_within_episode_from_held_out_pool",
+        "table_predictions_match_pristine_by_construction": true,
+        "seed": 101,
+        "episodes": {
+          "8": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 8192,
+            "exact_table_bytes_keys_plus_payload_per_episode": 4608,
+            "state_to_table_byte_ratio": 1.7777777777777777,
+            "oldest_query_mean": {
+              "state_accuracy": 0.265625,
+              "exact_table_accuracy": 0.5625,
+              "state_prediction_matches_exact_table": 0.453125,
+              "payload_mse": 0.01968395709991455,
+              "payload_cosine": 0.734965980052948
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.53125,
+              "exact_table_accuracy": 0.5625,
+              "state_prediction_matches_exact_table": 0.953125,
+              "payload_mse": 0.001013248460367322,
+              "payload_cosine": 0.9971326589584351
+            }
+          },
+          "32": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 8192,
+            "exact_table_bytes_keys_plus_payload_per_episode": 18432,
+            "state_to_table_byte_ratio": 0.4444444444444444,
+            "oldest_query_mean": {
+              "state_accuracy": 0.171875,
+              "exact_table_accuracy": 0.484375,
+              "state_prediction_matches_exact_table": 0.203125,
+              "payload_mse": 0.05436903238296509,
+              "payload_cosine": 0.219498410820961
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.484375,
+              "exact_table_accuracy": 0.453125,
+              "state_prediction_matches_exact_table": 0.890625,
+              "payload_mse": 0.0012700553052127361,
+              "payload_cosine": 0.9935383796691895
+            }
+          },
+          "96": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 8192,
+            "exact_table_bytes_keys_plus_payload_per_episode": 55296,
+            "state_to_table_byte_ratio": 0.14814814814814814,
+            "oldest_query_mean": {
+              "state_accuracy": 0.09375,
+              "exact_table_accuracy": 0.5625,
+              "state_prediction_matches_exact_table": 0.09375,
+              "payload_mse": 0.06654912978410721,
+              "payload_cosine": 0.11444292962551117
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.546875,
+              "exact_table_accuracy": 0.5625,
+              "state_prediction_matches_exact_table": 0.953125,
+              "payload_mse": 0.0014794477028772235,
+              "payload_cosine": 0.9917069673538208
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "rank": 2,
+      "test_examples": 3072,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 31024,
+      "full": {
+        "accuracy": {
+          "full": 0.5660807291666666,
+          "a_only": 0.12825520833333334,
+          "b_only": 0.3388671875,
+          "ab": 0.3684895833333333,
+          "cd": 0.09342447916666667,
+          "zero_cd": 0.4697265625,
+          "mismatch_cd": 0.54296875
+        },
+        "counterfactual_pair_exact": 0.3509114682674408,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.5804036458333334
+        },
+        "cd_joint_probe_accuracy": 0.4430338541666667,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.9892578125,
+            "a_only": 0.12109375,
+            "b_only": 0.4306640625,
+            "ab": 0.564208984375,
+            "cd": 0.16650390625,
+            "zero_cd": 0.642822265625,
+            "mismatch_cd": 0.96337890625
+          },
+          "counterfactual_pair_exact": 0.978515625,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.848876953125
+          },
+          "cd_joint_probe_accuracy": 0.525146484375,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.6971793174743652,
+          "main": 0.051669299602508545,
+          "phrase": 1.2438138723373413,
+          "joint_probe": 0.9506405591964722,
+          "alignment": 0.012215733528137207
+        },
+        "train_seconds": 20.570331499999156,
+        "mode": "full"
+      },
+      "ab_only_trained": {
+        "accuracy": {
+          "full": 0.5732421875,
+          "a_only": 0.12890625,
+          "b_only": 0.4274088541666667,
+          "ab": 0.6744791666666666,
+          "cd": 0.20377604166666666,
+          "zero_cd": 0.4270833333333333,
+          "mismatch_cd": 0.5667317708333334
+        },
+        "counterfactual_pair_exact": 0.2838541865348816,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.6238606770833334
+        },
+        "cd_joint_probe_accuracy": 0.5133463541666666,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.798095703125,
+            "a_only": 0.123291015625,
+            "b_only": 0.470458984375,
+            "ab": 0.996826171875,
+            "cd": 0.23779296875,
+            "zero_cd": 0.7294921875,
+            "mismatch_cd": 0.7900390625
+          },
+          "counterfactual_pair_exact": 0.62255859375,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.8594970703125
+          },
+          "cd_joint_probe_accuracy": 0.541748046875,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.6046758890151978,
+          "main": 0.015555541962385178,
+          "phrase": 1.1069954633712769,
+          "joint_probe": 0.8912562131881714,
+          "alignment": 0.002879023551940918
+        },
+        "train_seconds": 21.597413100003905,
+        "mode": "ab"
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.6949869791666666,
+        "train_seconds": 14.913611699994362
+      },
+      "fixed_state_retrieval": {
+        "method": "fixed_fp32_delta_state",
+        "write_strength": 0.865,
+        "key_distribution": "iid_standard_normal_l2_normalized_16d",
+        "state_dtype": "float32",
+        "episode_count_per_length": 64,
+        "payload_shape_per_item": [
+          4,
+          2,
+          32
+        ],
+        "payload_source_dtype": "torch.float32",
+        "exact_table_prediction_source": "perfect_key_lookup_of_pristine_payload",
+        "sampling": "without_replacement_within_episode_from_held_out_pool",
+        "table_predictions_match_pristine_by_construction": true,
+        "seed": 101,
+        "episodes": {
+          "8": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 16384,
+            "exact_table_bytes_keys_plus_payload_per_episode": 8704,
+            "state_to_table_byte_ratio": 1.8823529411764706,
+            "oldest_query_mean": {
+              "state_accuracy": 0.234375,
+              "exact_table_accuracy": 0.5625,
+              "state_prediction_matches_exact_table": 0.25,
+              "payload_mse": 0.020659377798438072,
+              "payload_cosine": 0.7318549156188965
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.734375,
+              "exact_table_accuracy": 0.75,
+              "state_prediction_matches_exact_table": 0.890625,
+              "payload_mse": 0.0010191062465310097,
+              "payload_cosine": 0.997239351272583
+            }
+          },
+          "32": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 16384,
+            "exact_table_bytes_keys_plus_payload_per_episode": 34816,
+            "state_to_table_byte_ratio": 0.47058823529411764,
+            "oldest_query_mean": {
+              "state_accuracy": 0.21875,
+              "exact_table_accuracy": 0.46875,
+              "state_prediction_matches_exact_table": 0.203125,
+              "payload_mse": 0.05485692620277405,
+              "payload_cosine": 0.225335031747818
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.484375,
+              "exact_table_accuracy": 0.546875,
+              "state_prediction_matches_exact_table": 0.734375,
+              "payload_mse": 0.0012760229874402285,
+              "payload_cosine": 0.9940751791000366
+            }
+          },
+          "96": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 16384,
+            "exact_table_bytes_keys_plus_payload_per_episode": 104448,
+            "state_to_table_byte_ratio": 0.1568627450980392,
+            "oldest_query_mean": {
+              "state_accuracy": 0.125,
+              "exact_table_accuracy": 0.546875,
+              "state_prediction_matches_exact_table": 0.109375,
+              "payload_mse": 0.06736557930707932,
+              "payload_cosine": 0.11216668784618378
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.609375,
+              "exact_table_accuracy": 0.625,
+              "state_prediction_matches_exact_table": 0.953125,
+              "payload_mse": 0.0014998088590800762,
+              "payload_cosine": 0.9925811290740967
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "rank": 4,
+      "test_examples": 3072,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 39856,
+      "full": {
+        "accuracy": {
+          "full": 0.4524739583333333,
+          "a_only": 0.12369791666666667,
+          "b_only": 0.4280598958333333,
+          "ab": 0.3489583333333333,
+          "cd": 0.09147135416666667,
+          "zero_cd": 0.3896484375,
+          "mismatch_cd": 0.4645182291666667
+        },
+        "counterfactual_pair_exact": 0.1236979216337204,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.4597981770833333
+        },
+        "cd_joint_probe_accuracy": 0.3577473958333333,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.987060546875,
+            "a_only": 0.138671875,
+            "b_only": 0.471923828125,
+            "ab": 0.55712890625,
+            "cd": 0.154296875,
+            "zero_cd": 0.5869140625,
+            "mismatch_cd": 0.86767578125
+          },
+          "counterfactual_pair_exact": 0.97412109375,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.803955078125
+          },
+          "cd_joint_probe_accuracy": 0.49853515625,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.7905896306037903,
+          "main": 0.03701114282011986,
+          "phrase": 1.3896229267120361,
+          "joint_probe": 1.1542506217956543,
+          "alignment": 0.014566898345947266
+        },
+        "train_seconds": 20.77168410000013,
+        "mode": "full"
+      },
+      "ab_only_trained": {
+        "accuracy": {
+          "full": 0.3984375,
+          "a_only": 0.12630208333333334,
+          "b_only": 0.357421875,
+          "ab": 0.4749348958333333,
+          "cd": 0.15462239583333334,
+          "zero_cd": 0.3850911458333333,
+          "mismatch_cd": 0.3958333333333333
+        },
+        "counterfactual_pair_exact": 0.1158854216337204,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 0.9921875,
+          "b_edge_symbols": 0.5164388020833334
+        },
+        "cd_joint_probe_accuracy": 0.4762369791666667,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.70166015625,
+            "a_only": 0.14111328125,
+            "b_only": 0.445556640625,
+            "ab": 0.958984375,
+            "cd": 0.06884765625,
+            "zero_cd": 0.651123046875,
+            "mismatch_cd": 0.704833984375
+          },
+          "counterfactual_pair_exact": 0.505859375,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 0.994873046875,
+            "b_edge_symbols": 0.7847900390625
+          },
+          "cd_joint_probe_accuracy": 0.52587890625,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.8754705786705017,
+          "main": 0.08804893493652344,
+          "phrase": 1.804937481880188,
+          "joint_probe": 0.9595545530319214,
+          "alignment": 0.00228804349899292
+        },
+        "train_seconds": 21.0937436000022,
+        "mode": "ab"
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.6949869791666666,
+        "train_seconds": 15.408614100000705
+      },
+      "fixed_state_retrieval": {
+        "method": "fixed_fp32_delta_state",
+        "write_strength": 0.865,
+        "key_distribution": "iid_standard_normal_l2_normalized_16d",
+        "state_dtype": "float32",
+        "episode_count_per_length": 64,
+        "payload_shape_per_item": [
+          4,
+          4,
+          32
+        ],
+        "payload_source_dtype": "torch.float32",
+        "exact_table_prediction_source": "perfect_key_lookup_of_pristine_payload",
+        "sampling": "without_replacement_within_episode_from_held_out_pool",
+        "table_predictions_match_pristine_by_construction": true,
+        "seed": 101,
+        "episodes": {
+          "8": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 32768,
+            "exact_table_bytes_keys_plus_payload_per_episode": 16896,
+            "state_to_table_byte_ratio": 1.9393939393939394,
+            "oldest_query_mean": {
+              "state_accuracy": 0.28125,
+              "exact_table_accuracy": 0.515625,
+              "state_prediction_matches_exact_table": 0.28125,
+              "payload_mse": 0.0201774463057518,
+              "payload_cosine": 0.7269018888473511
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.46875,
+              "exact_table_accuracy": 0.484375,
+              "state_prediction_matches_exact_table": 0.953125,
+              "payload_mse": 0.000998997944407165,
+              "payload_cosine": 0.99721759557724
+            }
+          },
+          "32": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 32768,
+            "exact_table_bytes_keys_plus_payload_per_episode": 67584,
+            "state_to_table_byte_ratio": 0.48484848484848486,
+            "oldest_query_mean": {
+              "state_accuracy": 0.171875,
+              "exact_table_accuracy": 0.421875,
+              "state_prediction_matches_exact_table": 0.234375,
+              "payload_mse": 0.05302727222442627,
+              "payload_cosine": 0.23272910714149475
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.4375,
+              "exact_table_accuracy": 0.46875,
+              "state_prediction_matches_exact_table": 0.875,
+              "payload_mse": 0.0012366012670099735,
+              "payload_cosine": 0.9939234852790833
+            }
+          },
+          "96": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 32768,
+            "exact_table_bytes_keys_plus_payload_per_episode": 202752,
+            "state_to_table_byte_ratio": 0.16161616161616163,
+            "oldest_query_mean": {
+              "state_accuracy": 0.140625,
+              "exact_table_accuracy": 0.4375,
+              "state_prediction_matches_exact_table": 0.15625,
+              "payload_mse": 0.06579169631004333,
+              "payload_cosine": 0.11959036439657211
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.390625,
+              "exact_table_accuracy": 0.375,
+              "state_prediction_matches_exact_table": 0.90625,
+              "payload_mse": 0.0014682328328490257,
+              "payload_cosine": 0.9919946193695068
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "rank": 1,
+      "test_examples": 3072,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 26608,
+      "full": {
+        "accuracy": {
+          "full": 0.6432291666666666,
+          "a_only": 0.12760416666666666,
+          "b_only": 0.4368489583333333,
+          "ab": 0.4860026041666667,
+          "cd": 0.11360677083333333,
+          "zero_cd": 0.5322265625,
+          "mismatch_cd": 0.5699869791666666
+        },
+        "counterfactual_pair_exact": 0.3873698115348816,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.77587890625
+        },
+        "cd_joint_probe_accuracy": 0.4365234375,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.98681640625,
+            "a_only": 0.123779296875,
+            "b_only": 0.494384765625,
+            "ab": 0.648681640625,
+            "cd": 0.134765625,
+            "zero_cd": 0.73583984375,
+            "mismatch_cd": 0.861328125
+          },
+          "counterfactual_pair_exact": 0.9736328125,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.8836669921875
+          },
+          "cd_joint_probe_accuracy": 0.539306640625,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.6900208592414856,
+          "main": 0.023994818329811096,
+          "phrase": 1.2341262102127075,
+          "joint_probe": 1.0149201154708862,
+          "alignment": 0.01514965295791626
+        },
+        "train_seconds": 20.767270299998927,
+        "mode": "full"
+      },
+      "ab_only_trained": {
+        "accuracy": {
+          "full": 0.6888020833333334,
+          "a_only": 0.1201171875,
+          "b_only": 0.490234375,
+          "ab": 0.8785807291666666,
+          "cd": 0.09114583333333333,
+          "zero_cd": 0.8235677083333334,
+          "mismatch_cd": 0.6930338541666666
+        },
+        "counterfactual_pair_exact": 0.5358073115348816,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.8583984375
+        },
+        "cd_joint_probe_accuracy": 0.5055338541666666,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.8515625,
+            "a_only": 0.120361328125,
+            "b_only": 0.499755859375,
+            "ab": 0.998291015625,
+            "cd": 0.102783203125,
+            "zero_cd": 0.96484375,
+            "mismatch_cd": 0.84912109375
+          },
+          "counterfactual_pair_exact": 0.7548828125,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.9295654296875
+          },
+          "cd_joint_probe_accuracy": 0.562255859375,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.5595138072967529,
+          "main": 0.006662700325250626,
+          "phrase": 1.0203572511672974,
+          "joint_probe": 0.8480991125106812,
+          "alignment": 0.006180763244628906
+        },
+        "train_seconds": 20.270892199994705,
+        "mode": "ab"
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.9296875,
+        "train_seconds": 15.688445100000536
+      },
+      "fixed_state_retrieval": {
+        "method": "fixed_fp32_delta_state",
+        "write_strength": 0.865,
+        "key_distribution": "iid_standard_normal_l2_normalized_16d",
+        "state_dtype": "float32",
+        "episode_count_per_length": 64,
+        "payload_shape_per_item": [
+          4,
+          1,
+          32
+        ],
+        "payload_source_dtype": "torch.float32",
+        "exact_table_prediction_source": "perfect_key_lookup_of_pristine_payload",
+        "sampling": "without_replacement_within_episode_from_held_out_pool",
+        "table_predictions_match_pristine_by_construction": true,
+        "seed": 102,
+        "episodes": {
+          "8": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 8192,
+            "exact_table_bytes_keys_plus_payload_per_episode": 4608,
+            "state_to_table_byte_ratio": 1.7777777777777777,
+            "oldest_query_mean": {
+              "state_accuracy": 0.296875,
+              "exact_table_accuracy": 0.6875,
+              "state_prediction_matches_exact_table": 0.34375,
+              "payload_mse": 0.01840156316757202,
+              "payload_cosine": 0.7347459197044373
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.71875,
+              "exact_table_accuracy": 0.703125,
+              "state_prediction_matches_exact_table": 0.875,
+              "payload_mse": 0.0009948466904461384,
+              "payload_cosine": 0.9966076612472534
+            }
+          },
+          "32": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 8192,
+            "exact_table_bytes_keys_plus_payload_per_episode": 18432,
+            "state_to_table_byte_ratio": 0.4444444444444444,
+            "oldest_query_mean": {
+              "state_accuracy": 0.125,
+              "exact_table_accuracy": 0.609375,
+              "state_prediction_matches_exact_table": 0.1875,
+              "payload_mse": 0.052751876413822174,
+              "payload_cosine": 0.22672045230865479
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.734375,
+              "exact_table_accuracy": 0.703125,
+              "state_prediction_matches_exact_table": 0.921875,
+              "payload_mse": 0.001289854058995843,
+              "payload_cosine": 0.9930216073989868
+            }
+          },
+          "96": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 8192,
+            "exact_table_bytes_keys_plus_payload_per_episode": 55296,
+            "state_to_table_byte_ratio": 0.14814814814814814,
+            "oldest_query_mean": {
+              "state_accuracy": 0.09375,
+              "exact_table_accuracy": 0.640625,
+              "state_prediction_matches_exact_table": 0.171875,
+              "payload_mse": 0.0711415708065033,
+              "payload_cosine": 0.054260313510894775
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.59375,
+              "exact_table_accuracy": 0.65625,
+              "state_prediction_matches_exact_table": 0.84375,
+              "payload_mse": 0.0012370784534141421,
+              "payload_cosine": 0.9923917651176453
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "rank": 2,
+      "test_examples": 3072,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 31024,
+      "full": {
+        "accuracy": {
+          "full": 0.4697265625,
+          "a_only": 0.13509114583333334,
+          "b_only": 0.4423828125,
+          "ab": 0.4244791666666667,
+          "cd": 0.134765625,
+          "zero_cd": 0.4059244791666667,
+          "mismatch_cd": 0.4514973958333333
+        },
+        "counterfactual_pair_exact": 0.1770833432674408,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.59814453125
+        },
+        "cd_joint_probe_accuracy": 0.3701171875,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.9833984375,
+            "a_only": 0.12939453125,
+            "b_only": 0.496337890625,
+            "ab": 0.67626953125,
+            "cd": 0.21240234375,
+            "zero_cd": 0.667236328125,
+            "mismatch_cd": 0.883056640625
+          },
+          "counterfactual_pair_exact": 0.966796875,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.849365234375
+          },
+          "cd_joint_probe_accuracy": 0.530517578125,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.8583223819732666,
+          "main": 0.12666848301887512,
+          "phrase": 1.4074339866638184,
+          "joint_probe": 1.077232837677002,
+          "alignment": 0.018426120281219482
+        },
+        "train_seconds": 21.91342650000297,
+        "mode": "full"
+      },
+      "ab_only_trained": {
+        "accuracy": {
+          "full": 0.697265625,
+          "a_only": 0.1181640625,
+          "b_only": 0.4306640625,
+          "ab": 0.892578125,
+          "cd": 0.013346354166666666,
+          "zero_cd": 0.7932942708333334,
+          "mismatch_cd": 0.7021484375
+        },
+        "counterfactual_pair_exact": 0.513671875,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.69091796875
+        },
+        "cd_joint_probe_accuracy": 0.4876302083333333,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.814453125,
+            "a_only": 0.140625,
+            "b_only": 0.487548828125,
+            "ab": 0.999267578125,
+            "cd": 0.115234375,
+            "zero_cd": 0.90283203125,
+            "mismatch_cd": 0.82666015625
+          },
+          "counterfactual_pair_exact": 0.68408203125,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.8587646484375
+          },
+          "cd_joint_probe_accuracy": 0.55419921875,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.601883053779602,
+          "main": 0.005364642944186926,
+          "phrase": 1.124875545501709,
+          "joint_probe": 0.8999392986297607,
+          "alignment": 0.0021387338638305664
+        },
+        "train_seconds": 20.887755999996443,
+        "mode": "ab"
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.9296875,
+        "train_seconds": 14.977761900001497
+      },
+      "fixed_state_retrieval": {
+        "method": "fixed_fp32_delta_state",
+        "write_strength": 0.865,
+        "key_distribution": "iid_standard_normal_l2_normalized_16d",
+        "state_dtype": "float32",
+        "episode_count_per_length": 64,
+        "payload_shape_per_item": [
+          4,
+          2,
+          32
+        ],
+        "payload_source_dtype": "torch.float32",
+        "exact_table_prediction_source": "perfect_key_lookup_of_pristine_payload",
+        "sampling": "without_replacement_within_episode_from_held_out_pool",
+        "table_predictions_match_pristine_by_construction": true,
+        "seed": 102,
+        "episodes": {
+          "8": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 16384,
+            "exact_table_bytes_keys_plus_payload_per_episode": 8704,
+            "state_to_table_byte_ratio": 1.8823529411764706,
+            "oldest_query_mean": {
+              "state_accuracy": 0.25,
+              "exact_table_accuracy": 0.40625,
+              "state_prediction_matches_exact_table": 0.375,
+              "payload_mse": 0.0177385862916708,
+              "payload_cosine": 0.7501122951507568
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.453125,
+              "exact_table_accuracy": 0.421875,
+              "state_prediction_matches_exact_table": 0.90625,
+              "payload_mse": 0.0009770828764885664,
+              "payload_cosine": 0.9967001676559448
+            }
+          },
+          "32": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 16384,
+            "exact_table_bytes_keys_plus_payload_per_episode": 34816,
+            "state_to_table_byte_ratio": 0.47058823529411764,
+            "oldest_query_mean": {
+              "state_accuracy": 0.140625,
+              "exact_table_accuracy": 0.5625,
+              "state_prediction_matches_exact_table": 0.171875,
+              "payload_mse": 0.052387695759534836,
+              "payload_cosine": 0.23939211666584015
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.515625,
+              "exact_table_accuracy": 0.46875,
+              "state_prediction_matches_exact_table": 0.828125,
+              "payload_mse": 0.0012363552814349532,
+              "payload_cosine": 0.9931668043136597
+            }
+          },
+          "96": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 16384,
+            "exact_table_bytes_keys_plus_payload_per_episode": 104448,
+            "state_to_table_byte_ratio": 0.1568627450980392,
+            "oldest_query_mean": {
+              "state_accuracy": 0.125,
+              "exact_table_accuracy": 0.421875,
+              "state_prediction_matches_exact_table": 0.140625,
+              "payload_mse": 0.0679510161280632,
+              "payload_cosine": 0.047728024423122406
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.4375,
+              "exact_table_accuracy": 0.484375,
+              "state_prediction_matches_exact_table": 0.875,
+              "payload_mse": 0.0012196131283417344,
+              "payload_cosine": 0.9925296902656555
+            }
+          }
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "rank": 4,
+      "test_examples": 3072,
+      "trainable_model_parameters": 201306,
+      "latent_encoder_parameters": 39856,
+      "full": {
+        "accuracy": {
+          "full": 0.689453125,
+          "a_only": 0.13151041666666666,
+          "b_only": 0.4410807291666667,
+          "ab": 0.673828125,
+          "cd": 0.10286458333333333,
+          "zero_cd": 0.6341145833333334,
+          "mismatch_cd": 0.6871744791666666
+        },
+        "counterfactual_pair_exact": 0.4954427182674408,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.4840494791666667
+        },
+        "cd_joint_probe_accuracy": 0.369140625,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.993408203125,
+            "a_only": 0.114501953125,
+            "b_only": 0.478271484375,
+            "ab": 0.9296875,
+            "cd": 0.167236328125,
+            "zero_cd": 0.91650390625,
+            "mismatch_cd": 0.98974609375
+          },
+          "counterfactual_pair_exact": 0.98681640625,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.809326171875
+          },
+          "cd_joint_probe_accuracy": 0.5283203125,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.7525774240493774,
+          "main": 0.017021872103214264,
+          "phrase": 1.4709901809692383,
+          "joint_probe": 1.048927903175354,
+          "alignment": 0.004554808139801025
+        },
+        "train_seconds": 20.62503950000246,
+        "mode": "full"
+      },
+      "ab_only_trained": {
+        "accuracy": {
+          "full": 0.6318359375,
+          "a_only": 0.13053385416666666,
+          "b_only": 0.3981119791666667,
+          "ab": 0.8401692708333334,
+          "cd": 0.055989583333333336,
+          "zero_cd": 0.705078125,
+          "mismatch_cd": 0.6256510416666666
+        },
+        "counterfactual_pair_exact": 0.3893229365348816,
+        "content_reconstruction_accuracy": {
+          "a_query_key": 1.0,
+          "b_edge_symbols": 0.50830078125
+        },
+        "cd_joint_probe_accuracy": 0.4700520833333333,
+        "examples": 3072,
+        "train_evaluation": {
+          "accuracy": {
+            "full": 0.851806640625,
+            "a_only": 0.135498046875,
+            "b_only": 0.47216796875,
+            "ab": 0.995361328125,
+            "cd": 0.06103515625,
+            "zero_cd": 0.914794921875,
+            "mismatch_cd": 0.843017578125
+          },
+          "counterfactual_pair_exact": 0.73828125,
+          "content_reconstruction_accuracy": {
+            "a_query_key": 1.0,
+            "b_edge_symbols": 0.779296875
+          },
+          "cd_joint_probe_accuracy": 0.54443359375,
+          "examples": 4096
+        },
+        "final_batch_losses": {
+          "total": 0.7631301879882812,
+          "main": 0.022947311401367188,
+          "phrase": 1.600281834602356,
+          "joint_probe": 0.9711951017379761,
+          "alignment": 0.001294255256652832
+        },
+        "train_seconds": 20.425420799998392,
+        "mode": "ab"
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.9296875,
+        "train_seconds": 14.942661299995962
+      },
+      "fixed_state_retrieval": {
+        "method": "fixed_fp32_delta_state",
+        "write_strength": 0.865,
+        "key_distribution": "iid_standard_normal_l2_normalized_16d",
+        "state_dtype": "float32",
+        "episode_count_per_length": 64,
+        "payload_shape_per_item": [
+          4,
+          4,
+          32
+        ],
+        "payload_source_dtype": "torch.float32",
+        "exact_table_prediction_source": "perfect_key_lookup_of_pristine_payload",
+        "sampling": "without_replacement_within_episode_from_held_out_pool",
+        "table_predictions_match_pristine_by_construction": true,
+        "seed": 102,
+        "episodes": {
+          "8": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 32768,
+            "exact_table_bytes_keys_plus_payload_per_episode": 16896,
+            "state_to_table_byte_ratio": 1.9393939393939394,
+            "oldest_query_mean": {
+              "state_accuracy": 0.28125,
+              "exact_table_accuracy": 0.734375,
+              "state_prediction_matches_exact_table": 0.28125,
+              "payload_mse": 0.01933659426867962,
+              "payload_cosine": 0.7441846132278442
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.671875,
+              "exact_table_accuracy": 0.71875,
+              "state_prediction_matches_exact_table": 0.921875,
+              "payload_mse": 0.0010203151032328606,
+              "payload_cosine": 0.9968194961547852
+            }
+          },
+          "32": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 32768,
+            "exact_table_bytes_keys_plus_payload_per_episode": 67584,
+            "state_to_table_byte_ratio": 0.48484848484848486,
+            "oldest_query_mean": {
+              "state_accuracy": 0.109375,
+              "exact_table_accuracy": 0.59375,
+              "state_prediction_matches_exact_table": 0.15625,
+              "payload_mse": 0.055916979908943176,
+              "payload_cosine": 0.22678573429584503
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.625,
+              "exact_table_accuracy": 0.71875,
+              "state_prediction_matches_exact_table": 0.890625,
+              "payload_mse": 0.0014096496161073446,
+              "payload_cosine": 0.9931823015213013
+            }
+          },
+          "96": {
+            "episode_count": 64,
+            "state_bytes_fp32_per_episode": 32768,
+            "exact_table_bytes_keys_plus_payload_per_episode": 202752,
+            "state_to_table_byte_ratio": 0.16161616161616163,
+            "oldest_query_mean": {
+              "state_accuracy": 0.0625,
+              "exact_table_accuracy": 0.65625,
+              "state_prediction_matches_exact_table": 0.109375,
+              "payload_mse": 0.0747273862361908,
+              "payload_cosine": 0.03301025554537773
+            },
+            "latest_query_mean": {
+              "state_accuracy": 0.640625,
+              "exact_table_accuracy": 0.6875,
+              "state_prediction_matches_exact_table": 0.890625,
+              "payload_mse": 0.0013090454740449786,
+              "payload_cosine": 0.9930418133735657
+            }
+          }
+        }
+      }
+    }
+  ]
+}

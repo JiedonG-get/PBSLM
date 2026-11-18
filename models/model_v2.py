@@ -131,8 +131,21 @@ class PBSLMv2(nn.Module):
             return F.normalize(self.tok.weight[ids.long()], dim=-1)
         return self.code[ids.long()]
 
-    def encode(self, ids, act=None):
-        x = self.token_emb(ids)
+    def _input_embeddings(self, ids, inputs_embeds):
+        if (ids is None) == (inputs_embeds is None):
+            raise ValueError("provide exactly one of ids or inputs_embeds")
+        if inputs_embeds is None:
+            return self.token_emb(ids)
+        if inputs_embeds.ndim != 3 or inputs_embeds.shape[-1] != self.d:
+            raise ValueError(f"inputs_embeds must have shape (batch, time, {self.d})")
+        if not inputs_embeds.is_floating_point():
+            raise TypeError("inputs_embeds must be a floating-point tensor")
+        if inputs_embeds.device != self.tok.weight.device:
+            raise ValueError("inputs_embeds and model parameters must be on the same device")
+        return inputs_embeds.to(dtype=self.tok.weight.dtype)
+
+    def encode(self, ids=None, act=None, *, inputs_embeds=None):
+        x = self._input_embeddings(ids, inputs_embeds)
         kA, kC = self.quotas(act)
         hmean = x.mean(1).mean(0)
         sa, sc = self.role_a(hmean), self.role_c(hmean)
@@ -227,8 +240,8 @@ class PBSLMv2(nn.Module):
             raise FloatingPointError(f"non-finite value at PBSLMv2.{boundary}")
         return value
 
-    def encode_masked(self, ids, act=None):
-        x = self.token_emb(ids)
+    def encode_masked(self, ids=None, act=None, *, inputs_embeds=None):
+        x = self._input_embeddings(ids, inputs_embeds)
         B, T, D = x.shape
         kA, kC = self.quotas(act)
         h = x.mean(1)                                      # (B,D), per-sample routing
@@ -311,12 +324,16 @@ class PBSLMv2(nn.Module):
                 qq = qq + proj(h)
         return h
 
-    def forward(self, ids, m, act=None, emo=None, shock=None, sample_noise=True):
-        B = ids.shape[0]
+    def forward(self, ids=None, m=None, act=None, emo=None, shock=None,
+                sample_noise=True, *, inputs_embeds=None):
+        if m is None:
+            raise ValueError("m is required")
+        x_all = self._input_embeddings(ids, inputs_embeds)
+        B = x_all.shape[0]
         emo = (self.emo_calm.expand(B, -1) if emo is None else emo).to(self.tok.weight.dtype)
         extra = {}
         if self.use_sample_masks:
-            enc = self.encode_masked(ids, act)
+            enc = self.encode_masked(act=act, inputs_embeds=x_all)
             a_enc, c_enc = enc["a_enc"], enc["c_enc"]
             E_feats, I_a, I_c = enc["e_feats"], enc["I_a"], enc["I_c"]
             active = enc["active_union_global"]
@@ -324,7 +341,8 @@ class PBSLMv2(nn.Module):
             extra = {k: enc[k] for k in ("chosen_a", "chosen_c", "active_a", "active_c",
                                          "active_union_global", "mask_a", "mask_c")}
         else:
-            a_enc, c_enc, E_feats, I_a, I_c, active, chosen = self.encode(ids, act)
+            a_enc, c_enc, E_feats, I_a, I_c, active, chosen = self.encode(
+                act=act, inputs_embeds=x_all)
         q0 = (self.q_emb[:m] + self.q_pos[:m]).unsqueeze(0).expand(B, m, self.d)
         q0c = (self.q_emb_c[:m] + self.q_pos_c[:m]).unsqueeze(0).expand(B, m, self.d)
         if self.simple_dec:
@@ -334,7 +352,6 @@ class PBSLMv2(nn.Module):
             h_a = self._decode_refine(self.dec_a, q0, a_enc, self.refine_proj)
             h_c = self._decode_refine(self.dec_c, q0c, c_enc, self.refine_proj_c)
         # 输出必须先归一化：否则 cos 损失下 z 范数会爆（162+），梯度 1/||z|| 衰减→学习停滞
-        x_all = self.token_emb(ids)
         x_ctx = x_all[:, -1] + x_all.mean(1)   # 同时用最后 token 与全文上下文，避免退化成 bigram
         ctx_a = self.ctx_a(x_ctx).unsqueeze(1)
         ctx_c = self.ctx_c(x_ctx).unsqueeze(1)
@@ -346,8 +363,8 @@ class PBSLMv2(nn.Module):
             z_c = F.normalize(self.out_c(h_c) + ctx_c, dim=-1)
         # 三旋钮扰动场：activity / shock / emotion；shock 由训练脚本算好后传入（B,1）
         dt = self.tok.weight.dtype
-        act_b = torch.full((B, 1), act / self.act_x if act else 1.0, device=ids.device, dtype=dt)
-        shock_b = torch.zeros(B, 1, device=ids.device, dtype=dt) if shock is None else shock.to(dt)
+        act_b = torch.full((B, 1), act / self.act_x if act else 1.0, device=x_all.device, dtype=dt)
+        shock_b = torch.zeros(B, 1, device=x_all.device, dtype=dt) if shock is None else shock.to(dt)
         mu_raw, log_sigma = self.field(act_b, shock_b, emo)
         # 扰动场只提供“方向 + 幅度”，不能让它吞掉输出：μ 单位化、整体缩放固定很小
         mu = F.normalize(mu_raw, dim=-1)
