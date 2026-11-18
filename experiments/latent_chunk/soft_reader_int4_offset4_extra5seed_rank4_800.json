@@ -1,0 +1,1021 @@
+{
+  "task": "two_phrase_key_value_relation_query_with_counterfactual_pairs",
+  "condition": "int4_short_codes_soft_decoded_to_continuous_token_embeddings",
+  "method": "Reserve offset-4 ordered value pairs before training the phrase autoencoder. Quantize each normalized rank-4 code with fixed signed 4-bit levels, project the frozen decoder's per-position class probabilities into the downstream model's trainable token embedding table, and train the trunk with query loss only. Compare against direct rank-4 latent inputs, argmax token decoding, and raw-token inputs on the same split.",
+  "split": {
+    "held_out_pairs": [
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        3
+      ]
+    ],
+    "source": "offset-4 pair rows removed from make_data training rows before encoder or task training",
+    "standard_test_split_used": false
+  },
+  "code_payload": {
+    "bits_per_latent_component": 4,
+    "rank_per_phrase": 4,
+    "phrase_count": 2,
+    "components": 256,
+    "bytes_bit_packed_estimate": 128,
+    "dequantized_fp32_runtime_bytes": 1024,
+    "scale_metadata_bytes": 0,
+    "shared_autoencoder_and_decoder_excluded": true,
+    "packed_kernel_or_runtime_memory_saving_tested": false
+  },
+  "reader_parameter_accounting": {
+    "additional_reader_parameters": 0,
+    "reused_shared_decoder_parameters": "counted inside autoencoder_parameters and shared_decoder_parameters per run",
+    "model_token_embedding_table_parameters": 576,
+    "model_token_embedding_table_shape": [
+      18,
+      32
+    ],
+    "reader_embedding_rows_with_gradients": 10,
+    "reader_embedding_parameters_with_gradients": 320
+  },
+  "quantization": {
+    "method": "round(z * 7).clamp(-7, 7) / 7",
+    "in_memory_representation": "dequantized float32 levels",
+    "interpretation": "int4-equivalent fake-quantized simulation; no bit-packed runtime path"
+  },
+  "limitations": "Synthetic task and frozen random source embeddings. The decoder is shared side information, and the soft reader expands each short code to eight continuous vectors at runtime. The 128-byte figure is a bit-packed payload estimate; this run uses dequantized FP32 values and does not measure packed-kernel latency or runtime memory. Thus this tests compressed storage plus continuous readout, not a constant-size model input or natural-language memory. Only one predeclared offset-4 split and three seeds are evaluated.",
+  "config": {
+    "seeds": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "steps": 800,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cuda",
+    "output": "experiments/latent_chunk/soft_reader_int4_offset4_extra5seed_rank4_800.json"
+  },
+  "torch": "2.11.0+cu128",
+  "provenance": {
+    "git_commit": "f5ae7ee1be077cc060ef88b5b1ac84695dc74ff9",
+    "git_status": "?? evaluation/analyze_qwen_story.py\n?? evaluation/latent_chunk_adapter_thinking.py\n?? evaluation/latent_chunk_decoded_control.py\n?? evaluation/latent_chunk_qat_control.py\n?? evaluation/latent_chunk_soft_reader_confirmatory.py\n?? evaluation/latent_chunk_soft_reader_rank_sweep.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? experiments/continuous_online/alias_online_dev_frozen_scores_v2.json\n?? experiments/continuous_online/alias_online_dev_frozen_v2.json\n?? experiments/continuous_online/alias_online_development_batch_scores_v2.json\n?? experiments/continuous_online/alias_online_development_batch_v2.json\n?? experiments/continuous_online/alias_online_development_final_scores_v2.json\n?? experiments/continuous_online/alias_online_development_final_v2.json\n?? experiments/continuous_online/alias_online_development_initial_scores_v2.json\n?? experiments/continuous_online/alias_online_development_initial_v2.json\n?? experiments/continuous_online/alias_online_development_retry_v2.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/latent_chunk/QUANTIZED_DECODED_CONTROL_8BIT.md\n?? experiments/latent_chunk/decoded_latent_int4_qat_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_int4_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_int8_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/direct_adapter_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/preflight_matched.json\n?? experiments/latent_chunk/preflight_seed0_rank1.json\n?? experiments/latent_chunk/soft_reader_int4_offset4_3seed_rank4_800.json\n?? experiments/latent_chunk/soft_reader_int4_offset4_rank12_3seed_800.json\n?? experiments/latent_chunk/soft_reader_offset4_rank_tradeoff.md\n?? experiments/recurrent_state/continuous_event_tests.log",
+    "source_sha256_at_capture": {
+      "evaluation/latent_chunk_soft_reader_confirmatory.py": "02b8ef43bc5555f6d374c117be673f9895feff837795564d81827037cf0bd24b",
+      "evaluation/latent_chunk_reconstruction.py": "fb468a9f4c9ee5a39f926a348abf583f3afccec8756e4d647ce8ac4a0e26c73d",
+      "evaluation/latent_chunk_ab_thinking.py": "3da790e222a000e7f367ef12595aa281bfe8540ca2a0dff0887a22337b9da571",
+      "evaluation/latent_chunk_relations.py": "070377ad5b4980a20a4b43953e67b80dfb976376da1cc6e28dba5c2ea54da312",
+      "evaluation/provenance.py": "061924cbf9c0c5d326501be75102734bea03be6f1f315dfe032fdff1a34ebdee",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "685d275de48e923e93adc9614319e0743f80573619bead16a1f7b06aeeff8d05"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 3,
+      "rank": 4,
+      "held_out_value_pairs": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "train_examples": 3402,
+      "test_examples": 694,
+      "latent_payload_bytes_int4": 128,
+      "autoencoder_parameters": 38224,
+      "shared_encoder_parameters": 24768,
+      "shared_decoder_parameters": 13456,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9989711567759514,
+          "y_token_accuracy": 0.9999999403953552,
+          "all_16_token_accuracy": 0.9994855485856533,
+          "x_variable_token_accuracy": 0.9988241876874652,
+          "y_variable_token_accuracy": 0.9999999403953552,
+          "query_key_accuracy": 0.9997060298919678,
+          "y_edge_symbol_accuracy": 0.9999999403953552,
+          "x_filler_accuracy": 0.9986772139867147,
+          "y_filler_accuracy": 0.9999999403953552,
+          "x_phrase_exact": 0.9920634920634921,
+          "y_phrase_exact": 1.0,
+          "both_phrases_exact": 0.9920634920634921,
+          "position_accuracy": {
+            "x": [
+              0.9999999403953552,
+              0.9997060298919678,
+              0.9976484179496765,
+              0.9991181492805481,
+              0.9955908060073853,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9997060298919678
+            ],
+            "y": [
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552
+            ]
+          },
+          "examples": 3402
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.996938019990921,
+          "y_token_accuracy": 0.9920749142765999,
+          "all_16_token_accuracy": 0.9945064671337605,
+          "x_variable_token_accuracy": 0.9965005942753383,
+          "y_variable_token_accuracy": 0.990942759173257,
+          "query_key_accuracy": 0.9971181154251099,
+          "y_edge_symbol_accuracy": 0.9848702996969223,
+          "x_filler_accuracy": 0.9963976740837097,
+          "y_filler_accuracy": 0.99903937180837,
+          "x_phrase_exact": 0.978386167146974,
+          "y_phrase_exact": 0.9452449567723343,
+          "both_phrases_exact": 0.9236311239193083,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9971181154251099,
+              0.9942362904548645,
+              0.9985590577125549,
+              0.988472580909729,
+              0.9985590577125549,
+              1.0,
+              0.9985590577125549
+            ],
+            "y": [
+              1.0,
+              1.0,
+              0.9596541523933411,
+              1.0,
+              0.9798270463943481,
+              1.0,
+              1.0,
+              0.9971181154251099
+            ]
+          },
+          "examples": 694
+        },
+        "final_batch_loss": 0.024524033069610596,
+        "train_seconds": 2.1491986000037286
+      },
+      "int4_quantized_test_reconstruction": {
+        "all_16_token_accuracy": 0.9916245937347412,
+        "both_phrases_exact": 0.880403459072113,
+        "query_key_accuracy": 0.9956772327423096,
+        "y_edge_symbol_accuracy": 0.9762247800827026,
+        "examples": 694
+      },
+      "direct_int4_latent_thinking": {
+        "test": {
+          "accuracy": 0.24207492172718048,
+          "counterfactual_pair_exact": 0.06340057402849197,
+          "examples": 694
+        },
+        "train": {
+          "accuracy": 0.9929453134536743,
+          "counterfactual_pair_exact": 0.9858906269073486,
+          "examples": 3402
+        },
+        "trainable_model_parameters": 201306,
+        "role_tag_parameters": 512
+      },
+      "soft_reader_int4_thinking": {
+        "test": {
+          "accuracy": 0.4884726107120514,
+          "counterfactual_pair_exact": 0.16426512598991394,
+          "examples": 694
+        },
+        "train": {
+          "accuracy": 0.7798353433609009,
+          "counterfactual_pair_exact": 0.5873015522956848,
+          "examples": 3402
+        },
+        "model_trainable_parameters_in_optimizer": 201306,
+        "additional_reader_parameters": 0,
+        "embedding_table_parameters": 576,
+        "embedding_rows_used_by_reader": 10,
+        "embedding_parameters_used_by_reader": 320
+      },
+      "argmax_decoded_int4_thinking": {
+        "accuracy": 0.4812679886817932,
+        "counterfactual_pair_exact": 0.14985589683055878,
+        "examples": 694,
+        "train_evaluation": {
+          "accuracy": 0.7639623284339905,
+          "counterfactual_pair_exact": 0.5573192238807678,
+          "examples": 3402
+        },
+        "train_seconds": 15.147801400002209
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.5259366035461426,
+        "counterfactual_pair_exact": 0.20172910392284393,
+        "examples": 694,
+        "train_evaluation": {
+          "accuracy": 0.7557318806648254,
+          "counterfactual_pair_exact": 0.5396825075149536,
+          "examples": 3402
+        },
+        "train_seconds": 15.253563800004486
+      }
+    },
+    {
+      "seed": 4,
+      "rank": 4,
+      "held_out_value_pairs": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "train_examples": 3460,
+      "test_examples": 636,
+      "latent_payload_bytes_int4": 128,
+      "autoencoder_parameters": 38224,
+      "shared_encoder_parameters": 24768,
+      "shared_decoder_parameters": 13456,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9990968108177185,
+          "y_token_accuracy": 0.999927744269371,
+          "all_16_token_accuracy": 0.9995122775435448,
+          "x_variable_token_accuracy": 0.9989677837916783,
+          "y_variable_token_accuracy": 0.9999174220221383,
+          "query_key_accuracy": 0.9997109770774841,
+          "y_edge_symbol_accuracy": 0.9998554885387421,
+          "x_filler_accuracy": 0.998843918244044,
+          "y_filler_accuracy": 1.0,
+          "x_phrase_exact": 0.9930635838150289,
+          "y_phrase_exact": 0.999421965317919,
+          "both_phrases_exact": 0.992485549132948,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9997109770774841,
+              0.997687816619873,
+              0.9991329312324524,
+              0.9968208074569702,
+              1.0,
+              0.9997109770774841,
+              0.9997109770774841
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              0.9994219541549683,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 3460
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9968553110957146,
+          "y_token_accuracy": 0.9956760555505753,
+          "all_16_token_accuracy": 0.9962656833231449,
+          "x_variable_token_accuracy": 0.996406078338623,
+          "y_variable_token_accuracy": 0.9950583577156067,
+          "query_key_accuracy": 0.9952830076217651,
+          "y_edge_symbol_accuracy": 0.9937106519937515,
+          "x_filler_accuracy": 0.9965932567914327,
+          "y_filler_accuracy": 0.9968552986780802,
+          "x_phrase_exact": 0.9764150943396226,
+          "y_phrase_exact": 0.9685534591194969,
+          "both_phrases_exact": 0.9465408805031447,
+          "position_accuracy": {
+            "x": [
+              0.9999999403953552,
+              0.9952830076217651,
+              0.9952830076217651,
+              0.9984276294708252,
+              0.9921383261680603,
+              0.9984276294708252,
+              0.9999999403953552,
+              0.9952830076217651
+            ],
+            "y": [
+              0.9999999403953552,
+              0.9968553185462952,
+              0.9874213337898254,
+              0.9968553185462952,
+              0.9937106370925903,
+              0.9937106370925903,
+              0.9968553185462952,
+              0.9999999403953552
+            ]
+          },
+          "examples": 636
+        },
+        "final_batch_loss": 0.030161403119564056,
+        "train_seconds": 2.5681335999979638
+      },
+      "int4_quantized_test_reconstruction": {
+        "all_16_token_accuracy": 0.9947916269302368,
+        "both_phrases_exact": 0.9339622259140015,
+        "query_key_accuracy": 0.9968553185462952,
+        "y_edge_symbol_accuracy": 0.9921383261680603,
+        "examples": 636
+      },
+      "direct_int4_latent_thinking": {
+        "test": {
+          "accuracy": 0.27358490228652954,
+          "counterfactual_pair_exact": 0.06603773683309555,
+          "examples": 636
+        },
+        "train": {
+          "accuracy": 0.9956647157669067,
+          "counterfactual_pair_exact": 0.9919074773788452,
+          "examples": 3460
+        },
+        "trainable_model_parameters": 201306,
+        "role_tag_parameters": 512
+      },
+      "soft_reader_int4_thinking": {
+        "test": {
+          "accuracy": 0.8427672386169434,
+          "counterfactual_pair_exact": 0.7012578248977661,
+          "examples": 636
+        },
+        "train": {
+          "accuracy": 0.9427745342254639,
+          "counterfactual_pair_exact": 0.8867051601409912,
+          "examples": 3460
+        },
+        "model_trainable_parameters_in_optimizer": 201306,
+        "additional_reader_parameters": 0,
+        "embedding_table_parameters": 576,
+        "embedding_rows_used_by_reader": 10,
+        "embedding_parameters_used_by_reader": 320
+      },
+      "argmax_decoded_int4_thinking": {
+        "accuracy": 0.8474842309951782,
+        "counterfactual_pair_exact": 0.7012578248977661,
+        "examples": 636,
+        "train_evaluation": {
+          "accuracy": 0.955491304397583,
+          "counterfactual_pair_exact": 0.910982608795166,
+          "examples": 3460
+        },
+        "train_seconds": 15.196378200002073
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.8820754289627075,
+        "counterfactual_pair_exact": 0.7704402208328247,
+        "examples": 636,
+        "train_evaluation": {
+          "accuracy": 0.9557803273200989,
+          "counterfactual_pair_exact": 0.9121387004852295,
+          "examples": 3460
+        },
+        "train_seconds": 16.290727199993853
+      }
+    },
+    {
+      "seed": 5,
+      "rank": 4,
+      "held_out_value_pairs": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "train_examples": 3444,
+      "test_examples": 652,
+      "latent_payload_bytes_int4": 128,
+      "autoencoder_parameters": 38224,
+      "shared_encoder_parameters": 24768,
+      "shared_decoder_parameters": 13456,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9996370300650597,
+          "y_token_accuracy": 0.9999274089932442,
+          "all_16_token_accuracy": 0.9997822195291519,
+          "x_variable_token_accuracy": 0.9995851772172111,
+          "y_variable_token_accuracy": 0.999917038849422,
+          "query_key_accuracy": 0.9997096061706543,
+          "y_edge_symbol_accuracy": 0.9998548179864883,
+          "x_filler_accuracy": 0.9995644390583038,
+          "y_filler_accuracy": 1.0,
+          "x_phrase_exact": 0.997096399535424,
+          "y_phrase_exact": 0.9994192799070848,
+          "both_phrases_exact": 0.9965156794425087,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9997096061706543,
+              0.9997096061706543,
+              0.9994192719459534,
+              0.998548150062561,
+              0.9997096061706543,
+              1.0,
+              1.0
+            ],
+            "y": [
+              1.0,
+              0.9994192719459534,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 3444
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9986579716205597,
+          "y_token_accuracy": 0.9953987672924995,
+          "all_16_token_accuracy": 0.9970283694565296,
+          "x_variable_token_accuracy": 0.9984662532806396,
+          "y_variable_token_accuracy": 0.9947414483342852,
+          "query_key_accuracy": 0.9984662532806396,
+          "y_edge_symbol_accuracy": 0.9923312813043594,
+          "x_filler_accuracy": 0.9984662532806396,
+          "y_filler_accuracy": 0.9979550043741862,
+          "x_phrase_exact": 0.9892638036809815,
+          "y_phrase_exact": 0.9631901840490797,
+          "both_phrases_exact": 0.9524539877300614,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9984662532806396,
+              0.9969325065612793,
+              0.9969325065612793,
+              0.9984662532806396,
+              0.9984662532806396,
+              1.0,
+              1.0
+            ],
+            "y": [
+              1.0,
+              0.9969325065612793,
+              0.9785276055335999,
+              1.0,
+              0.9938650131225586,
+              0.9938650131225586,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 652
+        },
+        "final_batch_loss": 0.027097290381789207,
+        "train_seconds": 2.360101299993403
+      },
+      "int4_quantized_test_reconstruction": {
+        "all_16_token_accuracy": 0.9956863522529602,
+        "both_phrases_exact": 0.9340490698814392,
+        "query_key_accuracy": 0.995398759841919,
+        "y_edge_symbol_accuracy": 0.9892637729644775,
+        "examples": 652
+      },
+      "direct_int4_latent_thinking": {
+        "test": {
+          "accuracy": 0.24079753458499908,
+          "counterfactual_pair_exact": 0.021472392603754997,
+          "examples": 652
+        },
+        "train": {
+          "accuracy": 0.9918698668479919,
+          "counterfactual_pair_exact": 0.9837397933006287,
+          "examples": 3444
+        },
+        "trainable_model_parameters": 201306,
+        "role_tag_parameters": 512
+      },
+      "soft_reader_int4_thinking": {
+        "test": {
+          "accuracy": 0.6319018006324768,
+          "counterfactual_pair_exact": 0.38957053422927856,
+          "examples": 652
+        },
+        "train": {
+          "accuracy": 0.852787435054779,
+          "counterfactual_pair_exact": 0.7212543487548828,
+          "examples": 3444
+        },
+        "model_trainable_parameters_in_optimizer": 201306,
+        "additional_reader_parameters": 0,
+        "embedding_table_parameters": 576,
+        "embedding_rows_used_by_reader": 10,
+        "embedding_parameters_used_by_reader": 320
+      },
+      "argmax_decoded_int4_thinking": {
+        "accuracy": 0.6319018006324768,
+        "counterfactual_pair_exact": 0.349693238735199,
+        "examples": 652,
+        "train_evaluation": {
+          "accuracy": 0.8559814095497131,
+          "counterfactual_pair_exact": 0.7206736207008362,
+          "examples": 3444
+        },
+        "train_seconds": 15.59428299999854
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.6595091819763184,
+        "counterfactual_pair_exact": 0.4079754650592804,
+        "examples": 652,
+        "train_evaluation": {
+          "accuracy": 0.861498236656189,
+          "counterfactual_pair_exact": 0.7322880029678345,
+          "examples": 3444
+        },
+        "train_seconds": 16.00981370000227
+      }
+    },
+    {
+      "seed": 6,
+      "rank": 4,
+      "held_out_value_pairs": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "train_examples": 3392,
+      "test_examples": 704,
+      "latent_payload_bytes_int4": 128,
+      "autoencoder_parameters": 38224,
+      "shared_encoder_parameters": 24768,
+      "shared_decoder_parameters": 13456,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9989313185214996,
+          "y_token_accuracy": 1.0,
+          "all_16_token_accuracy": 0.9994656592607498,
+          "x_variable_token_accuracy": 0.9987786497388568,
+          "y_variable_token_accuracy": 1.0,
+          "query_key_accuracy": 0.9997051954269409,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9986242254575094,
+          "y_filler_accuracy": 1.0,
+          "x_phrase_exact": 0.9917452830188679,
+          "y_phrase_exact": 1.0,
+          "both_phrases_exact": 0.9917452830188679,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9997051954269409,
+              0.9961674809455872,
+              0.9991155862808228,
+              0.9979363083839417,
+              0.9991155862808228,
+              0.9997051954269409,
+              0.9997051954269409
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 3392
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9955611005425453,
+          "y_token_accuracy": 0.9893466159701347,
+          "all_16_token_accuracy": 0.99245385825634,
+          "x_variable_token_accuracy": 0.9949269720486232,
+          "y_variable_token_accuracy": 0.9878247039658683,
+          "query_key_accuracy": 0.9985795617103577,
+          "y_edge_symbol_accuracy": 0.9829545766115189,
+          "x_filler_accuracy": 0.9943182071050009,
+          "y_filler_accuracy": 0.9943182071050009,
+          "x_phrase_exact": 0.9673295454545454,
+          "y_phrase_exact": 0.9232954545454546,
+          "both_phrases_exact": 0.8934659090909091,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9985795617103577,
+              0.9900568723678589,
+              0.9943181872367859,
+              0.9928977489471436,
+              0.9943181872367859,
+              0.9985795617103577,
+              0.995738685131073
+            ],
+            "y": [
+              1.0,
+              1.0,
+              0.9545454978942871,
+              0.9971591234207153,
+              0.980113685131073,
+              0.9971591234207153,
+              0.9971591234207153,
+              0.9886363744735718
+            ]
+          },
+          "examples": 704
+        },
+        "final_batch_loss": 0.02953457646071911,
+        "train_seconds": 2.354470600002969
+      },
+      "int4_quantized_test_reconstruction": {
+        "all_16_token_accuracy": 0.9893466234207153,
+        "both_phrases_exact": 0.8565341234207153,
+        "query_key_accuracy": 0.9943181872367859,
+        "y_edge_symbol_accuracy": 0.9765625,
+        "examples": 704
+      },
+      "direct_int4_latent_thinking": {
+        "test": {
+          "accuracy": 0.2286931872367859,
+          "counterfactual_pair_exact": 0.039772726595401764,
+          "examples": 704
+        },
+        "train": {
+          "accuracy": 0.990566074848175,
+          "counterfactual_pair_exact": 0.9811320900917053,
+          "examples": 3392
+        },
+        "trainable_model_parameters": 201306,
+        "role_tag_parameters": 512
+      },
+      "soft_reader_int4_thinking": {
+        "test": {
+          "accuracy": 0.609375,
+          "counterfactual_pair_exact": 0.31534090638160706,
+          "examples": 704
+        },
+        "train": {
+          "accuracy": 0.8390330076217651,
+          "counterfactual_pair_exact": 0.6975235939025879,
+          "examples": 3392
+        },
+        "model_trainable_parameters_in_optimizer": 201306,
+        "additional_reader_parameters": 0,
+        "embedding_table_parameters": 576,
+        "embedding_rows_used_by_reader": 10,
+        "embedding_parameters_used_by_reader": 320
+      },
+      "argmax_decoded_int4_thinking": {
+        "accuracy": 0.6647727489471436,
+        "counterfactual_pair_exact": 0.40909093618392944,
+        "examples": 704,
+        "train_evaluation": {
+          "accuracy": 0.8434551954269409,
+          "counterfactual_pair_exact": 0.7051886916160583,
+          "examples": 3392
+        },
+        "train_seconds": 14.965727099996002
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.6889204978942871,
+        "counterfactual_pair_exact": 0.44602274894714355,
+        "examples": 704,
+        "train_evaluation": {
+          "accuracy": 0.849941074848175,
+          "counterfactual_pair_exact": 0.7128537893295288,
+          "examples": 3392
+        },
+        "train_seconds": 15.272563999998965
+      }
+    },
+    {
+      "seed": 7,
+      "rank": 4,
+      "held_out_value_pairs": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          3
+        ]
+      ],
+      "train_examples": 3472,
+      "test_examples": 624,
+      "latent_payload_bytes_int4": 128,
+      "autoencoder_parameters": 38224,
+      "shared_encoder_parameters": 24768,
+      "shared_decoder_parameters": 13456,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9991359487175941,
+          "y_token_accuracy": 0.9998559951782227,
+          "all_16_token_accuracy": 0.9994959719479084,
+          "x_variable_token_accuracy": 0.9990125128201076,
+          "y_variable_token_accuracy": 0.9998354230608258,
+          "query_key_accuracy": 0.9994239807128906,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.998943934837977,
+          "y_filler_accuracy": 0.9996159871419271,
+          "x_phrase_exact": 0.9933755760368663,
+          "y_phrase_exact": 0.9988479262672811,
+          "both_phrases_exact": 0.9922235023041475,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9994239807128906,
+              0.9982718825340271,
+              0.9994239807128906,
+              0.997407853603363,
+              0.9988479018211365,
+              0.9997119903564453,
+              1.0
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.9994239807128906,
+              1.0,
+              0.9994239807128906
+            ]
+          },
+          "examples": 3472
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9963942468166351,
+          "y_token_accuracy": 0.9919871911406517,
+          "all_16_token_accuracy": 0.9941907189786434,
+          "x_variable_token_accuracy": 0.9958791392190116,
+          "y_variable_token_accuracy": 0.9908425041607448,
+          "query_key_accuracy": 0.9967948794364929,
+          "y_edge_symbol_accuracy": 0.9911859184503555,
+          "x_filler_accuracy": 0.9957265158494314,
+          "y_filler_accuracy": 0.9903846184412638,
+          "x_phrase_exact": 0.9791666666666666,
+          "y_phrase_exact": 0.9391025641025641,
+          "both_phrases_exact": 0.9182692307692307,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9967948794364929,
+              0.9967948794364929,
+              0.9983974695205688,
+              0.9903846383094788,
+              0.9935897588729858,
+              1.0,
+              0.9951923489570618
+            ],
+            "y": [
+              1.0,
+              1.0,
+              0.9871795177459717,
+              0.9935897588729858,
+              0.9839743971824646,
+              0.9935897588729858,
+              0.9807692170143127,
+              0.9967948794364929
+            ]
+          },
+          "examples": 624
+        },
+        "final_batch_loss": 0.027672259137034416,
+        "train_seconds": 2.2312545999957365
+      },
+      "int4_quantized_test_reconstruction": {
+        "all_16_token_accuracy": 0.9932892918586731,
+        "both_phrases_exact": 0.9070512652397156,
+        "query_key_accuracy": 0.9951923489570618,
+        "y_edge_symbol_accuracy": 0.9887820482254028,
+        "examples": 624
+      },
+      "direct_int4_latent_thinking": {
+        "test": {
+          "accuracy": 0.2419871836900711,
+          "counterfactual_pair_exact": 0.044871795922517776,
+          "examples": 624
+        },
+        "train": {
+          "accuracy": 0.9904953837394714,
+          "counterfactual_pair_exact": 0.9809907674789429,
+          "examples": 3472
+        },
+        "trainable_model_parameters": 201306,
+        "role_tag_parameters": 512
+      },
+      "soft_reader_int4_thinking": {
+        "test": {
+          "accuracy": 0.7516025900840759,
+          "counterfactual_pair_exact": 0.5544871687889099,
+          "examples": 624
+        },
+        "train": {
+          "accuracy": 0.9035138487815857,
+          "counterfactual_pair_exact": 0.8116359710693359,
+          "examples": 3472
+        },
+        "model_trainable_parameters_in_optimizer": 201306,
+        "additional_reader_parameters": 0,
+        "embedding_table_parameters": 576,
+        "embedding_rows_used_by_reader": 10,
+        "embedding_parameters_used_by_reader": 320
+      },
+      "argmax_decoded_int4_thinking": {
+        "accuracy": 0.8461538553237915,
+        "counterfactual_pair_exact": 0.7051281929016113,
+        "examples": 624,
+        "train_evaluation": {
+          "accuracy": 0.9475806355476379,
+          "counterfactual_pair_exact": 0.8968893885612488,
+          "examples": 3472
+        },
+        "train_seconds": 15.397742700006347
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.879807710647583,
+        "counterfactual_pair_exact": 0.7628205418586731,
+        "examples": 624,
+        "train_evaluation": {
+          "accuracy": 0.9516128897666931,
+          "counterfactual_pair_exact": 0.9032257795333862,
+          "examples": 3472
+        },
+        "train_seconds": 15.001807000000554
+      }
+    }
+  ]
+}

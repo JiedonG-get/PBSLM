@@ -1,0 +1,1034 @@
+{
+  "task": "two_phrase_key_value_relation_query_with_counterfactual_pairs",
+  "condition": "frozen_reconstruction_latents_with_zero_initialized_residual_input_adapter",
+  "method": "Move the offset-3 ordered value-pair family out of the standard training rows before training either encoder or trunk. Train the phrase autoencoder on remaining rows, freeze its codes, then train a zero-initialized residual MLP adapter and PBSLM with query loss only. Compare with the existing direct latent trunk and raw-token trunk.",
+  "confirmatory_split": {
+    "held_out_value_pairs": [
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        7,
+        2
+      ]
+    ],
+    "source": "rows removed from the standard training pool before encoder and task training",
+    "previous_standard_test_split_used": false
+  },
+  "limitations": "Synthetic relation task with explicitly ordered x/y spans and eight held-out value pairs. This tests a single predeclared adapter on one new split, not natural-language or online memory performance. Latent sequence length remains rank-dependent.",
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "ranks": [
+      2,
+      4
+    ],
+    "steps": 800,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cuda",
+    "output": "experiments/latent_chunk/direct_adapter_thinking_3seed_rank_800.json"
+  },
+  "torch": "2.11.0+cu128",
+  "provenance": {
+    "git_commit": "f5ae7ee1be077cc060ef88b5b1ac84695dc74ff9",
+    "git_status": "?? evaluation/analyze_qwen_story.py\n?? evaluation/latent_chunk_adapter_thinking.py\n?? evaluation/latent_chunk_decoded_control.py\n?? evaluation/latent_chunk_qat_control.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? experiments/continuous_online/alias_online_dev_frozen_scores_v2.json\n?? experiments/continuous_online/alias_online_dev_frozen_v2.json\n?? experiments/continuous_online/alias_online_development_batch_scores_v2.json\n?? experiments/continuous_online/alias_online_development_batch_v2.json\n?? experiments/continuous_online/alias_online_development_final_scores_v2.json\n?? experiments/continuous_online/alias_online_development_final_v2.json\n?? experiments/continuous_online/alias_online_development_initial_scores_v2.json\n?? experiments/continuous_online/alias_online_development_initial_v2.json\n?? experiments/continuous_online/alias_online_development_retry_v2.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/latent_chunk/decoded_latent_int4_qat_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_int4_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/preflight_matched.json\n?? experiments/latent_chunk/preflight_seed0_rank1.json\n?? experiments/recurrent_state/continuous_event_tests.log",
+    "source_sha256_at_capture": {
+      "evaluation/latent_chunk_adapter_thinking.py": "353ed7758514210b157cd46030c9c3cbdd18bfd5a9be183c2d6b49a2a9febaef",
+      "evaluation/latent_chunk_reconstruction.py": "fb468a9f4c9ee5a39f926a348abf583f3afccec8756e4d647ce8ac4a0e26c73d",
+      "evaluation/latent_chunk_ab_thinking.py": "3da790e222a000e7f367ef12595aa281bfe8540ca2a0dff0887a22337b9da571",
+      "evaluation/latent_chunk_relations.py": "070377ad5b4980a20a4b43953e67b80dfb976376da1cc6e28dba5c2ea54da312",
+      "evaluation/provenance.py": "061924cbf9c0c5d326501be75102734bea03be6f1f315dfe032fdff1a34ebdee",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "685d275de48e923e93adc9614319e0743f80573619bead16a1f7b06aeeff8d05"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "runs": [
+    {
+      "seed": 0,
+      "rank": 2,
+      "held_out_value_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "train_examples": 3422,
+      "test_examples": 674,
+      "latent_payload_bytes_fp32": 512,
+      "autoencoder_parameters": 29968,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9908313453197479,
+          "y_token_accuracy": 0.997589111328125,
+          "all_16_token_accuracy": 0.9942102283239365,
+          "x_variable_token_accuracy": 0.9895215375082833,
+          "y_variable_token_accuracy": 0.9972446986607143,
+          "query_key_accuracy": 0.9883108735084534,
+          "y_edge_symbol_accuracy": 0.9989771842956543,
+          "x_filler_accuracy": 0.9897233148415884,
+          "y_filler_accuracy": 0.9949347178141276,
+          "x_phrase_exact": 0.9362945645821157,
+          "y_phrase_exact": 0.9818819403857393,
+          "both_phrases_exact": 0.9190531852717709,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9883108735084534,
+              0.985973060131073,
+              0.9871419668197632,
+              0.9850963950157166,
+              0.9947398900985718,
+              0.9941554069519043,
+              0.9912331700325012
+            ],
+            "y": [
+              1.0,
+              0.9982466101646423,
+              0.9994155168533325,
+              0.9982466101646423,
+              1.0,
+              0.9947398900985718,
+              0.9976621866226196,
+              0.9924020767211914
+            ]
+          },
+          "examples": 3422
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.984050452709198,
+          "y_token_accuracy": 0.9606824964284897,
+          "all_16_token_accuracy": 0.9723664745688438,
+          "x_variable_token_accuracy": 0.9817719459533691,
+          "y_variable_token_accuracy": 0.9550657102039882,
+          "query_key_accuracy": 0.9807121753692627,
+          "y_edge_symbol_accuracy": 0.9347181022167206,
+          "x_filler_accuracy": 0.9819485743840536,
+          "y_filler_accuracy": 0.9821958541870117,
+          "x_phrase_exact": 0.8887240356083086,
+          "y_phrase_exact": 0.7477744807121661,
+          "both_phrases_exact": 0.6617210682492581,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9807121753692627,
+              0.9718101024627686,
+              0.9762611389160156,
+              0.9762611389160156,
+              0.9866468906402588,
+              0.9925816059112549,
+              0.9881305694580078
+            ],
+            "y": [
+              1.0,
+              0.9910979270935059,
+              0.8753709197044373,
+              0.9792284965515137,
+              0.8931750655174255,
+              0.9762611389160156,
+              0.9821958541870117,
+              0.9881305694580078
+            ]
+          },
+          "examples": 674
+        },
+        "final_batch_loss": 0.08297214657068253,
+        "train_seconds": 2.106019400001969
+      },
+      "frozen_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.283382773399353,
+          "counterfactual_pair_exact": 0.05341246351599693,
+          "examples": 674
+        },
+        "train": {
+          "accuracy": 0.9845119714736938,
+          "counterfactual_pair_exact": 0.9690239429473877,
+          "examples": 3422
+        },
+        "trainable_trunk_parameters": 201306,
+        "trainable_role_tag_parameters": 256
+      },
+      "adapted_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.2937685549259186,
+          "counterfactual_pair_exact": 0.08605340868234634,
+          "examples": 674
+        },
+        "train": {
+          "accuracy": 0.9848041534423828,
+          "counterfactual_pair_exact": 0.9696083664894104,
+          "examples": 3422
+        },
+        "adapter_parameters": 4448
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.8694362044334412,
+        "counterfactual_pair_exact": 0.7448071241378784,
+        "examples": 674,
+        "train_evaluation": {
+          "accuracy": 0.9579192996025085,
+          "counterfactual_pair_exact": 0.9164231419563293,
+          "examples": 3422
+        },
+        "train_seconds": 15.897671300001093
+      }
+    },
+    {
+      "seed": 0,
+      "rank": 4,
+      "held_out_value_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "train_examples": 3422,
+      "test_examples": 674,
+      "latent_payload_bytes_fp32": 1024,
+      "autoencoder_parameters": 38224,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9996347054839134,
+          "y_token_accuracy": 0.9999269396066666,
+          "all_16_token_accuracy": 0.99978082254529,
+          "x_variable_token_accuracy": 0.9995825205530439,
+          "y_variable_token_accuracy": 0.999916502407619,
+          "query_key_accuracy": 0.9991232752799988,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9996590614318848,
+          "y_filler_accuracy": 0.9998051722844442,
+          "x_phrase_exact": 0.9970777323202805,
+          "y_phrase_exact": 0.9994155464640561,
+          "both_phrases_exact": 0.9964932787843367,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9991232752799988,
+              0.9994155168533325,
+              0.9988310933113098,
+              1.0,
+              0.9997077584266663,
+              1.0,
+              1.0
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.9994155168533325
+            ]
+          },
+          "examples": 3422
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9977744817733765,
+          "y_token_accuracy": 0.9925816059112549,
+          "all_16_token_accuracy": 0.9951780438423157,
+          "x_variable_token_accuracy": 0.9974565505981445,
+          "y_variable_token_accuracy": 0.9915218353271484,
+          "query_key_accuracy": 0.997032642364502,
+          "y_edge_symbol_accuracy": 0.9873887300491333,
+          "x_filler_accuracy": 0.9975272019704183,
+          "y_filler_accuracy": 0.997032642364502,
+          "x_phrase_exact": 0.983679525222552,
+          "y_phrase_exact": 0.9465875370919882,
+          "both_phrases_exact": 0.9317507418397626,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.997032642364502,
+              0.9925816059112549,
+              0.997032642364502,
+              0.997032642364502,
+              0.998516321182251,
+              1.0,
+              1.0
+            ],
+            "y": [
+              1.0,
+              0.997032642364502,
+              0.9821958541870117,
+              1.0,
+              0.9703264236450195,
+              0.997032642364502,
+              1.0,
+              0.9940652847290039
+            ]
+          },
+          "examples": 674
+        },
+        "final_batch_loss": 0.023408647626638412,
+        "train_seconds": 2.2167560000016238
+      },
+      "frozen_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.29080119729042053,
+          "counterfactual_pair_exact": 0.06231454014778137,
+          "examples": 674
+        },
+        "train": {
+          "accuracy": 0.9932787418365479,
+          "counterfactual_pair_exact": 0.9865575432777405,
+          "examples": 3422
+        },
+        "trainable_trunk_parameters": 201306,
+        "trainable_role_tag_parameters": 512
+      },
+      "adapted_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.3323442041873932,
+          "counterfactual_pair_exact": 0.0771513357758522,
+          "examples": 674
+        },
+        "train": {
+          "accuracy": 0.9918175935745239,
+          "counterfactual_pair_exact": 0.9836352467536926,
+          "examples": 3422
+        },
+        "adapter_parameters": 4704
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.8694362044334412,
+        "counterfactual_pair_exact": 0.7448071241378784,
+        "examples": 674,
+        "train_evaluation": {
+          "accuracy": 0.9579192996025085,
+          "counterfactual_pair_exact": 0.9164231419563293,
+          "examples": 3422
+        },
+        "train_seconds": 15.897671300001093
+      }
+    },
+    {
+      "seed": 1,
+      "rank": 2,
+      "held_out_value_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "train_examples": 3400,
+      "test_examples": 696,
+      "latent_payload_bytes_fp32": 512,
+      "autoencoder_parameters": 29968,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9890073165297508,
+          "y_token_accuracy": 0.9980146661400795,
+          "all_16_token_accuracy": 0.9935109913349152,
+          "x_variable_token_accuracy": 0.9874369416918073,
+          "y_variable_token_accuracy": 0.997731055532183,
+          "query_key_accuracy": 0.9861764311790466,
+          "y_edge_symbol_accuracy": 0.9980881959199905,
+          "x_filler_accuracy": 0.9876470267772675,
+          "y_filler_accuracy": 0.9972548683484396,
+          "x_phrase_exact": 0.9264705882352942,
+          "y_phrase_exact": 0.9852941176470589,
+          "both_phrases_exact": 0.9129411764705883,
+          "position_accuracy": {
+            "x": [
+              0.9999999403953552,
+              0.9861764311790466,
+              0.9794117212295532,
+              0.9879411458969116,
+              0.9735293984413147,
+              0.9967646598815918,
+              0.99647057056427,
+              0.9917646646499634
+            ],
+            "y": [
+              0.9999999403953552,
+              0.9958823323249817,
+              0.9988234639167786,
+              0.9976470470428467,
+              0.9999999403953552,
+              0.9970588088035583,
+              0.9958823323249817,
+              0.9988234639167786
+            ]
+          },
+          "examples": 3400
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9820402190089226,
+          "y_token_accuracy": 0.9655172452330589,
+          "all_16_token_accuracy": 0.9737787321209908,
+          "x_variable_token_accuracy": 0.9794745360101972,
+          "y_variable_token_accuracy": 0.9605911374092102,
+          "query_key_accuracy": 0.977011501789093,
+          "y_edge_symbol_accuracy": 0.9439655244350433,
+          "x_filler_accuracy": 0.9798850417137146,
+          "y_filler_accuracy": 0.982758621374766,
+          "x_phrase_exact": 0.8778735632183908,
+          "y_phrase_exact": 0.7787356321839081,
+          "both_phrases_exact": 0.6824712643678161,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.977011501789093,
+              0.9741379022598267,
+              0.9741379022598267,
+              0.9655172228813171,
+              0.9971264600753784,
+              0.9885057210922241,
+              0.9798850417137146
+            ],
+            "y": [
+              1.0,
+              0.9856321811676025,
+              0.9396551847457886,
+              0.9913793206214905,
+              0.8591954112052917,
+              0.9913793206214905,
+              0.982758641242981,
+              0.9741379022598267
+            ]
+          },
+          "examples": 696
+        },
+        "final_batch_loss": 0.07796948403120041,
+        "train_seconds": 2.262633199999982
+      },
+      "frozen_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.26724138855934143,
+          "counterfactual_pair_exact": 0.06321839243173599,
+          "examples": 696
+        },
+        "train": {
+          "accuracy": 0.9908823370933533,
+          "counterfactual_pair_exact": 0.9817646741867065,
+          "examples": 3400
+        },
+        "trainable_trunk_parameters": 201306,
+        "trainable_role_tag_parameters": 256
+      },
+      "adapted_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.24568966031074524,
+          "counterfactual_pair_exact": 0.04022988677024841,
+          "examples": 696
+        },
+        "train": {
+          "accuracy": 0.9905881881713867,
+          "counterfactual_pair_exact": 0.9811764359474182,
+          "examples": 3400
+        },
+        "adapter_parameters": 4448
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.6566091775894165,
+        "counterfactual_pair_exact": 0.4080459773540497,
+        "examples": 696,
+        "train_evaluation": {
+          "accuracy": 0.8482352495193481,
+          "counterfactual_pair_exact": 0.7047058343887329,
+          "examples": 3400
+        },
+        "train_seconds": 15.088270500004
+      }
+    },
+    {
+      "seed": 1,
+      "rank": 4,
+      "held_out_value_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "train_examples": 3400,
+      "test_examples": 696,
+      "latent_payload_bytes_fp32": 1024,
+      "autoencoder_parameters": 38224,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.999264657497406,
+          "y_token_accuracy": 0.9997793510556221,
+          "all_16_token_accuracy": 0.999522004276514,
+          "x_variable_token_accuracy": 0.9991596170834133,
+          "y_variable_token_accuracy": 0.9997478382928031,
+          "query_key_accuracy": 0.9997058510780334,
+          "y_edge_symbol_accuracy": 0.9998528808355331,
+          "x_filler_accuracy": 0.9990685780843099,
+          "y_filler_accuracy": 0.999607781569163,
+          "x_phrase_exact": 0.9947058823529412,
+          "y_phrase_exact": 0.9982352941176471,
+          "both_phrases_exact": 0.9929411764705882,
+          "position_accuracy": {
+            "x": [
+              0.9999999403953552,
+              0.9997058510780334,
+              0.9988234639167786,
+              0.9997058510780334,
+              0.9979411363601685,
+              0.9999999403953552,
+              0.9985293745994568,
+              0.9994117021560669
+            ],
+            "y": [
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9994117021560669,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9988234639167786
+            ]
+          },
+          "examples": 3400
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9982040300965309,
+          "y_token_accuracy": 0.9956896528601646,
+          "all_16_token_accuracy": 0.9969468414783478,
+          "x_variable_token_accuracy": 0.997947462967464,
+          "y_variable_token_accuracy": 0.9950738889830453,
+          "query_key_accuracy": 0.9985632300376892,
+          "y_edge_symbol_accuracy": 0.9928160905838013,
+          "x_filler_accuracy": 0.9978448351224264,
+          "y_filler_accuracy": 0.998084286848704,
+          "x_phrase_exact": 0.985632183908046,
+          "y_phrase_exact": 0.9683908045977011,
+          "both_phrases_exact": 0.9540229885057471,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9985632300376892,
+              0.9971264600753784,
+              0.9971264600753784,
+              0.9956896305084229,
+              0.9985632300376892,
+              0.9985632300376892,
+              1.0
+            ],
+            "y": [
+              1.0,
+              1.0,
+              0.9856321811676025,
+              1.0,
+              0.9856321811676025,
+              1.0,
+              1.0,
+              0.9942528605461121
+            ]
+          },
+          "examples": 696
+        },
+        "final_batch_loss": 0.025867339223623276,
+        "train_seconds": 2.14074029999756
+      },
+      "frozen_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.30603447556495667,
+          "counterfactual_pair_exact": 0.051724135875701904,
+          "examples": 696
+        },
+        "train": {
+          "accuracy": 0.994705855846405,
+          "counterfactual_pair_exact": 0.9894117116928101,
+          "examples": 3400
+        },
+        "trainable_trunk_parameters": 201306,
+        "trainable_role_tag_parameters": 512
+      },
+      "adapted_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.30603447556495667,
+          "counterfactual_pair_exact": 0.06609195470809937,
+          "examples": 696
+        },
+        "train": {
+          "accuracy": 0.9823529124259949,
+          "counterfactual_pair_exact": 0.9647058248519897,
+          "examples": 3400
+        },
+        "adapter_parameters": 4704
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.6566091775894165,
+        "counterfactual_pair_exact": 0.4080459773540497,
+        "examples": 696,
+        "train_evaluation": {
+          "accuracy": 0.8482352495193481,
+          "counterfactual_pair_exact": 0.7047058343887329,
+          "examples": 3400
+        },
+        "train_seconds": 15.088270500004
+      }
+    },
+    {
+      "seed": 2,
+      "rank": 2,
+      "held_out_value_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "train_examples": 3398,
+      "test_examples": 698,
+      "latent_payload_bytes_fp32": 512,
+      "autoencoder_parameters": 29968,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9908033609390259,
+          "y_token_accuracy": 0.9977927654981613,
+          "all_16_token_accuracy": 0.9942980632185936,
+          "x_variable_token_accuracy": 0.989489563873836,
+          "y_variable_token_accuracy": 0.9974774547985622,
+          "query_key_accuracy": 0.9846968054771423,
+          "y_edge_symbol_accuracy": 0.9982341974973679,
+          "x_filler_accuracy": 0.9902883569399515,
+          "y_filler_accuracy": 0.9964684645334879,
+          "x_phrase_exact": 0.935256032960565,
+          "y_phrase_exact": 0.9829311359623308,
+          "both_phrases_exact": 0.9193643319599765,
+          "position_accuracy": {
+            "x": [
+              0.9999999403953552,
+              0.9846968054771423,
+              0.9879340529441833,
+              0.9838139414787292,
+              0.9888169169425964,
+              0.995585560798645,
+              0.9917598366737366,
+              0.9938198328018188
+            ],
+            "y": [
+              0.9999999403953552,
+              0.9994113445281982,
+              0.998234212398529,
+              0.9952912926673889,
+              0.9999999403953552,
+              0.9976456165313721,
+              0.9941141605377197,
+              0.9976456165313721
+            ]
+          },
+          "examples": 3398
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9819126352667809,
+          "y_token_accuracy": 0.9842407256364822,
+          "all_16_token_accuracy": 0.9830766804516315,
+          "x_variable_token_accuracy": 0.9793287260191781,
+          "y_variable_token_accuracy": 0.9819894007274083,
+          "query_key_accuracy": 0.9813753962516785,
+          "y_edge_symbol_accuracy": 0.9799427390098572,
+          "x_filler_accuracy": 0.9789876143137614,
+          "y_filler_accuracy": 0.9847182830174764,
+          "x_phrase_exact": 0.8767908309455588,
+          "y_phrase_exact": 0.8825214899713467,
+          "both_phrases_exact": 0.7722063037249284,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9813753962516785,
+              0.9756447076797485,
+              0.9770774245262146,
+              0.972779393196106,
+              0.984240710735321,
+              0.9799427390098572,
+              0.984240710735321
+            ],
+            "y": [
+              1.0,
+              0.9971346855163574,
+              0.9656161069869995,
+              0.9914040565490723,
+              0.9656161069869995,
+              0.9828080534934998,
+              0.9885387420654297,
+              0.9828080534934998
+            ]
+          },
+          "examples": 698
+        },
+        "final_batch_loss": 0.08054585754871368,
+        "train_seconds": 2.1396336999969208
+      },
+      "frozen_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.313753604888916,
+          "counterfactual_pair_exact": 0.07449857145547867,
+          "examples": 698
+        },
+        "train": {
+          "accuracy": 0.9923483729362488,
+          "counterfactual_pair_exact": 0.9846968054771423,
+          "examples": 3398
+        },
+        "trainable_trunk_parameters": 201306,
+        "trainable_role_tag_parameters": 256
+      },
+      "adapted_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.32091692090034485,
+          "counterfactual_pair_exact": 0.0716332420706749,
+          "examples": 698
+        },
+        "train": {
+          "accuracy": 0.9899940490722656,
+          "counterfactual_pair_exact": 0.979988157749176,
+          "examples": 3398
+        },
+        "adapter_parameters": 4448
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.9412607550621033,
+        "counterfactual_pair_exact": 0.8968481421470642,
+        "examples": 698,
+        "train_evaluation": {
+          "accuracy": 0.978516697883606,
+          "counterfactual_pair_exact": 0.9582106471061707,
+          "examples": 3398
+        },
+        "train_seconds": 14.99712840000575
+      }
+    },
+    {
+      "seed": 2,
+      "rank": 4,
+      "held_out_value_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "train_examples": 3398,
+      "test_examples": 698,
+      "latent_payload_bytes_fp32": 1024,
+      "autoencoder_parameters": 38224,
+      "reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9993010088801384,
+          "y_token_accuracy": 0.9999263659119606,
+          "all_16_token_accuracy": 0.9996136873960495,
+          "x_variable_token_accuracy": 0.9992011615208217,
+          "y_variable_token_accuracy": 0.9999158552714756,
+          "query_key_accuracy": 0.998822808265686,
+          "y_edge_symbol_accuracy": 0.9999999403953552,
+          "x_filler_accuracy": 0.9992642203966776,
+          "y_filler_accuracy": 0.9998037417729696,
+          "x_phrase_exact": 0.9947027663331371,
+          "y_phrase_exact": 0.9994114184814596,
+          "both_phrases_exact": 0.9941141848145968,
+          "position_accuracy": {
+            "x": [
+              0.9999999403953552,
+              0.998822808265686,
+              0.997939944267273,
+              0.9999999403953552,
+              0.9985284805297852,
+              0.9991170763969421,
+              0.9999999403953552,
+              0.9999999403953552
+            ],
+            "y": [
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9999999403953552,
+              0.9994113445281982
+            ]
+          },
+          "examples": 3398
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9978510141372681,
+          "y_token_accuracy": 0.9917621985077858,
+          "all_16_token_accuracy": 0.9948066063225269,
+          "x_variable_token_accuracy": 0.9975440161568778,
+          "y_variable_token_accuracy": 0.9905853697231838,
+          "query_key_accuracy": 0.9971346855163574,
+          "y_edge_symbol_accuracy": 0.9849570542573929,
+          "x_filler_accuracy": 0.9976122379302979,
+          "y_filler_accuracy": 0.9980897903442383,
+          "x_phrase_exact": 0.9842406876790831,
+          "y_phrase_exact": 0.9369627507163324,
+          "both_phrases_exact": 0.9212034383954155,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9971346855163574,
+              0.9928367137908936,
+              0.9985673427581787,
+              0.9985673427581787,
+              0.9985673427581787,
+              0.9985673427581787,
+              0.9985673427581787
+            ],
+            "y": [
+              1.0,
+              0.9942693710327148,
+              0.9656161069869995,
+              1.0,
+              0.9799427390098572,
+              0.9942693710327148,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 698
+        },
+        "final_batch_loss": 0.02661025896668434,
+        "train_seconds": 2.1573575000002165
+      },
+      "frozen_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.29226362705230713,
+          "counterfactual_pair_exact": 0.08022923022508621,
+          "examples": 698
+        },
+        "train": {
+          "accuracy": 0.9941141605377197,
+          "counterfactual_pair_exact": 0.9882283210754395,
+          "examples": 3398
+        },
+        "trainable_trunk_parameters": 201306,
+        "trainable_role_tag_parameters": 512
+      },
+      "adapted_direct_latent_thinking": {
+        "test": {
+          "accuracy": 0.3065902590751648,
+          "counterfactual_pair_exact": 0.06303725391626358,
+          "examples": 698
+        },
+        "train": {
+          "accuracy": 0.9923483729362488,
+          "counterfactual_pair_exact": 0.9846968054771423,
+          "examples": 3398
+        },
+        "adapter_parameters": 4704
+      },
+      "raw_token_baseline": {
+        "accuracy": 0.9412607550621033,
+        "counterfactual_pair_exact": 0.8968481421470642,
+        "examples": 698,
+        "train_evaluation": {
+          "accuracy": 0.978516697883606,
+          "counterfactual_pair_exact": 0.9582106471061707,
+          "examples": 3398
+        },
+        "train_seconds": 14.99712840000575
+      }
+    }
+  ]
+}

@@ -1,0 +1,1218 @@
+{
+  "task": "two_phrase_key_value_relation_query_with_counterfactual_pairs",
+  "condition": "fixed_offset4_data_seed_independent_model_seeds_rank4_int4",
+  "method": "Sample the offset-4 train/test split once from data_seed. For each independent model_seed, fit one phrase autoencoder for autoencoder_steps, then train raw-token, direct int4, soft-reader, and argmax-decoded task conditions at each task budget. All task arms share the same initial PBSLM state and batch-index sequence per model_seed and budget.",
+  "split": {
+    "data_seed": 0,
+    "model_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "held_out_pairs": [
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        3
+      ]
+    ],
+    "train_examples": 3384,
+    "test_examples": 712,
+    "source": "offset-4 rows removed from the sampled training pool before phrase autoencoder or task-model training"
+  },
+  "latent_code": {
+    "rank_per_phrase": 4,
+    "width": 32,
+    "bits_per_component": 4,
+    "payload_bytes_bit_packed_estimate": 128,
+    "runtime_quantization": "dequantized FP32 levels from round(z*7).clamp(-7,7)/7",
+    "packed_kernel_or_runtime_memory_savings_measured": false
+  },
+  "training": {
+    "autoencoder_steps": 800,
+    "task_budgets": [
+      800,
+      1600
+    ],
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "optimizer": "AdamW"
+  },
+  "variance_design": "The data split is held fixed while model initialization seeds vary. Results therefore estimate model-seed and optimizer variation conditional on one sampled synthetic dataset, not data-sampling variance.",
+  "limitations": "Synthetic task with explicit x/y segmentation and frozen random source embeddings. The soft reader uses a shared decoder and expands codes to 16 continuous vectors. Only one data seed is used, so results do not estimate variability across sampled datasets or natural-language performance.",
+  "config": {
+    "data_seed": 0,
+    "model_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "budgets": [
+      800,
+      1600
+    ],
+    "autoencoder_steps": 800,
+    "batch_size": 128,
+    "lr": 0.001,
+    "device": "cuda",
+    "output": "experiments/latent_chunk/fixed_data_seed0_model_seeds0-4_rank4_budgets800_1600.json"
+  },
+  "progress": {
+    "completed_seed_budget_runs": 10,
+    "total_seed_budget_runs": 10,
+    "complete": true
+  },
+  "torch": "2.11.0+cu128",
+  "provenance": {
+    "git_commit": "f5ae7ee1be077cc060ef88b5b1ac84695dc74ff9",
+    "git_status": "?? evaluation/analyze_qwen_story.py\n?? evaluation/latent_chunk_adapter_thinking.py\n?? evaluation/latent_chunk_decoded_control.py\n?? evaluation/latent_chunk_fixed_data_budget.py\n?? evaluation/latent_chunk_qat_control.py\n?? evaluation/latent_chunk_soft_reader_confirmatory.py\n?? evaluation/latent_chunk_soft_reader_rank_sweep.py\n?? evaluation/latent_chunk_task_aware_joint_reconstruction.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? experiments/continuous_online/alias_online_dev_frozen_scores_v2.json\n?? experiments/continuous_online/alias_online_dev_frozen_v2.json\n?? experiments/continuous_online/alias_online_development_batch_scores_v2.json\n?? experiments/continuous_online/alias_online_development_batch_v2.json\n?? experiments/continuous_online/alias_online_development_final_scores_v2.json\n?? experiments/continuous_online/alias_online_development_final_v2.json\n?? experiments/continuous_online/alias_online_development_initial_scores_v2.json\n?? experiments/continuous_online/alias_online_development_initial_v2.json\n?? experiments/continuous_online/alias_online_development_retry_v2.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/latent_chunk/QUANTIZED_DECODED_CONTROL_8BIT.md\n?? experiments/latent_chunk/decoded_latent_int4_qat_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_int4_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_int8_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/decoded_latent_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/direct_adapter_thinking_3seed_rank_800.json\n?? experiments/latent_chunk/preflight_matched.json\n?? experiments/latent_chunk/preflight_seed0_rank1.json\n?? experiments/latent_chunk/soft_reader_int4_offset4_3seed_rank4_800.json\n?? experiments/latent_chunk/soft_reader_int4_offset4_extra5seed_rank4_800.json\n?? experiments/latent_chunk/soft_reader_int4_offset4_rank12_3seed_800.json\n?? experiments/latent_chunk/soft_reader_offset4_rank_tradeoff.md\n?? experiments/recurrent_state/continuous_event_tests.log",
+    "source_sha256_at_capture": {
+      "evaluation/latent_chunk_fixed_data_budget.py": "17261c8d6f70b2646ad42fe8c593a5162734fd63f2c4e0b84541d482d876936b",
+      "evaluation/latent_chunk_soft_reader_confirmatory.py": "02b8ef43bc5555f6d374c117be673f9895feff837795564d81827037cf0bd24b",
+      "evaluation/latent_chunk_reconstruction.py": "fb468a9f4c9ee5a39f926a348abf583f3afccec8756e4d647ce8ac4a0e26c73d",
+      "evaluation/latent_chunk_ab_thinking.py": "3da790e222a000e7f367ef12595aa281bfe8540ca2a0dff0887a22337b9da571",
+      "evaluation/latent_chunk_relations.py": "070377ad5b4980a20a4b43953e67b80dfb976376da1cc6e28dba5c2ea54da312",
+      "evaluation/provenance.py": "061924cbf9c0c5d326501be75102734bea03be6f1f315dfe032fdff1a34ebdee",
+      "models/model.py": "88f7fb5b143485ede7584f77e95e9c89ceb2d0e2b8f397761f829ee13f18f0bd",
+      "models/model_v2.py": "685d275de48e923e93adc9614319e0743f80573619bead16a1f7b06aeeff8d05"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "model_runs": [
+    {
+      "data_seed": 0,
+      "model_seed": 0,
+      "train_examples": 3384,
+      "test_examples": 712,
+      "latent_payload_bytes_int4_estimate": 128,
+      "autoencoder_parameters": 38224,
+      "shared_encoder_parameters": 24768,
+      "shared_decoder_parameters": 13456,
+      "full_precision_reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9998153001070023,
+          "y_token_accuracy": 1.0,
+          "all_16_token_accuracy": 0.9999076500535011,
+          "x_variable_token_accuracy": 0.9997889144080025,
+          "y_variable_token_accuracy": 1.0,
+          "query_key_accuracy": 0.9994089603424072,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9998522400856018,
+          "y_filler_accuracy": 1.0,
+          "x_phrase_exact": 0.9985224586288416,
+          "y_phrase_exact": 1.0,
+          "both_phrases_exact": 0.9985224586288416,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9994089603424072,
+              0.9994089603424072,
+              1.0,
+              0.9997044801712036,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 3384
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9984199553728104,
+          "y_token_accuracy": 0.9982443824410439,
+          "all_16_token_accuracy": 0.9983321689069271,
+          "x_variable_token_accuracy": 0.9981942347117833,
+          "y_variable_token_accuracy": 0.9979935799326215,
+          "query_key_accuracy": 0.9971910119056702,
+          "y_edge_symbol_accuracy": 0.9971910119056702,
+          "x_filler_accuracy": 0.9983614385128021,
+          "y_filler_accuracy": 0.9990636706352234,
+          "x_phrase_exact": 0.9887640449438202,
+          "y_phrase_exact": 0.9859550561797753,
+          "both_phrases_exact": 0.976123595505618,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9971910119056702,
+              0.9957865476608276,
+              0.9971910119056702,
+              1.0,
+              0.9985955357551575,
+              1.0,
+              0.9985955357551575
+            ],
+            "y": [
+              1.0,
+              1.0,
+              0.9943820238113403,
+              0.9971910119056702,
+              0.9971910119056702,
+              1.0,
+              1.0,
+              0.9971910119056702
+            ]
+          },
+          "examples": 712
+        },
+        "final_batch_loss": 0.02369339019060135,
+        "train_seconds": 2.3536332000003313
+      },
+      "int4_quantized_test_reconstruction": {
+        "all_16_token_accuracy": 0.997103214263916,
+        "both_phrases_exact": 0.9578651785850525,
+        "query_key_accuracy": 0.9971910119056702,
+        "y_edge_symbol_accuracy": 0.9943820238113403,
+        "examples": 712
+      },
+      "task_budgets": [
+        {
+          "steps": 800,
+          "direct_int4_latent_thinking": {
+            "test": {
+              "accuracy": 0.2808988690376282,
+              "counterfactual_pair_exact": 0.042134832590818405,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9940898418426514,
+              "counterfactual_pair_exact": 0.9887706637382507,
+              "examples": 3384
+            },
+            "trainable_model_parameters": 201306,
+            "role_tag_parameters": 512
+          },
+          "soft_reader_int4_thinking": {
+            "test": {
+              "accuracy": 0.8595505952835083,
+              "counterfactual_pair_exact": 0.7359550595283508,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9612883925437927,
+              "counterfactual_pair_exact": 0.923758864402771,
+              "examples": 3384
+            },
+            "model_trainable_parameters_in_optimizer": 201306,
+            "additional_reader_parameters": 0,
+            "embedding_table_parameters": 576,
+            "embedding_rows_used_by_reader": 10,
+            "embedding_parameters_used_by_reader": 320
+          },
+          "argmax_decoded_int4_thinking": {
+            "accuracy": 0.8848314881324768,
+            "counterfactual_pair_exact": 0.7780898809432983,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.9674940705299377,
+              "counterfactual_pair_exact": 0.9355791807174683,
+              "examples": 3384
+            },
+            "train_seconds": 15.805498000001535
+          },
+          "raw_token_baseline": {
+            "accuracy": 0.8609550595283508,
+            "counterfactual_pair_exact": 0.7415730357170105,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.9515366554260254,
+              "counterfactual_pair_exact": 0.9030733108520508,
+              "examples": 3384
+            },
+            "train_seconds": 15.10459080000146
+          },
+          "paired_test_deltas_pp": {
+            "direct_minus_raw": -58.005619049072266,
+            "soft_reader_minus_raw": -0.14044642448425293,
+            "argmax_decoded_minus_raw": 2.3876428604125977
+          }
+        },
+        {
+          "steps": 1600,
+          "direct_int4_latent_thinking": {
+            "test": {
+              "accuracy": 0.29494380950927734,
+              "counterfactual_pair_exact": 0.07022471725940704,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9861111044883728,
+              "counterfactual_pair_exact": 0.9722222089767456,
+              "examples": 3384
+            },
+            "trainable_model_parameters": 201306,
+            "role_tag_parameters": 512
+          },
+          "soft_reader_int4_thinking": {
+            "test": {
+              "accuracy": 0.966292142868042,
+              "counterfactual_pair_exact": 0.9353932738304138,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 1.0,
+              "counterfactual_pair_exact": 1.0,
+              "examples": 3384
+            },
+            "model_trainable_parameters_in_optimizer": 201306,
+            "additional_reader_parameters": 0,
+            "embedding_table_parameters": 576,
+            "embedding_rows_used_by_reader": 10,
+            "embedding_parameters_used_by_reader": 320
+          },
+          "argmax_decoded_int4_thinking": {
+            "accuracy": 0.9817416071891785,
+            "counterfactual_pair_exact": 0.9634831547737122,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 1.0,
+              "counterfactual_pair_exact": 1.0,
+              "examples": 3384
+            },
+            "train_seconds": 31.26447940000071
+          },
+          "raw_token_baseline": {
+            "accuracy": 0.9985955357551575,
+            "counterfactual_pair_exact": 0.9971910119056702,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 1.0,
+              "counterfactual_pair_exact": 1.0,
+              "examples": 3384
+            },
+            "train_seconds": 29.861308499996085
+          },
+          "paired_test_deltas_pp": {
+            "direct_minus_raw": -70.36517262458801,
+            "soft_reader_minus_raw": -3.230339288711548,
+            "argmax_decoded_minus_raw": -1.6853928565979004
+          }
+        }
+      ]
+    },
+    {
+      "data_seed": 0,
+      "model_seed": 1,
+      "train_examples": 3384,
+      "test_examples": 712,
+      "latent_payload_bytes_int4_estimate": 128,
+      "autoencoder_parameters": 38224,
+      "shared_encoder_parameters": 24768,
+      "shared_decoder_parameters": 13456,
+      "full_precision_reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9995567351579666,
+          "y_token_accuracy": 0.9999261200428009,
+          "all_16_token_accuracy": 0.9997414276003838,
+          "x_variable_token_accuracy": 0.9994934116091047,
+          "y_variable_token_accuracy": 0.9999155657632011,
+          "query_key_accuracy": 1.0,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9994089802106222,
+          "y_filler_accuracy": 0.9998029867808024,
+          "x_phrase_exact": 0.9964539007092199,
+          "y_phrase_exact": 0.9994089834515366,
+          "both_phrases_exact": 0.9958628841607565,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              1.0,
+              0.9988179802894592,
+              0.9997044801712036,
+              0.9997044801712036,
+              0.9994089603424072,
+              0.9997044801712036,
+              0.9991135001182556
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.9994089603424072,
+              1.0
+            ]
+          },
+          "examples": 3384
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9975421503186226,
+          "y_token_accuracy": 0.9905196651816368,
+          "all_16_token_accuracy": 0.9940309077501297,
+          "x_variable_token_accuracy": 0.9971910289355687,
+          "y_variable_token_accuracy": 0.9891653316361564,
+          "query_key_accuracy": 0.9957865476608276,
+          "y_edge_symbol_accuracy": 0.9817415773868561,
+          "x_filler_accuracy": 0.9974251091480255,
+          "y_filler_accuracy": 0.9990636706352234,
+          "x_phrase_exact": 0.9803370786516854,
+          "y_phrase_exact": 0.9325842696629213,
+          "both_phrases_exact": 0.9185393258426966,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9957865476608276,
+              0.9943820238113403,
+              0.9985955357551575,
+              0.9957865476608276,
+              1.0,
+              0.9971910119056702,
+              0.9985955357551575
+            ],
+            "y": [
+              1.0,
+              0.9943820238113403,
+              0.9606741666793823,
+              1.0,
+              0.9719101190567017,
+              1.0,
+              1.0,
+              0.9971910119056702
+            ]
+          },
+          "examples": 712
+        },
+        "final_batch_loss": 0.02791997417807579,
+        "train_seconds": 2.443592900002841
+      },
+      "int4_quantized_test_reconstruction": {
+        "all_16_token_accuracy": 0.993416428565979,
+        "both_phrases_exact": 0.9058988690376282,
+        "query_key_accuracy": 0.9943820238113403,
+        "y_edge_symbol_accuracy": 0.9817416071891785,
+        "examples": 712
+      },
+      "task_budgets": [
+        {
+          "steps": 800,
+          "direct_int4_latent_thinking": {
+            "test": {
+              "accuracy": 0.3089887797832489,
+              "counterfactual_pair_exact": 0.05898876488208771,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9952718615531921,
+              "counterfactual_pair_exact": 0.9905437231063843,
+              "examples": 3384
+            },
+            "trainable_model_parameters": 201306,
+            "role_tag_parameters": 512
+          },
+          "soft_reader_int4_thinking": {
+            "test": {
+              "accuracy": 0.6095505952835083,
+              "counterfactual_pair_exact": 0.3567415773868561,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.8433806300163269,
+              "counterfactual_pair_exact": 0.7021276354789734,
+              "examples": 3384
+            },
+            "model_trainable_parameters_in_optimizer": 201306,
+            "additional_reader_parameters": 0,
+            "embedding_table_parameters": 576,
+            "embedding_rows_used_by_reader": 10,
+            "embedding_parameters_used_by_reader": 320
+          },
+          "argmax_decoded_int4_thinking": {
+            "accuracy": 0.7176966071128845,
+            "counterfactual_pair_exact": 0.48876404762268066,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.8723404407501221,
+              "counterfactual_pair_exact": 0.75,
+              "examples": 3384
+            },
+            "train_seconds": 15.156142700005148
+          },
+          "raw_token_baseline": {
+            "accuracy": 0.7317416071891785,
+            "counterfactual_pair_exact": 0.5112359523773193,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.8679078221321106,
+              "counterfactual_pair_exact": 0.741134762763977,
+              "examples": 3384
+            },
+            "train_seconds": 15.040122799997334
+          },
+          "paired_test_deltas_pp": {
+            "direct_minus_raw": -42.27528274059296,
+            "soft_reader_minus_raw": -12.219101190567017,
+            "argmax_decoded_minus_raw": -1.4045000076293945
+          }
+        },
+        {
+          "steps": 1600,
+          "direct_int4_latent_thinking": {
+            "test": {
+              "accuracy": 0.30477529764175415,
+              "counterfactual_pair_exact": 0.056179776787757874,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9949763417243958,
+              "counterfactual_pair_exact": 0.9899527430534363,
+              "examples": 3384
+            },
+            "trainable_model_parameters": 201306,
+            "role_tag_parameters": 512
+          },
+          "soft_reader_int4_thinking": {
+            "test": {
+              "accuracy": 0.9466292262077332,
+              "counterfactual_pair_exact": 0.8960674405097961,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 1.0,
+              "counterfactual_pair_exact": 1.0,
+              "examples": 3384
+            },
+            "model_trainable_parameters_in_optimizer": 201306,
+            "additional_reader_parameters": 0,
+            "embedding_table_parameters": 576,
+            "embedding_rows_used_by_reader": 10,
+            "embedding_parameters_used_by_reader": 320
+          },
+          "argmax_decoded_int4_thinking": {
+            "accuracy": 0.9536516666412354,
+            "counterfactual_pair_exact": 0.9073033928871155,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 1.0,
+              "counterfactual_pair_exact": 1.0,
+              "examples": 3384
+            },
+            "train_seconds": 30.489692399998603
+          },
+          "raw_token_baseline": {
+            "accuracy": 0.9845505952835083,
+            "counterfactual_pair_exact": 0.9691011309623718,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.9997044801712036,
+              "counterfactual_pair_exact": 0.9994089603424072,
+              "examples": 3384
+            },
+            "train_seconds": 30.920153799997934
+          },
+          "paired_test_deltas_pp": {
+            "direct_minus_raw": -67.97752976417542,
+            "soft_reader_minus_raw": -3.7921369075775146,
+            "argmax_decoded_minus_raw": -3.089892864227295
+          }
+        }
+      ]
+    },
+    {
+      "data_seed": 0,
+      "model_seed": 2,
+      "train_examples": 3384,
+      "test_examples": 712,
+      "latent_payload_bytes_int4_estimate": 128,
+      "autoencoder_parameters": 38224,
+      "shared_encoder_parameters": 24768,
+      "shared_decoder_parameters": 13456,
+      "full_precision_reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9993351101875305,
+          "y_token_accuracy": 0.9998522400856018,
+          "all_16_token_accuracy": 0.9995936751365662,
+          "x_variable_token_accuracy": 0.9992401259286063,
+          "y_variable_token_accuracy": 0.999831131526402,
+          "query_key_accuracy": 0.9970449209213257,
+          "y_edge_symbol_accuracy": 0.9998522400856018,
+          "x_filler_accuracy": 0.9996059934298197,
+          "y_filler_accuracy": 0.9998029867808024,
+          "x_phrase_exact": 0.9949763593380615,
+          "y_phrase_exact": 0.9988179669030733,
+          "both_phrases_exact": 0.9937943262411347,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9970449209213257,
+              0.9994089603424072,
+              1.0,
+              0.9991135001182556,
+              1.0,
+              1.0,
+              0.9991135001182556
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.9994089603424072,
+              1.0,
+              1.0,
+              0.9994089603424072
+            ]
+          },
+          "examples": 3384
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9970154538750648,
+          "y_token_accuracy": 0.990870788693428,
+          "all_16_token_accuracy": 0.9939431212842464,
+          "x_variable_token_accuracy": 0.9965890901429313,
+          "y_variable_token_accuracy": 0.989566615649632,
+          "query_key_accuracy": 0.9971910119056702,
+          "y_edge_symbol_accuracy": 0.9824438244104385,
+          "x_filler_accuracy": 0.9964887698491415,
+          "y_filler_accuracy": 0.9990636706352234,
+          "x_phrase_exact": 0.9789325842696629,
+          "y_phrase_exact": 0.9410112359550562,
+          "both_phrases_exact": 0.9199438202247191,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9971910119056702,
+              0.9957865476608276,
+              0.9943820238113403,
+              0.9915730357170105,
+              1.0,
+              0.9971910119056702,
+              1.0
+            ],
+            "y": [
+              1.0,
+              0.9971910119056702,
+              0.9691011309623718,
+              1.0,
+              0.9634831547737122,
+              1.0,
+              0.9971910119056702,
+              1.0
+            ]
+          },
+          "examples": 712
+        },
+        "final_batch_loss": 0.02567523531615734,
+        "train_seconds": 2.165121600002749
+      },
+      "int4_quantized_test_reconstruction": {
+        "all_16_token_accuracy": 0.9918363690376282,
+        "both_phrases_exact": 0.8932584524154663,
+        "query_key_accuracy": 0.9957865476608276,
+        "y_edge_symbol_accuracy": 0.9768258333206177,
+        "examples": 712
+      },
+      "task_budgets": [
+        {
+          "steps": 800,
+          "direct_int4_latent_thinking": {
+            "test": {
+              "accuracy": 0.25561797618865967,
+              "counterfactual_pair_exact": 0.03651685267686844,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9949763417243958,
+              "counterfactual_pair_exact": 0.9899527430534363,
+              "examples": 3384
+            },
+            "trainable_model_parameters": 201306,
+            "role_tag_parameters": 512
+          },
+          "soft_reader_int4_thinking": {
+            "test": {
+              "accuracy": 0.875,
+              "counterfactual_pair_exact": 0.7780898809432983,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9627659320831299,
+              "counterfactual_pair_exact": 0.9261229038238525,
+              "examples": 3384
+            },
+            "model_trainable_parameters_in_optimizer": 201306,
+            "additional_reader_parameters": 0,
+            "embedding_table_parameters": 576,
+            "embedding_rows_used_by_reader": 10,
+            "embedding_parameters_used_by_reader": 320
+          },
+          "argmax_decoded_int4_thinking": {
+            "accuracy": 0.8721910119056702,
+            "counterfactual_pair_exact": 0.766853928565979,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.9669030904769897,
+              "counterfactual_pair_exact": 0.9338061213493347,
+              "examples": 3384
+            },
+            "train_seconds": 14.89203780000389
+          },
+          "raw_token_baseline": {
+            "accuracy": 0.915730357170105,
+            "counterfactual_pair_exact": 0.8398876786231995,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.964243471622467,
+              "counterfactual_pair_exact": 0.9284870028495789,
+              "examples": 3384
+            },
+            "train_seconds": 14.893280900003447
+          },
+          "paired_test_deltas_pp": {
+            "direct_minus_raw": -66.01123809814453,
+            "soft_reader_minus_raw": -4.073035717010498,
+            "argmax_decoded_minus_raw": -4.3539345264434814
+          }
+        },
+        {
+          "steps": 1600,
+          "direct_int4_latent_thinking": {
+            "test": {
+              "accuracy": 0.26404494047164917,
+              "counterfactual_pair_exact": 0.05056179687380791,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9949763417243958,
+              "counterfactual_pair_exact": 0.9899527430534363,
+              "examples": 3384
+            },
+            "trainable_model_parameters": 201306,
+            "role_tag_parameters": 512
+          },
+          "soft_reader_int4_thinking": {
+            "test": {
+              "accuracy": 0.9522472023963928,
+              "counterfactual_pair_exact": 0.915730357170105,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 1.0,
+              "counterfactual_pair_exact": 1.0,
+              "examples": 3384
+            },
+            "model_trainable_parameters_in_optimizer": 201306,
+            "additional_reader_parameters": 0,
+            "embedding_table_parameters": 576,
+            "embedding_rows_used_by_reader": 10,
+            "embedding_parameters_used_by_reader": 320
+          },
+          "argmax_decoded_int4_thinking": {
+            "accuracy": 0.9466292262077332,
+            "counterfactual_pair_exact": 0.9101123809814453,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.9994089603424072,
+              "counterfactual_pair_exact": 0.9988179802894592,
+              "examples": 3384
+            },
+            "train_seconds": 31.028683399999863
+          },
+          "raw_token_baseline": {
+            "accuracy": 0.9971910119056702,
+            "counterfactual_pair_exact": 0.9943820238113403,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 1.0,
+              "counterfactual_pair_exact": 1.0,
+              "examples": 3384
+            },
+            "train_seconds": 30.706687600002624
+          },
+          "paired_test_deltas_pp": {
+            "direct_minus_raw": -73.3146071434021,
+            "soft_reader_minus_raw": -4.494380950927734,
+            "argmax_decoded_minus_raw": -5.056178569793701
+          }
+        }
+      ]
+    },
+    {
+      "data_seed": 0,
+      "model_seed": 3,
+      "train_examples": 3384,
+      "test_examples": 712,
+      "latent_payload_bytes_int4_estimate": 128,
+      "autoencoder_parameters": 38224,
+      "shared_encoder_parameters": 24768,
+      "shared_decoder_parameters": 13456,
+      "full_precision_reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9990765377879143,
+          "y_token_accuracy": 1.0,
+          "all_16_token_accuracy": 0.9995382688939571,
+          "x_variable_token_accuracy": 0.9989446146147591,
+          "y_variable_token_accuracy": 1.0,
+          "query_key_accuracy": 0.9994089603424072,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9988672236601511,
+          "y_filler_accuracy": 1.0,
+          "x_phrase_exact": 0.9929078014184397,
+          "y_phrase_exact": 1.0,
+          "both_phrases_exact": 0.9929078014184397,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9994089603424072,
+              0.9976359605789185,
+              0.9991135001182556,
+              0.9970449209213257,
+              0.9997044801712036,
+              0.9997044801712036,
+              1.0
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 3384
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9971910193562508,
+          "y_token_accuracy": 0.9912219122052193,
+          "all_16_token_accuracy": 0.994206465780735,
+          "x_variable_token_accuracy": 0.9967897364071437,
+          "y_variable_token_accuracy": 0.9899678996631077,
+          "query_key_accuracy": 0.9971910119056702,
+          "y_edge_symbol_accuracy": 0.9838483184576035,
+          "x_filler_accuracy": 0.9967228571573893,
+          "y_filler_accuracy": 0.9981273412704468,
+          "x_phrase_exact": 0.9775280898876404,
+          "y_phrase_exact": 0.9353932584269663,
+          "both_phrases_exact": 0.9129213483146067,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9971910119056702,
+              0.9915730357170105,
+              0.9985955357551575,
+              0.9929775595664978,
+              1.0,
+              1.0,
+              0.9971910119056702
+            ],
+            "y": [
+              1.0,
+              1.0,
+              0.9634831547737122,
+              0.9971910119056702,
+              0.9747191071510315,
+              1.0,
+              0.9971910119056702,
+              0.9971910119056702
+            ]
+          },
+          "examples": 712
+        },
+        "final_batch_loss": 0.027486411854624748,
+        "train_seconds": 2.316657800001849
+      },
+      "int4_quantized_test_reconstruction": {
+        "all_16_token_accuracy": 0.9914852380752563,
+        "both_phrases_exact": 0.8806179761886597,
+        "query_key_accuracy": 0.9943820238113403,
+        "y_edge_symbol_accuracy": 0.9768258333206177,
+        "examples": 712
+      },
+      "task_budgets": [
+        {
+          "steps": 800,
+          "direct_int4_latent_thinking": {
+            "test": {
+              "accuracy": 0.2176966369152069,
+              "counterfactual_pair_exact": 0.028089888393878937,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9929078221321106,
+              "counterfactual_pair_exact": 0.9858155846595764,
+              "examples": 3384
+            },
+            "trainable_model_parameters": 201306,
+            "role_tag_parameters": 512
+          },
+          "soft_reader_int4_thinking": {
+            "test": {
+              "accuracy": 0.6165730357170105,
+              "counterfactual_pair_exact": 0.3314606845378876,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.8241725564002991,
+              "counterfactual_pair_exact": 0.6637116074562073,
+              "examples": 3384
+            },
+            "model_trainable_parameters_in_optimizer": 201306,
+            "additional_reader_parameters": 0,
+            "embedding_table_parameters": 576,
+            "embedding_rows_used_by_reader": 10,
+            "embedding_parameters_used_by_reader": 320
+          },
+          "argmax_decoded_int4_thinking": {
+            "accuracy": 0.6966292262077332,
+            "counterfactual_pair_exact": 0.5028089880943298,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.8519503474235535,
+              "counterfactual_pair_exact": 0.7133569717407227,
+              "examples": 3384
+            },
+            "train_seconds": 15.165682500002731
+          },
+          "raw_token_baseline": {
+            "accuracy": 0.7078651785850525,
+            "counterfactual_pair_exact": 0.5028089880943298,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.8614066243171692,
+              "counterfactual_pair_exact": 0.7328605055809021,
+              "examples": 3384
+            },
+            "train_seconds": 15.744724099997256
+          },
+          "paired_test_deltas_pp": {
+            "direct_minus_raw": -49.01685416698456,
+            "soft_reader_minus_raw": -9.1292142868042,
+            "argmax_decoded_minus_raw": -1.1235952377319336
+          }
+        },
+        {
+          "steps": 1600,
+          "direct_int4_latent_thinking": {
+            "test": {
+              "accuracy": 0.22191011905670166,
+              "counterfactual_pair_exact": 0.03651685267686844,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9914302825927734,
+              "counterfactual_pair_exact": 0.9828605055809021,
+              "examples": 3384
+            },
+            "trainable_model_parameters": 201306,
+            "role_tag_parameters": 512
+          },
+          "soft_reader_int4_thinking": {
+            "test": {
+              "accuracy": 0.9199438095092773,
+              "counterfactual_pair_exact": 0.8511236310005188,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9982269406318665,
+              "counterfactual_pair_exact": 0.9964538812637329,
+              "examples": 3384
+            },
+            "model_trainable_parameters_in_optimizer": 201306,
+            "additional_reader_parameters": 0,
+            "embedding_table_parameters": 576,
+            "embedding_rows_used_by_reader": 10,
+            "embedding_parameters_used_by_reader": 320
+          },
+          "argmax_decoded_int4_thinking": {
+            "accuracy": 0.9269663095474243,
+            "counterfactual_pair_exact": 0.8539326190948486,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.9976359605789185,
+              "counterfactual_pair_exact": 0.9952718615531921,
+              "examples": 3384
+            },
+            "train_seconds": 29.84252739999647
+          },
+          "raw_token_baseline": {
+            "accuracy": 0.990168571472168,
+            "counterfactual_pair_exact": 0.9803370833396912,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 1.0,
+              "counterfactual_pair_exact": 1.0,
+              "examples": 3384
+            },
+            "train_seconds": 29.97627420000208
+          },
+          "paired_test_deltas_pp": {
+            "direct_minus_raw": -76.82584524154663,
+            "soft_reader_minus_raw": -7.0224761962890625,
+            "argmax_decoded_minus_raw": -6.320226192474365
+          }
+        }
+      ]
+    },
+    {
+      "data_seed": 0,
+      "model_seed": 4,
+      "train_examples": 3384,
+      "test_examples": 712,
+      "latent_payload_bytes_int4_estimate": 128,
+      "autoencoder_parameters": 38224,
+      "shared_encoder_parameters": 24768,
+      "shared_decoder_parameters": 13456,
+      "full_precision_reconstruction": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9985224530100822,
+          "y_token_accuracy": 0.9999261200428009,
+          "all_16_token_accuracy": 0.9992242865264416,
+          "x_variable_token_accuracy": 0.9983113748686654,
+          "y_variable_token_accuracy": 0.9999155657632011,
+          "query_key_accuracy": 0.9985224604606628,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9982761939366659,
+          "y_filler_accuracy": 0.9998029867808024,
+          "x_phrase_exact": 0.9887706855791962,
+          "y_phrase_exact": 0.9994089834515366,
+          "both_phrases_exact": 0.9881796690307328,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9985224604606628,
+              0.9961584210395813,
+              0.9979314208030701,
+              0.9982269406318665,
+              0.9979314208030701,
+              0.9997044801712036,
+              0.9997044801712036
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.9994089603424072,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 3384
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9959620833396912,
+          "y_token_accuracy": 0.995435394346714,
+          "all_16_token_accuracy": 0.9956987388432026,
+          "x_variable_token_accuracy": 0.9953852381025042,
+          "y_variable_token_accuracy": 0.994783307824816,
+          "query_key_accuracy": 0.9971910119056702,
+          "y_edge_symbol_accuracy": 0.9936797767877579,
+          "x_filler_accuracy": 0.9950842758019766,
+          "y_filler_accuracy": 0.9962546825408936,
+          "x_phrase_exact": 0.9691011235955056,
+          "y_phrase_exact": 0.9691011235955056,
+          "both_phrases_exact": 0.9382022471910112,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9971910119056702,
+              0.9887640476226807,
+              0.9943820238113403,
+              0.9887640476226807,
+              1.0,
+              1.0,
+              0.9985955357551575
+            ],
+            "y": [
+              1.0,
+              1.0,
+              0.9887640476226807,
+              0.9971910119056702,
+              0.9887640476226807,
+              0.9943820238113403,
+              0.9971910119056702,
+              0.9971910119056702
+            ]
+          },
+          "examples": 712
+        },
+        "final_batch_loss": 0.03065764717757702,
+        "train_seconds": 2.1460206999981892
+      },
+      "int4_quantized_test_reconstruction": {
+        "all_16_token_accuracy": 0.9954354166984558,
+        "both_phrases_exact": 0.9339887499809265,
+        "query_key_accuracy": 0.9957865476608276,
+        "y_edge_symbol_accuracy": 0.9957865476608276,
+        "examples": 712
+      },
+      "task_budgets": [
+        {
+          "steps": 800,
+          "direct_int4_latent_thinking": {
+            "test": {
+              "accuracy": 0.2935393154621124,
+              "counterfactual_pair_exact": 0.05337078869342804,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.991134762763977,
+              "counterfactual_pair_exact": 0.9822695255279541,
+              "examples": 3384
+            },
+            "trainable_model_parameters": 201306,
+            "role_tag_parameters": 512
+          },
+          "soft_reader_int4_thinking": {
+            "test": {
+              "accuracy": 0.6713483333587646,
+              "counterfactual_pair_exact": 0.38764044642448425,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.8507683277130127,
+              "counterfactual_pair_exact": 0.7092198729515076,
+              "examples": 3384
+            },
+            "model_trainable_parameters_in_optimizer": 201306,
+            "additional_reader_parameters": 0,
+            "embedding_table_parameters": 576,
+            "embedding_rows_used_by_reader": 10,
+            "embedding_parameters_used_by_reader": 320
+          },
+          "argmax_decoded_int4_thinking": {
+            "accuracy": 0.6474719047546387,
+            "counterfactual_pair_exact": 0.3483146131038666,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.8150117993354797,
+              "counterfactual_pair_exact": 0.6459810733795166,
+              "examples": 3384
+            },
+            "train_seconds": 14.81691999999748
+          },
+          "raw_token_baseline": {
+            "accuracy": 0.6348314881324768,
+            "counterfactual_pair_exact": 0.3314606845378876,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.8023049831390381,
+              "counterfactual_pair_exact": 0.6140661835670471,
+              "examples": 3384
+            },
+            "train_seconds": 14.919722599996021
+          },
+          "paired_test_deltas_pp": {
+            "direct_minus_raw": -34.12921726703644,
+            "soft_reader_minus_raw": 3.651684522628784,
+            "argmax_decoded_minus_raw": 1.2640416622161865
+          }
+        },
+        {
+          "steps": 1600,
+          "direct_int4_latent_thinking": {
+            "test": {
+              "accuracy": 0.31179776787757874,
+              "counterfactual_pair_exact": 0.08426966518163681,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 0.9967494010925293,
+              "counterfactual_pair_exact": 0.9934988021850586,
+              "examples": 3384
+            },
+            "trainable_model_parameters": 201306,
+            "role_tag_parameters": 512
+          },
+          "soft_reader_int4_thinking": {
+            "test": {
+              "accuracy": 0.9705056548118591,
+              "counterfactual_pair_exact": 0.9410112500190735,
+              "examples": 712
+            },
+            "train": {
+              "accuracy": 1.0,
+              "counterfactual_pair_exact": 1.0,
+              "examples": 3384
+            },
+            "model_trainable_parameters_in_optimizer": 201306,
+            "additional_reader_parameters": 0,
+            "embedding_table_parameters": 576,
+            "embedding_rows_used_by_reader": 10,
+            "embedding_parameters_used_by_reader": 320
+          },
+          "argmax_decoded_int4_thinking": {
+            "accuracy": 0.983146071434021,
+            "counterfactual_pair_exact": 0.966292142868042,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 0.9991135001182556,
+              "counterfactual_pair_exact": 0.9982269406318665,
+              "examples": 3384
+            },
+            "train_seconds": 29.69292690000293
+          },
+          "raw_token_baseline": {
+            "accuracy": 0.9887640476226807,
+            "counterfactual_pair_exact": 0.9775280952453613,
+            "examples": 712,
+            "train_evaluation": {
+              "accuracy": 1.0,
+              "counterfactual_pair_exact": 1.0,
+              "examples": 3384
+            },
+            "train_seconds": 32.257823600004485
+          },
+          "paired_test_deltas_pp": {
+            "direct_minus_raw": -67.69662797451019,
+            "soft_reader_minus_raw": -1.8258392810821533,
+            "argmax_decoded_minus_raw": -0.5617976188659668
+          }
+        }
+      ]
+    }
+  ]
+}

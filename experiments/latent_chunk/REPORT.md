@@ -32,6 +32,19 @@ Entries are mean and sample standard deviation across three seeds. Accuracy is r
 
 The raw-token test values by seed are 90.6%, 69.5%, and 93.0%. The raw baseline outperformed the full latent condition in all nine matched seed/rank comparisons. The full model nearly memorized training examples while generalizing less well to the held-out value pairs.
 
+## Fixed-Data Rank-4 Follow-up
+
+To separate model initialization effects from data sampling, a follow-up fixed the offset-4 split generated with data seed 0 and varied model seeds 0–4. Every run used the same 3,384 training and 712 test rows. Each model seed fit one rank-4 phrase autoencoder for 800 steps, then compared raw-token, direct int4 latent, soft-reader, and argmax-decoded inputs from the same initial PBSLM state at 800 and 1,600 task-training steps. Means below are unweighted across the five model seeds. Paired differences are computed within seed against that seed's raw-token result and are reported as mean ± sample standard deviation in percentage points.
+
+| Task steps | Direct int4 test | Soft-reader test | Decoded-ID test | Raw-token test | Direct Δ vs raw | Soft Δ vs raw | Decoded Δ vs raw |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 800 | 27.13% | 72.64% | 76.38% | 77.02% | -49.89 ± 12.58 pp | -4.38 ± 6.45 pp | -0.65 ± 2.62 pp |
+| 1,600 | 27.95% | 95.11% | 95.84% | 99.19% | -71.24 ± 3.86 pp | -4.07 ± 1.92 pp | -3.34 ± 2.36 pp |
+
+At 1,600 steps, every seed's soft-reader result remained below raw-token input. The paired soft-reader deltas at 800 steps for seeds 0–4 were -0.14, -12.22, -4.07, -9.13, and +3.65 pp. At 1,600 steps they were -3.23, -3.79, -4.49, -7.02, and -1.83 pp. Mean train accuracy was 88.85% for soft-reader and 88.95% for raw tokens at 800 steps, and 99.96% and 99.99% at 1,600 steps. Thus, the remaining test gap after near-complete training fit is not explained by incomplete task training alone.
+
+The int4 rank-4 codes reached 99.38% mean all-token reconstruction accuracy and 91.43% mean exact recovery of both phrases across the five model seeds. The separately trained argmax-decoded condition stayed closer to raw-token performance than direct latent input. The soft-reader result shows that decoder-mediated input can approach the raw baseline, while direct trunk input from these codes generalizes poorly. These five runs share one sampled data split and only eight held-out ordered value pairs, so they estimate initialization and optimization variability conditional on that split, not variation across tasks or datasets. The result JSON and runner are [fixed_data_seed0_model_seeds0-4_rank4_budgets800_1600.json](fixed_data_seed0_model_seeds0-4_rank4_budgets800_1600.json) and [latent_chunk_fixed_data_budget.py](../../evaluation/latent_chunk_fixed_data_budget.py).
+
 | Rank | `b` four-symbol field decode | `c/d` target probe | Full minus `zero_cd` | Full minus `mismatch_cd` |
 | ---: | ---: | ---: | ---: | ---: |
 | 1 | 72.3 +/- 5.2 | 46.4 +/- 3.3 | +3.7 pp | +1.8 pp |
@@ -51,6 +64,8 @@ The following are FP32 payload arithmetic per example. They exclude shared model
 | 4 | 16 | 2,048 B | 1,024 B | 4,096 B |
 
 The input contains 16 token IDs, which are 64 B when packed as 32-bit integers and 128 B in the current `torch.long` tensors. The same input is 2,048 B as 16 learned 32-dimensional FP32 embeddings. Rank 4 has the same number of input vectors and the same payload size as those embeddings. The conventional K/V arithmetic is 4,096 B per layer, or 4,096, 16,384, and 49,152 B for 1, 4, and 12 layers. These values are not measured PBSLM runtime cache sizes or memory savings. The latent encoder has 26,608, 31,024, and 39,856 trainable parameters at ranks 1, 2, and 4, including auxiliary probe heads. PBSLM has 201,306 trainable parameters in each run, so the latent condition is not parameter- or FLOP-matched.
+
+The synthetic input alphabet has only 10 possible IDs (0–9), so an ideal fixed-width representation needs 4 bits per ID, or 8 B for the 16-token input. The 64 B comparison above assumes 32-bit integer storage and is not an optimally packed token baseline. The rank-4 int4 latent payload estimate is 128 B, which is larger than this bit-packed synthetic input before counting the shared encoder and decoder.
 
 An evaluation-only fixed FP32 delta state used IID random normalized keys, with 64 episodes at each length. At rank 1 and 96 stored examples, the state occupies 8,192 B versus 55,296 B for an explicit key-plus-payload table. The oldest item's mean payload cosine was 0.074, and state-query accuracy was 12.0%, compared with 57.3% when the model read the pristine payload directly. Latest-item payload cosine was 0.992. This indicates strong recency retention and substantial interference for old items in this random-key test. It is not a semantic-addressing test, and the pristine-table result is an upper-bound reference.
 
