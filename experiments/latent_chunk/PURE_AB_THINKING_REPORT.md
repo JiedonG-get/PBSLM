@@ -35,3 +35,5 @@ The encoders are learned from the synthetic task, and the input is explicitly di
 ## Artifact
 
 Raw per-run outputs and source hashes are in [pure_ab_thinking_3seed_rank_800.json](pure_ab_thinking_3seed_rank_800.json). The runnable experiment is [latent_chunk_ab_thinking.py](../../evaluation/latent_chunk_ab_thinking.py).
+
+A later reconstruction-first experiment separately measures full x/y recovery and downstream use by a frozen-latent thinking trunk. Its results are in [RECONSTRUCTION_THINKING_REPORT.md](RECONSTRUCTION_THINKING_REPORT.md).

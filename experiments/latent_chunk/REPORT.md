@@ -8,6 +8,8 @@ The current encoder did not preserve the raw-token model's generalization on the
 
 A follow-up removed the `c/d` construction, probes, and alignment loss entirely. With only task supervision, the separate `a(x)+b(y)` condition scored 44.8% to 48.8% across ranks, compared with 84.4% for the matched raw-token baseline. It reached high training accuracy but remained far below the raw-token baseline on held-out value pairs. See [PURE_AB_THINKING_REPORT.md](PURE_AB_THINKING_REPORT.md) for the protocol, paired results, and limitations.
 
+A separate reconstruction-first test measured the full-phrase recovery rate, then froze the encoder and trained PBSLMv2 on `a+b`. Rank 4 reached 99.8% token accuracy and 96.4% exact recovery of both phrases, while the thinking trunk reached only 35.2% held-out task accuracy versus 84.4% for raw tokens. See [RECONSTRUCTION_THINKING_REPORT.md](RECONSTRUCTION_THINKING_REPORT.md) for full metrics and caveats.
+
 ## Method
 
 Each example contains an 8-token query phrase `x` and an 8-token relation phrase `y`. The query names one of two keys in `y`, and the target is that key's associated value. There are eight target classes. Training uses 4,096 examples. Testing uses 3,072 examples from eight ordered value pairs reserved from training. Every class occurs in training, all complete 16-token rows are unique across the split, and adjacent test rows share `y` while querying different keys.
