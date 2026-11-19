@@ -223,6 +223,26 @@ The synthetic input alphabet has only 10 possible IDs (0–9), so an ideal fixed
 
 An evaluation-only fixed FP32 delta state used IID random normalized keys, with 64 episodes at each length. At rank 1 and 96 stored examples, the state occupies 8,192 B versus 55,296 B for an explicit key-plus-payload table. The oldest item's mean payload cosine was 0.074, and state-query accuracy was 12.0%, compared with 57.3% when the model read the pristine payload directly. Latest-item payload cosine was 0.992. This indicates strong recency retention and substantial interference for old items in this random-key test. It is not a semantic-addressing test, and the pristine-table result is an upper-bound reference.
 
+### Rank-4 Compact-Value State Confirmation
+
+A five-seed evaluation tested whether the rank-4 compact `b(y)` payload could be stored in a fixed delta state and later combined with the live `a(x)` feature by the frozen compact teacher. It used data seed 1, held-out offsets 3 and 5, 4,096 training rows, 3,072 test rows, and 64 random-key episodes per tested length and seed. The state has 16 address dimensions and 128 FP32 value dimensions. Episode lengths were 8, 32, and 96. Accuracy and pair-exact scores below are means ± sample SD across model seeds.
+
+| Stored items | Query age in later writes | Exact packed table accuracy | Fixed delta accuracy | Learned delta accuracy | Learned pair exact |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 8 | 7 | 97.03 ± 1.50% | 57.19 ± 7.04% | 61.25 ± 4.90% | 40.00 ± 8.60% |
+| 8 | 4 | 96.88 ± 1.83% | 71.09 ± 2.65% | 70.62 ± 7.30% | 51.25 ± 11.97% |
+| 8 | 0 | 96.88 ± 1.66% | 97.19 ± 1.31% | 94.06 ± 2.57% | 89.38 ± 4.47% |
+| 32 | 31 | 96.88 ± 1.10% | 15.94 ± 2.32% | 16.72 ± 1.42% | 0.94 ± 1.40% |
+| 32 | 16 | 97.66 ± 1.75% | 22.97 ± 2.11% | 27.19 ± 2.24% | 7.50 ± 2.04% |
+| 32 | 0 | 97.34 ± 0.43% | 96.41 ± 1.71% | 93.75 ± 2.28% | 87.81 ± 4.04% |
+| 96 | 95 | 96.72 ± 1.60% | 11.88 ± 2.17% | 11.09 ± 3.24% | 0.31 ± 0.70% |
+| 96 | 48 | 97.34 ± 0.70% | 13.44 ± 3.96% | 15.31 ± 5.37% | 0.62 ± 0.86% |
+| 96 | 0 | 96.72 ± 1.69% | 95.94 ± 1.02% | 92.34 ± 3.05% | 85.62 ± 5.68% |
+
+The uniform-guess reference is 12.5% task accuracy and 1.56% pair exact. The delta state retains recent values well, while accuracy for older values falls toward chance as more items are written. At 96 items, the oldest and middle queries are near chance even though the exact packed table remains near 97%. Reset-state and wrong-address controls are also near chance. These controls indicate that task performance depends on the stored state and supplied address, but the result demonstrates a recency-limited associative store rather than robust long-term retrieval. The learned condition combines a learned write strength with a trained linear read projection, so its differences from fixed delta do not isolate either component. Fixed delta scored higher on the latest query at all three lengths.
+
+The FP32 state occupies 8,192 B per episode. An exact table stores a 16-dimensional FP32 address (64 B) and rank-4 int4 `b` payload (64 B) per item, for 1,024, 4,096, and 12,288 B at lengths 8, 32, and 96. The state reaches a payload-only break-even at 64 items and is only 1.5× smaller than the table at 96 items. The learned reader adds 16,513 shared parameters, about 66 KB in FP32, which are excluded from those per-episode counts. Feature extraction still uses the compact teacher's decoder. Addresses and write segmentation are supplied by the evaluator, so semantic addressing and autonomous online writing remain untested. The [complete five-seed result](compact_reader_state_data1_offsets3-5_model0-4.json) and [runner](../../evaluation/latent_chunk_compact_state.py) include raw metrics and source hashes.
+
 ## Scope
 
 The data are synthetic and test held-out value-pair composition, not natural language, multimodal grounding, unseen key vocabularies, or online memory writing. Directly passing quantized `a/b` codes to a trunk trained on reader outputs performs poorly. A feature-distilled writer restores high accuracy on the tested synthetic splits without the vocabulary decoder at read time, but uses more payload bytes than ideal source-token packing. The random-key state test does not evaluate learned semantic addressing. These results support the feasibility of trained continuous multi-vector inputs for this narrow task, while practical memory efficiency, robust open-domain composition, and the `a/b/c/d` state mechanism remain unproven.
