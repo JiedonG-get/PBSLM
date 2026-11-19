@@ -158,6 +158,17 @@ def evaluate_state(teacher, learner, split, args, episode_seed):
         values = split["dequantized_b"][indices]
         fixed = write_state(keys, values, WRITE_STRENGTH)
         learned = write_state(keys, values, learner.write_logit.sigmoid())
+        cpu_keys = keys.detach().cpu().double()
+        cpu_values = values.detach().cpu().double()
+        least_squares_state = torch.bmm(torch.linalg.pinv(cpu_keys), cpu_values).to(
+            device=keys.device, dtype=values.dtype,
+        )
+        singular_values = torch.linalg.svdvals(cpu_keys)
+        rank_tolerance = singular_values[:, :1] * max(keys.shape[1:]) * torch.finfo(torch.float64).eps
+        address_ranks = (singular_values > rank_tolerance).sum(-1)
+        condition_numbers = singular_values[:, 0] / singular_values[:, -1].clamp_min(
+            torch.finfo(torch.float64).tiny,
+        )
         age_results = {}
         for label, position in (("oldest", 0), ("middle", (length - 1) // 2), ("latest", length - 1)):
             query = keys[:, position:position + 1]
@@ -170,6 +181,7 @@ def evaluate_state(teacher, learner, split, args, episode_seed):
                 "exact_packed_table": table_packed,
                 "fixed_delta": torch.bmm(query, fixed).squeeze(1),
                 "learned_delta": learner.read(query, learned).squeeze(1),
+                "least_squares_oracle": torch.bmm(query, least_squares_state).squeeze(1),
                 "learned_reset": learner.read(query, torch.zeros_like(learned)).squeeze(1),
                 "learned_wrong_address": learner.read(wrong_query, learned).squeeze(1),
             }
@@ -191,6 +203,13 @@ def evaluate_state(teacher, learner, split, args, episode_seed):
             "packed_b_bytes_per_table_entry": packed_b_bytes,
             "address_bytes_per_table_entry": key_bytes,
             "exact_table_bytes_per_episode": length * (key_bytes + packed_b_bytes),
+            "least_squares_oracle": {
+                "uses_all_episode_keys_and_values": True,
+                "address_rank_mean": float(address_ranks.double().mean()),
+                "address_rank_min": int(address_ranks.min()),
+                "condition_number_median": float(condition_numbers.median()),
+                "condition_number_p95": float(torch.quantile(condition_numbers, 0.95)),
+            },
             "query_ages": age_results,
         }
     return results

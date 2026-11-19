@@ -1,0 +1,4439 @@
+{
+  "task": "fixed_state_retrieval_of_compact_y_for_pbsml_relation_reasoning",
+  "config": {
+    "data_seed": 1,
+    "held_out_offsets": [
+      3,
+      5
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "pretrain_steps": 800,
+    "teacher_steps": 800,
+    "steps": 400,
+    "batch_size": 128,
+    "episode_batch_size": 16,
+    "test_episodes": 64,
+    "train_lengths": [
+      8,
+      32
+    ],
+    "test_lengths": [
+      8,
+      16,
+      32,
+      96
+    ],
+    "lr": 0.001,
+    "state_lr": 0.002,
+    "device": "cuda",
+    "output": "experiments/latent_chunk/compact_reader_state_oracle_data1_offsets3-5_model0-4.json",
+    "save_checkpoints": false
+  },
+  "provenance": {
+    "git_commit": "3546b3a0ab0a1cc35cc2f2c4370fb6d11d8ec3c7",
+    "git_status": "M evaluation/latent_chunk_compact_state.py\n?? evaluation/analyze_qwen_story.py\n?? evaluation/qwen3_local.py\n?? evaluation/qwen_story_fixed_backend.py\n?? evaluation/qwen_story_history_baseline.py\n?? experiments/continuous_online/alias_online_dev_frozen_scores_v2.json\n?? experiments/continuous_online/alias_online_dev_frozen_v2.json\n?? experiments/continuous_online/alias_online_development_batch_scores_v2.json\n?? experiments/continuous_online/alias_online_development_batch_v2.json\n?? experiments/continuous_online/alias_online_development_final_scores_v2.json\n?? experiments/continuous_online/alias_online_development_final_v2.json\n?? experiments/continuous_online/alias_online_development_initial_scores_v2.json\n?? experiments/continuous_online/alias_online_development_initial_v2.json\n?? experiments/continuous_online/alias_online_development_retry_v2.json\n?? experiments/continuous_online/qwen_local_preflight.json\n?? experiments/continuous_online/qwen_scheduler_smoke.json\n?? experiments/continuous_online/qwen_story_history_analysis.json\n?? experiments/continuous_online/qwen_story_history_dev.json\n?? experiments/latent_chunk/compact_reader_state_data1_offsets3-5_model3-4.json\n?? experiments/latent_chunk/preflight_matched.json\n?? experiments/latent_chunk/preflight_seed0_rank1.json\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_seed0_pilot_steps800.json\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_seed0_pilot_steps800.md\n?? experiments/latent_chunk/task_aware_int4_task_only_offset4_seed0_pilot_steps800_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_model0-4_steps1600.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_model0-4_steps1600.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_model0-4_steps1600_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_seed0_pilot_steps800.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_seed0_pilot_steps800.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_offsets3-5_seed0_pilot_steps800_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_seed0_pilot_steps1600.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_seed0_pilot_steps1600.md\n?? experiments/latent_chunk/task_aware_joint_recon_int4_matched_data0_seed0_pilot_steps1600_checkpoints/\n?? experiments/latent_chunk/task_aware_joint_recon_int4_offset4_seed0.json\n?? experiments/latent_chunk/task_aware_joint_recon_int4_offset4_seed0.md\n?? experiments/recurrent_state/continuous_event_tests.log",
+    "source_sha256_at_capture": {
+      "evaluation/latent_chunk_compact_state.py": "bd526a6ffa2eef310c3e758823b9b68f3027a5dc83ec284824348379485543f9",
+      "evaluation/latent_chunk_compact_student.py": "33c31eff8bb2e486c0a65544b4cd416130dc438a98d1420635a54373479f3c29",
+      "evaluation/latent_chunk_compact_int4.py": "3a4ac19e58ce8c6eafa77d4838ba3d4342aadb932c8562d6d58c5d6bc5c2e55e",
+      "evaluation/latent_chunk_compact_reader.py": "6ad88fdb525ace98f3c3a766af4d8e8c805b1c9b84c7aa00032de4e3b72600e2",
+      "evaluation/latent_chunk_soft_reader_confirmatory.py": "02b8ef43bc5555f6d374c117be673f9895feff837795564d81827037cf0bd24b",
+      "evaluation/latent_chunk_reconstruction.py": "fb468a9f4c9ee5a39f926a348abf583f3afccec8756e4d647ce8ac4a0e26c73d",
+      "evaluation/latent_chunk_ab_thinking.py": "3da790e222a000e7f367ef12595aa281bfe8540ca2a0dff0887a22337b9da571",
+      "evaluation/latent_chunk_holdout.py": "71b801414c93ff7f4d3421122b4fc4382012749e900f5609a763847cb7171dfe",
+      "evaluation/latent_chunk_relations.py": "070377ad5b4980a20a4b43953e67b80dfb976376da1cc6e28dba5c2ea54da312",
+      "evaluation/latent_chunk_state.py": "0c531cb1452751730f99338763228923834db21c7e4111b8ff7a0eea6aa38919",
+      "evaluation/provenance.py": "061924cbf9c0c5d326501be75102734bea03be6f1f315dfe032fdff1a34ebdee",
+      "models/model_v2.py": "685d275de48e923e93adc9614319e0743f80573619bead16a1f7b06aeeff8d05"
+    },
+    "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_build": "12.8",
+    "cudnn": 91900,
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "deterministic_algorithms": false,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "limitation": "dirty status is explicit; hashes identify exact selected sources; GPU bitwise determinism not promised"
+  },
+  "fixed_write_strength": 0.865,
+  "key_width": 16,
+  "independent_uniform_guess_reference": {
+    "accuracy": 0.125,
+    "counterfactual_pair_exact": 0.015625
+  },
+  "method": "Write only the packed compact b(y) vector group under a fresh random FP32 address. Read b from fixed or learned FP32 delta state and combine it with the live a(x) branch. The train-only state loss reconstructs b, and each comparison shares a frozen compact teacher and the same held-out episodes. The exact table holds quantized b and the address.",
+  "limitations": "Fixed supplied addresses and a provided write segmentation. The existing vocabulary decoder generates compact features during encoding. The state reads have no token access. The exact table uses evaluator lookup as a storage reference. Counts include persistent state or table tensor payloads, excluding model parameters, metadata, and activations. Reset and wrong-address rows are empirical intervention controls. No automatic salience, semantic addressing, online parameter learning, or real runtime memory is evaluated.",
+  "progress": {
+    "complete": true
+  },
+  "runs": [
+    {
+      "held_out_offsets": [
+        3,
+        5
+      ],
+      "held_out_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "seed": 0,
+      "train_examples": 4096,
+      "test_examples": 3072,
+      "reconstruction_pretraining": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.998870849609375,
+          "y_token_accuracy": 0.9998779296875,
+          "all_16_token_accuracy": 0.9993743896484375,
+          "x_variable_token_accuracy": 0.9987095424107143,
+          "y_variable_token_accuracy": 0.9998604910714286,
+          "query_key_accuracy": 0.998291015625,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.998779296875,
+          "y_filler_accuracy": 0.9996744791666666,
+          "x_phrase_exact": 0.99169921875,
+          "y_phrase_exact": 0.9990234375,
+          "both_phrases_exact": 0.99072265625,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.998291015625,
+              0.998046875,
+              0.997802734375,
+              0.99853515625,
+              0.99951171875,
+              0.99951171875,
+              0.999267578125
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.99951171875,
+              0.99951171875
+            ]
+          },
+          "examples": 4096
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9980061948299408,
+          "y_token_accuracy": 0.9943847805261612,
+          "all_16_token_accuracy": 0.996195487678051,
+          "x_variable_token_accuracy": 0.9977213655199323,
+          "y_variable_token_accuracy": 0.9935826063156128,
+          "query_key_accuracy": 0.9951171875,
+          "y_edge_symbol_accuracy": 0.9903971552848816,
+          "x_filler_accuracy": 0.998155395189921,
+          "y_filler_accuracy": 0.9978298743565878,
+          "x_phrase_exact": 0.9853515625,
+          "y_phrase_exact": 0.9596354166666666,
+          "both_phrases_exact": 0.9449869791666666,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9951171875,
+              0.99609375,
+              0.9967448115348816,
+              0.9970703125,
+              1.0,
+              0.9996744990348816,
+              0.9993489980697632
+            ],
+            "y": [
+              1.0,
+              0.9973958730697632,
+              0.9895833730697632,
+              0.998046875,
+              0.9765625,
+              0.998046875,
+              0.9973958730697632,
+              0.998046875
+            ]
+          },
+          "examples": 3072
+        },
+        "final_batch_loss": 0.02834435924887657,
+        "train_seconds": 2.3770588000043062
+      },
+      "episode_train_seed": 200003,
+      "episode_test_seed_base": 500009,
+      "learned_write_strength": 0.8085519671440125,
+      "learned_state_parameters": 16513,
+      "last_train_loss": 0.7296770811080933,
+      "evaluation": {
+        "8": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 1024,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 8.0,
+            "address_rank_min": 8,
+            "condition_number_median": 3.6504724314439616,
+            "condition_number_p95": 6.0467484644931275
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 7,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017354893498122692,
+                  "payload_cosine_to_packed_table": 0.973779022693634
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.5234375,
+                  "counterfactual_pair_exact": 0.328125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.013720698654651642,
+                  "payload_cosine_to_packed_table": 0.7704554796218872
+                },
+                "learned_delta": {
+                  "accuracy": 0.625,
+                  "counterfactual_pair_exact": 0.421875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.00837903656065464,
+                  "payload_cosine_to_packed_table": 0.8656343817710876
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.6905578546179878e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01815561205148697,
+                  "payload_cosine_to_packed_table": 0.6750984191894531
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.0859375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02668343484401703,
+                  "payload_cosine_to_packed_table": 0.5392253994941711
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 4,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017073312774300575,
+                  "payload_cosine_to_packed_table": 0.9741391539573669
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.6953125,
+                  "counterfactual_pair_exact": 0.53125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.010186387225985527,
+                  "payload_cosine_to_packed_table": 0.8276538848876953
+                },
+                "learned_delta": {
+                  "accuracy": 0.796875,
+                  "counterfactual_pair_exact": 0.65625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.006312609184533358,
+                  "payload_cosine_to_packed_table": 0.9017550945281982
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.6523954469239353e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01860358752310276,
+                  "payload_cosine_to_packed_table": 0.6648447513580322
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.078125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02873818948864937,
+                  "payload_cosine_to_packed_table": 0.5074820518493652
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 1.0,
+                  "counterfactual_pair_exact": 1.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017250077798962593,
+                  "payload_cosine_to_packed_table": 0.9735498428344727
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0007458643522113562,
+                  "payload_cosine_to_packed_table": 0.9975905418395996
+                },
+                "learned_delta": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.002202772069722414,
+                  "payload_cosine_to_packed_table": 0.9730351567268372
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.7623669256060432e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018504338338971138,
+                  "payload_cosine_to_packed_table": 0.6615792512893677
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02897488698363304,
+                  "payload_cosine_to_packed_table": 0.4986862540245056
+                }
+              }
+            }
+          }
+        },
+        "16": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 2048,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 44.783003396794946,
+            "condition_number_p95": 460.96791028283616
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 15,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017163485754281282,
+                  "payload_cosine_to_packed_table": 0.9738922119140625
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.3046875,
+                  "counterfactual_pair_exact": 0.078125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0259140245616436,
+                  "payload_cosine_to_packed_table": 0.5257933139801025
+                },
+                "learned_delta": {
+                  "accuracy": 0.28125,
+                  "counterfactual_pair_exact": 0.078125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.014528030529618263,
+                  "payload_cosine_to_packed_table": 0.7536584734916687
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.9159977424076935e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018130604177713394,
+                  "payload_cosine_to_packed_table": 0.6730823516845703
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02624545805156231,
+                  "payload_cosine_to_packed_table": 0.5447158813476562
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 8,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.001709319418296218,
+                  "payload_cosine_to_packed_table": 0.9740283489227295
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.453125,
+                  "counterfactual_pair_exact": 0.171875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018464025110006332,
+                  "payload_cosine_to_packed_table": 0.676089882850647
+                },
+                "learned_delta": {
+                  "accuracy": 0.578125,
+                  "counterfactual_pair_exact": 0.390625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.009733812883496284,
+                  "payload_cosine_to_packed_table": 0.8408435583114624
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 4.065558111519818e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01775771751999855,
+                  "payload_cosine_to_packed_table": 0.6820065379142761
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.026747053489089012,
+                  "payload_cosine_to_packed_table": 0.5427790880203247
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017290893010795116,
+                  "payload_cosine_to_packed_table": 0.9739280939102173
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0008198043797165155,
+                  "payload_cosine_to_packed_table": 0.9954600930213928
+                },
+                "learned_delta": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.890625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0022814206313341856,
+                  "payload_cosine_to_packed_table": 0.9724478721618652
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 5.501424511257513e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.0625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01834181137382984,
+                  "payload_cosine_to_packed_table": 0.6719605922698975
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.025324000045657158,
+                  "payload_cosine_to_packed_table": 0.5658155083656311
+                }
+              }
+            }
+          }
+        },
+        "32": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 4096,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 4.339106833636994,
+            "condition_number_p95": 5.549736134826936
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 31,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017305556684732437,
+                  "payload_cosine_to_packed_table": 0.9739654064178467
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.1953125,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.052684471011161804,
+                  "payload_cosine_to_packed_table": 0.11367339640855789
+                },
+                "learned_delta": {
+                  "accuracy": 0.171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02287347801029682,
+                  "payload_cosine_to_packed_table": 0.612563967704773
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.3671875,
+                  "counterfactual_pair_exact": 0.109375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01836058869957924,
+                  "payload_cosine_to_packed_table": 0.6621437668800354
+                },
+                "learned_reset": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018199652433395386,
+                  "payload_cosine_to_packed_table": 0.6752231121063232
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027578797191381454,
+                  "payload_cosine_to_packed_table": 0.5285560488700867
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 16,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017238622531294823,
+                  "payload_cosine_to_packed_table": 0.9738738536834717
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.25,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.031499024480581284,
+                  "payload_cosine_to_packed_table": 0.44080132246017456
+                },
+                "learned_delta": {
+                  "accuracy": 0.296875,
+                  "counterfactual_pair_exact": 0.0625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0161071065813303,
+                  "payload_cosine_to_packed_table": 0.7296108603477478
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.46875,
+                  "counterfactual_pair_exact": 0.234375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.015101900324225426,
+                  "payload_cosine_to_packed_table": 0.7392358779907227
+                },
+                "learned_reset": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018251676112413406,
+                  "payload_cosine_to_packed_table": 0.6719983220100403
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1875,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028742648661136627,
+                  "payload_cosine_to_packed_table": 0.5089480876922607
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017158233094960451,
+                  "payload_cosine_to_packed_table": 0.9737339019775391
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.890625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0010830194223672152,
+                  "payload_cosine_to_packed_table": 0.9926424026489258
+                },
+                "learned_delta": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.890625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0023661116138100624,
+                  "payload_cosine_to_packed_table": 0.969825267791748
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.5,
+                  "counterfactual_pair_exact": 0.1875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.017759475857019424,
+                  "payload_cosine_to_packed_table": 0.6675763726234436
+                },
+                "learned_reset": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018303589895367622,
+                  "payload_cosine_to_packed_table": 0.6665186285972595
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1796875,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028908666223287582,
+                  "payload_cosine_to_packed_table": 0.5022335052490234
+                }
+              }
+            }
+          }
+        },
+        "96": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 12288,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 2.0450268345313045,
+            "condition_number_p95": 2.284422207832333
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 95,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017178039997816086,
+                  "payload_cosine_to_packed_table": 0.9738656878471375
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.05459456890821457,
+                  "payload_cosine_to_packed_table": 0.03963277488946915
+                },
+                "learned_delta": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02798948436975479,
+                  "payload_cosine_to_packed_table": 0.5271257162094116
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.1875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02647632360458374,
+                  "payload_cosine_to_packed_table": 0.44336098432540894
+                },
+                "learned_reset": {
+                  "accuracy": 0.0859375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0183193851262331,
+                  "payload_cosine_to_packed_table": 0.6692464351654053
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02887324057519436,
+                  "payload_cosine_to_packed_table": 0.511797308921814
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 48,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017189509235322475,
+                  "payload_cosine_to_packed_table": 0.974082350730896
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.1796875,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.048828110098838806,
+                  "payload_cosine_to_packed_table": 0.12089822441339493
+                },
+                "learned_delta": {
+                  "accuracy": 0.2109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02531539276242256,
+                  "payload_cosine_to_packed_table": 0.5735521912574768
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.1640625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.025474824011325836,
+                  "payload_cosine_to_packed_table": 0.4861513078212738
+                },
+                "learned_reset": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01787135750055313,
+                  "payload_cosine_to_packed_table": 0.6818461418151855
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.046875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027925781905651093,
+                  "payload_cosine_to_packed_table": 0.5239776372909546
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.890625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.001759832026436925,
+                  "payload_cosine_to_packed_table": 0.973397433757782
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.890625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.890625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0010531231528148055,
+                  "payload_cosine_to_packed_table": 0.9926578402519226
+                },
+                "learned_delta": {
+                  "accuracy": 0.8828125,
+                  "counterfactual_pair_exact": 0.78125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0025117238983511925,
+                  "payload_cosine_to_packed_table": 0.9683088064193726
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.203125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.025506647303700447,
+                  "payload_cosine_to_packed_table": 0.47212404012680054
+                },
+                "learned_reset": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018204089254140854,
+                  "payload_cosine_to_packed_table": 0.672951340675354
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02807287499308586,
+                  "payload_cosine_to_packed_table": 0.5252739787101746
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "held_out_offsets": [
+        3,
+        5
+      ],
+      "held_out_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "seed": 1,
+      "train_examples": 4096,
+      "test_examples": 3072,
+      "reconstruction_pretraining": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.99945068359375,
+          "y_token_accuracy": 0.9998779296875,
+          "all_16_token_accuracy": 0.999664306640625,
+          "x_variable_token_accuracy": 0.9993722098214286,
+          "y_variable_token_accuracy": 0.9998604910714286,
+          "query_key_accuracy": 0.999755859375,
+          "y_edge_symbol_accuracy": 0.9998779296875,
+          "x_filler_accuracy": 0.9993082682291666,
+          "y_filler_accuracy": 0.9998372395833334,
+          "x_phrase_exact": 0.995849609375,
+          "y_phrase_exact": 0.9990234375,
+          "both_phrases_exact": 0.994873046875,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.999755859375,
+              0.999267578125,
+              0.9990234375,
+              0.9990234375,
+              0.999267578125,
+              0.999755859375,
+              0.99951171875
+            ],
+            "y": [
+              1.0,
+              0.99951171875,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.99951171875,
+              1.0
+            ]
+          },
+          "examples": 4096
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.997639998793602,
+          "y_token_accuracy": 0.9960123971104622,
+          "all_16_token_accuracy": 0.9968261979520321,
+          "x_variable_token_accuracy": 0.9973028557641166,
+          "y_variable_token_accuracy": 0.9954427395548139,
+          "query_key_accuracy": 0.9983724355697632,
+          "y_edge_symbol_accuracy": 0.9936523735523224,
+          "x_filler_accuracy": 0.9971245924631754,
+          "y_filler_accuracy": 0.9978298942248026,
+          "x_phrase_exact": 0.9814453125,
+          "y_phrase_exact": 0.9713541666666666,
+          "both_phrases_exact": 0.953125,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9983724355697632,
+              0.9954427480697632,
+              0.9964193105697632,
+              0.9964193105697632,
+              0.9986979365348816,
+              0.9970703125,
+              0.9986979365348816
+            ],
+            "y": [
+              1.0,
+              0.9993489980697632,
+              0.98828125,
+              0.9993489980697632,
+              0.9876302480697632,
+              0.9993489980697632,
+              0.9954427480697632,
+              0.9986979365348816
+            ]
+          },
+          "examples": 3072
+        },
+        "final_batch_loss": 0.026150314137339592,
+        "train_seconds": 2.2423726999986684
+      },
+      "episode_train_seed": 1200006,
+      "episode_test_seed_base": 1500012,
+      "learned_write_strength": 0.8089185953140259,
+      "learned_state_parameters": 16513,
+      "last_train_loss": 0.6953383684158325,
+      "evaluation": {
+        "8": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 1024,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 8.0,
+            "address_rank_min": 8,
+            "condition_number_median": 3.497975189687601,
+            "condition_number_p95": 5.679990635517429
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 7,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017169674392789602,
+                  "payload_cosine_to_packed_table": 0.9737608432769775
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.6328125,
+                  "counterfactual_pair_exact": 0.4375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01327226310968399,
+                  "payload_cosine_to_packed_table": 0.7744990587234497
+                },
+                "learned_delta": {
+                  "accuracy": 0.6640625,
+                  "counterfactual_pair_exact": 0.484375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.007692052982747555,
+                  "payload_cosine_to_packed_table": 0.8771114349365234
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.64529426680129e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.0859375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018025007098913193,
+                  "payload_cosine_to_packed_table": 0.6735522747039795
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028104491531848907,
+                  "payload_cosine_to_packed_table": 0.5109087228775024
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 4,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016867637168616056,
+                  "payload_cosine_to_packed_table": 0.9745106101036072
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.7265625,
+                  "counterfactual_pair_exact": 0.546875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.007852261886000633,
+                  "payload_cosine_to_packed_table": 0.8819730281829834
+                },
+                "learned_delta": {
+                  "accuracy": 0.6171875,
+                  "counterfactual_pair_exact": 0.359375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.005897791590541601,
+                  "payload_cosine_to_packed_table": 0.9104217290878296
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.5521764938382766e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01858619414269924,
+                  "payload_cosine_to_packed_table": 0.6647388935089111
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.026594500988721848,
+                  "payload_cosine_to_packed_table": 0.5423482656478882
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.001697224797680974,
+                  "payload_cosine_to_packed_table": 0.9743491411209106
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0007958128117024899,
+                  "payload_cosine_to_packed_table": 0.9975458383560181
+                },
+                "learned_delta": {
+                  "accuracy": 0.9140625,
+                  "counterfactual_pair_exact": 0.84375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0020825013052672148,
+                  "payload_cosine_to_packed_table": 0.9772977828979492
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.5241706729262933e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01792309433221817,
+                  "payload_cosine_to_packed_table": 0.6797713041305542
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.171875,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.024581018835306168,
+                  "payload_cosine_to_packed_table": 0.5744308233261108
+                }
+              }
+            }
+          }
+        },
+        "16": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 2048,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 55.84729493988917,
+            "condition_number_p95": 551.4517515588675
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 15,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016785896150395274,
+                  "payload_cosine_to_packed_table": 0.9745863676071167
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.2578125,
+                  "counterfactual_pair_exact": 0.109375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.026700621470808983,
+                  "payload_cosine_to_packed_table": 0.502676248550415
+                },
+                "learned_delta": {
+                  "accuracy": 0.3515625,
+                  "counterfactual_pair_exact": 0.140625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.014784373342990875,
+                  "payload_cosine_to_packed_table": 0.7502715587615967
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 6.285448507156732e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018110744655132294,
+                  "payload_cosine_to_packed_table": 0.6756117939949036
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027369007468223572,
+                  "payload_cosine_to_packed_table": 0.5255733132362366
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 8,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017135601956397295,
+                  "payload_cosine_to_packed_table": 0.9740808010101318
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.46875,
+                  "counterfactual_pair_exact": 0.265625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019574657082557678,
+                  "payload_cosine_to_packed_table": 0.6491008996963501
+                },
+                "learned_delta": {
+                  "accuracy": 0.5078125,
+                  "counterfactual_pair_exact": 0.25,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.010094350203871727,
+                  "payload_cosine_to_packed_table": 0.8346487879753113
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.2144647267009478e-12,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01802063174545765,
+                  "payload_cosine_to_packed_table": 0.6774123907089233
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.0703125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02744901180267334,
+                  "payload_cosine_to_packed_table": 0.5252423286437988
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017017382197082043,
+                  "payload_cosine_to_packed_table": 0.9740235805511475
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0009312046458944678,
+                  "payload_cosine_to_packed_table": 0.9954549074172974
+                },
+                "learned_delta": {
+                  "accuracy": 0.921875,
+                  "counterfactual_pair_exact": 0.84375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.002320848871022463,
+                  "payload_cosine_to_packed_table": 0.9728520512580872
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 5.551828528155278e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0182699803262949,
+                  "payload_cosine_to_packed_table": 0.6686955094337463
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1015625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02558496594429016,
+                  "payload_cosine_to_packed_table": 0.5564119815826416
+                }
+              }
+            }
+          }
+        },
+        "32": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 4096,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 4.20430626851302,
+            "condition_number_p95": 6.070116274951171
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 31,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.001707954565063119,
+                  "payload_cosine_to_packed_table": 0.9739388227462769
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.1640625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.04493916034698486,
+                  "payload_cosine_to_packed_table": 0.1815491020679474
+                },
+                "learned_delta": {
+                  "accuracy": 0.1640625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02217717096209526,
+                  "payload_cosine_to_packed_table": 0.6166355609893799
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.4375,
+                  "counterfactual_pair_exact": 0.203125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01633862964808941,
+                  "payload_cosine_to_packed_table": 0.7065263390541077
+                },
+                "learned_reset": {
+                  "accuracy": 0.140625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.017635609954595566,
+                  "payload_cosine_to_packed_table": 0.6826303601264954
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.026575487107038498,
+                  "payload_cosine_to_packed_table": 0.5380077362060547
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 16,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016954729799181223,
+                  "payload_cosine_to_packed_table": 0.974191427230835
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.234375,
+                  "counterfactual_pair_exact": 0.046875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.03517916053533554,
+                  "payload_cosine_to_packed_table": 0.38099291920661926
+                },
+                "learned_delta": {
+                  "accuracy": 0.2578125,
+                  "counterfactual_pair_exact": 0.09375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.016944603994488716,
+                  "payload_cosine_to_packed_table": 0.7126620411872864
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.4453125,
+                  "counterfactual_pair_exact": 0.234375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01685202680528164,
+                  "payload_cosine_to_packed_table": 0.6951673030853271
+                },
+                "learned_reset": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018802570179104805,
+                  "payload_cosine_to_packed_table": 0.6580947637557983
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.0859375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0285196416079998,
+                  "payload_cosine_to_packed_table": 0.5071361064910889
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016934466548264027,
+                  "payload_cosine_to_packed_table": 0.9742227792739868
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0010271184146404266,
+                  "payload_cosine_to_packed_table": 0.9931801557540894
+                },
+                "learned_delta": {
+                  "accuracy": 0.9375,
+                  "counterfactual_pair_exact": 0.875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0022862206678837538,
+                  "payload_cosine_to_packed_table": 0.9730312824249268
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.4609375,
+                  "counterfactual_pair_exact": 0.203125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01670500636100769,
+                  "payload_cosine_to_packed_table": 0.7024737000465393
+                },
+                "learned_reset": {
+                  "accuracy": 0.140625,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01821812056005001,
+                  "payload_cosine_to_packed_table": 0.6710398197174072
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1640625,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028915049508213997,
+                  "payload_cosine_to_packed_table": 0.5012685656547546
+                }
+              }
+            }
+          }
+        },
+        "96": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 12288,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 2.045683765023787,
+            "condition_number_p95": 2.272117788588772
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 95,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.001703731482848525,
+                  "payload_cosine_to_packed_table": 0.973971962928772
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.15625,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.058086782693862915,
+                  "payload_cosine_to_packed_table": 0.008290937170386314
+                },
+                "learned_delta": {
+                  "accuracy": 0.078125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027658555656671524,
+                  "payload_cosine_to_packed_table": 0.5308403372764587
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.234375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028543464839458466,
+                  "payload_cosine_to_packed_table": 0.3675696849822998
+                },
+                "learned_reset": {
+                  "accuracy": 0.078125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01804271712899208,
+                  "payload_cosine_to_packed_table": 0.6721535921096802
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02806103602051735,
+                  "payload_cosine_to_packed_table": 0.5185567736625671
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 48,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017036835197359324,
+                  "payload_cosine_to_packed_table": 0.9738297462463379
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.051746346056461334,
+                  "payload_cosine_to_packed_table": 0.11441797018051147
+                },
+                "learned_delta": {
+                  "accuracy": 0.15625,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02445024996995926,
+                  "payload_cosine_to_packed_table": 0.5823096036911011
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.203125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.029615186154842377,
+                  "payload_cosine_to_packed_table": 0.35020220279693604
+                },
+                "learned_reset": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01800130307674408,
+                  "payload_cosine_to_packed_table": 0.6721560955047607
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.140625,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02804374508559704,
+                  "payload_cosine_to_packed_table": 0.5140420198440552
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017003021202981472,
+                  "payload_cosine_to_packed_table": 0.974239706993103
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.00113661028444767,
+                  "payload_cosine_to_packed_table": 0.9928514957427979
+                },
+                "learned_delta": {
+                  "accuracy": 0.921875,
+                  "counterfactual_pair_exact": 0.875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.002354166004806757,
+                  "payload_cosine_to_packed_table": 0.9716964364051819
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.1953125,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02814438007771969,
+                  "payload_cosine_to_packed_table": 0.3815269470214844
+                },
+                "learned_reset": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018266787752509117,
+                  "payload_cosine_to_packed_table": 0.6716964244842529
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028249135240912437,
+                  "payload_cosine_to_packed_table": 0.5194517374038696
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "held_out_offsets": [
+        3,
+        5
+      ],
+      "held_out_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "seed": 2,
+      "train_examples": 4096,
+      "test_examples": 3072,
+      "reconstruction_pretraining": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.999359130859375,
+          "y_token_accuracy": 1.0,
+          "all_16_token_accuracy": 0.9996795654296875,
+          "x_variable_token_accuracy": 0.999267578125,
+          "y_variable_token_accuracy": 1.0,
+          "query_key_accuracy": 0.9990234375,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9993082682291666,
+          "y_filler_accuracy": 1.0,
+          "x_phrase_exact": 0.99560546875,
+          "y_phrase_exact": 1.0,
+          "both_phrases_exact": 0.99560546875,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9990234375,
+              0.999267578125,
+              0.998291015625,
+              0.999755859375,
+              0.9990234375,
+              1.0,
+              0.99951171875
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 4096
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9987386241555214,
+          "y_token_accuracy": 0.997477225959301,
+          "all_16_token_accuracy": 0.9981079250574112,
+          "x_variable_token_accuracy": 0.9985584276063102,
+          "y_variable_token_accuracy": 0.9971168296677726,
+          "query_key_accuracy": 0.9967448115348816,
+          "y_edge_symbol_accuracy": 0.9951172024011612,
+          "x_filler_accuracy": 0.9988606969515482,
+          "y_filler_accuracy": 0.9997829993565878,
+          "x_phrase_exact": 0.9905598958333334,
+          "y_phrase_exact": 0.9798177083333334,
+          "both_phrases_exact": 0.970703125,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9967448115348816,
+              0.9973958730697632,
+              0.9973958730697632,
+              1.0,
+              0.9996744990348816,
+              0.9990234375,
+              0.9996744990348816
+            ],
+            "y": [
+              1.0,
+              0.998046875,
+              0.9908854365348816,
+              0.998046875,
+              0.9934896230697632,
+              1.0,
+              0.9993489980697632,
+              1.0
+            ]
+          },
+          "examples": 3072
+        },
+        "final_batch_loss": 0.025375831872224808,
+        "train_seconds": 2.2163383000006434
+      },
+      "episode_train_seed": 2200009,
+      "episode_test_seed_base": 2500015,
+      "learned_write_strength": 0.804108202457428,
+      "learned_state_parameters": 16513,
+      "last_train_loss": 0.7354224324226379,
+      "evaluation": {
+        "8": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 1024,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 8.0,
+            "address_rank_min": 8,
+            "condition_number_median": 3.593746648246932,
+            "condition_number_p95": 5.862311219179331
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 7,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017295755678787827,
+                  "payload_cosine_to_packed_table": 0.9736347794532776
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.65625,
+                  "counterfactual_pair_exact": 0.46875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.013356028124690056,
+                  "payload_cosine_to_packed_table": 0.767911970615387
+                },
+                "learned_delta": {
+                  "accuracy": 0.6484375,
+                  "counterfactual_pair_exact": 0.46875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.008175604045391083,
+                  "payload_cosine_to_packed_table": 0.8697640895843506
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.58258338845793e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018719637766480446,
+                  "payload_cosine_to_packed_table": 0.6579717993736267
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02714652195572853,
+                  "payload_cosine_to_packed_table": 0.5205416679382324
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 4,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017273558769375086,
+                  "payload_cosine_to_packed_table": 0.9741251468658447
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.6875,
+                  "counterfactual_pair_exact": 0.53125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.012392621487379074,
+                  "payload_cosine_to_packed_table": 0.7930518388748169
+                },
+                "learned_delta": {
+                  "accuracy": 0.65625,
+                  "counterfactual_pair_exact": 0.46875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.007335806731134653,
+                  "payload_cosine_to_packed_table": 0.8864426612854004
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.7446307174350282e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01868082582950592,
+                  "payload_cosine_to_packed_table": 0.6652677655220032
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02758287824690342,
+                  "payload_cosine_to_packed_table": 0.5220972895622253
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017359255580231547,
+                  "payload_cosine_to_packed_table": 0.9737406969070435
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0007268870831467211,
+                  "payload_cosine_to_packed_table": 0.9975172281265259
+                },
+                "learned_delta": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0023029735311865807,
+                  "payload_cosine_to_packed_table": 0.9751121401786804
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.5887669936706823e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.15625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019054831936955452,
+                  "payload_cosine_to_packed_table": 0.6534245014190674
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027434099465608597,
+                  "payload_cosine_to_packed_table": 0.5185968279838562
+                }
+              }
+            }
+          }
+        },
+        "16": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 2048,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 45.17754183185128,
+            "condition_number_p95": 373.1236898901624
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 15,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017034464981406927,
+                  "payload_cosine_to_packed_table": 0.9741355180740356
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.28125,
+                  "counterfactual_pair_exact": 0.109375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.029081692919135094,
+                  "payload_cosine_to_packed_table": 0.4582771062850952
+                },
+                "learned_delta": {
+                  "accuracy": 0.3359375,
+                  "counterfactual_pair_exact": 0.140625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.015479866415262222,
+                  "payload_cosine_to_packed_table": 0.7328815460205078
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 4.943352584912963e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019371595233678818,
+                  "payload_cosine_to_packed_table": 0.644008457660675
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.15625,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027855006977915764,
+                  "payload_cosine_to_packed_table": 0.5090972185134888
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 8,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017231376841664314,
+                  "payload_cosine_to_packed_table": 0.9738574624061584
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.484375,
+                  "counterfactual_pair_exact": 0.296875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018280478194355965,
+                  "payload_cosine_to_packed_table": 0.6872954368591309
+                },
+                "learned_delta": {
+                  "accuracy": 0.59375,
+                  "counterfactual_pair_exact": 0.390625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.009832333773374557,
+                  "payload_cosine_to_packed_table": 0.8395819664001465
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 4.290966995786072e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.15625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019102975726127625,
+                  "payload_cosine_to_packed_table": 0.6516155004501343
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02925606444478035,
+                  "payload_cosine_to_packed_table": 0.4894908666610718
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017295358702540398,
+                  "payload_cosine_to_packed_table": 0.9738703966140747
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.00092348363250494,
+                  "payload_cosine_to_packed_table": 0.995136559009552
+                },
+                "learned_delta": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0025090111885219812,
+                  "payload_cosine_to_packed_table": 0.9716835021972656
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 4.4096952651895283e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.0703125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019226375967264175,
+                  "payload_cosine_to_packed_table": 0.6499754786491394
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1640625,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027581902220845222,
+                  "payload_cosine_to_packed_table": 0.5139173269271851
+                }
+              }
+            }
+          }
+        },
+        "32": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 4096,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 4.2173435423664,
+            "condition_number_p95": 5.164140249342513
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 31,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017118644900619984,
+                  "payload_cosine_to_packed_table": 0.973791778087616
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.15625,
+                  "counterfactual_pair_exact": 0.046875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.043366484344005585,
+                  "payload_cosine_to_packed_table": 0.21259546279907227
+                },
+                "learned_delta": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02224672958254814,
+                  "payload_cosine_to_packed_table": 0.6133341789245605
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.3984375,
+                  "counterfactual_pair_exact": 0.1875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01791909709572792,
+                  "payload_cosine_to_packed_table": 0.6624958515167236
+                },
+                "learned_reset": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018908772617578506,
+                  "payload_cosine_to_packed_table": 0.649938702583313
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027785252779722214,
+                  "payload_cosine_to_packed_table": 0.5136542320251465
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 16,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017111219931393862,
+                  "payload_cosine_to_packed_table": 0.9739694595336914
+                },
+                "exact_packed_table": {
+                  "accuracy": 1.0,
+                  "counterfactual_pair_exact": 1.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.2265625,
+                  "counterfactual_pair_exact": 0.046875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.03733458369970322,
+                  "payload_cosine_to_packed_table": 0.33284425735473633
+                },
+                "learned_delta": {
+                  "accuracy": 0.2890625,
+                  "counterfactual_pair_exact": 0.09375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01683170348405838,
+                  "payload_cosine_to_packed_table": 0.7123479843139648
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.4140625,
+                  "counterfactual_pair_exact": 0.21875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01892959699034691,
+                  "payload_cosine_to_packed_table": 0.6439410448074341
+                },
+                "learned_reset": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019556235522031784,
+                  "payload_cosine_to_packed_table": 0.6390597820281982
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02954297512769699,
+                  "payload_cosine_to_packed_table": 0.4821424186229706
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017204990144819021,
+                  "payload_cosine_to_packed_table": 0.9738377332687378
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0010203452548012137,
+                  "payload_cosine_to_packed_table": 0.9934784173965454
+                },
+                "learned_delta": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0025402833707630634,
+                  "payload_cosine_to_packed_table": 0.9700369834899902
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.484375,
+                  "counterfactual_pair_exact": 0.28125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018387021496891975,
+                  "payload_cosine_to_packed_table": 0.6620515584945679
+                },
+                "learned_reset": {
+                  "accuracy": 0.171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019069340080022812,
+                  "payload_cosine_to_packed_table": 0.6505311727523804
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028307385742664337,
+                  "payload_cosine_to_packed_table": 0.5076911449432373
+                }
+              }
+            }
+          }
+        },
+        "96": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 12288,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 2.034132716526575,
+            "condition_number_p95": 2.2945062837962236
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 95,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 1.0,
+                  "counterfactual_pair_exact": 1.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017434576293453574,
+                  "payload_cosine_to_packed_table": 0.9735546112060547
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.1015625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.06112105771899223,
+                  "payload_cosine_to_packed_table": -0.04161909967660904
+                },
+                "learned_delta": {
+                  "accuracy": 0.15625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.029079437255859375,
+                  "payload_cosine_to_packed_table": 0.5053836703300476
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.1640625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.029207009822130203,
+                  "payload_cosine_to_packed_table": 0.34952807426452637
+                },
+                "learned_reset": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0187838077545166,
+                  "payload_cosine_to_packed_table": 0.6581534743309021
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.15625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028713013976812363,
+                  "payload_cosine_to_packed_table": 0.5069249868392944
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 48,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017249316442757845,
+                  "payload_cosine_to_packed_table": 0.9734885692596436
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.05406619608402252,
+                  "payload_cosine_to_packed_table": 0.07469482719898224
+                },
+                "learned_delta": {
+                  "accuracy": 0.0703125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.026016708463430405,
+                  "payload_cosine_to_packed_table": 0.5520830154418945
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.203125,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.026078056544065475,
+                  "payload_cosine_to_packed_table": 0.44501298666000366
+                },
+                "learned_reset": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01888740435242653,
+                  "payload_cosine_to_packed_table": 0.6501504182815552
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.0625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.03008069470524788,
+                  "payload_cosine_to_packed_table": 0.4688816964626312
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017021452076733112,
+                  "payload_cosine_to_packed_table": 0.9742955565452576
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0011468275915831327,
+                  "payload_cosine_to_packed_table": 0.992041826248169
+                },
+                "learned_delta": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0027650680858641863,
+                  "payload_cosine_to_packed_table": 0.9672250747680664
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028221163898706436,
+                  "payload_cosine_to_packed_table": 0.37655577063560486
+                },
+                "learned_reset": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019246693700551987,
+                  "payload_cosine_to_packed_table": 0.6499396562576294
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02710249088704586,
+                  "payload_cosine_to_packed_table": 0.5398695468902588
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "held_out_offsets": [
+        3,
+        5
+      ],
+      "held_out_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "seed": 3,
+      "train_examples": 4096,
+      "test_examples": 3072,
+      "reconstruction_pretraining": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.999542236328125,
+          "y_token_accuracy": 1.0,
+          "all_16_token_accuracy": 0.9997711181640625,
+          "x_variable_token_accuracy": 0.9994768415178571,
+          "y_variable_token_accuracy": 1.0,
+          "query_key_accuracy": 0.9990234375,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9995524088541666,
+          "y_filler_accuracy": 1.0,
+          "x_phrase_exact": 0.996337890625,
+          "y_phrase_exact": 1.0,
+          "both_phrases_exact": 0.996337890625,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9990234375,
+              0.9990234375,
+              0.999755859375,
+              0.998779296875,
+              0.999755859375,
+              1.0,
+              1.0
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 4096
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.998494490981102,
+          "y_token_accuracy": 0.9955241084098816,
+          "all_16_token_accuracy": 0.9970092996954918,
+          "x_variable_token_accuracy": 0.9982794182641166,
+          "y_variable_token_accuracy": 0.994884695325579,
+          "query_key_accuracy": 0.9967448115348816,
+          "y_edge_symbol_accuracy": 0.9918619990348816,
+          "x_filler_accuracy": 0.9985351860523224,
+          "y_filler_accuracy": 0.9989149570465088,
+          "x_phrase_exact": 0.9886067708333334,
+          "y_phrase_exact": 0.9661458333333334,
+          "both_phrases_exact": 0.955078125,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.9967448115348816,
+              0.9973958730697632,
+              0.9996744990348816,
+              0.9973958730697632,
+              0.9993489980697632,
+              0.9986979365348816,
+              0.9986979365348816
+            ],
+            "y": [
+              1.0,
+              0.9986979365348816,
+              0.9811198115348816,
+              0.9986979365348816,
+              0.9889323115348816,
+              0.9993489980697632,
+              0.998046875,
+              0.9993489980697632
+            ]
+          },
+          "examples": 3072
+        },
+        "final_batch_loss": 0.024271786212921143,
+        "train_seconds": 2.146175400004722
+      },
+      "episode_train_seed": 3200012,
+      "episode_test_seed_base": 3500018,
+      "learned_write_strength": 0.8077263236045837,
+      "learned_state_parameters": 16513,
+      "last_train_loss": 0.8184962868690491,
+      "evaluation": {
+        "8": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 1024,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 8.0,
+            "address_rank_min": 8,
+            "condition_number_median": 3.475631630988922,
+            "condition_number_p95": 5.415186221556268
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 7,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.001618018141016364,
+                  "payload_cosine_to_packed_table": 0.9749570488929749
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.5546875,
+                  "counterfactual_pair_exact": 0.3125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.014991488307714462,
+                  "payload_cosine_to_packed_table": 0.7313240766525269
+                },
+                "learned_delta": {
+                  "accuracy": 0.546875,
+                  "counterfactual_pair_exact": 0.28125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.00886430125683546,
+                  "payload_cosine_to_packed_table": 0.8523281812667847
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.6153061240949357e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.0546875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01889970526099205,
+                  "payload_cosine_to_packed_table": 0.6464394330978394
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027196016162633896,
+                  "payload_cosine_to_packed_table": 0.5171599388122559
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 4,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9375,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016185017302632332,
+                  "payload_cosine_to_packed_table": 0.9749763607978821
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9375,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.6953125,
+                  "counterfactual_pair_exact": 0.53125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.011258779093623161,
+                  "payload_cosine_to_packed_table": 0.8009140491485596
+                },
+                "learned_delta": {
+                  "accuracy": 0.703125,
+                  "counterfactual_pair_exact": 0.46875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0061928629875183105,
+                  "payload_cosine_to_packed_table": 0.902400553226471
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9375,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.6253750959065231e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019544310867786407,
+                  "payload_cosine_to_packed_table": 0.6325368881225586
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.03041745349764824,
+                  "payload_cosine_to_packed_table": 0.4646717309951782
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016201672842726111,
+                  "payload_cosine_to_packed_table": 0.9751627445220947
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0007616911898367107,
+                  "payload_cosine_to_packed_table": 0.997489333152771
+                },
+                "learned_delta": {
+                  "accuracy": 0.9140625,
+                  "counterfactual_pair_exact": 0.859375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0020876876078546047,
+                  "payload_cosine_to_packed_table": 0.9759292006492615
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.7067762856266415e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01915532536804676,
+                  "payload_cosine_to_packed_table": 0.6436073780059814
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.0859375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028941232711076736,
+                  "payload_cosine_to_packed_table": 0.48891696333885193
+                }
+              }
+            }
+          }
+        },
+        "16": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 2048,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 44.47147901924169,
+            "condition_number_p95": 338.36145299702815
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 15,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.00165072875097394,
+                  "payload_cosine_to_packed_table": 0.9743547439575195
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 0.9999999403953552
+                },
+                "fixed_delta": {
+                  "accuracy": 0.3125,
+                  "counterfactual_pair_exact": 0.140625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.030311167240142822,
+                  "payload_cosine_to_packed_table": 0.4407564401626587
+                },
+                "learned_delta": {
+                  "accuracy": 0.3359375,
+                  "counterfactual_pair_exact": 0.125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.014527641236782074,
+                  "payload_cosine_to_packed_table": 0.7457268834114075
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 3.3581559706402295e-14,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018849467858672142,
+                  "payload_cosine_to_packed_table": 0.6461259722709656
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.0859375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.030005184933543205,
+                  "payload_cosine_to_packed_table": 0.46889570355415344
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 8,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016428502276539803,
+                  "payload_cosine_to_packed_table": 0.9744745492935181
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.421875,
+                  "counterfactual_pair_exact": 0.21875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.016519295051693916,
+                  "payload_cosine_to_packed_table": 0.7027322053909302
+                },
+                "learned_delta": {
+                  "accuracy": 0.5234375,
+                  "counterfactual_pair_exact": 0.25,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.010707509703934193,
+                  "payload_cosine_to_packed_table": 0.817406415939331
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 5.768127674717766e-14,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.046875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019181642681360245,
+                  "payload_cosine_to_packed_table": 0.6369333267211914
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.030446864664554596,
+                  "payload_cosine_to_packed_table": 0.4622493088245392
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016304559540003538,
+                  "payload_cosine_to_packed_table": 0.9747549295425415
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0009335848735645413,
+                  "payload_cosine_to_packed_table": 0.9949272274971008
+                },
+                "learned_delta": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0022279606200754642,
+                  "payload_cosine_to_packed_table": 0.9723158478736877
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.1118679626087244e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019101670011878014,
+                  "payload_cosine_to_packed_table": 0.6407660841941833
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028585128486156464,
+                  "payload_cosine_to_packed_table": 0.49312740564346313
+                }
+              }
+            }
+          }
+        },
+        "32": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 4096,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 4.120709184032431,
+            "condition_number_p95": 5.328025674003494
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 31,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016191138420253992,
+                  "payload_cosine_to_packed_table": 0.9750436544418335
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.03879683464765549,
+                  "payload_cosine_to_packed_table": 0.26281309127807617
+                },
+                "learned_delta": {
+                  "accuracy": 0.1640625,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.021294493228197098,
+                  "payload_cosine_to_packed_table": 0.62489914894104
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.546875,
+                  "counterfactual_pair_exact": 0.3125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.014117999002337456,
+                  "payload_cosine_to_packed_table": 0.7470524311065674
+                },
+                "learned_reset": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019083112478256226,
+                  "payload_cosine_to_packed_table": 0.6439670920372009
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1640625,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0294656939804554,
+                  "payload_cosine_to_packed_table": 0.48304080963134766
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 16,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.001643969677388668,
+                  "payload_cosine_to_packed_table": 0.9744805097579956
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.2421875,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.031138364225625992,
+                  "payload_cosine_to_packed_table": 0.41655293107032776
+                },
+                "learned_delta": {
+                  "accuracy": 0.2734375,
+                  "counterfactual_pair_exact": 0.078125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01679568737745285,
+                  "payload_cosine_to_packed_table": 0.7068824768066406
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.4765625,
+                  "counterfactual_pair_exact": 0.21875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.014980603009462357,
+                  "payload_cosine_to_packed_table": 0.7351081371307373
+                },
+                "learned_reset": {
+                  "accuracy": 0.1875,
+                  "counterfactual_pair_exact": 0.0625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018825393170118332,
+                  "payload_cosine_to_packed_table": 0.6467747688293457
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.030254483222961426,
+                  "payload_cosine_to_packed_table": 0.46692049503326416
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016574214678257704,
+                  "payload_cosine_to_packed_table": 0.9742570519447327
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0009130686521530151,
+                  "payload_cosine_to_packed_table": 0.9938833713531494
+                },
+                "learned_delta": {
+                  "accuracy": 0.90625,
+                  "counterfactual_pair_exact": 0.828125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.002303346060216427,
+                  "payload_cosine_to_packed_table": 0.9707880020141602
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.4921875,
+                  "counterfactual_pair_exact": 0.203125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.014578502625226974,
+                  "payload_cosine_to_packed_table": 0.7409322261810303
+                },
+                "learned_reset": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01877996139228344,
+                  "payload_cosine_to_packed_table": 0.6483647227287292
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0291728712618351,
+                  "payload_cosine_to_packed_table": 0.48066532611846924
+                }
+              }
+            }
+          }
+        },
+        "96": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 12288,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 2.061306153105939,
+            "condition_number_p95": 2.324006781428591
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 95,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016567716374993324,
+                  "payload_cosine_to_packed_table": 0.9744676351547241
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.05759129300713539,
+                  "payload_cosine_to_packed_table": 0.03068730980157852
+                },
+                "learned_delta": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02862808108329773,
+                  "payload_cosine_to_packed_table": 0.5023677945137024
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.2109375,
+                  "counterfactual_pair_exact": 0.046875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02640538290143013,
+                  "payload_cosine_to_packed_table": 0.4376910924911499
+                },
+                "learned_reset": {
+                  "accuracy": 0.1875,
+                  "counterfactual_pair_exact": 0.046875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01908148266375065,
+                  "payload_cosine_to_packed_table": 0.6444522738456726
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.171875,
+                  "counterfactual_pair_exact": 0.046875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.028529614210128784,
+                  "payload_cosine_to_packed_table": 0.5016726851463318
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 48,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.001632082974538207,
+                  "payload_cosine_to_packed_table": 0.9748692512512207
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 0.9999999403953552
+                },
+                "fixed_delta": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.05357706546783447,
+                  "payload_cosine_to_packed_table": 0.10066218674182892
+                },
+                "learned_delta": {
+                  "accuracy": 0.1875,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027304761111736298,
+                  "payload_cosine_to_packed_table": 0.534868597984314
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.2265625,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02887376956641674,
+                  "payload_cosine_to_packed_table": 0.3219250440597534
+                },
+                "learned_reset": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.0625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019298605620861053,
+                  "payload_cosine_to_packed_table": 0.6382853388786316
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.029238421469926834,
+                  "payload_cosine_to_packed_table": 0.4875486493110657
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0016647049924358726,
+                  "payload_cosine_to_packed_table": 0.9742265939712524
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0011716934386640787,
+                  "payload_cosine_to_packed_table": 0.9921629428863525
+                },
+                "learned_delta": {
+                  "accuracy": 0.90625,
+                  "counterfactual_pair_exact": 0.8125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0023007183335721493,
+                  "payload_cosine_to_packed_table": 0.9709336161613464
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.2109375,
+                  "counterfactual_pair_exact": 0.0625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02779201976954937,
+                  "payload_cosine_to_packed_table": 0.37561044096946716
+                },
+                "learned_reset": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.046875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01876072585582733,
+                  "payload_cosine_to_packed_table": 0.649495005607605
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.15625,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.031149547547101974,
+                  "payload_cosine_to_packed_table": 0.4656514525413513
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "held_out_offsets": [
+        3,
+        5
+      ],
+      "held_out_pairs": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "seed": 4,
+      "train_examples": 4096,
+      "test_examples": 3072,
+      "reconstruction_pretraining": {
+        "train_reconstruction": {
+          "x_token_accuracy": 0.9990234375,
+          "y_token_accuracy": 1.0,
+          "all_16_token_accuracy": 0.99951171875,
+          "x_variable_token_accuracy": 0.9988839285714286,
+          "y_variable_token_accuracy": 1.0,
+          "query_key_accuracy": 0.998046875,
+          "y_edge_symbol_accuracy": 1.0,
+          "x_filler_accuracy": 0.9990234375,
+          "y_filler_accuracy": 1.0,
+          "x_phrase_exact": 0.992919921875,
+          "y_phrase_exact": 1.0,
+          "both_phrases_exact": 0.992919921875,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.998046875,
+              0.997802734375,
+              0.99853515625,
+              0.99951171875,
+              0.999755859375,
+              0.999267578125,
+              0.999267578125
+            ],
+            "y": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "examples": 4096
+        },
+        "test_reconstruction": {
+          "x_token_accuracy": 0.9976806789636612,
+          "y_token_accuracy": 0.996663436293602,
+          "all_16_token_accuracy": 0.9971720576286316,
+          "x_variable_token_accuracy": 0.9973493473870414,
+          "y_variable_token_accuracy": 0.9961867843355451,
+          "query_key_accuracy": 0.99609375,
+          "y_edge_symbol_accuracy": 0.9946289360523224,
+          "x_filler_accuracy": 0.997558613618215,
+          "y_filler_accuracy": 0.9982639153798422,
+          "x_phrase_exact": 0.9827473958333334,
+          "y_phrase_exact": 0.9739583333333334,
+          "both_phrases_exact": 0.95703125,
+          "position_accuracy": {
+            "x": [
+              1.0,
+              0.99609375,
+              0.9951171875,
+              0.9957682490348816,
+              0.9990234375,
+              0.9993489980697632,
+              0.9986979365348816,
+              0.9973958730697632
+            ],
+            "y": [
+              1.0,
+              0.9993489980697632,
+              0.9850260615348816,
+              0.9993489980697632,
+              0.9947916865348816,
+              0.9993489980697632,
+              0.9986979365348816,
+              0.9967448115348816
+            ]
+          },
+          "examples": 3072
+        },
+        "final_batch_loss": 0.027672063559293747,
+        "train_seconds": 2.236616900001536
+      },
+      "episode_train_seed": 4200015,
+      "episode_test_seed_base": 4500021,
+      "learned_write_strength": 0.8077242970466614,
+      "learned_state_parameters": 16513,
+      "last_train_loss": 0.636229395866394,
+      "evaluation": {
+        "8": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 1024,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 8.0,
+            "address_rank_min": 8,
+            "condition_number_median": 3.7056398406454214,
+            "condition_number_p95": 4.90473935086288
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 7,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 1.0,
+                  "counterfactual_pair_exact": 1.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017154207453131676,
+                  "payload_cosine_to_packed_table": 0.9737817645072937
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.4921875,
+                  "counterfactual_pair_exact": 0.3125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018898043781518936,
+                  "payload_cosine_to_packed_table": 0.6502044200897217
+                },
+                "learned_delta": {
+                  "accuracy": 0.578125,
+                  "counterfactual_pair_exact": 0.34375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.009698665700852871,
+                  "payload_cosine_to_packed_table": 0.8402090072631836
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.5971902069355343e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018466122448444366,
+                  "payload_cosine_to_packed_table": 0.6633104681968689
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.027417566627264023,
+                  "payload_cosine_to_packed_table": 0.5245853662490845
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 4,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 1.0,
+                  "counterfactual_pair_exact": 1.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017307099187746644,
+                  "payload_cosine_to_packed_table": 0.9738172292709351
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.75,
+                  "counterfactual_pair_exact": 0.5625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.008956367149949074,
+                  "payload_cosine_to_packed_table": 0.8631945848464966
+                },
+                "learned_delta": {
+                  "accuracy": 0.7578125,
+                  "counterfactual_pair_exact": 0.609375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.006463364697992802,
+                  "payload_cosine_to_packed_table": 0.9009178280830383
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.5829243192191998e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1015625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01912829652428627,
+                  "payload_cosine_to_packed_table": 0.6527265310287476
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.140625,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.030845461413264275,
+                  "payload_cosine_to_packed_table": 0.4730239510536194
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017397287301719189,
+                  "payload_cosine_to_packed_table": 0.9739536046981812
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0008129185298457742,
+                  "payload_cosine_to_packed_table": 0.9972732067108154
+                },
+                "learned_delta": {
+                  "accuracy": 0.9453125,
+                  "counterfactual_pair_exact": 0.890625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0022835158742964268,
+                  "payload_cosine_to_packed_table": 0.9728190898895264
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 1.6527595387423567e-16,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01949647068977356,
+                  "payload_cosine_to_packed_table": 0.6475623846054077
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1640625,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02914375439286232,
+                  "payload_cosine_to_packed_table": 0.4938529133796692
+                }
+              }
+            }
+          }
+        },
+        "16": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 2048,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 36.567551992818544,
+            "condition_number_p95": 612.6081844025482
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 15,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.001721198670566082,
+                  "payload_cosine_to_packed_table": 0.9739579558372498
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.34375,
+                  "counterfactual_pair_exact": 0.09375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02966231107711792,
+                  "payload_cosine_to_packed_table": 0.4609750807285309
+                },
+                "learned_delta": {
+                  "accuracy": 0.3359375,
+                  "counterfactual_pair_exact": 0.125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.014729118905961514,
+                  "payload_cosine_to_packed_table": 0.752153754234314
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 4.197248288945882e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018854301422834396,
+                  "payload_cosine_to_packed_table": 0.6586376428604126
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1015625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02764882519841194,
+                  "payload_cosine_to_packed_table": 0.5200508832931519
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 8,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017429988365620375,
+                  "payload_cosine_to_packed_table": 0.9736377000808716
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.53125,
+                  "counterfactual_pair_exact": 0.28125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.017516791820526123,
+                  "payload_cosine_to_packed_table": 0.6958520412445068
+                },
+                "learned_delta": {
+                  "accuracy": 0.5078125,
+                  "counterfactual_pair_exact": 0.265625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01022858452051878,
+                  "payload_cosine_to_packed_table": 0.8332279920578003
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 5.209887425985937e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.046875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01911180280148983,
+                  "payload_cosine_to_packed_table": 0.6531760692596436
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1015625,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.030628204345703125,
+                  "payload_cosine_to_packed_table": 0.47480082511901855
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 1.0,
+                  "counterfactual_pair_exact": 1.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017597267869859934,
+                  "payload_cosine_to_packed_table": 0.9732969999313354
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0008288136450573802,
+                  "payload_cosine_to_packed_table": 0.995778501033783
+                },
+                "learned_delta": {
+                  "accuracy": 0.9296875,
+                  "counterfactual_pair_exact": 0.859375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.002294085919857025,
+                  "payload_cosine_to_packed_table": 0.9719020128250122
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 3.152909790887781e-13,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "learned_reset": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01884136162698269,
+                  "payload_cosine_to_packed_table": 0.6576851010322571
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02866283431649208,
+                  "payload_cosine_to_packed_table": 0.5047667622566223
+                }
+              }
+            }
+          }
+        },
+        "32": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 4096,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 4.544455082673559,
+            "condition_number_p95": 5.330486609900329
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 31,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017581918509677052,
+                  "payload_cosine_to_packed_table": 0.973135769367218
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.04470760375261307,
+                  "payload_cosine_to_packed_table": 0.2091110497713089
+                },
+                "learned_delta": {
+                  "accuracy": 0.1875,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.023640993982553482,
+                  "payload_cosine_to_packed_table": 0.593199610710144
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.4921875,
+                  "counterfactual_pair_exact": 0.21875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.015920504927635193,
+                  "payload_cosine_to_packed_table": 0.7201648354530334
+                },
+                "learned_reset": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01899689808487892,
+                  "payload_cosine_to_packed_table": 0.6523187160491943
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.140625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02995983138680458,
+                  "payload_cosine_to_packed_table": 0.4854678511619568
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 16,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017517502419650555,
+                  "payload_cosine_to_packed_table": 0.9733871817588806
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.1953125,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.03373853862285614,
+                  "payload_cosine_to_packed_table": 0.4080688953399658
+                },
+                "learned_delta": {
+                  "accuracy": 0.2421875,
+                  "counterfactual_pair_exact": 0.046875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01829622872173786,
+                  "payload_cosine_to_packed_table": 0.6917696595191956
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.4375,
+                  "counterfactual_pair_exact": 0.21875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01550321839749813,
+                  "payload_cosine_to_packed_table": 0.7246440649032593
+                },
+                "learned_reset": {
+                  "accuracy": 0.1171875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018918940797448158,
+                  "payload_cosine_to_packed_table": 0.6560817360877991
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.125,
+                  "counterfactual_pair_exact": 0.0625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02837599813938141,
+                  "payload_cosine_to_packed_table": 0.5135728120803833
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017642659367993474,
+                  "payload_cosine_to_packed_table": 0.9732763171195984
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0010362087050452828,
+                  "payload_cosine_to_packed_table": 0.99324631690979
+                },
+                "learned_delta": {
+                  "accuracy": 0.9296875,
+                  "counterfactual_pair_exact": 0.859375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0024674287997186184,
+                  "payload_cosine_to_packed_table": 0.9693566560745239
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.5703125,
+                  "counterfactual_pair_exact": 0.375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.01717672497034073,
+                  "payload_cosine_to_packed_table": 0.6866001486778259
+                },
+                "learned_reset": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018980706110596657,
+                  "payload_cosine_to_packed_table": 0.6562272310256958
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.171875,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.029041066765785217,
+                  "payload_cosine_to_packed_table": 0.5085073709487915
+                }
+              }
+            }
+          }
+        },
+        "96": {
+          "episodes": 64,
+          "state_bytes_per_episode": 8192,
+          "packed_b_bytes_per_table_entry": 64,
+          "address_bytes_per_table_entry": 64,
+          "exact_table_bytes_per_episode": 12288,
+          "least_squares_oracle": {
+            "uses_all_episode_keys_and_values": true,
+            "address_rank_mean": 16.0,
+            "address_rank_min": 16,
+            "condition_number_median": 2.061865507398456,
+            "condition_number_p95": 2.3214309049820514
+          },
+          "query_ages": {
+            "oldest": {
+              "age_writes": 95,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.984375,
+                  "counterfactual_pair_exact": 0.96875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017394695896655321,
+                  "payload_cosine_to_packed_table": 0.9736543297767639
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.96875,
+                  "counterfactual_pair_exact": 0.9375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.05838261544704437,
+                  "payload_cosine_to_packed_table": -0.010487825609743595
+                },
+                "learned_delta": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.029246941208839417,
+                  "payload_cosine_to_packed_table": 0.5059584379196167
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.234375,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02696564793586731,
+                  "payload_cosine_to_packed_table": 0.43864917755126953
+                },
+                "learned_reset": {
+                  "accuracy": 0.09375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018513832241296768,
+                  "payload_cosine_to_packed_table": 0.6657823920249939
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02916043996810913,
+                  "payload_cosine_to_packed_table": 0.5048227310180664
+                }
+              }
+            },
+            "middle": {
+              "age_writes": 48,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9921875,
+                  "counterfactual_pair_exact": 0.984375,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017614713869988918,
+                  "payload_cosine_to_packed_table": 0.9732800722122192
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.1015625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.06343258917331696,
+                  "payload_cosine_to_packed_table": -0.0625680610537529
+                },
+                "learned_delta": {
+                  "accuracy": 0.140625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02861154079437256,
+                  "payload_cosine_to_packed_table": 0.518683910369873
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.1953125,
+                  "counterfactual_pair_exact": 0.03125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.029052700847387314,
+                  "payload_cosine_to_packed_table": 0.35396355390548706
+                },
+                "learned_reset": {
+                  "accuracy": 0.1328125,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.019078988581895828,
+                  "payload_cosine_to_packed_table": 0.6531628370285034
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.1015625,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.02933397889137268,
+                  "payload_cosine_to_packed_table": 0.49851590394973755
+                }
+              }
+            },
+            "latest": {
+              "age_writes": 0,
+              "conditions": {
+                "pristine_fp32": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0017475284403190017,
+                  "payload_cosine_to_packed_table": 0.9736013412475586
+                },
+                "exact_packed_table": {
+                  "accuracy": 0.9765625,
+                  "counterfactual_pair_exact": 0.953125,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0,
+                  "payload_cosine_to_packed_table": 1.0
+                },
+                "fixed_delta": {
+                  "accuracy": 0.9609375,
+                  "counterfactual_pair_exact": 0.921875,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.0012295751366764307,
+                  "payload_cosine_to_packed_table": 0.9920055866241455
+                },
+                "learned_delta": {
+                  "accuracy": 0.953125,
+                  "counterfactual_pair_exact": 0.90625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.002419330645352602,
+                  "payload_cosine_to_packed_table": 0.9697056412696838
+                },
+                "least_squares_oracle": {
+                  "accuracy": 0.1796875,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.029690729454159737,
+                  "payload_cosine_to_packed_table": 0.34632664918899536
+                },
+                "learned_reset": {
+                  "accuracy": 0.1484375,
+                  "counterfactual_pair_exact": 0.0,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.018803095445036888,
+                  "payload_cosine_to_packed_table": 0.6606082916259766
+                },
+                "learned_wrong_address": {
+                  "accuracy": 0.109375,
+                  "counterfactual_pair_exact": 0.015625,
+                  "examples": 128,
+                  "payload_mse_to_packed_table": 0.031110307201743126,
+                  "payload_cosine_to_packed_table": 0.4778459072113037
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
